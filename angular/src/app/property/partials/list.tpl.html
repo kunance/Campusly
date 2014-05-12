@@ -44,10 +44,10 @@
                 </h3><!-- /.property-row-title -->
 
                 <h4 class="property-row-subtitle">
-                    <a href="#">{{property.city}}, {{property.state}} {{property.zip}}</a>
+                    <a href="#/property/{{id}}">{{property.city}}, {{property.state}} {{property.zip}}</a>
                 </h4><!-- /.property-row-subtitle -->
 
-                <div class="property-row-price">$ {{property.rent}}</div><!-- /.property-row-price -->
+                <div class="property-row-price"><span>Minimum Bid</span> $ {{property.rent}}</div><!-- /.property-row-price -->
 
                 <p class="property-row-body" ng-bind-html="property.description">
                 </p><!-- /.property-row-body -->
