@@ -1,0 +1,111 @@
+<div class="container">
+<div class="block-content block-content-small-padding">
+<div class="block-content-inner">
+<div class="row">
+<div class="col-sm-9">
+    <h2 class="property-detail-title">{{property.address}}</h2>
+
+    <h3 class="property-detail-subtitle">{{property.city}}, {{property.state}} {{property.zip}} <strong>$ {{property.rent}}</strong></h3>
+
+    <div class="property-detail-overview">
+        <div class="property-detail-overview-inner clearfix">
+            <div class="property-detail-overview-item col-sm-6 col-md-2">
+                <strong>Price:</strong>
+                <span>$ {{property.rent}}</span>
+            </div>
+            <!-- /.property-detail-overview-item -->
+
+            <div class="property-detail-overview-item col-sm-6 col-md-2">
+                <strong>Type:</strong>
+                <span>Rent</span>
+            </div>
+            <!-- /.property-detail-overview-item -->
+
+            <div class="property-detail-overview-item col-sm-6 col-md-2">
+                <strong>Area:</strong>
+                <span>{{property.area}} {{property.area_unit}}</span>
+            </div>
+            <!-- /.property-detail-overview-item -->
+
+            <div class="property-detail-overview-item col-sm-6 col-md-2">
+                <strong>Baths:</strong>
+                <span>{{property.baths}}</span>
+            </div>
+            <!-- /.property-detail-overview-item -->
+
+            <div class="property-detail-overview-item col-sm-6 col-md-2">
+                <strong>Beds:</strong>
+                <span>{{property.beds}}</span>
+            </div>
+            <!-- /.property-detail-overview-item -->
+
+            <div class="property-detail-overview-item col-sm-6 col-md-2">
+                <strong>Garages:</strong>
+                <span>{{property.garages}}</span>
+            </div>
+            <!-- /.property-detail-overview-item -->
+        </div>
+        <!-- /.property-detail-overview-inner -->
+    </div>
+    <!-- /.property-detail-overview -->
+
+    <div class="flexslider">
+        <ul class="slides">
+
+            <li data-thumb="assets/img/tmp/properties/large/3.jpg">
+                <img src="assets/img/tmp/properties/large/3.jpg" alt="">
+            </li>
+
+            <li data-thumb="assets/img/tmp/properties/large/12.jpg">
+                <img src="assets/img/tmp/properties/large/12.jpg" alt="">
+            </li>
+
+            <li data-thumb="assets/img/tmp/properties/large/5.jpg">
+                <img src="assets/img/tmp/properties/large/5.jpg" alt="">
+            </li>
+
+            <li data-thumb="assets/img/tmp/properties/large/6.jpg">
+                <img src="assets/img/tmp/properties/large/6.jpg" alt="">
+            </li>
+        </ul>
+        <!-- /.slides -->
+    </div>
+    <!-- /.flexslider -->
+
+    <hr>
+
+    <h2>Description</h2>
+
+
+
+    <p ng-bind-html="property.description"></p>
+
+    <hr>
+
+    <h2>Amenities</h2>
+
+    <div class="row">
+        <ul class="property-detail-amenities" ng-repeat="amenity in property.amenities">
+            <li class="col-xs-6 col-sm-4"><i class="fa {{amenity.value == true ? 'fa-check ok' : 'fa-ban no'}}"></i> {{amenity.name}}</li>
+        </ul>
+    </div>
+    <!-- /.row -->
+</div>
+
+<div class="col-sm-3">
+    <div class="sidebar">
+        <div class="sidebar-inner">
+            <ng-include src="'property/partials/bid.tpl.html'"></ng-include>
+            <ng-include src="'property/partials/agent.tpl.html'"></ng-include>
+        </div>
+        <!-- /.sidebar-inner -->
+    </div>
+    <!-- /.sidebar -->
+</div>
+</div>
+<!-- /.row -->
+</div>
+<!-- /.block-content-inner -->
+</div>
+<!-- /.block-content -->
+</div><!-- /.container -->

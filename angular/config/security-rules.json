@@ -1,0 +1,46 @@
+{
+    "rules": {
+        ".read": false,
+        ".write": false,
+        "syncedValue": {
+            ".read": true,
+            ".write": true,
+            ".validate": "newData.isString() && newData.val().length <= 100"
+        },
+        "users": {
+            "$user": {
+                ".read": "auth.uid === $user",
+                ".write": "auth.uid === $user && (!newData.exists() || newData.hasChildren())",
+                "name": {
+                    ".validate": "newData.isString() && newData.val().length <= 2000"
+                },
+                "email": {
+                    ".validate": "newData.isString() && newData.val().length <= 2000"
+                },
+                "phone": {
+                    ".validate": "newData.isString() && newData.val().length <= 2000"
+                },
+                "$other": {
+                    ".validate": false
+                }
+            }
+        },
+        "properties": {
+               ".read":true,
+               "$property":{
+                   ".read":true,
+                   ".write": "auth.email == 'mail@riteshdalal.com' && (!newData.exists() || newData.hasChildren())"
+               }
+        },
+        "bids" : {
+            ".read": true,
+            "$bid": {
+                ".read": true,
+                ".write" : true
+            },
+            "user":{
+                ".validate" : "newData.isString() && newData.val() == auth.uid"
+            }
+        }
+    }
+}

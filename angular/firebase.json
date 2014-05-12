@@ -1,0 +1,5 @@
+{
+    "firebase": "radiant-fire-4176",
+    "public": "dist",
+    "rules": "config/security-rules.json"
+}

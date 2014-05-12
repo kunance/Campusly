@@ -1,0 +1,62 @@
+<div class="widget">
+
+    <h3 class="widget-title">Name your rent</h3>
+
+    <div class="widget-content">
+        <form role="form" ng-submit="placeBid()">
+            <div class="form-group">
+                <label for="rentAmountField">Rent</label>
+                <input type="number" class="form-control" id="rentAmountField" placeholder="Enter rent amount"
+                       ng-model="bid.rentAmount" required>
+            </div>
+            <div class="form-group">
+                <label for="moveinDateField">Move-in Date</label>
+                <input type="date" class="form-control" id="moveinDateField" placeholder="Move-in Date"
+                       ng-model="bid.moveInDate" required>
+            </div>
+            <div class="form-group">
+                <label for="leaseTermField">Lease Term</label>
+                <select id="leaseTermField" class="form-control" ng-model="bid.leaseTerm" required>
+                    <option value="month-to-month">month to month</option>
+                    <option value="6-months">6 months</option>
+                    <option value="1-year">1 year</option>
+                    <option value="2-years">2 years</option>
+                    <option value="3-years">3 years</option>
+                    <option value="4-years">4 years</option>
+                    <option value="5-years">5 years</option>
+                </select>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="true" ng-model="bid.havePet"> I have a pet
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Place Bid" class="btn btn-block btn-primary btn-inversed">
+            </div>
+        </form>
+    </div>
+    <!-- /.widget-content -->
+</div>
+
+<div class="widget">
+    <h3 class="widget-title">Top Bids</h3>
+    <div class="widget-content">
+        <div class="row" ng-repeat="bid in bids | orderByPriority | limitTo:3">
+            <h3 class="property-small-title">
+                <div class="property-small-price">${{bid.rentAmount}} <span class="property-small-price-suffix">/ per month</span></div>
+            </h3>
+            <!-- /.property-small-title -->
+            <div>
+                Move-in Date: {{bid.moveinDate}}
+            </div>
+            <div>
+                Lease term: {{bid.leaseTerm}}
+            </div>
+            <div>
+                Pets: {{bid.havePet?"Yes":"No"}}
+            </div>
+        </div>
+        <!-- /.property-small-content -->
+    </div>
+</div>

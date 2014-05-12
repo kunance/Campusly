@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <title>rented.io</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="shortcut icon" href="#">
+    <!-- compiled CSS -->
+    <% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>"/>
+    <% }); %>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet" type="text/css">
+</head>
+<body ng-cloak ng-controller="AppCtrl">
+<div id="wrapper">
+    <ng-include src="'nav/partials/nav.tpl.html'"></ng-include>
+    <div id="main-wrapper">
+        <div id="main">
+            <div id="main-inner">
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer">
+            <div id="footer-inner">
+
+                <div class="footer-bottom">
+                    <div class="container">
+                        <p class="center no-margin">
+                            &copy; 2014 Rented Inc., All Right reserved
+                        </p>
+                    </div><!-- /.container -->
+                </div><!-- /.footer-bottom -->
+            </div><!-- /#footer-inner -->
+        </div><!-- /#footer -->
+    </div><!-- /#footer-wrapper -->
+</div>
+<!-- compiled JavaScript -->
+<% scripts.forEach( function ( file ) { %>
+<script type="text/javascript" src="<%= file %>"></script>
+<% }); %>
+</body>
+</html>
