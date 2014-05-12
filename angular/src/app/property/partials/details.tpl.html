@@ -5,12 +5,12 @@
 <div class="col-sm-9">
     <h2 class="property-detail-title">{{property.address}}</h2>
 
-    <h3 class="property-detail-subtitle">{{property.city}}, {{property.state}} {{property.zip}} <strong>$ {{property.rent}}</strong></h3>
+    <h3 class="property-detail-subtitle">{{property.city}}, {{property.state}} {{property.zip}} <strong><span>Minimum Bid</span> $ {{property.rent}}</strong></h3>
 
     <div class="property-detail-overview">
         <div class="property-detail-overview-inner clearfix">
             <div class="property-detail-overview-item col-sm-6 col-md-2">
-                <strong>Price:</strong>
+                <strong>Minimum Bid:</strong>
                 <span>$ {{property.rent}}</span>
             </div>
             <!-- /.property-detail-overview-item -->
@@ -40,7 +40,7 @@
             <!-- /.property-detail-overview-item -->
 
             <div class="property-detail-overview-item col-sm-6 col-md-2">
-                <strong>Garages:</strong>
+                <strong>Garage:</strong>
                 <span>{{property.garages}}</span>
             </div>
             <!-- /.property-detail-overview-item -->
