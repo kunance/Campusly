@@ -43,18 +43,20 @@
     <h3 class="widget-title">Top Bids</h3>
     <div class="widget-content">
         <div class="row" ng-repeat="bid in bids | orderByPriority | limitTo:3">
-            <h3 class="property-small-title">
+            <div class="col-sm-12">
+                <h3 class="property-small-title">
                 <div class="property-small-price">${{bid.rentAmount}} <span class="property-small-price-suffix">/ per month</span></div>
             </h3>
             <!-- /.property-small-title -->
             <div>
-                Move-in Date: {{bid.moveinDate}}
+                Move-in Date: {{formatDate(bid.moveInDate)}}
             </div>
             <div>
                 Lease term: {{bid.leaseTerm}}
             </div>
             <div>
                 Pets: {{bid.havePet?"Yes":"No"}}
+            </div>
             </div>
         </div>
         <!-- /.property-small-content -->

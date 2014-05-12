@@ -38,4 +38,8 @@ angular.module('myApp.property', ['ngRoute'])
             $scope.bid = {};
         };
 
+        $scope.formatDate = function(date){
+            return moment(date).format("MMM DD, YYYY");
+        };
+
     }]);
