@@ -11,9 +11,11 @@
     <% }); %>
     <link href="//fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet" type="text/css">
 </head>
-<body ng-cloak ng-controller="AppCtrl">
+<body ng-cloak ng-controller="AppCtrl" class="header-light">
 <div id="wrapper">
-    <ng-include src="'nav/partials/nav.tpl.html'"></ng-include>
+    <div id="header-wrapper">
+        <ng-include src="'nav/partials/header.tpl.html'"></ng-include>
+    </div>
     <div id="main-wrapper">
         <div id="main">
             <div id="main-inner">

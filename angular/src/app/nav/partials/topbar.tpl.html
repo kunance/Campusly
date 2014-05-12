@@ -1,0 +1,19 @@
+<div class="header-bar">
+    <div class="container">
+        <div class="header-infobox">
+            <strong>E-mail:</strong> <a href="#">info@rented.io</a>
+        </div>
+        <!-- /.header-infobox-->
+        <div class="header-infobox">
+            <strong>Phone:</strong> 800-123-4567
+        </div>
+        <!-- /.header-infobox-->
+        <ul class="header-bar-nav nav nav-register">
+            <li ng-show-auth="['logout','error']"><a href="#/login">login/register</a></li>
+            <li ng-show-auth="'login'"><a href="#/account">account</a></li>
+            <li ng-show-auth="'login'"><a href="#/logout">logout</a></li>
+            <li><a href="#">help</a></li>
+        </ul>
+    </div>
+    <!-- /.container -->
+</div>

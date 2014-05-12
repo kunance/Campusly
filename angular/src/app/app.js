@@ -10,7 +10,7 @@ angular.module('myApp', [
         'myApp.services',
         'myApp.directives',
         'myApp.controllers',
-        'myApp.nav',
+        'myApp.header',
         'myApp.user',
         'myApp.property',
         'module.simpleLoginTools',
