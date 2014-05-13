@@ -1,16 +1,16 @@
-<div class="header-navigation" ng-show-auth="'login'">
-    <div class="container">
-        <div class="row">
-            <ul class="header-nav nav nav-pills">
-                <li class="menuparent">
-                    <a ng-class="isActive('/home')" href="#/home">Home</a>
-                </li>
-                <li class="menuparent">
-                    <a ng-class="isActive('/properties')" href="#/properties">Properties</a>
-                </li>
-            </ul>
-            <ng-include src="'nav/partials/search.tpl.html'"></ng-include>
-        </div>
-    </div>
-    <!-- /.container -->
+<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".header-navigation">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+</button>
+<div class="pull-right header-navigation collapse navbar-collapse" id="top-navbar-collapse">
+    <ul class="nav navbar-nav nav-pills">
+        <li class="menuparent">
+            <a ng-class="isActive('/home')" href="#/home">Home</a>
+        </li>
+        <li class="menuparent">
+            <a ng-class="isActive('/properties')" href="#/properties">Properties</a>
+        </li>
+    </ul>
 </div>

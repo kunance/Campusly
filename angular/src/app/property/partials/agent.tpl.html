@@ -1,29 +1,5 @@
 <div class="widget">
     <h3 class="widget-title">Leasing Agent</h3>
-    <div class="agent-small">
-        <div class="agent-small-top">
-            <div class="clearfix">
-                <div class="agent-small-picture col-sm-12">
-                    <div class="agent-small-picture-inner">
-                        <a href="#" class="agent-small-picture-inner ">
-                            <img src="assets/img/agents/MattEly.png" alt="">
-                        </a><!-- /.agent-small-picture-target -->
-                    </div>
-                    <!-- /.agent-small-picture-inner -->
-                </div>
-                <!-- /.agent-small-picture -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.agent-small-top -->
-
-        <div class="agent-small-bottom">
-            <ul class="list-unstyled">
-                <li><i class="fa fa-phone"></i> (949)813-7858</li>
-                <li><i class="fa fa-envelope-o"></i> <a href="#">matt@elyproperties.com</a></li>
-            </ul>
-        </div>
-        <!-- /.agent-small-bottom -->
-    </div>
+    <div ng-bind-html="property.agent"></div>
     <!-- /.agent-small -->
 </div>

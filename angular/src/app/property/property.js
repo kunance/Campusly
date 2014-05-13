@@ -24,8 +24,9 @@ angular.module('myApp.property', ['ngRoute'])
         propertyService.list().$bind($scope, 'properties');
     }])
 
-    .controller('PropertyDetailsCtrl', ['$scope', '$routeParams', 'propertyService', '$filter', function ($scope, $routeParams, propertyService, $filter) {
+    .controller('PropertyDetailsCtrl', ['$scope', '$routeParams', 'propertyService', '$filter', '$timeout', function ($scope, $routeParams, propertyService, $filter, $timeout) {
 
+        $scope.property_id = $routeParams.property_id;
         propertyService.fetch($routeParams.property_id).$bind($scope, 'property');
         propertyService.fetchBids($routeParams.property_id).$bind($scope, 'bids');
 
@@ -41,5 +42,12 @@ angular.module('myApp.property', ['ngRoute'])
         $scope.formatDate = function(date){
             return moment(date).format("MMM DD, YYYY");
         };
+
+        $timeout(function() {
+            angular.element('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        }, 1000);
 
     }]);

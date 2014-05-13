@@ -67,7 +67,8 @@ module.exports = {
      */
     vendor_files: {
         js: [
-            'vendor/jquery/dist/jquery.js',
+            'vendor/jquery/jquery.js',
+            'src/assets/libraries/isotope/jquery.isotope.min.js',
             'vendor/firebase/firebase.js',
             'vendor/firebase-simple-login/firebase-simple-login.js',
             'vendor/angular/angular.js',
@@ -76,12 +77,12 @@ module.exports = {
             'vendor/angularfire/angularfire.js',
             'vendor/angular-bootstrap/ui-bootstrap.js',
             'vendor/angular-bootstrap/ui-bootstrap-tpls.js',
+            'vendor/bootstrap/js/transition.js',
+            'vendor/bootstrap/js/collapse.js',
             'vendor/moment/min/moment.min.js',
-            'src/assets/libraries/isotope/jquery.isotope.min.js',
             'src/assets/libraries/jquery-bxslider/jquery.bxslider.min.js',
             'src/assets/libraries/flexslider/jquery.flexslider.js',
-            'src/assets/js/jquery.chained.min.js',
-            'src/assets/js/jquery.relocation.js'
+            'src/assets/js/jquery.chained.min.js'
         ],
         css: [],
         assets: [
