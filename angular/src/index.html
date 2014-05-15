@@ -13,7 +13,7 @@
 </head>
 <body ng-cloak ng-controller="AppCtrl" class="header-light">
 <div id="wrapper">
-    <div id="header-wrapper">
+    <div id="header-wrapper" ng-controller="HeaderCtrl">
         <ng-include src="'nav/partials/header.tpl.html'"></ng-include>
     </div>
     <div id="main-wrapper">
@@ -26,7 +26,6 @@
     <div id="footer-wrapper">
         <div id="footer">
             <div id="footer-inner">
-
                 <div class="footer-bottom">
                     <div class="container">
                         <p class="center no-margin">

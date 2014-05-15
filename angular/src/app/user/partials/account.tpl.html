@@ -8,17 +8,29 @@
                 <fieldset>
                     <legend>Profile</legend>
                     <div class="form-group">
-                        <label for="nameField">Name</label>
-                        <input type="text" class="form-control" id="nameField" name="name" ng-model="user.name"/>
+                        <label for="emailField">Email</label>
+                        <input type="text" readonly class="form-control" id="emailField" name="name" ng-model="user.email"/>
                     </div>
                     <div class="form-group">
-                        <label for="emailField">Email</label>
-                        <input type="email" class="form-control" id="emailField" name="email" ng-model="user.email"/>
+                        <label for="nameField">Name</label>
+                        <input type="text" class="form-control" id="nameField" name="name" ng-model="user.name"/>
                     </div>
                     <div class="form-group">
                         <label for="phoneField">Phone</label>
                         <input type="text" class="form-control" id="phoneField" name="phone" ng-model="user.phone"/>
                     </div>
+                    <div class="form-group">
+                        <label for="creditScoreField">Credit Score</label>
+                        <select id="creditScoreField" class="form-control" ng-model="user.creditScore" required>
+                            <option value="excellent">Excellent : 720 and Up</option>
+                            <option value="good">Good : 680 to 719</option>
+                            <option value="average">Average : 620 to 679</option>
+                            <option value="poor">Poor : 580 to 619</option>
+                            <option value="bad">bad : 500 to 579</option>
+                            <option value="miserable">Miserable : below 500</option>
+                        </select>
+                    </div>
+                    <button ng-click="updateUser()" class="btn btn-block btn-primary btn-inversed">update profile</button>
                 </fieldset>
             </div>
             <div class="col-sm-12 col-md-4">
@@ -41,24 +53,22 @@
                     <button ng-click="updatePassword()" class="btn btn-block btn-primary btn-inversed">update password</button>
                 </fieldset>
             </div>
-            <div class="col-sm-12 col-md-4">
-                <fieldset>
-                    <legend>Change Email</legend>
-                    <p class="error" ng-show="emailerr">{{emailerr}}</p>
-                    <p class="good" ng-show="emailmsg">{{emailmsg}}</p>
-                    <div class="form-group">
-                        <label for="newEmailField">New Email</label>
-                        <input type="email" ng-keypress="reset()" ng-model="newemail" class="form-control" id="newEmailField" name="newEmail"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="passField">Password</label>
-                        <input type="password" ng-keypress="reset()" ng-model="pass" class="form-control" id="passField" name="pass"/>
-                    </div>
-                    <button ng-click="updateEmail()" class="btn btn-block btn-primary btn-inversed">update email</button>
-                </fieldset>
-            </div>
+            <!--<div class="col-sm-12 col-md-4">-->
+                <!--<fieldset>-->
+                    <!--<legend>Change Email</legend>-->
+                    <!--<p class="error" ng-show="emailerr">{{emailerr}}</p>-->
+                    <!--<p class="good" ng-show="emailmsg">{{emailmsg}}</p>-->
+                    <!--<div class="form-group">-->
+                        <!--<label for="newEmailField">New Email</label>-->
+                        <!--<input type="email" ng-keypress="reset()" ng-model="newemail" class="form-control" id="newEmailField" name="newEmail"/>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label for="passField">Password</label>-->
+                        <!--<input type="password" ng-keypress="reset()" ng-model="pass" class="form-control" id="passField" name="pass"/>-->
+                    <!--</div>-->
+                    <!--<button ng-click="updateEmail()" class="btn btn-block btn-primary btn-inversed">update email</button>-->
+                <!--</fieldset>-->
+            <!--</div>-->
         </div>
-
-
     </form>
 </div>

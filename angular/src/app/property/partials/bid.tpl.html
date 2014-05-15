@@ -1,6 +1,6 @@
 <div class="widget">
     <h3 class="widget-title">Name Your Rent</h3>
-    <div class="agent-small" style="width:100%; text-align: center; font-weight: bold; margin-bottom: 0">Suggested Rent</span> $ {{property.rent}}</div>
+    <div class="agent-small h4" style="width:100%; text-align: center; margin-bottom: 0; padding: 15px; font-weight: bold; color: #39b54a">Starting Offer</span> $ {{property.rent}}</div>
     <div class="widget-content">
         <form role="form" ng-submit="placeBid()">
             <div class="form-group">
@@ -16,8 +16,8 @@
             <div class="form-group">
                 <label for="leaseTermField">Lease Term</label>
                 <select id="leaseTermField" class="form-control" ng-model="bid.leaseTerm" required>
-                    <option value="1-year">1 year</option>
-                    <option value="2-years">2 years</option>
+                    <option value="12">1 year</option>
+                    <option value="24">2 years</option>
                 </select>
             </div>
             <div class="checkbox">
@@ -25,12 +25,22 @@
                     <input type="checkbox" value="true" ng-model="bid.havePet"> I have a pet
                 </label>
             </div>
+            <div class="form-group" ng-show="!user.creditScore">
+                <label for="creditScoreField">Credit Score</label>
+                <select id="creditScoreField" class="form-control" ng-model="bid.creditScore" required>
+                    <option value="excellent">Excellent : 720 and Up</option>
+                    <option value="good">Good : 680 to 719</option>
+                    <option value="average">Average : 620 to 679</option>
+                    <option value="poor">Poor : 580 to 619</option>
+                    <option value="bad">bad : 500 to 579</option>
+                    <option value="miserable">Miserable : below 500</option>
+                </select>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Place Bid" class="btn btn-block btn-primary btn-inversed">
             </div>
         </form>
     </div>
-    <!-- /.widget-content -->
 </div>
 
 <div class="widget" ng-show="bids">

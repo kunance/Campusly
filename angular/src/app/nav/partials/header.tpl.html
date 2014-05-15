@@ -2,7 +2,7 @@
     <div id="header-inner">
         <ng-include src="'nav/partials/topbar.tpl.html'"></ng-include>
         <!-- /.header-bar -->
-        <div class="header-top">
+        <div>
             <div class="container">
                 <div class="header-identity" style="padding-top: 15px;">
                     <a href="index.html" class="header-identity-target">
@@ -15,4 +15,7 @@
             </div>
         </div>
     </div>
+</div>
+<div id="banner" ng-show="banner">
+    <ng-include src="'nav/partials/banner.tpl.html'"></ng-include>
 </div>

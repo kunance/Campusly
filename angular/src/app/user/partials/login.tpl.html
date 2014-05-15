@@ -3,32 +3,13 @@
         <div class="block-content-inner">
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-4">
-                    <h2 class="center">Login</h2>
-                    <p ng-show="err" class="error">{{err}}</p>
-                    <div class="box">
-                        <form method="post" ng-submit="login()">
-                            <div class="form-group">
-                                <label>Login</label>
-                                <input type="email" class="form-control" placeholder="Email address" ng-model="email" required autofocus>
-                            </div><!-- /.form-group -->
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="password" class="form-control" placeholder="Password" ng-model="pass" required>
-                            </div><!-- /.form-group -->
-                            <div class="form-group" ng-cloak ng-show="createMode">
-                                <label>Confirm Password</label>
-                                <input  type="password" class="form-control" placeholder="Confirm Password" ng-model="confirm"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Login" ng-hide="createMode" class="btn btn-primary btn-inversed btn-block">
-                                <button ng-click="createMode = true" ng-hide="createMode" class="btn btn-lg btn-primary btn-block">Register</button>
-                                <button ng-cloak ng-show="createMode" ng-click="createAccount()" class="btn btn-lg btn-primary btn-inversed btn-block">Create Account</button>
-                                <button ng-cloak ng-show="createMode" ng-click="createMode = false" class="btn btn-lg btn-primary btn-block">Cancel</button>
-                            </div><!-- /.form-group -->
-                        </form>
-                    </div><!-- /.box -->
+                    <h2 class="center">{{title}}</h2>
+                    <ng-include src="'user/partials/loginform.tpl.html'"></ng-include>
                 </div>
-            </div><!-- /.row -->
-        </div><!-- /.block-content-inner -->
-    </div><!-- /.block-content -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.block-content-inner -->
+    </div>
+    <!-- /.block-content -->
 </div><!-- /.container -->

@@ -20,6 +20,9 @@
                 "phone": {
                     ".validate": "newData.isString() && newData.val().length <= 2000"
                 },
+                "creditScore": {
+                    ".validate": "newData.isString() && newData.val().length <= 2000"
+                },
                 "$other": {
                     ".validate": false
                 }

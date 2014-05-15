@@ -19,7 +19,8 @@ angular.module('myApp', [
         'ngSanitize'
     ])
 
-    .run(['loginService', '$rootScope', 'FBURL', function (loginService, $rootScope, FBURL) {
+
+    .run(['loginService', '$rootScope', 'FBURL', 'syncData', 'TopBannerChannel', '$templateCache', function (loginService, $rootScope, FBURL, syncData, TopBannerChannel, $templateCache) {
         if (FBURL === 'https://INSTANCE.firebaseio.com') {
             // double-check that the app has been configured
             angular.element(document.body).html('<h1>Please configure app/js/config.js before running!</h1>');
@@ -32,8 +33,41 @@ angular.module('myApp', [
             $rootScope.auth = loginService.init('/login');
             $rootScope.FBURL = FBURL;
         }
-    }])
 
+        console.log("First Run");
+
+        $rootScope.$watch('auth.user', function(newValue, oldValue) {
+            if(newValue && newValue!=null) {
+                syncData(['users', $rootScope.auth.user.uid]).$bind($rootScope, 'user').then(function (unBind) {
+                    $rootScope.unBindUser = unBind;
+                    console.log("$rootScope.user bound");
+                    console.log($rootScope.user);
+                });
+            }
+            else{
+                if($rootScope.unBindUser){
+                    console.log("Unbinding $rootScope.user");
+                    $rootScope.unBindUser();
+                    $rootScope.user = null;
+                }
+            }
+        });
+
+        $rootScope.$watch('user', function(newValue, oldValue) {
+            console.log(newValue);
+            if (!newValue || (newValue && newValue.phone && newValue.name)) {
+                TopBannerChannel.setBanner(null);
+            }
+            else{
+                console.log("setting banner");
+                TopBannerChannel.setBanner({
+                    content: $templateCache.get('user/partials/banner.tpl.html'),
+                    contentClass: "danger"
+                });
+            }
+        });
+
+    }])
     .controller('AppCtrl', ['$scope', '$location', function ($scope, $location) {
 
     }]);

@@ -26,25 +26,32 @@ angular.module('myApp.user', ['ngRoute'])
 
     }])
 
-    .controller('LoginCtrl', ['$scope', 'loginService', '$location', function ($scope, loginService, $location) {
-        $scope.email = null;
-        $scope.pass = null;
-        $scope.confirm = null;
+    .controller('LoginCtrl', ['$scope', 'loginService', '$location', function ($scope, loginService, $location, $modalInstance) {
+
+        $scope.data = {
+            email:null,
+            pass:null,
+            confirm:null
+        };
         $scope.createMode = false;
+        $scope.title = "Login/Register";
+
+        console.log($scope);
 
         $scope.login = function (cb) {
             $scope.err = null;
-            if (!$scope.email) {
-                $scope.err = 'Please enter an email address';
+            if (!$scope.data.email) {
+                $scope.err = 'Please enter an email addresss';
             }
-            else if (!$scope.pass) {
+            else if (!$scope.data.pass) {
                 $scope.err = 'Please enter a password';
             }
             else {
-                loginService.login($scope.email, $scope.pass, function (err, user) {
+                loginService.login($scope.data.email, $scope.data.pass, function (err, user) {
                     $scope.err = err ? err + '' : null;
                     if (!err) {
                         cb && cb(user);
+                        if($scope.$close)$scope.$close();
                     }
                 });
             }
@@ -53,7 +60,7 @@ angular.module('myApp.user', ['ngRoute'])
         $scope.createAccount = function () {
             $scope.err = null;
             if (assertValidLoginAttempt()) {
-                loginService.createAccount($scope.email, $scope.pass, function (err, user) {
+                loginService.createAccount($scope.data.email, $scope.data.pass, function (err, user) {
                     if (err) {
                         $scope.err = err ? err + '' : null;
                     }
@@ -61,7 +68,12 @@ angular.module('myApp.user', ['ngRoute'])
                         // must be logged in before I can write to my profile
                         $scope.login(function () {
                             loginService.createProfile(user.uid, user.email);
-                            $location.path('/account');
+                            if($scope.$close){
+                                $scope.$close();
+                            }
+                            else {
+                                $location.path('/account');
+                            }
                         });
                     }
                 });
@@ -69,29 +81,32 @@ angular.module('myApp.user', ['ngRoute'])
         };
 
         function assertValidLoginAttempt() {
-            if (!$scope.email) {
+            if (!$scope.data.email) {
                 $scope.err = 'Please enter an email address';
             }
-            else if (!$scope.pass) {
+            else if (!$scope.data.pass) {
                 $scope.err = 'Please enter a password';
             }
-            else if ($scope.pass !== $scope.confirm) {
+            else if ($scope.data.pass !== $scope.data.confirm) {
                 $scope.err = 'Passwords do not match';
             }
             return !$scope.err;
         }
     }])
 
-    .controller('AccountCtrl', ['$scope', 'loginService', 'changeEmailService', 'firebaseRef', 'syncData', '$location', 'FBURL', function ($scope, loginService, changeEmailService, firebaseRef, syncData, $location, FBURL) {
+    .controller('AccountCtrl', ['$scope', 'loginService', 'changeEmailService', 'firebaseRef', 'syncData', '$location', 'FBURL', '$rootScope', 'TopBannerChannel', function ($scope, loginService, changeEmailService, firebaseRef, syncData, $location, FBURL, $rootScope, TopBannerChannel) {
 
-        $scope.syncAccount = function () {
-            $scope.user = {};
-            syncData(['users', $scope.auth.user.uid]).$bind($scope, 'user').then(function (unBind) {
-                $scope.unBindAccount = unBind;
-            });
-        };
+        $scope.user = $rootScope.user;
+
+        $rootScope.$watch('user', function(newValue, oldValue) {
+
+            if(!angular.equals(newValue, $scope.user)){
+                $scope.user = newValue;
+            }
+        });
+
         // set initial binding
-        $scope.syncAccount();
+        $rootScope.syncAccount = function(){};
 
         $scope.logout = function () {
             loginService.logout();
@@ -108,6 +123,20 @@ angular.module('myApp.user', ['ngRoute'])
             $scope.emailmsg = null;
         };
 
+        $scope.updateUser = function(){
+            var newValue = $rootScope.user;
+            if (!newValue || (newValue && newValue.phone && newValue.name)) {
+                TopBannerChannel.setBanner(null);
+            }
+            else{
+                console.log("setting banner");
+                TopBannerChannel.setBanner({
+                    content: $templateCache.get('user/partials/banner.tpl.html'),
+                    contentClass: "danger"
+                });
+            }
+        };
+
         $scope.updatePassword = function () {
             $scope.reset();
             loginService.changePassword(buildPwdParms());
@@ -116,7 +145,7 @@ angular.module('myApp.user', ['ngRoute'])
         $scope.updateEmail = function () {
             $scope.reset();
             // disable bind to prevent junk data being left in firebase
-            $scope.unBindAccount();
+            $rootScope.unBindUser();
             changeEmailService(buildEmailParms());
         };
 
@@ -163,7 +192,7 @@ angular.module('myApp.user', ['ngRoute'])
 
     }])
 
-    .controller('LogoutCtrl', ['$scope', 'loginService', '$location', function ($scope, loginService, $location) {
+    .controller('LogoutCtrl', ['$scope', 'loginService', '$location', 'TopBannerChannel', function ($scope, loginService, $location, TopBannerChannel) {
         loginService.logout();
         $location.path('/login');
     }]);
