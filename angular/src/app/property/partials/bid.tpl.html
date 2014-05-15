@@ -1,6 +1,6 @@
 <div class="widget">
     <h3 class="widget-title">Name Your Rent</h3>
-    <div class="agent-small h4" style="width:100%; text-align: center; margin-bottom: 0; padding: 15px; font-weight: bold; color: #39b54a">Starting Offer</span> $ {{property.rent}}</div>
+    <div class="agent-small h4" style="width:100%; text-align: center; margin-bottom: 0; padding: 15px; font-weight: bold; color: #39b54a">Suggested Offer</span> ${{property.rent}}/mo</div>
     <div class="widget-content">
         <form role="form" ng-submit="placeBid()">
             <div class="form-group">
@@ -31,20 +31,24 @@
                     <option value="excellent">Excellent : 720 and Up</option>
                     <option value="good">Good : 680 to 719</option>
                     <option value="average">Average : 620 to 679</option>
-                    <option value="poor">Poor : 580 to 619</option>
-                    <option value="bad">bad : 500 to 579</option>
-                    <option value="miserable">Miserable : below 500</option>
+                    <option value="poor">Below Average : 580 to 619</option>
+                    
+                    <!-- Removing option for bad and miserable credit score -->
+                    
+              <!--      <option value="bad">bad : 500 to 579</option>
+                    <option value="miserable">Miserable : below 500</option> -->
+                
                 </select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Place Bid" class="btn btn-block btn-primary btn-inversed">
+                <input type="submit" value="Place Offer" class="btn btn-block btn-primary btn-inversed">
             </div>
         </form>
     </div>
 </div>
 
 <div class="widget" ng-show="bids">
-    <h3 class="widget-title">Top Bids</h3>
+    <h3 class="widget-title">Top Offers</h3>
     <div class="widget-content">
         <div class="row" ng-repeat="bid in bids | orderByPriority | limitTo:3">
             <div class="col-sm-12">
