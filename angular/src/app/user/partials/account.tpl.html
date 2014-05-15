@@ -22,16 +22,11 @@
                     <div class="form-group">
                         <label for="creditScoreField">Credit Score</label>
                         <select id="creditScoreField" class="form-control" ng-model="user.creditScore" required>
-                            <option value="excellent">Excellent : 720 and Up</option>
-                            <option value="good">Good : 680 to 719</option>
-                            <option value="average">Average : 620 to 679</option>
-                            <option value="poor">Below Average : 580 to 619</option>
-                            
-                            <!-- Removing option for bad and miserable credit score -->
-                    
-                      <!--      <option value="bad">bad : 500 to 579</option>
-                            <option value="miserable">Miserable : below 500</option> -->
-                            
+                            <option value="excellent">720 and Up</option>
+                            <option value="good">680 to 719</option>
+                            <option value="average">620 to 679</option>
+                            <option value="poor">580 to 619</option>
+                            <option value="bad">500 to 579</option>
                         </select>
                     </div>
                     <button ng-click="updateUser()" class="btn btn-block btn-primary btn-inversed">update profile</button>
