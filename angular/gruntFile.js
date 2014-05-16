@@ -534,7 +534,7 @@ module.exports = function (grunt) {
     /**
      * The deploy task is to build, compile and update the version.
      */
-    grunt.registerTask('deploy', ['bump', 'build', 'compile']);
+    grunt.registerTask('deploy', [ 'default', 'ftp-deploy' ]);
 
     /**
      * The `build` task gets your app ready to run for development and testing.
@@ -552,8 +552,6 @@ module.exports = function (grunt) {
     grunt.registerTask('compile', [
         'recess:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'uglify', 'index:compile'
     ]);
-
-    grunt.registerTask('ftp', [ 'default', 'ftp-deploy' ]);
 
     /**
      * A utility function to get all app JavaScript sources.
