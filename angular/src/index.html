@@ -2,7 +2,7 @@
 <html lang="en" ng-app="myApp">
 <head>
     <meta charset="utf-8">
-    <title>rented.io</title>
+    <title>Rented - Name Your Rent</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="shortcut icon" href="assets/img/favicon.ico">
 
@@ -12,13 +12,10 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- compiled CSS -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet" type="text/css">
     <% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>"/>
     <% }); %>
-
-    <link href="//fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet" type="text/css">
-
 </head>
 <body ng-cloak ng-controller="AppCtrl" class="header-light">
 <div id="wrapper">
@@ -33,20 +30,9 @@
         </div>
     </div>
     <div id="footer-wrapper">
-        <div id="footer">
-            <div id="footer-inner">
-                <div class="footer-bottom">
-                    <div class="container">
-                        <p class="center no-margin">
-                            &copy; 2014 Rented Inc., All rights reserved | <a href="#/terms-and-conditions">Terms of Use</a> | <a href="#/privacy-policy">Privacy Policy</a>
-                        </p>
-                    </div><!-- /.container -->
-                </div><!-- /.footer-bottom -->
-            </div><!-- /#footer-inner -->
-        </div><!-- /#footer -->
+        <ng-include src="'partials/footer.tpl.html'"></ng-include>
     </div><!-- /#footer-wrapper -->
 </div>
-<!-- compiled JavaScript -->
 <% scripts.forEach( function ( file ) { %>
 <script type="text/javascript" src="<%= file %>"></script>
 <% }); %>

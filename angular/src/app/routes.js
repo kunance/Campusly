@@ -11,7 +11,7 @@ angular.module('myApp.routes', ['ngRoute'])
             controller: 'HomeCtrl'
         });
 
-        $routeProvider.when('/terms-and-conditions', {
+        $routeProvider.when('/terms', {
             templateUrl: 'partials/terms.tpl.html',
             controller: 'StaticCtrl'
         });

@@ -16,6 +16,7 @@
             <div class="form-group">
                 <label for="leaseTermField">Lease Term</label>
                 <select id="leaseTermField" class="form-control" ng-model="bid.leaseTerm" required>
+                    <option value="">Select</option>
                     <option value="12">1 year</option>
                     <option value="24">2 years</option>
                 </select>
@@ -28,6 +29,7 @@
             <div class="form-group" ng-show="!user.creditScore">
                 <label for="creditScoreField">Credit Score</label>
                 <select id="creditScoreField" class="form-control" ng-model="bid.creditScore" required>
+                    <option value="">Select</option>
                     <option value="excellent">720 and Up</option>
                     <option value="good">680 to 719</option>
                     <option value="average">620 to 679</option>
@@ -55,7 +57,7 @@
                 Move-in Date: {{formatDate(bid.moveInDate)}}
             </div>
             <div>
-                Lease term: {{bid.leaseTerm}}
+                Lease term: {{bid.leaseTerm}} months
             </div>
             <div>
                 Pets: {{bid.havePet?"Yes":"No"}}
