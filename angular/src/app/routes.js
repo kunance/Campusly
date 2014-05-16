@@ -11,5 +11,15 @@ angular.module('myApp.routes', ['ngRoute'])
             controller: 'HomeCtrl'
         });
 
+        $routeProvider.when('/terms-and-conditions', {
+            templateUrl: 'partials/terms.tpl.html',
+            controller: 'StaticCtrl'
+        });
+
+        $routeProvider.when('/privacy-policy', {
+            templateUrl: 'partials/privacy.tpl.html',
+            controller: 'StaticCtrl'
+        });
+
         $routeProvider.otherwise({redirectTo: '/home'});
     }]);

@@ -84,8 +84,16 @@ module.exports = {
             'src/assets/js/jquery.chained.min.js'
         ],
         css: [],
-        assets: [
-            //'vendor/nvd3/nv.d3.css'
+        assets: [],
+        fonts: [
+            'vendor/fontawesome/fonts/fontawesome-webfont.eot',
+            'vendor/fontawesome/fonts/fontawesome-webfont.svg',
+            'vendor/fontawesome/fonts/fontawesome-webfont.ttf',
+            'vendor/fontawesome/fonts/fontawesome-webfont.woff',
+            'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.eot',
+            'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.svg',
+            'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf',
+            'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.woff'
         ]
     }
 };

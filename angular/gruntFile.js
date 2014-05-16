@@ -97,6 +97,15 @@ module.exports = function(grunt) {
                     expand: true
                 }]
             },
+            build_vendor_fonts: {
+                files: [{
+                    src: ['<%= vendor_files.fonts %>'],
+                    dest: '<%= build_dir %>/assets/fonts/',
+                    cwd: '.',
+                    expand: true,
+                    flatten: true
+                }]
+            },
             build_vendor_assets: {
                 files: [{
                     src: ['<%= vendor_files.assets %>'],
@@ -407,6 +416,17 @@ module.exports = function(grunt) {
             },
 
             /**
+             * When fonts are changed, copy them. Note that this will *not* copy new
+             * files, so this is probably not very useful.
+             */
+            fonts: {
+                files: [
+                    'src/assets/fonts/**/*'
+                ],
+                tasks: ['copy:build_vendor_fonts']
+            },
+
+            /**
              * When assets are changed, copy them. Note that this will *not* copy new
              * files, so this is probably not very useful.
              */
@@ -491,7 +511,7 @@ module.exports = function(grunt) {
      */
     grunt.registerTask('build', [
         'clean', 'html2js', 'recess:build',
-        'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
+        'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_fonts', 'copy:build_vendor_assets',
         'copy:build_appjs', 'copy:build_vendorjs', 'index:build'
     ]);
 

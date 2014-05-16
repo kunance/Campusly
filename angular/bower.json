@@ -6,9 +6,10 @@
         "angular-route": "latest",
         "angular-sanitize": "latest",
         "angular-bootstrap": "latest",
-        "angularfire" : "latest",
+        "angularfire": "latest",
         "jquery": "latest",
         "bootstrap": "latest",
-        "moment": "latest"
+        "moment": "latest",
+        "fontawesome": "latest"
     }
 }

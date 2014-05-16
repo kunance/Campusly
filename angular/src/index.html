@@ -5,11 +5,20 @@
     <title>rented.io</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="shortcut icon" href="#">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
     <!-- compiled CSS -->
     <% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>"/>
     <% }); %>
+
     <link href="//fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet" type="text/css">
+
 </head>
 <body ng-cloak ng-controller="AppCtrl" class="header-light">
 <div id="wrapper">
@@ -19,7 +28,7 @@
     <div id="main-wrapper">
         <div id="main">
             <div id="main-inner">
-                <div ng-view></div>
+                <div ng-view autoscroll="true"></div>
             </div>
         </div>
     </div>
@@ -29,7 +38,7 @@
                 <div class="footer-bottom">
                     <div class="container">
                         <p class="center no-margin">
-                            &copy; 2014 Rented Inc., All Right reserved
+                            &copy; 2014 Rented Inc., All rights reserved | <a href="#/terms-and-conditions">Terms of Use</a> | <a href="#/privacy-policy">Privacy Policy</a>
                         </p>
                     </div><!-- /.container -->
                 </div><!-- /.footer-bottom -->
