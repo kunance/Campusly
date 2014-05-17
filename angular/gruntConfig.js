@@ -79,6 +79,7 @@ module.exports = {
             'vendor/angular-bootstrap/ui-bootstrap-tpls.js',
             'vendor/bootstrap/dist/js/bootstrap.js',
             'vendor/moment/min/moment.min.js',
+            'vendor/angularytics/dist/angularytics.js',
             'src/assets/libraries/jquery-bxslider/jquery.bxslider.min.js',
             'src/assets/libraries/flexslider/jquery.flexslider.js',
             'src/assets/js/jquery.chained.min.js'

@@ -16,11 +16,17 @@ angular.module('myApp', [
         'module.simpleLoginTools',
         'module.routeSecurity',
         'ui.bootstrap',
-        'ngSanitize'
+        'ngSanitize',
+        'angularytics'
     ])
 
+    .config(['AngularyticsProvider',function(AngularyticsProvider) {
+        AngularyticsProvider.setEventHandlers(['Console', 'GoogleUniversal']);
+    }])
 
-    .run(['loginService', '$rootScope', 'FBURL', 'syncData', 'TopBannerChannel', '$templateCache', function (loginService, $rootScope, FBURL, syncData, TopBannerChannel, $templateCache) {
+    .run(['loginService', '$rootScope', 'FBURL', 'syncData', 'TopBannerChannel', '$templateCache', 'Angularytics', function (loginService, $rootScope, FBURL, syncData, TopBannerChannel, $templateCache, Angularytics) {
+
+
         if (FBURL === 'https://INSTANCE.firebaseio.com') {
             // double-check that the app has been configured
             angular.element(document.body).html('<h1>Please configure app/js/config.js before running!</h1>');
@@ -34,7 +40,7 @@ angular.module('myApp', [
             $rootScope.FBURL = FBURL;
         }
 
-        console.log("First Run");
+        Angularytics.init();
 
         $rootScope.$watch('auth.user', function(newValue, oldValue) {
             if(newValue && newValue!=null) {
@@ -66,6 +72,8 @@ angular.module('myApp', [
                 });
             }
         });
+
+
 
     }])
     .controller('AppCtrl', ['$scope', '$location', function ($scope, $location) {
