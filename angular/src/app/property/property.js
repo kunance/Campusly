@@ -33,11 +33,14 @@ angular.module('myApp.property', ['ngRoute'])
         propertyService.fetchBids($routeParams.property_id).$bind($scope, 'bids');
 
         function placeBid() {
+            alert("Bidding is closed!");
+            /*
             var bid = {};
             angular.extend(bid, $scope.bid, {user: $scope.auth.user.uid, date: new Date()});
             propertyService.placeBid($routeParams.property_id, bid);
             $scope.user.creditScore = $scope.bid.creditScore;
             $scope.bid = {};
+            */
         }
 
         $scope.bid = {};
