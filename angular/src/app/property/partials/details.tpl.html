@@ -5,9 +5,6 @@
                 <div class="col-sm-9">
                     <h2 class="property-detail-title">
                         {{property.address}} {{property.city}}, {{property.state}} {{property.zip}}
-                        <a class="btn btn-primary btn-inversed pull-right"
-                           href="mailto:matt@elyproperties.com?subject=Want to rent {{property.address}} Now at $1050/mo">Rent
-                            It Now ${{property.rentItNow}}/mo</a>
                     </h2>
 
                     <div class="property-detail-overview">
@@ -19,7 +16,7 @@
                             <!-- /.property-detail-overview-item -->
                             <div class="property-detail-overview-item col-sm-6 col-md-2">
                                 <strong>Pets:</strong>
-                                <span>Allowed</span>
+                                <span>{{property.pets}}</span>
                             </div>
                             <!-- /.property-detail-overview-item -->
                             <div class="property-detail-overview-item col-sm-6 col-md-2">

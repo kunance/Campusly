@@ -22,6 +22,9 @@ angular.module('myApp.property', ['ngRoute'])
 
     .controller('PropertyListCtrl', ['$scope', 'propertyService', function ($scope, propertyService, $filter) {
         propertyService.list().$bind($scope, 'properties');
+        $scope.isActive = function(property){
+            return moment().isBefore(property.endDate);
+        }
     }])
 
     .controller('PropertyDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'propertyService', '$filter', '$timeout', 'loginService', '$modal', function ($scope, $rootScope, $routeParams, propertyService, $filter, $timeout, loginService, $modal) {
@@ -29,18 +32,24 @@ angular.module('myApp.property', ['ngRoute'])
         $scope.property_id = $routeParams.property_id;
         $scope.user = {};
 
+        var isActive = function(property){
+            return moment().isBefore(property.endDate);
+        };
+
         propertyService.fetch($routeParams.property_id).$bind($scope, 'property');
         propertyService.fetchBids($routeParams.property_id).$bind($scope, 'bids');
 
         function placeBid() {
-            alert("Bidding is closed!");
-            /*
-            var bid = {};
-            angular.extend(bid, $scope.bid, {user: $scope.auth.user.uid, date: new Date()});
-            propertyService.placeBid($routeParams.property_id, bid);
-            $scope.user.creditScore = $scope.bid.creditScore;
-            $scope.bid = {};
-            */
+            if(isActive($scope.property)){
+                var bid = {};
+                angular.extend(bid, $scope.bid, {user: $scope.auth.user.uid, date: new Date()});
+                propertyService.placeBid($routeParams.property_id, bid);
+                $scope.user.creditScore = $scope.bid.creditScore;
+                $scope.bid = {};
+            }
+            else{
+                alert("Bidding is closed!");
+            }
         }
 
         $scope.bid = {};

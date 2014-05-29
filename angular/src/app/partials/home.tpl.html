@@ -62,54 +62,7 @@
             </div>
         </div>
         <div class="col-md-4 col-xs-12">
-            <div class="property-box homepage-property-box">
-                <div class="property-box-inner">
-                    <h4 class="property-box-title homepage-property-box-title"><a href="#/property/{{id}}">{{property.address}}</a>
-                    </h4>
-                    <h4 class="property-box-subtitle homepage-property-box-subtitle"><a href="#/property/{{id}}">{{property.city}}
-                        {{property.state}}</a>
-                    </h4>
-
-                    <div class="property-box-label">Closed</div>
-                    <!-- /.property-box-label -->
-                    <div class="property-box-picture">
-                        <div class="property-box-price">Starting Offer ${{property.rent}}</div>
-                        <!-- /.property-box-price -->
-                        <div class="property-box-picture-inner">
-                            <a href="#/property/{{id}}" class="property-box-picture-target">
-                                <img src="assets/img/{{id}}/{{property.images[1]}}" alt="">
-                            </a><!-- /.property-box-picture-target -->
-                        </div>
-                        <!-- /.property-picture-inner -->
-                    </div>
-                    <!-- /.property-picture -->
-                    <div class="property-box-meta">
-
-                        <!-- /.col-sm-3 -->
-                        <div class="property-box-meta-item col-xs-3 col-sm-3">
-                            <strong>{{property.beds}}</strong>
-                            <span>Beds</span>
-                        </div>
-                        <div class="property-box-meta-item col-xs-3 col-sm-3">
-                            <strong>{{property.baths}}</strong>
-                            <span>Baths</span>
-                        </div>
-                        <!-- /.col-sm-3 -->
-                        <div class="property-box-meta-item col-xs-3 col-sm-3">
-                            <strong>{{property.area}}</strong>
-                            <span>Area</span>
-                        </div>
-                        <!-- /.col-sm-3 -->
-                        <div class="property-box-meta-item col-xs-3 col-sm-3">
-                            <strong>{{property.garages}}</strong>
-                            <span>Garages</span>
-                        </div>
-                        <!-- /.col-sm-3 -->
-                    </div>
-                    <!-- /.property-box-meta -->
-                </div>
-                <!-- /.property-box-inner -->
-            </div>
+            <ng-include src="'property/partials/snippet.tpl.html'"></ng-include>
         </div>
     </div>
     <hr style="visibility: hidden"/>

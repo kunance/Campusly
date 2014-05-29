@@ -8,6 +8,16 @@ angular.module('service.login', ['firebase', 'service.firebase'])
                     return auth = $firebaseSimpleLogin(firebaseRef());
                 },
 
+                fblogin : function(callback){
+                    assertAuth();
+                    auth.$login('facebook')
+                    .then(function (user) {
+                        if (callback) {
+                            callback(null, user);
+                        }
+                    }, callback);
+                },
+
                 /**
                  * @param {string} email
                  * @param {string} pass

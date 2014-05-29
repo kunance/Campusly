@@ -11,7 +11,8 @@
     "bootstrap": "latest",
     "moment": "latest",
     "fontawesome": "latest",
-    "angularytics": "latest"
+    "angularytics": "latest",
+    "FlexSlider" : "latest"
   },
   "resolutions": {
     "angular": "1.2.16"

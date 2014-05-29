@@ -1,17 +1,17 @@
 <div class="widget">
     <h3 class="widget-title">Name Your Rent</h3>
-    <div class="agent-small h4" style="width:100%; text-align: center; margin-bottom: 0; padding: 15px; font-weight: bold; color: #39b54a">Starting Offer</span> ${{property.rent}}/mo</div>
+    <div class="agent-small h4" style="width:100%; text-align: center; margin-bottom: 0; padding: 15px; font-weight: bold; color: #39b54a">Range ${{property.rent}} - ${{property.rentItNow}}/mo</div>
     <div class="widget-content">
         <form role="form" ng-submit="placeBid()">
             <div class="form-group">
                 <label for="rentAmountField">Desired Rent</label>
                 <input type="number" class="form-control" id="rentAmountField" placeholder="Enter rent amount"
-                       ng-model="bid.rentAmount" required>
+                       ng-model="bid.rentAmount" step="25" min="{{property.rent}}" required>
             </div>
             <div class="form-group">
                 <label for="moveinDateField">Your Move-in Date</label>
                 <input type="date" class="form-control" id="moveinDateField" placeholder="Move-in Date"
-                       ng-model="bid.moveInDate" required>
+                       ng-model="bid.moveInDate" min="{{property.available}}" required>
             </div>
             <div class="form-group">
                 <label for="leaseTermField">Lease Term</label>

@@ -68,7 +68,6 @@ module.exports = {
     vendor_files: {
         js: [
             'vendor/jquery/jquery.js',
-            'src/assets/libraries/isotope/jquery.isotope.min.js',
             'vendor/firebase/firebase.js',
             'vendor/firebase-simple-login/firebase-simple-login.js',
             'vendor/angular/angular.js',
@@ -80,9 +79,7 @@ module.exports = {
             'vendor/bootstrap/dist/js/bootstrap.js',
             'vendor/moment/min/moment.min.js',
             'vendor/angularytics/dist/angularytics.js',
-            'src/assets/libraries/jquery-bxslider/jquery.bxslider.min.js',
-            'src/assets/libraries/flexslider/jquery.flexslider.js',
-            'src/assets/js/jquery.chained.min.js'
+            'vendor/FlexSlider/jquery.flexslider.js'
         ],
         css: [],
         assets: [],

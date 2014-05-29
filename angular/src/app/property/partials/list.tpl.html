@@ -6,7 +6,7 @@
 <h2>Available Properties</h2>
 
 <div class="property-rows">
-    <div class="property-row" ng-repeat="(id, property) in properties">
+    <div class="property-row" ng-repeat="(id, property) in properties" ng-show="isActive(property)">
         <div class="row">
             <div class="property-row-picture col-sm-6 col-md-6 col-lg-4">
                 <div class="property-row-picture-inner">

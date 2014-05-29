@@ -38,6 +38,16 @@ angular.module('myApp.user', ['ngRoute'])
 
         console.log($scope);
 
+        $scope.fblogin = function (cb){
+            loginService.fblogin(function (err, user) {
+                $scope.err = err ? err + '' : null;
+                if (!err) {
+                    cb && cb(user);
+                    if($scope.$close)$scope.$close();
+                }
+            });
+        };
+
         $scope.login = function (cb) {
             $scope.err = null;
             if (!$scope.data.email) {
