@@ -2,7 +2,7 @@
 
 angular.module('myApp.header', [])
 
-    .controller('HeaderCtrl', ['$scope', '$location', 'TopBannerChannel', function($scope, $location, TopBannerChannel){
+    .controller('HeaderCtrl', ['$scope', '$location', '$timeout', 'TopBannerChannel', function($scope, $location, $timeout, TopBannerChannel){
 
         $scope.isActive = function(loc){
             if($location.path().indexOf(loc) === 0){
@@ -11,8 +11,9 @@ angular.module('myApp.header', [])
             return "";
         };
 
+        $scope.banner = null;
+
         var setBanner = function(data){
-            // note that the handler is passed the problem domain parameters
             $scope.banner = data;
         };
 

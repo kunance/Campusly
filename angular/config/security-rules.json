@@ -11,29 +11,62 @@
             "$user": {
                 ".read": "auth.uid === $user",
                 ".write": "auth.uid === $user && (!newData.exists() || newData.hasChildren())",
-                "name": {
-                    ".validate": "newData.isString() && newData.val().length <= 2000"
-                },
                 "email": {
-                    ".validate": "newData.isString() && newData.val().length <= 2000"
+                    ".validate": "newData.isString() && newData.val().length <= 150"
+                },
+                "firstName": {
+                    ".validate": "newData.isString() && newData.val().length <= 40"
+                },
+                "lastName": {
+                    ".validate": "newData.isString() && newData.val().length <= 40"
                 },
                 "phone": {
-                    ".validate": "newData.isString() && newData.val().length <= 2000"
+                    ".validate": "newData.isString() && newData.val().length <= 20"
+                },
+                "street": {
+                    ".validate": "newData.isString() && newData.val().length <= 150"
+                },
+                "city": {
+                    ".validate": "newData.isString() && newData.val().length <= 100"
+                },
+                "state": {
+                    ".validate": "newData.isString() && newData.val().length <= 20"
+                },
+                "zip": {
+                    ".validate": "newData.isString() && newData.val().length <= 10"
                 },
                 "creditScore": {
-                    ".validate": "newData.isString() && newData.val().length <= 2000"
+                    ".validate": "newData.isString() && newData.val().length <= 20"
+                },
+                "occupants": {
+                    ".validate": "newData.isNumber() && newData.val() <= 999"
+                },
+                "properties" : {
+                    ".validate" : true
                 },
                 "$other": {
                     ".validate": false
                 }
             }
         },
+        "references":{
+            "$reference" : {
+                ".read" : true,
+                ".write" : true
+            }
+        },
         "properties": {
-               ".read":true,
-               "$property":{
-                   ".read":true,
-                   ".write": "auth.email == 'mail@riteshdalal.com' && (!newData.exists() || newData.hasChildren())"
-               }
+            ".read":true,
+            "$property":{
+                ".read":true,
+                ".write":true,
+                "bids" : {
+                    ".validate" : true
+                },
+                "$other": {
+                    ".validate": "(auth.email == 'mail@riteshdalal.com' || auth.email == 'modivinit@gmail.com')"
+                }
+            }
         },
         "bids" : {
             ".read": true,

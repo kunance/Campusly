@@ -82,7 +82,9 @@ module.exports = {
             'vendor/FlexSlider/jquery.flexslider.js'
         ],
         css: [],
-        assets: [],
+        assets: [
+            'vendor/FlexSlider/images/bg_play_pause.png'
+        ],
         fonts: [
             'vendor/fontawesome/fonts/fontawesome-webfont.eot',
             'vendor/fontawesome/fonts/fontawesome-webfont.svg',
@@ -91,7 +93,11 @@ module.exports = {
             'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.eot',
             'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.svg',
             'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf',
-            'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.woff'
+            'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.woff',
+            'vendor/FlexSlider/fonts/flexslider-icon.eot',
+            'vendor/FlexSlider/fonts/flexslider-icon.svg',
+            'vendor/FlexSlider/fonts/flexslider-icon.ttf',
+            'vendor/FlexSlider/fonts/flexslider-icon.woff'
         ]
     }
 };

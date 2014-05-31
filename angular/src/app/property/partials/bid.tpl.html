@@ -1,21 +1,31 @@
 <div class="widget">
     <h3 class="widget-title">Name Your Rent</h3>
     <div class="agent-small h4" style="width:100%; text-align: center; margin-bottom: 0; padding: 15px; font-weight: bold; color: #39b54a">Range ${{property.rent}} - ${{property.rentItNow}}/mo</div>
+    <!--<div class="widget-content" ng-show-auth="['logout','error']">-->
+        <!--<div class="row">-->
+            <!--<div class="col-sm-12 center">-->
+                <!--You must be logged in to place an offer.-->
+                <!--<div class="center">-->
+                    <!--<a href="#/login">Login</a> | <a href="#/register">Register</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
     <div class="widget-content">
         <form role="form" ng-submit="placeBid()">
             <div class="form-group">
                 <label for="rentAmountField">Desired Rent</label>
-                <input type="number" class="form-control" id="rentAmountField" placeholder="Enter rent amount"
+                <input type="number" class="form-control" id="rentAmountField" name="rentAmount" placeholder="Enter rent amount"
                        ng-model="bid.rentAmount" step="25" min="{{property.rent}}" required>
             </div>
             <div class="form-group">
                 <label for="moveinDateField">Your Move-in Date</label>
-                <input type="date" class="form-control" id="moveinDateField" placeholder="Move-in Date"
+                <input type="date" class="form-control" id="moveinDateField" name="moveinDate" placeholder="Move-in Date"
                        ng-model="bid.moveInDate" min="{{property.available}}" required>
             </div>
             <div class="form-group">
                 <label for="leaseTermField">Lease Term</label>
-                <select id="leaseTermField" class="form-control" ng-model="bid.leaseTerm" required>
+                <select id="leaseTermField" class="form-control" name="leaseTerm" ng-model="bid.leaseTerm" required>
                     <option value="">Select</option>
                     <option value="12">1 year</option>
                     <option value="24">2 years</option>
@@ -26,9 +36,9 @@
                     <input type="checkbox" value="true" ng-model="bid.havePet"> I have a pet
                 </label>
             </div>
-            <div class="form-group" ng-show="!user.creditScore">
+            <div class="form-group">
                 <label for="creditScoreField">Credit Score</label>
-                <select id="creditScoreField" class="form-control" ng-model="bid.creditScore" required>
+                <select id="creditScoreField" class="form-control" name="creditScore" ng-model="bid.creditScore" required>
                     <option value="">Select</option>
                     <option value="excellent">720 and Up</option>
                     <option value="good">680 to 719</option>
@@ -47,21 +57,21 @@
 <div class="widget" ng-show="bids">
     <h3 class="widget-title">Top Offers</h3>
     <div class="widget-content">
-        <div class="row" ng-repeat="bid in bids | orderByPriority | limitTo:3">
+        <div class="row" ng-repeat="bid in bids | orderBy:'-rentAmount' | limitTo:3">
             <div class="col-sm-12">
                 <h3 class="property-small-title">
                 <div class="property-small-price">${{bid.rentAmount}} <span class="property-small-price-suffix">/ per month</span></div>
-            </h3>
-            <!-- /.property-small-title -->
-            <div>
-                Move-in Date: {{formatDate(bid.moveInDate)}}
-            </div>
-            <div>
-                Lease term: {{bid.leaseTerm}} months
-            </div>
-            <div>
-                Pets: {{bid.havePet?"Yes":"No"}}
-            </div>
+                </h3>
+                <!-- /.property-small-title -->
+                <div>
+                    Move-in Date: {{formatDate(bid.moveInDate)}}
+                </div>
+                <div>
+                    Lease term: {{bid.leaseTerm}} months
+                </div>
+                <div>
+                    Pets: {{bid.havePet?"Yes":"No"}}
+                </div>
             </div>
         </div>
         <!-- /.property-small-content -->

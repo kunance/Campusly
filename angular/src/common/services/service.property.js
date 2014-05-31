@@ -10,8 +10,9 @@ angular.module('service.property', ['service.firebase'])
             fetchBids: function(propertyId){
                 return syncData('bids/'+propertyId+'/bids');
             },
-            placeBid : function(propertyId, bid){
-                return firebaseRef('bids/'+propertyId+'/bids').push().setWithPriority(bid, bid.rentAmount*-1);
+            placeBid : function(propertyId, userId, bid){
+                firebaseRef('users', userId, 'properties', propertyId).set({ hasBids : true });
+                firebaseRef('properties', propertyId, 'bids', userId).push(bid);
             },
             local : function(){
                 return {

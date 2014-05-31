@@ -1,7 +1,6 @@
 'use strict';
 
 /* Controllers */
-
 angular.module('myApp.property', ['ngRoute'])
 
     // configure views; the authRequired parameter is used for specifying pages
@@ -9,12 +8,12 @@ angular.module('myApp.property', ['ngRoute'])
     .config(['$routeProvider', function ($routeProvider) {
 
         $routeProvider.when('/property/:property_id', {
-            templateUrl: 'property/partials/details.tpl.html',
+            templateUrl: 'property/details.tpl.html',
             controller: 'PropertyDetailsCtrl'
         });
 
         $routeProvider.when('/properties', {
-            templateUrl: 'property/partials/list.tpl.html',
+            templateUrl: 'property/list.tpl.html',
             controller: 'PropertyListCtrl'
         });
 
@@ -30,21 +29,35 @@ angular.module('myApp.property', ['ngRoute'])
     .controller('PropertyDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'propertyService', '$filter', '$timeout', 'loginService', '$modal', function ($scope, $rootScope, $routeParams, propertyService, $filter, $timeout, loginService, $modal) {
 
         $scope.property_id = $routeParams.property_id;
-        $scope.user = {};
+        $scope.bid = {};
 
         var isActive = function(property){
             return moment().isBefore(property.endDate);
         };
 
+        //get the property
         propertyService.fetch($routeParams.property_id).$bind($scope, 'property');
-        propertyService.fetchBids($routeParams.property_id).$bind($scope, 'bids');
+
+        $scope.$watch('property', function(newvalue, oldvalue){
+           if(newvalue && newvalue.bids){
+               var bids = {};
+               angular.forEach(newvalue.bids, function(pbids, user) {
+                   angular.forEach(pbids, function(bid, id) {
+                       this[user] = bid;
+                   }, bids);
+               });
+
+               $scope.bids = [];
+               angular.forEach(bids, function(bid, id) {
+                   this.push(bid);
+               }, $scope.bids);
+           }
+        });
 
         function placeBid() {
             if(isActive($scope.property)){
                 var bid = {};
-                angular.extend(bid, $scope.bid, {user: $scope.auth.user.uid, date: new Date()});
-                propertyService.placeBid($routeParams.property_id, bid);
-                $scope.user.creditScore = $scope.bid.creditScore;
+                propertyService.placeBid($routeParams.property_id, $scope.auth.user.uid, $scope.bid);
                 $scope.bid = {};
             }
             else{
@@ -52,42 +65,39 @@ angular.module('myApp.property', ['ngRoute'])
             }
         }
 
-        $scope.bid = {};
+        var openModal = function(template, controller){
+            var modalInstance = $modal.open({
+                templateUrl: template,
+                controller: controller
+            });
 
-        if($rootScope.user){
-            $scope.user = $rootScope.user;
-            $scope.bid.creditScore = $rootScope.user.creditScore
-        }
-
-        $scope.$watch('user', function(newValue, oldValue) {
-            console.log(newValue);
-            if(newValue){
-                $scope.user = newValue;
-                $scope.bid.creditScore = newValue.creditScore;
-            }
-        });
+            modalInstance.result.then(function () {
+                placeBid();
+            }, function (data) {
+                if(data && data.openRegister){
+                    openModal("user/partials/registermodal.tpl.html", "RegisterCtrl");
+                }
+                else if(data && data.openLogin){
+                    openModal("user/partials/loginmodal.tpl.html", "LoginCtrl");
+                }
+                console.info('Modal dismissed at: ' + new Date());
+            });
+        };
 
         $scope.placeBid = function () {
             //check for login
             if ($scope.auth.user != null) {
+                //check if full profile is complete
                 //place the bid
                 placeBid();
             }
             else {
                 //popup login modal
-                var modalInstance = $modal.open({
-                    templateUrl: "user/partials/loginmodal.tpl.html",
-                    controller: "LoginCtrl"
-                });
-
-                modalInstance.result.then(function (selectedItem) {
-                    placeBid();
-                }, function () {
-                    console.info('Modal dismissed at: ' + new Date());
-                });
+                openModal("user/partials/loginmodal.tpl.html", "LoginCtrl");
             }
-
         };
+
+
 
         $scope.formatDate = function (date) {
             return moment(date).format("MMM DD, YYYY");

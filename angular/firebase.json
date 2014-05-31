@@ -1,5 +1,5 @@
 {
-    "firebase": "radiant-fire-4176",
+    "firebase": "stage-rented-io",
     "public": "dist",
     "rules": "config/security-rules.json"
 }

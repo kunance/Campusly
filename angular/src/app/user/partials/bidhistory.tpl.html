@@ -1,0 +1,76 @@
+<h2 class="center">Bid History</h2>
+<div class="row" ng-repeat="property in properties">
+    <div class="col-sm-12 col-md-2">
+        <div class="property-box no-border small">
+            <div class="property-box-inner">
+                <h3 class="property-box-title"><a href="#/property/{{property.id}}">{{property.address}}</a></h3>
+                <h4 class="property-box-subtitle"><a href="#/property/{{property.id}}">{{property.city}}</a></h4>
+                <!-- /.property-box-label -->
+                <div class="property-box-picture">
+                    <!-- /.property-box-price -->
+                    <div class="property-box-picture-inner">
+                        <a href="#/property/{{property.id}}" class="property-box-picture-target">
+                            <img src="assets/img/{{property.id}}/{{property.images[1]}}" alt="">
+                        </a><!-- /.property-box-picture-target -->
+                    </div>
+                    <!-- /.property-picture-inner -->
+                </div>
+                <!-- /.property-picture -->
+            </div>
+            <!-- /.property-box-inner -->
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Offer</th>
+                <th>Lease Term</th>
+                <th>Move-in Date</th>
+                <th>Pets</th>
+                <th>Credit Score</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="bid in property.myBids">
+                <td>{{bid.rentAmount}}</td>
+                <td>{{bid.leaseTerm}} months</td>
+                <td>{{formatDate(bid.moveInDate)}}</td>
+                <td>{{bid.pets?'Yes':'No'}}</td>
+                <td>{{bid.creditScore}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-12 col-md-4">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    Top Offers
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="bid in property.bids | orderBy:'-rentAmount' | limitTo:3">
+                <td>
+                    <h3 class="property-small-title">
+                        <div class="property-small-price">${{bid.rentAmount}} <span class="property-small-price-suffix">/ per month</span></div>
+                    </h3>
+                    <!-- /.property-small-title -->
+                    <div>
+                        Move-in Date: {{formatDate(bid.moveInDate)}}
+                    </div>
+                    <div>
+                        Lease term: {{bid.leaseTerm}} months
+                    </div>
+                    <div>
+                        Pets: {{bid.havePet?"Yes":"No"}}
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>

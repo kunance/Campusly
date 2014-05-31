@@ -24,8 +24,7 @@ angular.module('myApp', [
         AngularyticsProvider.setEventHandlers(['Console', 'GoogleUniversal']);
     }])
 
-    .run(['loginService', '$rootScope', 'FBURL', 'syncData', 'TopBannerChannel', '$templateCache', 'Angularytics', function (loginService, $rootScope, FBURL, syncData, TopBannerChannel, $templateCache, Angularytics) {
-
+    .run(['loginService', '$rootScope', 'FBURL', 'syncData', 'Angularytics', function (loginService, $rootScope, FBURL, syncData, Angularytics) {
 
         if (FBURL === 'https://INSTANCE.firebaseio.com') {
             // double-check that the app has been configured
@@ -42,36 +41,34 @@ angular.module('myApp', [
 
         Angularytics.init();
 
-        $rootScope.$watch('auth.user', function(newValue, oldValue) {
-            if(newValue && newValue!=null) {
-                syncData(['users', $rootScope.auth.user.uid]).$bind($rootScope, 'user').then(function (unBind) {
-                    $rootScope.unBindUser = unBind;
-                    console.log("$rootScope.user bound");
-                    console.log($rootScope.user);
-                });
-            }
-            else{
-                if($rootScope.unBindUser){
-                    console.log("Unbinding $rootScope.user");
-                    $rootScope.unBindUser();
-                    $rootScope.user = null;
-                }
-            }
-        });
+//        $rootScope.$watch('auth.user', function(newValue, oldValue) {
+//            if(newValue && newValue!=null) {
+//                syncData(['users', $rootScope.auth.user.uid]).$bind($rootScope, 'user').then(function (unBind) {
+//                    $rootScope.unBindUser = unBind;
+//                    console.log($rootScope.user);
+//                });
+//            }
+//            else{
+//                if($rootScope.unBindUser){
+//                    $rootScope.unBindUser();
+//                    $rootScope.user = null;
+//                }
+//            }
+//        });
 
-        $rootScope.$watch('user', function(newValue, oldValue) {
-            console.log(newValue);
-            if (!newValue || (newValue && newValue.phone && newValue.name)) {
-                TopBannerChannel.setBanner(null);
-            }
-            else{
-                console.log("setting banner");
-                TopBannerChannel.setBanner({
-                    content: $templateCache.get('user/partials/banner.tpl.html'),
-                    contentClass: "danger"
-                });
-            }
-        });
+//        $rootScope.$watch('user', function(newValue, oldValue) {
+//            console.log(newValue);
+//            if (!newValue || (newValue && newValue.phone && newValue.name)) {
+//                TopBannerChannel.setBanner(null);
+//            }
+//            else{
+//                console.log("setting banner");
+//                TopBannerChannel.setBanner({
+//                    content: $templateCache.get('user/partials/banner.tpl.html'),
+//                    contentClass: "danger"
+//                });
+//            }
+//        });
 
 
 
