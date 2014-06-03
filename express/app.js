@@ -9,7 +9,7 @@ app.use(function(req, res, next){
     next();
 });
 
-app.use('/', express.static(path.join(__dirname, '../angular/build')));
+app.use('/', express.static(path.join(__dirname, '../angular/dist')));
 
 var server = app.listen(8000, function() {
     console.log('Listening on port %d', server.address().port);

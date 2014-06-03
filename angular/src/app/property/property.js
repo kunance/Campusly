@@ -20,21 +20,18 @@ angular.module('myApp.property', ['ngRoute'])
     }])
 
     .controller('PropertyListCtrl', ['$scope', 'propertyService', function ($scope, propertyService, $filter) {
-        propertyService.list().$bind($scope, 'properties');
-        $scope.isActive = function(property){
-            return moment().isBefore(property.endDate);
-        }
+        propertyService.list().$bind($scope, 'properties');        
+        $scope.isActive = propertyService.isActive;
+        $scope.getStatus = propertyService.getStatus;
+
     }])
 
     .controller('PropertyDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'propertyService', '$filter', '$timeout', 'loginService', '$modal', function ($scope, $rootScope, $routeParams, propertyService, $filter, $timeout, loginService, $modal) {
 
         $scope.property_id = $routeParams.property_id;
+        $scope.isActive = propertyService.isActive;
+        $scope.getStatus = propertyService.getStatus;
         $scope.bid = {};
-
-        var isActive = function(property){
-            return moment().isBefore(property.endDate);
-        };
-
         //get the property
         propertyService.fetch($routeParams.property_id).$bind($scope, 'property');
 
@@ -55,7 +52,7 @@ angular.module('myApp.property', ['ngRoute'])
         });
 
         function placeBid() {
-            if(isActive($scope.property)){
+            if(propertyService.isActive($scope.property)){
                 var bid = {};
                 propertyService.placeBid($routeParams.property_id, $scope.auth.user.uid, $scope.bid);
                 $scope.bid = {};
@@ -96,8 +93,6 @@ angular.module('myApp.property', ['ngRoute'])
                 openModal("user/partials/loginmodal.tpl.html", "LoginCtrl");
             }
         };
-
-
 
         $scope.formatDate = function (date) {
             return moment(date).format("MMM DD, YYYY");

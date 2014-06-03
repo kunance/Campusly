@@ -14,6 +14,21 @@ angular.module('service.property', ['service.firebase'])
                 firebaseRef('users', userId, 'properties', propertyId).set({ hasBids : true });
                 firebaseRef('properties', propertyId, 'bids', userId).push(bid);
             },
+            isActive : function(property){
+                var isActive =  false;
+                if(property && property.endDate){
+                    isActive =  moment().isBefore(property.endDate);
+                    property.status = (isActive)?"Live":"Closed";
+                }
+                return isActive;
+            },
+            getStatus : function(property){
+                var isActive =  false;
+                if(property && property.endDate){
+                    isActive =  moment().isBefore(property.endDate);
+                }
+                return (isActive)?"Live":"Closed";
+            },
             local : function(){
                 return {
                     "propId:1": {

@@ -1,17 +1,14 @@
 <div class="widget">
     <h3 class="widget-title">Name Your Rent</h3>
     <div class="agent-small h4" style="width:100%; text-align: center; margin-bottom: 0; padding: 15px; font-weight: bold; color: #39b54a">Range ${{property.rent}} - ${{property.rentItNow}}/mo</div>
-    <!--<div class="widget-content" ng-show-auth="['logout','error']">-->
-        <!--<div class="row">-->
-            <!--<div class="col-sm-12 center">-->
-                <!--You must be logged in to place an offer.-->
-                <!--<div class="center">-->
-                    <!--<a href="#/login">Login</a> | <a href="#/register">Register</a>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-    <div class="widget-content">
+    <div class="widget-content" ng-show="!isActive(property)">
+        <div class="row">
+            <div class="col-sm-12 center">
+                This property is no longer accepting offers.
+            </div>
+        </div>
+    </div>
+    <div class="widget-content" ng-show="isActive(property)">
         <form role="form" ng-submit="placeBid()">
             <div class="form-group">
                 <label for="rentAmountField">Desired Rent</label>

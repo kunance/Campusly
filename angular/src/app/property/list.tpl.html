@@ -3,39 +3,11 @@
 <div class="block-content-inner">
 <div class="row">
 <div class="col-sm-12">
-<h2>Available Properties</h2>
+    <h2>Available Properties</h2>
 
-<div class="property-rows">
-    <div class="property-row" ng-repeat="(id, property) in properties" ng-show="isActive(property)">
-        <div class="row">
-            <div class="property-row-picture col-sm-6 col-md-6 col-lg-4">
-                <div class="property-row-picture-inner">
-                    <a href="#/property/{{id}}" class="property-row-picture-target">
-                        <img src="assets/img/{{id}}/{{property.images[0]}}" alt="">
-                    </a>
-
-                    <div class="property-row-meta">
-                        <div class="property-row-meta-item col-sm-3">
-                            <strong>{{property.baths}}</strong>
-                            <span>Baths</span>
-                        </div><!-- /.col-sm-3 -->
-
-                        <div class="property-row-meta-item col-sm-3">
-                            <strong>{{property.beds}}</strong>
-                            <span>Beds</span>
-                        </div><!-- /.col-sm-3 -->
-
-                        <div class="property-row-meta-item col-sm-3">
-                            <strong>{{property.area}}</strong>
-                            <span>Area</span>
-                        </div><!-- /.col-sm-3 -->
-
-                        <div class="property-row-meta-item col-sm-3">
-                            <strong>{{property.garages}}</strong>
-                            <span>Garages</span>
-                        </div><!-- /.col-sm-3 -->
-                    </div><!-- /.property-row-meta -->
-                </div><!-- /.property-row-picture -->
+    <div class="row" ng-repeat="(id, property) in properties" style="border-bottom: 1px dotted #999; padding-top:30px;">
+            <div class="col-sm-6 col-md-6 col-lg-4">
+                <ng-include src="'property/partials/snippet.tpl.html'"></ng-include>
             </div><!-- /.property-row-picture -->
 
             <div class="property-row-content col-sm-6 col-md-6 col-lg-8 col-md-6 col-lg-8">
@@ -52,9 +24,7 @@
                 <p class="property-row-body" ng-bind-html="property.description">
                 </p><!-- /.property-row-body -->
             </div><!-- /.property-row-content -->
-        </div><!-- /.row -->
-    </div><!-- /.property-row -->
-</div><!-- /.property-rows -->
+    </div>
 
 </div>
 </div><!-- /.block-content-inner -->

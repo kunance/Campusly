@@ -40,7 +40,7 @@ module.exports = function (grunt) {
              * pairs are evaluated based on this very configuration object.
              */
             meta: {
-                banner: '/**\n' + ' * <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' + ' * <%= pkg.homepage %>\n' + ' *\n' + ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' + ' */\n'
+                banner: '/**\n' + ' * <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("dddd, mmmm dS, yyyy, h:MM:ss TT") %>\n' + ' * <%= pkg.homepage %>\n' + ' *\n' + ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' + ' */\n'
             },
 
             /**
@@ -172,7 +172,7 @@ module.exports = function (grunt) {
                         authKey: "key1"
                     },
                     src: "<%= compile_dir %>",
-                    dest: 'beta',
+                    dest: 'html',
                     exclusions: []
                 }
             },
