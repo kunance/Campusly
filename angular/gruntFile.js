@@ -240,7 +240,7 @@ module.exports = function (grunt) {
                         compress: true
                     },
                     files: {
-                        '<%= concat.compile_js.dest %>': '<%= concat.compile_js.dest %>'
+                        //'<%= concat.compile_js.dest %>': '<%= concat.compile_js.dest %>'
                     }
                 }
             },
