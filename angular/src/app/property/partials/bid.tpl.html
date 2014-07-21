@@ -1,6 +1,8 @@
 <div class="widget">
     <h3 class="widget-title">Name Your Rent</h3>
-    <div class="agent-small h4" style="width:100%; text-align: center; margin-bottom: 0; padding: 15px; font-weight: bold; color: #39b54a">Range ${{property.rent}} - ${{property.rentItNow}}/mo</div>
+    <div class="agent-small h4" style="width:100%; text-align: center; margin-bottom: 0; padding: 15px; font-weight: bold; color: #39b54a">
+        Range
+        <br/>${{property.rent}} - ${{property.rentItNow}}/mo</div>
     <div class="widget-content" ng-show="!isActive(property)">
         <div class="row">
             <div class="col-sm-12 center">
@@ -9,39 +11,23 @@
         </div>
     </div>
     <div class="widget-content" ng-show="isActive(property)">
+        <h4 class="center">
+            Time left: {{countdown}}            
+        </h4>
         <form role="form" ng-submit="placeBid()">
             <div class="form-group">
-                <label for="rentAmountField">Desired Rent</label>
-                <input type="number" class="form-control" id="rentAmountField" name="rentAmount" placeholder="Enter rent amount"
-                       ng-model="bid.rentAmount" step="25" min="{{property.rent}}" required>
+                <label for="rentAmountField">Rent Offer</label>
+                <input type="number" class="form-control" id="rentAmountField" name="rentAmount" placeholder="Enter rent amount" ng-model="bid.rentAmount" step="25" min="{{property.rent}}" required>
             </div>
             <div class="form-group">
                 <label for="moveinDateField">Your Move-in Date</label>
-                <input type="date" class="form-control" id="moveinDateField" name="moveinDate" placeholder="Move-in Date"
-                       ng-model="bid.moveInDate" min="{{property.available}}" required>
+                <input type="date" class="form-control" id="moveinDateField" name="moveinDate" placeholder="Move-in Date" ng-model="bid.moveInDate" min="{{property.available}}" required>
             </div>
             <div class="form-group">
                 <label for="leaseTermField">Lease Term</label>
                 <select id="leaseTermField" class="form-control" name="leaseTerm" ng-model="bid.leaseTerm" required>
                     <option value="">Select</option>
-                    <option value="12">1 year</option>
-                    <option value="24">2 years</option>
-                </select>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="true" ng-model="bid.havePet"> I have a pet
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="creditScoreField">Credit Score</label>
-                <select id="creditScoreField" class="form-control" name="creditScore" ng-model="bid.creditScore" required>
-                    <option value="">Select</option>
-                    <option value="excellent">720 and Up</option>
-                    <option value="good">680 to 719</option>
-                    <option value="average">620 to 679</option>
-                    <option value="poor">580 to 619</option>
-                    <option value="bad">500 to 579</option>
+                    <option ng-repeat="(key, value) in leaseTerms" value="{{value}}">{{key}}</option>
                 </select>
             </div>
             <div class="form-group">
@@ -57,7 +43,9 @@
         <div class="row" ng-repeat="bid in bids | orderBy:'-rentAmount' | limitTo:3">
             <div class="col-sm-12">
                 <h3 class="property-small-title">
-                <div class="property-small-price">${{bid.rentAmount}} <span class="property-small-price-suffix">/ per month</span></div>
+                    <div class="property-small-price">${{bid.rentAmount}}
+                        <span class="property-small-price-suffix">/ per month</span>
+                    </div>
                 </h3>
                 <!-- /.property-small-title -->
                 <div>

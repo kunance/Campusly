@@ -10,9 +10,12 @@
         "users": {
             "$user": {
                 ".read": "auth.uid === $user",
-                ".write": "auth.uid === $user && (!newData.exists() || newData.hasChildren())",
+                ".write": "auth.uid === $user && (!newData.exists() || newData.hasChildren())",                
                 "email": {
                     ".validate": "newData.isString() && newData.val().length <= 150"
+                },
+                "name": {
+                    ".validate": "newData.isString() && newData.val().length <= 40"
                 },
                 "firstName": {
                     ".validate": "newData.isString() && newData.val().length <= 40"
@@ -44,29 +47,35 @@
                 "properties" : {
                     ".validate" : true
                 },
+                "income" : {
+                    ".validate" : true
+                },
+                "pets" : {
+                    ".validate" : true
+                },
                 "$other": {
                     ".validate": false
                 }
             }
-        },
+        },     
         "references":{
             "$reference" : {
-                ".read" : true,
-                ".write" : true
+              ".read" : true,
+              ".write" : true
             }
         },
         "properties": {
-            ".read":true,
-            "$property":{
-                ".read":true,
-                ".write":true,
-                "bids" : {
-                    ".validate" : true
-                },
-                "$other": {
+               ".read":true,
+               "$property":{
+                   ".read":true,
+                   ".write":true,
+                   "bids" : {
+                     ".validate" : true
+                   },
+                   "$other": {
                     ".validate": "(auth.email == 'mail@riteshdalal.com' || auth.email == 'modivinit@gmail.com')"
-                }
-            }
+                  }
+               }
         },
         "bids" : {
             ".read": true,

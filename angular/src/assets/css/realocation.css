@@ -5421,7 +5421,7 @@ label {
 
 .header-classic {
     position: relative;
-    z-index: 99999
+    z-index: 9999;
 }
 
 .header-classic .header-top {

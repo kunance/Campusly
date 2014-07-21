@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label for="creditScoreField">Credit Score</label>
-                <select id="creditScoreField" class="form-control" ng-model="profile.creditScore" required>
+                <select id="creditScoreField" class="form-control" ng-model="profile.creditScore" required>                    
                     <option value="excellent">720 and Up</option>
                     <option value="good">680 to 719</option>
                     <option value="average">620 to 679</option>
@@ -81,6 +81,24 @@
                 <label for="occupantsField">Number of Occupants</label>
                 <input type="number" maxlength="3" min="1" max="999" step="1" class="form-control" id="occupantsField" name="occupants"
                        ng-model="profile.occupants"/>
+            </div>
+            <div class="form-group">
+                <label for="incomeField">Annual Income</label>
+                <select id="incomeField" class="form-control" ng-model="profile.income" required>                    
+                    <option value="< 50,000">< $50,000</option>
+                    <option value="50,000 - 100,000">$50,000 - $100,000</option>
+                    <option value="100,000 - 249,000">$100,000 - $249,000</option>
+                    <option value="249,000 - 499,000">$249,000 - $499,000</option>
+                    <option value="500,000 +">$500,000 +</option>
+                </select>                
+            </div>
+            <div class="form-group">
+                <label>Pets</label>
+                <div>
+                <input type="checkbox" name="pets.dog" ng-model="profile.pets.dog"> Dog &nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="pets.cat" ng-model="profile.pets.cat"> Cat &nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="pets.other" ng-model="profile.pets.other"> Other
+                </div>
             </div>
         </fieldset>
     </div>

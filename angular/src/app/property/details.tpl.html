@@ -11,7 +11,7 @@
                         <div class="property-detail-overview-inner clearfix">
                             <div class="property-detail-overview-item col-sm-6 col-md-2">
                                 <strong>Lease Term:</strong>
-                                <span>1-2 yr</span>
+                                <span>{{property.leaseTerm}}</span>
                             </div>
                             <!-- /.property-detail-overview-item -->
                             <div class="property-detail-overview-item col-sm-6 col-md-2">
@@ -51,11 +51,12 @@
                     <h2>Description</h2>
 
                     <p ng-bind-html="property.description"></p>
-                    <hr>
-                    <h2>Amenities</h2>
-
-                    <div class="row">
-                        <p ng-bind-html="property.amenities"></p>
+                    <div ng-show="property.amenities">
+                        <hr>
+                        <h2>Amenities</h2>
+                        <div class="row">
+                            <p ng-bind-html="property.amenities"></p>
+                        </div>
                     </div>
                     <!-- /.row -->
                 </div>
