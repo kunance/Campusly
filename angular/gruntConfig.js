@@ -67,13 +67,13 @@ module.exports = {
      */
     vendor_files: {
         js: [
-            'vendor/jquery/jquery.js',
+            'vendor/jquery/dist/jquery.js',
             'vendor/firebase/firebase.js',
             'vendor/firebase-simple-login/firebase-simple-login.js',
             'vendor/angular/angular.js',
             'vendor/angular-route/angular-route.js',
             'vendor/angular-sanitize/angular-sanitize.js',
-            'vendor/angularfire/angularfire.js',
+            'vendor/angularfire/dist/angularfire.js',
             'vendor/angular-bootstrap/ui-bootstrap.js',
             'vendor/angular-bootstrap/ui-bootstrap-tpls.js',
             'vendor/bootstrap/dist/js/bootstrap.js',

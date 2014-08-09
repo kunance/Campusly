@@ -12,9 +12,6 @@
     "moment": "latest",
     "fontawesome": "latest",
     "angularytics": "latest",
-    "FlexSlider" : "latest"
-  },
-  "resolutions": {
-    "angular": "1.2.16"
+    "FlexSlider": "latest"
   }
 }
