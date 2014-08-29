@@ -31,7 +31,7 @@ angular.module('myApp.user', ['ngRoute'])
 
     }])
 
-    .controller('LoginCtrl', ['$scope', 'loginService', '$location', function ($scope, loginService, $location, $modalInstance) {
+    .controller('LoginCtrl', ['$scope', '$rootScope', 'loginService', '$location', function ($scope, $rootScope, loginService, $location, $modalInstance) {
 
         $scope.data = {
             email: null,
@@ -68,7 +68,7 @@ angular.module('myApp.user', ['ngRoute'])
                             $scope.$close();
                         }
                         else {
-                            $location.path('/properties');
+                            $location.path($rootScope.authDestination || '/properties');
                         }
                     }
                 });
