@@ -13,6 +13,8 @@ angular.module('myApp', [
         'myApp.header',
         'myApp.user',
         'myApp.property',
+        'myApp.tenant',
+        'myApp.owner',
         'module.simpleLoginTools',
         'module.routeSecurity',
         'ui.bootstrap',
