@@ -6,7 +6,7 @@
     "angular-route": "latest",
     "angular-sanitize": "latest",
     "angular-bootstrap": "latest",
-    "angularfire": "latest",
+    "angularfire": "0.7",
     "jquery": "latest",
     "bootstrap": "latest",
     "moment": "latest",

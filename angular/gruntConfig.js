@@ -73,7 +73,7 @@ module.exports = {
             'vendor/angular/angular.js',
             'vendor/angular-route/angular-route.js',
             'vendor/angular-sanitize/angular-sanitize.js',
-            'vendor/angularfire/dist/angularfire.js',
+            'vendor/angularfire/angularfire.js',
             'vendor/angular-bootstrap/ui-bootstrap.js',
             'vendor/angular-bootstrap/ui-bootstrap-tpls.js',
             'vendor/bootstrap/dist/js/bootstrap.js',
