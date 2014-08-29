@@ -5,9 +5,9 @@
 <div class="col-sm-12">
     <h2>Recent Properties</h2>
 
-    <p>Take a tour</p> 
+    <p ng-show-auth="'logout'">Take a tour</p> 
 
-    <ul class="list-unstyled">
+    <ul class="list-unstyled" ng-show-auth="'logout'">
        <li>- View our recent available properties</li>
        <li>- <a href="#/login">Login</a> or <a href="#/register">register</a> to start adding properties you want to track</li>
     </ul>
