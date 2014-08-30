@@ -2761,6 +2761,11 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 
 @media (min-width: 768px) {
+
+    #header-wrapper .header-black-hide {
+         display: block;
+    }
+
     .navbar-collapse {
         width: auto;
         border-top: 0;
@@ -4661,6 +4666,29 @@ body.pattern-pw-maze-white-dark.layout-wide #content {
     height: 1px
 }
 
+#header-wrapper ul.nav.primary a {
+  line-height: 32px;
+  color: white;
+  font-size: 15px;
+}
+
+#header-wrapper ul.nav.secondary a {
+  line-height: 32px;
+  font-size: 15px;
+}
+
+#header-wrapper ul.nav.primary li:first-child a {
+  margin-left: 33px;
+}
+
+#header-wrapper ul.nav.primary li:nth-child(2) a {
+  margin-left: 55px;
+}
+
+#header-wrapper ul.nav.primary li:nth-child(3) a {
+  margin-left: 55px;
+}
+
 html {
     height: 100%
 }
@@ -5537,9 +5565,19 @@ label {
     vertical-align: -4px
 }
 
+.header-black-hide {
+   display: none;
+   position: fixed;
+   background-color: #000000;
+   height: 64px;
+   width: 400px;
+   top: 0px;
+   right: 0px;
+}
+
 .header-title {
-    font-family: "Raleway", "Arial", sans-serif;
-    font-size: 24px;
+    font-family: "RobotoSlab", "Arial", sans-serif;
+    font-size: 43px;
     font-weight: bold;
     text-transform: uppercase;
     vertical-align: middle
