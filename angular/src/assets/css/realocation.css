@@ -5855,16 +5855,8 @@ label {
     z-index: 999
 }
 
-#footer {
-    color: #fff
-}
-
 .footer-light #footer {
     color: #252525
-}
-
-#footer a {
-    color: #fff
 }
 
 #footer hr {
@@ -5921,7 +5913,8 @@ label {
 }
 
 .footer-bottom {
-    background-color: #181818;
+    background-color: #ffffff;
+    color: black;
     border-top: 3px solid transparent;
     padding: 25px 0px
 }
