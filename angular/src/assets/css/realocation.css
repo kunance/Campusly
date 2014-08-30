@@ -2760,6 +2760,20 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
     overflow-y: auto
 }
 
+@media (min-width: 992px) {
+    #header-wrapper ul.nav.primary li:first-child a {
+      margin-left: 33px;
+    }
+
+    #header-wrapper ul.nav.primary li:nth-child(2) a {
+      margin-left: 55px;
+    }
+
+    #header-wrapper ul.nav.primary li:nth-child(3) a {
+      margin-left: 55px;
+    }
+}
+
 @media (min-width: 768px) {
 
     #header-wrapper .header-black-hide {
@@ -4675,18 +4689,6 @@ body.pattern-pw-maze-white-dark.layout-wide #content {
 #header-wrapper ul.nav.secondary a {
   line-height: 32px;
   font-size: 15px;
-}
-
-#header-wrapper ul.nav.primary li:first-child a {
-  margin-left: 33px;
-}
-
-#header-wrapper ul.nav.primary li:nth-child(2) a {
-  margin-left: 55px;
-}
-
-#header-wrapper ul.nav.primary li:nth-child(3) a {
-  margin-left: 55px;
 }
 
 html {
