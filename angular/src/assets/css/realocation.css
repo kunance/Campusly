@@ -2772,6 +2772,10 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
     #header-wrapper ul.nav.primary li:nth-child(3) a {
       margin-left: 55px;
     }
+
+    #header-wrapper ul.nav.secondary li:first-child a {
+      margin-right: 35px;
+    }
 }
 
 @media (min-width: 768px) {
