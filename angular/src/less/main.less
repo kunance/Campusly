@@ -2,53 +2,16 @@
 @import "../assets/css/font-awesome.css";
 @import "../assets/libraries/flexslider/flexslider.css";
 @import "../assets/css/font-roboto.css";
-@import "../assets/css/realocation.css";
+/* @import "../assets/css/realocation.css"; */
 
 @import "../app/user/less/login.less";
+@import "header.less";
+@import "home.less";
+@import "footer.less";
 
-#header-wrapper {
-   position: fixed;
-   left: 0px;
-   right: 0px;
-   z-index: 1030;
+@media (min-width: 1200px) {
+    body .container {
+       width: 1054px;
+    }
 }
 
-#main {
-  padding-top: 50px;
-}
-
-.modal-backdrop.in{
-  opacity: 0.8;
-}
-
-.header-title{
-  text-transform: none;
-}
-
-.background-brick{
-  background-image: url("img/patterns/brickwall.png");
-  background-repeat: repeat;
-  background-position: center center;
-}
-
-.homepage-gradient {
-    background-image: -moz-linear-gradient(top, #fefefe, #e3e7ea);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.00, #fefefe), color-stop(1.0, #e3e7ea));
-    background-color: #e3e7ea;
-    height: 507px;
-}
-
-.footer-section-title {
-    color: black;
-    font-weight: bold;
-    font-size: 16px; 
-}
-
-#footer .footer-bottom {
-    font-size: 14px;
-    color: #656565;
-}
-
-#footer .footer-bottom a {
-    color: #656565;
-}
