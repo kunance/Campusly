@@ -75,6 +75,13 @@ angular.module('myApp', [
 
 
     }])
-    .controller('AppCtrl', ['$scope', '$location', function ($scope, $location) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$location', function ($scope, $rootScope, $location) {
+
+        $rootScope.isActive = function(loc){
+            if($location.path().indexOf(loc) === 0){
+                return "active";
+            }
+            return "";
+        };
 
     }]);
