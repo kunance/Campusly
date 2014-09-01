@@ -4,8 +4,32 @@
 
 #header-wrapper {
 
-    .navbar-inverse .navbar-nav > li > a.active {
-        color: @brand-primary;
+    .navbar-inverse {
+
+        background-color: @brand-primary;
+        border-width: 0 0 0 0;        
+
+        .navbar-nav > li > a.active {
+            color: @brand-primary;
+        }
+
+        .navbar-header {
+            background-color: @brand-primary;
+        }
+
+        .navbar-toggle {
+            background-color: @brand-primary;
+            margin-right: 15px;
+            border: 0px;
+        }
+
+        .nav-brand {
+            min-width: 170px;
+            display: block;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
     }
 
     .navbar-collapse {
