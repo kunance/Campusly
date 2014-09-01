@@ -39,8 +39,6 @@ angular.module('myApp.user', ['ngRoute'])
             confirm: null
         };
 
-        $scope.title = "Login";
-
         $scope.fblogin = function (cb) {
             loginService.fblogin(function (err, user) {
                 $scope.err = err ? err + '' : null;
@@ -84,7 +82,6 @@ angular.module('myApp.user', ['ngRoute'])
     }])
 
     .controller('RegisterCtrl', ['$scope', 'loginService', '$location', function ($scope, loginService, $location, $modalInstance) {
-        $scope.title = "Register";
         $scope.data = {};
 
         $scope.register = function () {
@@ -119,9 +116,6 @@ angular.module('myApp.user', ['ngRoute'])
             }
             else if (!$scope.data.pass) {
                 $scope.err = 'Please enter a password';
-            }
-            else if ($scope.data.pass !== $scope.data.confirm) {
-                $scope.err = 'Passwords do not match';
             }
             else if (!$scope.data.firstName) {
                 $scope.err = 'Please enter first name';
