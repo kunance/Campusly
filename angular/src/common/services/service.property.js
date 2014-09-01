@@ -1,8 +1,8 @@
 angular.module('service.property', ['service.firebase'])
     .factory('propertyService', ["$rootScope", "firebaseRef", "syncData", function($rootScope, firebaseRef, syncData){
         return {
-            list : function() {
-                return syncData('properties');
+            list : function(limit) {
+                return syncData('properties',limit);
             },
             fetch : function(propertyId){
                 return syncData('properties/'+propertyId);

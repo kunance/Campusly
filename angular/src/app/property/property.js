@@ -23,7 +23,7 @@ angular.module('myApp.property', ['ngRoute'])
 
 .controller('PropertyListCtrl', ['$scope', 'propertyService',
     function($scope, propertyService, $filter) {
-        propertyService.list().$bind($scope, 'properties');
+        propertyService.list(2).$bind($scope, 'properties');
         $scope.isActive = propertyService.isActive;
         $scope.getStatus = propertyService.getStatus;
 
