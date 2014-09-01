@@ -8,6 +8,11 @@
         color: @brand-primary;
     }
 
+    .navbar-collapse {
+        background-color: #000000;
+        margin-bottom: 15px;
+    }
+
     .header-black-hide {
        display: none;
        position: fixed;
@@ -18,7 +23,15 @@
        right: 0px;
     }
 
-    @media (min-width: 992px) {
+    @media (min-width: @screen-wd-min) {
+
+        .header-black-hide {
+             width: 800px;
+        }
+
+    }
+
+    @media (min-width: @screen-md-min) {
         ul.nav.primary {
 
             li:first-child a {
@@ -40,20 +53,17 @@
         }
     }
 
-    @media (min-width: 1800px) {
-
-        .header-black-hide {
-             width: 800px;
-        }
-
-    }
-
-    @media (min-width: 768px) {
+    @media (min-width: @screen-sm-min) {
 
         .header-black-hide {
              display: block;
         }
 
+        .navbar-collapse {
+            margin-bottom: 0px;
+        }
+
     }
+
 }
 
