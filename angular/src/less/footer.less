@@ -17,13 +17,19 @@
         }
     }
 
+    .footer-cr {
+        clear: both;
+        padding-top: 15px;
+
+        @media (min-width: @screen-sm-min) {
+            clear: none;
+            padding-top: 35px;
+        }
+    }
+
     @media (min-width: @screen-xs-min) {
         .footer-help {
             padding-right: 0px;
-        }
-
-        .footer-terms {
-            padding-left: 15px;
         }
     }
 }
@@ -33,15 +39,6 @@
 
    @media (min-width: @screen-sm-min) {
      margin-bottom: 0px;
-   }
-
-   .footer-cr {
-     display: block;
-     padding-top: 85px;
-
-     @media (min-width: @screen-sm-min) {
-        padding-top: 35px;
-     }
    }
 }
 
