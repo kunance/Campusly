@@ -2,29 +2,29 @@
   <div class="col-sm-6">
     <div class="property-detail-overview-item">
         <strong>Security Deposit:</strong>
-        <span>{{property.securityDeposit}}</span>
+        <span>{{property.securityDeposit | nvl}}</span>
     </div>
     <div class="property-detail-overview-item">
         <strong>Pet Deposit:</strong>
-        <span>{{property.petDeposit}}</span>
+        <span>{{property.petDeposit | nvl}}</span>
     </div>
     <div class="property-detail-overview-item">
         <strong>Pets:</strong>
-        <span>{{property.pets}}</span>
+        <span>{{property.pets | nvl}}</span>
     </div>
   </div>
   <div class="col-sm-6">
     <div class="property-detail-overview-item">
         <strong>Rooms:</strong>
-        <span>{{property.rooms}}</span>
+        <span>{{property.rooms | nvl}}</span>
     </div>
     <div class="property-detail-overview-item">
         <strong>Baths:</strong>
-        <span>{{property.baths}}</span>
+        <span>{{property.baths | nvl}}</span>
     </div>
     <div class="property-detail-overview-item">
         <strong>Parking:</strong>
-        <span>{{property.garages}}</span>
+        <span>{{property.garages | nvl}}</span>
     </div>
   </div>
 </div>

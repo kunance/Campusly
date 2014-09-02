@@ -84,4 +84,11 @@ angular.module('myApp', [
             return "";
         };
 
-    }]);
+    }])
+
+    .filter('nvl', function()
+    {
+        return function(value, replacer) {
+          return value ? value : (replacer ? replacer : '--');
+        };
+    });
