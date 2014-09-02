@@ -42,7 +42,7 @@
             display: block;
             background-image: url('img/logo-responsive.png');
             background-repeat: no-repeat;
-            width: 170px;
+            width: 140px;
             height: 34px;
             margin-top: 15px;
             margin-bottom: 15px;
@@ -51,6 +51,26 @@
             @media (min-width: @screen-sm-min) {
                background-image: url('img/logo.png');
                margin-left: 0px;
+            }
+
+            @media (min-width: @screen-md-min) {
+               width: 170px;
+            }
+        }
+
+        a.nav-user {
+            display: block;
+            overflow-y: hidden;
+            width: 150px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding-top: 18px;
+            padding-bottom: 12px;
+            padding-left: 0px;
+            padding-right: 0px;
+
+            @media (min-width: @screen-lg-min) {
+               width: auto;
             }
         }
 
