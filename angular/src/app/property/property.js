@@ -33,12 +33,6 @@ angular.module('myApp.property', ['ngRoute'])
 .controller('PropertyDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'propertyService', '$filter', '$timeout', '$interval', '$location', '$modal',
     function($scope, $rootScope, $routeParams, propertyService, $filter, $timeout, $interval, $location, $modal) {
 
-        if (!$scope.auth.user) {
-          $rootScope.authDestination= '/property/'+$routeParams.property_id;
-          $location.path('/login');
-          return;
-        }
-        
         var countdownTimer;
 
         $scope.property_id = $routeParams.property_id;

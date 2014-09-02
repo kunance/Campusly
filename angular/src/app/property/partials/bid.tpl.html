@@ -1,64 +1,33 @@
-<div class="widget">
-    <h3 class="widget-title">Name Your Rent</h3>
-    <div class="agent-small h4" style="width:100%; text-align: center; margin-bottom: 0; padding: 15px; font-weight: bold; color: #39b54a">
-        Range
-        <br/>${{property.rent}} - ${{property.rentItNow}}/mo</div>
-    <div class="widget-content" ng-show="!isActive(property)">
-        <div class="row">
-            <div class="col-sm-12 center">
-                This property is no longer accepting offers.
-            </div>
-        </div>
-    </div>
-    <div class="widget-content" ng-show="isActive(property)">
-        <h4 class="center">
-            Time left: {{countdown}}            
-        </h4>
-        <form role="form" ng-submit="placeBid()">
-            <div class="form-group">
-                <label for="rentAmountField">Rent Offer</label>
-                <input type="number" class="form-control" id="rentAmountField" name="rentAmount" placeholder="Enter rent amount" ng-model="bid.rentAmount" step="25" min="{{property.rent}}" required>
-            </div>
-            <div class="form-group">
-                <label for="moveinDateField">Your Move-in Date</label>
-                <input type="date" class="form-control" id="moveinDateField" name="moveinDate" placeholder="Move-in Date" ng-model="bid.moveInDate" min="{{property.available}}" required>
-            </div>
-            <div class="form-group">
-                <label for="leaseTermField">Lease Term</label>
-                <select id="leaseTermField" class="form-control" name="leaseTerm" ng-model="bid.leaseTerm" required>
-                    <option value="">Select</option>
-                    <option ng-repeat="(key, value) in leaseTerms" value="{{value}}">{{key}}</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Place Offer" class="btn btn-block btn-primary btn-inversed">
-            </div>
-        </form>
-    </div>
-</div>
+<h5>Make An Offer</h5>
 
-<div class="widget" ng-show="bids">
-    <h3 class="widget-title">Top Offers</h3>
-    <div class="widget-content">
-        <div class="row" ng-repeat="bid in bids | orderBy:'-rentAmount' | limitTo:3">
-            <div class="col-sm-12">
-                <h3 class="property-small-title">
-                    <div class="property-small-price">${{bid.rentAmount}}
-                        <span class="property-small-price-suffix">/ per month</span>
-                    </div>
-                </h3>
-                <!-- /.property-small-title -->
-                <div>
-                    Move-in Date: {{formatDate(bid.moveInDate)}}
-                </div>
-                <div>
-                    Lease term: {{bid.leaseTerm}} months
-                </div>
-                <div>
-                    Pets: {{bid.havePet?"Yes":"No"}}
-                </div>
-            </div>
+<form method="post" class="form-horizontal" ng-submit="makeAnOffer()">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Price</label>
+        <div class="col-sm-8">
+            <input class="form-control input-lg" type="number" ng-model="bid.price" required autofocus>
         </div>
-        <!-- /.property-small-content -->
     </div>
-</div>
+
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Move-In Date</label>
+        <div class="col-sm-8">
+            <input type="date" class="form-control input-lg" ng-model="bid.movein" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Lease Terms</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control input-lg" ng-model="bid.terms" required>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-sm-6 text-right">
+            <a class="btn btn-rented" ng-click="watch()">Add To Watchlist</a>
+        </div>
+        <div class="col-sm-6">
+            <button type="submit" class="btn btn-rented">Make An Offer</button>
+        </div>
+    </div>
+</form>
