@@ -10,22 +10,14 @@ angular.module('myApp.owner', ['ngRoute'])
 
         $routeProvider.when('/owners', {
             templateUrl: 'owner/owners.tpl.html',
-            controller: 'OwnersCtrl'
+            loggedInRedirect: '/owners/add-property'
         });
 
         $routeProvider.when('/owners/add-property', {
+            authRequired: true,
             templateUrl: 'owner/add-property.tpl.html',
             controller: 'AddPropertyCtrl'
         });
-    }
-])
-
-.controller('OwnersCtrl', ['loggedIn','$location',
-    function(loggedIn,$location) {
-       loggedIn(function ()
-       {
-          $location.path('/owners/add-property');
-       });
     }
 ])
 

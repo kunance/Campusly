@@ -10,22 +10,14 @@ angular.module('myApp.tenant', ['ngRoute'])
 
         $routeProvider.when('/tenants', {
             templateUrl: 'tenant/tenants.tpl.html',
-            controller: 'TenantsCtrl'
+            loggedInRedirect: '/tenants/on-boarding'
         });
 
         $routeProvider.when('/tenants/on-boarding', {
+            authRequired: true,
             templateUrl: 'tenant/on-boarding.tpl.html',
-            controller: 'OnBoardingCtrl'
+            controller: 'OnBoardingCtrl',
         });
-    }
-])
-
-.controller('TenantsCtrl', ['loggedIn','$location',
-    function(loggedIn,$location) {
-       loggedIn(function ()
-       {
-          $location.path('/tenants/on-boarding');
-       });
     }
 ])
 
