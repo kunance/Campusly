@@ -87,8 +87,16 @@ angular.module('myApp.user', ['ngRoute'])
             }
             else {
                 loginService.login($scope.data.email, $scope.data.pass, function (err, user) {
-                    $scope.err = err ? err + '' : null;
-                    if (!err) {
+                    if (err) {
+                      if (err.code=='INVALID_PASSWORD')
+                        $scope.err= 'The specified password is incorrect.';
+                      else
+                      if (err.code=='INVALID_USER')
+                        $scope.err= 'The specified user does not exist.';
+                      else
+                        $scope.err= err.message;
+                    }
+                    else {
                         cb && cb(user);
                         if ($scope.$close){
                             $scope.$close();

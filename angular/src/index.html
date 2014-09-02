@@ -25,7 +25,7 @@
     <link rel="stylesheet" type="text/css" href="<%= file %>"/>
     <% }); %>
 </head>
-<body ng-cloak ng-controller="AppCtrl" class="header-light">
+<body ng-cloak ng-controller="AppCtrl" class="header-light {{auth.user ? 'loggedin' :''}}">
 <div id="wrapper">
     <div id="header-wrapper" ng-controller="HeaderCtrl">
         <ng-include src="'nav/partials/header.tpl.html'"></ng-include>
