@@ -4,7 +4,7 @@
     <div class="form-group">
         <label class="col-sm-3 control-label">E-mail</label>
         <div class="col-sm-8">
-        <input class="form-control input-lg" type="text" ng-model="data.email" required autofocus>
+        <input class="form-control input-lg" type="email" ng-model="data.email" required autofocus>
         </div>
     </div>
 
@@ -12,7 +12,7 @@
         <label class="col-sm-3 control-label">Password</label>
         <div class="col-sm-8">
             <input type="password" class="form-control input-lg" ng-model="data.pass" required>
-            <p class="help-block">* Forget Password</p>
+            <p class="help-block">* <a ng-click="forgetPassword()">Forget Password</a></p>
         </div>
     </div>
 

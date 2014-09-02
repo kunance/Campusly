@@ -1,8 +1,13 @@
 #main {
-  padding-top: 64px;
+  padding-top: @navbar-height;
 }
 
 #header-wrapper {
+
+    .top-banner-channel {
+        margin-top: @navbar-height;
+        margin-bottom: 0px;
+    }
 
     .navbar-inverse {
 
@@ -58,7 +63,7 @@
        display: none;
        position: fixed;
        background-color: #000000;
-       height: 64px;
+       height: @navbar-height;
        width: 400px;
        top: 0px;
        right: 0px;

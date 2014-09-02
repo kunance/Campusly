@@ -31,12 +31,40 @@ angular.module('myApp.user', ['ngRoute'])
 
     }])
 
-    .controller('LoginCtrl', ['$scope', '$rootScope', 'loginService', '$location', function ($scope, $rootScope, loginService, $location, $modalInstance) {
+    .controller('LoginCtrl', ['$scope', '$rootScope', 'loginService', '$location', 'TopBannerChannel', function ($scope, $rootScope, loginService, $location, TopBannerChannel, $modalInstance) {
 
         $scope.data = {
             email: null,
             pass: null,
             confirm: null
+        };
+
+        $scope.forgetPassword= function ()
+        {
+            if (!$scope.data.email) {
+                $scope.err = 'Please enter an email addresss';
+            }
+            else {
+                TopBannerChannel.setBanner({
+                    content: 'Sending password reset email...',
+                    contentClass: 'info'
+                });
+
+                loginService.passwordReset($scope.data.email, function(error) {
+                  if (error === null)
+                    TopBannerChannel.setBanner({
+                        content: 'Password reset email sent!',
+                        contentClass: 'success'
+                    });
+                  else
+                  {
+                    console.log('Error sending password reset email:', error);
+                    $scope.err= 'An error occurred while sending the password reset email';
+                  }
+                });
+            } 
+
+            
         };
 
         $scope.fblogin = function (cb) {

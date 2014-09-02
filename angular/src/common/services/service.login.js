@@ -42,6 +42,13 @@ angular.module('service.login', ['firebase', 'service.firebase'])
                     auth.$logout();
                 },
 
+                passwordReset: function (email,cb) {
+                    assertAuth();
+                    auth.$sendPasswordResetEmail(email).then(function () {
+                        cb && cb(null);
+                    }, cb);
+                },
+
                 changePassword: function (opts) {
                     assertAuth();
                     var cb = opts.callback || function () {

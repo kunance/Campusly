@@ -6,9 +6,15 @@ angular.module('myApp.header', [])
 
         $scope.banner = null;
 
-        var setBanner = function(data){
-            $scope.banner = data;
-        };
+        var clearBanner = _.debounce(function ()
+            {
+               $scope.banner = null;
+            },5000),
+            setBanner = function(data) {
+                $scope.banner = data;
+                window.scroll(0,0);
+                clearBanner(); 
+            };
 
         TopBannerChannel.onSetBanner($scope, setBanner);
 

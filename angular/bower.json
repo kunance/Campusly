@@ -12,6 +12,7 @@
     "moment": "latest",
     "fontawesome": "latest",
     "angularytics": "latest",
-    "FlexSlider": "latest"
+    "FlexSlider": "latest",
+    "underscore": "~1.7.0"
   }
 }

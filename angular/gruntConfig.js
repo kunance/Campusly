@@ -68,6 +68,7 @@ module.exports = {
     vendor_files: {
         js: [
             'vendor/jquery/dist/jquery.js',
+            'vendor/underscore/underscore-min.js',
             'vendor/firebase/firebase.js',
             'vendor/firebase-simple-login/firebase-simple-login.js',
             'vendor/angular/angular.js',
@@ -83,7 +84,8 @@ module.exports = {
         ],
         css: [],
         assets: [
-            'vendor/FlexSlider/images/bg_play_pause.png'
+            'vendor/FlexSlider/images/bg_play_pause.png',
+            'vendor/underscore/underscore-min.map'
         ],
         fonts: [
             'vendor/fontawesome/fonts/fontawesome-webfont.eot',
