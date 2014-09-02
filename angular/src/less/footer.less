@@ -11,10 +11,10 @@
     .footer-bottom {
         font-size: 14px;
         color: #656565;
-    }
 
-    .footer-bottom a {
-        color: #656565;
+        a {
+         color: #656565;
+        }
     }
 
     @media (min-width: @screen-xs-min) {
@@ -27,3 +27,21 @@
         }
     }
 }
+
+#footer-wrapper {
+   margin-bottom: 30px; // otherwise livechat will cover copyright
+
+   @media (min-width: @screen-xs-min) {
+     margin-bottom: 0px;
+   }
+
+   .footer-cr {
+     display: block;
+     padding-top: 85px;
+
+     @media (min-width: @screen-xs-min) {
+        padding-top: 35px;
+     }
+   }
+}
+
