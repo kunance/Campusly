@@ -13,10 +13,24 @@ angular.module('myApp.tenant', ['ngRoute'])
             controller: 'TenantsCtrl'
         });
 
+        $routeProvider.when('/tenants/on-boarding', {
+            templateUrl: 'tenant/on-boarding.tpl.html',
+            controller: 'OnBoardingCtrl'
+        });
     }
 ])
 
-.controller('TenantsCtrl', ['$scope',
-    function($scope) {
+.controller('TenantsCtrl', ['loggedIn','$location',
+    function(loggedIn,$location) {
+       loggedIn(function ()
+       {
+          $location.path('/tenants/on-boarding');
+       });
+    }
+])
+
+.controller('OnBoardingCtrl', ['$scope','$rootScope','$location',
+    function($scope,$rootScope,$location) {
+       $rootScope.secondaryNav= 'tenant/partials/menu-tenant.tpl.html';
     }
 ])

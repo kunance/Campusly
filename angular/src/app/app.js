@@ -73,6 +73,9 @@ angular.module('myApp', [
 //        });
 
 
+          $rootScope.$on('$routeChangeStart', function(next, current) { 
+                $rootScope.secondaryNav= false;
+          });
 
     }])
     .controller('AppCtrl', ['$scope', '$rootScope', '$location', function ($scope, $rootScope, $location) {

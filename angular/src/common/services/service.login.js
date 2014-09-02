@@ -1,5 +1,19 @@
 angular.module('service.login', ['firebase', 'service.firebase'])
-
+    .factory('loggedIn', ['$rootScope',
+        function ($rootScope)
+        {
+           return function (cb)
+           {
+                if ($rootScope.auth.user)
+                  cb();
+                else 
+                  $rootScope.$watch('auth.user', function (user)
+                  {
+                        if (!!user)
+                          cb();
+                  });
+           };   
+        }])
     .factory('loginService', ['$rootScope', '$firebaseSimpleLogin', 'firebaseRef', 'profileCreator', '$timeout',
         function ($rootScope, $firebaseSimpleLogin, firebaseRef, profileCreator, $timeout) {
             var auth = null;

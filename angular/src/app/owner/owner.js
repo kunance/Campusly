@@ -13,10 +13,24 @@ angular.module('myApp.owner', ['ngRoute'])
             controller: 'OwnersCtrl'
         });
 
+        $routeProvider.when('/owners/add-property', {
+            templateUrl: 'owner/add-property.tpl.html',
+            controller: 'AddPropertyCtrl'
+        });
     }
 ])
 
-.controller('OwnersCtrl', ['$scope',
-    function($scope) {
+.controller('OwnersCtrl', ['loggedIn','$location',
+    function(loggedIn,$location) {
+       loggedIn(function ()
+       {
+          $location.path('/owners/add-property');
+       });
+    }
+])
+
+.controller('AddPropertyCtrl', ['$scope','$rootScope','$location',
+    function($scope,$rootScope,$location) {
+       $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
     }
 ])

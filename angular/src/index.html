@@ -32,6 +32,9 @@
     </div>
     <div id="main-wrapper">
         <div id="main">
+            <div id="main-header" ng-show="secondaryNav">
+                <ng-include src="secondaryNav"></ng-include>
+            </div>
             <div id="main-inner">
                 <div ng-view autoscroll="true"></div>
             </div>
