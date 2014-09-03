@@ -51,7 +51,7 @@
                     that._redirect(that._redirectTo);
                     that._redirectTo = null;
                 }
-                else if (that._location.path() === that._loginPath) {
+                else if (_.contains(['/register', that._loginPath],that._location.path())) {
                     that._location.replace();
                     that._location.path('/');
                 }
@@ -85,8 +85,6 @@
         // A function to check whether the current path requires authentication,
         // and if so, whether a redirect to a login page is needed.
         _authRequiredRedirect: function (route, path) {
-
-            console.log('_authRR',route);
 
             if (route.authRequired && !this._authenticated) {
                 if (route.pathTo === undefined) {
