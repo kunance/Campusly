@@ -23,7 +23,7 @@ angular.module('myApp.property', ['ngRoute'])
 
 .controller('PropertyListCtrl', ['$scope', 'propertyService',
     function($scope, propertyService, $filter) {
-        propertyService.list(2).$bind($scope, 'properties');
+        $scope.properties= propertyService.list(2).$asArray();
         $scope.isActive = propertyService.isActive;
         $scope.getStatus = propertyService.getStatus;
 
@@ -42,7 +42,7 @@ angular.module('myApp.property', ['ngRoute'])
         $scope.countdown = "";
         $scope.leaseTerms = {"1 year" : "12"};
         //get the property
-        propertyService.fetch($routeParams.property_id).$bind($scope, 'property');
+        $scope.property= propertyService.fetch($routeParams.property_id).$asObject();
 
         $scope.$watch('property', function(newvalue, oldvalue) {            
             $scope.setCountdown();

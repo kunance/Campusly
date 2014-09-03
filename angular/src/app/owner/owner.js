@@ -10,13 +10,33 @@ angular.module('myApp.owner', ['ngRoute'])
 
         $routeProvider.when('/owners', {
             templateUrl: 'owner/owners.tpl.html',
-            loggedInRedirect: '/owners/add-property'
+            profileRequired: function (profile)
+            {
+                 console.log('owner profile', profile.type);
+
+                 if (profile&&profile.type=='owner')
+                 {
+                     if (profile.properties)
+                       return '/owners/dashboard';
+                     else
+                       return '/owners/add-property';
+                 }
+            }
         });
 
+        var OWNERS_ONLY= function (profile)
+            {
+                 console.log('owners only', profile);
+
+                 if (profile.type!='owner')
+                   return '/owners'; 
+            };
+
         $routeProvider.when('/owners/add-property', {
-            authRequired: true,
+            authRequired: '/register/owner',
             templateUrl: 'owner/add-property.tpl.html',
-            controller: 'AddPropertyCtrl'
+            controller: 'AddPropertyCtrl',
+            profileRequired: OWNERS_ONLY
         });
     }
 ])

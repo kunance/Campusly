@@ -25,11 +25,11 @@
                 <img pl-holder="holder.js/553x368/auto/textmode:exact/^cccccc:^969696" class="col-md-7 col-xs-12 img-responsive">
                 <div class="col-md-5 col-xs-12">
                     <h3>
-                        <a href="#/property/{{id}}">{{property.address}}</a>
+                        <a href="#/property/{{property.$id}}">{{property.address}}</a>
                     </h3><!-- /.property-row-title -->
 
                     <h4>
-                        <a href="#/property/{{id}}">{{property.city}}, {{property.state}} {{property.zip}}</a>
+                        <a href="#/property/{{property.$id}}">{{property.city}}, {{property.state}} {{property.zip}}</a>
                     </h4><!-- /.property-row-subtitle -->
 
                     <div class="property-row-price"><strong>Starting Offer</strong> ${{property.rent}}</div>
@@ -39,7 +39,7 @@
                     <div class="property-row-offers" ng-include="'property/partials/offers.tpl.html'">
                     </div>
 
-                    <a href="#/property/{{id}}" class="btn btn-rented">See More</a>
+                    <a href="#/property/{{property.$id}}" class="btn btn-rented">See More</a>
                 </div>
             </div> <!-- property-row -->
 

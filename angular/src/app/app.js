@@ -97,7 +97,7 @@ angular.module('myApp', [
     })
 
     .directive('plHolder', function() {
-      Holder.invisibleErrorFn= function () { return function () { console.log(arguments, new Error().stack); } };
+      Holder.invisibleErrorFn= function () { return function () { console.log('ignore placeholder'); } };
       return {
           link: function(scope, element, attrs) {
               _.delay(function ()

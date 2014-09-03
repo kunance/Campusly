@@ -6,9 +6,21 @@ angular.module('myApp.routes', ['ngRoute'])
     // which should only be available while logged in
     .config(['$routeProvider', function ($routeProvider) {
 
-        $routeProvider.when('/home', {
+        $routeProvider.when('/', {
             templateUrl: 'partials/home.tpl.html',
-            controller: 'HomeCtrl'
+            controller: 'HomeCtrl',
+            profileRequired: function (profile)
+            {
+                console.log('home', profile.type);
+
+                if (!profile) return;
+
+                if (profile.type=='owner')
+                  return '/owners';  
+                else
+                if (profile.type=='tenant')
+                  return '/tenants';
+            }
         });
 
         $routeProvider.when('/terms', {
@@ -21,5 +33,5 @@ angular.module('myApp.routes', ['ngRoute'])
             controller: 'StaticCtrl'
         });
 
-        $routeProvider.otherwise({redirectTo: '/home'});
+        $routeProvider.otherwise({redirectTo: '/'});
     }]);

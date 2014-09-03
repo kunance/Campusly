@@ -10,13 +10,22 @@ angular.module('myApp.tenant', ['ngRoute'])
 
         $routeProvider.when('/tenants', {
             templateUrl: 'tenant/tenants.tpl.html',
-            loggedInRedirect: '/tenants/on-boarding'
+            profileRequired: function (profile)
+            {
+                 if (profile&&profile.type=='tenant')
+                 {
+                     if (profile.completedOnBoarding)
+                       return '/tenants/dashboard';
+                     else
+                       return '/tenants/on-boarding';
+                 }
+            }
         });
 
         $routeProvider.when('/tenants/on-boarding', {
-            authRequired: true,
+            authRequired: '/register/tenant',
             templateUrl: 'tenant/on-boarding.tpl.html',
-            controller: 'OnBoardingCtrl',
+            controller: 'OnBoardingCtrl'
         });
     }
 ])

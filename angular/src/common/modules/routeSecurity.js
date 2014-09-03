@@ -40,20 +40,34 @@
         },
 
         _login: function () {
-            this._authenticated = true;
-            if (this._redirectTo) {
-                this._redirect(this._redirectTo);
-                this._redirectTo = null;
-            }
-            else if (this._location.path() === this._loginPath) {
-                this._location.replace();
-                this._location.path('/');
-            }
+
+            var that= this;
+
+            that._rootScope.profile.$loaded(function ()
+            {
+                that._authenticated = true;
+
+                if (that._redirectTo) {
+                    that._redirect(that._redirectTo);
+                    that._redirectTo = null;
+                }
+                else if (that._location.path() === that._loginPath) {
+                    that._location.replace();
+                    that._location.path('/');
+                }
+            },
+            function (err) {
+                  throw err;
+            });
         },
 
         _logout: function () {
             this._authenticated = false;
-            this._checkCurrent();
+
+            if (this._location.path()=='/logout')
+              this._redirect('/');
+            else
+              this._checkCurrent();
         },
 
         _error: function () {
@@ -72,8 +86,7 @@
         // and if so, whether a redirect to a login page is needed.
         _authRequiredRedirect: function (route, path) {
 
-            if (this._location.path()!=path)
-              this._rootScope.authDestination= this._location.path();
+            console.log('_authRR',route);
 
             if (route.authRequired && !this._authenticated) {
                 if (route.pathTo === undefined) {
@@ -81,14 +94,30 @@
                 } else {
                     this._redirectTo = route.pathTo === path ? "/" : route.pathTo;
                 }
-                this._redirect(path);
+                this._redirect(route.authRequired===true ? path : route.authRequired);
             }
             else if (this._authenticated && this._location.path() === this._loginPath) {
                 this._redirect('/');
             }
-            else if (this._authenticated && route.loggedInRedirect)
-            {
-                this._redirect(route.loggedInRedirect);
+            else if (this._authenticated && typeof route.profileRequired=='function') {
+
+                var that= this,
+                    resolve= function (profile)
+                    {
+                        var redirect= route.profileRequired(profile);
+
+                        console.log('profileRequired',redirect);
+
+                        if (redirect)
+                          that._redirect(redirect);
+                    };
+
+                 if (!this._rootScope.profile)
+                   resolve(null);
+                 else
+                   this._rootScope.profile.$loaded(resolve, function (err) {
+                      throw err;
+                   });
             }
         }
     };

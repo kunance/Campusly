@@ -19,7 +19,7 @@ angular.module('myApp.user', ['ngRoute'])
             controller: 'LoginCtrl'
         });
 
-        $routeProvider.when('/register', {
+        $routeProvider.when('/register/:profile?', {
             templateUrl: 'user/register.tpl.html',
             controller: 'RegisterCtrl'
         });
@@ -31,7 +31,26 @@ angular.module('myApp.user', ['ngRoute'])
 
     }])
 
-    .controller('LoginCtrl', ['$scope', '$rootScope', 'loginService', '$location', 'TopBannerChannel', function ($scope, $rootScope, loginService, $location, TopBannerChannel, $modalInstance) {
+    .run(['$rootScope', 'syncData', function ($rootScope, syncData)
+    {
+             $rootScope.$on('$firebaseSimpleLogin:login', function (e, user)
+             {
+                    console.log('user profile',user);
+
+                    $rootScope.profile= syncData('users/'+user.uid).$asObject();
+             });
+
+             $rootScope.$on('$firebaseSimpleLogin:logout', function ()
+             {
+                    if ($rootScope.profile)
+                    {
+                        $rootScope.profile.$destroy();
+                        $rootScope.profile= null;
+                    }
+             });
+    }])
+
+    .controller('LoginCtrl', ['$scope', 'loginService', '$location', 'TopBannerChannel', function ($scope, loginService, $location, TopBannerChannel, $modalInstance) {
 
         $scope.data = {
             email: null,
@@ -98,11 +117,9 @@ angular.module('myApp.user', ['ngRoute'])
                     }
                     else {
                         cb && cb(user);
+
                         if ($scope.$close){
                             $scope.$close();
-                        }
-                        else {
-                            $location.path($rootScope.authDestination || '/properties');
                         }
                     }
                 });
@@ -117,8 +134,8 @@ angular.module('myApp.user', ['ngRoute'])
 
     }])
 
-    .controller('RegisterCtrl', ['$scope', 'loginService', '$location', function ($scope, loginService, $location, $modalInstance) {
-        $scope.data = {};
+    .controller('RegisterCtrl', ['$scope', 'loginService', '$location', '$routeParams', function ($scope, loginService, $location, $routeParams, $modalInstance) {
+        $scope.data = { profile: $routeParams.profile };
 
         $scope.register = function () {
             $scope.err = null;
@@ -131,12 +148,11 @@ angular.module('myApp.user', ['ngRoute'])
                         loginService.login($scope.data.email, $scope.data.pass, function (err, user) {
                             $scope.err = err ? err + '' : null;
                             if (!err) {
-                                loginService.createProfile(user.uid, { email: user.email, firstName: $scope.data.firstName, lastName: $scope.data.lastName, phone: $scope.data.phone}, function () {
+                            console.log(user);
+                                loginService.createProfile(user.uid,{ type: $scope.data.profile, email: user.email, firstName: $scope.data.firstName, lastName: $scope.data.lastName, phone: $scope.data.phone}, function () {
+
                                     if ($scope.$close) {
                                         $scope.$close();
-                                    }
-                                    else {
-                                        $location.path('/account');
                                     }
                                 });
                             }
@@ -161,6 +177,9 @@ angular.module('myApp.user', ['ngRoute'])
             }
             else if (!$scope.data.phone) {
                 $scope.err = 'Please enter phone number';
+            }
+            else if (!$scope.data.profile) {
+                $scope.err = 'Please select a profile';
             }
             return !$scope.err;
         }
@@ -404,7 +423,6 @@ angular.module('myApp.user', ['ngRoute'])
 
     }])
 
-    .controller('LogoutCtrl', ['$scope', 'loginService', '$location', 'TopBannerChannel', function ($scope, loginService, $location, TopBannerChannel) {
+    .controller('LogoutCtrl', ['$scope', 'loginService', '$location', '$timeout', 'TopBannerChannel', function ($scope, loginService, $location, $timeout, TopBannerChannel) {
         loginService.logout();
-        $location.path('/login');
     }]);

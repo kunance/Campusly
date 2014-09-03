@@ -6,13 +6,13 @@
     "angular-route": "latest",
     "angular-sanitize": "latest",
     "angular-bootstrap": "latest",
-    "angularfire": "0.7",
+    "angularfire": "latest",
     "jquery": "latest",
     "bootstrap": "latest",
     "moment": "latest",
     "fontawesome": "latest",
     "angularytics": "latest",
     "FlexSlider": "latest",
-    "underscore": "~1.7.0"
+    "underscore": "latest"
   }
 }
