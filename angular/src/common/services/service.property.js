@@ -4,6 +4,9 @@ angular.module('service.property', ['service.firebase'])
             list : function(limit) {
                 return syncData('properties',limit);
             },
+            featured: function(){
+                return syncData('featured');
+            },
             fetch : function(propertyId){
                 return syncData('properties/'+propertyId);
             },

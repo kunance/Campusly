@@ -23,12 +23,51 @@ angular.module('myApp.property', ['ngRoute'])
 
 .controller('PropertyListCtrl', ['$scope', 'propertyService',
     function($scope, propertyService, $filter) {
-        $scope.properties= propertyService.list(2).$asArray();
-        $scope.isActive = propertyService.isActive;
-        $scope.getStatus = propertyService.getStatus;
 
+        var featured= propertyService.featured().$asArray();
+
+        featured.$loaded(function (featured)
+        {
+           $scope.properties= featured;
+        });
+
+        featured.$inst().$ref().on('value',function (data)
+        { 
+            var ids= _.pluck($scope.properties,'$id'),
+                removed= _.difference(ids,data.val());
+
+            removed.forEach(function (r)
+            {
+                 var idx= _.indexOf(ids,r);
+
+                 $scope.properties[idx].$destroy();
+
+                 $scope.properties.splice(idx,1);
+            });
+        });
     }
 ])
+
+.filter('loadProperty', ['propertyService',
+function (propertyService)
+{
+    return function (featured)
+    {
+        featured= featured || [];
+
+        featured.forEach(function (property)
+        {
+            var obj= propertyService.fetch(property.$value).$asObject();
+            
+            obj.$loaded(function (data)
+            {
+                _.extend(property,data,{ $destroy: _.bind(obj.$destroy,obj) }); 
+            });
+        });
+
+        return featured;
+    };
+}])
 
 .controller('PropertyDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'propertyService', '$filter', '$timeout', '$interval', '$location', '$modal',
     function($scope, $rootScope, $routeParams, propertyService, $filter, $timeout, $interval, $location, $modal) {

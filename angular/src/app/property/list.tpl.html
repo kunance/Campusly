@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-sm-12 property-list">
 
-            <div class="row property-row" ng-repeat="(id, property) in properties">
+            <div class="row property-row" ng-repeat="(id, property) in properties | loadProperty">
                 <img pl-holder="holder.js/553x368/auto/textmode:exact/^cccccc:^969696" class="col-md-7 col-xs-12 img-responsive">
                 <div class="col-md-5 col-xs-12">
                     <h3>
