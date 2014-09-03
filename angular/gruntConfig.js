@@ -89,10 +89,10 @@ module.exports = {
             'vendor/underscore/underscore-min.map'
         ],
         fonts: [
-            'vendor/fontawesome/fonts/fontawesome-webfont.eot',
-            'vendor/fontawesome/fonts/fontawesome-webfont.svg',
-            'vendor/fontawesome/fonts/fontawesome-webfont.ttf',
-            'vendor/fontawesome/fonts/fontawesome-webfont.woff',
+            //'vendor/fontawesome/fonts/fontawesome-webfont.eot',
+            //'vendor/fontawesome/fonts/fontawesome-webfont.svg',
+            //'vendor/fontawesome/fonts/fontawesome-webfont.ttf',
+            //'vendor/fontawesome/fonts/fontawesome-webfont.woff',
             'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.eot',
             'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.svg',
             'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf',

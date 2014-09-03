@@ -10,52 +10,7 @@
         "users": {
             "$user": {
                 ".read": "auth.uid === $user",
-                ".write": "auth.uid === $user && (!newData.exists() || newData.hasChildren())",                
-                "email": {
-                    ".validate": "newData.isString() && newData.val().length <= 150"
-                },
-                "name": {
-                    ".validate": "newData.isString() && newData.val().length <= 40"
-                },
-                "firstName": {
-                    ".validate": "newData.isString() && newData.val().length <= 40"
-                },
-                "lastName": {
-                    ".validate": "newData.isString() && newData.val().length <= 40"
-                },
-                "phone": {
-                    ".validate": "newData.isString() && newData.val().length <= 20"
-                },
-                "street": {
-                    ".validate": "newData.isString() && newData.val().length <= 150"
-                },
-                "city": {
-                    ".validate": "newData.isString() && newData.val().length <= 100"
-                },
-                "state": {
-                    ".validate": "newData.isString() && newData.val().length <= 20"
-                },
-                "zip": {
-                    ".validate": "newData.isString() && newData.val().length <= 10"
-                },
-                "creditScore": {
-                    ".validate": "newData.isString() && newData.val().length <= 20"
-                },
-                "occupants": {
-                    ".validate": "newData.isNumber() && newData.val() <= 999"
-                },
-                "properties" : {
-                    ".validate" : true
-                },
-                "income" : {
-                    ".validate" : true
-                },
-                "pets" : {
-                    ".validate" : true
-                },
-                "$other": {
-                    ".validate": false
-                }
+                ".write": "auth.uid === $user && (!newData.exists() || newData.hasChildren())"
             }
         },     
         "references":{
@@ -63,6 +18,10 @@
               ".read" : true,
               ".write" : true
             }
+        },
+        "featured": {
+               ".read": true,
+               ".write": false
         },
         "properties": {
                ".read":true,
