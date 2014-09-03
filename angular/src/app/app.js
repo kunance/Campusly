@@ -94,4 +94,17 @@ angular.module('myApp', [
         return function(value, replacer) {
           return value ? value : (replacer ? replacer : '--');
         };
+    })
+
+    .directive('plHolder', function() {
+      Holder.invisibleErrorFn= function () { return function () { console.log(arguments, new Error().stack); } };
+      return {
+          link: function(scope, element, attrs) {
+              _.delay(function ()
+              {
+                attrs.$set('data-src', attrs.plHolder);
+                      Holder.run({images:element[0]});
+              },300);
+          }
+      };
     });

@@ -80,7 +80,8 @@ module.exports = {
             'vendor/bootstrap/dist/js/bootstrap.js',
             'vendor/moment/min/moment.min.js',
             'vendor/angularytics/dist/angularytics.js',
-            'vendor/FlexSlider/jquery.flexslider.js'
+            'vendor/FlexSlider/jquery.flexslider.js',
+            'vendor/holderjs/holder.js'
         ],
         css: [],
         assets: [
