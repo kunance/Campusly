@@ -148,8 +148,9 @@ angular.module('myApp.user', ['ngRoute'])
                         loginService.login($scope.data.email, $scope.data.pass, function (err, user) {
                             $scope.err = err ? err + '' : null;
                             if (!err) {
-                            console.log(user);
                                 loginService.createProfile(user.uid,{ type: $scope.data.profile, email: user.email, firstName: $scope.data.firstName, lastName: $scope.data.lastName, phone: $scope.data.phone}, function () {
+
+                                    $location.path('/');
 
                                     if ($scope.$close) {
                                         $scope.$close();
