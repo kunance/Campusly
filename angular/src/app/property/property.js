@@ -45,6 +45,8 @@ function (propertyService)
             if (_.keys(property).length>1) return;
 
             var obj= propertyService.fetch(property.$id).$asObject();
+                
+            property.bids= propertyService.fetchBids(property.$id,3).$asArray();
             
             obj.$inst().$ref().on('value',function (data)
             { 

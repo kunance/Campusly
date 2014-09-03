@@ -1,6 +1,6 @@
-<h5>Current Offers</h5>
+<h5 ng-show="property.bids.length">Current Offers</h5>
 
-<table class="table table-striped">
+<table class="table table-striped" ng-show="property.bids.length">
   <thead>
     <tr>
       <th>Price</th>
@@ -10,23 +10,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>$62662.00</td>
-      <td>9/22/2014</td>
-      <td>1 year</td>
-      <td>2 dogs</td>
-    </tr>
-    <tr>
-      <td>$62662.00</td>
-      <td>9/22/2014</td>
-      <td>2 year</td>
-      <td>1 cat</td>
-    </tr>
-    <tr>
-      <td>$62662.00</td>
-      <td>9/22/2014</td>
-      <td>4 year</td>
-      <td>1 dog</td>
+    <tr ng-repeat="bid in property.bids">
+      <td>${{bid.rentAmount}}</td>
+      <td>{{bid.moveInDate | date:'MM/dd/yyyy' | nvl}}</td>
+      <td>{{bid.leaseTerm}} months</td>
+      <td>{{bid.havePet ? 'yes' : 'no' }}</td>
     </tr>
   <tbody>
 </table>
