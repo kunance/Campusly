@@ -26,24 +26,9 @@ angular.module('myApp.property', ['ngRoute'])
 
         var featured= propertyService.featured().$asArray();
 
-        featured.$loaded(function (featured)
-        {
-           $scope.properties= featured;
-        });
-
         featured.$inst().$ref().on('value',function (data)
         { 
-            var ids= _.pluck($scope.properties,'$id'),
-                removed= _.difference(ids,data.val());
-
-            removed.forEach(function (r)
-            {
-                 var idx= _.indexOf(ids,r);
-
-                 $scope.properties[idx].$destroy();
-
-                 $scope.properties.splice(idx,1);
-            });
+            $scope.properties= _.map(data.val(),function ($id) { return { $id: $id }; });
         });
     }
 ])
@@ -55,13 +40,15 @@ function (propertyService)
     {
         featured= featured || [];
 
-        featured.forEach(function (property)
+        featured.forEach(function (property,idx)
         {
-            var obj= propertyService.fetch(property.$value).$asObject();
+            if (_.keys(property).length>1) return;
+
+            var obj= propertyService.fetch(property.$id).$asObject();
             
-            obj.$loaded(function (data)
-            {
-                _.extend(property,data,{ $destroy: _.bind(obj.$destroy,obj) }); 
+            obj.$inst().$ref().on('value',function (data)
+            { 
+                _.extend(property,data.val());
             });
         });
 
