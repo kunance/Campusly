@@ -13,6 +13,7 @@
     "fontawesome": "latest",
     "angularytics": "latest",
     "FlexSlider": "latest",
-    "underscore": "latest"
+    "underscore": "latest",
+    "holderjs": "~2.4.0"
   }
 }
