@@ -14,6 +14,8 @@
 @import "roboto.less";
 @import "navbar-arrow.less";
 @import "form.less";
+@import "dashboard.less";
+@import "circular-bar.less";
 
 @media (min-width: 1200px) {
     body .container {
@@ -45,6 +47,13 @@ h1.page-title {
      margin-bottom: 60px;   
 }
 
+h5 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+
 .control-label {
      font-size: 24px;
      font-weight: normal;
@@ -72,9 +81,6 @@ body .form-horizontal .control-label {
 .content-header {
     .row {
         position: relative;
-
-        h1 {
-        }
 
         h2 {
           color: #9d9d9d;
@@ -104,6 +110,10 @@ a[ng-click] {
   margin-top: 30px;
 }
 
+.top-buffer-lg {
+  margin-top: 60px;
+}
+
 .bottom-buffer {
   margin-bottom: 30px;
 }
@@ -116,6 +126,14 @@ a[ng-click] {
 .vertical-buffer-xl {
   margin-top: 120px;
   margin-bottom: 120px;
+}
+
+.nopad-left {
+  padding-left: 0px;
+}
+
+.nopad-right {
+  padding-right: 0px;
 }
 
 .text-lg {

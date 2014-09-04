@@ -38,11 +38,18 @@ angular.module('myApp.owner', ['ngRoute'])
             controller: 'AddPropertyCtrl',
             profileRequired: OWNERS_ONLY
         });
+
+        $routeProvider.when('/owners/dashboard', {
+            authRequired: '/register/owner',
+            templateUrl: 'owner/dashboard.tpl.html',
+            controller: 'OwnerDashboardCtrl',
+            profileRequired: OWNERS_ONLY
+        });
     }
 ])
 
-.controller('AddPropertyCtrl', ['$scope','$rootScope','$location','$routeParams',
-    function($scope,$rootScope,$location, $routeParams) {
+.controller('AddPropertyCtrl', ['$scope','$rootScope','$routeParams',
+    function($scope,$rootScope,$routeParams) {
        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
        var steps= [
@@ -52,5 +59,26 @@ angular.module('myApp.owner', ['ngRoute'])
                   ];
 
        $scope.step= steps[+$routeParams.step-1 || 0];
+    }
+])
+
+.controller('OwnerDashboardCtrl', ['$scope','$rootScope','$timeout',
+    function($scope,$rootScope,$timeout) {
+       $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
+
+       $scope.time= new Date();
+
+       $timeout(function ()
+       {
+          $scope.time= new Date();
+       },60000);
+
+       $scope.expenses= {
+                          upcomingVacancies: 59,
+                          rentsPaid: 77,
+                          expenseRatio: 90,
+                          occupancyRate: 95
+                        };
+
     }
 ])

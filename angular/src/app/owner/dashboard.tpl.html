@@ -1,0 +1,206 @@
+<div class="header-shadow dashboard">
+
+    <div class="container">
+
+        <div class="row top-buffer-lg">
+            <div class="col-sm-6 text-center center">
+                <h1>My Dashboard</h1>
+                <h2 style="color: #9d9d9d; margin-top: 0px;">{{time | date:'MMMM dd, yyyy hh:mm'}} {{ time | date:'a' | lowercase }}</h2>
+            </div>
+        </div>
+
+        <div class="row vertical-buffer">
+            <div class="col-sm-5">
+                <div class="row">
+                  <div class="col-sm-3 nopad-right" style="padding-left: 30px;">
+                     <img pl-holder="holder.js/60x60" class="img-circle">
+                  </div>
+                  <div class="col-sm-8 nopad-left">
+                    <h4 style="font-size: 24px; font-weight: bold;">{{profile.firstName}} {{profile.lastName}}</h4>
+                    <p>I have 2 condos for rent.</p>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="row">
+                    <div class="col-sm-offset-3 col-sm-3 dashboard-counter active">
+                        <p class="dashboard-counter-val">15</p>
+                        <p class="dashboard-counter-desc">Offers</p>
+                    </div>
+                    <div class="col-sm-3 dashboard-counter">
+                        <p class="dashboard-counter-val">10</p>
+                        <p class="dashboard-counter-desc">Active Properties</p>
+                    </div>
+                    <div class="col-sm-3 dashboard-counter">
+                        <p class="dashboard-counter-val">15k</p>
+                        <p class="dashboard-counter-desc">Monthly Income</p>
+                    </div>
+                    <!--div class="col-sm-3 dashboard-counter">
+                        <p class="dashboard-counter-val">14 days</p>
+                        <p class="dashboard-counter-desc">Left for...</p>
+                    </div-->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container dashboard">
+    <h5 class="top-buffer">Recent Offers</h5>
+
+    <div class="row offers">
+        <div class="col-sm-3">
+            <img pl-holder="holder.js/238x158">
+            <p><strong>Number of offers:</strong> 2</p>
+            <p><strong>Highest offer:</strong> $5000</p>
+            <p><strong>Highest Credit Score:</strong> 800</p>
+            <button type="button" class="btn btn-rented">See More</button>
+        </div>
+        <div class="col-sm-3">
+            <img pl-holder="holder.js/238x158">
+            <p><strong>Number of offers:</strong> 2</p>
+            <p><strong>Highest offer:</strong> $5000</p>
+            <p><strong>Highest Credit Score:</strong> 800</p>
+            <button type="button" class="btn btn-rented">See More</button>
+        </div>
+        <div class="col-sm-3">
+            <img pl-holder="holder.js/238x158">
+            <p><strong>Number of offers:</strong> 2</p>
+            <p><strong>Highest offer:</strong> $5000</p>
+            <p><strong>Highest Credit Score:</strong> 800</p>
+            <button type="button" class="btn btn-rented">See More</button>
+        </div>
+        <div class="col-sm-3">
+            <img pl-holder="holder.js/238x158">
+            <p><strong>Number of offers:</strong> 2</p>
+            <p><strong>Highest offer:</strong> $5000</p>
+            <p><strong>Highest Credit Score:</strong> 800</p>
+            <button type="button" class="btn btn-rented">See More</button>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 40px">
+        <div class="col-sm-9">
+           <!--h5>Watching</h5>
+           <div class="row watching">
+               <div class="col-sm-1">
+                  <span class="badge" style="background-color: #89d4cd;">98<sub>%</sub></span> 
+               </div>
+               <div class="col-sm-9">
+                  <p>1245 Molino Street, San Francisco CA 94102</p> 
+               </div>
+               <div class="col-sm-2">
+                  <button type="button" class="btn btn-rented">See More</button>
+               </div>
+           </div>
+           <div class="row watching">
+               <div class="col-sm-1">
+                  <span class="badge" style="background-color: #ff503f;">33<sub>%</sub></span> 
+               </div>
+               <div class="col-sm-9">
+                  <p>467 Haight Street, San Francisco CA 94102</p> 
+               </div>
+               <div class="col-sm-2">
+                  <button type="button" class="btn btn-rented">See More</button>
+               </div>
+           </div-->
+           <h5 class="top-buffer">Savings</h5>
+           <div class="row savings">
+            <div class="col-sm-12">
+               <img src="assets/img/savings.png">
+            </div>
+           </div>
+        </div>
+
+        <div class="col-sm-3 inbox">
+           <h5>Inbox</h5>
+
+               
+           <div class="row message top-buffer">
+                <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-4 nopad-right">
+                         <img pl-holder="holder.js/60x60" class="img-circle">
+                      </div>
+                      <div class="col-sm-8 nopad-left">
+                        <p style="color: #6c757e">Don Lee</p>
+                        <p style="color: #9d9d9d">San Francisco</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>Looking to rent your SF property...<a style="color: inherit; font-weight: bold;" href="#">Read More</a></p>
+                        </div>
+                    </div>
+                </div>
+           </div>
+
+           <div class="row message top-buffer">
+                <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-4 nopad-right">
+                         <img pl-holder="holder.js/60x60" class="img-circle">
+                      </div>
+                      <div class="col-sm-8 nopad-left">
+                        <p style="color: #6c757e">Don Lee</p>
+                        <p style="color: #9d9d9d">San Francisco</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>Looking to rent your SF property...<a style="color: inherit; font-weight: bold;" href="#">Read More</a></p>
+                        </div>
+                    </div>
+                </div>
+           </div>
+
+           <div class="row message top-buffer">
+                <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-4 nopad-right">
+                         <img pl-holder="holder.js/60x60" class="img-circle">
+                      </div>
+                      <div class="col-sm-8 nopad-left">
+                        <p style="color: #6c757e">Don Lee</p>
+                        <p style="color: #9d9d9d">San Francisco</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>Looking to rent your SF property...<a style="color: inherit; font-weight: bold;" href="#">Read More</a></p>
+                        </div>
+                    </div>
+                </div>
+           </div>
+
+
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <div class="col-sm-9">
+           <h5>Expenses</h5>
+
+           <div class="row expenses">
+              <div class="col-sm-3">
+                <div ng-repeat="progress in [expenses.upcomingVacancies]" ng-include="'partials/circular-bar.tpl.html'"></div>
+              </div>
+              <div class="col-sm-3">
+                <div ng-repeat="progress in [expenses.rentsPaid]" ng-include="'partials/circular-bar.tpl.html'"></div>
+              </div>
+              <div class="col-sm-3">
+                <div ng-repeat="progress in [expenses.expenseRatio]" ng-include="'partials/circular-bar.tpl.html'"></div>
+              </div>
+              <div class="col-sm-3">
+                <div ng-repeat="progress in [expenses.occupancyRate]" ng-include="'partials/circular-bar.tpl.html'"></div>
+              </div>
+           </div>
+        </div>
+        <div class="col-sm-3">
+           <h5>Calendar</h5>
+        </div>
+    </div>
+
+</div>
