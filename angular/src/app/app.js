@@ -80,8 +80,13 @@ angular.module('myApp', [
     }])
     .controller('AppCtrl', ['$scope', '$rootScope', '$location', function ($scope, $rootScope, $location) {
 
-        $rootScope.isActive = function(loc){
-            if($location.path().indexOf(loc) === 0){
+        $rootScope.isActive = function(loc,strict){
+            var path= $location.path();
+
+            if(path.indexOf(loc) === 0){
+               if (strict)
+                return loc.length==path.length ? "active" : "";
+               else
                 return "active";
             }
             return "";

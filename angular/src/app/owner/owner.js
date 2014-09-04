@@ -32,7 +32,7 @@ angular.module('myApp.owner', ['ngRoute'])
                    return '/owners'; 
             };
 
-        $routeProvider.when('/owners/add-property', {
+        $routeProvider.when('/owners/add-property/:step?', {
             authRequired: '/register/owner',
             templateUrl: 'owner/add-property.tpl.html',
             controller: 'AddPropertyCtrl',
@@ -41,8 +41,16 @@ angular.module('myApp.owner', ['ngRoute'])
     }
 ])
 
-.controller('AddPropertyCtrl', ['$scope','$rootScope','$location',
-    function($scope,$rootScope,$location) {
+.controller('AddPropertyCtrl', ['$scope','$rootScope','$location','$routeParams',
+    function($scope,$rootScope,$location, $routeParams) {
        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
+
+       var steps= [
+                     'owner/partials/property-form.tpl.html',
+                     'owner/partials/verify-profile.tpl.html',
+                     'owner/partials/ready-to-qualify.tpl.html'
+                  ];
+
+       $scope.step= steps[+$routeParams.step-1 || 0];
     }
 ])
