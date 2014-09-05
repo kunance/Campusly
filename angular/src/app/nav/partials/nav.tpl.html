@@ -15,7 +15,11 @@
         </li>
         <li ng-show-auth="['logout','error']"><a ng-class="isActive('/register')" href="#/register">Register</a>
         </li>
-        <li class="menuparent" ng-show-auth="'login'"><a class="nav-user" href="#/profile"><img src="http://placehold.it/34x34" class="img-circle"> {{profile.firstName}} {{profile.lastName}}</a>
+        <li class="menuparent" ng-show-auth="'login'">
+               <a class="nav-user" href="#/{{profile.type}}s/profile">
+                   <img src="http://placehold.it/34x34" class="img-circle">
+                   {{profile.firstName}} {{profile.lastName}}
+               </a>
         </li>
         <li ng-show-auth="'login'"><a href="#/logout">Sign Out</a>
         </li>
