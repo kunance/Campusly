@@ -52,6 +52,20 @@ angular.module('myApp.owner', ['ngRoute'])
             controller: 'OwnerPropertiesCtrl',
             profileRequired: OWNERS_ONLY
         });
+
+        $routeProvider.when('/owners/tenants', {
+            authRequired: true,
+            templateUrl: 'owner/tenants.tpl.html',
+            controller: 'OwnerTenantsCtrl',
+            profileRequired: OWNERS_ONLY
+        });
+
+        $routeProvider.when('/owners/profile', {
+            authRequired: true,
+            templateUrl: 'owner/profile.tpl.html',
+            controller: 'OwnerProfileCtrl',
+            profileRequired: OWNERS_ONLY
+        });
     }
 ])
 
@@ -123,7 +137,17 @@ angular.module('myApp.owner', ['ngRoute'])
 .controller('OwnerPropertiesCtrl', ['$scope','$rootScope','$routeParams',
     function($scope,$rootScope,$routeParams) {
        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
+    }
+])
 
-       
+.controller('OwnerTenantsCtrl', ['$scope','$rootScope','$routeParams',
+    function($scope,$rootScope,$routeParams) {
+       $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
+    }
+])
+
+.controller('OwnerProfileCtrl', ['$scope','$rootScope','$routeParams',
+    function($scope,$rootScope,$routeParams) {
+       $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
     }
 ])

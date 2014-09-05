@@ -17,6 +17,7 @@
 @import "dashboard.less";
 @import "circular-bar.less";
 @import "clndr.less";
+@import "counter.less";
 
 @media (min-width: 1200px) {
     body .container {
@@ -149,6 +150,10 @@ a[ng-click] {
   font-size: @font-size-large;
 }
 
+.text-xl {
+  font-size: (@font-size-large + 10);
+}
+
 .noselect
 {
   -webkit-user-select: none; /* Chrome/Safari */
@@ -200,4 +205,11 @@ html[xmlns] .clearfix {
     -moz-background-clip:    padding;
     -webkit-background-clip: padding-box;
     background-clip:         padding-box;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+    padding-right: 0px;
 }
