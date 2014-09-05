@@ -224,10 +224,17 @@ a.next {
     color: inherit;
     font-size: 22px;
 
+    &.active,
     &:active,
     &:hover {
        text-decoration: none;
        color: @brand-primary;
+    }
+
+    &.active {
+        &::after {
+           color: @gray-dark;
+        }
     }
 
     &::after {
@@ -246,10 +253,17 @@ a.prev {
     color: inherit;
     font-size: 22px;
 
+    &.active,
     &:active,
     &:hover {
        text-decoration: none;
        color: @brand-primary;
+    }
+
+    &.active {
+        &::before {
+           color: @gray-dark;
+        }
     }
 
     &::before {

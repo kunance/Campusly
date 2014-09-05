@@ -1,0 +1,241 @@
+<form method="post" class="form-horizontal vertical-buffer-xl">
+
+    <button type="button" class="btn btn-rented pull-right">Save</button>
+
+    <h1 style="margin-top: 0px;">Your Profile</h1>
+
+    <div class="row">
+
+        <fieldset class="fieldset-required">
+           <legend>Contact</legend>
+           
+           <div class="col-sm-2">
+                <span class="fileinput-button">
+                   <img class="media-object img-circle" alt="Upload your picture..." style="display: inline; margin-bottom: 10px;" src="assets/img/avatar.png">
+                   <!--input id="fileupload" type="file" name="files[]" title="Carica immagine..."-->
+                   <input type="file" ng-file-select="onFileSelect($files)">
+                </span>
+           </div>
+
+           <div class="col-sm-5">
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">First</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="profile.firstName" placeholder="Bob">
+                   </div>
+               </div>
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">Phone</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="tel" ng-model="profile.phone" placeholder="000.000.000">
+                   </div>
+               </div>
+           </div>
+
+           <div class="col-sm-5">
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">Last</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="profile.lastName" placeholder="Johnson">
+                   </div>
+               </div>
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">E-Mail</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="email" ng-model="profile.email" placeholder="bob@gmail.com">
+                   </div>
+               </div>
+           </div>
+        </fieldset>
+
+    </div>
+
+    <div class="row">
+
+        <fieldset class="fieldset-required">
+           <legend>Current Address</legend>
+
+           <div class="col-sm-6">
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">Street</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.street">
+                   </div>
+               </div>
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">City</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.city">
+                   </div>
+               </div>
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">Zip</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.zip">
+                   </div>
+               </div>
+           </div>
+
+           <div class="col-sm-6">
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">Apt. number</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.aptNumber">
+                   </div>
+               </div>
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">State</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.state">
+                   </div>
+               </div>
+           </div>
+
+        </fieldset>
+
+    </div>
+
+    <div class="row">
+
+        <fieldset class="fieldset-required">
+           <legend>Prior Address</legend>
+
+           <div class="col-sm-6">
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">Street</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.street">
+                   </div>
+               </div>
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">City</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.city">
+                   </div>
+               </div>
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">Zip</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.zip">
+                   </div>
+               </div>
+           </div>
+
+           <div class="col-sm-6">
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">Apt. number</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.aptNumber">
+                   </div>
+               </div>
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">State</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.state">
+                   </div>
+               </div>
+           </div>
+
+        </fieldset>
+
+    </div>
+
+    <div class="row">
+
+        <fieldset class="fieldset-required">
+           <legend>Move-In Information</legend>
+
+           <div class="col-sm-12">
+               <div class="row">
+                   <div class="col-sm-4">
+                       <div class="form-group">
+                           <label class="col-sm-6 control-label"># of Occupants</label>
+                           <div class="col-sm-6">
+                              <input class="form-control input-lg" type="number" ng-model="property.aptNumber">
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-sm-5">
+                       <div class="form-group">
+                           <label class="col-sm-6 control-label">Annual Income</label>
+                           <div class="col-sm-6">
+                              <input class="form-control input-lg" type="number" ng-model="property.aptNumber">
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-sm-3">
+                       <div class="form-group">
+                           <label class="col-sm-6 control-label">Pets</label>
+                           <div class="col-sm-6">
+                              <input class="form-control input-lg" type="text" ng-model="property.aptNumber">
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="row">
+                   <div class="col-sm-12">
+                       <div class="form-group">
+                           <label class="col-sm-2 control-label">Reason for Moving</label>
+                           <div class="col-sm-10">
+                              <textarea class="form-control input-lg"></textarea>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+        </fieldset>
+
+    </div>
+
+    <div class="row">
+
+        <fieldset class="fieldset-required">
+           <legend>Financial Information</legend>
+
+           <div class="row">
+               <div class="col-sm-6">
+                   <div class="form-group">
+                       <label class="col-sm-7 control-label">Household Income Level</label>
+                       <div class="col-sm-5">
+                          <input class="form-control input-lg" type="text" ng-model="property.aptNumber">
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6">
+                   <div class="form-group">
+                       <label class="col-sm-6 control-label">Other Income</label>
+                       <div class="col-sm-6">
+                          <input class="form-control input-lg" type="text" ng-model="property.aptNumber">
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-sm-6">
+                   <div class="form-group">
+                       <label class="col-sm-7 control-label">Upload Proof of Income</label>
+                       <div class="col-sm-5">
+                          <span class="btn btn-rented fileinput-button">
+                            Upload <span class="glyphicon glyphicon-cloud-upload"></span>
+                            <!-- The file input field used as target for the file upload widget -->
+                            <input id="fileupload" type="file" name="image" multiple>
+                          </span>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6">
+                   <strong>ex. Bank Statement, paystub, w2</strong>
+               </div>
+           </div>
+
+        </fieldset>
+
+    </div>
+
+    <div class="pull-right">
+       <a href="#/tenants/on-boarding" class="prev active">1</a>
+       <a href="#/tenants/on-boarding/verify-profile-2" class="next">2</a>
+    </div>
+
+</form>
