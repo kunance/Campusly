@@ -17,6 +17,7 @@
 #mini-clndr .clndr
 {
   overflow: hidden;
+  width: 240px;
   //border-bottom: 7px solid @dark-green;
 
   .controls
@@ -128,15 +129,16 @@
     .events
     {
       position: absolute;
-      left: 294px;
-      width: 294px;
-      height: 186px;
+      left: 240px;
+      width: 240px;
+      height: 200px;
       .transition(left @time);
       // background-color: @light-gray;
 
       .headers
       {
         position: relative;
+        color: @header-color;
       }
 
       .event-header
@@ -145,7 +147,6 @@
         // background-color: @light-green;
         .vertical-padding;
         text-align: center;
-        color: white;
       }
 
       .x-button

@@ -81,6 +81,7 @@ angular.module('myApp.owner', ['ngRoute'])
                         };
 
 
+        // @TODO: just here for the demo, but pretty ugly
         var currentMonth = moment().format('YYYY-MM');
         var nextMonth    = moment().add('month', 1).format('YYYY-MM');
 
