@@ -146,8 +146,31 @@ angular.module('myApp.owner', ['ngRoute'])
     }
 ])
 
-.controller('OwnerProfileCtrl', ['$scope','$rootScope','$routeParams',
-    function($scope,$rootScope,$routeParams) {
+.controller('OwnerProfileCtrl', ['$scope','$rootScope','$routeParams','TopBannerChannel',
+    function($scope,$rootScope,$routeParams,TopBannerChannel) {
        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
+
+       $scope.save= function ()
+       {
+           $rootScope.profile.$save()
+           .then(function ()
+           {
+                console.log('qui');
+
+                TopBannerChannel.setBanner({
+                    content: 'Profile saved!',
+                    contentClass: 'success'
+                });
+           },
+           function (err)
+           {
+                conole.log(err);
+
+                TopBannerChannel.setBanner({
+                    content: 'There was an error saving your profile',
+                    contentClass: 'error'
+                });
+           });
+       };
     }
 ])
