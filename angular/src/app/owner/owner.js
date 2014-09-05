@@ -66,6 +66,13 @@ angular.module('myApp.owner', ['ngRoute'])
             controller: 'OwnerProfileCtrl',
             profileRequired: OWNERS_ONLY
         });
+
+        $routeProvider.when('/owners/properties/:id/status', {
+            authRequired: true,
+            templateUrl: 'owner/property-status.tpl.html',
+            controller: 'OwnerPropertyStatusCtrl',
+            profileRequired: OWNERS_ONLY
+        });
     }
 ])
 
@@ -172,5 +179,13 @@ angular.module('myApp.owner', ['ngRoute'])
                 });
            });
        };
+    }
+])
+
+.controller('OwnerPropertyStatusCtrl', ['$scope','$rootScope','$routeParams',
+    function($scope,$rootScope,$routeParams) {
+       $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
+
+
     }
 ])

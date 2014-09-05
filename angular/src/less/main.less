@@ -108,8 +108,12 @@ body .form-horizontal .control-label {
    bottom: 0px; 
 }
 
-a[ng-click] {
+a[ng-click], a[go-back] {
   cursor: pointer;
+}
+
+.top-buffer-sm {
+  margin-top: 10px;
 }
 
 .top-buffer {
@@ -233,5 +237,27 @@ a.next {
        position: relative;
        bottom: -8px;
        left: 5px;
+    }
+}
+
+a.prev {
+    background: #f6f6f6;
+    border: 0px;
+    color: inherit;
+    font-size: 22px;
+
+    &:active,
+    &:hover {
+       text-decoration: none;
+       color: @brand-primary;
+    }
+
+    &::before {
+       content: "‹";
+       font-size: 60px;
+       font-weight: 100;
+       position: relative;
+       bottom: -8px;
+       right: 5px;
     }
 }

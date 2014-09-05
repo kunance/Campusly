@@ -11,7 +11,11 @@
                <legend>Contact</legend>
                
                <div class="col-sm-2">
-                  <img src="assets/img/avatar.png">
+                    <span class="fileinput-button">
+                       <img class="media-object img-circle" alt="Upload your picture..." style="display: inline; margin-bottom: 10px;" src="assets/img/avatar.png">
+                       <!--input id="fileupload" type="file" name="files[]" title="Carica immagine..."-->
+                       <input type="file" ng-file-select="onFileSelect($files)">
+                    </span>
                </div>
 
                <div class="col-sm-5">
