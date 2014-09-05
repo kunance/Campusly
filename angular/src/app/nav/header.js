@@ -2,21 +2,21 @@
 
 angular.module('myApp.header', [])
 
-    .controller('HeaderCtrl', ['$scope', '$location', '$timeout', 'TopBannerChannel', function($scope, $location, $timeout, TopBannerChannel){
+    .controller('HeaderCtrl', ['$rootScope', '$location', '$timeout', 'TopBannerChannel', function($rootScope, $location, $timeout, TopBannerChannel){
 
-        $scope.banner = null;
+        $rootScope.banner = {};
 
         var clearBanner = _.debounce(function ()
             {
-               $scope.banner = null;
+               $rootScope.banner.content = null;
             },5000),
             setBanner = function(data) {
-                $scope.banner = data;
+                _.extend($rootScope.banner,data);
                 window.scroll(0,0);
                 clearBanner(); 
             };
 
-        TopBannerChannel.onSetBanner($scope, setBanner);
+        TopBannerChannel.onSetBanner($rootScope, setBanner);
 
         // toggle navbar on click
         $(document).on('click.nav','.navbar-collapse.in',function(e) {
