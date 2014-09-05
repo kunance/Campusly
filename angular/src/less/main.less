@@ -213,3 +213,25 @@ html[xmlns] .clearfix {
     float: none;
     padding-right: 0px;
 }
+
+a.next {
+    background: #f6f6f6;
+    border: 0px;
+    color: inherit;
+    font-size: 22px;
+
+    &:active,
+    &:hover {
+       text-decoration: none;
+       color: @brand-primary;
+    }
+
+    &::after {
+       content: "›";
+       font-size: 60px;
+       font-weight: 100;
+       position: relative;
+       bottom: -8px;
+       left: 5px;
+    }
+}
