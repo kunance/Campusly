@@ -40,9 +40,16 @@ angular.module('myApp.owner', ['ngRoute'])
         });
 
         $routeProvider.when('/owners/dashboard', {
-            authRequired: '/register/owner',
+            authRequired: true,
             templateUrl: 'owner/dashboard.tpl.html',
             controller: 'OwnerDashboardCtrl',
+            profileRequired: OWNERS_ONLY
+        });
+
+        $routeProvider.when('/owners/properties', {
+            authRequired: true,
+            templateUrl: 'owner/properties.tpl.html',
+            controller: 'OwnerPropertiesCtrl',
             profileRequired: OWNERS_ONLY
         });
     }
@@ -110,5 +117,13 @@ angular.module('myApp.owner', ['ngRoute'])
             adjacentDaysChangeMonth: true
           });
 
+    }
+])
+
+.controller('OwnerPropertiesCtrl', ['$scope','$rootScope','$routeParams',
+    function($scope,$rootScope,$routeParams) {
+       $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
+
+       
     }
 ])
