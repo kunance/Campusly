@@ -81,7 +81,8 @@ module.exports = {
             'vendor/moment/min/moment.min.js',
             'vendor/angularytics/dist/angularytics.js',
             'vendor/FlexSlider/jquery.flexslider.js',
-            'vendor/holderjs/holder.js'
+            'vendor/holderjs/holder.js',
+            'vendor/clndr/clndr.min.js'
         ],
         css: [],
         assets: [

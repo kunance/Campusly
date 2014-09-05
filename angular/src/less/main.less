@@ -16,6 +16,7 @@
 @import "form.less";
 @import "dashboard.less";
 @import "circular-bar.less";
+@import "clndr.less";
 
 @media (min-width: 1200px) {
     body .container {
@@ -138,4 +139,57 @@ a[ng-click] {
 
 .text-lg {
   font-size: @font-size-large;
+}
+
+.noselect
+{
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+}
+
+.vertical-padding(@size: 5px)
+{
+  padding-top: @size;
+  padding-bottom: @size;
+}
+
+.transition(@props)
+{
+  -webkit-transition: @props;
+  -moz-transition: @props;
+  -ms-transition: @props;
+  -o-transition: @props;
+  transition: @props;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+.border-radius (@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius:    @radius;
+    border-radius:         @radius;
+
+    -moz-background-clip:    padding;
+    -webkit-background-clip: padding-box;
+    background-clip:         padding-box;
 }

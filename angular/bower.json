@@ -14,6 +14,7 @@
     "angularytics": "latest",
     "FlexSlider": "latest",
     "underscore": "latest",
-    "holderjs": "~2.4.0"
+    "holderjs": "~2.4.0",
+    "clndr": "~1.2.1"
   }
 }
