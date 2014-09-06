@@ -99,9 +99,9 @@ angular.module('myApp.owner', ['ngRoute'])
        $scope.shout= {};
 }])
 
-.controller('OwnerPropertyCtrl', ['$scope','$rootScope','$routeParams','propertyService','shout',
-    'MAX_PROPERTY_PICTURES','MAX_UPLOAD_SIZE',
-    function($scope,$rootScope,$routeParams,propertyService,shout, MAX_PROPERTY_PICTURES, MAX_UPLOAD_SIZE) {
+.controller('OwnerPropertyCtrl', ['$scope','$rootScope','$routeParams','$location','propertyService','shout',
+    'MAX_PROPERTY_PICTURES','MAX_UPLOAD_SIZE','TopBannerChannel',
+    function($scope,$rootScope,$routeParams,$location,propertyService,shout, MAX_PROPERTY_PICTURES, MAX_UPLOAD_SIZE, TopBannerChannel) {
        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
        $scope.shout= $scope.shout || {};
@@ -115,8 +115,7 @@ angular.module('myApp.owner', ['ngRoute'])
        {
            if (!confirm('You want to remove this picture?')) return;
 
-           var pos= _.indexOf($scope.property.pictures,selected); 
-           $scope.property.pictures.splice(pos,1);
+           _.rm($scope.property.pictures,selected);
        };
 
        $scope.pictureSelected= function ($files)
@@ -162,7 +161,39 @@ angular.module('myApp.owner', ['ngRoute'])
             });
        };
 
-       $scope.save= function ()
+       $scope.remove= function (property)
+       {
+            var handleErrors= function (err)
+            {
+                console.log(err);
+
+                shouter
+                ({
+                    content: 'There was an error saving your property',
+                    type: 'danger'
+                });
+            };
+
+            if (!confirm('You want to remove this property?')) return;
+
+            _.rm($rootScope.profile.properties,property.$id);
+
+            $rootScope.profile.$save().then(function ()
+            {
+                property.$inst().$remove().then(function ()
+                {
+                    TopBannerChannel.setBanner({
+                        content: 'Property removed!',
+                        contentClass: 'success'
+                    });
+
+                    $location.path('/owners/properties');
+                },handleErrors);
+            },
+            handleErrors);
+       };
+
+       $scope.save= function (property)
        {
            var handleErrors= function (err)
            {
@@ -183,20 +214,20 @@ angular.module('myApp.owner', ['ngRoute'])
 
            if (!$routeParams.id)
            {
-               $scope.property.owner= $rootScope.profile.$id;
-               $scope.property.$priority= new Date().getTime();
+               property.owner= $rootScope.profile.$id;
+               property.$priority= new Date().getTime();
            }
 
-           $scope.property.$save()
+           property.$save()
            .then(function ()
            {
                 var props= $rootScope.profile.properties= $rootScope.profile.properties || [];
 
-                if (!_.contains(props,$scope.property.$id))
+                if (!_.contains(props,property.$id))
                 {
-                    props.push($scope.property.$id);
+                    props.push(property.$id);
 
-                    $rootScope.profile.$save(function ()
+                    $rootScope.profile.$save().then(function ()
                     {
                         shouter
                         ({
@@ -271,7 +302,11 @@ angular.module('myApp.owner', ['ngRoute'])
 
 .controller('OwnerPropertiesCtrl', ['$scope','$rootScope','$routeParams',
     function($scope,$rootScope,$routeParams) {
-       $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
+        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
+
+        console.log($rootScope.profile.properties);
+
+        $scope.properties= _.map($rootScope.profile.properties,function ($id) { return { $id: $id }; });
     }
 ])
 

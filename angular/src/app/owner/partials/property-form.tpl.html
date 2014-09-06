@@ -1,18 +1,20 @@
 <form method="post" class="form-horizontal" ng-controller="OwnerPropertyCtrl">
 
     <a href="#/owners/add-property/2" class="next pull-right" style="padding-left: 20px; vertical-align: sub;position: relative;top: -30px;left: -4px;" ng-show="add">Next</a>
-    <button type="button" class="btn btn-rented pull-right" style="margin-right: 10px" ng-click="save()" ng-show="add">Save</button>
+    <button type="button" class="btn btn-rented pull-right" style="margin-right: 10px" ng-click="save(property)" ng-show="add">Save</button>
 
     <h1 style="margin-top: 0px;" ng-show="add">Property {{profile.properties.length+1}}</h1>
 
-    <div class="content-header header-shadow" ng-hide="add">
-        <div class="container">
-            <div class="row" style="min-height: 210px;">
-                <div class="col-sm-12 text-center box-bottom">
-                    <button type="button" class="btn btn-rented pull-right" style="margin-right: 10px; position: absolute; right: 20px;" ng-click="save()">Save</button>
-                    <h1>{{property.address.street}}</h1>
-                    <h2>{{property.address.city}}, {{property.address.state}} {{property.address.zip}}</h2>
+    <div class="content-header" ng-hide="add">
+        <div class="row" style="min-height: 210px;">
+            <div class="col-sm-12 text-center box-bottom">
+                <div class="buttons">
+                    <button type="button" class="btn btn-rented" ng-click="remove(property)">Remove</button>
+                    <button type="button" class="btn btn-rented" ng-click="save(property)">Save</button>
                 </div>
+
+                <h1>{{property.address.street}}</h1>
+                <h2>{{property.address.city}}, {{property.address.state}} {{property.address.zip}}</h2>
             </div>
         </div>
     </div>

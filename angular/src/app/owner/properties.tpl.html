@@ -2,13 +2,13 @@
     <h1>Active Properties</h1>
 
     <div class="row properties">
-        <div class="col-sm-3 top-buffer-lg" ng-repeat="property in profile.properties | loadProperty">
+        <div class="col-sm-3 top-buffer-lg" ng-repeat="property in properties | loadProperty">
             <img ng-src="{{property.pictures[0]}}" class="img-responsive">
             <p><strong>Number of offers:</strong> 2</p>
             <p><strong>Highest offer:</strong> $5000</p>
             <p><strong>Highest Credit Score:</strong> 800</p>
             <a href="#/property/{{property.$id}}" class="btn btn-rented">See More</a>
-            <a href="#/owner/properties/{{property.$id}}/edit" class="btn btn-rented">Edit</a>
+            <a href="#/owners/properties/{{property.$id}}/edit" class="btn btn-rented">Edit</a>
         </div>
     </div>
 
