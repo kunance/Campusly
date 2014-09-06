@@ -20,7 +20,8 @@ angular.module('myApp', [
         'ui.bootstrap',
         'ngSanitize',
         'angularytics',
-        'angularFileUpload'
+        'angularFileUpload',
+        'famous.angular'
     ])
 
     .config(['AngularyticsProvider',function(AngularyticsProvider) {

@@ -83,12 +83,15 @@ module.exports = {
             'vendor/FlexSlider/jquery.flexslider.js',
             'vendor/holderjs/holder.js',
             'vendor/clndr/clndr.min.js',
-            'vendor/ng-file-upload/angular-file-upload.min.js'
+            'vendor/ng-file-upload/angular-file-upload.min.js',
+            'vendor/famous/famous-global.js',
+            'vendor/famous-angular/dist/famous-angular.js'
         ],
         css: [],
         assets: [
             'vendor/FlexSlider/images/bg_play_pause.png',
-            'vendor/underscore/underscore-min.map'
+            'vendor/underscore/underscore-min.map',
+            'vendor/famous-angular/dist/famous-angular.css'
         ],
         fonts: [
             //'vendor/fontawesome/fonts/fontawesome-webfont.eot',
