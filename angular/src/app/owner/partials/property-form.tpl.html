@@ -1,7 +1,9 @@
 <form method="post" class="form-horizontal" ng-controller="OwnerPropertyCtrl">
 
-    <a href="#/owners/add-property/2" class="next pull-right" style="padding-left: 20px; vertical-align: sub;position: relative;top: -30px;left: -4px;" ng-show="add">Next</a>
-    <button type="button" class="btn btn-rented pull-right" style="margin-right: 10px" ng-click="save(property)" ng-show="add">Save</button>
+    <div class="buttons" ng-show="add">
+        <a href="#/owners/add-property/2" class="next pull-right" style="padding-left: 20px;">Next</a>
+        <button type="button" class="btn btn-rented pull-right" style="margin-right: 10px" ng-click="save(property)">Save</button>
+    </div>
 
     <h1 style="margin-top: 0px;" ng-show="add">Property {{profile.properties.length+1}}</h1>
 
