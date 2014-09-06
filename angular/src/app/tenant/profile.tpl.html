@@ -1,18 +1,4 @@
-<div class="container">
-    <form method="post" class="form-horizontal bottom-buffer-xl button-container">
+<div class="alert alert-{{shout.type}} text-center" ng-show="shout.content">{{shout.content}}</div>
 
-        <div class="buttons">
-           <button type="button" class="btn btn-rented right-buffer" ng-click="save()">Save</button>
-           <a ng-click="page=1" class="prev" ng-class="{ active: page==1 }">1</a>
-           <a ng-click="page=2" class="next" ng-class="{ active: page==2 }">2</a>
-        </div>
-
-        <h1 ng-hide="onBoarding">My Profile {{page==2 ? 'Cont' : ''}}</h1>
-        <h1 ng-show="onBoarding">Your Profile {{page==2 ? 'Cont' : ''}}</h1>
-
-        <div ng-include="'tenant/partials/profile-page-'+page+'.tpl.html'">
-        </div>
-
-    </form>
-
+<div class="container" ng-include="'tenant/partials/profile.tpl.html'">
 </div>

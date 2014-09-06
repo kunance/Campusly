@@ -64,14 +64,13 @@ angular.module('myApp.tenant', ['ngRoute'])
     function($scope,$rootScope,$location,$routeParams) {
        $rootScope.secondaryNav= 'tenant/partials/menu-tenant.tpl.html';
 
-       var steps= {
-                     'none':             'tenant/partials/verify-profile-1.tpl.html',
-                     'verify-profile-2': 'tenant/partials/verify-profile-2.tpl.html',
-                     'credit-check':     'tenant/partials/credit-check.tpl.html',
-                     'ready-to-apply':   'tenant/partials/ready-to-apply.tpl.html'
-                  };
+       var steps= ['tenant/partials/verify-profile.tpl.html',
+                   'tenant/partials/credit-check.tpl.html',
+                   'tenant/partials/ready-to-apply.tpl.html'];
 
-       $scope.step= steps[$routeParams.step || 'none'];
+       $scope.step= steps[+$routeParams.step-1 || 0];
+       $scope.onBoarding= true;
+       $scope.shout= {};
     }
 ])
 
@@ -137,8 +136,10 @@ angular.module('myApp.tenant', ['ngRoute'])
        $rootScope.secondaryNav= 'tenant/partials/menu-tenant.tpl.html';
 
        $scope.page= 1;
+       $scope.shout= $scope.shout || {};
 
-       var shoutUpload= shout($scope,'shoutUpload');
+       var shouter= shout($scope),
+           shoutUpload= shout($scope,'shoutUpload');
 
        $scope.proofSelected= function ($files,profile)
        {
@@ -196,9 +197,10 @@ angular.module('myApp.tenant', ['ngRoute'])
 
             if (file.size>MAX_UPLOAD_SIZE)
             {
-                TopBannerChannel.setBanner({
+                shouter
+                ({
                     content: 'The picture should be up to 5MB',
-                    contentClass: 'danger'
+                    type: 'danger'
                 });
 
                 return;
@@ -224,28 +226,29 @@ angular.module('myApp.tenant', ['ngRoute'])
 
        $scope.save= function ()
        {
-           TopBannerChannel.setBanner({
+           shouter
+           ({
                 content: 'Saving your profile...',
-                contentClass: 'info'
+                type: 'info'
            });
 
            $rootScope.profile.$save()
            .then(function ()
            {
-                console.log('qui');
-
-                TopBannerChannel.setBanner({
+                shouter
+                ({
                     content: 'Profile saved!',
-                    contentClass: 'success'
+                    type: 'success'
                 });
            },
            function (err)
            {
                 conole.log(err);
 
-                TopBannerChannel.setBanner({
+                shouter
+                ({
                     content: 'There was an error saving your profile',
-                    contentClass: 'danger'
+                    type: 'danger'
                 });
            });
        };
