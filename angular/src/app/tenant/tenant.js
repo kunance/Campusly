@@ -152,7 +152,7 @@ angular.module('myApp.tenant', ['ngRoute'])
             {
                 shoutUpload
                 ({
-                    content: 'You can upload up to '+MAX_PROOF_INCOME+' pictures',
+                    content: 'You can upload up to '+MAX_PROOF_INCOME+' documents',
                     type: 'danger'
                 });
 
@@ -213,6 +213,13 @@ angular.module('myApp.tenant', ['ngRoute'])
             };
             
             fileReader.readAsDataURL(file);
+       };
+
+       $scope.removeProofOfIncome= function (file,profile)
+       {
+           if (!confirm('You want to remove this document?')) return;
+
+          _.rm(profile.financial.proofsOfIncome,file);
        };
 
        $scope.save= function ()
