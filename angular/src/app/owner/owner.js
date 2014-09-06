@@ -138,6 +138,7 @@ angular.module('myApp.owner', ['ngRoute'])
 
        $scope.save= function ()
        {
+           $scope.property.owner= $rootScope.profile.$id;
            $scope.property.$priority= new Date().getTime();
 
            $scope.property.$save()
