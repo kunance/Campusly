@@ -6,11 +6,13 @@
     </div>
     <div class="property-detail-overview-item">
         <strong>Pet Deposit:</strong>
-        <span>{{property.petDeposit | nvl}}</span>
+        <span>{{property.pets.deposit | nvl}}</span>
     </div>
     <div class="property-detail-overview-item">
         <strong>Pets:</strong>
-        <span>{{property.pets | nvl}}</span>
+        <span ng-show="property.pets.allowDogs">Dogs</span>
+        <span ng-show="property.pets.allowCats">Cats</span>
+        <span ng-show="property.pets.allowOther">{{property.pets.other}}</span>
     </div>
   </div>
   <div class="col-sm-6">

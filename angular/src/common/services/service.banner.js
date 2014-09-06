@@ -8,13 +8,18 @@ angular.module('service.banner', [])
 
             var clear= _.debounce(function ()
                        {
-                           $scope[prop]= null;
+                           $scope[prop].content= null;
+                           $scope[prop].type= null;
                            $scope.$apply();
-                       },5000);
+                       },10000);
 
             return function (message)
             {
-                 $scope[prop]= message;
+                 if ($scope[prop])
+                   _.extend($scope[prop],message);
+                 else
+                   $scope[prop]= message;
+
                  clear();
             };
         };

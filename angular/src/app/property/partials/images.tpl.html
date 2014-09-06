@@ -1,7 +1,7 @@
 <div class="flexslider">
     <ul class="slides">
-        <li ng-repeat="s in property.images" data-thumb="assets/img/{{property_id}}/{{s}}">
-            <img src="assets/img/{{property_id}}/{{s}}" alt=""/>
+        <li ng-repeat="picture in property.pictures" data-thumb="{{picture}}">
+            <img ng-src="{{picture}}" alt="">
         </li>
     </ul>
 </div>

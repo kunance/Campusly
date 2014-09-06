@@ -73,6 +73,13 @@ angular.module('myApp.owner', ['ngRoute'])
             controller: 'OwnerPropertyStatusCtrl',
             profileRequired: OWNERS_ONLY
         });
+
+        $routeProvider.when('/owners/properties/:id/edit', {
+            authRequired: true,
+            templateUrl: 'owner/edit-property.tpl.html',
+            controller: 'OwnerPropertyCtrl',
+            profileRequired: OWNERS_ONLY
+        });
     }
 ])
 
@@ -85,17 +92,37 @@ angular.module('myApp.owner', ['ngRoute'])
                      'owner/partials/property-form.tpl.html',
                      'owner/partials/verify-profile.tpl.html',
                      'owner/partials/ready-to-qualify.tpl.html'
-                  ],
-           shouter= shout($scope),
-           shoutUpload= shout($scope,'shoutUpload');
+                  ];
 
        $scope.step= steps[+$routeParams.step-1 || 0];
+       $scope.add= true;
+       $scope.shout= {};
+}])
 
-       $scope.property= propertyService.create();
+.controller('OwnerPropertyCtrl', ['$scope','$rootScope','$routeParams','propertyService','shout',
+    'MAX_PROPERTY_PICTURES','MAX_UPLOAD_SIZE',
+    function($scope,$rootScope,$routeParams,propertyService,shout, MAX_PROPERTY_PICTURES, MAX_UPLOAD_SIZE) {
+       $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
+
+       $scope.shout= $scope.shout || {};
+
+       var shouter= shout($scope),
+           shoutUpload= shout($scope,'shoutUpload');
+
+       $scope.property= $routeParams.id ? propertyService.fetch($routeParams.id) : propertyService.create();
+
+       $scope.removePicture= function (selected)
+       {
+           if (!confirm('You want to remove this picture?')) return;
+
+           var pos= _.indexOf($scope.property.pictures,selected); 
+           $scope.property.pictures.splice(pos,1);
+       };
 
        $scope.pictureSelected= function ($files)
        {
             console.log($files);
+            $scope.property.pictures= $scope.property.pictures || [];
 
             if (($files.length+$scope.property.pictures.length)>MAX_PROPERTY_PICTURES)
             {
@@ -110,7 +137,6 @@ angular.module('myApp.owner', ['ngRoute'])
 
             _.each($files,function (file)
             {
-
                 if (file.size>MAX_UPLOAD_SIZE)
                 {
                     shoutUpload
@@ -138,19 +164,7 @@ angular.module('myApp.owner', ['ngRoute'])
 
        $scope.save= function ()
        {
-           $scope.property.owner= $rootScope.profile.$id;
-           $scope.property.$priority= new Date().getTime();
-
-           $scope.property.$save()
-           .then(function ()
-           {
-                shouter
-                ({
-                    content: 'Property saved!',
-                    type: 'success'
-                });
-           },
-           function (err)
+           var handleErrors= function (err)
            {
                 console.log(err);
 
@@ -159,7 +173,47 @@ angular.module('myApp.owner', ['ngRoute'])
                     content: 'There was an error saving your property',
                     type: 'danger'
                 });
+           };
+
+           shouter
+           ({
+                content: 'Saving your property...',
+                type: 'info'
            });
+
+           if (!$routeParams.id)
+           {
+               $scope.property.owner= $rootScope.profile.$id;
+               $scope.property.$priority= new Date().getTime();
+           }
+
+           $scope.property.$save()
+           .then(function ()
+           {
+                var props= $rootScope.profile.properties= $rootScope.profile.properties || [];
+
+                if (!_.contains(props,$scope.property.$id))
+                {
+                    props.push($scope.property.$id);
+
+                    $rootScope.profile.$save(function ()
+                    {
+                        shouter
+                        ({
+                            content: 'Property saved!',
+                            type: 'success'
+                        });
+                    },
+                    handleErrors);
+                }
+                else
+                shouter
+                ({
+                    content: 'Property saved!',
+                    type: 'success'
+                });
+           },
+           handleErrors);
        };
     }
 ])

@@ -1,28 +1,48 @@
 angular.module('service.property', ['service.firebase'])
+
+    .filter('loadProperty', ['propertyService',
+    function (propertyService)
+    {
+        return function (featured)
+        {
+            featured= featured || [];
+
+            featured.forEach(function (property,idx)
+            {
+                if (_.keys(property).length>1) return;
+
+                var obj= propertyService.fetch(property.$id);
+                    
+                property.bids= propertyService.fetchBids(property.$id,3);
+                
+                obj.$inst().$ref().on('value',function (data)
+                { 
+                    _.extend(property,data.val());
+                });
+            });
+
+            return featured;
+        };
+    }])
+
+
     .factory('propertyService', ["$rootScope", "firebaseRef", "syncData", 'uuid4', function($rootScope, firebaseRef, syncData,uuid4){
         return {
             create: function ()
             {
-                var p=  syncData('properties/'+uuid4.generate()).$asObject();
-
-                p.$loaded(function (p)
-                {
-                   p.pictures= [];
-                });
-
-                return p;
+                return syncData('properties/'+uuid4.generate()).$asObject();
             },
             list : function(limit) {
-                return syncData('properties',limit);
+                return syncData('properties',limit).$asArray();
             },
             featured: function(){
-                return syncData('featured');
+                return syncData('featured').$asArray();
             },
             fetch : function(propertyId){
-                return syncData('properties/'+propertyId);
+                return syncData('properties/'+propertyId).$asObject();
             },
             fetchBids: function(propertyId,limit){
-                return syncData('bids/'+propertyId+'/bids',limit);
+                return syncData('bids/'+propertyId+'/bids',limit).$asArray();
             },
             placeBid : function(propertyId, userId, bid){
                 firebaseRef('users', userId, 'properties', propertyId).set({ hasBids : true });

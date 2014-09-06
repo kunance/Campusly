@@ -1,7 +1,9 @@
 <div class="brand-stripe" ng-include="'owner/partials/add-property-navbar.tpl.html'">
 </div>
 
-<div class="alert alert-{{shout.type}} text-center" ng-show="shout">{{shout.content}}</div>
+<div class="alert alert-{{shout.type}} text-center" ng-show="shout.content">{{shout.content}}</div>
 
-<div class="container" ng-include="step">
+<div class="container">
+   <div class="vertical-buffer-xl" ng-include="step">
+   </div>
 </div>

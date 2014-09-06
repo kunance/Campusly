@@ -24,39 +24,13 @@ angular.module('myApp.property', ['ngRoute'])
 .controller('PropertyListCtrl', ['$scope', 'propertyService',
     function($scope, propertyService, $filter) {
 
-        var featured= propertyService.featured().$asArray();
-
-        featured.$inst().$ref().on('value',function (data)
+        propertyService.featured()
+        .$inst().$ref().on('value',function (data)
         { 
             $scope.properties= _.map(data.val(),function ($id) { return { $id: $id }; });
         });
     }
 ])
-
-.filter('loadProperty', ['propertyService',
-function (propertyService)
-{
-    return function (featured)
-    {
-        featured= featured || [];
-
-        featured.forEach(function (property,idx)
-        {
-            if (_.keys(property).length>1) return;
-
-            var obj= propertyService.fetch(property.$id).$asObject();
-                
-            property.bids= propertyService.fetchBids(property.$id,3).$asArray();
-            
-            obj.$inst().$ref().on('value',function (data)
-            { 
-                _.extend(property,data.val());
-            });
-        });
-
-        return featured;
-    };
-}])
 
 .controller('PropertyDetailsCtrl', ['$scope', '$rootScope', '$routeParams', 'propertyService', '$filter', '$timeout', '$interval', '$location', '$modal',
     function($scope, $rootScope, $routeParams, propertyService, $filter, $timeout, $interval, $location, $modal) {
@@ -70,7 +44,7 @@ function (propertyService)
         $scope.countdown = "";
         $scope.leaseTerms = {"1 year" : "12"};
         //get the property
-        $scope.property= propertyService.fetch($routeParams.property_id).$asObject();
+        $scope.property= propertyService.fetch($routeParams.property_id);
 
         $scope.$watch('property', function(newvalue, oldvalue) {            
             $scope.setCountdown();
@@ -170,12 +144,13 @@ function (propertyService)
             return moment(date).format("MMM DD, YYYY");
         };
 
-        $timeout(function() {
+        $scope.property.$loaded(_.debounce(function ()
+        {
             angular.element('.flexslider').flexslider({
                 animation: "slide",
                 controlNav: "thumbnails"
             });
-        }, 1000);
+        },1));
 
         $scope.$on('$destroy', function() {
             // Make sure that the interval is destroyed too

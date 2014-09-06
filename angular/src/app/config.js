@@ -16,7 +16,7 @@ angular.module('myApp.config', [])
     // Firebase limit is 10MB, but lets set 5MB
     .constant('MAX_UPLOAD_SIZE', 1024*1024*5)
 
-    .constant('MAX_PROPERTY_PICTURES', 5)
+    .constant('MAX_PROPERTY_PICTURES', 8)
 
 //you can use this one to try out a demo of the seed
 //   .constant('FBURL', 'https://angularfire-seed.firebaseio.com');
