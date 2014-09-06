@@ -18,6 +18,8 @@ angular.module('myApp.config', [])
 
     .constant('MAX_PROPERTY_PICTURES', 8)
 
+    .constant('MAX_PROOF_INCOME', 5)
+
 //you can use this one to try out a demo of the seed
 //   .constant('FBURL', 'https://angularfire-seed.firebaseio.com');
 

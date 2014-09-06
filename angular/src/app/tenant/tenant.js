@@ -132,15 +132,78 @@ angular.module('myApp.tenant', ['ngRoute'])
     }
 ])
 
-.controller('TenantProfileCtrl', ['$scope','$rootScope','$routeParams','TopBannerChannel',
-    function($scope,$rootScope,$routeParams,TopBannerChannel) {
+.controller('TenantProfileCtrl', ['$scope','$rootScope','$routeParams','TopBannerChannel','MAX_UPLOAD_SIZE','MAX_PROOF_INCOME','shout',
+    function($scope,$rootScope,$routeParams,TopBannerChannel,MAX_UPLOAD_SIZE,MAX_PROOF_INCOME,shout) {
        $rootScope.secondaryNav= 'tenant/partials/menu-tenant.tpl.html';
 
-       $scope.onFileSelect= function ($files)
+       $scope.page= 1;
+
+       var shoutUpload= shout($scope,'shoutUpload');
+
+       $scope.proofSelected= function ($files,profile)
+       {
+            console.log($files);
+
+            profile.financial= profile.financial || {};
+
+            profile.financial.proofsOfIncome= profile.financial.proofsOfIncome || [];
+
+            if (($files.length+profile.financial.proofsOfIncome.length)>MAX_PROOF_INCOME)
+            {
+                shoutUpload
+                ({
+                    content: 'You can upload up to '+MAX_PROOF_INCOME+' pictures',
+                    type: 'danger'
+                });
+
+                return;
+            }
+
+            _.each($files,function (file)
+            {
+                if (file.size>MAX_UPLOAD_SIZE)
+                {
+                    shoutUpload
+                    ({
+                        content: 'Documents should be up to 5MB, file '+
+                                 file.name+' is '+(file.size/1024/1024)+'MB',
+                        type: 'danger'
+                    });
+
+                    return;
+                }
+
+                var fileReader= new FileReader();
+                
+                fileReader.onload= function (e)
+                {
+                    profile.financial.proofsOfIncome.push({ name: file.name, data: e.target.result, size: file.size });
+                    $scope.$apply();
+                };
+                
+                fileReader.readAsDataURL(file);
+
+            });
+       };
+
+       $scope.pictureSelected= function ($files)
        {
             if (!$files[0]) return;
 
             var file = $files[0];
+
+            console.log(file);
+
+            if (file.size>MAX_UPLOAD_SIZE)
+            {
+                TopBannerChannel.setBanner({
+                    content: 'The picture should be up to 5MB',
+                    contentClass: 'danger'
+                });
+
+                return;
+            }
+
             var fileReader= new FileReader();
             
             fileReader.onload= function (e)
@@ -154,6 +217,11 @@ angular.module('myApp.tenant', ['ngRoute'])
 
        $scope.save= function ()
        {
+           TopBannerChannel.setBanner({
+                content: 'Saving your profile...',
+                contentClass: 'info'
+           });
+
            $rootScope.profile.$save()
            .then(function ()
            {
@@ -170,10 +238,44 @@ angular.module('myApp.tenant', ['ngRoute'])
 
                 TopBannerChannel.setBanner({
                     content: 'There was an error saving your profile',
-                    contentClass: 'error'
+                    contentClass: 'danger'
                 });
            });
        };
+
     }
 ])
 
+.controller('TenantBidCtrl', ['$scope','$rootScope','$location','$routeParams',
+    function($scope,$rootScope,$location,$routeParams)
+{
+     
+     $scope.property.$loaded(function ()
+     {
+         $scope.bid= { price: $scope.property.targetRent, movein: moment().add(30,'days').format('YYYY-MM-DD') };
+     });
+
+     $scope.watch= function (property)
+     {
+           if (!$rootScope.profile) // logged out
+           {
+                $rootScope.trackAddToWatchlist= property;
+                $location.path('/tenants/on-boarding');
+           }
+           else
+           {
+           }
+     };
+
+     $scope.makeAnOffer= function (bid,property)
+     {
+           if (!$rootScope.profile) // logged out
+           {
+                $rootScope.trackBid= { bid: bid, property: property };
+                $location.path('/tenants/on-boarding');
+           }
+           else
+           {
+           }
+     };
+}])

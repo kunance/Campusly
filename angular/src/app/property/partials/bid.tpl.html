@@ -1,6 +1,6 @@
 <h5>Make An Offer</h5>
 
-<form method="post" class="form-horizontal" ng-submit="makeAnOffer()">
+<form method="post" class="form-horizontal" ng-submit="makeAnOffer(bid,property)" ng-controller="TenantBidCtrl">
     <div class="form-group">
         <label class="col-sm-4 control-label">Price</label>
         <div class="col-sm-8">
@@ -24,7 +24,7 @@
 
     <div class="row" style="margin-top: 30px;">
         <div class="col-xs-6 text-right">
-            <a class="btn btn-rented" ng-click="watch()">Add To Watchlist</a>
+            <a class="btn btn-rented" ng-click="watch(property)">Add To Watchlist</a>
         </div>
         <div class="col-xs-6">
             <button type="submit" class="btn btn-rented">Make An Offer</button>

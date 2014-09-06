@@ -25,6 +25,15 @@ angular.module('myApp', [
         'uuid4'
     ])
 
+    .config
+    ([
+        '$compileProvider',
+        function( $compileProvider )
+        {   
+            $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension|data):/);
+        }
+    ])
+
     .config(['AngularyticsProvider',function(AngularyticsProvider) {
         AngularyticsProvider.setEventHandlers(['Console', 'GoogleUniversal']);
     }])
