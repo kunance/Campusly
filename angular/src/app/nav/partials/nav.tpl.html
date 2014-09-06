@@ -17,7 +17,7 @@
         </li>
         <li class="menuparent" ng-show-auth="'login'">
                <a class="nav-user" href="#/{{profile.type}}s/profile">
-                   <img src="http://placehold.it/34x34" class="img-circle">
+                   <img style="height: 34px; width: auto;" ng-src="{{profile.picture || 'assets/img/avatar-small.png'}}" class="img-circle">
                    {{profile.firstName}} {{profile.lastName}}
                </a>
         </li>

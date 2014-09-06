@@ -136,6 +136,22 @@ angular.module('myApp.tenant', ['ngRoute'])
     function($scope,$rootScope,$routeParams,TopBannerChannel) {
        $rootScope.secondaryNav= 'tenant/partials/menu-tenant.tpl.html';
 
+       $scope.onFileSelect= function ($files)
+       {
+            if (!$files[0]) return;
+
+            var file = $files[0];
+            var fileReader= new FileReader();
+            
+            fileReader.onload= function (e)
+            {
+                $rootScope.profile.picture= e.target.result;
+                $scope.$apply();
+            };
+            
+            fileReader.readAsDataURL(file);
+       };
+
        $scope.save= function ()
        {
            $rootScope.profile.$save()

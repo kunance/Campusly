@@ -12,9 +12,8 @@
                
                <div class="col-sm-2">
                     <span class="fileinput-button">
-                       <img class="media-object img-circle" alt="Upload your picture..." style="display: inline; margin-bottom: 10px;" src="assets/img/avatar.png">
-                       <!--input id="fileupload" type="file" name="files[]" title="Carica immagine..."-->
-                       <input type="file" ng-file-select="onFileSelect($files)">
+                       <img class="media-object img-circle" alt="Upload your picture..." style="display: inline; margin-bottom: 10px;" ng-src="{{profile.picture || 'assets/img/avatar.png'}}">
+                       <input type="file" ng-file-select="pictureSelected($files)" accept="image/*">
                     </span>
                </div>
 

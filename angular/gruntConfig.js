@@ -82,7 +82,8 @@ module.exports = {
             'vendor/angularytics/dist/angularytics.js',
             'vendor/FlexSlider/jquery.flexslider.js',
             'vendor/holderjs/holder.js',
-            'vendor/clndr/clndr.min.js'
+            'vendor/clndr/clndr.min.js',
+            'vendor/ng-file-upload/angular-file-upload.min.js'
         ],
         css: [],
         assets: [

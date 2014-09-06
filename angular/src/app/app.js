@@ -19,7 +19,8 @@ angular.module('myApp', [
         'module.routeSecurity',
         'ui.bootstrap',
         'ngSanitize',
-        'angularytics'
+        'angularytics',
+        'angularFileUpload'
     ])
 
     .config(['AngularyticsProvider',function(AngularyticsProvider) {

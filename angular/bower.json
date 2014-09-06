@@ -15,6 +15,7 @@
     "FlexSlider": "latest",
     "underscore": "latest",
     "holderjs": "~2.4.0",
-    "clndr": "~1.2.1"
+    "clndr": "~1.2.1",
+    "ng-file-upload": "~1.6.5"
   }
 }

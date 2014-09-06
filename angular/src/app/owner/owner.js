@@ -153,9 +153,38 @@ angular.module('myApp.owner', ['ngRoute'])
     }
 ])
 
-.controller('OwnerProfileCtrl', ['$scope','$rootScope','$routeParams','TopBannerChannel',
-    function($scope,$rootScope,$routeParams,TopBannerChannel) {
+.controller('OwnerProfileCtrl', ['$scope','$rootScope','$routeParams','TopBannerChannel','MAX_UPLOAD_SIZE',
+    function($scope,$rootScope,$routeParams,TopBannerChannel,MAX_UPLOAD_SIZE) {
        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
+
+       $scope.pictureSelected= function ($files)
+       {
+            if (!$files[0]) return;
+
+            var file = $files[0];
+
+            console.log(file);
+
+            if (file.size>MAX_UPLOAD_SIZE)
+            {
+                TopBannerChannel.setBanner({
+                    content: 'The picture should be up to 5MB',
+                    contentClass: 'error'
+                });
+
+                return;
+            }
+
+            var fileReader= new FileReader();
+            
+            fileReader.onload= function (e)
+            {
+                $rootScope.profile.picture= e.target.result;
+                $scope.$apply();
+            };
+            
+            fileReader.readAsDataURL(file);
+       };
 
        $scope.save= function ()
        {
