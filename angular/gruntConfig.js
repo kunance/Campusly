@@ -85,7 +85,8 @@ module.exports = {
             'vendor/clndr/clndr.min.js',
             'vendor/ng-file-upload/angular-file-upload.min.js',
             'vendor/famous/famous-global.js',
-            'vendor/famous-angular/dist/famous-angular.js'
+            'vendor/famous-angular/dist/famous-angular.js',
+            'vendor/angular-uuid4/angular-uuid4.js'
         ],
         css: [],
         assets: [

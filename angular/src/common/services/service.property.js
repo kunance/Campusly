@@ -1,6 +1,17 @@
 angular.module('service.property', ['service.firebase'])
-    .factory('propertyService', ["$rootScope", "firebaseRef", "syncData", function($rootScope, firebaseRef, syncData){
+    .factory('propertyService', ["$rootScope", "firebaseRef", "syncData", 'uuid4', function($rootScope, firebaseRef, syncData,uuid4){
         return {
+            create: function ()
+            {
+                var p=  syncData('properties/'+uuid4.generate()).$asObject();
+
+                p.$loaded(function (p)
+                {
+                   p.pictures= [];
+                });
+
+                return p;
+            },
             list : function(limit) {
                 return syncData('properties',limit);
             },

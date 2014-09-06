@@ -1,59 +1,70 @@
 <form method="post" class="form-horizontal vertical-buffer-xl">
 
     <a href="#/owners/add-property/2" class="next pull-right" style="padding-left: 20px; vertical-align: sub;position: relative;top: -30px;left: -4px;">Next</a>
-    <button type="button" class="btn btn-rented pull-right" style="margin-right: 10px">Save</button>
+    <button type="button" class="btn btn-rented pull-right" style="margin-right: 10px" ng-click="save()">Save</button>
 
     <h1 style="margin-top: 0px;">Property 1</h1>
 
-    <div class="row">
+    <fieldset class="fieldset-required">
+        <legend>Address</legend>
 
-        <fieldset class="fieldset-required">
-           <legend>Address</legend>
+        <div class="row">
 
            <div class="col-sm-6">
                <div class="form-group">
                    <label class="col-sm-4 control-label">Street</label>
                    <div class="col-sm-8">
-                      <input class="form-control input-lg" type="text" ng-model="property.street">
-                   </div>
-               </div>
-               <div class="form-group">
-                   <label class="col-sm-4 control-label">City</label>
-                   <div class="col-sm-8">
-                      <input class="form-control input-lg" type="text" ng-model="property.city">
-                   </div>
-               </div>
-               <div class="form-group">
-                   <label class="col-sm-4 control-label">Zip</label>
-                   <div class="col-sm-8">
-                      <input class="form-control input-lg" type="text" ng-model="property.zip">
+                      <input class="form-control input-lg" type="text" ng-model="property.address.street">
                    </div>
                </div>
            </div>
-
            <div class="col-sm-6">
                <div class="form-group">
                    <label class="col-sm-4 control-label">Apt. number</label>
                    <div class="col-sm-8">
-                      <input class="form-control input-lg" type="text" ng-model="property.aptNumber">
-                   </div>
-               </div>
-               <div class="form-group">
-                   <label class="col-sm-4 control-label">State</label>
-                   <div class="col-sm-8">
-                      <input class="form-control input-lg" type="text" ng-model="property.state">
+                      <input class="form-control input-lg" type="text" ng-model="property.address.aptNumber">
                    </div>
                </div>
            </div>
 
-        </fieldset>
+        </div>
 
-    </div>
+        <div class="row">
+           <div class="col-sm-6">
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">City</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.address.city">
+                   </div>
+               </div>
+           </div>
+           <div class="col-sm-6">
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">State</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.address.state">
+                   </div>
+               </div>
+           </div>
+        </div>
 
-    <div class="row">
+        <div class="row">
+           <div class="col-sm-6">
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">Zip</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.address.zip">
+                   </div>
+               </div>
+           </div>
+        </div>
 
-        <fieldset class="fieldset-required">
-           <legend>Pricing</legend>
+    </fieldset>
+
+    <fieldset class="fieldset-required">
+        <legend>Pricing</legend>
+
+        <div class="row">
 
            <div class="col-sm-6">
                <div class="form-group">
@@ -62,14 +73,7 @@
                       <input class="form-control input-lg" type="number" ng-model="property.targetRent">
                    </div>
                </div>
-               <div class="form-group" ng-show="property.dynamicPricing">
-                   <label class="col-sm-8 control-label">Lowest Acceptable Offer</label>
-                   <div class="col-sm-4">
-                      <input class="form-control input-lg" type="number" ng-model="property.lowestRent">
-                   </div>
-               </div>
            </div>
-
            <div class="col-sm-6">
                <div class="form-group">
                    <label class="col-sm-4 control-label">Lease Term</label>
@@ -83,6 +87,21 @@
                       </select>
                    </div>
                </div>
+           </div>
+
+        </div>
+
+        <div class="row">
+
+           <div class="col-sm-6">
+               <div class="form-group" ng-show="property.dynamicPricing">
+                   <label class="col-sm-8 control-label">Lowest Acceptable Offer</label>
+                   <div class="col-sm-4">
+                      <input class="form-control input-lg" type="number" ng-model="property.lowestRent">
+                   </div>
+               </div>
+           </div>
+           <div class="col-sm-6">
                <div class="form-group">
                    <div class="col-sm-12">
                      <div class="checkbox">
@@ -94,20 +113,20 @@
                </div>
            </div>
 
-        </fieldset>
+        </div>
 
-    </div>
+    </fieldset>
 
-    <div class="row">
+    <fieldset class="fieldset-required">
+        <legend>Move-In Information</legend>
 
-        <fieldset class="fieldset-required">
-           <legend>Move-In Information</legend>
+        <div class="row">
 
            <div class="col-sm-6">
                <div class="form-group">
                    <label class="col-sm-6 control-label">Available Date</label>
                    <div class="col-sm-6">
-                      <input class="form-control input-lg" type="date" ng-model="property.available">
+                      <input class="form-control input-lg" type="date" ng-model="property.availableDate">
                    </div>
                </div>
                <div class="form-group">
@@ -116,69 +135,75 @@
                       <input class="form-control input-lg" type="number" ng-model="property.securityDeposit">
                    </div>
                </div>
-               <div class="form-group" ng-show="property.allowDogs || property.allowCats || property.allowOther">
+               <div class="form-group" ng-show="property.pets.allowDogs || property.pets.allowCats || property.pets.allowOther">
                    <label class="col-sm-6 control-label">Pet Deposit per Pet</label>
                    <div class="col-sm-6">
-                      <input class="form-control input-lg" type="number" ng-model="property.securityDeposit">
+                      <input class="form-control input-lg" type="number" ng-model="property.pets.deposit">
                    </div>
                </div>
            </div>
 
            <div class="col-sm-6">
-               <div class="form-group">
+               <div class="form-group" style="min-height: 49px;">
                    <label class="col-sm-2 control-label">Pets</label>
                    <div class="col-sm-10">
-                     <div class="row" style="height: 49px">
-                         <div class="checkbox col-sm-6">
-                            <label class="control-label">
-                              <input type="checkbox" ng-model="property.allowDogs"> Dogs
-                            </label>
-                         </div>
-                         <div class="col-sm-6">
-                         </div>
-                     </div>
-                     <div class="row" style="height: 49px">
-                         <div class="checkbox col-sm-6">
-                            <label class="control-label">
-                              <input type="checkbox" ng-model="property.allowCats"> Cats
-                            </label>
-                         </div>
-                         <div class="col-sm-6">
-                         </div>
-                     </div>
-                     <div class="row" style="height: 49px">
+                     <div class="row">
                          <div class="checkbox col-sm-4">
                             <label class="control-label">
-                              <input type="checkbox" ng-model="property.allowOther"> Other
+                              <input type="checkbox" ng-model="property.pets.allowDogs"> Dogs
                             </label>
                          </div>
-                         <div class="col-sm-8">
-                            <input class="form-control input-lg" type="text" ng-model="property.other" ng-show="property.allowOther" placeholder="Ex. Turtle">
+                         <div class="checkbox col-sm-4">
+                            <label class="control-label">
+                              <input type="checkbox" ng-model="property.pets.allowCats"> Cats
+                            </label>
+                         </div>
+                         <div class="checkbox col-sm-4">
+                            <label class="control-label">
+                              <input type="checkbox" ng-model="property.pets.allowOther"> Other
+                            </label>
                          </div>
                      </div>
                    </div>
                </div>
+               <div class="form-group">
+                   <div class="col-sm-12">
+                      <input class="form-control input-lg" type="text" ng-model="property.pets.other" ng-show="property.pets.allowOther" placeholder="Ex. Turtle">
+                   </div>
+               </div>
            </div>
 
-        </fieldset>
+         </div>
+    </fieldset>
 
-    </div>
 
-    <div class="row">
+    <fieldset>
+       <legend>Upload Image</legend>
 
-        <fieldset>
-           <legend>Upload Image</legend>
+       <div class="row">
 
            <div class="col-sm-4">
                 <span class="btn btn-rented fileinput-button">
                     Upload <span class="glyphicon glyphicon-cloud-upload"></span>
                     <!-- The file input field used as target for the file upload widget -->
-                    <input id="fileupload" type="file" name="image" multiple>
+                    <input id="fileupload" type="file" name="image" ng-file-select="pictureSelected($files)" multiple accept="image/*">
                 </span>
            </div>
 
-        </fieldset>
+       </div>
 
-    </div>
+       <div class="row">
+
+           <div class="alert alert-{{shoutUpload.type}} text-center vertical-buffer" ng-show="shoutUpload">{{shoutUpload.content}}</div>
+
+           <div class="col-sm-3 top-buffer" ng-repeat="picture in property.pictures">
+               <img ng-src="{{picture}}" class="img-responsive">
+           </div>
+
+       </div>
+
+    </fieldset>
+
+    {{property | json}}
 
 </form>

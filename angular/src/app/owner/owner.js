@@ -76,17 +76,90 @@ angular.module('myApp.owner', ['ngRoute'])
     }
 ])
 
-.controller('AddPropertyCtrl', ['$scope','$rootScope','$routeParams',
-    function($scope,$rootScope,$routeParams) {
+.controller('AddPropertyCtrl', ['$scope','$rootScope','$routeParams','propertyService','shout',
+    'MAX_PROPERTY_PICTURES','MAX_UPLOAD_SIZE',
+    function($scope,$rootScope,$routeParams,propertyService,shout, MAX_PROPERTY_PICTURES, MAX_UPLOAD_SIZE) {
        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
        var steps= [
                      'owner/partials/property-form.tpl.html',
                      'owner/partials/verify-profile.tpl.html',
                      'owner/partials/ready-to-qualify.tpl.html'
-                  ];
+                  ],
+           shouter= shout($scope),
+           shoutUpload= shout($scope,'shoutUpload');
 
        $scope.step= steps[+$routeParams.step-1 || 0];
+
+       $scope.property= propertyService.create();
+
+       $scope.pictureSelected= function ($files)
+       {
+            console.log($files);
+
+            if (($files.length+$scope.property.pictures.length)>MAX_PROPERTY_PICTURES)
+            {
+                shoutUpload
+                ({
+                    content: 'You can upload up to '+MAX_PROPERTY_PICTURES+' pictures',
+                    type: 'danger'
+                });
+
+                return;
+            }
+
+            _.each($files,function (file)
+            {
+
+                if (file.size>MAX_UPLOAD_SIZE)
+                {
+                    shoutUpload
+                    ({
+                        content: 'Pictures should be up to 5MB, file '+
+                                 file.name+' is '+(file.size/1024/1024)+'MB',
+                        type: 'danger'
+                    });
+
+                    return;
+                }
+
+                var fileReader= new FileReader();
+                
+                fileReader.onload= function (e)
+                {
+                    $scope.property.pictures.push(e.target.result);
+                    $scope.$apply();
+                };
+                
+                fileReader.readAsDataURL(file);
+
+            });
+       };
+
+       $scope.save= function ()
+       {
+           $scope.property.$priority= new Date().getTime();
+
+           $scope.property.$save()
+           .then(function ()
+           {
+                shouter
+                ({
+                    content: 'Property saved!',
+                    type: 'success'
+                });
+           },
+           function (err)
+           {
+                console.log(err);
+
+                shouter
+                ({
+                    content: 'There was an error saving your property',
+                    type: 'danger'
+                });
+           });
+       };
     }
 ])
 
@@ -169,7 +242,7 @@ angular.module('myApp.owner', ['ngRoute'])
             {
                 TopBannerChannel.setBanner({
                     content: 'The picture should be up to 5MB',
-                    contentClass: 'error'
+                    contentClass: 'danger'
                 });
 
                 return;
@@ -204,7 +277,7 @@ angular.module('myApp.owner', ['ngRoute'])
 
                 TopBannerChannel.setBanner({
                     content: 'There was an error saving your profile',
-                    contentClass: 'error'
+                    contentClass: 'danger'
                 });
            });
        };

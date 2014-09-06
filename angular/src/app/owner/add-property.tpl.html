@@ -1,5 +1,7 @@
 <div class="brand-stripe" ng-include="'owner/partials/add-property-navbar.tpl.html'">
 </div>
 
+<div class="alert alert-{{shout.type}} text-center" ng-show="shout">{{shout.content}}</div>
+
 <div class="container" ng-include="step">
 </div>

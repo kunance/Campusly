@@ -21,7 +21,8 @@ angular.module('myApp', [
         'ngSanitize',
         'angularytics',
         'angularFileUpload',
-        'famous.angular'
+        'famous.angular',
+        'uuid4'
     ])
 
     .config(['AngularyticsProvider',function(AngularyticsProvider) {
