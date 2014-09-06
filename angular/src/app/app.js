@@ -21,7 +21,7 @@ angular.module('myApp', [
         'ngSanitize',
         'angularytics',
         'angularFileUpload',
-        'famous.angular',
+ //       'famous.angular',
         'uuid4'
     ])
 
