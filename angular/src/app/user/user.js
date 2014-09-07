@@ -38,6 +38,11 @@ angular.module('myApp.user', ['ngRoute'])
                     console.log('user profile',user);
 
                     $rootScope.profile= syncData('users/'+user.uid).$asObject();
+
+                    $rootScope.profile.$loaded(function (profile)
+                    {
+                         $rootScope.$broadcast('rented:profile',profile);
+                    });
              });
 
              $rootScope.$on('$firebaseSimpleLogin:logout', function ()
@@ -48,6 +53,20 @@ angular.module('myApp.user', ['ngRoute'])
                         $rootScope.profile= null;
                     }
              });
+    }])
+
+    .factory('rentedProfile',['$rootScope',function ($rootScope)
+    {
+         return function (cb)
+         {
+             if ($rootScope.profile===null)
+               cb(null);
+             else
+             if ($rootScope.profile===undefined)
+               $rootScope.$on('rented:profile',cb);
+             else
+               cb($rootScope.profile);
+         };
     }])
 
     .controller('LoginCtrl', ['$scope', 'loginService', '$location', 'TopBannerChannel', function ($scope, loginService, $location, TopBannerChannel, $modalInstance) {

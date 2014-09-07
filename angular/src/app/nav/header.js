@@ -9,6 +9,7 @@ angular.module('myApp.header', [])
         var clearBanner = _.debounce(function ()
             {
                $rootScope.banner.content = null;
+               $rootScope.$apply();
             },5000),
             setBanner = function(data) {
 

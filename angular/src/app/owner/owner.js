@@ -218,6 +218,8 @@ angular.module('myApp.owner', ['ngRoute'])
                property.$priority= new Date().getTime();
            }
 
+           property.leaseTerm= Number(property.leaseTerm);
+
            property.$save()
            .then(function ()
            {

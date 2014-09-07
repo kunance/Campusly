@@ -256,18 +256,18 @@ angular.module('myApp.tenant', ['ngRoute'])
     }
 ])
 
-.controller('TenantBidCtrl', ['$scope','$rootScope','$location','$routeParams','TopBannerChannel','tenantService',
-    function($scope,$rootScope,$location,$routeParams,TopBannerChannel,tenantService)
+.controller('TenantBidCtrl', ['$scope','$rootScope','$location','$routeParams','TopBannerChannel','tenantService','rentedProfile','propertyService',
+    function($scope,$rootScope,$location,$routeParams,TopBannerChannel,tenantService,rentedProfile,propertyService)
 {
      var watchlist;
 
-     tenantService.watchlist(function (w)
+     rentedProfile(function (profile)
      {
-         $scope.watchlist= watchlist= w;
-         $scope.$apply();
+         $scope.gotProfile= true;
+         watchlist= $scope.watchlist= tenantService.watchlist(profile.$id);
      });
 
-     $scope.inWatchlist= function (property)
+     var inWatchlist= $scope.inWatchlist= function (property)
      {
        return watchlist&&_.findWhere(watchlist,{ $value: property.$id });
      };
@@ -277,9 +277,9 @@ angular.module('myApp.tenant', ['ngRoute'])
          var property= $scope.property;
 
          $scope.bid= { 
-                       price: property.targetRent,
-                      movein: property.availableDate,
-                   leaseTerm: +property.leaseTerm
+                      rentAmount: property.targetRent,
+                      moveInDate: property.availableDate,
+                       leaseTerm: +property.leaseTerm
                      };
 
          $scope.terms= [
@@ -296,37 +296,48 @@ angular.module('myApp.tenant', ['ngRoute'])
                            else
                              return t.months>1&&t.months<=property.leaseTerm; 
                        });
+
+          propertyService.fetchBids(property.$id,3)
+          .$inst().$ref().on('value',function (data)
+          {
+             property.bids= _.map(_.keys(data.val()),function ($id) { return { $id: $id }; });
+          });
+
      });
 
      $scope.watch= function (property)
      {
+           var _watch= function ()
+               {
+                   if (!inWatchlist(property))
+                     watchlist.$add(property.$id)
+                       .then(function ()
+                       {
+                            TopBannerChannel.setBanner
+                            ({
+                                content: 'Property added to your watchlist!',
+                                type: 'success'
+                            });
+                       },
+                       function (err)
+                       {
+                            conole.log(err);
+
+                            TopBannerChannel.setBanner
+                            ({
+                                content: 'There was an error adding the property to your watchlist',
+                                type: 'danger'
+                            });
+                       });
+               };
+
            if (!$rootScope.profile) // logged out
            {
-                $rootScope.trackAddToWatchlist= { watchlist: watchlist, property: property };
+                $rootScope.trackAddToWatchlist= _watch;
                 $location.path('/tenants/on-boarding');
            }
            else
-           {
-               watchlist.$add(property.$id)
-               .then(function ()
-               {
-                    TopBannerChannel.setBanner
-                    ({
-                        content: 'Property added to your watchlist!',
-                        type: 'success'
-                    });
-               },
-               function (err)
-               {
-                    conole.log(err);
-
-                    TopBannerChannel.setBanner
-                    ({
-                        content: 'There was an error adding the property to your watchlist',
-                        type: 'danger'
-                    });
-               });
-           }
+              _watch();
      };
 
      $scope.unwatch= function (property)
@@ -356,13 +367,38 @@ angular.module('myApp.tenant', ['ngRoute'])
 
      $scope.makeAnOffer= function (bid,property)
      {
+           var _bid= function ()
+               {
+                   propertyService.placeBid(property.$id, $rootScope.profile.$id, bid,
+                   function (err)
+                   {
+                        if (err)
+                        {
+                            console.log(err);
+
+                            TopBannerChannel.setBanner
+                            ({
+                                content: 'There was an error submitting your bid',
+                                type: 'danger'
+                            });
+                        }
+                        else
+                            TopBannerChannel.setBanner
+                            ({
+                                content: 'Offer submitted!',
+                                type: 'success'
+                            });
+
+                        $rootScope.$apply(); // TopBannerChannel.setBanner does not apply...
+                   }); 
+               };
+
            if (!$rootScope.profile) // logged out
            {
-                $rootScope.trackBid= { bid: bid, property: property };
+                $rootScope.trackBid= _bid;
                 $location.path('/tenants/on-boarding');
            }
            else
-           {
-           }
+              _bid();
      };
 }])

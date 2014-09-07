@@ -10,8 +10,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="bid in property.bids">
-      <td>${{bid.rentAmount}}</td>
+    <tr ng-repeat="bid in property.bids | loadBid">
+      <td>{{bid.rentAmount | currency:"$" }}</td>
       <td>{{bid.moveInDate | date:'MM/dd/yyyy' | nvl}}</td>
       <td>{{bid.leaseTerm}} months</td>
       <td>{{bid.havePet ? 'yes' : 'no' }}</td>

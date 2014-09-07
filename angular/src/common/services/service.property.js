@@ -1,5 +1,27 @@
 angular.module('service.property', ['service.firebase'])
 
+    .filter('loadBid', ['propertyService',
+    function (propertyService)
+    {
+        return function (bids)
+        {
+            bids= bids || [];
+
+            bids.forEach(function (bid,idx)
+            {
+                if (_.keys(bid).length>1) return;
+
+                propertyService.fetchBid(bid.$id)
+                .$inst().$ref().on('value',function (data)
+                { 
+                    _.extend(bid,data.val());
+                });
+            });
+
+            return bids;
+        };
+    }])
+
     .filter('loadProperty', ['propertyService',
     function (propertyService)
     {
@@ -13,7 +35,11 @@ angular.module('service.property', ['service.firebase'])
 
                 var obj= propertyService.fetch(property.$id);
                     
-                property.bids= propertyService.fetchBids(property.$id,3);
+                propertyService.fetchBids(property.$id,3)
+                .$inst().$ref().on('value',function (data)
+                {
+                     property.bids= _.map(_.keys(data.val()),function ($id) { return { $id: $id }; });
+                });
                 
                 obj.$inst().$ref().on('value',function (data)
                 { 
@@ -41,12 +67,39 @@ angular.module('service.property', ['service.firebase'])
             fetch : function(propertyId){
                 return syncData('properties/'+propertyId).$asObject();
             },
-            fetchBids: function(propertyId,limit){
-                return syncData('bids/'+propertyId+'/bids',limit).$asArray();
+            fetchBid: function(bidId){
+            console.log('bids/all/'+bidId);
+                return syncData('bids/all/'+bidId).$asObject();
             },
-            placeBid : function(propertyId, userId, bid){
-                firebaseRef('users', userId, 'properties', propertyId).set({ hasBids : true });
-                firebaseRef('properties', propertyId, 'bids', userId).push(bid);
+            fetchBids: function(propertyId,limit){
+                return syncData('bids/property/'+propertyId,limit).$asArray();
+            },
+            placeBid : function(propertyId, userId, bid, cb){
+                var bidId= uuid4.generate(),
+                    priority= new Date().getTime();
+
+                bid.propertyId= propertyId;
+                bid.userId= userId;
+
+                firebaseRef('bids', 'all', bidId).setWithPriority(bid,priority,function (err)
+                {
+                    if (err)
+                      cb(err);
+                    else
+                      firebaseRef('bids', 'property', propertyId, bidId).setWithPriority(true,priority,function (err)
+                      {
+                            if (err)
+                              cb(err);
+                            else
+                              firebaseRef('bids', 'user', userId, bidId).setWithPriority(true,priority,function (err)
+                              {
+                                    if (err)
+                                      cb(err);
+                                    else
+                                      cb(null,bidId);
+                              });
+                      });
+                });
             },
             isActive : function(property){
                 var isActive =  false;

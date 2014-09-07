@@ -3,12 +3,13 @@ angular.module('service.tenant', ['service.firebase'])
 function($rootScope, firebaseRef, syncData)
 {
     return {
-         watchlist: function wait(cb)
+         watchlist: function (tenantId)
          {
-             if ($rootScope.profile&&$rootScope.profile.$id)
-               cb(syncData('watchlist/'+$rootScope.profile.$id).$asArray());
-             else
-               _.delay(wait,500,cb);
+             return syncData('watchlist/'+tenantId).$asArray();
+         },
+         fetchBids: function(tenantId,limit)
+         {
+             return syncData('bids/user/'+tenantId,limit).$asArray();
          }
     };
 }]);
