@@ -11,6 +11,10 @@ angular.module('myApp.header', [])
                $rootScope.banner.content = null;
             },5000),
             setBanner = function(data) {
+
+                if (data.type)
+                  data.contentClass= data.type;
+
                 _.extend($rootScope.banner,data);
                 window.scroll(0,0);
                 clearBanner(); 

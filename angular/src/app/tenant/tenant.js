@@ -256,9 +256,21 @@ angular.module('myApp.tenant', ['ngRoute'])
     }
 ])
 
-.controller('TenantBidCtrl', ['$scope','$rootScope','$location','$routeParams',
-    function($scope,$rootScope,$location,$routeParams)
+.controller('TenantBidCtrl', ['$scope','$rootScope','$location','$routeParams','TopBannerChannel','tenantService',
+    function($scope,$rootScope,$location,$routeParams,TopBannerChannel,tenantService)
 {
+     var watchlist;
+
+     tenantService.watchlist(function (w)
+     {
+         $scope.watchlist= watchlist= w;
+         $scope.$apply();
+     });
+
+     $scope.inWatchlist= function (property)
+     {
+       return watchlist&&_.findWhere(watchlist,{ $value: property.$id });
+     };
      
      $scope.property.$loaded(function ()
      {
@@ -290,12 +302,56 @@ angular.module('myApp.tenant', ['ngRoute'])
      {
            if (!$rootScope.profile) // logged out
            {
-                $rootScope.trackAddToWatchlist= property;
+                $rootScope.trackAddToWatchlist= { watchlist: watchlist, property: property };
                 $location.path('/tenants/on-boarding');
            }
            else
            {
+               watchlist.$add(property.$id)
+               .then(function ()
+               {
+                    TopBannerChannel.setBanner
+                    ({
+                        content: 'Property added to your watchlist!',
+                        type: 'success'
+                    });
+               },
+               function (err)
+               {
+                    conole.log(err);
+
+                    TopBannerChannel.setBanner
+                    ({
+                        content: 'There was an error adding the property to your watchlist',
+                        type: 'danger'
+                    });
+               });
            }
+     };
+
+     $scope.unwatch= function (property)
+     {
+           var record= _.findWhere(watchlist,{ $value: property.$id });
+
+           watchlist.$remove(record)
+           .then(function ()
+           {
+                TopBannerChannel.setBanner
+                ({
+                    content: 'Property removed from your watchlist!',
+                    type: 'success'
+                });
+           },
+           function (err)
+           {
+                conole.log(err);
+
+                TopBannerChannel.setBanner
+                ({
+                    content: 'There was an error removing the property from your watchlist',
+                    type: 'danger'
+                });
+           });
      };
 
      $scope.makeAnOffer= function (bid,property)

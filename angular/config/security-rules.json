@@ -36,6 +36,16 @@
                 ".read": true,
                 ".write" : true
             }
+        },
+        "watchlist":{
+            "$user" : {
+              ".read" : true,
+              ".write" : true,
+              "$property": {
+                  ".read" : true,
+                  ".write" : true
+              }
+            }
         }
     }
 }

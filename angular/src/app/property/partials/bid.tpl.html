@@ -26,7 +26,8 @@
 
     <div class="row" style="margin-top: 30px;">
         <div class="col-xs-6 text-right">
-            <a class="btn btn-rented" ng-click="watch(property)">Add To Watchlist</a>
+            <a class="btn btn-rented" ng-click="watch(property)" ng-hide="inWatchlist(property)">Add To Watchlist</a>
+            <a class="btn btn-rented" ng-click="unwatch(property)" ng-show="inWatchlist(property)">Remove From Watchlist</a>
         </div>
         <div class="col-xs-6">
             <button type="submit" class="btn btn-rented">Make An Offer</button>

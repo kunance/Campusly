@@ -8,6 +8,7 @@
         'service.firebase',
         'service.changeEmail',
         'service.property',
+        'service.tenant',
         'service.banner'
     ])
     // put your services here!
