@@ -262,7 +262,28 @@ angular.module('myApp.tenant', ['ngRoute'])
      
      $scope.property.$loaded(function ()
      {
-         $scope.bid= { price: $scope.property.targetRent, movein: moment().add(30,'days').format('YYYY-MM-DD') };
+         var property= $scope.property;
+
+         $scope.bid= { 
+                       price: property.targetRent,
+                      movein: property.availableDate,
+                   leaseTerm: property.leaseTerm
+                     };
+
+         $scope.terms= [
+                          { months: '1', desc: 'Month-to-month' },
+                          { months: 12, desc: '1 year' },
+                          { months: 24, desc: '2 years' },
+                          { months: 36, desc: '3 years' }
+                       ];
+
+         $scope.terms= _.filter($scope.terms,function (t)
+                       {
+                           if (property.leaseTerm==1)
+                             return t.months==1; 
+                           else
+                             return t.months<=property.leaseTerm; 
+                       });
      });
 
      $scope.watch= function (property)
