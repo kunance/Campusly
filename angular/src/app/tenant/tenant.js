@@ -297,12 +297,6 @@ angular.module('myApp.tenant', ['ngRoute'])
                              return t.months>1&&t.months<=property.leaseTerm; 
                        });
 
-          propertyService.fetchBids(property.$id,3)
-          .$inst().$ref().on('value',function (data)
-          {
-             property.bids= _.map(_.keys(data.val()),function ($id) { return { $id: $id }; });
-          });
-
      });
 
      $scope.watch= function (property)

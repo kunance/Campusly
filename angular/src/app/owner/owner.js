@@ -251,8 +251,8 @@ angular.module('myApp.owner', ['ngRoute'])
     }
 ])
 
-.controller('OwnerDashboardCtrl', ['$scope','$rootScope','$timeout',
-    function($scope,$rootScope,$timeout) {
+.controller('OwnerDashboardCtrl', ['$scope','$rootScope','$timeout','rentedProfile',
+    function($scope,$rootScope,$timeout,rentedProfile) {
        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
        $scope.time= new Date();
@@ -261,6 +261,11 @@ angular.module('myApp.owner', ['ngRoute'])
        {
           $scope.time= new Date();
        },60000);
+
+       rentedProfile(function ()
+       {
+          $scope.properties= _.map($rootScope.profile.properties,function ($id) { return { $id: $id }; });
+       });
 
        $scope.expenses= {
                           upcomingVacancies: 59,
@@ -376,10 +381,10 @@ angular.module('myApp.owner', ['ngRoute'])
     }
 ])
 
-.controller('OwnerPropertyStatusCtrl', ['$scope','$rootScope','$routeParams',
-    function($scope,$rootScope,$routeParams) {
+.controller('OwnerPropertyStatusCtrl', ['$scope','$rootScope','$routeParams','propertyService',
+    function($scope,$rootScope,$routeParams,propertyService) {
        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
-
+       $scope.property= propertyService.fetchWithBids($routeParams.id);
     }
 ])

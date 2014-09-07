@@ -11,7 +11,7 @@ angular.module('service.property', ['service.firebase'])
             {
                 if (_.keys(bid).length>1) return;
 
-                propertyService.fetchBid(bid.$id)
+                propertyService.fetchBid(bid.$id,bid)
                 .$inst().$ref().on('value',function (data)
                 { 
                     _.extend(bid,data.val());
@@ -33,14 +33,8 @@ angular.module('service.property', ['service.firebase'])
             {
                 if (_.keys(property).length>1) return;
 
-                var obj= propertyService.fetch(property.$id);
+                var obj= propertyService.fetchWithBids(property.$id,property);
                     
-                propertyService.fetchBids(property.$id,3)
-                .$inst().$ref().on('value',function (data)
-                {
-                     property.bids= _.map(_.keys(data.val()),function ($id) { return { $id: $id }; });
-                });
-                
                 obj.$inst().$ref().on('value',function (data)
                 { 
                     _.extend(property,data.val());
@@ -67,9 +61,48 @@ angular.module('service.property', ['service.firebase'])
             fetch : function(propertyId){
                 return syncData('properties/'+propertyId).$asObject();
             },
-            fetchBid: function(bidId){
-            console.log('bids/all/'+bidId);
-                return syncData('bids/all/'+bidId).$asObject();
+            fetchWithBids: function(propertyId,identity){
+                var that= this,
+                    property= syncData('properties/'+propertyId).$asObject();
+
+                property.$loaded(function ()
+                {
+                    that.fetchBids(property.$id,10)
+                    .$inst().$ref().on('value',function (data)
+                    {
+                         var bids= _.map(_.keys(data.val()),function ($id) { return { $id: $id }; });
+
+                         identity ? identity.bids= bids : property.bids= bids;
+
+                         console.log(property.bids);
+
+                         if (bids.length)
+                           that.fetchBid(bids[0].$id)
+                             .$inst().$ref().on('value',function (data)
+                             { 
+                                   identity ? identity.bestOffer= data.val() : property.bestOffer= data.val();
+                             });
+                    });
+                });
+                
+                return property;
+            },
+            fetchBid: function(bidId,identity){
+                var bid= syncData('bids/all/'+bidId).$asObject();
+
+                bid
+                 .$inst().$ref().on('value',function (data)
+                 { 
+                      var val= data.val(); 
+
+                      syncData('users/'+val.userId).$asObject() 
+                         .$inst().$ref().on('value',function (data)
+                         {
+                              identity ? identity.user= data.val() : bid.user= data.val();
+                         });
+                 });
+
+                return bid;
             },
             fetchBids: function(propertyId,limit){
                 return syncData('bids/property/'+propertyId,limit).$asArray();
@@ -86,7 +119,7 @@ angular.module('service.property', ['service.firebase'])
                     if (err)
                       cb(err);
                     else
-                      firebaseRef('bids', 'property', propertyId, bidId).setWithPriority(true,priority,function (err)
+                      firebaseRef('bids', 'property', propertyId, bidId).setWithPriority(true,-bid.rentAmount,function (err)
                       {
                             if (err)
                               cb(err);

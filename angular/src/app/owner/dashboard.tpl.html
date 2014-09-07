@@ -51,12 +51,9 @@
     <h5 class="top-buffer">Recent Offers</h5>
 
     <div class="row properties">
-        <div class="col-sm-3" ng-repeat="property in [1,2,3,4]">
-            <img pl-holder="holder.js/238x158">
-            <p><strong>Number of offers:</strong> 2</p>
-            <p><strong>Highest offer:</strong> $5000</p>
-            <p><strong>Highest Credit Score:</strong> 800</p>
-            <a href="#/owners/properties/xyz/status" class="btn btn-rented">See More</a>
+        <div class="col-sm-3" ng-repeat="property in properties | loadProperty">
+            <ng-include src="'owner/partials/property-teaser.tpl.html'"></ng-include>
+            <a href="#/owners/properties/{{property.$id}}/status" class="btn btn-rented">See More</a>
         </div>
     </div>
 

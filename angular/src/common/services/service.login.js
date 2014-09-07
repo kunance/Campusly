@@ -77,6 +77,7 @@ angular.module('service.login', ['firebase', 'service.firebase'])
                 },
 
                 createProfile: profileCreator
+
             };
 
             function assertAuth() {
