@@ -251,8 +251,8 @@ angular.module('myApp.owner', ['ngRoute'])
     }
 ])
 
-.controller('OwnerDashboardCtrl', ['$scope','$rootScope','$timeout','rentedProfile',
-    function($scope,$rootScope,$timeout,rentedProfile) {
+.controller('OwnerDashboardCtrl', ['$scope','$rootScope','$timeout','rentedProfile','propertyService',
+    function($scope,$rootScope,$timeout,rentedProfile,propertyService) {
        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
        $scope.time= new Date();
@@ -262,9 +262,13 @@ angular.module('myApp.owner', ['ngRoute'])
           $scope.time= new Date();
        },60000);
 
-       rentedProfile(function ()
+       rentedProfile(function (profile)
        {
-          $scope.properties= _.map($rootScope.profile.properties,function ($id) { return { $id: $id }; });
+             propertyService.fetchRecentlyBiddedProperties(profile.$id,4)
+                .$inst().$ref().on('value',function (data)
+                { 
+                    $scope.properties= _.map(_.keys(data.val()),function ($id) { return { $id: $id }; });
+                });
        });
 
        $scope.expenses= {

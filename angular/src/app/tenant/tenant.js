@@ -74,8 +74,8 @@ angular.module('myApp.tenant', ['ngRoute'])
     }
 ])
 
-.controller('TenantDashboardCtrl', ['$scope','$rootScope','$timeout','rentedProfile','tenantService',
-    function($scope,$rootScope,$timeout,rentedProfile,tenantService) {
+.controller('TenantDashboardCtrl', ['$scope','$rootScope','$timeout','rentedProfile','tenantService','propertyService',
+    function($scope,$rootScope,$timeout,rentedProfile,tenantService,propertyService) {
        $rootScope.secondaryNav= 'tenant/partials/menu-tenant.tpl.html';
 
        $scope.time= new Date();
@@ -92,6 +92,12 @@ angular.module('myApp.tenant', ['ngRoute'])
              {
                  $scope.watchlist= _.map(_.pluck(wl,'$value'),function ($id) { return { $id: $id }; });
              });
+
+             propertyService.fetchRecentlyBiddedProperties(profile.$id,4)
+                .$inst().$ref().on('value',function (data)
+                { 
+                    $scope.properties= _.map(_.keys(data.val()),function ($id) { return { $id: $id }; });
+                });
        });
 
        $scope.expenses= {
@@ -134,8 +140,8 @@ angular.module('myApp.tenant', ['ngRoute'])
     }
 ])
 
-.controller('TenantPropertiesCtrl', ['$scope','$rootScope','$routeParams','rentedProfile','tenantService',
-    function($scope,$rootScope,$routeParams,rentedProfile,tenantService) {
+.controller('TenantPropertiesCtrl', ['$scope','$rootScope','$routeParams','rentedProfile','tenantService','propertyService',
+    function($scope,$rootScope,$routeParams,rentedProfile,tenantService,propertyService) {
        $rootScope.secondaryNav= 'tenant/partials/menu-tenant.tpl.html';
 
          rentedProfile(function (profile)
@@ -144,6 +150,12 @@ angular.module('myApp.tenant', ['ngRoute'])
              {
                  $scope.watchlist= _.map(_.pluck(wl,'$value'),function ($id) { return { $id: $id }; });
              });
+
+             propertyService.fetchRecentlyBiddedProperties(profile.$id,4)
+                .$inst().$ref().on('value',function (data)
+                { 
+                    $scope.properties= _.map(_.keys(data.val()),function ($id) { return { $id: $id }; });
+                });
          });
     }
 ])
@@ -380,7 +392,7 @@ angular.module('myApp.tenant', ['ngRoute'])
      {
            var _bid= function ()
                {
-                   propertyService.placeBid(property.$id, $rootScope.profile.$id, bid,
+                   propertyService.placeBid(property.$id, property.owner, $rootScope.profile.$id, bid,
                    function (err)
                    {
                         if (err)

@@ -107,7 +107,10 @@ angular.module('service.property', ['service.firebase'])
             fetchBids: function(propertyId,limit){
                 return syncData('bids/property/'+propertyId,limit).$asArray();
             },
-            placeBid : function(propertyId, userId, bid, cb){
+            fetchRecentlyBiddedProperties: function(userId,limit){
+                return syncData('bids/user/'+userId,limit).$asArray();
+            },
+            placeBid : function(propertyId, ownerId, userId, bid, cb){
                 var bidId= uuid4.generate(),
                     priority= new Date().getTime();
 
@@ -124,12 +127,18 @@ angular.module('service.property', ['service.firebase'])
                             if (err)
                               cb(err);
                             else
-                              firebaseRef('bids', 'user', userId, bidId).setWithPriority(true,priority,function (err)
+                              firebaseRef('bids', 'user', userId, propertyId).setWithPriority(true,priority,function (err)
                               {
-                                    if (err)
+                                  if (err)
                                       cb(err);
-                                    else
-                                      cb(null,bidId);
+                                  else
+                                  firebaseRef('bids', 'user', ownerId, propertyId).setWithPriority(true,priority,function (err)
+                                  {
+                                        if (err)
+                                          cb(err);
+                                        else
+                                          cb(null,bidId);
+                                  });
                               });
                       });
                 });
