@@ -74,8 +74,8 @@ angular.module('myApp.tenant', ['ngRoute'])
     }
 ])
 
-.controller('TenantDashboardCtrl', ['$scope','$rootScope','$timeout',
-    function($scope,$rootScope,$timeout) {
+.controller('TenantDashboardCtrl', ['$scope','$rootScope','$timeout','rentedProfile','tenantService',
+    function($scope,$rootScope,$timeout,rentedProfile,tenantService) {
        $rootScope.secondaryNav= 'tenant/partials/menu-tenant.tpl.html';
 
        $scope.time= new Date();
@@ -84,6 +84,15 @@ angular.module('myApp.tenant', ['ngRoute'])
        {
           $scope.time= new Date();
        },60000);
+
+
+       rentedProfile(function (profile)
+       {
+             tenantService.watchlist(profile.$id).$loaded(function (wl)
+             {
+                 $scope.watchlist= _.map(_.pluck(wl,'$value'),function ($id) { return { $id: $id }; });
+             });
+       });
 
        $scope.expenses= {
                           upcomingVacancies: 59,

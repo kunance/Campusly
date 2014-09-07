@@ -10,18 +10,18 @@
         </div>
 
         <div class="row vertical-buffer">
-            <div class="col-sm-5">
+            <div class="col-sm-4">
                 <div class="row">
-                  <div class="col-sm-3 nopad-right" style="padding-left: 30px;">
-                     <img pl-holder="holder.js/60x60" class="img-circle">
+                  <div class="col-sm-4 nopad-right" style="padding-left: 30px;">
+                     <img ng-src="{{profile.picture || 'assets/img/avatar.png'}}" class="img-circle img-responsive">
                   </div>
-                  <div class="col-sm-8 nopad-left">
+                  <div class="col-sm-8">
                     <h4 style="font-size: 24px; font-weight: bold;">{{profile.firstName}} {{profile.lastName}}</h4>
-                    <p>I have 2 condos for rent.</p>
+                    <p>I am looking for a flat.</p>
                   </div>
                 </div>
             </div>
-            <div class="col-sm-7">
+            <div class="col-sm-offset-1 col-sm-7">
                 <div class="row">
                     <div class="col-sm-3 counter active">
                         <p class="counter-val">15</p>
@@ -62,27 +62,17 @@
 
     <div class="row" style="margin-top: 40px">
         <div class="col-sm-9">
-           <h5>Watching</h5>
-           <div class="row watching">
+           <h5 ng-show="watchlist.length">Watching</h5>
+           <div class="row watching" ng-repeat="property in watchlist | loadProperty" ng-show="property.address">
                <div class="col-sm-1">
                   <span class="badge" style="background-color: #89d4cd;">98<sub>%</sub></span> 
+                  <!--span class="badge" style="background-color: #ff503f;">33<sub>%</sub></span --> 
                </div>
                <div class="col-sm-9">
-                  <p>1245 Molino Street, San Francisco CA 94102</p> 
+                  <p>{{property.address.street}}, {{property.address.city}}, {{property.address.state}} {{property.address.zip}}</p> 
                </div>
                <div class="col-sm-2">
-                  <button type="button" class="btn btn-rented">See More</button>
-               </div>
-           </div>
-           <div class="row watching">
-               <div class="col-sm-1">
-                  <span class="badge" style="background-color: #ff503f;">33<sub>%</sub></span> 
-               </div>
-               <div class="col-sm-9">
-                  <p>467 Haight Street, San Francisco CA 94102</p> 
-               </div>
-               <div class="col-sm-2">
-                  <button type="button" class="btn btn-rented">See More</button>
+                  <a href="#/property/{{property.$id}}" class="btn btn-rented">See More</a>
                </div>
            </div>
            <h5 class="top-buffer">Savings</h5>
