@@ -267,11 +267,11 @@ angular.module('myApp.tenant', ['ngRoute'])
          $scope.bid= { 
                        price: property.targetRent,
                       movein: property.availableDate,
-                   leaseTerm: property.leaseTerm
+                   leaseTerm: +property.leaseTerm
                      };
 
          $scope.terms= [
-                          { months: '1', desc: 'Month-to-month' },
+                          { months: 1, desc: 'Month-to-month' },
                           { months: 12, desc: '1 year' },
                           { months: 24, desc: '2 years' },
                           { months: 36, desc: '3 years' }
@@ -282,7 +282,7 @@ angular.module('myApp.tenant', ['ngRoute'])
                            if (property.leaseTerm==1)
                              return t.months==1; 
                            else
-                             return t.months<=property.leaseTerm; 
+                             return t.months>1&&t.months<=property.leaseTerm; 
                        });
      });
 

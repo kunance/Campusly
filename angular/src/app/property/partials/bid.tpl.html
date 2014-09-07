@@ -4,7 +4,7 @@
     <div class="form-group">
         <label class="col-sm-4 control-label">Price</label>
         <div class="col-sm-8">
-            <input class="form-control input-lg" type="number" ng-model="bid.price" min="{{property.lowestRent}}" required autofocus>
+            <input class="form-control input-lg" type="number" ng-model="bid.price" min="{{property.lowestRent}}" ng-disabled="!property.dynamicPricing" required autofocus>
         </div>
     </div>
 
@@ -19,6 +19,7 @@
         <label class="col-sm-4 control-label">Lease Terms</label>
         <div class="col-sm-8">
             <select class="form-control input-lg" ng-model="bid.leaseTerm" ng-options="term.months as term.desc for term in terms" ng-disabled="terms.length==1" required>
+              <option value="">Select...</option>
             </select>
         </div>
     </div>

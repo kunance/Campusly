@@ -27,13 +27,7 @@
                ".read":true,
                "$property":{
                    ".read":true,
-                   ".write":true,
-                   "bids" : {
-                     ".validate" : true
-                   },
-                   "$other": {
-                    ".validate": "(auth.email == 'mail@riteshdalal.com' || auth.email == 'modivinit@gmail.com')"
-                  }
+                   ".write":true
                }
         },
         "bids" : {
@@ -41,9 +35,6 @@
             "$bid": {
                 ".read": true,
                 ".write" : true
-            },
-            "user":{
-                ".validate" : "newData.isString() && newData.val() == auth.uid"
             }
         }
     }
