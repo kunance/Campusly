@@ -385,10 +385,26 @@ angular.module('myApp.owner', ['ngRoute'])
     }
 ])
 
-.controller('OwnerPropertyStatusCtrl', ['$scope','$rootScope','$routeParams','propertyService',
-    function($scope,$rootScope,$routeParams,propertyService) {
+.controller('OwnerPropertyStatusCtrl', ['$scope','$rootScope','$routeParams','$modal','propertyService',
+    function($scope,$rootScope,$routeParams,$modal,propertyService) {
        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
        $scope.property= propertyService.fetchWithBids($routeParams.id);
+
+       $scope.bidDetails= function (bid)
+       {
+            $modal.open
+            ({
+                templateUrl: 'owner/bid-details.tpl.html',
+                controller: 'OwnerBidCtrl',
+                size: 'lg',
+                resolve: { bid: function () { return bid; } }
+            });
+       };
     }
 ])
+
+.controller('OwnerBidCtrl', ['$scope','$rootScope','$routeParams','$modal','propertyService',
+    function($scope,$rootScope,$routeParams,$modal,propertyService) {
+   console.log($scope.bid);
+}]);

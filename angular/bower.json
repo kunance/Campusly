@@ -21,6 +21,7 @@
     "angular-uuid4": "~0.1.0"
   },
   "resolutions": {
-    "angular": "1.2.23"
+    "angular": "1.2.23",
+    "firebase-simple-login": "1.6.x"
   }
 }
