@@ -125,9 +125,17 @@ angular.module('myApp.tenant', ['ngRoute'])
     }
 ])
 
-.controller('TenantPropertiesCtrl', ['$scope','$rootScope','$routeParams',
-    function($scope,$rootScope,$routeParams) {
+.controller('TenantPropertiesCtrl', ['$scope','$rootScope','$routeParams','rentedProfile','tenantService',
+    function($scope,$rootScope,$routeParams,rentedProfile,tenantService) {
        $rootScope.secondaryNav= 'tenant/partials/menu-tenant.tpl.html';
+
+         rentedProfile(function (profile)
+         {
+             tenantService.watchlist(profile.$id).$loaded(function (wl)
+             {
+                 $scope.watchlist= _.map(_.pluck(wl,'$value'),function ($id) { return { $id: $id }; });
+             });
+         });
     }
 ])
 
