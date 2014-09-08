@@ -391,20 +391,30 @@ angular.module('myApp.owner', ['ngRoute'])
 
        $scope.property= propertyService.fetchWithBids($routeParams.id);
 
-       $scope.bidDetails= function (bid)
+       $scope.bidDetails= function (bid,property)
        {
             $modal.open
             ({
                 templateUrl: 'owner/bid-details.tpl.html',
                 controller: 'OwnerBidCtrl',
                 size: 'lg',
-                resolve: { bid: function () { return bid; } }
+                resolve: {  
+                           bid: function () { return bid; },
+                           property: function () { return property; }
+                         }
             });
        };
     }
 ])
 
-.controller('OwnerBidCtrl', ['$scope','$rootScope','$routeParams','$modal','propertyService',
-    function($scope,$rootScope,$routeParams,$modal,propertyService) {
-   console.log($scope.bid);
+.controller('OwnerBidCtrl', ['$scope','$rootScope','$routeParams','$modalInstance','propertyService','bid','property',
+    function($scope,$rootScope,$routeParams,$modalInstance,propertyService,bid,property) 
+{
+  $scope.property= property;
+  $scope.bid= bid;
+
+  $scope.cancel= function ()
+  {
+     $modalInstance.dismiss('cancel');
+  };
 }]);

@@ -1,7 +1,7 @@
 <div class="header-shadow bottom-buffer-lg">
     <div class="container">
         <a go-back class="prev pull-left">Back</a>
-        <h1>100 6B Bird Creek Dr.</h1>
+        <h1>{{property.address.street}}</h1>
 
         <div class="row bottom-buffer">
             <div class="col-sm-2">
@@ -41,7 +41,7 @@
             </div>
             <div class="row top-buffer-sm">
                 <button class="btn btn-rented">Accept</button>
-                <button class="btn btn-rented" ng-click="bidDetails(bid)">See More</button>
+                <button class="btn btn-rented" ng-click="bidDetails(bid,property)">See More</button>
             </div>
             <div class="row top-buffer-sm">
                 <button class="btn btn-rented">Counter Offer</button>

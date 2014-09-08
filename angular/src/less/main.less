@@ -1,7 +1,7 @@
 @import "../assets/css/bootstrap.min.css";
 //@import "../assets/css/font-awesome.css";
 @import "../assets/libraries/flexslider/flexslider.css";
-@import "../../vendor/famous-angular/dist/famous-angular.css";
+//@import "../../vendor/famous-angular/dist/famous-angular.css";
 
 @import "variables.less";
 @import "../app/user/less/login.less";
@@ -299,10 +299,25 @@ body pre {
 
 body .modal-dialog {
    margin-top: 64px;
+   margin-bottom: 0px;
 
    .modal-content {
       border: 0px;
       box-shadow: none;
       -webkit-box-shadow: none;
+
+      .modal-header {
+         border-bottom: 0px;
+         padding: 0px 0px;
+
+         .buttons {
+            margin-top: 0px;
+         }
+      }
    }
+}
+
+.row.small-pad .col-sm-3 {
+   padding-left: 10px;
+   padding-right: 10px;
 }

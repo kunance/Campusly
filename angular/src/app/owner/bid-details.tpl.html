@@ -1,9 +1,44 @@
-<div class="modal-header">
-   <div class="buttons">
-      <img src="assets/img/close.png">
-   </div>
-   <h1 class="modal-title">Kevin Lee's Profile</h1>
+<div class="modal-header header-shadow">
+    <div class="container">
+       <div class="button-container">
+           <div class="buttons">
+              <a ng-click="cancel()"><img src="assets/img/close.png"></a>
+           </div>
+           <h1><img ng-src="{{bid.user.picture || 'assets/img/avatar.png'}}" class="img-circle" style="width: 60px;"> {{bid.user.firstName}} {{bid.user.lastName}}'s Profile</h1>
+       </div>
+
+       <div class="row bottom-buffer">
+            <div class="col-sm-2">
+               <img ng-src="{{property.pictures[0]}}" class="img-responsive">
+            </div>
+            <div class="col-sm-4">
+               <p class="top-buffer" style="font-size: 30px;">{{property.address.street}}</p>
+            </div>
+            <div class="col-sm-6">
+                <div class="row top-buffer-sm small-pad">
+                    <div class="col-sm-3 counter text-center">
+                        <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #51b65b; line-height: 2;">Accepted</p>
+                    </div>
+                    <div class="col-sm-3 counter">
+                        <p class="counter-val">{{bid.rentAmount | rentCurrency}}</p>
+                        <p class="counter-desc">Offer</p>
+                    </div>
+                    <div class="col-sm-3 counter">
+                        <p class="counter-val">{{bid.moveInDate | date: 'MMM dd'}}</p>
+                        <p class="counter-desc">Move In Date</p>
+                    </div>
+                    <div class="col-sm-3 counter">
+                        <p class="counter-val">900</p>
+                        <p class="counter-desc">Credit Score</p>
+                    </div>
+                </div>
+            </div>
+       </div>
+
+    </div>
 </div>
 <div class="modal-body">
-bid details
+    <div class="container" ng-repeat="tenant in [bid.user]" ng-include="'owner/partials/tenant-profile.tpl.html'">
+    </div>
 </div>
+<div ng-include="'partials/footer.tpl.html'"></div>
