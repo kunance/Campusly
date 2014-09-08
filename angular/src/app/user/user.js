@@ -63,7 +63,10 @@ angular.module('myApp.user', ['ngRoute'])
                cb(null);
              else
              if ($rootScope.profile===undefined)
-               $rootScope.$on('rented:profile',cb);
+               $rootScope.$on('rented:profile',function (e,profile)
+               {
+                  cb(profile);
+               });
              else
                cb($rootScope.profile);
          };

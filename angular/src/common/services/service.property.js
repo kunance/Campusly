@@ -25,11 +25,11 @@ angular.module('service.property', ['service.firebase'])
     .filter('loadProperty', ['propertyService',
     function (propertyService)
     {
-        return function (featured)
+        return function (ids,state)
         {
-            featured= featured || [];
+            ids= ids || [];
 
-            featured.forEach(function (property,idx)
+            ids.forEach(function (property,idx)
             {
                 if (_.keys(property).length>1) return;
 
@@ -41,7 +41,15 @@ angular.module('service.property', ['service.firebase'])
                 });
             });
 
-            return featured;
+            if (state)
+              return _.filter(ids,
+                     function (p)
+                     {
+                        return !(p.tenant&&state=='active'
+                              ||state=='rented'&&!p.tenant)
+                     });
+            else
+              return ids;
         };
     }])
 
@@ -66,6 +74,7 @@ angular.module('service.property', ['service.firebase'])
                 {
                       var val= data.val();
 
+                      if (val)
                       syncData('users/'+val.tenant).$asObject() 
                          .$inst().$ref().on('value',function (data)
                          {

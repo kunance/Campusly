@@ -316,17 +316,63 @@ angular.module('myApp.owner', ['ngRoute'])
     }
 ])
 
-.controller('OwnerPropertiesCtrl', ['$scope','$rootScope','$routeParams',
-    function($scope,$rootScope,$routeParams) {
+.controller('OwnerPropertiesCtrl', ['$scope','$rootScope','$routeParams','rentedProfile',
+    function($scope,$rootScope,$routeParams,rentedProfile) {
         $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
-        $scope.properties= _.map($rootScope.profile.properties,function ($id) { return { $id: $id }; });
+        rentedProfile(function (profile)
+        {
+            profile.$inst().$ref().on('value',function (data)
+            {
+               $scope.properties= _.map(data.val().properties,function ($id) { return { $id: $id }; });
+            });
+        });
     }
 ])
 
-.controller('OwnerTenantsCtrl', ['$scope','$rootScope','$routeParams',
-    function($scope,$rootScope,$routeParams) {
+.controller('OwnerTenantsCtrl', ['$scope','$rootScope','$routeParams','$modal','rentedProfile',
+    function($scope,$rootScope,$routeParams,$modal,rentedProfile) {
        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
+
+       $scope.monthlyIncome= 0;
+
+       var properties= {};
+       
+       // overshooting the filter but... in hurry!
+       $scope.income= function (property)
+       {
+           if (!properties[property.$id]&&property.bestOffer)
+           {
+             $scope.monthlyIncome= ($scope.monthlyIncome+property.bestOffer.rentAmount/1000).toFixed(1);
+             properties[property.$id]= true;
+           }
+
+           return '';
+       };
+
+       $scope.tenantDetails= function (property)
+       {
+            $modal.open
+            ({
+                templateUrl: 'owner/tenant-details.tpl.html',
+                controller: 'OwnerTenantCtrl',
+                size: 'lg',
+                resolve: {  
+                           property: function () { return property; }
+                         }
+            });
+       };
+
+
+        rentedProfile(function (profile)
+        {
+            profile.$inst().$ref().on('value',function (data)
+            {
+               $scope.monthlyIncome= 0;
+               properties= {};
+               $scope.properties= _.map(data.val().properties,function ($id) { return { $id: $id }; });
+            });
+        });
     }
 ])
 
@@ -510,6 +556,17 @@ angular.module('myApp.owner', ['ngRoute'])
 {
   $scope.property= property;
   $scope.bid= bid;
+
+  $scope.cancel= function ()
+  {
+     $modalInstance.dismiss('cancel');
+  };
+}])
+
+.controller('OwnerTenantCtrl', ['$scope','$modalInstance','property',
+    function($scope,$modalInstance,property) 
+{
+  $scope.property= property;
 
   $scope.cancel= function ()
   {

@@ -6,21 +6,9 @@
             <div class="col-sm-7 pull-right">
                 <div class="row">
                     <div class="col-sm-offset-9 col-sm-3 counter">
-                        <p class="counter-val">15k</p>
+                        <p class="counter-val">{{monthlyIncome}}k</p>
                         <p class="counter-desc">Monthly Income</p>
                     </div>
-                    <!--div class="col-sm-3 counter">
-                        <p class="counter-val">Aug 15</p>
-                        <p class="counter-desc">Upcoming Vacancy</p>
-                    </div>
-                    <div class="col-sm-3 counter">
-                        <p class="counter-val">32%</p>
-                        <p class="counter-desc">Lore</p>
-                    </div>
-                    <div class="col-sm-3 counter">
-                        <p class="counter-val">1-2</p>
-                        <p class="counter-desc">Pets Ok</p>
-                    </div-->
                 </div>
             </div>
         </div>
@@ -30,54 +18,31 @@
 
 <div class="container">
 
-    <div class="row bottom-buffer">
+    <div class="row bottom-buffer" ng-repeat="property in properties | loadProperty:'rented'">
+        {{income(property)}}
         <div class="col-sm-2 vcenter">
-           <img pl-holder="holder.js/144x97/auto/textmode:exact/^cccccc:^969696" class="img-responsive">
+           <img ng-src="{{property.pictures[0]}}" class="img-responsive">
         </div>
         <div class="col-sm-4 vcenter">
-           <p class="text-xl">100 6B Bird Creek Dr.</p> 
+           <p class="text-xl">{{property.address.street}}</p> 
         </div>
         <div class="col-sm-3 vcenter">
             <div class="row">
               <div class="col-sm-2 vcenter">
-                 <img pl-holder="holder.js/60x60" class="img-circle">
+                 <img ng-src="{{property.tenant.picture}}" class="img-circle" style="width: 60px;">
               </div>
               <div class="col-sm-9 vcenter" style="padding-left: 35px;">
-                <h4 style="font-size: 24px; font-weight: bold;">Kevin Lee</h4>
-                <p><strong>Rent:</strong> $345.000</p>
-                <p><strong>Phone:</strong> 555.555.555</p>
+                <h4 style="font-size: 24px; font-weight: bold;">{{property.tenant.firstName}} {{property.tenant.lastName}}</h4>
+                <p><strong>Rent:</strong> {{property.bestOffer.rentAmount | rentCurrency}}</p>
+                <p><strong>Phone:</strong> {{property.tenant.phone}}</p>
                 <p><strong>Pets:</strong> Ok</p>
               </div>
             </div>
         </div>
         <div class="col-sm-2 vcenter">
-            <button type="button" class="btn btn-rented">See More</button>
+            <button type="button" class="btn btn-rented" ng-click="tenantDetails(property)">See More</button>
         </div>
     </div>
 
-    <div class="row bottom-buffer-lg">
-        <div class="col-sm-2 vcenter">
-           <img pl-holder="holder.js/144x97/auto/textmode:exact/^cccccc:^969696" class="img-responsive">
-        </div>
-        <div class="col-sm-4 vcenter">
-           <p class="text-xl">100 6B Bird Creek Dr.</p> 
-        </div>
-        <div class="col-sm-3 vcenter">
-            <div class="row">
-              <div class="col-sm-2 vcenter">
-                 <img pl-holder="holder.js/60x60" class="img-circle">
-              </div>
-              <div class="col-sm-9 vcenter" style="padding-left: 35px;">
-                <h4 style="font-size: 24px; font-weight: bold;">Kevin Lee</h4>
-                <p><strong>Job Title:</strong> $345.000</p>
-                <p><strong>Phone Number:</strong> 800</p>
-                <p><strong>Pets:</strong> Ok</p>
-              </div>
-            </div>
-        </div>
-        <div class="col-sm-2 vcenter">
-            <button type="button" class="btn btn-rented">See More</button>
-        </div>
-    </div>
 </div>
 
