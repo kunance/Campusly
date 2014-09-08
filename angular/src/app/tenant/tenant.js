@@ -205,6 +205,32 @@ angular.module('myApp.tenant', ['ngRoute'])
          unwatch(property,watchlist,TopBannerChannel);
      };
 
+     $scope.cancelBid= function (property)
+     {
+            if (!confirm('Please confirm that you would like to retire your offer')) return;
+
+            var bid= _.findWhere(property.bids,{ userId: $rootScope.profile.$id });
+
+            if (bid)
+            propertyService.cancelBid(bid,property,function (err)
+            {
+                if (err)
+                {
+                    console.log(err);
+
+                    TopBannerChannel.setBanner({
+                        content: 'There was an error deleting your offer',
+                        contentClass: 'danger'
+                    });
+                }
+                else
+                    TopBannerChannel.setBanner({
+                        content: 'Offer retired!',
+                        contentClass: 'success'
+                    });
+            });
+     };
+
     }
 ])
 

@@ -179,6 +179,23 @@ angular.module('service.property', ['service.firebase'])
                 });
 
             },
+            cancelBid: function(bid, property, cb)
+            {
+                firebaseBatch
+                ([
+                      { 
+                         remove: ['bids', 'all', bid.$id]
+                      },
+                      { 
+                         remove: ['bids', 'property', property.$id, bid.$id],
+                      },
+                      { 
+                         remove: ['bids', 'user', bid.userId, property.$id]
+                      }
+                ],
+                cb);
+
+            },
             acceptBid: function (bid,property,cb)
             {
                 var time= new Date().getTime();
