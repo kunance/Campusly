@@ -3,3 +3,5 @@
 angular/node_modules
 angular/vendor
 express/node_modules
+
+angular/bower.json
