@@ -19,6 +19,7 @@ angular.module('myApp.header', [])
                 _.extend($rootScope.banner,data);
                 window.scroll(0,0);
                 clearBanner(); 
+                _.defer(_.bind($rootScope.$apply,$rootScope));
             };
 
         TopBannerChannel.onSetBanner($rootScope, setBanner);
