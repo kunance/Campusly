@@ -267,6 +267,12 @@ angular.module('myApp.owner', ['ngRoute'])
           $scope.time= new Date();
        },60000);
 
+       $scope.monthlyIncome= 0;
+       $scope.activeProperties= 0;
+       $scope.offersNo= 0;
+
+       var properties= {};
+       
        rentedProfile(function (profile)
        {
              propertyService.fetchRecentlyBiddedProperties(profile.$id,4)
@@ -274,7 +280,36 @@ angular.module('myApp.owner', ['ngRoute'])
                 { 
                     $scope.properties= _.map(_.keys(data.val()),function ($id) { return { $id: $id }; });
                 });
+
+            profile.$inst().$ref().on('value',function (data)
+            {
+               $scope.monthlyIncome= 0;
+               $scope.activeProperties= 0;
+               $scope.offersNo= 0;
+               properties= {};
+               $scope.props= _.map(data.val().properties,function ($id) { return { $id: $id }; });
+            });
        });
+
+       // overshooting the filter but... in hurry!
+       $scope.intercept= function (property)
+       {
+           if (properties[property.$id]||!property.bestOffer) return '';
+
+           console.log(property.bestOffer.rentAmount);
+           
+           if (property.tenant)
+             $scope.monthlyIncome+= property.bestOffer.rentAmount;
+           else
+           {
+               $scope.activeProperties++;
+               $scope.offersNo+= property.bids.length;
+           }
+
+           properties[property.$id]= true;
+
+           return '';
+       };
 
        $scope.expenses= {
                           upcomingVacancies: 59,

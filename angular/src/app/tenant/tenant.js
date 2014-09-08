@@ -125,6 +125,26 @@ angular.module('myApp.tenant', ['ngRoute'])
             });
        };
 
+       var properties= {};
+
+       $scope.offersNo= 0;
+
+       $scope.isAccepted= function (property,profile)
+       {
+          if (!property.bestOffer) return false;
+          if (!profile) return false;
+          if (properties[property.$id]!==undefined) return properties[property.$id];
+
+          
+          var accepted= properties[property.$id]= (property.bestOffer.userId==profile.$id
+                                                   &&!!property.bestOffer.accepted);
+
+          if (!accepted&&!property.bestOffer.accepted)
+            $scope.offersNo++;
+            
+          return accepted;
+       };
+
        rentedProfile(function (profile)
        {
              tenantService.watchlist(profile.$id).$loaded(function (wl)
@@ -135,6 +155,8 @@ angular.module('myApp.tenant', ['ngRoute'])
              propertyService.fetchRecentlyBiddedProperties(profile.$id,4)
                 .$inst().$ref().on('value',function (data)
                 { 
+                    properties= {};
+                    $scope.offersNo= 0;
                     $scope.properties= _.map(_.keys(data.val()),function ($id) { return { $id: $id }; });
                 });
        });

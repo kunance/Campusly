@@ -24,7 +24,7 @@
             <div class="col-sm-offset-1 col-sm-7">
                 <div class="row">
                     <div class="col-sm-offset-6 col-sm-3 counter">
-                        <p class="counter-val">15</p>
+                        <p class="counter-val">{{offersNo}}</p>
                         <p class="counter-desc">Offers</p>
                     </div>
                     <div class="col-sm-3 counter">
@@ -54,7 +54,7 @@
         <div class="col-sm-3" ng-repeat="property in properties | loadProperty">
             <ng-include src="'tenant/partials/property-teaser.tpl.html'"></ng-include>
             <a href="#/property/{{property.$id}}" class="btn btn-rented">See More</a>
-            <button ng-click="accepted(property)" class="btn btn-rented-success" ng-show="property.bestOffer.userId==profile.$id&&property.bestOffer.accepted">Accepted</button>
+            <button ng-click="accepted(property)" class="btn btn-rented-success" ng-show="isAccepted(property,profile)">Accepted</button>
         </div>
     </div>
 
