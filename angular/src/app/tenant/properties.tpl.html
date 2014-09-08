@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <h1>My Watchlist</h1>
+    <h1 ng-show="watchlist.length">My Watchlist</h1>
 
     <div class="row properties bottom-buffer-xl">
         <div class="col-sm-3 top-buffer-lg" ng-repeat="property in watchlist | loadProperty">

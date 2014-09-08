@@ -1,5 +1,32 @@
 'use strict';
 
+
+     var unwatch= function (property,watchlist,TopBannerChannel)
+     {
+           var record= _.findWhere(watchlist,{ $value: property.$id });
+
+           watchlist.$remove(record)
+           .then(function ()
+           {
+                TopBannerChannel.setBanner
+                ({
+                    content: 'Property removed from your watchlist!',
+                    type: 'success'
+                });
+           },
+           function (err)
+           {
+                conole.log(err);
+
+                TopBannerChannel.setBanner
+                ({
+                    content: 'There was an error removing the property from your watchlist',
+                    type: 'danger'
+                });
+           });
+     };
+
+
 /* Controllers */
 angular.module('myApp.tenant', ['ngRoute'])
 
@@ -152,15 +179,18 @@ angular.module('myApp.tenant', ['ngRoute'])
     }
 ])
 
-.controller('TenantPropertiesCtrl', ['$scope','$rootScope','$routeParams','rentedProfile','tenantService','propertyService',
-    function($scope,$rootScope,$routeParams,rentedProfile,tenantService,propertyService) {
+.controller('TenantPropertiesCtrl', ['$scope','$rootScope','$routeParams','rentedProfile','tenantService','propertyService','TopBannerChannel',
+    function($scope,$rootScope,$routeParams,rentedProfile,tenantService,propertyService,TopBannerChannel) {
        $rootScope.secondaryNav= 'tenant/partials/menu-tenant.tpl.html';
+
+      var watchlist;
 
          rentedProfile(function (profile)
          {
-             tenantService.watchlist(profile.$id).$loaded(function (wl)
+             (watchlist=tenantService.watchlist(profile.$id))
+                .$inst().$ref().on('value',function (data)
              {
-                 $scope.watchlist= _.map(_.pluck(wl,'$value'),function ($id) { return { $id: $id }; });
+                 $scope.watchlist= _.map(_.values(data.val(),'$value'),function ($id) { return { $id: $id }; });
              });
 
              propertyService.fetchRecentlyBiddedProperties(profile.$id,4)
@@ -169,6 +199,12 @@ angular.module('myApp.tenant', ['ngRoute'])
                     $scope.properties= _.map(_.keys(data.val()),function ($id) { return { $id: $id }; });
                 });
          });
+
+     $scope.unwatch= function (property)
+     {
+         unwatch(property,watchlist,TopBannerChannel);
+     };
+
     }
 ])
 
@@ -377,28 +413,9 @@ angular.module('myApp.tenant', ['ngRoute'])
 
      $scope.unwatch= function (property)
      {
-           var record= _.findWhere(watchlist,{ $value: property.$id });
-
-           watchlist.$remove(record)
-           .then(function ()
-           {
-                TopBannerChannel.setBanner
-                ({
-                    content: 'Property removed from your watchlist!',
-                    type: 'success'
-                });
-           },
-           function (err)
-           {
-                conole.log(err);
-
-                TopBannerChannel.setBanner
-                ({
-                    content: 'There was an error removing the property from your watchlist',
-                    type: 'danger'
-                });
-           });
+         unwatch(property,watchlist,TopBannerChannel);
      };
+
 
      $scope.makeAnOffer= function (bid,property)
      {
