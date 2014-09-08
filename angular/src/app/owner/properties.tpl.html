@@ -4,7 +4,8 @@
     <div class="row properties">
         <div class="col-sm-3 top-buffer-lg" ng-repeat="property in properties | loadProperty">
             <ng-include src="'owner/partials/property-teaser.tpl.html'"></ng-include>
-            <a href="#/property/{{property.$id}}" class="btn btn-rented">See More</a>
+            <a href="#/property/{{property.$id}}" class="btn btn-rented">View Property</a>
+            <a href="#/owners/properties/{{property.$id}}/status" class="btn btn-rented">View Offers</a>
             <a href="#/owners/properties/{{property.$id}}/edit" class="btn btn-rented">Edit</a>
         </div>
     </div>
@@ -14,10 +15,12 @@
     <div class="row properties bottom-buffer-xl">
         <div class="col-sm-3 top-buffer-lg" ng-repeat="property in [1,2,3,4]">
             <img pl-holder="holder.js/238x158">
-            <p><strong>Number of offers:</strong> 2</p>
-            <p><strong>Highest offer:</strong> $5000</p>
-            <p><strong>Highest Credit Score:</strong> 800</p>
-            <button type="button" class="btn btn-rented">See More</button>
+            <p><strong>Rent:</strong> $5000</p>
+            <p><strong>Tenant:</strong> John Smith</p>
+            <p><strong>Phone:</strong> 555.555.555</p>
+            <a href="#/property/{{property.$id}}" class="btn btn-rented">View Property</a>
+            <a href="#/owners/properties/{{property.$id}}/status" class="btn btn-rented">View Offers</a>
+            <a href="#/owners/properties/{{property.$id}}/edit" class="btn btn-rented">Edit</a>
         </div>
     </div>
 </div>

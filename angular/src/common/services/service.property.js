@@ -67,7 +67,7 @@ angular.module('service.property', ['service.firebase'])
 
                 property.$loaded(function ()
                 {
-                    that.fetchBids(property.$id,10)
+                    that.fetchBids(property.$id,3)
                     .$inst().$ref().on('value',function (data)
                     {
                          var bids= _.map(_.keys(data.val()),function ($id) { return { $id: $id }; });

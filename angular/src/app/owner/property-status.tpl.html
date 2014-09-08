@@ -35,6 +35,7 @@
               <div class="col-sm-9">
                 <h4 style="font-size: 24px; font-weight: bold;">{{bid.user.firstName}} {{bid.user.lastName}}</h4>
                 <p><strong>Rent:</strong> {{bid.rentAmount | rentCurrency}}</p>
+                <p><strong>Move-In Date:</strong> {{bid.moveInDate | date:'MMM dd'}}</p>
                 <p><strong>Phone:</strong> {{bid.user.phone}}</p>
                 <p><strong>Pets:</strong> Ok</p>
               </div>

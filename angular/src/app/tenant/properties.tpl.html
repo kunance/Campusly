@@ -4,7 +4,8 @@
     <div class="row properties">
         <div class="col-sm-3 top-buffer-lg" ng-repeat="property in properties | loadProperty">
             <ng-include src="'tenant/partials/property-teaser.tpl.html'"></ng-include>
-            <a href="#/property/{{property.$id}}" class="btn btn-rented" target="_blank">See More</a>
+            <a href="#/property/{{property.$id}}" class="btn btn-rented">See More</a>
+            <button class="btn btn-rented" ng-click="cancelBid(property)">Cancel My Offer</button>
         </div>
     </div>
 
@@ -15,6 +16,7 @@
             <ng-include src="'tenant/partials/property-teaser.tpl.html'"></ng-include>
             <!--a href="http://www.craigslist.org/about/sites#US" class="btn btn-rented" target="_blank">See More On Craigslist</a-->
             <a href="#/property/{{property.$id}}" class="btn btn-rented">See More</a>
+            <button class="btn btn-rented" ng-click="unwatch(property)">Unwatch</button>
         </div>
     </div>
 

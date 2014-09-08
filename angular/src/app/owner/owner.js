@@ -83,9 +83,9 @@ angular.module('myApp.owner', ['ngRoute'])
     }
 ])
 
-.controller('AddPropertyCtrl', ['$scope','$rootScope','$routeParams','propertyService','shout',
+.controller('AddPropertyCtrl', ['$scope','$rootScope','$routeParams','propertyService','shout','rentedProfile',
     'MAX_PROPERTY_PICTURES','MAX_UPLOAD_SIZE',
-    function($scope,$rootScope,$routeParams,propertyService,shout, MAX_PROPERTY_PICTURES, MAX_UPLOAD_SIZE) {
+    function($scope,$rootScope,$routeParams,propertyService,shout, rentedProfile, MAX_PROPERTY_PICTURES, MAX_UPLOAD_SIZE) {
        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
        var steps= [
@@ -97,6 +97,11 @@ angular.module('myApp.owner', ['ngRoute'])
        $scope.step= steps[+$routeParams.step-1 || 0];
        $scope.add= true;
        $scope.shout= {};
+
+       rentedProfile(function (profile)
+       {
+           $scope.propertyNo= (profile.properties || []).length+1;
+       });
 }])
 
 .controller('OwnerPropertyCtrl', ['$scope','$rootScope','$routeParams','$location','propertyService','shout',
