@@ -11,7 +11,8 @@
                 <div class="row">
                     <div class="col-sm-offset-6 col-sm-3 counter">
                         <p class="counter-val">{{property.bestOffer.rentAmount | rentCurrency }}</p>
-                        <p class="counter-desc">Highest Offer</p>
+                        <p class="counter-desc" ng-show="property.bestOffer.accepted">Accepted Offer</p>
+                        <p class="counter-desc" ng-hide="property.bestOffer.accepted">Highest Offer</p>
                     </div>
                     <div class="col-sm-3 counter">
                         <p class="counter-val">{{property.bestOffer.moveInDate | date: 'MMM dd'}}</p>
@@ -27,7 +28,7 @@
 <div class="container">
 
     <div class="row bottom-buffer-lg">
-        <div class="col-sm-4 top-buffer" ng-repeat="bid in property.bids | loadBid">
+        <div class="col-sm-4 top-buffer" ng-repeat="bid in property.bids | loadBid" ng-class="{ 'opac': property.bestOffer.accepted&&property.bestOffer.$id!=bid.$id }">
             <div class="row">
               <div class="col-sm-3">
                  <img ng-src="{{bid.user.picture || 'assets/img/avatar.png'}}" class="img-circle img-responsive">
@@ -41,11 +42,14 @@
               </div>
             </div>
             <div class="row top-buffer-sm">
-                <button class="btn btn-rented">Accept</button>
+                <button class="btn btn-rented" ng-click="acceptOffer(bid,property)" ng-hide="bid.accepted || property.bestOffer.accepted">Accept</button>
+                <button class="btn btn-rented" ng-click="cancelOffer(bid,property)" ng-show="bid.accepted">Cancel Offer</button>
                 <button class="btn btn-rented" ng-click="bidDetails(bid,property)">See More</button>
             </div>
-            <div class="row top-buffer-sm">
-                <button class="btn btn-rented">Counter Offer</button>
+            <div class="row top-buffer-sm" ng-hide="property.bestOffer.accepted&&property.bestOffer.$id!=bid.$id">
+                <button class="btn btn-rented" ng-hide="property.bestOffer.accepted">Counter Offer</button>
+                <button class="btn btn-rented" ng-click="tenantMoveIn(bid.user,property)" ng-show="property.bestOffer.accepted&&!property.tenant">Tenant Move-In</button>
+                <button class="btn btn-rented" ng-click="cancelMoveIn(bid.user,property)" ng-show="property.bestOffer.accepted&&property.tenant">Cancel Move-In</button>
             </div>
         </div>
     </div>

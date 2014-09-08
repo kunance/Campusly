@@ -320,8 +320,6 @@ angular.module('myApp.owner', ['ngRoute'])
     function($scope,$rootScope,$routeParams) {
         $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
-        console.log($rootScope.profile.properties);
-
         $scope.properties= _.map($rootScope.profile.properties,function ($id) { return { $id: $id }; });
     }
 ])
@@ -390,8 +388,8 @@ angular.module('myApp.owner', ['ngRoute'])
     }
 ])
 
-.controller('OwnerPropertyStatusCtrl', ['$scope','$rootScope','$routeParams','$modal','propertyService',
-    function($scope,$rootScope,$routeParams,$modal,propertyService) {
+.controller('OwnerPropertyStatusCtrl', ['$scope','$rootScope','$routeParams','$modal','propertyService','TopBannerChannel',
+    function($scope,$rootScope,$routeParams,$modal,propertyService,TopBannerChannel) {
        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
        $scope.property= propertyService.fetchWithBids($routeParams.id);
@@ -407,6 +405,101 @@ angular.module('myApp.owner', ['ngRoute'])
                            bid: function () { return bid; },
                            property: function () { return property; }
                          }
+            });
+       };
+
+       $scope.acceptOffer= function (bid,property)
+       {
+            if (!confirm('Please confirm that you would like to accept '+bid.user.firstName
+                         +' '+bid.user.lastName+' as your tenant.')) return;
+
+            propertyService.acceptBid(bid,property,function (err)
+            {
+                if (err)
+                {
+                    console.log(err);
+
+                    TopBannerChannel.setBanner({
+                        content: 'There was an error accepting this offer',
+                        contentClass: 'danger'
+                    });
+                }
+                else
+                    TopBannerChannel.setBanner({
+                        content: 'Offer accepted!',
+                        contentClass: 'success'
+                    });
+            });
+       };
+
+       $scope.cancelOffer= function (bid,property)
+       {
+            if (!confirm('Please confirm that you would like to reopen the bidding')) return;
+
+            propertyService.cancelAcceptBid(bid,property,function (err)
+            {
+                if (err)
+                {
+                    console.log(err);
+
+                    TopBannerChannel.setBanner({
+                        content: 'There was an error reopening the bidding',
+                        contentClass: 'danger'
+                    });
+                }
+                else
+                    TopBannerChannel.setBanner({
+                        content: 'Offer canceled!',
+                        contentClass: 'success'
+                    });
+            });
+       };
+
+       $scope.tenantMoveIn= function (user,property)
+       {
+            if (!confirm('Please confirm that '+user.firstName
+                         +' '+user.lastName+' has moved in.')) return;
+
+            propertyService.tenantMoveIn(user,property,function (err)
+            {
+                if (err)
+                {
+                    console.log(err);
+
+                    TopBannerChannel.setBanner({
+                        content: 'There was an error saving the tenant',
+                        contentClass: 'danger'
+                    });
+                }
+                else
+                    TopBannerChannel.setBanner({
+                        content: 'Tenant moved in!',
+                        contentClass: 'success'
+                    });
+            });
+       };
+
+       $scope.cancelMoveIn= function (user,property)
+       {
+            if (!confirm('Please confirm that '+user.firstName
+                         +' '+user.lastName+' has not moved in.')) return;
+
+            propertyService.cancelTenantMoveIn(user,property,function (err)
+            {
+                if (err)
+                {
+                    console.log(err);
+
+                    TopBannerChannel.setBanner({
+                        content: 'There was an error canceling the tenant',
+                        contentClass: 'danger'
+                    });
+                }
+                else
+                    TopBannerChannel.setBanner({
+                        content: 'Tenant canceled!',
+                        contentClass: 'success'
+                    });
             });
        };
     }

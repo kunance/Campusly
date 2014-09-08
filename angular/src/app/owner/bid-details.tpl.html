@@ -17,7 +17,9 @@
             <div class="col-sm-6">
                 <div class="row top-buffer-sm small-pad">
                     <div class="col-sm-3 col-sm-offset-3 counter text-center">
-                        <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #51b65b; line-height: 2;">Accepted</p>
+                        <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #51b65b; line-height: 2;" ng-show="bid.accepted">Accepted</p>
+                        <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #666666; line-height: 2;" ng-hide="property.bestOffer.accepted">Pending</p>
+                        <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #ff503f; line-height: 2;" ng-show="property.bestOffer.accepted&&property.bestOffer.$id!=bid.$id">Rejected</p>
                     </div>
                     <div class="col-sm-3 counter">
                         <p class="counter-val">{{bid.rentAmount | rentCurrency}}</p>

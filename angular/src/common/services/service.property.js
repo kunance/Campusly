@@ -46,7 +46,7 @@ angular.module('service.property', ['service.firebase'])
     }])
 
 
-    .factory('propertyService', ["$rootScope", "firebaseRef", "syncData", 'uuid4', function($rootScope, firebaseRef, syncData,uuid4){
+    .factory('propertyService', ["$rootScope", "firebaseRef", "syncData", 'uuid4', 'firebaseBatch', function($rootScope, firebaseRef, syncData,uuid4,firebaseBatch){
         return {
             create: function ()
             {
@@ -58,32 +58,49 @@ angular.module('service.property', ['service.firebase'])
             featured: function(){
                 return syncData('featured').$asArray();
             },
-            fetch : function(propertyId){
-                return syncData('properties/'+propertyId).$asObject();
-            },
-            fetchWithBids: function(propertyId,identity){
+            fetch: function(propertyId,identity){
                 var that= this,
                     property= syncData('properties/'+propertyId).$asObject();
 
-                property.$loaded(function ()
+                property.$inst().$ref().on('value',_.debounce(function (data)
                 {
-                    that.fetchBids(property.$id,3)
+                      var val= data.val();
+
+                      syncData('users/'+val.tenant).$asObject() 
+                         .$inst().$ref().on('value',function (data)
+                         {
+                              val.tenant= identity ? identity.tenant= data.val() : property.tenant= data.val();
+                         });
+                },200));
+
+                return property;
+            },
+            fetchWithBids: function(propertyId,identity){
+                var that= this,
+                    property= that.fetch(propertyId,identity);
+
+                property.$inst().$ref().on('value',_.debounce(function (data)
+                {
+                    var val= data.val();
+
+                    if (val)
+                    that.fetchBids(data.name(),3)
                     .$inst().$ref().on('value',function (data)
                     {
                          var bids= _.map(_.keys(data.val()),function ($id) { return { $id: $id }; });
 
-                         identity ? identity.bids= bids : property.bids= bids;
-
-                         console.log(property.bids);
+                         val.bids= identity ? identity.bids= bids : property.bids= bids;
 
                          if (bids.length)
                            that.fetchBid(bids[0].$id)
                              .$inst().$ref().on('value',function (data)
                              { 
-                                   identity ? identity.bestOffer= data.val() : property.bestOffer= data.val();
+                                  val.bestOffer= identity ? identity.bestOffer= data.val() : property.bestOffer= data.val();
+                                  if (val.bestOffer)
+                                    val.bestOffer.$id= data.name();
                              });
                     });
-                });
+                },200));
                 
                 return property;
             },
@@ -95,10 +112,14 @@ angular.module('service.property', ['service.firebase'])
                  { 
                       var val= data.val(); 
 
+                      if (val)
                       syncData('users/'+val.userId).$asObject() 
                          .$inst().$ref().on('value',function (data)
                          {
-                              identity ? identity.user= data.val() : bid.user= data.val();
+                              var user= identity ? identity.user= data.val() : bid.user= data.val();
+
+                              if (user)
+                                user.$id= data.name();
                          });
                  });
 
@@ -112,36 +133,126 @@ angular.module('service.property', ['service.firebase'])
             },
             placeBid : function(propertyId, ownerId, userId, bid, cb){
                 var bidId= uuid4.generate(),
-                    priority= new Date().getTime();
+                    time= new Date().getTime();
 
                 bid.propertyId= propertyId;
                 bid.userId= userId;
 
-                firebaseRef('bids', 'all', bidId).setWithPriority(bid,priority,function (err)
+                firebaseBatch
+                ([
+                      { 
+                         path: ['bids', 'all', bidId],
+                         data: bid,
+                         priority: -time // lets sort them by time descending
+                      },
+                      { 
+                         path: ['bids', 'property', propertyId, bidId],
+                         data: true, 
+                         priority: -bid.rentAmount // need to be sorted by amount descending to easy get the best
+                      },
+                      { 
+                         path: ['bids', 'user', userId, propertyId],
+                         data: true,
+                         priority: -time // move up the last bidded property property
+                      },
+                      { 
+                         path: ['bids', 'user', ownerId, propertyId],
+                         data: true,
+                         priority: -time // move up the last bidded property property
+                      },
+                ],
+                function (err)
                 {
-                    if (err)
-                      cb(err);
-                    else
-                      firebaseRef('bids', 'property', propertyId, bidId).setWithPriority(true,-bid.rentAmount,function (err)
-                      {
-                            if (err)
-                              cb(err);
-                            else
-                              firebaseRef('bids', 'user', userId, propertyId).setWithPriority(true,priority,function (err)
-                              {
-                                  if (err)
-                                      cb(err);
-                                  else
-                                  firebaseRef('bids', 'user', ownerId, propertyId).setWithPriority(true,priority,function (err)
-                                  {
-                                        if (err)
-                                          cb(err);
-                                        else
-                                          cb(null,bidId);
-                                  });
-                              });
-                      });
+                     if (err)
+                       cb(err);
+                     else
+                       cb(null,bidId);
                 });
+
+            },
+            acceptBid: function (bid,property,cb)
+            {
+                var time= new Date().getTime();
+
+                firebaseBatch
+                ([
+                      { 
+                         path: ['bids', 'all', bid.$id,'accepted'],
+                         data: true
+                      },
+                      { 
+                         path: ['bids', 'property', bid.propertyId, bid.$id],
+                         data: true, 
+                         priority: -Number.MAX_VALUE // we want it on top since it is the accepted one and should always be fetched
+                      },
+                      { 
+                         path: ['bids', 'user', bid.userId, bid.propertyId],
+                         data: true,
+                         priority: -time // move up something happened
+                      },
+                      { 
+                         path: ['bids', 'user', property.owner, bid.propertyId],
+                         data: true,
+                         priority: -time // move up something happened
+                      }
+                ],
+                cb);
+
+            },
+            cancelAcceptBid: function (bid,property,cb)
+            {
+                var time= new Date().getTime();
+
+                firebaseBatch
+                ([
+                      { 
+                         remove: ['bids', 'all', bid.$id, 'accepted']
+                      },
+                      { 
+                         path: ['bids', 'property', bid.propertyId, bid.$id],
+                         data: true, 
+                         priority: -bid.rentAmount // restore its position
+                      },
+                      { 
+                         path: ['bids', 'user', bid.userId, bid.propertyId],
+                         data: true,
+                         priority: -time // move up something happened
+                      },
+                      { 
+                         path: ['bids', 'user', property.owner, bid.propertyId],
+                         data: true,
+                         priority: -time // move up something happened
+                      }
+                ],
+                cb);
+
+            },
+            tenantMoveIn: function (user,property,cb)
+            {
+                var time= new Date().getTime();
+
+                firebaseBatch
+                ([
+                      { 
+                         path: ['properties', property.$id,'tenant'],
+                         data: user.$id
+                      }
+                ],
+                cb);
+
+            },
+            cancelTenantMoveIn: function (user,property,cb)
+            {
+                var time= new Date().getTime();
+
+                firebaseBatch
+                ([
+                      { 
+                         remove: ['properties', property.$id,'tenant']
+                      }
+                ],
+                cb);
+
             },
             isActive : function(property){
                 var isActive =  false;
