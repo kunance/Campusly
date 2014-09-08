@@ -74,8 +74,8 @@ angular.module('myApp.tenant', ['ngRoute'])
     }
 ])
 
-.controller('TenantDashboardCtrl', ['$scope','$rootScope','$timeout','rentedProfile','tenantService','propertyService',
-    function($scope,$rootScope,$timeout,rentedProfile,tenantService,propertyService) {
+.controller('TenantDashboardCtrl', ['$scope','$rootScope','$timeout','$modal','rentedProfile','tenantService','propertyService',
+    function($scope,$rootScope,$timeout,$modal,rentedProfile,tenantService,propertyService) {
        $rootScope.secondaryNav= 'tenant/partials/menu-tenant.tpl.html';
 
        $scope.time= new Date();
@@ -85,6 +85,18 @@ angular.module('myApp.tenant', ['ngRoute'])
           $scope.time= new Date();
        },60000);
 
+       $scope.accepted= function (property)
+       {
+            $modal.open
+            ({
+                templateUrl: 'tenant/owner-details.tpl.html',
+                controller: 'TenantOwnerCtrl',
+                size: 'lg',
+                resolve: {  
+                           property: function () { return property; }
+                         }
+            });
+       };
 
        rentedProfile(function (profile)
        {
@@ -425,3 +437,16 @@ angular.module('myApp.tenant', ['ngRoute'])
               _bid();
      };
 }])
+
+.controller('TenantOwnerCtrl', ['$scope','$modalInstance','property','syncData',
+    function($scope,$modalInstance,property,syncData) 
+{
+  $scope.property= property;
+
+  $scope.owner= syncData('users/'+property.owner).$asObject();
+
+  $scope.cancel= function ()
+  {
+     $modalInstance.dismiss('cancel');
+  };
+}]);

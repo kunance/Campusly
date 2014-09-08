@@ -1,0 +1,76 @@
+<div class="modal-header header-shadow">
+    <div class="container">
+       <div class="button-container">
+           <div class="buttons">
+              <a ng-click="cancel()"><img src="assets/img/close.png"></a>
+           </div>
+           <h1><img ng-src="{{owner.picture || 'assets/img/avatar.png'}}" class="img-circle" style="width: 60px;"> {{owner.firstName}} {{owner.lastName}} accepted your offer!</h1>
+       </div>
+
+       <div class="row bottom-buffer">
+            <div class="col-sm-2">
+               <img ng-src="{{property.pictures[0]}}" class="img-responsive">
+            </div>
+            <div class="col-sm-4">
+               <p class="top-buffer" style="font-size: 30px;">{{property.address.street}}</p>
+            </div>
+            <div class="col-sm-6">
+                <div class="row top-buffer-sm small-pad">
+                    <div class="col-sm-3 col-sm-offset-3 counter">
+                        <p class="counter-val">{{property.bestOffer.rentAmount | rentCurrency}}</p>
+                        <p class="counter-desc">Rent</p>
+                    </div>
+                    <div class="col-sm-3 counter">
+                        <p class="counter-val">{{property.bestOffer.moveInDate | date: 'MMM dd'}}</p>
+                        <p class="counter-desc">Move In Date</p>
+                    </div>
+                    <div class="col-sm-3 counter">
+                        <p class="counter-val"><img src="assets/img/pet.png"></p>
+                        <p class="counter-desc">Pets friendly</p>
+                    </div>
+                </div>
+            </div>
+       </div>
+
+    </div>
+</div>
+<div class="modal-body" style="margin-bottom: 400px;">
+    <div class="container">
+        <div class="row">
+          <fieldset class="readonly">
+             <div class="form-group">
+                 <p class="field-text">Congratulations - your offer has been accepted! Please contact the owner/manager to setup a time and sign the lease. Welcome home!</p>
+             </div>
+          </fieldset>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <fieldset class="readonly">
+                  <legend>Contact</legend>
+
+                   <div class="form-group">
+                       <label class="control-label">First</label>
+                       <span class="field-text">{{owner.firstName}}</span>
+                   </div>
+
+                   <div class="form-group">
+                       <label class="control-label">Last</label>
+                       <span class="field-text">{{owner.lastName}}</span>
+                   </div>
+
+                   <div class="form-group">
+                       <label class="control-label">Phone</label>
+                       <span class="field-text">{{owner.phone}}</span>
+                   </div>
+
+                   <div class="form-group">
+                       <label class="control-label">E-mail</label>
+                       <span class="field-text">{{owner.email}}</span>
+                   </div>
+
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="'partials/footer.tpl.html'"></div>
