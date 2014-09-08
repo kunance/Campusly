@@ -43,11 +43,11 @@
             </div>
             <div class="row top-buffer-sm">
                 <button class="btn btn-rented" ng-click="acceptOffer(bid,property)" ng-hide="bid.accepted || property.bestOffer.accepted">Accept</button>
-                <button class="btn btn-rented" ng-click="cancelOffer(bid,property)" ng-show="bid.accepted">Cancel Offer</button>
+                <button class="btn btn-rented" ng-click="cancelOffer(bid,property)" ng-show="bid.accepted&&!property.tenant">Cancel Offer</button>
                 <button class="btn btn-rented" ng-click="bidDetails(bid,property)">See More</button>
             </div>
             <div class="row top-buffer-sm" ng-hide="property.bestOffer.accepted&&property.bestOffer.$id!=bid.$id">
-                <button class="btn btn-rented" ng-hide="property.bestOffer.accepted">Counter Offer</button>
+                <!--button class="btn btn-rented" ng-hide="property.bestOffer.accepted">Counter Offer</button-->
                 <button class="btn btn-rented" ng-click="tenantMoveIn(bid.user,property)" ng-show="property.bestOffer.accepted&&!property.tenant">Tenant Move-In</button>
                 <button class="btn btn-rented" ng-click="cancelMoveIn(bid.user,property)" ng-show="property.bestOffer.accepted&&property.tenant">Cancel Move-In</button>
             </div>

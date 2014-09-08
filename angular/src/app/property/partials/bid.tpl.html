@@ -1,4 +1,7 @@
-<h5 ng-hide="property.bestOffer.accepted">Make An Offer</h5>
+<h5>Make An Offer</h5>
+
+<p class="badge top-buffer-sm" style="font-size: 18px; background-color: #666666; line-height: 2;" ng-show="property.bestOffer.accepted&&!property.tenant">Rental Pending</p>
+<p class="badge top-buffer-sm" style="font-size: 18px; background-color: #51b65b; line-height: 2;" ng-show="property.tenant">Rented</p>
 
 <form ng-hide="property.bestOffer.accepted" method="post" class="form-horizontal" ng-submit="makeAnOffer(bid,property)" ng-controller="TenantBidCtrl" ng-show="gotProfile">
     <div class="form-group">

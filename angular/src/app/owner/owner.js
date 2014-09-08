@@ -343,7 +343,7 @@ angular.module('myApp.owner', ['ngRoute'])
        {
            if (!properties[property.$id]&&property.bestOffer)
            {
-             $scope.monthlyIncome= ($scope.monthlyIncome+property.bestOffer.rentAmount/1000).toFixed(1);
+             $scope.monthlyIncome= ($scope.monthlyIncome+property.bestOffer.rentAmount);
              properties[property.$id]= true;
            }
 
