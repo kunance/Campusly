@@ -9,7 +9,7 @@
         },
         "users": {
             "$user": {
-                ".read": "auth.uid === $user",
+                ".read": "auth.uid != null",
                 ".write": "auth.uid === $user && (!newData.exists() || newData.hasChildren())"
             }
         },     
