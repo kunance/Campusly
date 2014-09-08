@@ -1,0 +1,26 @@
+{
+  "name": "rented.io",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "latest",
+    "angular-route": "latest",
+    "angular-sanitize": "latest",
+    "angular-bootstrap": "latest",
+    "angularfire": "latest",
+    "jquery": "latest",
+    "bootstrap": "latest",
+    "moment": "latest",
+    "fontawesome": "latest",
+    "angularytics": "latest",
+    "FlexSlider": "latest",
+    "underscore": "latest",
+    "holderjs": "~2.4.0",
+    "clndr": "~1.2.1",
+    "ng-file-upload": "~1.6.5",
+    "famous-angular": "~0.3.0",
+    "angular-uuid4": "~0.1.0"
+  },
+  "resolutions": {
+    "angular": "1.2.23"
+  }
+}
