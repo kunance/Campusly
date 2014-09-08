@@ -179,6 +179,36 @@ angular.module('service.property', ['service.firebase'])
                 });
 
             },
+            editBid: function(bid, property, cb)
+            {
+                var time= new Date().getTime();
+
+                firebaseBatch
+                ([
+                      { 
+                         path: ['bids', 'all', bid.$id],
+                         data: _.omit(bid,['$id']),
+                         priority: -time // lets move up because it is changed
+                      },
+                      { 
+                         path: ['bids', 'property', property.$id, bid.$id],
+                         data: true, 
+                         priority: -bid.rentAmount // resort the amount
+                      },
+                      { 
+                         path: ['bids', 'user', bid.userId, property.$id],
+                         data: true,
+                         priority: -time // move up the last bidded property property
+                      },
+                      { 
+                         path: ['bids', 'user', property.owner, property.$id],
+                         data: true,
+                         priority: -time // move up the last bidded property property
+                      },
+                ],
+                cb);
+
+            },
             cancelBid: function(bid, property, cb)
             {
                 firebaseBatch

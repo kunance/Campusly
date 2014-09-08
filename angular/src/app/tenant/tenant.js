@@ -402,6 +402,23 @@ angular.module('myApp.tenant', ['ngRoute'])
 
      });
 
+     var checkForMyOffer= _.debounce(function ()
+         {
+             var mine= _.findWhere($scope.property.bids,{ userId: $rootScope.profile.$id });
+
+             if (mine)
+             {
+               $scope.bid= mine;
+               $scope.$apply();
+             }
+         },200);
+
+     $scope.$watch('property.bids[0].userId',function (bids)
+     {
+         if (bids)
+           checkForMyOffer();
+     });
+
      $scope.watch= function (property)
      {
            var _watch= function ()
@@ -478,6 +495,30 @@ angular.module('myApp.tenant', ['ngRoute'])
            }
            else
               _bid();
+     };
+
+
+     $scope.editMyBid= function (bid,property)
+     {
+            if (!confirm('Please confirm that you would like to change your offer')) return;
+
+            propertyService.editBid(_.omit(bid,['$$hashKey','user']),property,function (err)
+            {
+                if (err)
+                {
+                    console.log(err);
+
+                    TopBannerChannel.setBanner({
+                        content: 'There was an error changing your offer',
+                        contentClass: 'danger'
+                    });
+                }
+                else
+                    TopBannerChannel.setBanner({
+                        content: 'Offer changed!',
+                        contentClass: 'success'
+                    });
+            });
      };
 }])
 
