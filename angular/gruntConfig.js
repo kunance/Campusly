@@ -86,7 +86,8 @@ module.exports = {
             'vendor/ng-file-upload/angular-file-upload.min.js',
             //'vendor/famous/famous-global.js',
             //'vendor/famous-angular/dist/famous-angular.js',
-            'vendor/angular-uuid4/angular-uuid4.js'
+            'vendor/angular-uuid4/angular-uuid4.js',
+            'vendor/async/lib/async.js'
         ],
         css: [],
         assets: [
