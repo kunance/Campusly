@@ -11,7 +11,7 @@
     <div class="form-group">
         <label class="col-sm-3 control-label">Password</label>
         <div class="col-sm-8">
-            <input type="password" class="form-control input-lg" ng-model="data.pass" required>
+            <input type="password" class="form-control input-lg" ng-model="data.pass" ngMinLength="8" required>
             <p class="help-block">* <a ng-click="forgetPassword()">Forget Password</a></p>
         </div>
     </div>
