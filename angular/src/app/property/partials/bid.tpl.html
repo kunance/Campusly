@@ -31,11 +31,11 @@
     <div class="row" style="margin-top: 30px;">
         <div class="col-xs-6 text-right">
             <a class="btn btn-rented" ng-click="watch(property)" ng-hide="inWatchlist(property)">Add To Watchlist</a>
-            <a class="btn btn-rented" ng-click="unwatch(property)" ng-show="inWatchlist(property)">Remove From Watchlist</a>
+            <a class="btn btn-rented" ng-click="unwatch(property)" ng-show="inWatchlist(property)&&profile">Remove From Watchlist</a>
         </div>
         <div class="col-xs-6">
             <button type="submit" class="btn btn-rented" ng-hide="bid.userId">Make An Offer</button>
-            <button type="button" class="btn btn-rented" ng-show="bid.userId" ng-click="editMyBid(bid,property)">Edit My Offer</button>
+            <button type="button" class="btn btn-rented" ng-show="bid.userId&&profile" ng-click="editMyBid(bid,property)">Edit My Offer</button>
         </div>
     </div>
 </form>
