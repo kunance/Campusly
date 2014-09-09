@@ -47,6 +47,8 @@ angular.module('myApp.user', ['ngRoute'])
 
              $rootScope.$on('$firebaseSimpleLogin:logout', function ()
              {
+                    $rootScope.secondaryNav= null;
+
                     if ($rootScope.profile)
                     {
                         $rootScope.profile.$destroy();
