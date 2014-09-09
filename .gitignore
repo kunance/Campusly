@@ -4,3 +4,5 @@ angular/node_modules
 angular/vendor
 express/node_modules
 
+
+npm-debug.log
