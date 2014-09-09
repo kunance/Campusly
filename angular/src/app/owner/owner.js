@@ -223,7 +223,7 @@ angular.module('myApp.owner', ['ngRoute'])
                property.$priority= new Date().getTime();
            }
 
-           property.leaseTerm= Number(property.leaseTerm);
+           property.leaseTerm= Number(property.leaseTerm || 0);
 
            property.$save()
            .then(function ()
@@ -294,16 +294,17 @@ angular.module('myApp.owner', ['ngRoute'])
        // overshooting the filter but... in hurry!
        $scope.intercept= function (property)
        {
-           if (properties[property.$id]||!property.bestOffer) return '';
+           if (properties[property.$id]||!property.bids) return '';
 
-           console.log(property.bestOffer.rentAmount);
-           
            if (property.tenant)
-             $scope.monthlyIncome+= property.bestOffer.rentAmount;
+           {
+               if (!property.bestOffer) return; 
+               $scope.monthlyIncome+= property.bestOffer.rentAmount;
+           }
            else
            {
                $scope.activeProperties++;
-               $scope.offersNo+= property.bids.length;
+               $scope.offersNo+= property.bids ? property.bids.length : 0;
            }
 
            properties[property.$id]= true;
