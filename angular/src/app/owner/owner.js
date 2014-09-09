@@ -459,6 +459,10 @@ angular.module('myApp.owner', ['ngRoute'])
     function($scope,$rootScope,$routeParams,TopBannerChannel,MAX_UPLOAD_SIZE) {
        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
+       var states= $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+
+       $scope.statesPattern= '/^('+states.join('|')+')$/'
+
        $scope.pictureSelected= function ($files)
        {
             if (!$files[0]) return;

@@ -15,7 +15,7 @@
                    <div class="form-group">
                        <label class="col-sm-4 control-label">First</label>
                        <div class="col-sm-8">
-                          <input class="form-control input-lg" type="text" ng-model="profile.firstName" placeholder="Bob" autofocus>
+                          <input class="form-control input-lg" type="text" ng-model="profile.firstName" placeholder="Bob" autofocus required>
                        </div>
                    </div>
                </div>
@@ -23,7 +23,7 @@
                    <div class="form-group">
                        <label class="col-sm-4 control-label">Last</label>
                        <div class="col-sm-8">
-                          <input class="form-control input-lg" type="text" ng-model="profile.lastName" placeholder="Johnson">
+                          <input class="form-control input-lg" type="text" ng-model="profile.lastName" placeholder="Johnson" required>
                        </div>
                    </div>
                </div>
@@ -33,7 +33,7 @@
                    <div class="form-group">
                        <label class="col-sm-4 control-label">E-Mail</label>
                        <div class="col-sm-8">
-                          <input class="form-control input-lg" type="email" ng-model="profile.email" placeholder="bob@gmail.com">
+                          <input class="form-control input-lg" type="email" ng-model="profile.email" placeholder="bob@gmail.com" required>
                        </div>
                    </div>
                </div>
@@ -41,7 +41,7 @@
                    <div class="form-group">
                        <label class="col-sm-4 control-label">Phone</label>
                        <div class="col-sm-8">
-                          <input class="form-control input-lg" type="tel" ng-model="profile.phone" placeholder="000.000.000">
+                          <input class="form-control input-lg" type="tel" ng-model="profile.phone" ui-mask="999.999.9999" required>
                        </div>
                    </div>
                </div>
@@ -60,7 +60,7 @@
            <div class="form-group">
                <label class="col-sm-4 control-label">Street</label>
                <div class="col-sm-8">
-                  <input class="form-control input-lg" type="text" ng-model="profile.address.street">
+                  <input class="form-control input-lg" type="text" ng-model="profile.address.street" required>
                </div>
            </div>
        </div>
@@ -68,7 +68,7 @@
            <div class="form-group">
                <label class="col-sm-4 control-label">Apt. number</label>
                <div class="col-sm-8">
-                  <input class="form-control input-lg" type="text" ng-model="profile.address.aptNumber">
+                  <input class="form-control input-lg" type="text" ng-model="profile.address.aptNumber" required>
                </div>
            </div>
        </div>
@@ -80,7 +80,7 @@
            <div class="form-group">
                <label class="col-sm-4 control-label">City</label>
                <div class="col-sm-8">
-                  <input class="form-control input-lg" type="text" ng-model="profile.address.city">
+                  <input class="form-control input-lg" type="text" ng-model="profile.address.city" required>
                </div>
            </div>
        </div>
@@ -88,7 +88,7 @@
            <div class="form-group">
                <label class="col-sm-4 control-label">State</label>
                <div class="col-sm-8">
-                  <input class="form-control input-lg" type="text" ng-model="profile.address.state">
+                  <input class="form-control input-lg" type="text" ng-model="profile.address.state" typeahead="state for state in states | filter:$viewValue | limitTo:8" ng-pattern="{{statesPattern}}" required>
                </div>
            </div>
        </div>
@@ -99,7 +99,7 @@
            <div class="form-group">
                <label class="col-sm-4 control-label">Zip</label>
                <div class="col-sm-8">
-                  <input class="form-control input-lg" type="text" ng-model="profile.address.zip">
+                  <input class="form-control input-lg" type="text" ng-model="profile.address.zip" ng-pattern="/[0-9]{5}/" maxlength="5" required>
                </div>
            </div>
        </div>
@@ -116,7 +116,7 @@
            <div class="form-group">
                <label class="col-sm-4 control-label">Street</label>
                <div class="col-sm-8">
-                  <input class="form-control input-lg" type="text" ng-model="profile.priorAddress.street">
+                  <input class="form-control input-lg" type="text" ng-model="profile.priorAddress.street" required>
                </div>
            </div>
        </div>
@@ -124,7 +124,7 @@
            <div class="form-group">
                <label class="col-sm-4 control-label">Apt. number</label>
                <div class="col-sm-8">
-                  <input class="form-control input-lg" type="text" ng-model="profile.priorAddress.aptNumber">
+                  <input class="form-control input-lg" type="text" ng-model="profile.priorAddress.aptNumber" required>
                </div>
            </div>
        </div>
@@ -136,7 +136,7 @@
            <div class="form-group">
                <label class="col-sm-4 control-label">City</label>
                <div class="col-sm-8">
-                  <input class="form-control input-lg" type="text" ng-model="profile.priorAddress.city">
+                  <input class="form-control input-lg" type="text" ng-model="profile.priorAddress.city" required>
                </div>
            </div>
        </div>
@@ -144,7 +144,7 @@
            <div class="form-group">
                <label class="col-sm-4 control-label">State</label>
                <div class="col-sm-8">
-                  <input class="form-control input-lg" type="text" ng-model="profile.priorAddress.state">
+                  <input class="form-control input-lg" type="text" ng-model="profile.priorAddress.state" typeahead="state for state in states | filter:$viewValue | limitTo:8" ng-pattern="{{statesPattern}}" required>
                </div>
            </div>
        </div>
@@ -155,7 +155,7 @@
            <div class="form-group">
                <label class="col-sm-4 control-label">Zip</label>
                <div class="col-sm-8">
-                  <input class="form-control input-lg" type="text" ng-model="profile.priorAddress.zip">
+                  <input class="form-control input-lg" type="text" ng-model="profile.priorAddress.zip" ng-pattern="/[0-9]{5}/" maxlength="5" required>
                </div>
            </div>
        </div>
@@ -173,7 +173,7 @@
                    <div class="form-group">
                        <label class="col-sm-6 control-label"># of Occupants</label>
                        <div class="col-sm-6">
-                          <input class="form-control input-lg" type="number" ng-model="profile.movein.occupantsNo">
+                          <input class="form-control input-lg" type="number" ng-model="profile.movein.occupantsNo" required>
                        </div>
                    </div>
                </div>
@@ -181,7 +181,7 @@
                    <div class="form-group">
                        <label class="col-sm-6 control-label">Annual Income</label>
                        <div class="col-sm-6">
-                          <input class="form-control input-lg" type="number" ng-model="profile.movein.annualIncome">
+                          <input class="form-control input-lg" type="number" ng-model="profile.movein.annualIncome" required>
                        </div>
                    </div>
                </div>
@@ -191,7 +191,7 @@
                    <div class="form-group">
                        <label class="col-sm-2 control-label">Reason for Moving</label>
                        <div class="col-sm-10">
-                          <textarea ng-model="profile.movein.reason" class="form-control input-lg"></textarea>
+                          <textarea ng-model="profile.movein.reason" class="form-control input-lg" required></textarea>
                        </div>
                    </div>
                </div>
@@ -208,9 +208,8 @@
            <div class="form-group">
                <label class="col-sm-4 control-label">Dogs</label>
                <div class="col-sm-4">
-                      <select class="form-control input-lg" ng-model="profile.pets.dogs" required>
+                      <select class="form-control input-lg" ng-model="profile.pets.dogs">
                           <option value="">None</option>
-                          <option value="0">0</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3+">3+</option>
@@ -222,9 +221,8 @@
            <div class="form-group">
                <label class="col-sm-4 control-label">Cats</label>
                <div class="col-sm-4">
-                      <select class="form-control input-lg" ng-model="profile.pets.cats" required>
+                      <select class="form-control input-lg" ng-model="profile.pets.cats">
                           <option value="">None</option>
-                          <option value="0">0</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3+">3+</option>
@@ -238,14 +236,13 @@
                    <div class="form-group">
                        <label class="col-sm-4 control-label">Other</label>
                        <div class="col-sm-8">
-                           <input class="form-control input-lg" type="text" ng-model="profile.pets.otherDesc" placeholder="Ex. Turtle">
+                          <input class="form-control input-lg" type="text" ng-model="profile.pets.otherDesc" placeholder="Ex. Turtle" ng-required="profile.pets.other > 0">
                        </div>
                    </div>
                </div>
                <div class="col-sm-4">
-                      <select class="form-control input-lg" ng-model="profile.pets.other" required>
+                      <select class="form-control input-lg" ng-model="profile.pets.other">
                           <option value="">None</option>
-                          <option value="0">0</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3+">3+</option>
@@ -265,18 +262,18 @@
            <div class="form-group">
                <label class="col-sm-7 control-label">Household Income Level</label>
                <div class="col-sm-5">
-                  <input class="form-control input-lg" type="text" ng-model="profile.financial.incomeLevel">
+                  <input class="form-control input-lg" type="text" ng-model="profile.financial.incomeLevel" required ui-money-mask="0">
                </div>
            </div>
        </div>
-       <div class="col-sm-6">
+       <!--div class="col-sm-6">
            <div class="form-group">
                <label class="col-sm-6 control-label">Other Income</label>
                <div class="col-sm-6">
-                  <input class="form-control input-lg" type="text" ng-model="profile.financial.otherIncome">
+                  <input class="form-control input-lg" type="text" ng-model="profile.financial.otherIncome" required ui-money-mask="0">
                </div>
            </div>
-       </div>
+       </div-->
    </div>
    <div class="row">
        <div class="col-sm-6">

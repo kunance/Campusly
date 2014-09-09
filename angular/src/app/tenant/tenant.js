@@ -266,6 +266,11 @@ angular.module('myApp.tenant', ['ngRoute'])
        var shouter= shout($scope),
            shoutUpload= shout($scope,'shoutUpload');
 
+       var states= $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+
+       $scope.statesPattern= '/^('+states.join('|')+')$/'
+
+
        $scope.proofSelected= function ($files,profile)
        {
             console.log($files);
@@ -349,15 +354,45 @@ angular.module('myApp.tenant', ['ngRoute'])
           _.rm(profile.financial.proofsOfIncome,file);
        };
 
-       $scope.save= function ()
+       $scope.save= function (profile)
        {
+           $scope.showErrors= false;
+
+           if ($scope.profileForm.$invalid)
+           {
+              $scope.showErrors= true;
+
+              shouter
+              ({
+                    content: 'Please correct the highlighted fields on page 1 and 2',
+                    type: 'danger'
+              });
+
+              return;
+           } 
+
+           if (!profile.financial||!profile.financial.proofsOfIncome||profile.financial.proofsOfIncome.length<1)
+           {
+              $scope.showErrors= true;
+
+              shouter
+              ({
+                    content: 'Please upload at least one proof of income',
+                    type: 'danger'
+              });
+
+              return;
+           }
+
            shouter
            ({
                 content: 'Saving your profile...',
                 type: 'info'
            });
 
-           $rootScope.profile.$save()
+           profile.completedOnBoarding= true;
+
+           profile.$save()
            .then(function ()
            {
                 shouter

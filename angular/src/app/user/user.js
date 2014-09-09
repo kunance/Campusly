@@ -194,6 +194,9 @@ angular.module('myApp.user', ['ngRoute'])
             else if (!$scope.data.pass) {
                 $scope.err = 'Please enter a password';
             }
+            else if ($scope.data.pass.length<8) {
+                $scope.err = 'The password should be at least 8 characters long';
+            }
             else if (!$scope.data.firstName) {
                 $scope.err = 'Please enter first name';
             }
