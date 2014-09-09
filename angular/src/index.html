@@ -33,7 +33,7 @@
     <div id="main-wrapper">
         <div id="main">
             <div id="main-header" ng-show="secondaryNav||banner.content">
-                <ng-include src="secondaryNav"></ng-include>
+                <ng-include src="secondaryNav" ng-show="profile"></ng-include>
                 <ng-include src="'nav/partials/banner.tpl.html'"></ng-include>
             </div>
             <div id="main-inner">
