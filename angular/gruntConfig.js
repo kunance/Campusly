@@ -88,7 +88,8 @@ module.exports = {
             //'vendor/famous-angular/dist/famous-angular.js',
             'vendor/angular-uuid4/angular-uuid4.js',
             'vendor/async/lib/async.js',
-            'vendor/angular-input-masks/releases/masks.min.js'
+            'vendor/angular-input-masks/releases/masks.min.js',
+            'vendor/angular-ui-utils/ui-utils.min.js'
         ],
         css: [],
         assets: [

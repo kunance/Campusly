@@ -490,6 +490,20 @@ angular.module('myApp.owner', ['ngRoute'])
 
        $scope.save= function ()
        {
+           $scope.showErrors= false;
+
+           if ($scope.profileForm.$invalid)
+           {
+              $scope.showErrors= true;
+
+              TopBannerChannel.setBanner({
+                  content: 'There was an error saving your profile',
+                  contentClass: 'danger'
+              });
+
+              return;
+           } 
+
            $rootScope.profile.$save()
            .then(function ()
            {

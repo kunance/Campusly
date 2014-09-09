@@ -23,7 +23,8 @@ angular.module('myApp', [
         'angularFileUpload',
  //       'famous.angular',
         'uuid4',
-        'ui.utils.masks'
+        'ui.utils.masks',
+        'ui.mask'
     ])
 
     .config
