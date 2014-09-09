@@ -279,6 +279,8 @@ angular.module('myApp.owner', ['ngRoute'])
 
                     $rootScope.profile.$save().then(function ()
                     {
+                        $rootScope.addedPropertyId= property.$id;
+
                         shouter
                         ({
                             content: 'Property saved!',
