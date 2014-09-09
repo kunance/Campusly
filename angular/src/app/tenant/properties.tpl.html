@@ -10,7 +10,12 @@
         </div>
     </div>
 
-    <h1 ng-show="watchlist.length">My Watchlist</h1>
+    <h1>My Watchlist</h1>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <h6 ng-hide="watchlist.length">Please add a property to watchlist.</h6>    
+        </div>
+    </div>
 
     <div class="row properties bottom-buffer-xl">
         <div class="col-sm-3 top-buffer-lg" ng-repeat="property in watchlist | loadProperty">
