@@ -424,7 +424,7 @@ angular.module('myApp.tenant', ['ngRoute'])
      rentedProfile(function (profile)
      {
          $scope.gotProfile= true;
-         watchlist= $scope.watchlist= tenantService.watchlist(profile.$id);
+         watchlist= $scope.watchlist= profile ? tenantService.watchlist(profile.$id) : [];
      });
 
      var inWatchlist= $scope.inWatchlist= function (property)
@@ -578,6 +578,14 @@ angular.module('myApp.tenant', ['ngRoute'])
                         contentClass: 'success'
                     });
             });
+     };
+
+     $scope.open = function($event)
+     {
+         $event.preventDefault();
+         $event.stopPropagation();
+  
+         $scope.opened= true;
      };
 }])
 

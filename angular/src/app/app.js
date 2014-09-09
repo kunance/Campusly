@@ -167,6 +167,9 @@ angular.module('myApp', [
  
             // called with a JavaScript Date object when picked from the datepicker
             ngModelController.$parsers.push(function (viewValue) {
+
+                if (!viewValue) return;
+
                 // undo the timezone adjustment we did during the formatting
                 viewValue.setMinutes(viewValue.getMinutes() - viewValue.getTimezoneOffset());
                 // we just want a local date in ISO format
