@@ -1,8 +1,9 @@
 <div class="row" style="margin-top: 30px;">
-  <div class="col-sm-6">
+  <div class="col-sm-7">
     <div class="property-detail-overview-item">
         <strong>Security Deposit:</strong>
-        <span>{{property.securityDeposit | nvl}}</span>
+        <span ng-hide="property.securitySameAsRent">{{property.securityDeposit | rentCurrency}}</span>
+        <span ng-show="property.securitySameAsRent">Same As Rent</span>
     </div>
     <div class="property-detail-overview-item">
         <strong>Pet Deposit:</strong>
@@ -10,23 +11,28 @@
     </div>
     <div class="property-detail-overview-item">
         <strong>Pets:</strong>
+        <span ng-hide="property.pets.allowDogs||property.pets.allowCats||property.pets.allowOther">None</span>
         <span ng-show="property.pets.allowDogs">Dogs</span>
         <span ng-show="property.pets.allowCats">Cats</span>
         <span ng-show="property.pets.allowOther">{{property.pets.other}}</span>
     </div>
   </div>
-  <div class="col-sm-6">
+  <div class="col-sm-5">
     <div class="property-detail-overview-item">
-        <strong>Rooms:</strong>
-        <span>{{property.rooms | nvl}}</span>
+        <strong>Bedrooms:</strong>
+        <span>{{property.bedrooms}}</span>
     </div>
     <div class="property-detail-overview-item">
         <strong>Baths:</strong>
-        <span>{{property.baths | nvl}}</span>
+        <span>{{property.bathrooms}}</span>
     </div>
     <div class="property-detail-overview-item">
         <strong>Parking:</strong>
-        <span>{{property.garages | nvl}}</span>
+        <span>{{property.parking}}</span>
+    </div>
+    <div class="property-detail-overview-item">
+        <strong>Area:</strong>
+        <span>{{property.area | nvl}} sq.ft.</span>
     </div>
   </div>
 </div>

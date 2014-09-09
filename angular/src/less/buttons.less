@@ -80,6 +80,45 @@
   background-color: #51b65b ;
 }
 
+.btn-rented-danger.active {
+  color: rgba(255, 255, 255, 0.75);
+}
+.btn-rented-danger {
+  color: #ffffff;
+  font-size: 18px;
+  padding: 8px 18px;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #ff6353;
+  background-image: -moz-linear-gradient(top, #ff503f, #ff7e72);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ff503f), to(#ff7e72));
+  background-image: -webkit-linear-gradient(top, #ff503f, #ff7e72);
+  background-image: -o-linear-gradient(top, #ff503f, #ff7e72);
+  background-image: linear-gradient(to bottom, #ff503f, #ff7e72);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff503f', endColorstr='#ffff7e72', GradientType=0);
+  border-color: #ff7e72 #ff7e72 #ff3925;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #ff7e72;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.btn-rented-danger:hover,
+.btn-rented-danger:focus,
+.btn-rented-danger:active,
+.btn-rented-danger.active,
+.btn-rented-danger.disabled,
+.btn-rented-danger[disabled] {
+  color: #ffffff;
+  background-color: #ff7e72;
+  *background-color: #ff6759;
+}
+.btn-rented-danger:active,
+.btn-rented-danger.active {
+  background-color: #ff503f ;
+}
+
+
 .button-container {
  position: relative;
 }

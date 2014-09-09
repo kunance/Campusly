@@ -1,8 +1,8 @@
-<form method="post" class="form-horizontal" ng-controller="OwnerPropertyCtrl">
+<form method="post" name="propertyForm" class="form-horizontal" ng-controller="OwnerPropertyCtrl">
 
     <div class="buttons" ng-show="add">
-        <a href="#/owners/add-property/2" class="next pull-right" style="padding-left: 20px;">Next</a>
-        <button type="button" class="btn btn-rented pull-right" style="margin-right: 10px" ng-click="save(property)">Save</button>
+        <button type="button" class="btn btn-rented" style="margin-right: 10px" ng-click="save(property)">Save</button>
+        <a href="#/owners/add-property/2" class="next" style="padding-left: 20px;">Next</a>
     </div>
 
     <h1 style="margin-top: 0px;" ng-show="add">Property {{propertyNo}}</h1>
@@ -11,8 +11,18 @@
         <div class="row" style="min-height: 210px;">
             <div class="col-sm-12 text-center box-bottom">
                 <div class="buttons">
-                    <button type="button" class="btn btn-rented" ng-click="remove(property)">Remove</button>
-                    <button type="button" class="btn btn-rented" ng-click="save(property)">Save</button>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-rented" ng-click="remove(property)">Remove</button>
+                            <button type="button" class="btn btn-rented" ng-click="save(property)">Save</button>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col-sm-12 text-right">
+                            <button type="button" class="btn btn-rented-success" ng-click="property.disabled= true" ng-hide="property.disabled">Enabled</button>
+                            <button type="button" class="btn btn-rented-danger" ng-click="property.disabled= false" ng-show="property.disabled">Disabled</button>
+                        </div>
+                    </div>
                 </div>
 
                 <h1>{{property.address.street}}</h1>
@@ -78,6 +88,98 @@
 
     </fieldset>
 
+    <fieldset>
+       <legend>Property Details</legend>
+
+       <div class="row">
+
+           <div class="col-sm-4">
+               <div class="form-group">
+                   <label class="col-sm-7 control-label">Bedrooms</label>
+                   <div class="col-sm-5">
+                      <select class="form-control input-lg" ng-model="property.bedrooms" required>
+                          <option value="">Select...</option>
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                      </select>
+                   </div>
+               </div>
+           </div>
+           <div class="col-sm-4">
+               <div class="form-group">
+                   <label class="col-sm-7 control-label">Bathrooms</label>
+                   <div class="col-sm-5">
+                      <select class="form-control input-lg" ng-model="property.bathrooms" required>
+                          <option value="">Select...</option>
+                          <option value="0">0</option>
+                          <option value="0.5">0.5</option>
+                          <option value="1">1</option>
+                          <option value="1.5">1.5</option>
+                          <option value="2">2</option>
+                          <option value="2.5">2.5</option>
+                          <option value="3">3</option>
+                          <option value="3.5">3.5</option>
+                          <option value="4">4</option>
+                          <option value="4.5">4.5</option>
+                          <option value="5">5</option>
+                          <option value="5.5">5.5</option>
+                          <option value="6">6</option>
+                          <option value="6.5">6.5</option>
+                      </select>
+                   </div>
+               </div>
+           </div>
+           <div class="col-sm-4">
+               <div class="form-group">
+                   <label class="col-sm-7 control-label">Parking</label>
+                   <div class="col-sm-5">
+                      <select class="form-control input-lg" ng-model="property.parking" required>
+                          <option value="">Select...</option>
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                      </select>
+                   </div>
+               </div>
+           </div>
+
+       </div>
+
+       <div class="row">
+
+           <div class="col-sm-4">
+               <div class="form-group">
+                   <label class="col-sm-7 control-label">Area <sub>(sq.ft.)</sub></label>
+                   <div class="col-sm-5">
+                      <input class="form-control input-lg" type="number" ng-model="property.area">
+                   </div>
+               </div>
+           </div>
+
+       </div>
+
+
+       <div class="row">
+          <div class="col-sm-12">
+              <div class="form-group">
+                  <label class="col-sm-8 control-label">Description</label>
+              </div>
+          </div>
+       </div>
+       <div class="row">
+          <div class="col-sm-12">
+             <textarea class="form-control" ng-model="property.description" rows="10"></textarea>
+          </div>
+       </div>
+    </fieldset>
+
     <fieldset class="fieldset-required">
         <legend>Pricing</legend>
 
@@ -90,7 +192,23 @@
                       <input class="form-control input-lg" type="number" ng-model="property.targetRent">
                    </div>
                </div>
+               <div class="form-group" ng-hide="property.securitySameAsRent">
+                   <label class="col-sm-8 control-label">Security Deposit</label>
+                   <div class="col-sm-4">
+                      <input class="form-control input-lg" type="number" ng-model="property.securityDeposit">
+                   </div>
+               </div>
+               <div class="form-group">
+                   <div class="col-sm-12">
+                     <div class="checkbox">
+                        <label class="control-label">
+                          <input type="checkbox" ng-model="property.dynamicPricing"> Enable Dynamic Pricing
+                        </label>
+                     </div>
+                   </div>
+               </div>
            </div>
+
            <div class="col-sm-6">
                <div class="form-group">
                    <label class="col-sm-4 control-label">Lease Term</label>
@@ -119,11 +237,11 @@
                </div>
            </div>
            <div class="col-sm-6">
-               <div class="form-group">
+               <div class="form-group" ng-show="property.dynamicPricing">
                    <div class="col-sm-12">
                      <div class="checkbox">
                         <label class="control-label">
-                          <input type="checkbox" ng-model="property.dynamicPricing"> Enable Dynamic Pricing
+                          <input type="checkbox" ng-model="property.securitySameAsRent"> Security Deposit Same As Rent
                         </label>
                      </div>
                    </div>
@@ -144,12 +262,6 @@
                    <label class="col-sm-6 control-label">Available Date</label>
                    <div class="col-sm-6">
                       <input class="form-control input-lg" type="date" ng-model="property.availableDate">
-                   </div>
-               </div>
-               <div class="form-group">
-                   <label class="col-sm-6 control-label">Security Deposit</label>
-                   <div class="col-sm-6">
-                      <input class="form-control input-lg" type="number" ng-model="property.securityDeposit">
                    </div>
                </div>
                <div class="form-group" ng-show="property.pets.allowDogs || property.pets.allowCats || property.pets.allowOther">
@@ -192,17 +304,6 @@
 
          </div>
     </fieldset>
-
-    <fieldset>
-       <legend>Description</legend>
-
-       <div class="row">
-          <div class="col-sm-12">
-             <textarea class="form-control" ng-model="property.description" rows="10"></textarea>
-          </div>
-       </div>
-    </fieldset>
-
 
     <fieldset>
        <legend>Upload Image</legend>

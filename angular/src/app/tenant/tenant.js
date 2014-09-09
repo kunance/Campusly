@@ -426,6 +426,8 @@ angular.module('myApp.tenant', ['ngRoute'])
 
      var checkForMyOffer= _.debounce(function ()
          {
+             if (!$rootScope.profile) return;
+
              var mine= _.findWhere($scope.property.bids,{ userId: $rootScope.profile.$id });
 
              if (mine)

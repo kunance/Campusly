@@ -35,7 +35,10 @@
                 <h4 style="font-size: 24px; font-weight: bold;">{{property.tenant.firstName}} {{property.tenant.lastName}}</h4>
                 <p><strong>Rent:</strong> {{property.bestOffer.rentAmount | rentCurrency}}</p>
                 <p><strong>Phone:</strong> {{property.tenant.phone}}</p>
-                <p><strong>Pets:</strong> Ok</p>
+                <p>
+                     <strong>Pets:</strong>
+                     <span ng-repeat="tenant in [property.tenant]" ng-include="'owner/partials/tenant-pets.tpl.html'"></span>
+                </p>
               </div>
             </div>
         </div>

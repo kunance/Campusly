@@ -2,8 +2,9 @@
 
 <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #666666; line-height: 2;" ng-show="property.bestOffer.accepted&&!property.tenant">Rental Pending</p>
 <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #51b65b; line-height: 2;" ng-show="property.tenant">Rented</p>
+<p class="badge top-buffer-sm" style="font-size: 18px; background-color: #ff503f; line-height: 2;" ng-show="!property.tenant&&property.disabled">Unavailable</p>
 
-<form ng-hide="property.bestOffer.accepted" method="post" class="form-horizontal" ng-submit="makeAnOffer(bid,property)" ng-controller="TenantBidCtrl" ng-show="gotProfile">
+<form ng-hide="property.bestOffer.accepted||property.disabled" method="post" class="form-horizontal" ng-submit="makeAnOffer(bid,property)" ng-controller="TenantBidCtrl" ng-show="gotProfile">
     <div class="form-group">
         <label class="col-sm-4 control-label">Price</label>
         <div class="col-sm-8">

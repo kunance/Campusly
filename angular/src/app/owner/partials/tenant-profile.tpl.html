@@ -68,7 +68,9 @@
 
            <div class="form-group">
                <label class="control-label">Pets</label>
-               <span class="field-text">{{tenant.pets}}</span>
+               <span class="field-text">
+                 <ng-include src="'owner/partials/tenant-pets.tpl.html'"></ng-include>
+               </span>
            </div>
 
            <div class="form-group">

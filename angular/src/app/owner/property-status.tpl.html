@@ -38,7 +38,10 @@
                 <p><strong>Rent:</strong> {{bid.rentAmount | rentCurrency}}</p>
                 <p><strong>Move-In Date:</strong> {{bid.moveInDate | date:'MMM dd'}}</p>
                 <p><strong>Phone:</strong> {{bid.user.phone}}</p>
-                <p><strong>Pets:</strong> Ok</p>
+                <p>
+                    <strong>Pets:</strong> 
+                    <span ng-repeat="tenant in [bid.user]" ng-include="'owner/partials/tenant-pets.tpl.html'"></span>
+                </p>
               </div>
             </div>
             <div class="row top-buffer-sm">

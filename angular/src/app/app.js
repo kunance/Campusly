@@ -109,7 +109,7 @@ angular.module('myApp', [
     .filter('nvl', function()
     {
         return function(value, replacer) {
-          return value ? value : (replacer ? replacer : '--');
+          return value ? value : (replacer ? replacer : 'N/A');
         };
     })
 
