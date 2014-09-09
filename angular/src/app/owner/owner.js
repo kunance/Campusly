@@ -111,6 +111,10 @@ angular.module('myApp.owner', ['ngRoute'])
 
        $scope.shout= $scope.shout || {};
 
+       var states= $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+
+       $scope.statesPattern= '/^('+states.join('|')+')$/'
+
        var shouter= shout($scope),
            shoutUpload= shout($scope,'shoutUpload');
 
@@ -198,8 +202,47 @@ angular.module('myApp.owner', ['ngRoute'])
             handleErrors);
        };
 
+       $scope.minDate= new Date();
+
+       $scope.open = function($event)
+       {
+           $event.preventDefault();
+           $event.stopPropagation();
+
+           $scope.opened= true;
+       };
+
        $scope.save= function (property)
        {
+           $scope.showErrors= false;
+
+           if ($scope.propertyForm.$invalid)
+           {
+              $scope.showErrors= true;
+
+              shouter
+              ({
+                    content: 'Please correct the highlighted fields',
+                    type: 'danger'
+              });
+
+              return;
+           } 
+
+           if (!property.pictures||property.pictures.length<1)
+           {
+              $scope.showErrors= true;
+
+              shouter
+              ({
+                    content: 'Please upload at least one picture of your property',
+                    type: 'danger'
+              });
+
+              return;
+           }
+
+
            var handleErrors= function (err)
            {
                 console.log(err);
