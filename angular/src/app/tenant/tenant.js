@@ -89,7 +89,6 @@ angular.module('myApp.tenant', ['ngRoute'])
 
 .controller('OnBoardingCtrl', ['$scope','$rootScope','$location','$routeParams',
     function($scope,$rootScope,$location,$routeParams) {
-       $rootScope.secondaryNav= 'tenant/partials/menu-tenant.tpl.html';
 
        var steps= ['tenant/partials/verify-profile.tpl.html',
                    'tenant/partials/credit-check.tpl.html',
@@ -103,7 +102,6 @@ angular.module('myApp.tenant', ['ngRoute'])
 
 .controller('TenantDashboardCtrl', ['$scope','$rootScope','$timeout','$modal','rentedProfile','tenantService','propertyService',
     function($scope,$rootScope,$timeout,$modal,rentedProfile,tenantService,propertyService) {
-       $rootScope.secondaryNav= 'tenant/partials/menu-tenant.tpl.html';
 
        $scope.time= new Date();
 
@@ -203,7 +201,6 @@ angular.module('myApp.tenant', ['ngRoute'])
 
 .controller('TenantPropertiesCtrl', ['$scope','$rootScope','$routeParams','rentedProfile','tenantService','propertyService','TopBannerChannel',
     function($scope,$rootScope,$routeParams,rentedProfile,tenantService,propertyService,TopBannerChannel) {
-       $rootScope.secondaryNav= 'tenant/partials/menu-tenant.tpl.html';
 
       var watchlist;
 
@@ -258,7 +255,6 @@ angular.module('myApp.tenant', ['ngRoute'])
 
 .controller('TenantProfileCtrl', ['$scope','$rootScope','$routeParams','TopBannerChannel','MAX_UPLOAD_SIZE','MAX_PROOF_INCOME','shout','loginService',
     function($scope,$rootScope,$routeParams,TopBannerChannel,MAX_UPLOAD_SIZE,MAX_PROOF_INCOME,shout,loginService) {
-       $rootScope.secondaryNav= 'tenant/partials/menu-tenant.tpl.html';
 
        $scope.password= {};
        $scope.page= 1;

@@ -41,6 +41,7 @@ angular.module('myApp.user', ['ngRoute'])
 
                     $rootScope.profile.$loaded(function (profile)
                     {
+                         $rootScope.secondaryNav= profile.type+'/partials/menu-'+profile.type+'.tpl.html';
                          profile.authEmail= user.email;
                          $rootScope.$broadcast('rented:profile',profile);
                     });

@@ -86,7 +86,6 @@ angular.module('myApp.owner', ['ngRoute'])
 .controller('AddPropertyCtrl', ['$scope','$rootScope','$routeParams','propertyService','shout','rentedProfile',
     'MAX_PROPERTY_PICTURES','MAX_UPLOAD_SIZE',
     function($scope,$rootScope,$routeParams,propertyService,shout, rentedProfile, MAX_PROPERTY_PICTURES, MAX_UPLOAD_SIZE) {
-       $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
        var steps= [
                      'owner/partials/property-form.tpl.html',
@@ -107,7 +106,6 @@ angular.module('myApp.owner', ['ngRoute'])
 .controller('OwnerPropertyCtrl', ['$scope','$rootScope','$routeParams','$location','propertyService','shout',
     'MAX_PROPERTY_PICTURES','MAX_UPLOAD_SIZE','TopBannerChannel','IMAGE_COMPRESSION',
     function($scope,$rootScope,$routeParams,$location,propertyService,shout, MAX_PROPERTY_PICTURES, MAX_UPLOAD_SIZE, TopBannerChannel,IMAGE_COMPRESSION) {
-       $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
        $scope.shout= $scope.shout || {};
 
@@ -311,7 +309,6 @@ angular.module('myApp.owner', ['ngRoute'])
 
 .controller('OwnerDashboardCtrl', ['$scope','$rootScope','$timeout','rentedProfile','propertyService',
     function($scope,$rootScope,$timeout,rentedProfile,propertyService) {
-       $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
        $scope.time= new Date();
 
@@ -407,7 +404,6 @@ angular.module('myApp.owner', ['ngRoute'])
 
 .controller('OwnerPropertiesCtrl', ['$scope','$rootScope','$routeParams','rentedProfile',
     function($scope,$rootScope,$routeParams,rentedProfile,firebaseRef) {
-        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
         rentedProfile(function (profile)
         {
@@ -421,7 +417,6 @@ angular.module('myApp.owner', ['ngRoute'])
 
 .controller('OwnerTenantsCtrl', ['$scope','$rootScope','$routeParams','$modal','rentedProfile',
     function($scope,$rootScope,$routeParams,$modal,rentedProfile) {
-       $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
        $scope.monthlyIncome= 0;
 
@@ -467,7 +462,6 @@ angular.module('myApp.owner', ['ngRoute'])
 
 .controller('OwnerProfileCtrl', ['$scope','$rootScope','$routeParams','TopBannerChannel','MAX_UPLOAD_SIZE','loginService',
     function($scope,$rootScope,$routeParams,TopBannerChannel,MAX_UPLOAD_SIZE,loginService) {
-       $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
        var states= $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
 
@@ -587,7 +581,6 @@ angular.module('myApp.owner', ['ngRoute'])
 
 .controller('OwnerPropertyStatusCtrl', ['$scope','$rootScope','$routeParams','$modal','propertyService','TopBannerChannel',
     function($scope,$rootScope,$routeParams,$modal,propertyService,TopBannerChannel) {
-       $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
        $scope.property= propertyService.fetchWithBids($routeParams.id);
 
