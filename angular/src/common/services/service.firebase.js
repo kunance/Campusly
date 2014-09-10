@@ -8,13 +8,21 @@ angular.module('service.firebase', ['firebase'])
            async.forEachSeries(values,
            function (value,done)
            {
+                var errorHandler= function (err)
+                    {
+                        if (err)
+                          done({ err: err, value: value });
+                        else 
+                          done();
+                    };
+
                 if (value.remove)
-                  firebaseRef.apply(null,value.remove).remove(done);
+                  firebaseRef.apply(null,value.remove).remove(errorHandler);
                 else
                 if (value.priority)
-                  firebaseRef.apply(null,value.path).setWithPriority(value.data,value.priority,done);
+                  firebaseRef.apply(null,value.path).setWithPriority(value.data,value.priority,errorHandler);
                 else
-                  firebaseRef.apply(null,value.path).set(value.data,done);
+                  firebaseRef.apply(null,value.path).set(value.data,errorHandler);
            },
            cb); 
         };

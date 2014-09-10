@@ -114,7 +114,7 @@ angular.module('service.property', ['service.firebase'])
                              .$inst().$ref().on('value',function (data)
                              {
                                   identity ? identity.tenant= data.val() : property.tenant= data.val();
-                             });
+                             },function (err) { console.log('error reading','users/'+val.tenant,err); });
                     },200));
                 }
 
@@ -165,7 +165,7 @@ angular.module('service.property', ['service.firebase'])
 
                               if (user)
                                 user.$id= data.name();
-                         });
+                         },function (err) { console.log('error reading','users/'+val.userId,err); });
                  });
 
                 return bid;
@@ -197,14 +197,19 @@ angular.module('service.property', ['service.firebase'])
                       },
                       { 
                          path: ['bids', 'user', userId, propertyId],
-                         data: true,
+                         data: bidId,
                          priority: -time // move up the last bidded property property
                       },
                       { 
                          path: ['bids', 'user', ownerId, propertyId],
-                         data: true,
+                         data: bidId,
                          priority: -time // move up the last bidded property property
                       },
+                      { 
+                         path: ['bids', 'security', ownerId, userId],
+                         data: bidId,
+                         priority: -time // move up the last bidded property property
+                      }
                 ],
                 function (err)
                 {
@@ -257,6 +262,9 @@ angular.module('service.property', ['service.firebase'])
                       },
                       { 
                          remove: ['bids', 'user', bid.userId, property.$id]
+                      },
+                      { 
+                         remove: ['bids', 'user', property.owner, bid.userId, bid.$id]
                       }
                 ],
                 cb);
