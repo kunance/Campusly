@@ -16,7 +16,7 @@
         <li ng-show-auth="['logout','error']"><a ng-class="isActive('/register')" href="#/register">Register</a>
         </li>
         <li class="menuparent" ng-show-auth="'login'">
-               <a class="nav-user" href="#/{{profile.type}}s/profile">
+               <a class="nav-user" href="#/{{profile.type}}s/profile" style="padding-top: 16px">
                    <img style="height: 34px; width: auto;" ng-src="{{profile.picture || 'assets/img/avatar-small.png'}}" class="img-circle">
                    {{profile.firstName}} {{profile.lastName}}
                </a>
