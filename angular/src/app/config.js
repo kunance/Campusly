@@ -20,6 +20,8 @@ angular.module('myApp.config', [])
 
     .constant('MAX_PROOF_INCOME', 5)
 
+    .constant('IMAGE_COMPRESSION', 30) // in percent
+
 //you can use this one to try out a demo of the seed
 //   .constant('FBURL', 'https://angularfire-seed.firebaseio.com');
 

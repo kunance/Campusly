@@ -105,8 +105,8 @@ angular.module('myApp.owner', ['ngRoute'])
 }])
 
 .controller('OwnerPropertyCtrl', ['$scope','$rootScope','$routeParams','$location','propertyService','shout',
-    'MAX_PROPERTY_PICTURES','MAX_UPLOAD_SIZE','TopBannerChannel',
-    function($scope,$rootScope,$routeParams,$location,propertyService,shout, MAX_PROPERTY_PICTURES, MAX_UPLOAD_SIZE, TopBannerChannel) {
+    'MAX_PROPERTY_PICTURES','MAX_UPLOAD_SIZE','TopBannerChannel','IMAGE_COMPRESSION',
+    function($scope,$rootScope,$routeParams,$location,propertyService,shout, MAX_PROPERTY_PICTURES, MAX_UPLOAD_SIZE, TopBannerChannel,IMAGE_COMPRESSION) {
        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
        $scope.shout= $scope.shout || {};
@@ -161,7 +161,15 @@ angular.module('myApp.owner', ['ngRoute'])
                 
                 fileReader.onload= function (e)
                 {
-                    $scope.property.pictures.push(e.target.result);
+                    var img = new Image,
+                        target= img.src = e.target.result;
+
+                    if (_.contains(['image/png','image/jpeg','image/jpg'],file.type))
+                      target= jic.compress(img,IMAGE_COMPRESSION,file.type.indexOf('image/png')==0 ? 'png' : 'jpg').src;
+
+                    console.log(target.length<img.src.length,img.src.length,target.length);
+
+                    $scope.property.pictures.push(target);
                     $scope.$apply();
                 };
                 
