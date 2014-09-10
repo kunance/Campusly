@@ -192,7 +192,7 @@
                       <input class="form-control input-lg" type="text" ng-model="property.targetRent" placeholder="US Dollars" ui-money-mask="0" required>
                    </div>
                </div>
-               <div class="form-group" ng-hide="property.securitySameAsRent">
+               <div class="form-group">
                    <label class="col-sm-8 control-label">Security Deposit</label>
                    <div class="col-sm-4">
                       <input class="form-control input-lg" type="text" ng-model="property.securityDeposit" placeholder="US Dollars" ui-money-mask="0" ng-required="!property.securitySameAsRent">
@@ -233,17 +233,6 @@
                    <label class="col-sm-8 control-label">Lowest Acceptable Offer</label>
                    <div class="col-sm-4">
                       <input class="form-control input-lg" type="text" ng-model="property.lowestRent" placeholder="US Dollars" ui-money-mask="0" ng-required="property.dynamicPricing">
-                   </div>
-               </div>
-           </div>
-           <div class="col-sm-6">
-               <div class="form-group" ng-show="property.dynamicPricing">
-                   <div class="col-sm-12">
-                     <div class="checkbox">
-                        <label class="control-label">
-                          <input type="checkbox" ng-model="property.securitySameAsRent"> Security Deposit Same As Rent
-                        </label>
-                     </div>
                    </div>
                </div>
            </div>
