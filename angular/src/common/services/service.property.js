@@ -109,7 +109,7 @@ angular.module('service.property', ['service.firebase'])
                     {
                           var val= data.val();
 
-                          if (val&&$rootScope.profile)
+                          if (val&&$rootScope.profile&&typeof val.tenant=='string')
                           syncData('users/'+val.tenant).$asObject() 
                              .$inst().$ref().on('value',function (data)
                              {
