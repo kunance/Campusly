@@ -322,7 +322,7 @@
            <div class="alert alert-{{shoutUpload.type}} text-center vertical-buffer" ng-show="shoutUpload">{{shoutUpload.content}}</div>
 
            <div class="col-sm-3 top-buffer" ng-repeat="picture in property.pictures">
-               <img ng-src="{{picture}}" class="img-responsive" ng-click="removePicture(picture)">
+               <img ng-src="{{picture}}" class="img-responsive" ng-click="removePicture(picture)" style="width: 300px">
            </div>
 
        </div>
