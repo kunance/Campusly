@@ -457,8 +457,8 @@ angular.module('myApp.owner', ['ngRoute'])
     }
 ])
 
-.controller('OwnerProfileCtrl', ['$scope','$rootScope','$routeParams','TopBannerChannel','MAX_UPLOAD_SIZE',
-    function($scope,$rootScope,$routeParams,TopBannerChannel,MAX_UPLOAD_SIZE) {
+.controller('OwnerProfileCtrl', ['$scope','$rootScope','$routeParams','TopBannerChannel','MAX_UPLOAD_SIZE','loginService',
+    function($scope,$rootScope,$routeParams,TopBannerChannel,MAX_UPLOAD_SIZE,loginService) {
        $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
        var states= $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
@@ -494,7 +494,7 @@ angular.module('myApp.owner', ['ngRoute'])
             fileReader.readAsDataURL(file);
        };
 
-       $scope.save= function ()
+       $scope.save= function (profile,password)
        {
            $scope.showErrors= false;
 
@@ -503,18 +503,62 @@ angular.module('myApp.owner', ['ngRoute'])
               $scope.showErrors= true;
 
               TopBannerChannel.setBanner({
-                  content: 'There was an error saving your profile',
+                  content: 'Please correct the highlighted fields',
                   contentClass: 'danger'
               });
 
               return;
            } 
 
-           $rootScope.profile.$save()
+           password= password || {};
+
+           if (password.change&&password.change!=password.confirmChange)
+           {
+              TopBannerChannel.setBanner({
+                  content: 'The password and confirm does not match',
+                  contentClass: 'danger'
+              });
+
+              return;
+           }
+
+           profile.$save()
            .then(function ()
            {
-                console.log('qui');
+                if (password.change)
+                  loginService.changePassword
+                  ({
+                      email: profile.authEmail,
 
+                      oldpass: password.old,
+
+                      newpass: password.change,
+
+                      confirm: password.confirmChange,
+
+                      callback: function (err)
+                      {
+                              if (err)
+                              {
+                                    console.log(err);
+
+                                    TopBannerChannel.setBanner({
+                                        content: 'There was an error changing your password',
+                                        contentClass: 'danger'
+                                    });
+                              }
+                              else
+                              {
+                                $scope.password= null;
+
+                                TopBannerChannel.setBanner({
+                                    content: 'Profile saved!',
+                                    contentClass: 'success'
+                                });
+                              }
+                      }
+                   });
+                else
                 TopBannerChannel.setBanner({
                     content: 'Profile saved!',
                     contentClass: 'success'

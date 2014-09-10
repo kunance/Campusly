@@ -1,7 +1,7 @@
 <div class="container">
     <form name="profileForm" method="post" class="form-horizontal bottom-buffer-xl" ng-class="{ 'show-errors': showErrors }">
 
-        <button type="button" class="btn btn-rented pull-right" ng-click="save()">Save</button>
+        <button type="button" class="btn btn-rented pull-right" ng-click="save(profile,password)">Save</button>
 
         <h1>My Profile</h1>
 
@@ -115,6 +115,47 @@
 
         </fieldset>
 
+        <fieldset>
+           <legend>Change Password</legend>
+
+            <p class="text-lg bottom-buffer">Please leave those fields blank if you don't intend to change your password</p>
+
+            <div class="row">
+
+               <div class="col-sm-6">
+                   <div class="form-group">
+                       <label class="col-sm-5 control-label">Old Password</label>
+                       <div class="col-sm-7">
+                          <input class="form-control input-lg" type="password" ng-model="password.old" ng-required="password.change">
+                          <p class="help-block">Or temporary</p>
+                       </div>
+                   </div>
+               </div>
+
+            </div>
+
+            <div class="row">
+
+               <div class="col-sm-6">
+                   <div class="form-group">
+                       <label class="col-sm-5 control-label">New Password</label>
+                       <div class="col-sm-7">
+                          <input class="form-control input-lg" type="password" ng-model="password.change" ng-minlength="8">
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6">
+                   <div class="form-group">
+                       <label class="col-sm-5 control-label">Confirm</label>
+                       <div class="col-sm-7">
+                          <input class="form-control input-lg" type="password" ng-model="password.confirmChange" ng-minlength="8" ng-required="password.change">
+                       </div>
+                   </div>
+               </div>
+
+            </div>
+        </fieldset>
+           
     </form>
 
 </div>
