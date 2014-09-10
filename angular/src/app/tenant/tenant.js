@@ -254,8 +254,8 @@ angular.module('myApp.tenant', ['ngRoute'])
     }
 ])
 
-.controller('TenantProfileCtrl', ['$scope','$rootScope','$routeParams','TopBannerChannel','MAX_UPLOAD_SIZE','MAX_PROOF_INCOME','shout','loginService',
-    function($scope,$rootScope,$routeParams,TopBannerChannel,MAX_UPLOAD_SIZE,MAX_PROOF_INCOME,shout,loginService) {
+.controller('TenantProfileCtrl', ['$scope','$rootScope','$routeParams','TopBannerChannel','MAX_UPLOAD_SIZE','MAX_PROOF_INCOME','shout','loginService','compressImage',
+    function($scope,$rootScope,$routeParams,TopBannerChannel,MAX_UPLOAD_SIZE,MAX_PROOF_INCOME,shout,loginService,compressImage) {
 
        $scope.password= {};
        $scope.page= 1;
@@ -338,7 +338,7 @@ angular.module('myApp.tenant', ['ngRoute'])
             
             fileReader.onload= function (e)
             {
-                $rootScope.profile.picture= e.target.result;
+                $rootScope.profile.picture= compressImage(file.type,e.target.result);
                 $scope.$apply();
             };
             
