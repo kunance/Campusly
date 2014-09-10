@@ -63,8 +63,8 @@
            <h5 ng-show="watchlist.length">Watching</h5>
            <div class="row watching" ng-repeat="property in watchlist | loadProperty" ng-show="property.address">
                <div class="col-sm-2">
-                  <span class="badge" style="background-color: #89d4cd;">1 <sub>offer(s)</sub></span> 
-                  <!--span class="badge" style="background-color: #ff503f;">33<sub>%</sub></span --> 
+                  <span class="badge" ng-hide="property.bids.length" style="background-color: #89d4cd;">{{property.bids.length}} <sub>offer(s)</sub></span> 
+                  <span class="badge" ng-show="property.bids.length" style="background-color: #ff503f;">{{property.bids.length}} <sub>offer(s)</sub></span> 
                </div>
                <div class="col-sm-8">
                   <p>{{property.address.street}}, {{property.address.city}}, {{property.address.state}} {{property.address.zip}}</p> 
@@ -111,13 +111,13 @@
                          <img pl-holder="holder.js/60x60" class="img-circle">
                       </div>
                       <div class="col-sm-8 nopad-left">
-                        <p style="color: #6c757e">Don Lee</p>
-                        <p style="color: #9d9d9d">San Francisco</p>
+                        <p style="color: #6c757e">Lou Chan</p>
+                        <p style="color: #9d9d9d">Burlingame</p>
                       </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <p>Looking to rent your SF property...<a style="color: inherit; font-weight: bold;" href="#">Read More</a></p>
+                            <p>Is your rental still available...<a style="color: inherit; font-weight: bold;" href="#">Read More</a></p>
                         </div>
                     </div>
                 </div>
@@ -130,8 +130,8 @@
                          <img pl-holder="holder.js/60x60" class="img-circle">
                       </div>
                       <div class="col-sm-8 nopad-left">
-                        <p style="color: #6c757e">Don Lee</p>
-                        <p style="color: #9d9d9d">San Francisco</p>
+                        <p style="color: #6c757e">Jackie Robinson</p>
+                        <p style="color: #9d9d9d">San Mateo</p>
                       </div>
                     </div>
                     <div class="row">

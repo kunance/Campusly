@@ -368,7 +368,8 @@ angular.module('myApp.tenant', ['ngRoute'])
               return;
            } 
 
-           if (!profile.financial||!profile.financial.proofsOfIncome||profile.financial.proofsOfIncome.length<1)
+         //Commented out the proof of income requirement for now
+         /*  if (!profile.financial||!profile.financial.proofsOfIncome||profile.financial.proofsOfIncome.length<1)
            {
               $scope.showErrors= true;
 
@@ -379,7 +380,7 @@ angular.module('myApp.tenant', ['ngRoute'])
               });
 
               return;
-           }
+           }*/
 
            password= password || {};
 
