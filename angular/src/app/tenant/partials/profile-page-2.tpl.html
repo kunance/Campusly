@@ -129,7 +129,7 @@
            <div class="form-group">
                <label class="col-sm-4 control-label">Year</label>
                <div class="col-sm-8">
-                  <input class="form-control input-lg" type="number" ng-model="profile.vehicle.year">
+                  <input class="form-control input-lg" type="text" ng-model="profile.vehicle.year" ui-number-mask="0">
                </div>
            </div>
        </div>
@@ -151,9 +151,9 @@
        </div>
        <div class="col-sm-3">
            <div class="form-group">
-               <label class="col-sm-4 control-label">Vehicle</label>
+               <label class="col-sm-4 control-label">License</label>
                <div class="col-sm-8">
-                  <input class="form-control input-lg" type="text" ng-model="profile.vehicle.vehicle">
+                  <input class="form-control input-lg" type="text" ng-model="profile.vehicle.license">
                </div>
            </div>
        </div>
