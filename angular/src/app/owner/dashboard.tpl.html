@@ -51,7 +51,7 @@
     <h5 class="top-buffer">Recent Offers</h5>
 
     <div class="row properties">
-        <div class="col-sm-3" ng-repeat="property in properties | loadProperty">
+        <div class="col-sm-3" ng-repeat="property in properties | loadProperty:'':'lazy'">
             <ng-include src="'owner/partials/property-teaser.tpl.html'"></ng-include>
             <a href="#/owners/properties/{{property.$id}}/status" class="btn btn-rented">View Offers</a>
         </div>
@@ -204,6 +204,6 @@
     </div>
 
 </div>
-<div ng-repeat="property in props | loadProperty" style="display: none;">
+<div ng-repeat="property in props | loadProperty:'':'lazy'" style="display: none;">
 {{intercept(property)}}
 </div>

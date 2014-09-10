@@ -2,7 +2,7 @@
     <h1>Active Properties</h1>
 
     <div class="row properties">
-        <div class="col-sm-3 top-buffer-lg" ng-repeat="property in properties | loadProperty:'active'">
+        <div class="col-sm-3 top-buffer-lg" ng-repeat="property in properties | loadProperty:'active':'lazy'">
             <ng-include src="'owner/partials/property-teaser.tpl.html'"></ng-include>
             <a href="#/property/{{property.$id}}" class="btn btn-rented">View Property</a>
             <a href="#/owners/properties/{{property.$id}}/status" class="btn btn-rented">View Offers</a>
@@ -13,7 +13,7 @@
     <h1>Tenant Occupied</h1>
 
     <div class="row properties bottom-buffer-xl">
-        <div class="col-sm-3 top-buffer-lg" ng-repeat="property in properties | loadProperty:'rented'">
+        <div class="col-sm-3 top-buffer-lg" ng-repeat="property in properties | loadProperty:'rented':'lazy'">
             <img ng-src="{{property.pictures[0]}}" class="img-responsive">
             <p><strong>Rent:</strong> {{property.bestOffer.rentAmount | rentCurrency}}</p>
             <p><strong>Tenant:</strong> {{property.tenant.firstName}} {{property.tenant.lastName}}</p>

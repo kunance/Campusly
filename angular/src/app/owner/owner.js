@@ -202,7 +202,7 @@ angular.module('myApp.owner', ['ngRoute'])
             handleErrors);
        };
 
-       $scope.minDate= new Date();
+       $scope.minDate= moment().format('yyyy-MM-dd');
 
        $scope.open = function($event)
        {
@@ -398,7 +398,7 @@ angular.module('myApp.owner', ['ngRoute'])
 ])
 
 .controller('OwnerPropertiesCtrl', ['$scope','$rootScope','$routeParams','rentedProfile',
-    function($scope,$rootScope,$routeParams,rentedProfile) {
+    function($scope,$rootScope,$routeParams,rentedProfile,firebaseRef) {
         $rootScope.secondaryNav= 'owner/partials/menu-owner.tpl.html';
 
         rentedProfile(function (profile)

@@ -179,3 +179,44 @@
    </div>
 
 </fieldset>
+
+<fieldset>
+   <legend>Change Password</legend>
+
+    <p class="text-lg bottom-buffer">Please leave those fields blank if you don't intend to change your password</p>
+
+    <div class="row">
+
+       <div class="col-sm-6">
+           <div class="form-group">
+               <label class="col-sm-5 control-label">Old Password</label>
+               <div class="col-sm-7">
+                  <input class="form-control input-lg" type="password" ng-model="password.old" ng-required="password.change">
+                  <p class="help-block">Or temporary</p>
+               </div>
+           </div>
+       </div>
+
+    </div>
+
+    <div class="row">
+
+       <div class="col-sm-6">
+           <div class="form-group">
+               <label class="col-sm-5 control-label">New Password</label>
+               <div class="col-sm-7">
+                  <input class="form-control input-lg" type="password" ng-model="password.change" ng-minlength="8">
+               </div>
+           </div>
+       </div>
+       <div class="col-sm-6">
+           <div class="form-group">
+               <label class="col-sm-5 control-label">Confirm</label>
+               <div class="col-sm-7">
+                  <input class="form-control input-lg" type="password" ng-model="password.confirmChange" ng-minlength="8" ng-required="password.change">
+               </div>
+           </div>
+       </div>
+
+    </div>
+</fieldset>

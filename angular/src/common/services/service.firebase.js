@@ -1,6 +1,6 @@
 angular.module('service.firebase', ['firebase'])
 
-    // a simple utility to create references to Firebase paths
+    // a simple utility to create write batches to Firebase paths
     .factory('firebaseBatch', ['firebaseRef', function (firebaseRef)
     {
         return function (values,cb)

@@ -25,19 +25,20 @@ angular.module('service.property', ['service.firebase'])
     .filter('loadProperty', ['propertyService',
     function (propertyService)
     {
-        return function (ids,state)
+        return function (ids,state,lazy)
         {
             ids= ids || [];
+            lazy= !!lazy;
 
             ids.forEach(function (property,idx)
             {
                 if (_.keys(property).length>1) return;
 
-                var obj= propertyService.fetchWithBids(property.$id,property);
+                var obj= propertyService.fetchWithBids(property.$id,property,lazy);
                     
                 obj.$inst().$ref().on('value',function (data)
                 { 
-                    _.extend(property,data.val());
+                    _.extend(property,lazy ? { pictures: [data.val()] } : data.val());
                 });
             });
 
@@ -66,34 +67,55 @@ angular.module('service.property', ['service.firebase'])
             featured: function(){
                 return syncData('featured').$asArray();
             },
-            fetch: function(propertyId,identity){
-                var that= this,
+            fetch: function(propertyId,identity,lazy){
+                var that= this, property;
+
+                if (lazy)
+                {
+                    property= syncData('properties/'+propertyId+'/pictures/0').$asObject();
+
+                    syncData('properties/'+propertyId+'/tenant').$asObject()
+                    .$inst().$ref().on('value',_.debounce(function (data)
+                    {
+                        var id= data.val();
+
+                        if (id&&$rootScope.profile&&typeof id=='string')
+                        {
+                            var tenant= syncData('users/'+id).$asObject();
+
+                            identity ? identity.tenant= tenant: property.tenant= tenant;
+                        }
+                    },200));
+                }
+                else
+                {
                     property= syncData('properties/'+propertyId).$asObject();
 
-                property.$inst().$ref().on('value',_.debounce(function (data)
-                {
-                      var val= data.val();
+                    property.$inst().$ref().on('value',_.debounce(function (data)
+                    {
+                          var val= data.val();
 
-                      if (val&&$rootScope.profile)
-                      syncData('users/'+val.tenant).$asObject() 
-                         .$inst().$ref().on('value',function (data)
-                         {
-                              val.tenant= identity ? identity.tenant= data.val() : property.tenant= data.val();
-                         });
-                },200));
+                          if (val&&$rootScope.profile)
+                          syncData('users/'+val.tenant).$asObject() 
+                             .$inst().$ref().on('value',function (data)
+                             {
+                                  identity ? identity.tenant= data.val() : property.tenant= data.val();
+                             });
+                    },200));
+                }
 
                 return property;
             },
-            fetchWithBids: function(propertyId,identity){
+            fetchWithBids: function(propertyId,identity,lazy){
                 var that= this,
-                    property= that.fetch(propertyId,identity);
+                    property= that.fetch(propertyId,identity,lazy);
 
                 property.$inst().$ref().on('value',_.debounce(function (data)
                 {
                     var val= data.val();
 
                     if (val)
-                    that.fetchBids(data.name(),3)
+                    that.fetchBids(propertyId,3)
                     .$inst().$ref().on('value',function (data)
                     {
                          var bids= _.map(_.keys(data.val()),function ($id) { return { $id: $id }; });

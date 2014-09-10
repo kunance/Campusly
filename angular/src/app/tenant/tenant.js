@@ -41,10 +41,10 @@ angular.module('myApp.tenant', ['ngRoute'])
             {
                  if (profile&&profile.type=='tenant')
                  {
-                     if (profile.completedOnBoarding)
+                 //    if (profile.completedOnBoarding)
                        return '/tenants/dashboard';
-                     else
-                       return '/tenants/on-boarding';
+                  //   else
+                  //     return '/tenants/on-boarding';
                  }
             }
         });
@@ -256,10 +256,11 @@ angular.module('myApp.tenant', ['ngRoute'])
     }
 ])
 
-.controller('TenantProfileCtrl', ['$scope','$rootScope','$routeParams','TopBannerChannel','MAX_UPLOAD_SIZE','MAX_PROOF_INCOME','shout',
-    function($scope,$rootScope,$routeParams,TopBannerChannel,MAX_UPLOAD_SIZE,MAX_PROOF_INCOME,shout) {
+.controller('TenantProfileCtrl', ['$scope','$rootScope','$routeParams','TopBannerChannel','MAX_UPLOAD_SIZE','MAX_PROOF_INCOME','shout','loginService',
+    function($scope,$rootScope,$routeParams,TopBannerChannel,MAX_UPLOAD_SIZE,MAX_PROOF_INCOME,shout,loginService) {
        $rootScope.secondaryNav= 'tenant/partials/menu-tenant.tpl.html';
 
+       $scope.password= {};
        $scope.page= 1;
        $scope.shout= $scope.shout || {};
 
@@ -354,7 +355,7 @@ angular.module('myApp.tenant', ['ngRoute'])
           _.rm(profile.financial.proofsOfIncome,file);
        };
 
-       $scope.save= function (profile)
+       $scope.save= function (profile,password)
        {
            $scope.showErrors= false;
 
@@ -384,6 +385,18 @@ angular.module('myApp.tenant', ['ngRoute'])
               return;
            }
 
+           password= password || {};
+
+           if (password.change&&password.change!=password.confirmChange)
+           {
+              TopBannerChannel.setBanner({
+                  content: 'The password and confirm does not match',
+                  contentClass: 'danger'
+              });
+
+              return;
+           }
+
            shouter
            ({
                 content: 'Saving your profile...',
@@ -395,6 +408,42 @@ angular.module('myApp.tenant', ['ngRoute'])
            profile.$save()
            .then(function ()
            {
+                if (password.change)
+                  loginService.changePassword
+                  ({
+                      email: profile.authEmail,
+
+                      oldpass: password.old,
+
+                      newpass: password.change,
+
+                      confirm: password.confirmChange,
+
+                      callback: function (err)
+                      {
+                              if (err)
+                              {
+                                    console.log(err);
+
+                                    shouter
+                                    ({
+                                        content: 'There was an error changing your password',
+                                        type: 'danger'
+                                    });
+                              }
+                              else
+                              {
+                                password.old = password.change = password.confirmChange= null;
+
+                                shouter
+                                ({
+                                    content: 'Profile saved!',
+                                    type: 'success'
+                                });
+                              }
+                      }
+                   });
+                else
                 shouter
                 ({
                     content: 'Profile saved!',

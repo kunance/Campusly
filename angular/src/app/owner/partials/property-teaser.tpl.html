@@ -5,6 +5,6 @@
 <p>
     <strong ng-hide="property.bestOffer.accepted">Best offer:</strong> 
     <strong ng-show="property.bestOffer.accepted">Accepted offer:</strong> 
-    {{property.bestOffer.rentAmount | rentCurrency }}
+    {{property.bestOffer.rentAmount | rentCurrency | nvl }}
 </p>
-<p><strong>Move In Date:</strong> {{property.bestOffer.moveInDate | date:'MMM dd'}}</p>
+<p><strong>Move In Date:</strong> {{property.bestOffer.moveInDate | date:'MMM dd' | nvl}}</p>
