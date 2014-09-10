@@ -15,6 +15,7 @@ angular.module('myApp', [
         'myApp.property',
         'myApp.tenant',
         'myApp.owner',
+        'myApp.admin',
         'module.simpleLoginTools',
         'module.routeSecurity',
         'ui.bootstrap',

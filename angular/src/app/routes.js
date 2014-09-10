@@ -20,6 +20,9 @@ angular.module('myApp.routes', ['ngRoute'])
                 else
                 if (profile.type=='tenant')
                   return '/tenants';
+                else
+                if (profile.type=='admin')
+                  return '/admin/credit-check';
             }
         });
 
