@@ -145,9 +145,10 @@ angular.module('myApp.tenant', ['ngRoute'])
 
        rentedProfile(function (profile)
        {
-             tenantService.watchlist(profile.$id).$loaded(function (wl)
+             tenantService.watchlist(profile.$id)
+                .$inst().$ref().on('value',function (data)
              {
-                 $scope.watchlist= _.map(_.pluck(wl,'$value'),function ($id) { return { $id: $id }; });
+                 $scope.watchlist= _.map(data.val(),function ($id) { return { $id: $id }; });
              });
 
              propertyService.fetchRecentlyBiddedProperties(profile.$id,4)

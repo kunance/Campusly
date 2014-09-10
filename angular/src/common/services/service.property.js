@@ -94,6 +94,12 @@ angular.module('service.property', ['service.firebase'])
 
                         identity ? identity.owner= id: property.owner= id;
                     },200));
+
+                    syncData('properties/'+propertyId+'/address').$asObject()
+                    .$inst().$ref().on('value',_.debounce(function (data)
+                    {
+                        identity ? identity.address= data.val(): property.address= data.val();
+                    },200));
                 }
                 else
                 {
