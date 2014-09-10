@@ -185,4 +185,22 @@ angular.module('myApp', [
                 return dt;
             });
         }
+    }])
+
+    .factory('compressImage',['IMAGE_COMPRESSION',function (IMAGE_COMPRESSION)
+    {
+          return function (type,dataURL)
+          {
+               var img = new Image;
+               img.src = dataURL;
+
+               console.log('compressImage before',type,dataURL.length);
+
+               if (_.contains(['image/png','image/jpeg','image/jpg'],type))
+                 dataURL= jic.compress(img,IMAGE_COMPRESSION,type.indexOf('image/png')==0 ? 'png' : 'jpg').src;
+
+               console.log('compressImage after',type,dataURL.length);
+
+               return dataURL;
+          };
     }]);
