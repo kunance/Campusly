@@ -202,7 +202,7 @@ angular.module('myApp.owner', ['ngRoute'])
             handleErrors);
        };
 
-       $scope.minDate= moment().format('yyyy-MM-dd');
+       $scope.minDate= moment().format('YYYY-MM-DD');
 
        $scope.open = function($event)
        {
