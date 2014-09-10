@@ -44,6 +44,8 @@ angular.module('myApp.admin', ['ngRoute'])
            });
 
            $scope.tenants.reverse();
+
+           _.defer(function () { $scope.$apply(); });
         });
 
         $scope.select= function (user)

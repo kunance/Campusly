@@ -687,8 +687,8 @@ angular.module('myApp.owner', ['ngRoute'])
     }
 ])
 
-.controller('OwnerBidCtrl', ['$scope','$rootScope','$routeParams','$modalInstance','propertyService','bid','property',
-    function($scope,$rootScope,$routeParams,$modalInstance,propertyService,bid,property) 
+.controller('OwnerBidCtrl', ['$scope','$rootScope','$routeParams','$modalInstance','propertyService','bid','property','syncData',
+    function($scope,$rootScope,$routeParams,$modalInstance,propertyService,bid,property,syncData) 
 {
   $scope.property= property;
   $scope.bid= bid;
@@ -697,10 +697,17 @@ angular.module('myApp.owner', ['ngRoute'])
   {
      $modalInstance.dismiss('cancel');
   };
+
+  syncData('credit/'+bid.userId).$asObject()
+   .$inst().$ref().on('value',function (data)
+   {
+       $scope.bid.user.creditReport= data.val();
+   });
+
 }])
 
-.controller('OwnerTenantCtrl', ['$scope','$modalInstance','property',
-    function($scope,$modalInstance,property) 
+.controller('OwnerTenantCtrl', ['$scope','$modalInstance','property','syncData',
+    function($scope,$modalInstance,property,syncData) 
 {
   $scope.property= property;
 
@@ -708,4 +715,10 @@ angular.module('myApp.owner', ['ngRoute'])
   {
      $modalInstance.dismiss('cancel');
   };
+
+  syncData('credit/'+property.tenant.$id).$asObject()
+   .$inst().$ref().on('value',function (data)
+   {
+       $scope.property.tenant.creditReport= data.val();
+   });
 }]);

@@ -111,7 +111,8 @@
     <div class="col-sm-6">
         <fieldset class="readonly">
           <legend>Credit Report</legend>
-          <a href="" download="" class="field-text">Download <i class="glyphicon glyphicon-cloud-download"></i></a>
+          <a href="{{tenant.creditReport}}" download="{{tenant.firstName}}-{{tenant.lastName}}-credit-report.pdf" class="field-text" ng-show="tenant.creditReport">Download <i class="glyphicon glyphicon-cloud-download"></i></a>
+          <span class="field-text" ng-hide="tenant.creditReport">We are verifying this tenant...</span>
         </fieldset>
     </div>
 </div>
