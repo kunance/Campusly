@@ -18,6 +18,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-ngmin');
     grunt.loadNpmTasks('grunt-html2js');
     grunt.loadNpmTasks('grunt-ftp-deploy');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
 
     /**
      * Load in our build configuration file.
@@ -226,6 +227,25 @@ module.exports = function (grunt) {
                             expand: true
                         }
                     ]
+                }
+            },
+
+            /**
+             * Optimize images!
+             */
+
+            imagemin: {
+                compile: {
+                    options: {
+                       optimizationLevel: 3,
+                    },
+
+                    files: [{
+                            expand: true,                  // Enable dynamic expansion
+                            cwd: 'src/',                   // Src matches are relative to this path
+                            src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+                            dest: 'dist/'                  // Destination path prefix
+                          }]
                 }
             },
 
@@ -586,7 +606,7 @@ module.exports = function (grunt) {
      * minifying your code.
      */
     grunt.registerTask('compile', [
-        'less:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'uglify', 'index:compile'
+        'less:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'uglify', 'imagemin:compile', 'index:compile'
     ]);
 
     /**
