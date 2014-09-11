@@ -2,23 +2,12 @@
     "rules": {
         ".read": false,
         ".write": false,
-        "syncedValue": {
-            ".read": true,
-            ".write": true,
-            ".validate": "newData.isString() && newData.val().length <= 100"
-        },
         "users": {
             "$user": {
-                ".read": "auth.uid != null",
-                ".write": "auth.uid === $user && (!newData.exists() || newData.hasChildren())"
+                ".read": "auth.uid === $user || root.child('bids/security/'+auth.uid+'/'+$user).exists() || root.child('bids/security/'+$user+'/'+auth.uid).exists()",
+                ".write": "auth.uid === $user && (!newData.exists() || (newData.hasChildren() && newData.child('type').val() === data.child('type').val() ))"
             }
         },     
-        "references":{
-            "$reference" : {
-              ".read" : true,
-              ".write" : true
-            }
-        },
         "featured": {
                ".read": true,
                ".write": false
@@ -27,25 +16,63 @@
                ".read":true,
                "$property":{
                    ".read":true,
-                   ".write":true
+                   ".write" : "auth.uid === data.child('owner').val() || (root.child('users/'+auth.uid+'/type').val() === 'owner' && !data.exists())"
                }
         },
         "bids" : {
             ".read": true,
-            "$bid": {
+            "all": {
                 ".read": true,
-                ".write" : true
+
+                "$bidId": {
+                   ".read": true,
+                   ".write" : "auth.uid === data.child('userId').val() || (root.child('users/'+auth.uid+'/type').val() === 'tenant' && !data.exists()) || (root.child('users/'+auth.uid+'/type').val() === 'owner' && data.exists() && newData.exists())"
+                }
+            },
+            "property": {
+                ".read": true,
+                "$propertyId": {
+                   ".read": true,
+                   "$bidId": {
+                      ".read": true,
+                      ".write" : "auth.uid === root.child('bids/all/'+$bidId+'/userId').val() || (root.child('users/'+auth.uid+'/type').val() === 'owner' && root.child('properties/'+$propertyId+'/owner').val() === auth.uid)"
+                   }
+                }
+            },
+            "user": {
+                ".read": true,
+                "$userId": {
+                   ".read": true,
+                   "$propertyId": {
+                      ".read": true,
+                      ".write" : true
+                   }
+                }
+            },
+            "security": {
+                ".read": true,
+                "$ownerId": {
+                   ".read": true,
+                   "$tenantId": {
+                      ".read": true,
+                      ".write" : "(auth.uid === $tenantId && auth.uid === root.child('bids/all/'+newData.val()+'/userId').val()) || (root.child('users/'+auth.uid+'/type').val() === 'owner' && auth.uid === $ownerId)"
+                   }
+                }
             }
         },
         "watchlist":{
             "$user" : {
               ".read" : true,
-              ".write" : true,
-              "$property": {
-                  ".read" : true,
-                  ".write" : true
-              }
+              ".write" : "auth.uid === $user"
+            }
+        },
+        "credit":{
+            ".write" : "root.child('users/'+auth.uid+'/type').val() === 'admin'",
+            "$user" : {
+              ".read" : "root.child('users/'+auth.uid+'/type').val() === 'admin' || root.child('bids/security/'+auth.uid+'/'+$user).exists()"
             }
         }
     }
 }
+
+
