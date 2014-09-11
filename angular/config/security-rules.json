@@ -5,7 +5,8 @@
         "users": {
             "$user": {
                 ".read": "auth.uid === $user || root.child('bids/security/'+auth.uid+'/'+$user).exists() || root.child('bids/security/'+$user+'/'+auth.uid).exists()",
-                ".write": "auth.uid === $user && (!newData.exists() || (newData.hasChildren() && newData.child('type').val() === data.child('type').val() ))"
+                ".write": "auth.uid === $user && ((!data.exists() && newData.child('type').val()!='admin') || (data.exists() && newData.hasChildren() && newData.child('type').val() === data.child('type').val() ))"
+
             }
         },     
         "featured": {
