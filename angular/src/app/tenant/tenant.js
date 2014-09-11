@@ -1,22 +1,39 @@
 'use strict';
 
 
-     var unwatch= function (property,watchlist,TopBannerChannel,mailService,$rootScope)
+     var unwatch= function (property,watchlist,TopBannerChannel,mailService,$rootScope,propertyService)
      {
            var record= _.findWhere(watchlist,{ $value: property.$id });
 
            watchlist.$remove(record)
            .then(function ()
            {
-                TopBannerChannel.setBanner
-                ({
-                    content: 'Property removed from your watchlist!',
-                    type: 'success'
-                });
+                propertyService.removeWatcher(property.$id,$rootScope.profile.$id,
+                function (err)
+                {
+                    if (err)
+                    {
+                        conole.log(err);
 
-                mailService.send($rootScope.profile.$id,
-                                 'tenant-property-unwatch',
-                                 { propertyname: property.address.street });
+                        TopBannerChannel.setBanner
+                        ({
+                            content: 'There was an error removing the property from your watchlist',
+                            type: 'danger'
+                        });
+                    }
+                    else
+                    {
+                        TopBannerChannel.setBanner
+                        ({
+                            content: 'Property removed from your watchlist!',
+                            type: 'success'
+                        });
+
+                        mailService.send($rootScope.profile.$id,
+                                         'tenant-property-unwatch',
+                                         { propertyname: property.address.street });
+                    }
+                });
 
            },
            function (err)
@@ -227,7 +244,7 @@ angular.module('myApp.tenant', ['ngRoute'])
 
      $scope.unwatch= function (property)
      {
-         unwatch(property,watchlist,TopBannerChannel,mailService,$rootScope);
+         unwatch(property,watchlist,TopBannerChannel,mailService,$rootScope,propertyService);
      };
 
      $scope.cancelBid= function (property)
@@ -550,19 +567,36 @@ angular.module('myApp.tenant', ['ngRoute'])
                      watchlist.$add(property.$id)
                        .then(function ()
                        {
-                            TopBannerChannel.setBanner
-                            ({
-                                content: 'Property added to your watchlist!',
-                                type: 'success'
+                            propertyService.addWatcher(property.$id, $rootScope.profile.$id,
+                            function (err)
+                            {
+                                if (err)
+                                {
+                                    conole.log(err);
+
+                                    TopBannerChannel.setBanner
+                                    ({
+                                        content: 'There was an error adding the property to your watchlist',
+                                        type: 'danger'
+                                    });
+                                }
+                                else
+                                {
+                                    TopBannerChannel.setBanner
+                                    ({
+                                        content: 'Property added to your watchlist!',
+                                        type: 'success'
+                                    });
+
+                                    mailService.send(property.owner,
+                                                     'owner-property-watched',
+                                                     { propertyname: property.address.street });
+
+                                    mailService.send($rootScope.profile.$id,
+                                                     'tenant-property-watch',
+                                                     { propertyname: property.address.street });
+                                }
                             });
-
-                            mailService.send(property.owner,
-                                             'owner-property-watched',
-                                             { propertyname: property.address.street });
-
-                            mailService.send($rootScope.profile.$id,
-                                             'tenant-property-watch',
-                                             { propertyname: property.address.street });
                        },
                        function (err)
                        {
@@ -587,7 +621,7 @@ angular.module('myApp.tenant', ['ngRoute'])
 
      $scope.unwatch= function (property)
      {
-         unwatch(property,watchlist,TopBannerChannel,mailService,$rootScope);
+         unwatch(property,watchlist,TopBannerChannel,mailService,$rootScope,propertyService);
      };
 
 

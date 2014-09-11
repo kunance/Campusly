@@ -100,6 +100,12 @@ angular.module('service.property', ['service.firebase'])
                     {
                         identity ? identity.address= data.val(): property.address= data.val();
                     },200));
+
+                    syncData('watchers/'+propertyId).$asObject()
+                    .$inst().$ref().on('value',_.debounce(function (data)
+                    {
+                        identity ? identity.watchers= _.keys(data.val()) : property.watchers= _.keys(data.val());
+                    },200));
                 }
                 else
                 {
@@ -116,7 +122,14 @@ angular.module('service.property', ['service.firebase'])
                             identity ? identity.tenant= tenant: property.tenant= tenant;
                           }
 
+                          syncData('watchers/'+propertyId).$asObject()
+                           .$inst().$ref().on('value',_.debounce(function (data)
+                          {
+                                identity ? identity.watchers= _.keys(data.val()) : property.watchers= _.keys(data.val());
+                          },200));
+
                     },200));
+
                 }
 
                 return property;
@@ -344,8 +357,6 @@ angular.module('service.property', ['service.firebase'])
             },
             cancelTenantMoveIn: function (user,property,cb)
             {
-                var time= new Date().getTime();
-
                 firebaseBatch
                 ([
                       { 
@@ -353,7 +364,30 @@ angular.module('service.property', ['service.firebase'])
                       }
                 ],
                 cb);
+            },
+            addWatcher: function (propertyId,userId,cb)
+            {
+                var time= new Date().getTime();
 
+                firebaseBatch
+                ([
+                      { 
+                         path: ['watchers', propertyId, userId],
+                         data: true,
+                         priority: -time
+                      }
+                ],
+                cb);
+            },
+            removeWatcher: function (propertyId,userId,cb)
+            {
+                firebaseBatch
+                ([
+                      { 
+                         remove: ['watchers', propertyId, userId]
+                      }
+                ],
+                cb);
             },
             isActive : function(property){
                 var isActive =  false;

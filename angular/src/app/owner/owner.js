@@ -615,8 +615,13 @@ angular.module('myApp.owner', ['ngRoute'])
 
                     mailService.send(bid.user.$id,
                                      'tenant-offer-accepted',
-                                     { fname: bid.user.firstName,
-                                       propertyname: property.address.street });
+                                     { propertyname: property.address.street, propertyid: property.$id });
+
+                    mailService.send(_.difference(_.union(property.watchers,
+                                                  _.map(property.bids,function (b) { return b.userId; })),
+                                                  [bid.user.$id]),
+                                     'tenant-property-pending',
+                                     { propertyname: property.address.street, propertyid: property.$id });
                 }
             });
        };
@@ -661,10 +666,22 @@ angular.module('myApp.owner', ['ngRoute'])
                     });
                 }
                 else
+                {
                     TopBannerChannel.setBanner({
                         content: 'Tenant moved in!',
                         contentClass: 'success'
                     });
+
+                    mailService.send(bid.user.$id,
+                                     'tenant-rented',
+                                     { propertyname: property.address.street, propertyid: property.$id });
+
+                    mailService.send(_.difference(_.union(property.watchers,
+                                                  _.map(property.bids,function (b) { return b.userId; })),
+                                                  [bid.user.$id]),
+                                     'tenant-property-rented',
+                                     { propertyname: property.address.street, propertyid: property.$id });
+                }
             });
        };
 

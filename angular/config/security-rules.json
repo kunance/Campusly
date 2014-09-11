@@ -67,6 +67,15 @@
               ".write" : "auth.uid === $user"
             }
         },
+        "watchers":{
+          "$propertyId": {
+            ".read" : true,
+            "$user" : {
+              ".read" : true,
+              ".write" : "auth.uid === $user"
+            }
+          }
+        },
         "credit":{
             ".write" : "root.child('users/'+auth.uid+'/type').val() === 'admin'",
             "$user" : {

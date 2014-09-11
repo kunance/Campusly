@@ -80,15 +80,24 @@ angular.module('service.login', ['firebase', 'service.firebase'])
 
                 fetchProfile: function (id)
                 {
-                    var profile= { $id: id };
+                    var ref= firebaseRef('users',id),
+                        profile= { $id: id },
+                        extend= function (data)
+                        {
+                             _.extend(profile,data.val());
 
-                    firebaseRef('users',id).on('value',function (data)
-                    {
-                         _.extend(profile,data.val());
-                    },
+                             _.defer(function () { $rootScope.$apply() });
+                        };
+
+                    ref.on('value',extend,
                     function (err)
                     {
                         console.log('reference to users/'+id+' canceled',err);
+                    });
+
+                    $rootScope.$on('$destroy', function ()
+                    {
+                        ref.off('value',extend);
                     });
 
                     return profile;
