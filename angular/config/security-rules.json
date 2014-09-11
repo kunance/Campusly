@@ -71,6 +71,10 @@
             "$user" : {
               ".read" : "root.child('users/'+auth.uid+'/type').val() === 'admin' || root.child('bids/security/'+auth.uid+'/'+$user).exists()"
             }
+        },
+        "sendQueue": {
+            ".read": false,
+            ".write": "auth.uid != null && newData.exists()" 
         }
     }
 }

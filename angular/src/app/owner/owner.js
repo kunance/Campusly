@@ -571,8 +571,8 @@ angular.module('myApp.owner', ['ngRoute'])
     }
 ])
 
-.controller('OwnerPropertyStatusCtrl', ['$scope','$rootScope','$routeParams','$modal','propertyService','TopBannerChannel',
-    function($scope,$rootScope,$routeParams,$modal,propertyService,TopBannerChannel) {
+.controller('OwnerPropertyStatusCtrl', ['$scope','$rootScope','$routeParams','$modal','propertyService','TopBannerChannel','mailService',
+    function($scope,$rootScope,$routeParams,$modal,propertyService,TopBannerChannel,mailService) {
 
        $scope.property= propertyService.fetchWithBids($routeParams.id);
 
@@ -607,10 +607,17 @@ angular.module('myApp.owner', ['ngRoute'])
                     });
                 }
                 else
+                {
                     TopBannerChannel.setBanner({
                         content: 'Offer accepted!',
                         contentClass: 'success'
                     });
+
+                    mailService.send(bid.user.$id,
+                                     'tenant-offer-accepted',
+                                     { fname: bid.user.firstName,
+                                       propertyname: property.address.street });
+                }
             });
        };
 

@@ -9,6 +9,7 @@
         'service.changeEmail',
         'service.property',
         'service.tenant',
+        'service.mail',
         'service.banner'
     ])
     // put your services here!

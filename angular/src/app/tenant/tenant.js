@@ -1,7 +1,7 @@
 'use strict';
 
 
-     var unwatch= function (property,watchlist,TopBannerChannel)
+     var unwatch= function (property,watchlist,TopBannerChannel,mailService,$rootScope)
      {
            var record= _.findWhere(watchlist,{ $value: property.$id });
 
@@ -13,6 +13,11 @@
                     content: 'Property removed from your watchlist!',
                     type: 'success'
                 });
+
+                mailService.send($rootScope.profile.$id,
+                                 'tenant-property-unwatch',
+                                 { propertyname: property.address.street });
+
            },
            function (err)
            {
@@ -200,8 +205,8 @@ angular.module('myApp.tenant', ['ngRoute'])
     }
 ])
 
-.controller('TenantPropertiesCtrl', ['$scope','$rootScope','$routeParams','rentedProfile','tenantService','propertyService','TopBannerChannel',
-    function($scope,$rootScope,$routeParams,rentedProfile,tenantService,propertyService,TopBannerChannel) {
+.controller('TenantPropertiesCtrl', ['$scope','$rootScope','$routeParams','rentedProfile','tenantService','propertyService','TopBannerChannel','mailService',
+    function($scope,$rootScope,$routeParams,rentedProfile,tenantService,propertyService,TopBannerChannel,mailService) {
 
       var watchlist;
 
@@ -222,7 +227,7 @@ angular.module('myApp.tenant', ['ngRoute'])
 
      $scope.unwatch= function (property)
      {
-         unwatch(property,watchlist,TopBannerChannel);
+         unwatch(property,watchlist,TopBannerChannel,mailService,$rootScope);
      };
 
      $scope.cancelBid= function (property)
@@ -244,18 +249,24 @@ angular.module('myApp.tenant', ['ngRoute'])
                     });
                 }
                 else
+                {
                     TopBannerChannel.setBanner({
                         content: 'Offer retired!',
                         contentClass: 'success'
                     });
+
+                    mailService.send(property.owner,
+                                     'owner-offer-deleted',
+                                     { propertyname: property.address.street });
+                }
             });
      };
 
     }
 ])
 
-.controller('TenantProfileCtrl', ['$scope','$rootScope','$routeParams','TopBannerChannel','MAX_UPLOAD_SIZE','MAX_PROOF_INCOME','shout','loginService','compressImage',
-    function($scope,$rootScope,$routeParams,TopBannerChannel,MAX_UPLOAD_SIZE,MAX_PROOF_INCOME,shout,loginService,compressImage) {
+.controller('TenantProfileCtrl', ['$scope','$rootScope','$routeParams','TopBannerChannel','MAX_UPLOAD_SIZE','MAX_PROOF_INCOME','shout','loginService','compressImage','mailService',
+    function($scope,$rootScope,$routeParams,TopBannerChannel,MAX_UPLOAD_SIZE,MAX_PROOF_INCOME,shout,loginService,compressImage,mailService) {
 
        $scope.password= {};
        $scope.page= 1;
@@ -403,6 +414,19 @@ angular.module('myApp.tenant', ['ngRoute'])
 
            profile.completedOnBoarding= true;
 
+           var success= function ()
+               {
+                    shouter
+                    ({
+                        content: 'Profile saved!',
+                        type: 'success'
+                    });
+
+                    mailService.send(profile.$id,
+                                     'tenant-profile-updated',
+                                     { fname: profile.firstName });
+               };
+
            profile.$save()
            .then(function ()
            {
@@ -432,21 +456,14 @@ angular.module('myApp.tenant', ['ngRoute'])
                               else
                               {
                                 password.old = password.change = password.confirmChange= null;
-
-                                shouter
-                                ({
-                                    content: 'Profile saved!',
-                                    type: 'success'
-                                });
+                                
+                                success();
                               }
                       }
                    });
                 else
-                shouter
-                ({
-                    content: 'Profile saved!',
-                    type: 'success'
-                });
+                   success();
+
            },
            function (err)
            {
@@ -463,8 +480,8 @@ angular.module('myApp.tenant', ['ngRoute'])
     }
 ])
 
-.controller('TenantBidCtrl', ['$scope','$rootScope','$location','$routeParams','TopBannerChannel','tenantService','rentedProfile','propertyService',
-    function($scope,$rootScope,$location,$routeParams,TopBannerChannel,tenantService,rentedProfile,propertyService)
+.controller('TenantBidCtrl', ['$scope','$rootScope','$location','$routeParams','TopBannerChannel','tenantService','rentedProfile','propertyService','mailService',
+    function($scope,$rootScope,$location,$routeParams,TopBannerChannel,tenantService,rentedProfile,propertyService,mailService)
 {
      var watchlist;
 
@@ -538,6 +555,14 @@ angular.module('myApp.tenant', ['ngRoute'])
                                 content: 'Property added to your watchlist!',
                                 type: 'success'
                             });
+
+                            mailService.send(property.owner,
+                                             'owner-property-watched',
+                                             { propertyname: property.address.street });
+
+                            mailService.send($rootScope.profile.$id,
+                                             'tenant-property-watch',
+                                             { propertyname: property.address.street });
                        },
                        function (err)
                        {
@@ -562,7 +587,7 @@ angular.module('myApp.tenant', ['ngRoute'])
 
      $scope.unwatch= function (property)
      {
-         unwatch(property,watchlist,TopBannerChannel);
+         unwatch(property,watchlist,TopBannerChannel,mailService,$rootScope);
      };
 
 
@@ -584,11 +609,17 @@ angular.module('myApp.tenant', ['ngRoute'])
                             });
                         }
                         else
+                        {
                             TopBannerChannel.setBanner
                             ({
                                 content: 'Offer submitted!',
                                 type: 'success'
                             });
+
+                            mailService.send(property.owner,
+                                             'owner-offer-created',
+                                             { propertyname: property.address.street });
+                        }
 
                         $rootScope.$apply(); // TopBannerChannel.setBanner does not apply...
                    }); 
@@ -620,10 +651,17 @@ angular.module('myApp.tenant', ['ngRoute'])
                     });
                 }
                 else
+                {
                     TopBannerChannel.setBanner({
                         content: 'Offer changed!',
                         contentClass: 'success'
                     });
+
+                    mailService.send(property.owner,
+                                     'owner-offer-updated',
+                                     { propertyname: property.address.street });
+
+                }
             });
      };
 

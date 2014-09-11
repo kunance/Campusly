@@ -26,8 +26,8 @@ angular.module('myApp.admin', ['ngRoute'])
 
 }])
 
-.controller('CreditCheckCtrl', ['$scope','$rootScope','$location','$routeParams','firebaseRef','TopBannerChannel',
-    function($scope,$rootScope,$location,$routeParams,firebaseRef,TopBannerChannel) 
+.controller('CreditCheckCtrl', ['$scope','$rootScope','$location','$routeParams','firebaseRef','TopBannerChannel','mailService',
+    function($scope,$rootScope,$location,$routeParams,firebaseRef,TopBannerChannel,mailService) 
     {
         firebaseRef('users').on('value',function (data)
         {
@@ -95,6 +95,10 @@ angular.module('myApp.admin', ['ngRoute'])
                             });
                             $scope.creditCheck= e.target.result;
                             $scope.$apply();
+
+                            mailService.send(tenant.$id,
+                                             'tenant-credit-check-uploaded',
+                                             { fname: tenant.firstName });
                           }
                     });
 

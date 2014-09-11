@@ -162,7 +162,7 @@ angular.module('myApp.user', ['ngRoute'])
 
     }])
 
-    .controller('RegisterCtrl', ['$scope', 'loginService', '$location', '$routeParams', function ($scope, loginService, $location, $routeParams, $modalInstance) {
+    .controller('RegisterCtrl', ['$scope', 'loginService', 'mailService', '$location', '$routeParams', function ($scope, loginService, mailService, $location, $routeParams, $modalInstance) {
         $scope.data = { profile: $routeParams.profile };
 
         $scope.register = function () {
@@ -175,8 +175,15 @@ angular.module('myApp.user', ['ngRoute'])
                     else {
                         loginService.login($scope.data.email, $scope.data.pass, function (err, user) {
                             $scope.err = err ? err + '' : null;
-                            if (!err) {
-                                loginService.createProfile(user.uid,{ type: $scope.data.profile, email: user.email, firstName: $scope.data.firstName, lastName: $scope.data.lastName, phone: $scope.data.phone}, function () {
+                            if (!err) 
+                            {
+                                var profile= { type: $scope.data.profile, email: user.email, firstName: $scope.data.firstName, lastName: $scope.data.lastName, phone: $scope.data.phone };
+
+                                loginService.createProfile(user.uid, profile, function () {
+
+                                    mailService.send(user.uid,
+                                                     profile.type+'-welcome',
+                                                     { fname: profile.firstName });
 
                                     $location.path('/');
 
