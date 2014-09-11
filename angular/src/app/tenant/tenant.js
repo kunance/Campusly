@@ -590,11 +590,13 @@ angular.module('myApp.tenant', ['ngRoute'])
 
                                     mailService.send(property.owner,
                                                      'owner-property-watched',
-                                                     { propertyname: property.address.street });
+                                                     { propertyname: property.address.street,
+                                                         propertyid: property.$id });
 
                                     mailService.send($rootScope.profile.$id,
                                                      'tenant-property-watch',
-                                                     { propertyname: property.address.street });
+                                                     { propertyname: property.address.street,
+                                                         propertyid: property.$id });
                                 }
                             });
                        },
