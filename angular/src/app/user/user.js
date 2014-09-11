@@ -56,6 +56,8 @@ angular.module('myApp.user', ['ngRoute'])
                         $rootScope.profile.$destroy();
                         $rootScope.profile= null;
                     }
+
+                    $rootScope.$destroy();
              });
     }])
 

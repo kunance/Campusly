@@ -76,7 +76,23 @@ angular.module('service.login', ['firebase', 'service.firebase'])
                     }, callback);
                 },
 
-                createProfile: profileCreator
+                createProfile: profileCreator,
+
+                fetchProfile: function (id)
+                {
+                    var profile= { $id: id };
+
+                    firebaseRef('users',id).on('value',function (data)
+                    {
+                         _.extend(profile,data.val());
+                    },
+                    function (err)
+                    {
+                        console.log('reference to users/'+id+' canceled',err);
+                    });
+
+                    return profile;
+                }
 
             };
 

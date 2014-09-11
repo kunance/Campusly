@@ -55,7 +55,7 @@ angular.module('service.property', ['service.firebase'])
     }])
 
 
-    .factory('propertyService', ["$rootScope", "firebaseRef", "syncData", 'uuid4', 'firebaseBatch', function($rootScope, firebaseRef, syncData,uuid4,firebaseBatch){
+    .factory('propertyService', ["$rootScope", "firebaseRef", "syncData", 'uuid4', 'firebaseBatch', 'loginService', function($rootScope, firebaseRef, syncData,uuid4,firebaseBatch,loginService){
         return {
             create: function ()
             {
@@ -81,7 +81,7 @@ angular.module('service.property', ['service.firebase'])
 
                         if (id&&$rootScope.profile&&typeof id=='string')
                         {
-                            var tenant= syncData('users/'+id).$asObject();
+                            var tenant= loginService.fetchProfile(id);
 
                             identity ? identity.tenant= tenant: property.tenant= tenant;
                         }
@@ -110,11 +110,12 @@ angular.module('service.property', ['service.firebase'])
                           var val= data.val();
 
                           if (val&&$rootScope.profile&&typeof val.tenant=='string')
-                          syncData('users/'+val.tenant).$asObject() 
-                             .$inst().$ref().on('value',function (data)
-                             {
-                                  identity ? identity.tenant= data.val() : property.tenant= data.val();
-                             },function (err) { console.log('error reading','users/'+val.tenant,err); });
+                          {
+                            var tenant= loginService.fetchProfile(val.tenant);
+
+                            identity ? identity.tenant= tenant: property.tenant= tenant;
+                          }
+
                     },200));
                 }
 
@@ -158,14 +159,11 @@ angular.module('service.property', ['service.firebase'])
                       var val= data.val(); 
 
                       if (val&&$rootScope.profile)
-                      syncData('users/'+val.userId).$asObject() 
-                         .$inst().$ref().on('value',function (data)
-                         {
-                              var user= identity ? identity.user= data.val() : bid.user= data.val();
+                      {
+                           var user= loginService.fetchProfile(val.userId);
 
-                              if (user)
-                                user.$id= data.name();
-                         },function (err) { console.log('error reading','users/'+val.userId,err); });
+                           identity ? identity.user= user : bid.user= user;
+                      }
                  });
 
                 return bid;
@@ -216,7 +214,10 @@ angular.module('service.property', ['service.firebase'])
                      if (err)
                        cb(err);
                      else
+                     {
+                       bid.$id= bidId;
                        cb(null,bidId);
+                     }
                 });
 
             },
@@ -255,9 +256,6 @@ angular.module('service.property', ['service.firebase'])
                 firebaseBatch
                 ([
                       { 
-                         remove: ['bids', 'all', bid.$id]
-                      },
-                      { 
                          remove: ['bids', 'property', property.$id, bid.$id],
                       },
                       { 
@@ -265,6 +263,9 @@ angular.module('service.property', ['service.firebase'])
                       },
                       { 
                          remove: ['bids', 'user', property.owner, bid.userId, bid.$id]
+                      },
+                      { 
+                         remove: ['bids', 'all', bid.$id]
                       }
                 ],
                 cb);
