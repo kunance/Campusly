@@ -66,7 +66,7 @@ angular.module('myApp.tenant', ['ngRoute'])
                  //    if (profile.completedOnBoarding)
                        return '/tenants/dashboard';
                   //   else
-                  //     return '/tenants/on-boarding';
+                  //     return '/tenants/myprofile';
                  }
             }
         });
@@ -79,9 +79,9 @@ angular.module('myApp.tenant', ['ngRoute'])
                    return '/tenants'; 
             };
 
-        $routeProvider.when('/tenants/on-boarding/:step?', {
+        $routeProvider.when('/tenants/myprofile/:step?', {
             authRequired: '/register/tenant',
-            templateUrl: 'tenant/on-boarding.tpl.html',
+            templateUrl: 'tenant/myprofile.tpl.html',
             controller: 'OnBoardingCtrl',
             profileRequired: TENANTS_ONLY
         });
@@ -100,12 +100,14 @@ angular.module('myApp.tenant', ['ngRoute'])
             profileRequired: TENANTS_ONLY
         });
 
+        /* Hiding profile edit field
         $routeProvider.when('/tenants/profile', {
             authRequired: true,
             templateUrl: 'tenant/profile.tpl.html',
             controller: 'TenantProfileCtrl',
             profileRequired: TENANTS_ONLY
         });
+        */
     }
 ])
 
@@ -615,7 +617,7 @@ angular.module('myApp.tenant', ['ngRoute'])
            if (!$rootScope.profile) // logged out
            {
                 $rootScope.trackAddToWatchlist= _watch;
-                $location.path('/tenants/on-boarding');
+                $location.path('/tenants/myprofile');
            }
            else
               _watch();
@@ -664,7 +666,7 @@ angular.module('myApp.tenant', ['ngRoute'])
            if (!$rootScope.profile) // logged out
            {
                 $rootScope.trackBid= _bid;
-                $location.path('/tenants/on-boarding');
+                $location.path('/tenants/myprofile');
            }
            else
               _bid();
