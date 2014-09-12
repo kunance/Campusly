@@ -13,7 +13,7 @@ angular.module('myApp.property', ['ngRoute'])
             controller: 'PropertyDetailsCtrl'
         });
 
-        $routeProvider.when('/properties', {
+        $routeProvider.when('/tour', {
             templateUrl: 'property/list.tpl.html',
             controller: 'PropertyListCtrl'
         });
