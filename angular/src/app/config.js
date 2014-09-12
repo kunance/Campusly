@@ -11,7 +11,16 @@ angular.module('myApp.config', [])
     .constant('loginRedirectPath', '/login')
 
     // your Firebase URL goes here
-    .constant('FBURL', 'https://radiant-fire-4176.firebaseio.com')
+    .constant('FBURL', 'https://burning-fire-386.firebaseio.com')
+
+    // Firebase limit is 10MB, but lets set 5MB
+    .constant('MAX_UPLOAD_SIZE', 1024*1024*5)
+
+    .constant('MAX_PROPERTY_PICTURES', 8)
+
+    .constant('MAX_PROOF_INCOME', 5)
+
+    .constant('IMAGE_COMPRESSION', 30) // in percent
 
 //you can use this one to try out a demo of the seed
 //   .constant('FBURL', 'https://angularfire-seed.firebaseio.com');

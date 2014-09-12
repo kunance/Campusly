@@ -19,7 +19,7 @@ angular.module('myApp.user', ['ngRoute'])
             controller: 'LoginCtrl'
         });
 
-        $routeProvider.when('/register', {
+        $routeProvider.when('/register/:profile?', {
             templateUrl: 'user/register.tpl.html',
             controller: 'RegisterCtrl'
         });
@@ -31,7 +31,54 @@ angular.module('myApp.user', ['ngRoute'])
 
     }])
 
-    .controller('LoginCtrl', ['$scope', 'loginService', '$location', function ($scope, loginService, $location, $modalInstance) {
+    .run(['$rootScope', 'syncData', function ($rootScope, syncData)
+    {
+             $rootScope.$on('$firebaseSimpleLogin:login', function (e, user)
+             {
+                    console.log('user profile',user);
+
+                    $rootScope.profile= syncData('users/'+user.uid).$asObject();
+
+                    $rootScope.profile.$loaded(function (profile)
+                    {
+                         $rootScope.secondaryNav= profile.type+'/partials/menu-'+profile.type+'.tpl.html';
+                         profile.authEmail= user.email;
+                         $rootScope.$broadcast('rented:profile',profile);
+                    });
+             });
+
+             $rootScope.$on('$firebaseSimpleLogin:logout', function ()
+             {
+                    $rootScope.secondaryNav= null;
+
+                    if ($rootScope.profile)
+                    {
+                        $rootScope.profile.$destroy();
+                        $rootScope.profile= null;
+                    }
+
+                    $rootScope.$destroy();
+             });
+    }])
+
+    .factory('rentedProfile',['$rootScope',function ($rootScope)
+    {
+         return function (cb)
+         {
+             if ($rootScope.profile===null)
+               cb(null);
+             else
+             if ($rootScope.profile===undefined)
+               $rootScope.$on('rented:profile',function (e,profile)
+               {
+                  cb(profile);
+               });
+             else
+               cb($rootScope.profile);
+         };
+    }])
+
+    .controller('LoginCtrl', ['$scope', 'loginService', '$location', 'TopBannerChannel', function ($scope, loginService, $location, TopBannerChannel, $modalInstance) {
 
         $scope.data = {
             email: null,
@@ -39,7 +86,33 @@ angular.module('myApp.user', ['ngRoute'])
             confirm: null
         };
 
-        $scope.title = "Login";
+        $scope.forgetPassword= function ()
+        {
+            if (!$scope.data.email) {
+                $scope.err = 'Please enter an email addresss';
+            }
+            else {
+                TopBannerChannel.setBanner({
+                    content: 'Sending password reset email...',
+                    contentClass: 'info'
+                });
+
+                loginService.passwordReset($scope.data.email, function(error) {
+                  if (error === null)
+                    TopBannerChannel.setBanner({
+                        content: 'Password reset email sent!',
+                        contentClass: 'success'
+                    });
+                  else
+                  {
+                    console.log('Error sending password reset email:', error);
+                    $scope.err= 'An error occurred while sending the password reset email';
+                  }
+                });
+            } 
+
+            
+        };
 
         $scope.fblogin = function (cb) {
             loginService.fblogin(function (err, user) {
@@ -61,14 +134,20 @@ angular.module('myApp.user', ['ngRoute'])
             }
             else {
                 loginService.login($scope.data.email, $scope.data.pass, function (err, user) {
-                    $scope.err = err ? err + '' : null;
-                    if (!err) {
+                    if (err) {
+                      if (err.code=='INVALID_PASSWORD')
+                        $scope.err= 'The specified password is incorrect.';
+                      else
+                      if (err.code=='INVALID_USER')
+                        $scope.err= 'The specified user does not exist.';
+                      else
+                        $scope.err= err.message;
+                    }
+                    else {
                         cb && cb(user);
+
                         if ($scope.$close){
                             $scope.$close();
-                        }
-                        else {
-                            $location.path('/properties');
                         }
                     }
                 });
@@ -83,9 +162,8 @@ angular.module('myApp.user', ['ngRoute'])
 
     }])
 
-    .controller('RegisterCtrl', ['$scope', 'loginService', '$location', function ($scope, loginService, $location, $modalInstance) {
-        $scope.title = "Register";
-        $scope.data = {};
+    .controller('RegisterCtrl', ['$scope', 'loginService', 'mailService', '$location', '$routeParams', function ($scope, loginService, mailService, $location, $routeParams, $modalInstance) {
+        $scope.data = { profile: $routeParams.profile };
 
         $scope.register = function () {
             $scope.err = null;
@@ -97,13 +175,20 @@ angular.module('myApp.user', ['ngRoute'])
                     else {
                         loginService.login($scope.data.email, $scope.data.pass, function (err, user) {
                             $scope.err = err ? err + '' : null;
-                            if (!err) {
-                                loginService.createProfile(user.uid, { email: user.email, firstName: $scope.data.firstName, lastName: $scope.data.lastName, phone: $scope.data.phone}, function () {
+                            if (!err) 
+                            {
+                                var profile= { type: $scope.data.profile, email: user.email, firstName: $scope.data.firstName, lastName: $scope.data.lastName, phone: $scope.data.phone };
+
+                                loginService.createProfile(user.uid, profile, function () {
+
+                                    mailService.send(user.uid,
+                                                     profile.type+'-welcome',
+                                                     { fname: profile.firstName });
+
+                                    $location.path('/');
+
                                     if ($scope.$close) {
                                         $scope.$close();
-                                    }
-                                    else {
-                                        $location.path('/account');
                                     }
                                 });
                             }
@@ -120,8 +205,8 @@ angular.module('myApp.user', ['ngRoute'])
             else if (!$scope.data.pass) {
                 $scope.err = 'Please enter a password';
             }
-            else if ($scope.data.pass !== $scope.data.confirm) {
-                $scope.err = 'Passwords do not match';
+            else if ($scope.data.pass.length<8) {
+                $scope.err = 'The password should be at least 8 characters long';
             }
             else if (!$scope.data.firstName) {
                 $scope.err = 'Please enter first name';
@@ -131,6 +216,9 @@ angular.module('myApp.user', ['ngRoute'])
             }
             else if (!$scope.data.phone) {
                 $scope.err = 'Please enter phone number';
+            }
+            else if (!$scope.data.profile) {
+                $scope.err = 'Please select a profile';
             }
             return !$scope.err;
         }
@@ -374,7 +462,6 @@ angular.module('myApp.user', ['ngRoute'])
 
     }])
 
-    .controller('LogoutCtrl', ['$scope', 'loginService', '$location', 'TopBannerChannel', function ($scope, loginService, $location, TopBannerChannel) {
+    .controller('LogoutCtrl', ['$scope', 'loginService', '$location', '$timeout', 'TopBannerChannel', function ($scope, loginService, $location, $timeout, TopBannerChannel) {
         loginService.logout();
-        $location.path('/login');
     }]);

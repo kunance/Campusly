@@ -2,21 +2,33 @@
 
 angular.module('myApp.header', [])
 
-    .controller('HeaderCtrl', ['$scope', '$location', '$timeout', 'TopBannerChannel', function($scope, $location, $timeout, TopBannerChannel){
+    .controller('HeaderCtrl', ['$rootScope', '$location', '$timeout', 'TopBannerChannel', function($rootScope, $location, $timeout, TopBannerChannel){
 
-        $scope.isActive = function(loc){
-            if($location.path().indexOf(loc) === 0){
-                return "active";
+        $rootScope.banner = {};
+
+        var clearBanner = _.debounce(function ()
+            {
+               $rootScope.banner.content = null;
+               $rootScope.$apply();
+            },5000),
+            setBanner = function(data) {
+
+                if (data.type)
+                  data.contentClass= data.type;
+
+                _.extend($rootScope.banner,data);
+                window.scroll(0,0);
+                clearBanner(); 
+                _.defer(_.bind($rootScope.$apply,$rootScope));
+            };
+
+        TopBannerChannel.onSetBanner($rootScope, setBanner);
+
+        // toggle navbar on click
+        $(document).on('click.nav','.navbar-collapse.in',function(e) {
+            if( $(e.target).is('a') || $(e.target).is('button')) {
+                $(this).collapse('hide');
             }
-            return "";
-        };
-
-        $scope.banner = null;
-
-        var setBanner = function(data){
-            $scope.banner = data;
-        };
-
-        TopBannerChannel.onSetBanner($scope, setBanner);
+        });
 
     }]);

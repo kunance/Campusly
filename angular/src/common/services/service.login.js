@@ -1,5 +1,4 @@
 angular.module('service.login', ['firebase', 'service.firebase'])
-
     .factory('loginService', ['$rootScope', '$firebaseSimpleLogin', 'firebaseRef', 'profileCreator', '$timeout',
         function ($rootScope, $firebaseSimpleLogin, firebaseRef, profileCreator, $timeout) {
             var auth = null;
@@ -42,6 +41,13 @@ angular.module('service.login', ['firebase', 'service.firebase'])
                     auth.$logout();
                 },
 
+                passwordReset: function (email,cb) {
+                    assertAuth();
+                    auth.$sendPasswordResetEmail(email).then(function () {
+                        cb && cb(null);
+                    }, cb);
+                },
+
                 changePassword: function (opts) {
                     assertAuth();
                     var cb = opts.callback || function () {
@@ -70,7 +76,33 @@ angular.module('service.login', ['firebase', 'service.firebase'])
                     }, callback);
                 },
 
-                createProfile: profileCreator
+                createProfile: profileCreator,
+
+                fetchProfile: function (id)
+                {
+                    var ref= firebaseRef('users',id),
+                        profile= { $id: id },
+                        extend= function (data)
+                        {
+                             _.extend(profile,data.val());
+
+                             _.defer(function () { $rootScope.$apply() });
+                        };
+
+                    ref.on('value',extend,
+                    function (err)
+                    {
+                        console.log('reference to users/'+id+' canceled',err);
+                    });
+
+                    $rootScope.$on('$destroy', function ()
+                    {
+                        ref.off('value',extend);
+                    });
+
+                    return profile;
+                }
+
             };
 
             function assertAuth() {

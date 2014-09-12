@@ -1,6 +1,34 @@
 angular.module('service.firebase', ['firebase'])
 
-// a simple utility to create references to Firebase paths
+    // a simple utility to create write batches to Firebase paths
+    .factory('firebaseBatch', ['firebaseRef', function (firebaseRef)
+    {
+        return function (values,cb)
+        {
+           async.forEachSeries(values,
+           function (value,done)
+           {
+                var errorHandler= function (err)
+                    {
+                        if (err)
+                          done({ err: err, value: value });
+                        else 
+                          done();
+                    };
+
+                if (value.remove)
+                  firebaseRef.apply(null,value.remove).remove(errorHandler);
+                else
+                if (value.priority)
+                  firebaseRef.apply(null,value.path).setWithPriority(value.data,value.priority,errorHandler);
+                else
+                  firebaseRef.apply(null,value.path).set(value.data,errorHandler);
+           },
+           cb); 
+        };
+    }])
+
+    // a simple utility to create references to Firebase paths
     .factory('firebaseRef', ['Firebase', 'FBURL', function (Firebase, FBURL) {
         /**
          * @function

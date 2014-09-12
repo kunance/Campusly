@@ -1,15 +1,9 @@
-<div class="container">
-    <div class="block-content block-content-small-padding">
-        <div class="block-content-inner">
-            <div class="row">
-                <div class="col-sm-4 col-sm-offset-4">
-                    <h2 class="center">{{title}}</h2>
-                    <ng-include src="'user/partials/loginform.tpl.html'"></ng-include>
-                </div>
-            </div>
-            <!-- /.row -->
+<div class="container" ng-hide="profile">
+    <h1>Login</h1>
+
+    <div class="row">
+        <div class="col-sm-7 center">
+            <ng-include src="'user/partials/loginform.tpl.html'"></ng-include>
         </div>
-        <!-- /.block-content-inner -->
-    </div>
-    <!-- /.block-content -->
-</div><!-- /.container -->
+    </div> <!-- /.row -->
+</div> <!-- /.container -->

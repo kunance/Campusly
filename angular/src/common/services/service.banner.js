@@ -1,5 +1,30 @@
 angular.module('service.banner', [])
 
+    .factory('shout',function ()
+    {
+        return function ($scope,prop)
+        {
+            prop= prop || 'shout'; 
+
+            var clear= _.debounce(function ()
+                       {
+                           $scope[prop].content= null;
+                           $scope[prop].type= null;
+                           $scope.$apply();
+                       },10000);
+
+            return function (message)
+            {
+                 if ($scope[prop])
+                   _.extend($scope[prop],message);
+                 else
+                   $scope[prop]= message;
+
+                 clear();
+            };
+        };
+    })
+
     .service('TopBannerChannel', ['$rootScope', function ($rootScope) {
 
         var SET_TOP_BANNER = "SetTopBanner";

@@ -1,0 +1,51 @@
+<div class="header-shadow bottom-buffer-lg">
+    <div class="container">
+        <h1>My Tenants</h1>
+
+        <div class="row bottom-buffer">
+            <div class="col-sm-7 pull-right">
+                <div class="row">
+                    <div class="col-sm-offset-9 col-sm-3 counter">
+                        <p class="counter-val">{{monthlyIncome | rentCurrency}}</p>
+                        <p class="counter-desc">Monthly Income</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row bottom-buffer" ng-repeat="property in properties | loadProperty:'rented':'lazy'">
+        {{income(property)}}
+        <div class="col-sm-2 vcenter">
+           <img ng-src="{{property.pictures[0]}}" class="img-responsive">
+        </div>
+        <div class="col-sm-4 vcenter">
+           <p class="text-xl">{{property.address.street}}</p> 
+        </div>
+        <div class="col-sm-3 vcenter">
+            <div class="row">
+              <div class="col-sm-2 vcenter">
+                 <img ng-src="{{property.tenant.picture}}" class="img-circle" style="width: 60px;">
+              </div>
+              <div class="col-sm-9 vcenter" style="padding-left: 35px;">
+                <h4 style="font-size: 24px; font-weight: bold;">{{property.tenant.firstName}} {{property.tenant.lastName}}</h4>
+                <p><strong>Rent:</strong> {{property.bestOffer.rentAmount | rentCurrency}}</p>
+                <p><strong>Phone:</strong> {{property.tenant.phone}}</p>
+                <p>
+                     <strong>Pets:</strong>
+                     <span ng-repeat="tenant in [property.tenant]" ng-include="'owner/partials/tenant-pets.tpl.html'"></span>
+                </p>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-2 vcenter">
+            <button type="button" class="btn btn-rented" ng-click="tenantDetails(property)">See More</button>
+        </div>
+    </div>
+
+</div>
+

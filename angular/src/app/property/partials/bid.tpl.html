@@ -1,64 +1,46 @@
-<div class="widget">
-    <h3 class="widget-title">Name Your Rent</h3>
-    <div class="agent-small h4" style="width:100%; text-align: center; margin-bottom: 0; padding: 15px; font-weight: bold; color: #39b54a">
-        Range
-        <br/>${{property.rent}} - ${{property.rentItNow}}/mo</div>
-    <div class="widget-content" ng-show="!isActive(property)">
-        <div class="row">
-            <div class="col-sm-12 center">
-                This property is no longer accepting offers.
-            </div>
-        </div>
-    </div>
-    <div class="widget-content" ng-show="isActive(property)">
-        <h4 class="center">
-            Time left: {{countdown}}            
-        </h4>
-        <form role="form" ng-submit="placeBid()">
-            <div class="form-group">
-                <label for="rentAmountField">Rent Offer</label>
-                <input type="number" class="form-control" id="rentAmountField" name="rentAmount" placeholder="Enter rent amount" ng-model="bid.rentAmount" step="25" min="{{property.rent}}" required>
-            </div>
-            <div class="form-group">
-                <label for="moveinDateField">Your Move-in Date</label>
-                <input type="date" class="form-control" id="moveinDateField" name="moveinDate" placeholder="Move-in Date" ng-model="bid.moveInDate" min="{{property.available}}" required>
-            </div>
-            <div class="form-group">
-                <label for="leaseTermField">Lease Term</label>
-                <select id="leaseTermField" class="form-control" name="leaseTerm" ng-model="bid.leaseTerm" required>
-                    <option value="">Select</option>
-                    <option ng-repeat="(key, value) in leaseTerms" value="{{value}}">{{key}}</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Place Offer" class="btn btn-block btn-primary btn-inversed">
-            </div>
-        </form>
-    </div>
-</div>
+<h5>Make An Offer</h5>
 
-<div class="widget" ng-show="bids">
-    <h3 class="widget-title">Top Offers</h3>
-    <div class="widget-content">
-        <div class="row" ng-repeat="bid in bids | orderBy:'-rentAmount' | limitTo:3">
-            <div class="col-sm-12">
-                <h3 class="property-small-title">
-                    <div class="property-small-price">${{bid.rentAmount}}
-                        <span class="property-small-price-suffix">/ per month</span>
-                    </div>
-                </h3>
-                <!-- /.property-small-title -->
-                <div>
-                    Move-in Date: {{formatDate(bid.moveInDate)}}
-                </div>
-                <div>
-                    Lease term: {{bid.leaseTerm}} months
-                </div>
-                <div>
-                    Pets: {{bid.havePet?"Yes":"No"}}
-                </div>
+<p class="badge top-buffer-sm" style="font-size: 18px; background-color: #666666; line-height: 2;" ng-show="property.bestOffer.accepted&&!property.tenant">Rental Pending</p>
+<p class="badge top-buffer-sm" style="font-size: 18px; background-color: #51b65b; line-height: 2;" ng-show="property.tenant">Rented</p>
+<p class="badge top-buffer-sm" style="font-size: 18px; background-color: #ff503f; line-height: 2;" ng-show="!property.tenant&&property.disabled">Unavailable</p>
+
+<form ng-hide="property.bestOffer.accepted||property.disabled" method="post" class="form-horizontal" ng-submit="makeAnOffer(bid,property)" ng-controller="TenantBidCtrl" ng-show="gotProfile">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Price</label>
+        <div class="col-sm-8">
+            <input class="form-control input-lg" type="number" ng-model="bid.rentAmount" min="{{property.lowestRent}}" ng-disabled="!property.dynamicPricing||profile.type=='owner'" required autofocus>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Move-In Date</label>
+        <div class="col-sm-8">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" datepicker-popup="MM/dd/yyyy" ng-model="bid.moveInDate" is-open="opened" ng-required="true" close-text="Close" min="property.availableDate" min-date="property.availableDate" max-date="'2022-06-22'" datepicker-localdate ng-disabled="profile.type=='owner'">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-rented" ng-click="open($event)" ng-disabled="profile.type=='owner'"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
             </div>
         </div>
-        <!-- /.property-small-content -->
     </div>
-</div>
+
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Lease Terms</label>
+        <div class="col-sm-8">
+            <select class="form-control input-lg" ng-model="bid.leaseTerm" ng-options="term.months as term.desc for term in terms" ng-disabled="terms.length==1||profile.type=='owner'" required>
+              <option value="">Select...</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-xs-6 text-right">
+            <a class="btn btn-rented" ng-click="watch(property)" ng-hide="inWatchlist(property)" ng-disabled="profile.type=='owner'">Add To Watchlist</a>
+            <a class="btn btn-rented" ng-click="unwatch(property)" ng-show="inWatchlist(property)&&profile">Remove From Watchlist</a>
+        </div>
+        <div class="col-xs-6">
+            <button type="submit" class="btn btn-rented" ng-hide="bid.userId" ng-disabled="profile.type=='owner'">Make An Offer</button>
+            <button type="button" class="btn btn-rented" ng-show="bid.userId&&profile" ng-click="editMyBid(bid,property)">Edit My Offer</button>
+        </div>
+    </div>
+</form>

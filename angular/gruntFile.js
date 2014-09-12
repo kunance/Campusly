@@ -10,13 +10,15 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-conventional-changelog');
     grunt.loadNpmTasks('grunt-bump');
-    grunt.loadNpmTasks('grunt-recess');
+    //grunt.loadNpmTasks('grunt-recess');
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-ngmin');
     grunt.loadNpmTasks('grunt-html2js');
     grunt.loadNpmTasks('grunt-ftp-deploy');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
 
     /**
      * Load in our build configuration file.
@@ -115,10 +117,9 @@ module.exports = function (grunt) {
                     files: [
                         {
                             src: ['<%= vendor_files.assets %>'],
-                            dest: '<%= build_dir %>/assets/',
+                            dest: '<%= build_dir %>/',
                             cwd: '.',
-                            expand: true,
-                            flatten: true
+                            expand: true
                         }
                     ]
                 },
@@ -188,9 +189,9 @@ module.exports = function (grunt) {
                 build_css: {
                     src: [
                         '<%= vendor_files.css %>',
-                        '<%= recess.build.dest %>'
+                        '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
                     ],
-                    dest: '<%= recess.build.dest %>'
+                    dest: '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
                 },
                 /**
                  * The `compile_js` target is the concatenation of our application source
@@ -230,6 +231,25 @@ module.exports = function (grunt) {
             },
 
             /**
+             * Optimize images!
+             */
+
+            imagemin: {
+                compile: {
+                    options: {
+                       optimizationLevel: 3
+                    },
+
+                    files: [{
+                            expand: true,                  // Enable dynamic expansion
+                            cwd: 'src/',                   // Src matches are relative to this path
+                            src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+                            dest: 'dist/'                  // Destination path prefix
+                          }]
+                }
+            },
+
+            /**
              * Minify the sources!
              */
             uglify: {
@@ -246,10 +266,34 @@ module.exports = function (grunt) {
             },
 
             /**
+             * less
+             */
+            less: {
+              build: {
+                options: {
+                  paths: ['src/less','vendor/boostrap/less']
+                },
+                files: {
+                  '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.less %>'
+                }
+              },
+              compile: {
+                options: {
+                  paths: ['src/less','vendor/boostrap/less'],
+                  cleancss: true,
+                  compress: true
+                },
+                files: {
+                  '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.less %>'
+                }
+              }
+            },
+
+
+            /**
              * `recess` handles our LESS compilation and uglification automatically.
              * Only our `main.less` file is included in compilation; all other files
              * must be imported from this file.
-             */
             recess: {
                 build: {
                     src: ['<%= app_files.less %>'],
@@ -274,6 +318,7 @@ module.exports = function (grunt) {
                     }
                 }
             },
+             */
 
             /**
              * `jshint` defines the rules of our linter as well as which files we
@@ -375,7 +420,7 @@ module.exports = function (grunt) {
                         '<%= html2js.common.dest %>',
                         '<%= html2js.app.dest %>',
                         '<%= vendor_files.css %>',
-                        '<%= recess.build.dest %>'
+                        '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
                     ]
                 },
 
@@ -388,7 +433,7 @@ module.exports = function (grunt) {
                     dir: '<%= compile_dir %>',
                     src: [
                         '<%= concat.compile_js.dest %>',
-                        '<%= recess.compile.dest %>'
+                        '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
                     ]
                 }
             },
@@ -500,8 +545,9 @@ module.exports = function (grunt) {
                  */
                 less: {
                     files: ['src/**/*.less'],
-                    tasks: ['recess:build']
+                    tasks: ['less:build']
                 },
+
 
                 /**
                  * When a JavaScript unit test file changes, we only want to lint it and
@@ -550,7 +596,7 @@ module.exports = function (grunt) {
      * The `build` task gets your app ready to run for development and testing.
      */
     grunt.registerTask('build', [
-        'clean', 'html2js', 'recess:build',
+        'clean', 'html2js', 'less:build',
         'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_fonts', 'copy:build_vendor_assets',
         'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss', 'index:build'
     ]);
@@ -560,7 +606,7 @@ module.exports = function (grunt) {
      * minifying your code.
      */
     grunt.registerTask('compile', [
-        'recess:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'uglify', 'index:compile'
+        'less:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'uglify', 'imagemin:compile', 'index:compile'
     ]);
 
     /**

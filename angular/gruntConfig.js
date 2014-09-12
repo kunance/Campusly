@@ -68,28 +68,40 @@ module.exports = {
     vendor_files: {
         js: [
             'vendor/jquery/dist/jquery.js',
+            'vendor/underscore/underscore-min.js',
             'vendor/firebase/firebase.js',
             'vendor/firebase-simple-login/firebase-simple-login.js',
             'vendor/angular/angular.js',
             'vendor/angular-route/angular-route.js',
             'vendor/angular-sanitize/angular-sanitize.js',
-            'vendor/angularfire/dist/angularfire.js',
+            'vendor/angularfire/dist/angularfire.min.js',
             'vendor/angular-bootstrap/ui-bootstrap.js',
             'vendor/angular-bootstrap/ui-bootstrap-tpls.js',
             'vendor/bootstrap/dist/js/bootstrap.js',
             'vendor/moment/min/moment.min.js',
             'vendor/angularytics/dist/angularytics.js',
-            'vendor/FlexSlider/jquery.flexslider.js'
+            'vendor/FlexSlider/jquery.flexslider.js',
+            'vendor/holderjs/holder.js',
+            'vendor/clndr/clndr.min.js',
+            'vendor/ng-file-upload/angular-file-upload.min.js',
+            //'vendor/famous/famous-global.js',
+            //'vendor/famous-angular/dist/famous-angular.js',
+            'vendor/angular-uuid4/angular-uuid4.js',
+            'vendor/async/lib/async.js',
+            'vendor/angular-input-masks/releases/masks.min.js',
+            'vendor/angular-ui-utils/ui-utils.min.js'
         ],
         css: [],
         assets: [
-            'vendor/FlexSlider/images/bg_play_pause.png'
+            'vendor/FlexSlider/images/bg_play_pause.png',
+            'vendor/underscore/underscore-min.map'
+            //'vendor/famous-angular/dist/famous-angular.css'
         ],
         fonts: [
-            'vendor/fontawesome/fonts/fontawesome-webfont.eot',
-            'vendor/fontawesome/fonts/fontawesome-webfont.svg',
-            'vendor/fontawesome/fonts/fontawesome-webfont.ttf',
-            'vendor/fontawesome/fonts/fontawesome-webfont.woff',
+            //'vendor/fontawesome/fonts/fontawesome-webfont.eot',
+            //'vendor/fontawesome/fonts/fontawesome-webfont.svg',
+            //'vendor/fontawesome/fonts/fontawesome-webfont.ttf',
+            //'vendor/fontawesome/fonts/fontawesome-webfont.woff',
             'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.eot',
             'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.svg',
             'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf',

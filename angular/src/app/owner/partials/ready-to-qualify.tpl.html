@@ -1,0 +1,30 @@
+<div class="vertical-buffer-xl">
+
+    <div class="row text-center" style="position: relative; margin-bottom: 80px;">
+        <h1>Qualify Tenants</h1>
+    </div>
+
+    <ol style="font-size: 24px;">
+        <li> Invite a tenant
+            <div class="input-group input-group-lg vertical-buffer">
+              <input type="email" class="form-control" placeholder="tenant@example.com, tenant2@example.com" ng-model="inviteAddress">
+              <span class="input-group-btn">
+                <button class="btn btn-rented" type="button">Invite!</button>
+              </span>
+            </div><!-- /input-group --> 
+        </li>
+        <li>
+            <a href="http://www.craigslist.org/about/sites#US" class="next" target="_blank">Post on Craigslist</a>
+            <div class="vertical-buffer">
+                <table class="table table-bordered table-condensed" style="width:100%">
+                    <tr>
+                        <td><input class="form-control input-lg" type="text" value="http://rented.co/#/property/{{addedPropertyId}}"></td>
+                    </tr>
+                    <tr>
+                        <td><h6>Copy and past the link above into your Craigslist Ad</h6></td>
+                    </tr>
+                </table>
+            </div>
+        </li>
+    </ol>
+</div>

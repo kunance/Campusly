@@ -1,0 +1,328 @@
+<fieldset class="fieldset-required">
+   <legend>Contact</legend>
+   
+   <div class="row">
+       <div class="col-sm-2">
+            <span class="fileinput-button">
+               <img class="media-object img-circle img-responsive" alt="Upload your picture..." style="display: inline; margin-bottom: 10px; width: 114px;" ng-src="{{profile.picture || 'assets/img/avatar.png'}}">
+               <input type="file" ng-file-select="pictureSelected($files)" accept="image/*">
+            </span>
+       </div>
+
+       <div class="col-sm-10">
+           <div class="row">
+               <div class="col-sm-6">
+                   <div class="form-group">
+                       <label class="col-sm-4 control-label">First</label>
+                       <div class="col-sm-8">
+                          <input class="form-control input-lg" type="text" ng-model="profile.firstName" placeholder="" autofocus required>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6">
+                   <div class="form-group">
+                       <label class="col-sm-4 control-label">Last</label>
+                       <div class="col-sm-8">
+                          <input class="form-control input-lg" type="text" ng-model="profile.lastName" placeholder="" required>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-sm-6">
+                   <div class="form-group">
+                       <label class="col-sm-4 control-label">E-Mail</label>
+                       <div class="col-sm-8">
+                          <input class="form-control input-lg" type="email" placeholder="{{profile.email}}" disabled>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6">
+                   <div class="form-group">
+                       <label class="col-sm-4 control-label">Phone</label>
+                       <div class="col-sm-8">
+                          <input class="form-control input-lg" type="tel" ng-model="profile.phone" ui-mask="999.999.9999" required>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+
+</fieldset>
+
+<fieldset class="fieldset-required">
+    <legend>Current Address</legend>
+
+    <div class="row">
+
+       <div class="col-sm-6">
+           <div class="form-group">
+               <label class="col-sm-4 control-label">Street</label>
+               <div class="col-sm-8">
+                  <input class="form-control input-lg" type="text" ng-model="profile.address.street" required>
+               </div>
+           </div>
+       </div>
+       <div class="col-sm-6">
+           <div class="form-group">
+               <label class="col-sm-4 control-label">Apt. number</label>
+               <div class="col-sm-8">
+                  <input class="form-control input-lg" type="text" ng-model="profile.address.aptNumber">
+               </div>
+           </div>
+       </div>
+
+    </div>
+
+    <div class="row">
+       <div class="col-sm-6">
+           <div class="form-group">
+               <label class="col-sm-4 control-label">City</label>
+               <div class="col-sm-8">
+                  <input class="form-control input-lg" type="text" ng-model="profile.address.city" required>
+               </div>
+           </div>
+       </div>
+       <div class="col-sm-6">
+           <div class="form-group">
+               <label class="col-sm-4 control-label">State</label>
+               <div class="col-sm-8">
+                  <input class="form-control input-lg" type="text" ng-model="profile.address.state" typeahead="state for state in states | filter:$viewValue | limitTo:8" ng-pattern="{{statesPattern}}" required>
+               </div>
+           </div>
+       </div>
+    </div>
+
+    <div class="row">
+       <div class="col-sm-6">
+           <div class="form-group">
+               <label class="col-sm-4 control-label">Zip</label>
+               <div class="col-sm-8">
+                  <input class="form-control input-lg" type="text" ng-model="profile.address.zip" ng-pattern="/[0-9]{5}/" maxlength="5" required>
+               </div>
+           </div>
+       </div>
+    </div>
+
+</fieldset>
+
+<fieldset>
+    <legend>Prior Address</legend>
+    <p><small>If less than 2 years at current address</small></p>
+
+    <div class="row">
+        
+       <div class="col-sm-6">
+           <div class="form-group">
+               <label class="col-sm-4 control-label">Street</label>
+               <div class="col-sm-8">
+                  <input class="form-control input-lg" type="text" ng-model="profile.priorAddress.street">
+               </div>
+           </div>
+       </div>
+       <div class="col-sm-6">
+           <div class="form-group">
+               <label class="col-sm-4 control-label">Apt. number</label>
+               <div class="col-sm-8">
+                  <input class="form-control input-lg" type="text" ng-model="profile.priorAddress.aptNumber">
+               </div>
+           </div>
+       </div>
+
+    </div>
+
+    <div class="row">
+       <div class="col-sm-6">
+           <div class="form-group">
+               <label class="col-sm-4 control-label">City</label>
+               <div class="col-sm-8">
+                  <input class="form-control input-lg" type="text" ng-model="profile.priorAddress.city">
+               </div>
+           </div>
+       </div>
+       <div class="col-sm-6">
+           <div class="form-group">
+               <label class="col-sm-4 control-label">State</label>
+               <div class="col-sm-8">
+                  <input class="form-control input-lg" type="text" ng-model="profile.priorAddress.state" typeahead="state for state in states | filter:$viewValue | limitTo:8" ng-pattern="{{statesPattern}}">
+               </div>
+           </div>
+       </div>
+    </div>
+
+    <div class="row">
+       <div class="col-sm-6">
+           <div class="form-group">
+               <label class="col-sm-4 control-label">Zip</label>
+               <div class="col-sm-8">
+                  <input class="form-control input-lg" type="text" ng-model="profile.priorAddress.zip" ng-pattern="/[0-9]{5}/" maxlength="5">
+               </div>
+           </div>
+       </div>
+    </div>
+
+</fieldset>
+
+<fieldset class="fieldset-required">
+   <legend>Move-In Information</legend>
+
+   <div class="row">
+       <div class="col-sm-12">
+           <div class="row">
+               
+               <div class="col-sm-6">
+           <div class="form-group">
+               <label class="col-sm-6 control-label">Total # of occupants</label>
+               <div class="col-sm-4">
+                      <select class="form-control input-lg" ng-model="profile.movein.occupantsNo">
+                          <option value="">Select...</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10+">10+</option>
+                      </select>
+               </div>
+           </div>
+      </div>
+               <!--div class="col-sm-6">
+                   <div class="form-group">
+                       <label class="col-sm-6 control-label">Annual Income</label>
+                       <div class="col-sm-6">
+                          <input class="form-control input-lg" type="number" ng-model="profile.movein.annualIncome" required>
+                       </div>
+                   </div>
+               </div-->
+           </div>
+           <div class="row">
+               <div class="col-sm-12">
+                   <div class="form-group">
+                       <label class="col-sm-2 control-label">Reason for Moving</label>
+                       <div class="col-sm-10">
+                          <textarea ng-model="profile.movein.reason" class="form-control input-lg" required></textarea>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+
+</fieldset>
+
+<fieldset class="fieldset-required">
+   <legend>Pets</legend>
+   <div class="row">
+      <div class="col-sm-4">
+           <div class="form-group">
+               <label class="col-sm-4 control-label">Dogs</label>
+               <div class="col-sm-4">
+                      <select class="form-control input-lg" ng-model="profile.pets.dogs">
+                          <option value="">None</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3+">3+</option>
+                      </select>
+               </div>
+           </div>
+      </div>
+      <div class="col-sm-4">
+           <div class="form-group">
+               <label class="col-sm-4 control-label">Cats</label>
+               <div class="col-sm-4">
+                      <select class="form-control input-lg" ng-model="profile.pets.cats">
+                          <option value="">None</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3+">3+</option>
+                      </select>
+               </div>
+           </div>
+      </div>
+      <div class="col-sm-4">
+           <div class="form-group">
+               <div class="col-sm-8">
+                   <div class="form-group">
+                       <label class="col-sm-4 control-label">Other</label>
+                       <div class="col-sm-8">
+                          <input class="form-control input-lg" type="text" ng-model="profile.pets.otherDesc" placeholder="Ex. Turtle" ng-required="profile.pets.other > 0">
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-4">
+                      <select class="form-control input-lg" ng-model="profile.pets.other">
+                          <option value="">None</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3+">3+</option>
+                      </select>
+               </div>
+           </div>
+      </div>
+   </div>
+
+</fieldset>
+
+<fieldset class="fieldset-required">
+   <legend>Financial Information</legend>
+
+   <div class="row">
+       <div class="col-sm-6">
+           <div class="form-group">
+               <label class="col-sm-7 control-label">Household Income Level</label>
+               <div class="col-sm-5">
+                  <input class="form-control input-lg" type="text" ng-model="profile.financial.incomeLevel" required ui-money-mask="0">
+               </div>
+           </div>
+       </div>
+       <!--div class="col-sm-6">
+           <div class="form-group">
+               <label class="col-sm-6 control-label">Other Income</label>
+               <div class="col-sm-6">
+                  <input class="form-control input-lg" type="text" ng-model="profile.financial.otherIncome" required ui-money-mask="0">
+               </div>
+           </div>
+       </div-->
+   </div>
+   <div class="row">
+       <div class="col-sm-6">
+           <div class="form-group">
+               <label class="col-sm-7 control-label">Upload Proof of Income</label>
+               <div class="col-sm-5">
+                  <span class="btn btn-rented fileinput-button">
+                    Upload <span class="glyphicon glyphicon-cloud-upload"></span>
+                    <input id="fileupload" type="file" name="proofOfIncome" multiple accept="application/pdf" ng-file-select="proofSelected($files,profile)">
+                  </span>
+               </div>
+           </div>
+       </div>
+       <div class="col-sm-6">
+           <strong>ex. Bank Statement, paystub, w2</strong>
+       </div>
+   </div>
+   <div class="row">
+       <div class="col-sm-12">
+           <div class="alert alert-{{shoutUpload.type}} text-center vertical-buffer" ng-show="shoutUpload">{{shoutUpload.content}}</div>
+
+              <div class="row control-label" ng-repeat="file in profile.financial.proofsOfIncome">
+                  <div class="col-xs-8 vcenter">
+                      {{$index+1}}. <a href="{{file.data}}" download="{{file.name}}">{{file.name}}</a>
+                  </div>
+                  <div class="col-xs-2 vcenter"> 
+                      ({{(file.size/1024).toFixed(0)}} kb)
+                  </div>
+                  <div class="col-xs-1 vcenter">
+                      <button class="btn btn-rented" type="button" ng-click="removeProofOfIncome(file,profile)">
+                           <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                  </div>
+              </div>
+       </div>
+   </div>
+
+</fieldset>

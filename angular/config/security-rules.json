@@ -2,90 +2,91 @@
     "rules": {
         ".read": false,
         ".write": false,
-        "syncedValue": {
-            ".read": true,
-            ".write": true,
-            ".validate": "newData.isString() && newData.val().length <= 100"
-        },
         "users": {
             "$user": {
-                ".read": "auth.uid === $user",
-                ".write": "auth.uid === $user && (!newData.exists() || newData.hasChildren())",                
-                "email": {
-                    ".validate": "newData.isString() && newData.val().length <= 150"
-                },
-                "name": {
-                    ".validate": "newData.isString() && newData.val().length <= 40"
-                },
-                "firstName": {
-                    ".validate": "newData.isString() && newData.val().length <= 40"
-                },
-                "lastName": {
-                    ".validate": "newData.isString() && newData.val().length <= 40"
-                },
-                "phone": {
-                    ".validate": "newData.isString() && newData.val().length <= 20"
-                },
-                "street": {
-                    ".validate": "newData.isString() && newData.val().length <= 150"
-                },
-                "city": {
-                    ".validate": "newData.isString() && newData.val().length <= 100"
-                },
-                "state": {
-                    ".validate": "newData.isString() && newData.val().length <= 20"
-                },
-                "zip": {
-                    ".validate": "newData.isString() && newData.val().length <= 10"
-                },
-                "creditScore": {
-                    ".validate": "newData.isString() && newData.val().length <= 20"
-                },
-                "occupants": {
-                    ".validate": "newData.isNumber() && newData.val() <= 999"
-                },
-                "properties" : {
-                    ".validate" : true
-                },
-                "income" : {
-                    ".validate" : true
-                },
-                "pets" : {
-                    ".validate" : true
-                },
-                "$other": {
-                    ".validate": false
-                }
+                ".read": "auth.uid === $user || root.child('bids/security/'+auth.uid+'/'+$user).exists() || root.child('bids/security/'+$user+'/'+auth.uid).exists()",
+                ".write": "auth.uid === $user && ((!data.exists() && newData.child('type').val()!='admin') || (data.exists() && newData.hasChildren() && newData.child('type').val() === data.child('type').val() ))"
+
             }
         },     
-        "references":{
-            "$reference" : {
-              ".read" : true,
-              ".write" : true
-            }
+        "featured": {
+               ".read": true,
+               ".write": false
         },
         "properties": {
                ".read":true,
                "$property":{
                    ".read":true,
-                   ".write":true,
-                   "bids" : {
-                     ".validate" : true
-                   },
-                   "$other": {
-                    ".validate": "(auth.email == 'mail@riteshdalal.com' || auth.email == 'modivinit@gmail.com')"
-                  }
+                   ".write" : "auth.uid === data.child('owner').val() || (root.child('users/'+auth.uid+'/type').val() === 'owner' && !data.exists())"
                }
         },
         "bids" : {
             ".read": true,
-            "$bid": {
+            "all": {
                 ".read": true,
-                ".write" : true
+
+                "$bidId": {
+                   ".read": true,
+                   ".write" : "auth.uid === data.child('userId').val() || (root.child('users/'+auth.uid+'/type').val() === 'tenant' && !data.exists()) || (root.child('users/'+auth.uid+'/type').val() === 'owner' && data.exists() && newData.exists())"
+                }
             },
-            "user":{
-                ".validate" : "newData.isString() && newData.val() == auth.uid"
+            "property": {
+                ".read": true,
+                "$propertyId": {
+                   ".read": true,
+                   "$bidId": {
+                      ".read": true,
+                      ".write" : "auth.uid === root.child('bids/all/'+$bidId+'/userId').val() || (root.child('users/'+auth.uid+'/type').val() === 'owner' && root.child('properties/'+$propertyId+'/owner').val() === auth.uid)"
+                   }
+                }
+            },
+            "user": {
+                ".read": true,
+                "$userId": {
+                   ".read": true,
+                   "$propertyId": {
+                      ".read": true,
+                      ".write" : true
+                   }
+                }
+            },
+            "security": {
+                ".read": true,
+                "$ownerId": {
+                   ".read": true,
+                   "$tenantId": {
+                      ".read": true,
+                      ".write" : "(auth.uid === $tenantId && auth.uid === root.child('bids/all/'+newData.val()+'/userId').val()) || (root.child('users/'+auth.uid+'/type').val() === 'owner' && auth.uid === $ownerId)"
+                   }
+                }
             }
+        },
+        "watchlist":{
+            "$user" : {
+              ".read" : true,
+              ".write" : "auth.uid === $user"
+            }
+        },
+        "watchers":{
+          "$propertyId": {
+            ".read" : true,
+            "$user" : {
+              ".read" : true,
+              ".write" : "auth.uid === $user"
+            }
+          }
+        },
+        "credit":{
+            ".write" : "root.child('users/'+auth.uid+'/type').val() === 'admin'",
+            "$user" : {
+              ".read" : "root.child('users/'+auth.uid+'/type').val() === 'admin' || root.child('bids/security/'+auth.uid+'/'+$user).exists()"
+            }
+        },
+        "sendQueue": {
+            ".read": false,
+            ".write": "auth.uid != null && newData.exists()" 
         }
     }
 }
+
+
