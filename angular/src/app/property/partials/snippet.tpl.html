@@ -1,8 +1,8 @@
 <div class="property-box homepage-property-box" ng-cloak>
     <div class="property-box-inner">
-        <h4 class="property-box-title homepage-property-box-title"><a href="#/property/{{id}}">{{property.address}}</a>
+        <h4 class="property-box-title homepage-property-box-title"><a href="/property/{{id}}">{{property.address}}</a>
         </h4>
-        <h4 class="property-box-subtitle homepage-property-box-subtitle"><a href="#/property/{{id}}">{{property.city}}
+        <h4 class="property-box-subtitle homepage-property-box-subtitle"><a href="/property/{{id}}">{{property.city}}
             {{property.state}}</a>
         </h4>
         <div class="property-box-label">{{property.status || getStatus(property)}}</div>
@@ -11,7 +11,7 @@
             <div class="property-box-price">Range ${{property.rent}} - ${{property.rentItNow}}</div>
             <!-- /.property-box-price -->
             <div class="property-box-picture-inner">
-                <a href="#/property/{{id}}" class="property-box-picture-target">
+                <a href="/property/{{id}}" class="property-box-picture-target">
                     <img src="assets/img/{{id}}/{{property.images[1]}}" alt="">
                 </a><!-- /.property-box-picture-target -->
             </div>

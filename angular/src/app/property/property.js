@@ -5,8 +5,8 @@ angular.module('myApp.property', ['ngRoute'])
 
 // configure views; the authRequired parameter is used for specifying pages
 // which should only be available while logged in
-.config(['$routeProvider',
-    function($routeProvider) {
+.config(['$routeProvider', '$locationProvider',
+    function($routeProvider, $locationProvider) {
 
         $routeProvider.when('/property/:id', {
             templateUrl: 'property/details.tpl.html',
@@ -17,6 +17,8 @@ angular.module('myApp.property', ['ngRoute'])
             templateUrl: 'property/list.tpl.html',
             controller: 'PropertyListCtrl'
         });
+        
+        $locationProvider.html5Mode(true);
 
     }
 ])

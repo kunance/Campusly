@@ -5,8 +5,8 @@ angular.module('myApp.owner', ['ngRoute'])
 
 // configure views; the authRequired parameter is used for specifying pages
 // which should only be available while logged in
-.config(['$routeProvider',
-    function($routeProvider) {
+.config(['$routeProvider', '$locationProvider',
+    function($routeProvider, $locationProvider) {
 
         $routeProvider.when('/owners', {
             templateUrl: 'owner/owners.tpl.html',
@@ -80,6 +80,8 @@ angular.module('myApp.owner', ['ngRoute'])
             controller: 'OwnerPropertyCtrl',
             profileRequired: OWNERS_ONLY
         });
+        
+        $locationProvider.html5Mode(true);
     }
 ])
 

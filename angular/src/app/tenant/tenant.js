@@ -54,8 +54,8 @@ angular.module('myApp.tenant', ['ngRoute'])
 
 // configure views; the authRequired parameter is used for specifying pages
 // which should only be available while logged in
-.config(['$routeProvider',
-    function($routeProvider) {
+.config(['$routeProvider', '$locationProvider',
+    function($routeProvider, $locationProvider) {
 
         $routeProvider.when('/tenants', {
             templateUrl: 'tenant/tenants.tpl.html',
@@ -108,6 +108,9 @@ angular.module('myApp.tenant', ['ngRoute'])
             profileRequired: TENANTS_ONLY
         });
         */
+        
+        $locationProvider.html5Mode(true);
+        
     }
 ])
 

@@ -6,8 +6,8 @@ angular.module('myApp.admin', ['ngRoute'])
 
 // configure views; the authRequired parameter is used for specifying pages
 // which should only be available while logged in
-.config(['$routeProvider',
-    function($routeProvider) {
+.config(['$routeProvider', '$locationProvider',
+    function($routeProvider, $locationProvider) {
 
         var ADMIN_ONLY= function (profile)
             {
@@ -23,6 +23,8 @@ angular.module('myApp.admin', ['ngRoute'])
             controller: 'CreditCheckCtrl',
             profileRequired: ADMIN_ONLY
         });
+        
+        $locationProvider.html5Mode(true);
 
 }])
 

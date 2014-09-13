@@ -1,27 +1,27 @@
 <div class="collapse navbar-collapse">
     <ul class="nav navbar-nav primary">
         <li class="menuparent">
-            <a ng-class="isActive('/tenants')" href="#/tenants">Tenants</a>
+            <a ng-class="isActive('/tenants')" href="/tenants">Tenants</a>
         </li>
         <li>
-            <a ng-class="isActive('/owners')" href="#/owners">Owners &amp; Managers</a>
+            <a ng-class="isActive('/owners')" href="/owners">Owners &amp; Managers</a>
         </li>
         <li>
-            <a ng-class="isActive('/tour')" href="#/tour">Take A Tour</a>
+            <a ng-class="isActive('/tour')" href="/tour">Take A Tour</a>
         </li>
     </ul>
     <ul class="nav navbar-nav navbar-right secondary">
-        <li ng-show-auth="['logout','error']"><a ng-class="isActive('/login')" href="#/login">Login</a>
+        <li ng-show-auth="['logout','error']"><a ng-class="isActive('/login')" href="/login">Login</a>
         </li>
-        <li ng-show-auth="['logout','error']"><a ng-class="isActive('/register')" href="#/register">Register</a>
+        <li ng-show-auth="['logout','error']"><a ng-class="isActive('/register')" href="/register">Register</a>
         </li>
         <li class="menuparent" ng-show-auth="'login'">
-               <a class="nav-user" href="#/{{profile.type}}s/profile" style="padding-top: 16px">
+               <a class="nav-user" href="/{{profile.type}}s/profile" style="padding-top: 16px">
                    <img style="height: 34px; width: auto;" ng-src="{{profile.picture || 'assets/img/avatar-small.png'}}" class="img-circle">
                    {{profile.firstName}} {{profile.lastName}}
                </a>
         </li>
-        <li ng-show-auth="'login'"><a href="#/logout">Sign Out</a>
+        <li ng-show-auth="'login'"><a href="/logout">Sign Out</a>
         </li>
     </ul>
 </div>

@@ -53,7 +53,7 @@
     <div class="row properties">
         <div class="col-sm-3" ng-repeat="property in properties | loadProperty:'':'lazy'" ng-show="property.address">
             <ng-include src="'tenant/partials/property-teaser.tpl.html'"></ng-include>
-            <a href="#/property/{{property.$id}}" class="btn btn-rented">See More</a>
+            <a href="/property/{{property.$id}}" class="btn btn-rented">See More</a>
             <button ng-click="accepted(property)" class="btn btn-rented-success" ng-show="isAccepted(property,profile)">Accepted</button>
         </div>
     </div>
@@ -70,7 +70,7 @@
                   <p>{{property.address.street}}, {{property.address.city}}, {{property.address.state}} {{property.address.zip}}</p> 
                </div>
                <div class="col-sm-2">
-                  <a href="#/property/{{property.$id}}" class="btn btn-rented">See More</a>
+                  <a href="/property/{{property.$id}}" class="btn btn-rented">See More</a>
                </div>
            </div>
            <h5 class="top-buffer">Savings</h5>

@@ -53,7 +53,7 @@
     <div class="row properties">
         <div class="col-sm-3" ng-repeat="property in properties | loadProperty:'':'lazy'" ng-show="property.address">
             <ng-include src="'owner/partials/property-teaser.tpl.html'"></ng-include>
-            <a href="#/owners/properties/{{property.$id}}/status" class="btn btn-rented">View Offers</a>
+            <a href="/owners/properties/{{property.$id}}/status" class="btn btn-rented">View Offers</a>
         </div>
     </div>
 

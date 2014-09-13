@@ -4,9 +4,9 @@
     <div class="row properties">
         <div class="col-sm-3 top-buffer-lg" ng-repeat="property in properties | loadProperty:'active':'lazy'">
             <ng-include src="'owner/partials/property-teaser.tpl.html'"></ng-include>
-            <a href="#/property/{{property.$id}}" class="btn btn-rented">View Property</a>
-            <a href="#/owners/properties/{{property.$id}}/status" class="btn btn-rented">View Offers</a>
-            <a href="#/owners/properties/{{property.$id}}/edit" class="btn btn-rented">Edit</a>
+            <a href="/property/{{property.$id}}" class="btn btn-rented">View Property</a>
+            <a href="/owners/properties/{{property.$id}}/status" class="btn btn-rented">View Offers</a>
+            <a href="/owners/properties/{{property.$id}}/edit" class="btn btn-rented">Edit</a>
         </div>
     </div>
 
@@ -18,9 +18,9 @@
             <p><strong>Rent:</strong> {{property.bestOffer.rentAmount | rentCurrency}}</p>
             <p><strong>Tenant:</strong> {{property.tenant.firstName}} {{property.tenant.lastName}}</p>
             <p><strong>Phone:</strong> {{property.tenant.phone}}</p>
-            <a href="#/property/{{property.$id}}" class="btn btn-rented">View Property</a>
-            <a href="#/owners/properties/{{property.$id}}/status" class="btn btn-rented">View Offers</a>
-            <a href="#/owners/properties/{{property.$id}}/edit" class="btn btn-rented">Edit</a>
+            <a href="/property/{{property.$id}}" class="btn btn-rented">View Property</a>
+            <a href="/owners/properties/{{property.$id}}/status" class="btn btn-rented">View Offers</a>
+            <a href="/owners/properties/{{property.$id}}/edit" class="btn btn-rented">Edit</a>
         </div>
     </div>
 </div>

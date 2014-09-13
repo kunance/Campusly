@@ -6,7 +6,7 @@ angular.module('myApp.user', ['ngRoute'])
 
     // configure views; the authRequired parameter is used for specifying pages
     // which should only be available while logged in
-    .config(['$routeProvider', function ($routeProvider) {
+    .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
         $routeProvider.when('/account', {
             authRequired: true, // must authenticate before viewing this page
@@ -28,6 +28,8 @@ angular.module('myApp.user', ['ngRoute'])
             templateUrl: 'user/login.tpl.html',
             controller: 'LogoutCtrl'
         });
+        
+        $locationProvider.html5Mode(true);
 
     }])
 
