@@ -31,7 +31,8 @@
 
                         mailService.send($rootScope.profile.$id,
                                          'tenant-property-unwatch',
-                                         { propertyname: property.address.street });
+                                         { propertyname: property.address.street, 
+                                           propertyid: property.$id });
                     }
                 });
 
