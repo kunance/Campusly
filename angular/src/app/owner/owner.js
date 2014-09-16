@@ -33,7 +33,7 @@ angular.module('myApp.owner', ['ngRoute'])
             };
 
         $routeProvider.when('/owners/add-property/:step?', {
-            authRequired: '/register/owner',
+            authRequired: true,
             templateUrl: 'owner/add-property.tpl.html',
             controller: 'AddPropertyCtrl',
             profileRequired: OWNERS_ONLY
@@ -83,9 +83,9 @@ angular.module('myApp.owner', ['ngRoute'])
     }
 ])
 
-.controller('AddPropertyCtrl', ['$scope','$rootScope','$routeParams','propertyService','shout','rentedProfile',
+.controller('AddPropertyCtrl', ['$scope','$rootScope','$routeParams','propertyService','shout','rentedProfile','mailService',
     'MAX_PROPERTY_PICTURES','MAX_UPLOAD_SIZE',
-    function($scope,$rootScope,$routeParams,propertyService,shout, rentedProfile, MAX_PROPERTY_PICTURES, MAX_UPLOAD_SIZE) {
+    function($scope,$rootScope,$routeParams,propertyService,shout, rentedProfile, mailService, MAX_PROPERTY_PICTURES, MAX_UPLOAD_SIZE) {
 
        var steps= [
                      'owner/partials/property-form.tpl.html',
@@ -101,6 +101,16 @@ angular.module('myApp.owner', ['ngRoute'])
        {
            $scope.propertyNo= (profile.properties || []).length+1;
        });
+
+       $scope.invite= function (address)
+       {
+            mailService.send(_.map(address.split(','),
+                                   function (a) { return a.trim(); }),
+                             'tenant-invited',
+                             { inviter: $rootScope.profile.firstName+' '+$rootScope.profile.lastName },true);
+
+            shout($scope)({ content: 'Invite sent!', type: 'success' });
+       };
 }])
 
 .controller('OwnerPropertyCtrl', ['$scope','$rootScope','$routeParams','$location','propertyService','shout',
@@ -672,13 +682,13 @@ angular.module('myApp.owner', ['ngRoute'])
                         contentClass: 'success'
                     });
 
-                    mailService.send(bid.user.$id,
+                    mailService.send(user.$id,
                                      'tenant-rented',
                                      { propertyname: property.address.street, propertyid: property.$id });
 
                     mailService.send(_.difference(_.union(property.watchers,
                                                   _.map(property.bids,function (b) { return b.userId; })),
-                                                  [bid.user.$id]),
+                                                  [user.$id]),
                                      'tenant-property-rented',
                                      { propertyname: property.address.street, propertyid: property.$id });
                 }

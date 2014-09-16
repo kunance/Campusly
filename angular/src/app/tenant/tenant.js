@@ -31,7 +31,8 @@
 
                         mailService.send($rootScope.profile.$id,
                                          'tenant-property-unwatch',
-                                         { propertyname: property.address.street });
+                                         { propertyname: property.address.street, 
+                                           propertyid: property.$id });
                     }
                 });
 
@@ -80,7 +81,7 @@ angular.module('myApp.tenant', ['ngRoute'])
             };
 
         $routeProvider.when('/tenants/myprofile/:step?', {
-            authRequired: '/register/tenant',
+            authRequired: true,
             templateUrl: 'tenant/myprofile.tpl.html',
             controller: 'OnBoardingCtrl',
             profileRequired: TENANTS_ONLY
@@ -111,8 +112,8 @@ angular.module('myApp.tenant', ['ngRoute'])
     }
 ])
 
-.controller('OnBoardingCtrl', ['$scope','$rootScope','$location','$routeParams',
-    function($scope,$rootScope,$location,$routeParams) {
+.controller('OnBoardingCtrl', ['$scope','$rootScope','$location','$routeParams','mailService','shout',
+    function($scope,$rootScope,$location,$routeParams,mailService,shout) {
 
        var steps= ['tenant/partials/verify-profile.tpl.html',
                    'tenant/partials/credit-check.tpl.html',
@@ -121,6 +122,16 @@ angular.module('myApp.tenant', ['ngRoute'])
        $scope.step= steps[+$routeParams.step-1 || 0];
        $scope.onBoarding= true;
        $scope.shout= {};
+
+       $scope.invite= function (address)
+       {
+            mailService.send(_.map(address.split(','),
+                                   function (a) { return a.trim(); }),
+                             'owner-invited',
+                             { inviter: $rootScope.profile.firstName+' '+$rootScope.profile.lastName },true);
+
+            shout($scope)({ content: 'Invite sent!', type: 'success' });
+       };
     }
 ])
 
@@ -276,7 +287,13 @@ angular.module('myApp.tenant', ['ngRoute'])
 
                     mailService.send(property.owner,
                                      'owner-offer-deleted',
-                                     { propertyname: property.address.street });
+                                     { propertyname: property.address.street,
+                                       propertyid: property.$id });
+
+                    mailService.send(bid.userId,
+                                     'tenant-offer-deleted',
+                                     { propertyname: property.address.street,
+                                       propertyid: property.$id });
                 }
             });
      };
@@ -657,6 +674,11 @@ angular.module('myApp.tenant', ['ngRoute'])
                             mailService.send(property.owner,
                                              'owner-offer-created',
                                              { propertyname: property.address.street });
+
+                            mailService.send($rootScope.profile.$id,
+                                             'tenant-offer-created',
+                                             { propertyname: property.address.street,
+                                               propertyid: property.$id });
                         }
 
                         $rootScope.$apply(); // TopBannerChannel.setBanner does not apply...
