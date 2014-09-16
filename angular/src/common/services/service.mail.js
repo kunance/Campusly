@@ -11,9 +11,9 @@ function($rootScope, firebaseRef, syncData,$http)
 
     
     return {
-         send: function(userId,template,vars)
+         send: function(userId,template,vars,isMail)
          {
-             firebaseRef('sendQueue').push({ userId: userId, template: template, vars: vars });
+             firebaseRef('sendQueue').push({ userId: userId, template: template, vars: vars, isMail: true });
              wakeUpDyno();
          }
     };

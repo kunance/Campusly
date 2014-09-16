@@ -112,8 +112,8 @@ angular.module('myApp.tenant', ['ngRoute'])
     }
 ])
 
-.controller('OnBoardingCtrl', ['$scope','$rootScope','$location','$routeParams',
-    function($scope,$rootScope,$location,$routeParams) {
+.controller('OnBoardingCtrl', ['$scope','$rootScope','$location','$routeParams','mailService','shout',
+    function($scope,$rootScope,$location,$routeParams,mailService,shout) {
 
        var steps= ['tenant/partials/verify-profile.tpl.html',
                    'tenant/partials/credit-check.tpl.html',
@@ -122,6 +122,16 @@ angular.module('myApp.tenant', ['ngRoute'])
        $scope.step= steps[+$routeParams.step-1 || 0];
        $scope.onBoarding= true;
        $scope.shout= {};
+
+       $scope.invite= function (address)
+       {
+            mailService.send(_.map(address.split(','),
+                                   function (a) { return a.trim(); }),
+                             'owner-invited',
+                             { inviter: $rootScope.profile.firstName+' '+$rootScope.profile.lastName },true);
+
+            shout($scope)({ content: 'Invite sent!', type: 'success' });
+       };
     }
 ])
 

@@ -3,9 +3,9 @@
     <ol style="font-size: 24px;" class="bottom-buffer-xl">
         <li> Invite an owner
             <div class="input-group input-group-lg vertical-buffer">
-              <input type="email" class="form-control" placeholder="owner@example.com, owner2@example.com" ng-model="inviteAddress">
+              <input type="text" class="form-control" placeholder="owner@example.com, owner2@example.com" ng-model="inviteAddress">
               <span class="input-group-btn">
-                <button class="btn btn-rented" type="button">Invite!</button>
+                <button class="btn btn-rented" type="button" ng-click="invite(inviteAddress)">Invite!</button>
               </span>
             </div><!-- /input-group --> 
         </li>
