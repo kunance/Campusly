@@ -4,7 +4,7 @@ function($rootScope, firebaseRef, syncData,$http)
 {
     var wakeUpDyno= _.debounce(function ()
         {
-             $http.get('http://rentedco.herokuapp.com/')
+             $http.get('https://rentedco.herokuapp.com/')
                   .success(function () { console.log('dyno waked up'); })
                   .error(function (err) { console.log('cannot wake up the dyno', err); })
         },1000);
