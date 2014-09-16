@@ -672,13 +672,13 @@ angular.module('myApp.owner', ['ngRoute'])
                         contentClass: 'success'
                     });
 
-                    mailService.send(bid.user.$id,
+                    mailService.send(user.$id,
                                      'tenant-rented',
                                      { propertyname: property.address.street, propertyid: property.$id });
 
                     mailService.send(_.difference(_.union(property.watchers,
                                                   _.map(property.bids,function (b) { return b.userId; })),
-                                                  [bid.user.$id]),
+                                                  [user.$id]),
                                      'tenant-property-rented',
                                      { propertyname: property.address.street, propertyid: property.$id });
                 }

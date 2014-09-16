@@ -277,7 +277,13 @@ angular.module('myApp.tenant', ['ngRoute'])
 
                     mailService.send(property.owner,
                                      'owner-offer-deleted',
-                                     { propertyname: property.address.street });
+                                     { propertyname: property.address.street,
+                                       propertyid: property.$id });
+
+                    mailService.send(bid.userId,
+                                     'tenant-offer-deleted',
+                                     { propertyname: property.address.street,
+                                       propertyid: property.$id });
                 }
             });
      };
@@ -658,6 +664,11 @@ angular.module('myApp.tenant', ['ngRoute'])
                             mailService.send(property.owner,
                                              'owner-offer-created',
                                              { propertyname: property.address.street });
+
+                            mailService.send($rootScope.profile.$id,
+                                             'tenant-offer-created',
+                                             { propertyname: property.address.street,
+                                               propertyid: property.$id });
                         }
 
                         $rootScope.$apply(); // TopBannerChannel.setBanner does not apply...
