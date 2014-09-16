@@ -33,7 +33,7 @@ angular.module('myApp.owner', ['ngRoute'])
             };
 
         $routeProvider.when('/owners/add-property/:step?', {
-            authRequired: '/register/owner',
+            authRequired: true,
             templateUrl: 'owner/add-property.tpl.html',
             controller: 'AddPropertyCtrl',
             profileRequired: OWNERS_ONLY

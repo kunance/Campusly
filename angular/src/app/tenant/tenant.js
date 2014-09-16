@@ -81,7 +81,7 @@ angular.module('myApp.tenant', ['ngRoute'])
             };
 
         $routeProvider.when('/tenants/myprofile/:step?', {
-            authRequired: '/register/tenant',
+            authRequired: true,
             templateUrl: 'tenant/myprofile.tpl.html',
             controller: 'OnBoardingCtrl',
             profileRequired: TENANTS_ONLY
