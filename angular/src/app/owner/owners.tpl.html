@@ -20,7 +20,7 @@
 
             <div class="row vertical-buffer">
                     <div class="col-xs-12 text-center">
-                         <a href="#/register/owner" class="btn btn-rented">Add Your Property</a>
+                         <a href="#/register/owner" class="btn btn-rented" ng-hide="{{profile && profile.type == 'tenant'}}">Add Your Property</a>
                     </div>
             </div>
     </div>
