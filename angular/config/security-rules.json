@@ -3,6 +3,7 @@
         ".read": false,
         ".write": false,
         "users": {
+            ".read": "root.child('users/'+auth.uid+'/type').val() === 'admin'",
             "$user": {
                 ".read": "auth.uid === $user || root.child('bids/security/'+auth.uid+'/'+$user).exists() || root.child('bids/security/'+$user+'/'+auth.uid).exists()",
                 ".write": "auth.uid === $user && ((!data.exists() && newData.child('type').val()!='admin') || (data.exists() && newData.hasChildren() && newData.child('type').val() === data.child('type').val() ))"
