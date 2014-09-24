@@ -80,7 +80,7 @@
         "credit":{
             ".write" : "root.child('users/'+auth.uid+'/type').val() === 'admin'",
             "$user" : {
-              ".read" : "root.child('users/'+auth.uid+'/type').val() === 'admin' || root.child('bids/security/'+auth.uid+'/'+$user).exists()"
+              ".read" : "auth.uid === $user || root.child('users/'+auth.uid+'/type').val() === 'admin' || root.child('bids/security/'+auth.uid+'/'+$user).exists()"
             }
         },
         "sendQueue": {
