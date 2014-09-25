@@ -45,6 +45,9 @@ angular.module('myApp.property', ['ngRoute'])
                 animation: "slide",
                 controlNav: "thumbnails"
             });
+
+            $scope.bid= 'property/partials/bid.tpl.html';
+            $scope.$apply();
         },1));
 
     }
