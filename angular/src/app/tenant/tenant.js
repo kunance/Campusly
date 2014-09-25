@@ -112,8 +112,8 @@ angular.module('myApp.tenant', ['ngRoute'])
     }
 ])
 
-.controller('OnBoardingCtrl', ['$scope','$rootScope','$location','$routeParams','mailService','shout',
-    function($scope,$rootScope,$location,$routeParams,mailService,shout) {
+.controller('OnBoardingCtrl', ['$scope','$rootScope','$location','$routeParams','mailService','shout', 'syncData','rentedProfile',
+    function($scope,$rootScope,$location,$routeParams,mailService,shout,syncData,rentedProfile) {
 
        var steps= ['tenant/partials/verify-profile.tpl.html',
                    'tenant/partials/credit-check.tpl.html',
@@ -122,6 +122,18 @@ angular.module('myApp.tenant', ['ngRoute'])
        $scope.step= steps[+$routeParams.step-1 || 0];
        $scope.onBoarding= true;
        $scope.shout= {};
+
+       // the rentedProfile function waits for the user profile to be loaded and then calls the callback
+       rentedProfile(function (profile) // needed to be sure that the profile is loaded on refresh
+       {
+        
+           syncData('credit/'+profile.$id).$asObject()  // or you will get an error because profile is still null
+           .$inst().$ref().on('value',function (data)
+           {
+               $scope.profile.creditReport= data.val();
+           });
+
+       });
 
        $scope.invite= function (address)
        {

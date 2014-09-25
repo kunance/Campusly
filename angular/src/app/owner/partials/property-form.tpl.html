@@ -297,6 +297,15 @@
            </div>
 
          </div>
+        
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="buttons">
+                    <button type="button" class="btn btn-rented" style="margin-right: 10px" ng-click="save(property)">Save</button>
+                </div>
+            </div>
+        </div>
+        
     </fieldset>
 
     <fieldset>
@@ -304,14 +313,14 @@
 
        <div class="row">
 
-           <div class="col-sm-4">
+           <div class="col-sm-3">
                 <span class="btn btn-rented fileinput-button">
                     Upload <span class="glyphicon glyphicon-cloud-upload"></span>
                     <!-- The file input field used as target for the file upload widget -->
                     <input id="fileupload" type="file" name="image" ng-file-select="pictureSelected($files)" multiple accept="image/*">
                 </span>
            </div>
-           <div class="col-sm-8">
+           <div class="col-sm-9 pull-left">
                 <span>Upload property pictures, max file size 5MB per picture. <br>The first picture will be your property profile picture.</span>
            </div>
 

@@ -1,10 +1,18 @@
     <div class="buttons">
-        <a href="#/tenants/on-boarding/ready-to-apply" class="next">Next</a>
+        <a href="#/tenants/myprofile/3" class="next">Next</a>
     </div>
 
     <h1>Credit Check</h1>
 
-    <p class="text-lg bottom-buffer-xl" style="margin-bottom: 70px;">Thank you for completing your profile, Rented Team will contact you shortly. 
-    <br>Your offer will still be submitted.</p>
+    <div class="col-sm-12">
+        <fieldset class="readonly">
+          <a href="{{profile.creditReport}}" download="{{profile.firstName}}-{{profile.lastName}}-credit-report.pdf" class="field-text" ng-show="profile.creditReport">Download Your Credit Report  <i class="glyphicon glyphicon-cloud-download"></i></a>
+          <span class="text-lg bottom-buffer-xl" ng-hide="profile.creditReport" style="margin-bottom: 70px;">Thank you for completing your profile, Rented Team will contact you shortly. 
+    <br><br>Your offer will still be submitted.</span>
+        </fieldset>
+    </div>
+
+    <!--p class="text-lg bottom-buffer-xl" style="margin-bottom: 70px;">Thank you for completing your profile, Rented Team will contact you shortly. 
+    <br>Your offer will still be submitted.</p-->
     
 </div>
