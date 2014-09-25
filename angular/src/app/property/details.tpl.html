@@ -1,4 +1,8 @@
-<div class="content-header header-shadow">
+<div class="alert alert-info text-center" ng-hide="property.address.street">
+Loading the property... 
+</div>
+
+<div class="content-header header-shadow" ng-show="property.address.street">
     <div class="container">
         <div class="row" style="min-height: 210px;">
             <div class="col-sm-12 text-center box-bottom">
@@ -8,7 +12,8 @@
         </div>
     </div>
 </div>
-<div class="container property">
+
+<div class="container property" ng-show="property.address.street">
     <div class="row" style="margin-top: 20px;">
         <div class="col-sm-6">
             <div class="property-detail-images" ng-include="'property/partials/images.tpl.html'"></div>
@@ -22,7 +27,7 @@
     <!-- /.row -->
 </div><!-- /.container -->
 
-<div class="container property">
+<div class="container property" ng-show="property.address.street">
     <div class="row" style="margin-bottom: 50px;">
         <div class="col-sm-12">
             <h5>Description</h5>
