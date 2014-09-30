@@ -1,6 +1,6 @@
 {
-  "name": "rented.io",
-  "version": "0.0.1",
+  "name": "rented.co",
+  "version": "1.0",
   "dependencies": {
     "angular": "~1.2.23",
     "angular-route": "latest",
