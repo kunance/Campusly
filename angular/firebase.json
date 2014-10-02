@@ -1,5 +1,11 @@
 {
-    "firebase": "burning-fire-386",
+    "firebase": "eternel-fire-896",
     "public": "dist",
-    "rules": "config/security-rules.json"
+    "rules": "config/security-rules.json",
+    
+    "rewrites": [ {
+        "source": "**",
+        "destination": "/index.html"
+    } ]
 }
+

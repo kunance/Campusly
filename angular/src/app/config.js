@@ -11,7 +11,7 @@ angular.module('myApp.config', [])
     .constant('loginRedirectPath', '/login')
 
     // your Firebase URL goes here
-    .constant('FBURL', 'https://burning-fire-386.firebaseio.com')
+    .constant('FBURL', 'https://eternel-fire-896.firebaseio.com')
 
     // Firebase limit is 10MB, but lets set 5MB
     .constant('MAX_UPLOAD_SIZE', 1024*1024*5)
