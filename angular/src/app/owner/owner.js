@@ -66,6 +66,13 @@ angular.module('myApp.owner', ['ngRoute'])
             controller: 'OwnerProfileCtrl',
             profileRequired: OWNERS_ONLY
         });
+        
+        $routeProvider.when('/owners/invite', {
+            authRequired: true,
+            templateUrl: 'owner/invite.tpl.html',
+            controller: 'AddPropertyCtrl',
+            profileRequired: OWNERS_ONLY
+        });
 
         $routeProvider.when('/owners/properties/:id/status', {
             authRequired: true,
