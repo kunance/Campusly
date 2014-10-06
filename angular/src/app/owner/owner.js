@@ -16,10 +16,10 @@ angular.module('myApp.owner', ['ngRoute'])
 
                  if (profile&&profile.type=='owner')
                  {
-                     if (profile.properties)
+                    // if (profile.properties)
                        return '/owners/dashboard';
-                     else
-                       return '/owners/add-property';
+                    // else
+                    //   return '/owners/add-property';
                  }
             }
         });
@@ -237,6 +237,7 @@ angular.module('myApp.owner', ['ngRoute'])
               return;
            } 
 
+           /* Optional to upload a property picture. Add code if want to make pictures mandatory.
            if (!property.pictures||property.pictures.length<1)
            {
               $scope.showErrors= true;
@@ -248,7 +249,7 @@ angular.module('myApp.owner', ['ngRoute'])
               });
 
               return;
-           }
+           } */
 
 
            var handleErrors= function (err)
@@ -480,7 +481,7 @@ angular.module('myApp.owner', ['ngRoute'])
             if (file.size>MAX_UPLOAD_SIZE)
             {
                 TopBannerChannel.setBanner({
-                    content: 'The picture should be up to 5MB',
+                    content: 'The picture should be up to 8MB',
                     contentClass: 'danger'
                 });
 
