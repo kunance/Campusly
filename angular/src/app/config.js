@@ -14,7 +14,7 @@ angular.module('myApp.config', [])
     .constant('FBURL', 'https://burning-fire-386.firebaseio.com')
 
     // Firebase limit is 10MB, but lets set 5MB
-    .constant('MAX_UPLOAD_SIZE', 1024*1024*5)
+    .constant('MAX_UPLOAD_SIZE', 1024*1024*8)
 
     .constant('MAX_PROPERTY_PICTURES', 8)
 
