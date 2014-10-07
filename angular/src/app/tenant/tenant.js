@@ -100,6 +100,13 @@ angular.module('myApp.tenant', ['ngRoute'])
             controller: 'TenantPropertiesCtrl',
             profileRequired: TENANTS_ONLY
         });
+        
+        $routeProvider.when('/tenants/invite-owner', {
+            authRequired: true,
+            templateUrl: 'tenant/invite-owner.tpl.html',
+            controller: 'OnBoardingCtrl',
+            profileRequired: TENANTS_ONLY
+        });
 
         /* Hiding profile edit field
         $routeProvider.when('/tenants/profile', {
