@@ -107,6 +107,13 @@ angular.module('myApp.tenant', ['ngRoute'])
             controller: 'OnBoardingCtrl',
             profileRequired: TENANTS_ONLY
         });
+        
+        $routeProvider.when('/tenants/doc-center', {
+            authRequired: true,
+            templateUrl: 'tenant/doc-center.tpl.html',
+            controller: 'OnBoardingCtrl',
+            profileRequired: TENANTS_ONLY
+        });
 
         /* Hiding profile edit field
         $routeProvider.when('/tenants/profile', {

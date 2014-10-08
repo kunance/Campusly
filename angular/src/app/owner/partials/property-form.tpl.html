@@ -151,98 +151,6 @@
 
     </fieldset>
 
-    <fieldset>
-       <legend>Property Details</legend>
-
-       <div class="row">
-
-           <div class="col-sm-4">
-               <div class="form-group">
-                   <label class="col-sm-7 control-label">Bedrooms</label>
-                   <div class="col-sm-5">
-                      <select class="form-control input-lg" ng-model="property.bedrooms" >
-                          <option value="">Select...</option>
-                          <option value="0">0</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                          <option value="6">6</option>
-                      </select>
-                   </div>
-               </div>
-           </div>
-           <div class="col-sm-4">
-               <div class="form-group">
-                   <label class="col-sm-7 control-label">Bathrooms</label>
-                   <div class="col-sm-5">
-                      <select class="form-control input-lg" ng-model="property.bathrooms" >
-                          <option value="">Select...</option>
-                          <option value="0">0</option>
-                          <option value="0.5">0.5</option>
-                          <option value="1">1</option>
-                          <option value="1.5">1.5</option>
-                          <option value="2">2</option>
-                          <option value="2.5">2.5</option>
-                          <option value="3">3</option>
-                          <option value="3.5">3.5</option>
-                          <option value="4">4</option>
-                          <option value="4.5">4.5</option>
-                          <option value="5">5</option>
-                          <option value="5.5">5.5</option>
-                          <option value="6">6</option>
-                          <option value="6.5">6.5</option>
-                      </select>
-                   </div>
-               </div>
-           </div>
-           <div class="col-sm-4">
-               <div class="form-group">
-                   <label class="col-sm-7 control-label">Parking</label>
-                   <div class="col-sm-5">
-                      <select class="form-control input-lg" ng-model="property.parking" >
-                          <option value="">Select...</option>
-                          <option value="0">0</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                      </select>
-                   </div>
-               </div>
-           </div>
-
-       </div>
-
-       <div class="row">
-
-           <div class="col-sm-4">
-               <div class="form-group">
-                   <label class="col-sm-7 control-label">Area <sub>(sq.ft.)</sub></label>
-                   <div class="col-sm-5">
-                      <input class="form-control input-lg" type="text" ng-model="property.area" ui-number-mask="0">
-                   </div>
-               </div>
-           </div>
-
-       </div>
-
-
-       <div class="row">
-          <div class="col-sm-12">
-              <div class="form-group">
-                  <label class="col-sm-8 control-label">Description</label>
-              </div>
-          </div>
-       </div>
-       <div class="row">
-          <div class="col-sm-12">
-             <textarea class="form-control input-lg" ng-model="property.description" rows="10" ></textarea>
-          </div>
-       </div>
-    </fieldset>
-
     <fieldset class="fieldset-required">
         <legend>Pricing</legend>
 
@@ -360,8 +268,101 @@
            </div>
 
          </div>
+            
+    </fieldset>
+
+    <fieldset>
+       <legend>Property Details</legend>
+
+       <div class="row">
+
+           <div class="col-sm-4">
+               <div class="form-group">
+                   <label class="col-sm-7 control-label">Bedrooms</label>
+                   <div class="col-sm-5">
+                      <select class="form-control input-lg" ng-model="property.bedrooms" >
+                          <option value="">Select...</option>
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                      </select>
+                   </div>
+               </div>
+           </div>
+           <div class="col-sm-4">
+               <div class="form-group">
+                   <label class="col-sm-7 control-label">Bathrooms</label>
+                   <div class="col-sm-5">
+                      <select class="form-control input-lg" ng-model="property.bathrooms" >
+                          <option value="">Select...</option>
+                          <option value="0">0</option>
+                          <option value="0.5">0.5</option>
+                          <option value="1">1</option>
+                          <option value="1.5">1.5</option>
+                          <option value="2">2</option>
+                          <option value="2.5">2.5</option>
+                          <option value="3">3</option>
+                          <option value="3.5">3.5</option>
+                          <option value="4">4</option>
+                          <option value="4.5">4.5</option>
+                          <option value="5">5</option>
+                          <option value="5.5">5.5</option>
+                          <option value="6">6</option>
+                          <option value="6.5">6.5</option>
+                      </select>
+                   </div>
+               </div>
+           </div>
+           <div class="col-sm-4">
+               <div class="form-group">
+                   <label class="col-sm-7 control-label">Parking</label>
+                   <div class="col-sm-5">
+                      <select class="form-control input-lg" ng-model="property.parking" >
+                          <option value="">Select...</option>
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                      </select>
+                   </div>
+               </div>
+           </div>
+
+       </div>
+
+       <div class="row">
+
+           <div class="col-sm-4">
+               <div class="form-group">
+                   <label class="col-sm-7 control-label">Area <sub>(sq.ft.)</sub></label>
+                   <div class="col-sm-5">
+                      <input class="form-control input-lg" type="text" ng-model="property.area" ui-number-mask="0">
+                   </div>
+               </div>
+           </div>
+
+       </div>
+
+
+       <div class="row">
+          <div class="col-sm-12">
+              <div class="form-group">
+                  <label class="col-sm-8 control-label">Description</label>
+              </div>
+          </div>
+       </div>
+       <div class="row">
+          <div class="col-sm-12">
+             <textarea class="form-control input-lg" ng-model="property.description" rows="10" ></textarea>
+          </div>
+       </div>
         
-        <div class="row">
+        <div class="row top-buffer">
             <div class="col-sm-12">
                 <div class="buttons">
                     <button type="button" class="btn btn-rented" style="margin-right: 10px" ng-click="save(property)">Save</button>
@@ -370,7 +371,7 @@
         </div>
         
     </fieldset>
-
+    
     <fieldset>
        <legend>Upload Image</legend>
 
