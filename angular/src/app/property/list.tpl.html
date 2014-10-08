@@ -1,18 +1,25 @@
 <div class="content-header header-shadow property-list-header">
     <div class="container">
-        <h1>Take A Tour</h1>
+        <h1>Take A Tour</h1> 
 
         <div class="row">
             <div class="col-sm-12">
-                <h3>Recent Properties</h3> 
+                <h3>Easy Rental Paperwork</h3> 
+                
+                <div class="col-sm-5 col-xs-12">
+                    <ul>
+                        <li>Tenant(s) make offer online</li>
+                        <li>Owner accepts offer &amp; property is Rental Pending</li>
+                        <li>Lease is signed &amp; property is Rented</li>
+                    </ul>
+                </div>
 
-                <ul>
-                    <li>Property availability (Available, Rental Pending, Rented)</li>
-                    <li>Offers made by tenants</li>
-                    <li>How to make your offer</li>
-                </ul>
+                <div class="col-sm-7 col-xs-12">
+                    <youtube-video id="best-vid" video-id="rentedIntro"></youtube-video>
+                </div>
 
             </div>
+            
         </div>
     </div>
 </div>
@@ -20,6 +27,8 @@
 <div class="container property">
     <div class="row">
         <div class="col-sm-12 property-list">
+            
+            <h3>Recent Properties</h3>
 
             <div class="row property-row" ng-repeat="(id, property) in properties | loadProperty" ng-show="property.pictures.length">
                 <img ng-src="{{property.pictures[0]}}" class="col-md-7 col-xs-12 img-responsive">

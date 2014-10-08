@@ -29,6 +29,9 @@ angular.module('myApp.property', ['ngRoute'])
         { 
             $scope.properties= _.map(data.val(),function ($id) { return { $id: $id }; });
         });
+        
+        $scope.rentedIntro = 'wT2X5P00yio';
+
     }
 ])
 

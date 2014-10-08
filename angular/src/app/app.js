@@ -25,7 +25,8 @@ angular.module('myApp', [
  //       'famous.angular',
         'uuid4',
         'ui.utils.masks',
-        'ui.mask'
+        'ui.mask',
+        'youtube-embed'
     ])
 
     .config
