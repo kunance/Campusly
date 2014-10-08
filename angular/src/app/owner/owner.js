@@ -73,6 +73,13 @@ angular.module('myApp.owner', ['ngRoute'])
             controller: 'AddPropertyCtrl',
             profileRequired: OWNERS_ONLY
         });
+        
+        $routeProvider.when('/owners/doc-center', {
+            authRequired: true,
+            templateUrl: 'owner/doc-center.tpl.html',
+            controller: 'OwnerProfileCtrl',
+            profileRequired: OWNERS_ONLY
+        });
 
         $routeProvider.when('/owners/properties/:id/status', {
             authRequired: true,
