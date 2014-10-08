@@ -435,7 +435,7 @@ angular.module('myApp.tenant', ['ngRoute'])
 
               shouter
               ({
-                    content: 'Please correct the highlighted fields on page 1 and 2',
+                    content: 'Please correct the highlighted fields on your profile',
                     type: 'danger'
               });
 
