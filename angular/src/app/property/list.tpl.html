@@ -49,12 +49,18 @@
 
                     <div class="property-row-price"><strong>Suggested Rent</strong> ${{property.targetRent}}</div>
 
-                    <div class="property-row-features" style="margin-bottom: 20px;">{{property.beds}} Beds, {{property.baths}} Baths</div>
+                    <div class="property-row-features" style="margin-bottom: 20px;">{{property.bedrooms}} Beds, {{property.bathrooms}} Baths</div>
 
                     <div class="property-row-offers" ng-include="'property/partials/offers.tpl.html'">
                     </div>
 
-                    <a href="#/property/{{property.$id}}" class="btn btn-rented">See More</a>
+                    <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #666666; line-height: 2;" ng-show="property.bestOffer.accepted&&!property.tenant">Rental Pending</p>
+                    <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #51b65b; line-height: 2;" ng-show="property.tenant">Rented</p>
+                    <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #ff503f; line-height: 2;" ng-show="!property.tenant&&property.disabled">Unavailable</p>
+                    <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #89d4cd; line-height: 2;" ng-show="!property.tenant&&!property.bestOffer.accepted">Available</p>
+                    
+                    <a href="#/property/{{property.$id}}" class="btn btn-rented left-buffer">View Property</a>
+                    
                 </div>
             </div> <!-- property-row -->
 
