@@ -30,7 +30,70 @@
             </div>
         </div>
     </div>
+    
+    <fieldset class="top-buffer">
+        <legend>Your Property Link</legend>
+        
+        <div class="row col-sm-12">
+            <table class="table table-bordered table-condensed" style="width:100%">
+                <tr>
+                    <td><input class="form-control input-lg" type="text" value="http://rented.co/#/property/{{property.$id}}" disabled></td>
+                </tr>
+            </table>
+        </div>
 
+        <!--div class="row">
+
+           <div class="col-sm-6">
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">Street</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.address.street" autofocus required>
+                   </div>
+               </div>
+           </div>
+           <div class="col-sm-6">
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">Apt. number</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.address.aptNumber">
+                   </div>
+               </div>
+           </div>
+
+        </div>
+
+        <div class="row">
+           <div class="col-sm-6">
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">City</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.address.city" required>
+                   </div>
+               </div>
+           </div>
+           <div class="col-sm-6">
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">State</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.address.state" typeahead="state for state in states | filter:$viewValue | limitTo:8" ng-pattern="{{statesPattern}}" required>
+                   </div>
+               </div>
+           </div>
+        </div>
+
+        <div class="row">
+           <div class="col-sm-6">
+               <div class="form-group">
+                   <label class="col-sm-4 control-label">Zip</label>
+                   <div class="col-sm-8">
+                      <input class="form-control input-lg" type="text" ng-model="property.address.zip" ng-pattern="/[0-9]{5}/" maxlength="5" required>
+                   </div>
+               </div>
+           </div>
+        </div-->
+
+    </fieldset>
 
     <fieldset class="fieldset-required">
         <legend>Address</legend>
@@ -88,98 +151,6 @@
 
     </fieldset>
 
-    <fieldset>
-       <legend>Property Details</legend>
-
-       <div class="row">
-
-           <div class="col-sm-4">
-               <div class="form-group">
-                   <label class="col-sm-7 control-label">Bedrooms</label>
-                   <div class="col-sm-5">
-                      <select class="form-control input-lg" ng-model="property.bedrooms" required>
-                          <option value="">Select...</option>
-                          <option value="0">0</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                          <option value="6">6</option>
-                      </select>
-                   </div>
-               </div>
-           </div>
-           <div class="col-sm-4">
-               <div class="form-group">
-                   <label class="col-sm-7 control-label">Bathrooms</label>
-                   <div class="col-sm-5">
-                      <select class="form-control input-lg" ng-model="property.bathrooms" required>
-                          <option value="">Select...</option>
-                          <option value="0">0</option>
-                          <option value="0.5">0.5</option>
-                          <option value="1">1</option>
-                          <option value="1.5">1.5</option>
-                          <option value="2">2</option>
-                          <option value="2.5">2.5</option>
-                          <option value="3">3</option>
-                          <option value="3.5">3.5</option>
-                          <option value="4">4</option>
-                          <option value="4.5">4.5</option>
-                          <option value="5">5</option>
-                          <option value="5.5">5.5</option>
-                          <option value="6">6</option>
-                          <option value="6.5">6.5</option>
-                      </select>
-                   </div>
-               </div>
-           </div>
-           <div class="col-sm-4">
-               <div class="form-group">
-                   <label class="col-sm-7 control-label">Parking</label>
-                   <div class="col-sm-5">
-                      <select class="form-control input-lg" ng-model="property.parking" required>
-                          <option value="">Select...</option>
-                          <option value="0">0</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                      </select>
-                   </div>
-               </div>
-           </div>
-
-       </div>
-
-       <div class="row">
-
-           <div class="col-sm-4">
-               <div class="form-group">
-                   <label class="col-sm-7 control-label">Area <sub>(sq.ft.)</sub></label>
-                   <div class="col-sm-5">
-                      <input class="form-control input-lg" type="text" ng-model="property.area" ui-number-mask="0">
-                   </div>
-               </div>
-           </div>
-
-       </div>
-
-
-       <div class="row">
-          <div class="col-sm-12">
-              <div class="form-group">
-                  <label class="col-sm-8 control-label">Description</label>
-              </div>
-          </div>
-       </div>
-       <div class="row">
-          <div class="col-sm-12">
-             <textarea class="form-control input-lg" ng-model="property.description" rows="10" required></textarea>
-          </div>
-       </div>
-    </fieldset>
-
     <fieldset class="fieldset-required">
         <legend>Pricing</legend>
 
@@ -202,7 +173,7 @@
                    <div class="col-sm-12">
                      <div class="checkbox">
                         <label class="control-label">
-                          <input type="checkbox" ng-model="property.dynamicPricing"> Enable Dynamic Pricing
+                          <input type="checkbox" ng-model="property.dynamicPricing"> Tenants Name Their Rent
                         </label>
                      </div>
                    </div>
@@ -297,8 +268,101 @@
            </div>
 
          </div>
+            
+    </fieldset>
+
+    <fieldset>
+       <legend>Property Details</legend>
+
+       <div class="row">
+
+           <div class="col-sm-4">
+               <div class="form-group">
+                   <label class="col-sm-7 control-label">Bedrooms</label>
+                   <div class="col-sm-5">
+                      <select class="form-control input-lg" ng-model="property.bedrooms" >
+                          <option value="">Select...</option>
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                      </select>
+                   </div>
+               </div>
+           </div>
+           <div class="col-sm-4">
+               <div class="form-group">
+                   <label class="col-sm-7 control-label">Bathrooms</label>
+                   <div class="col-sm-5">
+                      <select class="form-control input-lg" ng-model="property.bathrooms" >
+                          <option value="">Select...</option>
+                          <option value="0">0</option>
+                          <option value="0.5">0.5</option>
+                          <option value="1">1</option>
+                          <option value="1.5">1.5</option>
+                          <option value="2">2</option>
+                          <option value="2.5">2.5</option>
+                          <option value="3">3</option>
+                          <option value="3.5">3.5</option>
+                          <option value="4">4</option>
+                          <option value="4.5">4.5</option>
+                          <option value="5">5</option>
+                          <option value="5.5">5.5</option>
+                          <option value="6">6</option>
+                          <option value="6.5">6.5</option>
+                      </select>
+                   </div>
+               </div>
+           </div>
+           <div class="col-sm-4">
+               <div class="form-group">
+                   <label class="col-sm-7 control-label">Parking</label>
+                   <div class="col-sm-5">
+                      <select class="form-control input-lg" ng-model="property.parking" >
+                          <option value="">Select...</option>
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                      </select>
+                   </div>
+               </div>
+           </div>
+
+       </div>
+
+       <div class="row">
+
+           <div class="col-sm-4">
+               <div class="form-group">
+                   <label class="col-sm-7 control-label">Area <sub>(sq.ft.)</sub></label>
+                   <div class="col-sm-5">
+                      <input class="form-control input-lg" type="text" ng-model="property.area" ui-number-mask="0">
+                   </div>
+               </div>
+           </div>
+
+       </div>
+
+
+       <div class="row">
+          <div class="col-sm-12">
+              <div class="form-group">
+                  <label class="col-sm-8 control-label">Description</label>
+              </div>
+          </div>
+       </div>
+       <div class="row">
+          <div class="col-sm-12">
+             <textarea class="form-control input-lg" ng-model="property.description" rows="10" ></textarea>
+          </div>
+       </div>
         
-        <div class="row">
+        <div class="row top-buffer">
             <div class="col-sm-12">
                 <div class="buttons">
                     <button type="button" class="btn btn-rented" style="margin-right: 10px" ng-click="save(property)">Save</button>
@@ -307,7 +371,7 @@
         </div>
         
     </fieldset>
-
+    
     <fieldset>
        <legend>Upload Image</legend>
 
@@ -321,7 +385,7 @@
                 </span>
            </div>
            <div class="col-sm-9 pull-left">
-                <span>Upload property pictures, max file size 5MB per picture. <br>The first picture will be your property profile picture.</span>
+                <span>Upload property pictures, max file size 8MB per picture. <br>The first picture will be your property profile picture.</span>
            </div>
 
        </div>

@@ -53,9 +53,13 @@
     <div class="row properties">
         <div class="col-sm-3" ng-repeat="property in properties | loadProperty:'':'lazy'" ng-show="property.address">
             <ng-include src="'owner/partials/property-teaser.tpl.html'"></ng-include>
+            <a href="#/property/{{property.$id}}" class="btn btn-rented">View Property</a>
             <a href="#/owners/properties/{{property.$id}}/status" class="btn btn-rented">View Offers</a>
         </div>
     </div>
+
+    <!-- Hiding this block
+    Placeholder till we get content
 
     <div class="row" style="margin-top: 40px">
         <div class="col-sm-9">
@@ -130,9 +134,10 @@
 
 
         </div>
-    </div>
+    </div> -->
 
     <div class="row top-buffer">
+        <!-- Hiding this block, placeholder till we get content
         <div class="col-sm-9">
            <h5>Expenses</h5>
 
@@ -164,8 +169,8 @@
                  <p>Occupancy Rate</p>
               </div>
            </div>
-        </div>
-        <div class="col-sm-3 calendar">
+        </div> -->
+        <div class="col-sm-3 col-sm-offset-9 calendar">
            <h5>Calendar</h5>
            <div class="row">
              <div id="mini-clndr" class="col-sm-12">

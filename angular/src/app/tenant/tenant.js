@@ -100,6 +100,20 @@ angular.module('myApp.tenant', ['ngRoute'])
             controller: 'TenantPropertiesCtrl',
             profileRequired: TENANTS_ONLY
         });
+        
+        $routeProvider.when('/tenants/invite-owner', {
+            authRequired: true,
+            templateUrl: 'tenant/invite-owner.tpl.html',
+            controller: 'OnBoardingCtrl',
+            profileRequired: TENANTS_ONLY
+        });
+        
+        $routeProvider.when('/tenants/doc-center', {
+            authRequired: true,
+            templateUrl: 'tenant/doc-center.tpl.html',
+            controller: 'OnBoardingCtrl',
+            profileRequired: TENANTS_ONLY
+        });
 
         /* Hiding profile edit field
         $routeProvider.when('/tenants/profile', {
@@ -421,7 +435,7 @@ angular.module('myApp.tenant', ['ngRoute'])
 
               shouter
               ({
-                    content: 'Please correct the highlighted fields on page 1 and 2',
+                    content: 'Please correct the highlighted fields on your profile',
                     type: 'danger'
               });
 
