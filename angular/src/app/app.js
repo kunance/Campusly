@@ -191,18 +191,21 @@ angular.module('myApp', [
 
     .factory('compressImage',['IMAGE_COMPRESSION',function (IMAGE_COMPRESSION)
     {
-          return function (type,dataURL)
+          return function (type,dataURL,done)
           {
                var img = new Image;
-               img.src = dataURL;
 
                console.log('compressImage before',type,dataURL.length);
 
-               if (_.contains(['image/png','image/jpeg','image/jpg'],type))
-                 dataURL= jic.compress(img,IMAGE_COMPRESSION,type.indexOf('image/png')==0 ? 'png' : 'jpg').src;
+               img.onload= function ()
+               {
+                   if (_.contains(['image/png','image/jpeg','image/jpg'],type))
+                     dataURL= jic.compress(img,IMAGE_COMPRESSION,type.indexOf('image/png')==0 ? 'png' : 'jpg').src;
 
-               console.log('compressImage after',type,dataURL.length);
+                   console.log('compressImage after',type,dataURL.length);
+                   done(dataURL);
+               };
 
-               return dataURL;
+               img.src = dataURL;
           };
     }]);

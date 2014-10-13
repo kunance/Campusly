@@ -183,8 +183,12 @@ angular.module('myApp.owner', ['ngRoute'])
                 
                 fileReader.onload= function (e)
                 {
-                    $scope.property.pictures.push(compressImage(file.type,e.target.result));
-                    $scope.$apply();
+                    compressImage(file.type,e.target.result,
+                    function (dataURL)
+                    {
+                        $scope.property.pictures.push(dataURL);
+                        $scope.$apply();
+                    });
                 };
                 
                 fileReader.readAsDataURL(file);
@@ -506,8 +510,12 @@ angular.module('myApp.owner', ['ngRoute'])
             
             fileReader.onload= function (e)
             {
-                $rootScope.profile.picture= compressImage(file.type,e.target.result);
-                $scope.$apply();
+                 compressImage(file.type,e.target.result,
+                 function (dataURL)
+                 {
+                        $rootScope.profile.picture= dataURL;
+                        $scope.$apply();
+                 });
             };
             
             fileReader.readAsDataURL(file);
