@@ -171,7 +171,7 @@ angular.module('myApp.owner', ['ngRoute'])
                 {
                     shoutUpload
                     ({
-                        content: 'Pictures should be up to 5MB, file '+
+                        content: 'Pictures should be up to 8MB, file '+
                                  file.name+' is '+(file.size/1024/1024)+'MB',
                         type: 'danger'
                     });
@@ -228,7 +228,7 @@ angular.module('myApp.owner', ['ngRoute'])
             handleErrors);
        };
 
-       $scope.minDate= moment().format('YYYY-MM-DD');
+       $scope.minDate= moment().format('MM-DD-YYYY');
 
        $scope.open = function($event)
        {
