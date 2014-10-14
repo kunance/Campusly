@@ -13,7 +13,28 @@ Loading the property...
     </div>
 </div>
 
+<div class="container" ng-show="profile&&profile.type=='owner'">
+    <div class="row">
+        <div class="col-sm-12">
+            <fieldset class="top-buffer">
+                <legend>Your Property Link</legend>
+
+                <div class="row col-sm-12">
+                    <table class="table table-bordered table-condensed" style="width:100%">
+                        <tr>
+                            <td><input class="form-control input-lg" type="text" value="http://rented.co/#/property/{{property.$id}}" ></td>
+                        </tr>
+                    </table>
+                </div>
+
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+
 <div class="container property" ng-show="property.address.street">
+    
     <div class="row" style="margin-top: 20px;">
         <div class="col-sm-6">
             <div class="property-detail-images" ng-include="'property/partials/images.tpl.html'"></div>
