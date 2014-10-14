@@ -6,7 +6,8 @@ Loading the property...
     <div class="container">
         <div class="row" style="min-height: 210px;">
             <div class="col-sm-12 text-center box-bottom">
-                <h1>{{property.address.street}}</h1>
+                <h1 ng-hide="property.address.aptNumber">{{property.address.street}}</h1>
+                <h1 ng-show="property.address.aptNumber">{{property.address.street}}, Apt. {{property.address.aptNumber}}</h1>
                 <h2>{{property.address.city}}, {{property.address.state}} {{property.address.zip}}</h2>
             </div>
         </div>
