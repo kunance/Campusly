@@ -574,6 +574,8 @@ angular.module('myApp.tenant', ['ngRoute'])
 
          $scope.terms= [
                           { months: 1, desc: 'Month-to-month' },
+                          { months: 6, desc: '6 months' },
+                          { months: 9, desc: '9 months' },
                           { months: 12, desc: '1 year' },
                           { months: 24, desc: '2 years' },
                           { months: 36, desc: '3 years' }
@@ -585,6 +587,7 @@ angular.module('myApp.tenant', ['ngRoute'])
                              return t.months==1; 
                            else
                              return t.months>1&&t.months<=property.leaseTerm; 
+             /* Need to fix this condition statement */
                        });
 
      });

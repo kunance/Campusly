@@ -25,7 +25,8 @@
                     </div>
                 </div>
 
-                <h1>{{property.address.street}}</h1>
+                <h1 ng-hide="property.address.aptNumber">{{property.address.street}}</h1>
+                <h1 ng-show="property.address.aptNumber">{{property.address.street}}, Apt. {{property.address.aptNumber}}</h1>
                 <h2>{{property.address.city}}, {{property.address.state}} {{property.address.zip}}</h2>
             </div>
         </div>
@@ -187,6 +188,8 @@
                       <select class="form-control input-lg" ng-model="property.leaseTerm" required>
                           <option value="">Select...</option>
                           <option value="1">Month-to-month</option>
+                          <option value="6">6 months</option>
+                          <option value="9">9 months</option>   
                           <option value="12">1 year</option>
                           <option value="24">1, 2 years</option>
                           <option value="36">1, 2, 3 years</option>
