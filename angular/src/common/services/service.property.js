@@ -3,9 +3,9 @@ angular.module('service.property', ['service.firebase'])
     .filter('loadBid', ['propertyService',
     function (propertyService)
     {
-        return function (bids)
+        return function (bids,limit)
         {
-            bids= bids || [];
+            bids= (bids || []).slice(0,limit||bids.length);
 
             bids.forEach(function (bid,idx)
             {
@@ -143,7 +143,7 @@ angular.module('service.property', ['service.firebase'])
                     var val= data.val();
 
                     if (val)
-                    that.fetchBids(propertyId,MAX_OFFERS)
+                    that.fetchBids(propertyId)
                     .$inst().$ref().on('value',function (data)
                     {
                          var bids= _.map(_.keys(data.val()),function ($id) { return { $id: $id }; });
