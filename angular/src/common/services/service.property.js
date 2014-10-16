@@ -55,7 +55,7 @@ angular.module('service.property', ['service.firebase'])
     }])
 
 
-    .factory('propertyService', ["$rootScope", "firebaseRef", "syncData", 'uuid4', 'firebaseBatch', 'loginService', function($rootScope, firebaseRef, syncData,uuid4,firebaseBatch,loginService){
+    .factory('propertyService', ["$rootScope", "firebaseRef", "syncData", 'uuid4', 'firebaseBatch', 'loginService', 'MAX_OFFERS', function($rootScope, firebaseRef, syncData,uuid4,firebaseBatch,loginService, MAX_OFFERS){
         return {
             create: function ()
             {
@@ -143,7 +143,7 @@ angular.module('service.property', ['service.firebase'])
                     var val= data.val();
 
                     if (val)
-                    that.fetchBids(propertyId,3)
+                    that.fetchBids(propertyId,MAX_OFFERS)
                     .$inst().$ref().on('value',function (data)
                     {
                          var bids= _.map(_.keys(data.val()),function ($id) { return { $id: $id }; });
