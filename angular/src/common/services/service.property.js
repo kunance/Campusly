@@ -5,7 +5,8 @@ angular.module('service.property', ['service.firebase'])
     {
         return function (bids,limit)
         {
-            bids= (bids || []).slice(0,limit||bids.length);
+            bids= bids || [];
+            bids= bids.slice(0,limit||bids.length);
 
             bids.forEach(function (bid,idx)
             {
