@@ -55,9 +55,9 @@
                     </div>
 
                     <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #666666; line-height: 2;" ng-show="property.bestOffer.accepted&&!property.tenant">Rental Pending</p>
-                    <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #51b65b; line-height: 2;" ng-show="property.tenant">Rented</p>
+                    <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #89d4cd; line-height: 2; color: black;" ng-show="property.tenant"><strong>rented</strong></p>
                     <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #ff503f; line-height: 2;" ng-show="!property.tenant&&property.disabled">Unavailable</p>
-                    <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #89d4cd; line-height: 2;" ng-show="!property.tenant&&!property.bestOffer.accepted">Available</p>
+                    <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #5fbc69; line-height: 2;" ng-show="!property.tenant&&!property.bestOffer.accepted">Available</p>
                     
                     <a href="#/property/{{property.$id}}" class="btn btn-rented left-buffer">View Property</a>
                     
