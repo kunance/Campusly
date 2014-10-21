@@ -56,7 +56,7 @@ angular.module('service.property', ['service.firebase'])
     }])
 
 
-    .factory('propertyService', ["$rootScope", "firebaseRef", "syncData", 'uuid4', 'firebaseBatch', 'loginService', 'MAX_OFFERS', function($rootScope, firebaseRef, syncData,uuid4,firebaseBatch,loginService, MAX_OFFERS){
+    .factory('propertyService', ["$rootScope", "firebaseRef", "syncData", 'uuid4', 'firebaseBatch', 'loginService', function($rootScope, firebaseRef, syncData,uuid4,firebaseBatch,loginService){
         return {
             create: function ()
             {

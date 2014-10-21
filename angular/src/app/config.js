@@ -22,8 +22,6 @@ angular.module('myApp.config', [])
 
     .constant('IMAGE_COMPRESSION', 30) // in percent
 
-    .constant('MAX_OFFERS', 10)
-
 //you can use this one to try out a demo of the seed
 //   .constant('FBURL', 'https://angularfire-seed.firebaseio.com');
 
