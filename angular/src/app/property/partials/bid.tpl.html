@@ -3,7 +3,7 @@
 <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #ff503f; line-height: 2;" ng-show="!property.tenant&&property.disabled">Unavailable</p>
 <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #5fbc69; line-height: 2;" ng-show="!property.tenant&&!property.bestOffer.accepted">Available</p>
 
-<h5 ng-hide="property.bestOffer.accepted||property.disabled" class="top-buffer">Make An Offer</h5>
+<h5 ng-hide="property.bestOffer.accepted||property.disabled" class="top-buffer">Submit Your Application</h5>
 
 <form ng-hide="property.bestOffer.accepted||property.disabled" method="post" class="form-horizontal" ng-submit="makeAnOffer(bid,property)" ng-controller="TenantBidCtrl" ng-show="gotProfile">
     <div class="form-group">
@@ -35,13 +35,23 @@
     </div>
 
     <div class="row" style="margin-top: 30px;">
-        <div class="col-xs-6 text-right">
+        
+        <div class="col-xs-6 text-center">
             <a class="btn btn-rented" ng-click="watch(property)" ng-hide="inWatchlist(property)" ng-disabled="profile.type=='owner'">Add To Watchlist</a>
             <a class="btn btn-rented" ng-click="unwatch(property)" ng-show="inWatchlist(property)&&profile">Remove From Watchlist</a>
         </div>
-        <div class="col-xs-6">
-            <button type="submit" class="btn btn-rented" ng-hide="bid.userId" ng-disabled="profile.type=='owner'">Make An Offer</button>
-            <button type="button" class="btn btn-rented" ng-show="bid.userId&&profile" ng-click="editMyBid(bid,property)">Edit My Offer</button>
+        
+        <div class="col-xs-6 text-center">
+            <button type="submit" class="btn btn-rented" ng-hide="bid.userId" ng-disabled="profile.type=='owner'">Apply</button>
+            <button type="button" class="btn btn-rented" ng-show="bid.userId&&profile" ng-click="editMyBid(bid,property)">Edit My Application</button>
+        </div>
+        
+    </div>
+    
+    <div class="row top-buffer">
+        <div class="col-xs-12 text-left">
+            <a href="#/tour/howtoapply">See how to apply online</a>
         </div>
     </div>
+    
 </form>
