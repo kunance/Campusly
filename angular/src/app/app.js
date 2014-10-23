@@ -26,7 +26,9 @@ angular.module('myApp', [
         'uuid4',
         'ui.utils.masks',
         'ui.mask',
-        'youtube-embed'
+        'youtube-embed',
+        'angulartics', 
+        'angulartics.google.analytics'
     ])
 
     .config
