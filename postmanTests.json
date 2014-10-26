@@ -1,0 +1,80 @@
+{"id": "8b97ccbd-2588-299e-a155-bfcf436a26a5", "name": "Rented experience", "timestamp": 1414274662007, "requests": [
+    {
+        "collectionId": "8b97ccbd-2588-299e-a155-bfcf436a26a5",
+        "id": "765177ed-4cca-3ffa-a923-dd19e4a185a6",
+        "name": "get credit report w/ form data payload",
+        "description": "",
+        "url": "https://stg1-ss6.experian.com/ECP2P/api/user",
+        "method": "POST",
+        "headers": "Authorization: Basic Y29ubmVjdF9yZW50ZWQ6Y25jdDEwMTRl\nAccept: application/json\n",
+        "data": [
+            {
+                "key": "firstName",
+                "value": "patti",
+                "type": "text"
+            },
+            {
+                "key": "currentZip",
+                "value": "88201",
+                "type": "text"
+            },
+            {
+                "key": "lastName",
+                "value": "northrup",
+                "type": "text"
+            },
+            {
+                "key": "ssn",
+                "value": "666650775",
+                "type": "text"
+            },
+            {
+                "key": "currentAddress",
+                "value": "3910 futura dr",
+                "type": "text"
+            },
+            {
+                "key": "currentCity",
+                "value": "roswell",
+                "type": "text"
+            },
+            {
+                "key": "currentState",
+                "value": "NM",
+                "type": "text"
+            }
+        ],
+        "dataMode": "urlencoded",
+        "timestamp": 0,
+        "version": 2,
+        "time": 1414348628992
+    },
+    {
+        "collectionId": "8b97ccbd-2588-299e-a155-bfcf436a26a5",
+        "id": "dec93f2f-37ed-fd6b-c222-438a136b1b60",
+        "name": "Node get credit report w/ json payload",
+        "description": "",
+        "url": "http://localhost:9000/api/creditReport",
+        "method": "POST",
+        "headers": "Accept: application/json\nContent-Type: application/json\n",
+        "data": "{ \"creditReportRequestorInfo\":\n  {\"firstName\": \"patti\",\n  \"lastName\": \"northrup\",\n  \"ssn\": \"666650775\",\n  \"currentAddress\": \"3910 futura dr\",\n  \"currentCity\": \"roswell\",\n  \"currentState\": \"NM\",\n  \"currentZip\": \"88201\"\n  }\n}",
+        "dataMode": "raw",
+        "timestamp": 0,
+        "version": 2,
+        "time": 1414351811358
+    },
+    {
+        "collectionId": "8b97ccbd-2588-299e-a155-bfcf436a26a5",
+        "id": "fd18a370-4401-38f3-0c09-1e4a036554b7",
+        "name": "get credit report w/ json payload",
+        "description": "",
+        "url": "https://stg1-ss6.experian.com/ECP2P/api/user",
+        "method": "POST",
+        "headers": "Authorization: Basic Y29ubmVjdF9yZW50ZWQ6Y25jdDEwMTRl\nAccept: application/json\nContent-Type: application/json\n",
+        "data": "{\"firstName\": \"patti\",\n\"lastName\": \"northrup\",\n\"ssn\": \"666650775\",\n\"currentAddress\": \"3910 futura dr\",\n\"currentCity\": \"roswell\",\n\"currentState\": \"NM\",\n\"currentZip\": \"88201\"\n}",
+        "dataMode": "raw",
+        "timestamp": 0,
+        "version": 2,
+        "time": 1414351650678
+    }
+]}
