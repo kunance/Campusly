@@ -1,0 +1,10 @@
+{ "creditReportRequestorInfo": {
+    "firstName": "patti",
+    "lastName": "northrup",
+    "ssn": "666650775",
+    "currentAddress": "3910 futura dr",
+    "currentCity": "roswell",
+    "currentState": "NM",
+    "currentZip": "88201"
+ }
+}
