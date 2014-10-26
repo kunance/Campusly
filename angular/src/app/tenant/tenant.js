@@ -100,6 +100,20 @@ angular.module('myApp.tenant', ['ngRoute'])
             controller: 'TenantPropertiesCtrl',
             profileRequired: TENANTS_ONLY
         });
+        
+        $routeProvider.when('/tenants/invite-owner', {
+            authRequired: true,
+            templateUrl: 'tenant/invite-owner.tpl.html',
+            controller: 'OnBoardingCtrl',
+            profileRequired: TENANTS_ONLY
+        });
+        
+        $routeProvider.when('/tenants/doc-center', {
+            authRequired: true,
+            templateUrl: 'tenant/doc-center.tpl.html',
+            controller: 'OnBoardingCtrl',
+            profileRequired: TENANTS_ONLY
+        });
 
         /* Hiding profile edit field
         $routeProvider.when('/tenants/profile', {
@@ -397,8 +411,12 @@ angular.module('myApp.tenant', ['ngRoute'])
             
             fileReader.onload= function (e)
             {
-                $rootScope.profile.picture= compressImage(file.type,e.target.result);
-                $scope.$apply();
+                 compressImage(file.type,e.target.result,
+                 function (dataURL)
+                 {
+                      $rootScope.profile.picture= dataURL;
+                      $scope.$apply();
+                 });
             };
             
             fileReader.readAsDataURL(file);
@@ -421,7 +439,7 @@ angular.module('myApp.tenant', ['ngRoute'])
 
               shouter
               ({
-                    content: 'Please correct the highlighted fields on page 1 and 2',
+                    content: 'Please correct the highlighted fields on your profile',
                     type: 'danger'
               });
 
@@ -556,6 +574,8 @@ angular.module('myApp.tenant', ['ngRoute'])
 
          $scope.terms= [
                           { months: 1, desc: 'Month-to-month' },
+                          { months: 6, desc: '6 months' },
+                          { months: 9, desc: '9 months' },
                           { months: 12, desc: '1 year' },
                           { months: 24, desc: '2 years' },
                           { months: 36, desc: '3 years' }
@@ -567,6 +587,7 @@ angular.module('myApp.tenant', ['ngRoute'])
                              return t.months==1; 
                            else
                              return t.months>1&&t.months<=property.leaseTerm; 
+             /* Need to fix this condition statement */
                        });
 
      });

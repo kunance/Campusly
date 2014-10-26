@@ -17,6 +17,14 @@ angular.module('myApp.property', ['ngRoute'])
             templateUrl: 'property/list.tpl.html',
             controller: 'PropertyListCtrl'
         });
+        
+        $routeProvider.when('/tour/howtoapply', {
+            templateUrl: 'property/partials/howtoapply.tpl.html',
+        });
+        
+        $routeProvider.when('/tour/howtoaddproperty', {
+            templateUrl: 'property/partials/howtoaddproperty.tpl.html',
+        });
 
     }
 ])
@@ -29,6 +37,9 @@ angular.module('myApp.property', ['ngRoute'])
         { 
             $scope.properties= _.map(data.val(),function ($id) { return { $id: $id }; });
         });
+        
+        $scope.rentedIntro = 'wT2X5P00yio';
+
     }
 ])
 

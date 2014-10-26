@@ -2,8 +2,9 @@
 
         <div class="buttons">
            <button type="button" class="btn btn-rented right-buffer" ng-click="save(profile,password)">Save</button>
-           <a ng-click="page=1" class="prev" ng-class="{ active: page==1 }">1</a>
-           <a ng-click="page=2" class="next" ng-class="{ active: page==2 }">2</a>
+            <a href="#/tenants/myprofile/2" class="next" style="padding-left: 20px;">Next</a>
+           <!--a ng-click="page=1" class="prev" ng-class="{ active: page==1 }">1</a>
+           <a ng-click="page=2" class="next" ng-class="{ active: page==2 }">2</a-->
         </div>
 
         <h1 ng-hide="onBoarding">My Profile {{page==2 ? 'Cont' : ''}}</h1>
@@ -12,12 +13,14 @@
         <div ng-include="'tenant/partials/profile-page-1.tpl.html'" ng-show="page==1">
         </div>
 
-        <div ng-include="'tenant/partials/profile-page-2.tpl.html'" ng-show="page==2">
-        </div>
+        <!--div ng-include="'tenant/partials/profile-page-2.tpl.html'" ng-show="page==2">
+        </div-->
         
         <div class="buttons">
            <button type="button" class="btn btn-rented right-buffer" ng-click="save(profile,password)">Save</button>
         </div>
+        
+        <div class="alert alert-{{shout.type}} text-center" ng-show="shout.content">{{shout.content}}</div>
 
     </form>
 

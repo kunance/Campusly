@@ -6,7 +6,7 @@
             <div class="row">
                     <div class="col-sm-4 col-md-4 col-lg-4 feature-icon">
                          <img src="assets/img/features/owners/tenant-screening.gif" class="center-block">
-                         <h4 class="text-center">Easy Tenant Screening</h4>
+                         <h4 class="text-center">Reduce Paperwork + Easy Tenant Screening</h4>
                     </div>
                     <div class="col-sm-4 col-md-4 col-lg-4 feature-icon">
                          <img src="assets/img/features/owners/multiple-offers.gif" class="center-block">
@@ -20,7 +20,7 @@
 
             <div class="row vertical-buffer">
                     <div class="col-xs-12 text-center">
-                         <a href="#/register/owner" class="btn btn-rented" ng-hide="{{profile && profile.type == 'tenant'}}">Add Your Property</a>
+                         <a href="#/register/owner" class="btn btn-rented" ng-hide="{{profile && profile.type == 'tenant'}}" analytics-on analytics-event='Add-Property'>Add Your Property for Free</a>
                     </div>
             </div>
     </div>
@@ -30,13 +30,23 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h4>Easy Tenant Screening</h4>
+                <h4>Reduce Paperwork + Easy Tenant Screening</h4>
                 <div class="row">
                     <img src="assets/img/features/owners/credit-report.png" class="col-sm-7 col-xs-12 img-responsive">
                     <ul class="col-sm-5 col-xs-12 list-unstyled">
-                       <li><a href="http://www.experian.com/connect/" target="_blank">Experian Connect</a> tenant credit checks</li>
-                       <li>Includes public record filings (such as: bankruptcies, tax liens and evictions)</li>
-                       <li>View tenant preferences</li>
+                       <li>Tenants complete application online
+                           <ul class="col-xs-12 list-unstyled bottom-buffer">
+                               <li><em><small>View tenant history and references</small></em></li>
+                               <li><em><small>Paper applications available in our Document Center</small></em></li>
+                           </ul> 
+                       </li>
+                        <li>Experian credit checks
+                           <ul class="col-xs-12 list-unstyled bottom-buffer">
+                               <li><em><small>Identity and credit check done online</small></em></li>
+                               <li><em><small>Includes public record filings (such as: bankruptcies, tax liens and evictions)</small></em></li>
+                               <li><em><small><a href="https://connect.experian.com/pdf/experian-credit-report-sample.pdf" target="_blank">View sample credit report</a></small></em></li>
+                           </ul>  
+                       </li>
                     </ul>
                 </div>
             </div>
@@ -70,7 +80,13 @@
                 <div class="row">
                     <img src="assets/img/features/owners/owner-dashboard.png" class="col-sm-7 col-xs-12 img-responsive">
                     <ul class="col-sm-5 col-xs-12 list-unstyled">
-                       <li>Pool of pre-qualified tenants</li>
+                       <li>Pool of pre-qualified tenants
+                           <ul class="col-xs-12 list-unstyled bottom-buffer">
+                               <li><em><small>Tenants fill out one application &amp; credit report</small></em></li>
+                               <li><em><small>View tenant credit report and application as soon as they apply</small></em></li>
+                               <li><em><small>Tenants can apply before or after they view the property</small></em></li>
+                           </ul>    
+                       </li>
                        <li>View and accept offers right away</li>
                        <li>Tenant follow-up &amp; retention</li>
                     </ul>

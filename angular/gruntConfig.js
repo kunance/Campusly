@@ -89,7 +89,10 @@ module.exports = {
             'vendor/angular-uuid4/angular-uuid4.js',
             'vendor/async/lib/async.js',
             'vendor/angular-input-masks/releases/masks.min.js',
-            'vendor/angular-ui-utils/ui-utils.min.js'
+            'vendor/angular-ui-utils/ui-utils.min.js',
+            'vendor/angular-youtube-mb/src/angular-youtube-embed.js',
+            'vendor/angulartics/src/angulartics.js',
+            'vendor/angulartics/src/angulartics-ga.js'
         ],
         css: [],
         assets: [

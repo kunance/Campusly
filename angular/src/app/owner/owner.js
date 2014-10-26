@@ -16,10 +16,10 @@ angular.module('myApp.owner', ['ngRoute'])
 
                  if (profile&&profile.type=='owner')
                  {
-                     if (profile.properties)
+                    // if (profile.properties)
                        return '/owners/dashboard';
-                     else
-                       return '/owners/add-property';
+                    // else
+                    //   return '/owners/add-property';
                  }
             }
         });
@@ -63,6 +63,20 @@ angular.module('myApp.owner', ['ngRoute'])
         $routeProvider.when('/owners/profile', {
             authRequired: true,
             templateUrl: 'owner/profile.tpl.html',
+            controller: 'OwnerProfileCtrl',
+            profileRequired: OWNERS_ONLY
+        });
+        
+        $routeProvider.when('/owners/invite', {
+            authRequired: true,
+            templateUrl: 'owner/invite.tpl.html',
+            controller: 'AddPropertyCtrl',
+            profileRequired: OWNERS_ONLY
+        });
+        
+        $routeProvider.when('/owners/doc-center', {
+            authRequired: true,
+            templateUrl: 'owner/doc-center.tpl.html',
             controller: 'OwnerProfileCtrl',
             profileRequired: OWNERS_ONLY
         });
@@ -157,7 +171,7 @@ angular.module('myApp.owner', ['ngRoute'])
                 {
                     shoutUpload
                     ({
-                        content: 'Pictures should be up to 5MB, file '+
+                        content: 'Pictures should be up to 8MB, file '+
                                  file.name+' is '+(file.size/1024/1024)+'MB',
                         type: 'danger'
                     });
@@ -169,8 +183,12 @@ angular.module('myApp.owner', ['ngRoute'])
                 
                 fileReader.onload= function (e)
                 {
-                    $scope.property.pictures.push(compressImage(file.type,e.target.result));
-                    $scope.$apply();
+                    compressImage(file.type,e.target.result,
+                    function (dataURL)
+                    {
+                        $scope.property.pictures.push(dataURL);
+                        $scope.$apply();
+                    });
                 };
                 
                 fileReader.readAsDataURL(file);
@@ -210,7 +228,7 @@ angular.module('myApp.owner', ['ngRoute'])
             handleErrors);
        };
 
-       $scope.minDate= moment().format('YYYY-MM-DD');
+       $scope.minDate= moment().format('MM-DD-YYYY');
 
        $scope.open = function($event)
        {
@@ -237,6 +255,7 @@ angular.module('myApp.owner', ['ngRoute'])
               return;
            } 
 
+           /* Optional to upload a property picture. Add code if want to make pictures mandatory.
            if (!property.pictures||property.pictures.length<1)
            {
               $scope.showErrors= true;
@@ -248,7 +267,7 @@ angular.module('myApp.owner', ['ngRoute'])
               });
 
               return;
-           }
+           } */
 
 
            var handleErrors= function (err)
@@ -480,7 +499,7 @@ angular.module('myApp.owner', ['ngRoute'])
             if (file.size>MAX_UPLOAD_SIZE)
             {
                 TopBannerChannel.setBanner({
-                    content: 'The picture should be up to 5MB',
+                    content: 'The picture should be up to 8MB',
                     contentClass: 'danger'
                 });
 
@@ -491,8 +510,12 @@ angular.module('myApp.owner', ['ngRoute'])
             
             fileReader.onload= function (e)
             {
-                $rootScope.profile.picture= compressImage(file.type,e.target.result);
-                $scope.$apply();
+                 compressImage(file.type,e.target.result,
+                 function (dataURL)
+                 {
+                        $rootScope.profile.picture= dataURL;
+                        $scope.$apply();
+                 });
             };
             
             fileReader.readAsDataURL(file);

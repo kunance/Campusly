@@ -1,7 +1,7 @@
 {
-    "name": "rented.io",
-    "description": "Name your own rent",
-    "version": "0.0.1",
+    "name": "rented.co",
+    "description": "Rent Your Way",
+    "version": "0.1.0",
     "private": true,
     "scripts": {
         "start": "node app.js"
