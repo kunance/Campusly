@@ -9,10 +9,13 @@ var path = require("path"),
 
 /**
  *
- * @param req  // TODO allow to be req.body.creditReportRequestorInfo OR from form data
+ * @param req  { creditReportRequestorInfo: { firstName: 'firstName' , lastName: 'lastName', currentAddress:
+ *                  'currentAddress', currentCity: 'currentCity', currentState: 'currentState', currentZip:
+ *                  'currentZip', [ssn: 'ssn']
+ *              }
  * @returns {{valid: boolean}} or valid: false, errors: {}
  */
-function validateQueryRequest(req) {
+function _validateQueryRequest(req) {
 
     var crr = req.param("creditReportRequestorInfo");
 //    console.log(crr);
@@ -27,17 +30,20 @@ function validateQueryRequest(req) {
 
 /**
  *
- * @param req   body must contain {  //TODO  @see validateQueryRequest  req  }
+ * @param req   { creditReportRequestorInfo: { firstName: 'firstName' , lastName: 'lastName', currentAddress:
+ *                  'currentAddress', currentCity: 'currentCity', currentState: 'currentState', currentZip:
+ *                  'currentZip', [ssn: 'ssn']
+ *              }
  * @param res
  * @param next
  */
 exports.getCreditReport = function (req, res, next) {
 
-    var validQuery = validateQueryRequest(req);
+    var validQuery = _validateQueryRequest(req);
 
     if (!validQuery.valid) {
-        //TODO test this case
-        res.json(validQuery); // JSON.parse(validQuery));
+
+        res.json( JSON.parse(validQuery));
         return;
     }
 
@@ -59,12 +65,21 @@ exports.getCreditReport = function (req, res, next) {
     request.post(options, function(err, httpResponse, body) {
         if(err) {
             console.log("error: ", err);
+            res.json( JSON.parse({error: err}) );
         }
-        // console.log("httpResponse: ", httpResponse);
-        //TODO verify httpResponse.responseCode is 200 ish
-        console.log("body: ", body);
-        //TODO remove escape characters from body before returning so pretty json
-        res.json(body);
+
+        res.json(JSON.parse(body));
 
     });
 };
+
+//exports.authenticateIndividual = function (req, res, next) {
+//
+//    |
+//};
+//
+//
+//exports.getCreditReportAsThirdParty = function (req, res, next) {
+//
+//    |
+//};
