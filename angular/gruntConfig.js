@@ -91,7 +91,8 @@ module.exports = {
             'vendor/angular-input-masks/releases/masks.min.js',
             'vendor/angular-ui-utils/ui-utils.min.js',
             'vendor/angular-youtube-mb/src/angular-youtube-embed.js',
-            'vendor/angularytics/src/angularytics.js'
+            'vendor/angulartics/src/angulartics.js',
+            'vendor/angulartics/src/angulartics-ga.js',
         ],
         css: [],
         assets: [
