@@ -171,7 +171,7 @@ angular.module('myApp.owner', ['ngRoute'])
                 {
                     shoutUpload
                     ({
-                        content: 'Pictures should be up to 5MB, file '+
+                        content: 'Pictures should be up to 8MB, file '+
                                  file.name+' is '+(file.size/1024/1024)+'MB',
                         type: 'danger'
                     });
@@ -183,8 +183,12 @@ angular.module('myApp.owner', ['ngRoute'])
                 
                 fileReader.onload= function (e)
                 {
-                    $scope.property.pictures.push(compressImage(file.type,e.target.result));
-                    $scope.$apply();
+                    compressImage(file.type,e.target.result,
+                    function (dataURL)
+                    {
+                        $scope.property.pictures.push(dataURL);
+                        $scope.$apply();
+                    });
                 };
                 
                 fileReader.readAsDataURL(file);
@@ -224,7 +228,7 @@ angular.module('myApp.owner', ['ngRoute'])
             handleErrors);
        };
 
-       $scope.minDate= moment().format('YYYY-MM-DD');
+       $scope.minDate= moment().format('MM-DD-YYYY');
 
        $scope.open = function($event)
        {
@@ -506,8 +510,12 @@ angular.module('myApp.owner', ['ngRoute'])
             
             fileReader.onload= function (e)
             {
-                $rootScope.profile.picture= compressImage(file.type,e.target.result);
-                $scope.$apply();
+                 compressImage(file.type,e.target.result,
+                 function (dataURL)
+                 {
+                        $rootScope.profile.picture= dataURL;
+                        $scope.$apply();
+                 });
             };
             
             fileReader.readAsDataURL(file);

@@ -1,6 +1,7 @@
 <div class="content-header header-shadow property-list-header">
     <div class="container">
-        <h1>Take A Tour</h1> 
+
+        <h1>How It Works</h1> 
 
         <div class="row">
             <div class="col-sm-12">
@@ -8,14 +9,22 @@
                 
                 <div class="col-sm-5 col-xs-12">
                     <ul>
-                        <li>Tenant(s) make offer online</li>
-                        <li>Owner accepts offer &amp; property is Rental Pending</li>
-                        <li>Lease is signed &amp; property is Rented</li>
+                        <li>Owners add a property &amp; advertise online via their favorite search portal
+                            <ul>
+                               <li><em><small><a href="#/tour/howtoaddproperty">See how to add your property</a></small></em></li>
+                           </ul>                            
+                        </li>
+                        <li>Tenant(s) submit online application
+                            <ul>
+                               <li><em><small><a href="#/tour/howtoapply">See how to apply online</a></small></em></li>
+                           </ul>                            
+                        </li>
+                        <li>Owner accepts offer &amp; property is Rented</li>
                     </ul>
                 </div>
 
                 <div class="col-sm-7 col-xs-12">
-                    <youtube-video id="best-vid" video-id="rentedIntro"></youtube-video>
+                    <youtube-video id="best-vid" video-id="rentedIntro" analytics-on analytics-event="Play" analytics-category="Videos" analytics-label="Rented-Intro-Video"></youtube-video>
                 </div>
 
             </div>
@@ -36,7 +45,7 @@
                 </ul>
             </div>
 
-            <div class="row property-row" ng-repeat="(id, property) in properties | loadProperty" ng-show="property.pictures.length">
+            <div class="row property-row" ng-repeat="(id, property) in properties | loadProperty:'':'lazy'" ng-show="property.pictures.length">
                 <img ng-src="{{property.pictures[0]}}" class="col-md-7 col-xs-12 img-responsive">
                 <div class="col-md-5 col-xs-12">
                     <h3>
@@ -55,9 +64,9 @@
                     </div>
 
                     <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #666666; line-height: 2;" ng-show="property.bestOffer.accepted&&!property.tenant">Rental Pending</p>
-                    <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #51b65b; line-height: 2;" ng-show="property.tenant">Rented</p>
+                    <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #89d4cd; line-height: 2; color: black;" ng-show="property.tenant"><strong>rented</strong></p>
                     <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #ff503f; line-height: 2;" ng-show="!property.tenant&&property.disabled">Unavailable</p>
-                    <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #89d4cd; line-height: 2;" ng-show="!property.tenant&&!property.bestOffer.accepted">Available</p>
+                    <p class="badge top-buffer-sm" style="font-size: 18px; background-color: #5fbc69; line-height: 2;" ng-show="!property.tenant&&!property.bestOffer.accepted">Available</p>
                     
                     <a href="#/property/{{property.$id}}" class="btn btn-rented left-buffer">View Property</a>
                     

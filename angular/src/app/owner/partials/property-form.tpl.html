@@ -5,7 +5,9 @@
         <a href="#/owners/add-property/2" class="next" style="padding-left: 20px;">Next</a>
     </div>
 
-    <h1 style="margin-top: 0px;" ng-show="add">Property {{propertyNo}}</h1>
+    <h1 style="margin-top: 0px;" ng-show="add">Property {{propertyNo}}<br>
+    <small><a href="#/tour/howtoaddproperty">See how to add your property</a></small>
+    </h1>
 
     <div class="content-header" ng-hide="add">
         <div class="row" style="min-height: 210px;">
@@ -25,7 +27,8 @@
                     </div>
                 </div>
 
-                <h1>{{property.address.street}}</h1>
+                <h1 ng-hide="property.address.aptNumber">{{property.address.street}}</h1>
+                <h1 ng-show="property.address.aptNumber">{{property.address.street}}, Apt. {{property.address.aptNumber}}</h1>
                 <h2>{{property.address.city}}, {{property.address.state}} {{property.address.zip}}</h2>
             </div>
         </div>
@@ -37,7 +40,7 @@
         <div class="row col-sm-12">
             <table class="table table-bordered table-condensed" style="width:100%">
                 <tr>
-                    <td><input class="form-control input-lg" type="text" value="http://rented.co/#/property/{{property.$id}}" disabled></td>
+                    <td><input class="form-control input-lg" type="text" value="http://rented.co/#/property/{{property.$id}}" ></td>
                 </tr>
             </table>
         </div>
@@ -187,6 +190,8 @@
                       <select class="form-control input-lg" ng-model="property.leaseTerm" required>
                           <option value="">Select...</option>
                           <option value="1">Month-to-month</option>
+                          <option value="6">6 months</option>
+                          <option value="9">9 months</option>   
                           <option value="12">1 year</option>
                           <option value="24">1, 2 years</option>
                           <option value="36">1, 2, 3 years</option>
@@ -222,7 +227,7 @@
                    <label class="col-sm-6 control-label">Available Date</label>
                    <div class="col-sm-6">
                         <div class="input-group input-group-lg">
-                          <input type="text" class="form-control" datepicker-popup="MM/dd/yyyy" ng-model="property.availableDate" is-open="opened" ng-required="true" close-text="Close" min="minDate" min-date="minDate" max-date="'2022-06-22'" datepicker-localdate>
+                          <input type="text" class="form-control" datepicker-popup="MM/dd/yyyy" ng-model="property.availableDate" is-open="opened" ng-required="true" close-text="Close" min="minDate" min-date="minDate" max-date="'06-22-2022'" datepicker-localdate>
                           <span class="input-group-btn">
                             <button type="button" class="btn btn-rented" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                           </span>
@@ -367,6 +372,7 @@
                 <div class="buttons">
                     <button type="button" class="btn btn-rented" style="margin-right: 10px" ng-click="save(property)">Save</button>
                 </div>
+                <div class="alert alert-{{shout.type}} text-center" ng-show="shout.content">{{shout.content}}</div>
             </div>
         </div>
         

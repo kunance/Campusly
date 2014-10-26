@@ -19,7 +19,7 @@
             </div>
             <div class="row vertical-buffer">
                     <div class="col-xs-12 text-center">
-                         <a href="#/register/tenant" class="btn btn-rented" ng-hide="{{profile && profile.type == 'owner'}}">Create Your Free Profile</a>
+                         <a href="#/register/tenant" class="btn btn-rented" ng-hide="{{profile && profile.type == 'owner'}}" analytics-on analytics-event='Create-Profile'>Create Your Free Profile</a>
                     </div>
             </div>
     </div>
@@ -35,7 +35,7 @@
                     <ul class="col-sm-5 col-xs-12 list-unstyled">
                        <li>Snapshot of your profile, credit score, rental offers, and message center</li>
                        <li>Current availability of the property to rent</li>
-                       <li>Make an offer or add a property to watch-list</li>
+                       <li>Apply or add a property to watch-list</li>
                     </ul>
                 </div>
             </div>
@@ -50,7 +50,11 @@
                 <h4>One Application &amp; Credit Check</h4>
                 <div class="row">
                     <ul class="col-sm-5 col-xs-12 list-unstyled">
-                       <li>Save time with one profile for all properties within the network</li>
+                       <li>Save time with one profile for all properties within the network
+                            <ul class="col-xs-12 list-unstyled bottom-buffer">
+                               <li><em><small><a href="#/tour/howtoapply">See how to apply online</a></small></em></li>
+                           </ul> 
+                       </li>
                        <li>Create an instantly shareable Experian Credit Report for $14.95
                             <ul class="col-xs-12 list-unstyled bottom-buffer">
                                <li><em><small><a href="https://connect.experian.com/pdf/experian-credit-report-sample.pdf" target="_blank">View sample credit report</a></small></em></li>

@@ -49,12 +49,19 @@
 
 <div class="container dashboard">
     <h5 class="top-buffer">Recent Offers</h5>
+    
+    <div class="row" ng-hide="properties.length">
+        <div class="col-sm-12 text-center">
+            <h6 style="font-size: 20px;">Please apply to a property to get started.</h6>    
+        </div>
+    </div>
 
     <div class="row properties">
         <div class="col-sm-3" ng-repeat="property in properties | loadProperty:'':'lazy'" ng-show="property.address">
             <ng-include src="'tenant/partials/property-teaser.tpl.html'"></ng-include>
-            <a href="#/property/{{property.$id}}" class="btn btn-rented">See More</a>
+            <a href="#/property/{{property.$id}}" class="btn btn-rented">View Property</a>
             <button ng-click="accepted(property)" class="btn btn-rented-success" ng-show="isAccepted(property,profile)">Accepted</button>
+            <!--button class="btn btn-rented" ng-click="cancelBid(property)" ng-hide="(!property.bestOffer)||(property.bestOffer.userId==profile.$id&&property.bestOffer.accepted)">Cancel My Offer</button--> <!--Hiding the Cancel button for now-->
         </div>
     </div>
 
@@ -70,7 +77,7 @@
                   <p>{{property.address.street}}, {{property.address.city}}, {{property.address.state}} {{property.address.zip}}</p> 
                </div>
                <div class="col-sm-2">
-                  <a href="#/property/{{property.$id}}" class="btn btn-rented">See More</a>
+                  <a href="#/property/{{property.$id}}" class="btn btn-rented">View Property</a>
                </div>
            </div>
             <!-- Placeholder for savings data -->
