@@ -114,6 +114,13 @@ angular.module('myApp.tenant', ['ngRoute'])
             controller: 'OnBoardingCtrl',
             profileRequired: TENANTS_ONLY
         });
+        
+        $routeProvider.when('/tenants/verify', {
+            authRequired: true,
+            templateUrl: 'tenant/verify.tpl.html',
+            /*controller: 'OnBoardingCtrl',*/
+            profileRequired: TENANTS_ONLY
+        });
 
         /* Hiding profile edit field
         $routeProvider.when('/tenants/profile', {
@@ -129,7 +136,7 @@ angular.module('myApp.tenant', ['ngRoute'])
 .controller('OnBoardingCtrl', ['$scope','$rootScope','$location','$routeParams','mailService','shout', 'syncData','rentedProfile',
     function($scope,$rootScope,$location,$routeParams,mailService,shout,syncData,rentedProfile) {
 
-       var steps= ['tenant/partials/verify-profile.tpl.html',
+       var steps= ['tenant/partials/profile.tpl.html',
                    'tenant/partials/credit-check.tpl.html',
                    'tenant/partials/ready-to-apply.tpl.html'];
 

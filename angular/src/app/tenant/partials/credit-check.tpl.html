@@ -1,14 +1,6 @@
-    <div class="buttons">
-        <a href="#/tenants/myprofile/3" class="next">Next</a>
-    </div>
+<div class="buttons">
+    <a href="#/tenants/myprofile/3" class="next">Next</a> <!--Need to only show once profile is verified-->
+</div>
 
-    <h1>Credit Check</h1>
-
-    <div class="col-sm-12">
-        <fieldset class="readonly">
-          <a href="{{profile.creditReport}}" download="{{profile.firstName}}-{{profile.lastName}}-credit-report.pdf" class="field-text" ng-show="profile.creditReport">Download Your Credit Report  <i class="glyphicon glyphicon-cloud-download"></i></a>
-          <span class="text-lg bottom-buffer-xl" ng-hide="profile.creditReport" style="margin-bottom: 70px;">Thank you for completing your profile, Rented Team will contact you shortly.</span>
-        </fieldset>
-    </div>
-    
+<div ng-include="'tenant/verify.tpl.html'">
 </div>
