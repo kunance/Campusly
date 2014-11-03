@@ -19,7 +19,7 @@ function _validateQueryRequest(req) {
 
     var crr = req.param("creditReportRequestorInfo");
 //    console.log(crr);
-    if(!crr || !crr.firstName || !crr.lastName || !crr.ssn || !crr.currentAddress || !crr.currentCity ||
+    if(!crr || !crr.firstName || !crr.lastName  || !crr.currentAddress || !crr.currentCity ||
         !crr.currentState || !crr.currentZip ) {
         return { valid: false, errors:[ "missing required fields" ] };
     }
