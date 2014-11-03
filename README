@@ -1,0 +1,11 @@
+To build and run the application:
+
+
+-- Locally:
+   In angular directory:
+        grunt build
+        grunt compile
+        grunt watch
+
+    In node directory:
+        node app

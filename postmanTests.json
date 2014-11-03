@@ -54,7 +54,7 @@
         "id": "dec93f2f-37ed-fd6b-c222-438a136b1b60",
         "name": "Node get credit report w/ json payload",
         "description": "",
-        "url": "http://localhost:9000/api/creditReport",
+        "url": "http://localhost:8000/api/creditReport",
         "method": "POST",
         "headers": "Accept: application/json\nContent-Type: application/json\n",
         "data": "{ \"creditReportRequestorInfo\":\n  {\"firstName\": \"patti\",\n  \"lastName\": \"northrup\",\n  \"ssn\": \"666650775\",\n  \"currentAddress\": \"3910 futura dr\",\n  \"currentCity\": \"roswell\",\n  \"currentState\": \"NM\",\n  \"currentZip\": \"88201\"\n  }\n}",
