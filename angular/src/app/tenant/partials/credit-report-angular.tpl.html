@@ -1,0 +1,222 @@
+<div class="container">
+    <h2>Your Credit Report</h2>
+
+
+    <div ng-if="{{CreditProfile}}">
+
+        <br>
+        <p>Report Date: <strong>{{Header.ReportDate}}</strong></p>
+
+
+        <section><div class="panel panel-default">
+            <div class="panel-heading"><h3>Personal Information</h3></div>
+
+            <table class="table" cellspacing="1" summary="Personal Information">
+                <thead>
+                <tr><th>Name and Address</th><th>Employment History</th></tr></thead>
+                <tbody><tr>
+                    <td>
+                        <div>
+                            {{#each ConsumerIdentity}}
+                                {{#if @first}}<strong>{{Name.First}} {{Name.Middle}} {{Name.Surname}} {{Name.SecondSurname}} {{Name.Gen}}</strong>{{/if}}
+                            {{/each}}
+                            {{#each AddressInformation}}
+                                {{#if @first}}<address>{{StreetPrefix}} {{StreetName}} {{StreetPrefix}} <br>{{City}}, {{State}} {{Zip}}</address>{{/if}}
+                            {{/each}}
+                        </div>
+                    </td>
+                    <td>
+                        {{#if EmploymentInformation}}
+                        {{#each EmploymentInformation}}
+                            <div>{{Name}}</div>
+                        {{/each}}
+                        {{else}}<p>None on file</p>{{/if}}</td>
+                </tr></tbody></table>
+
+
+            <!--
+            OPTIONAL
+            Other Names
+            Other Addresses
+            -->
+        </div></section>
+
+
+
+
+        <section><div class="panel panel-default">
+            <div class="panel-heading"><h3>Credit Score</h3></div>
+
+            <table class="table" cellspacing="1" summary="Credit Score">
+                <thead>
+                <tr><th>Score &amp; Risk Model</th><th>Negative Score Factors</th><th>Positive Score Factors</th></tr>
+                </thead>
+                <tbody>{{#each RiskModel}}{{#if @first}}
+                <tr>
+                    <td><div style="font-size:56px;">{{Score}}</div>
+                        <!--
+                        NOTE:
+                        Add logic for score exclusion codes
+                        1 = Deceased
+                        4 = Lack of information
+                        9000 = Too many Records
+                        -->
+                        <div><small>The VantageScore 3.0<sup>&reg;</sup> risk model has a score range of 300-850.</small></div></td>
+                    <td><ol>
+                        {{#if ScoreFactorCodeOne}}<li>{{ScoreFactorCodeOne}}</li>{{/if}}
+                        {{#if ScoreFactorCodeTwo}}<li>{{ScoreFactorCodeTwo}}</li>{{/if}}
+                        {{#if ScoreFactorCodeThree}}<li>{{ScoreFactorCodeThree}}</li>{{/if}}
+                        {{#if ScoreFactorCodeFour}}<li>{{ScoreFactorCodeFour}}</li>{{/if}}
+                        {{#if ScoreFactorCodeFive}}<li>{{ScoreFactorCodeFive}}</li>{{/if}}
+                    </ol>
+                    </td>
+                    <td>
+                        <!--
+                        OPTIONAL
+                        Positive Score Factors
+                        -->
+                        <ol>
+                            {{#if positiveScoreFactorCodeOne}}<li>{{positiveScoreFactorCodeOne}}</li>{{/if}}
+                            {{#if positiveScoreFactorCodeTwo}}<li>{{positiveScoreFactorCodeTwo}}</li>{{/if}}
+                            {{#if positiveScoreFactorCodeThree}}<li>{{positiveScoreFactorCodeThree}}</li>{{/if}}
+                            {{#if positiveScoreFactorCodeFour}}<li>{{positiveScoreFactorCodeFour}}</li>{{/if}}
+                        </ol>
+
+                    </td></tr>
+                {{/if}}{{/each}}
+                </tbody>
+                <tfoot>
+                <tr><td colspan="3">
+                    <p><small>The factors that adversely affected your credit score are listed in order of their importance based on their influence.
+                        For an easy-to-understand explanation of each score factor, visit <a href="http://www.reasoncode.org/" target="_blank">ReasonCode.org</a> powered by VantageScore Solutions.</small></p>
+                </td></tr>
+                </tfoot>
+            </table>
+
+        </div></section>
+
+        <section><div class="panel panel-default">
+            <div class="panel-heading"><h3>Consumer Statements</h3></div>
+            {{#if Statement}}
+            <table class="table" cellspacing="1" summary="Consumer Statements">
+                <thead><tr>
+                    <th>Date</th><th>Statement</th>
+                </tr></thead>
+                <tbody>
+                {{#each Statement}}<tr>
+                    <td>{{DateReported}}</td><td>{{StatementText}}</td>
+                </tr>{{/each}}
+                </tbody></table>
+
+            {{else}}
+            <div class="panel-body"><p>None on file</p></div>
+            {{/if}}
+        </div></section>
+
+        <section><div class="panel panel-default">
+            <div class="panel-heading"><h3>Informational Messages</h3></div>
+            {{#if InformationalMessage}}
+            <table class="table" cellspacing="1" summary="Informational Messages">
+                <thead><tr>
+                    <th>Message</th>
+                </tr></thead>
+                <tbody>
+                {{#each InformationalMessage}}<tr>
+                    <td>{{MessageText}}</td>
+                </tr>{{/each}}
+                </tbody></table>
+
+            {{else}}
+            <div class="panel-body"><p>None on file</p></div>
+            {{/if}}
+
+        </div></section>
+
+
+        <section><div class="panel panel-default">
+            <div class="panel-heading"><h3>Account History</h3></div>
+
+            {{#if TradeLine}}
+
+            <table class="table" cellspacing="1" summary="Account History">
+                <thead><tr>
+                    <th>Balance Date</th><th>Business</th><th>Balance Amount</th><th>Account Condition</th><th>Payment Status</th><!-- etc. -->
+                </tr></thead>
+                <tbody>
+                {{#each TradeLine}}<tr>
+                    <td>{{BalanceDate}}</td><td>{{SubscriberDisplayName}}</td><td>{{BalanceAmount}}</td><td>{{EnhancedPaymentData.AccountCondition.desc}}</td><td>{{EnhancedPaymentData.PaymentStatus.desc}}</td>
+                </tr>{{/each}}
+                </tbody></table>
+
+
+            {{else}}
+            <div class="panel-body"><p>None on file</p></div>
+            {{/if}}
+
+        </div></section>
+
+
+
+        <!-- Optional -->
+        <section><div class="panel panel-default">
+            <div class="panel-heading"><h3>Public Records</h3></div>
+
+            {{#if PublicRecord}}
+
+            <table class="table" cellspacing="1" summary="Public Records">
+                <thead><tr>
+                    <th>Status Date</th><th>Type (Status)</th><th>Amount</th><th>Liability</th><th>Assets</th><th>Plaintiff</th><th>Court</th><th>Filing Date</th>
+                </tr></thead>
+                <tbody>
+                {{#each PublicRecord}}<tr>
+                    <td>{{StatusDate}}</td><td>{{Status.desc}}</td><td>{{Amount}}</td><td>{{Bankruptcy.LiabilitiesAmount}}</td><td>{{Bankruptcy.AssetAmount}}</td><td>{{PlaintiffName}}</td><td>{{Court.desc}}</td><td>{{FilingDate}}</td>
+                </tr>{{/each}}
+                </tbody></table>
+
+            {{else}}
+            <div class="panel-body"><p>None on file</p></div>
+            {{/if}}
+
+        </div></section>
+
+
+
+        <!-- Optional -->
+        <section><div class="panel panel-default">
+            <div class="panel-heading"><h3>Inquiries</h3></div>
+
+            {{#if Inquiry}}
+            <table class="table" cellspacing="1" summary="Inquiries">
+                <thead>
+                <tr><th>Date</th><th>Business</th><th>Reason</th></tr></thead>
+                <tbody>{{#each Inquiry}}
+                <tr><td>{{Date}}</td><td>{{SubscriberDisplayName}}</td><td>{{Type.desc}}</td></tr>
+                {{/each}}</tbody></table>
+
+            {{else}}
+            <div class="panel-body"><p>None on file</p></div>
+            {{/if}}
+
+        </div></section>
+
+
+        <!--
+        Optional
+        Consumer Assistance info
+        DO NOT USE Experian
+        -->
+        <section><div class="panel panel-default">
+            <div class="panel-heading"><h3>Consumer Assistance</h3></div>
+            <div class="panel-body"><strong>YOUR COMPANY NAME</strong>
+                <address>123 Main Street, Anytown, CA 90000
+                    <br>800-555-1212</address>
+            </div>
+        </div></section>
+
+        <p><small>VantageScore<sup>&reg;</sup> is a registered trademark of VantageScore Solutions, LLC</small></p>
+
+
+
+        </div>
+</div>
+<!-- /.container -->
