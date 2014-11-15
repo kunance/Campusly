@@ -36,6 +36,13 @@ module.exports = function (app) {
     app.route("/api/creditReport/").
         post(creditReport.getCreditReport);
 
+
+     app.route("/api/experian/user").
+            post(creditReport.authAndCreateUser);
+
+      app.route("/api/experian/user/answers").
+                 post(creditReport.submitAuthenticateAnswers);
+
 //    app.route("/api/users/:userid/creditReport")
 //        .post(user.getCreditReport);
 

@@ -15,7 +15,7 @@ var path = require("path"),
  *              }
  * @returns {{valid: boolean}} or valid: false, errors: {}
  */
-function _validateQueryRequest(req) {
+function _validateGetCreditReportRequest(req) {
 
     var crr = req.param("creditReportRequestorInfo");
 //    console.log(crr);
@@ -39,7 +39,7 @@ function _validateQueryRequest(req) {
  */
 exports.getCreditReport = function (req, res, next) {
 
-    var validQuery = _validateQueryRequest(req);
+    var validQuery = _validateGetCreditReportRequest(req);
 
     if (!validQuery.valid) {
 
@@ -74,18 +74,68 @@ exports.getCreditReport = function (req, res, next) {
 };
 
 
+
 /**
  * Begin the process of creating an authenticated Connect user. If the name and address are found in
    Experian’s system, a set of questions is returned to help verify the identity of the consumer. Once the
    questions are answered in the subsequent service call, the userToken is created and returned to the
    client.
  *
- * @param req
- * @param res
- * @param next
+ * @param req { creditReportRequestorInfo: { firstName: 'firstName' , lastName: 'lastName', currentAddress:
+ *                  'currentAddress', currentCity: 'currentCity', currentState: 'currentState', currentZip:
+ *                  'currentZip', , [ssn: 'ssn']
+ *              }
+ * @param res  { QuestionSet: [ { QuestionType: integer, QuestionText: 'question', QuestionSelect: { QuestionChoice: [ 'value1'
+ *                 'value2', .... ]  } }, ..... ],
+ *                 authSession: "YzFmY2JhYTYtZmQ0MC00YzcyLTg5NGUtYTUxYTRmNTZiMjgz",
+ *                 error: object | 'string',
+ *                 success: boolean
  */
 exports.authAndCreateUser = function (req, res, next) {
 
+    //var validQuery = _validateAuthAndCreateUserRequest(req);
+    //
+    //if (!validQuery.valid) {
+    //
+    //    res.json( JSON.parse(validQuery));
+    //    return;
+    //}
+
+    logger.log("info", "Client query to pass to Experian: ", JSON.stringify(req.body.creditReportRequestorInfo));
+
+    var options = {
+        url: config.experian.ip + "/" + config.experian.paths.getOwnReport,
+        form: req.body.creditReportRequestorInfo,
+        auth: {
+            user: config.experian.auth.rented.username,
+            pass: config.experian.auth.rented.password
+        },
+        headers: {
+            Accept: "application/json"
+        }
+    };
+
+
+    request.post(options, function(err, httpResponse, body) {
+        if(err) {
+            console.log("error: ", err);
+            res.json( JSON.parse({error: err}) );
+        }
+
+        var jsondBody = JSON.parse(body);
+
+
+
+        var queryResult = { QuestionSet: jsondBody.preciseIDServer.KBA.QuestionSet,
+            authSession:  jsondBody.authSession,
+            error: jsondBody.error,
+            success: jsondBody.success };
+
+        console.log(queryResult);
+
+        res.json(queryResult);
+
+    });
 };
 
 
@@ -93,42 +143,50 @@ exports.authAndCreateUser = function (req, res, next) {
  *  The second part of the user registration process. This must include a transaction Identifier that was
     returned as part of the original /user request that retrieved the question.
  *
- * @param req
+ * @param req {  authSession: 'auth session token', answers : Array of Answers ( index of option starting from 1 ) }
+ *
+ *
  * @param res
  * @param next
  */
 exports.submitAuthenticateAnswers = function (req, res, next) {
-//   URL: /ECP2P/api/user/answers
 
-//Method: POST
-//
-//Sample Request:
-//
-//    curl -k -H "Accept: application/json" -u username:password "https://stg1-ss6.experian.com
-//
-///ECP2P/api/user/answers" -X POST -d "
-//
-//authSession=MGQ0ZjBkNDEtNjc0Yi00MzZjLTg4YzMtYjU4M2E0MTgyNDMy&answer=5&answer=1&answ
-//
-//er=5&answer=3"
-//
-//Parameters:
-//
-//    authSession : The session identifier retrieved with the questions
-//
-//answer : Array of Answers ( index of option starting from 1 )
-//
-//Response Type: JSON
-//
-//Response Fields:
-//
-//    userToken: Token value for the authenticated user. To be used to identify this user account on all
-//
-//future transactions.
-//
-//    Sample Response:
-//
-//{"UserToken":"ZmEzODc5NWMtMjM0YS00ZjZiLTk4NzMtMGY0ZjBmZGE5NTg3","error":null,"success":true}
+    logger.log("info", "Client submitAuthenticateAnswers query payload to pass to Experian: ",
+        JSON.stringify(req.body.creditReportRequestorInfo));
+
+    var options = {
+        url: config.experian.ip + "/" + config.experian.paths.submitAuthAnswers,
+        form: req.body.creditReportRequestorInfo,
+        auth: {
+            user: config.experian.auth.rented.username,
+            pass: config.experian.auth.rented.password
+        },
+        headers: {
+            Accept: "application/json"
+        }
+    };
+
+
+    request.post(options, function(err, httpResponse, body) {
+        if(err) {
+            console.log("error: ", err);
+            res.json( JSON.parse({error: err}) );
+        }
+
+        //var jsondBody = JSON.parse(body);
+        //
+        //
+        //
+        //var queryResult = { QuestionSet: jsondBody.preciseIDServer.KBA.QuestionSet,
+        //    authSession:  jsondBody.authSession,
+        //    error: jsondBody.error,
+        //    success: jsondBody.success };
+        //
+        //console.log(queryResult);
+
+        res.json(JSON.parse(body));
+
+    });
 };
 
 

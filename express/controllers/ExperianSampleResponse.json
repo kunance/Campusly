@@ -1,0 +1,702 @@
+{
+  "preciseIDServer": {
+    "XMLVersion": "1",
+    "Header": {
+      "ReportDate": "11142014",
+      "ReportTime": "201246",
+      "Preamble": "TBD2",
+      "ReferenceNumber": ""
+    },
+    "Messages": {
+      "Message": {
+        "Number": "57",
+        "Text": "015000Y   0100",
+        "AddrMismatch": "N"
+      }
+    },
+    "Summary": {
+      "ReviewReferenceID": "795141",
+      "PreciseIDType": "11",
+      "PreciseIDScore": "652",
+      "PreciseIDScorecard": "AC OPEN NFD V2      ",
+      "ValidationScore": "000513",
+      "ValidationScorecard": "AC OPEN VAL V2      ",
+      "VerificationScore": "000872",
+      "VerificationScorecard": "AC OPEN ID THEFT NFD",
+      "ComplianceIndicator": "",
+      "ComplianceDescription": "No Compliance Code  ",
+      "FPDScore": "000354",
+      "FPDScorecard": "AC OPEN FPD V2      ",
+      "UtilityFunction": "00007030",
+      "InitialResults": {
+        "AuthenticationIndex": "0045",
+        "MostLikelyFraudType": {
+          "value": "First Payment Default",
+          "code": "FPD"
+        },
+        "Reasons": {
+          "Reason1": {
+            "value": "Low level of authentication indicative of First Party Fraud",
+            "code": "B201"
+          },
+          "Reason2": {
+            "value": "Presence of recently opened inquiry or too many inquiries in the last 6 months",
+            "code": "B106"
+          },
+          "Reason3": {
+            "value": "Presence of recently opened inquiry or too many inquiries in the last 24 months",
+            "code": "B212"
+          },
+          "Reason4": {
+            "value": "Too many public record derogs or trades reported in collection status",
+            "code": "B223"
+          },
+          "Reason5": {
+            "value": "No adverse factor observed",
+            "code": "B405"
+          }
+        },
+        "InitialDecision": "R10",
+        "FinalDecision": "R10",
+        "ActionPath": "000"
+      },
+      "Call2Results": {
+        "AuthenticationIndex": "0000",
+        "MostLikelyFraudType": {
+          "value": "",
+          "code": null
+        },
+        "Reasons": {
+          "Reason1": {
+            "value": "Not Supplied",
+            "code": "    "
+          },
+          "Reason2": {
+            "value": "Not Supplied",
+            "code": "    "
+          },
+          "Reason3": {
+            "value": "Not Supplied",
+            "code": "    "
+          },
+          "Reason4": {
+            "value": "Not Supplied",
+            "code": "    "
+          }
+        },
+        "InitialDecision": "",
+        "FinalDecision": "",
+        "ActionPath": ""
+      }
+    },
+    "FCRADetail": {
+      "FraudShield": {
+        "FS07": "N",
+        "FS08": "N",
+        "FS09": "N",
+        "FS19": "N",
+        "FS20": "N",
+        "FS22": "N"
+      },
+      "SharedApplication": {
+        "FCRARule1": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule2": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule3": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule4": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule5": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule6": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule7": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule8": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule9": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule10": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule11": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule12": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule13": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule14": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule15": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule16": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule17": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule18": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule19": {
+          "value": "",
+          "code": "    "
+        },
+        "FCRARule20": {
+          "value": "",
+          "code": "    "
+        },
+        "AdverseActionCode1": {
+          "value": "",
+          "code": " "
+        },
+        "AdverseActionCode2": {
+          "value": "",
+          "code": " "
+        },
+        "AdverseActionCode3": {
+          "value": "",
+          "code": " "
+        },
+        "AdverseActionCode4": {
+          "value": "",
+          "code": " "
+        }
+      },
+      "NFDSummary": {
+        "RecordHits": "0000",
+        "FraudFieldHits": "0000",
+        "VictimRecordHits": "0000",
+        "VictimFieldHits": "0000",
+        "FieldHitsByInputAddress": "0000",
+        "FieldHitsBySSN": "0000",
+        "FieldHitsByDriversLicense": "0000",
+        "FieldHitsByPhone": "0000"
+      }
+    },
+    "GLBDetail": {
+      "CheckpointSummary": {
+        "PrimaryResultCode": {
+          "value": "Data found for search request",
+          "code": "00"
+        },
+        "BestPickAcceptDeny": {
+          "value": "",
+          "code": "R"
+        },
+        "AddrCode": "UR",
+        "PhnCode": "M ",
+        "AddrTypeCode": "S ",
+        "COACode": "N ",
+        "SSNCode": "P ",
+        "AddrUnitMismatchCode": "",
+        "PhnUnitMismatchCode": "",
+        "DLResultCode": "M",
+        "DateOfBirthMatch": {
+          "value": "6",
+          "code": null
+        },
+        "HighRiskAddrCode": "N ",
+        "HighRiskPhoneCode": "N ",
+        "OFACValidationResult": {
+          "value": "1 ",
+          "code": null
+        },
+        "AddrResMatches": "0000",
+        "AddrBusMatches": "0000",
+        "PhnResMatches": "0000",
+        "PhnBusMatches": "0000"
+      },
+      "FraudShield": {
+        "FS01": "N",
+        "FS02": "N",
+        "FS03": "N",
+        "FS04": "N",
+        "FS05": "N",
+        "FS06": "N",
+        "FS10": "N",
+        "FS11": "N",
+        "FS13": "N",
+        "FS14": "N",
+        "FS15": "N",
+        "FS16": "N",
+        "FS17": "N",
+        "FS18": "N",
+        "FS21": "N",
+        "FS25": "N",
+        "FS26": "N",
+        "FS27": "N"
+      },
+      "SharedApplication": {
+        "GLBRule1": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule2": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule3": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule4": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule5": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule6": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule7": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule8": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule9": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule10": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule11": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule12": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule13": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule14": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule15": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule16": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule17": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule18": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule19": {
+          "value": "",
+          "code": "    "
+        },
+        "GLBRule20": {
+          "value": "",
+          "code": "    "
+        }
+      }
+    },
+    "Checkpoint": {
+      "GeneralResults": {
+        "ProfileID": "MK169CD ",
+        "AccountInformation": "",
+        "Version": "15",
+        "PrimaryResult": {
+          "value": "Data found for search request",
+          "code": "00"
+        },
+        "BestPickAcceptDeny": {
+          "value": "",
+          "code": "R"
+        },
+        "SourceFlag": "",
+        "CheckpointTemplate": "STDADD    ",
+        "NameFlipIndicator": {
+          "value": "Default",
+          "code": " "
+        },
+        "AddressVerificationResult": {
+          "value": "Address residential-name match unavailable",
+          "code": "UR"
+        },
+        "AddressUnitMismatchResult": {
+          "value": "",
+          "code": "  "
+        },
+        "PhoneVerificationResult": {
+          "value": "Phone missing (search information not received)",
+          "code": "M "
+        },
+        "PhoneUnitMismatchResult": {
+          "value": "",
+          "code": "  "
+        },
+        "AddressTypeResult": {
+          "value": "Single family dwelling",
+          "code": "S "
+        },
+        "AddressVerificationResidentialMatches": "0000",
+        "AddressVerificationBusinessMatches": "0000",
+        "PhoneVerificationResidentialMatches": "0000",
+        "PhoneVerificationBusinessMatches": "0000",
+        "AddressHighRiskResult": {
+          "value": "No address high risk information found",
+          "code": "N "
+        },
+        "PhoneHighRiskResult": {
+          "value": "No phone high risk information found",
+          "code": "N "
+        },
+        "COAResult": {
+          "value": "No change of address information found",
+          "code": "N "
+        },
+        "SSNResult": {
+          "value": "Match to previous address only",
+          "code": "P "
+        },
+        "EDABestPickScore": "",
+        "EDARecordsReturned": "",
+        "AcceptDeclineFlag": {
+          "value": "",
+          "code": " "
+        },
+        "EDAResult": {
+          "value": "",
+          "code": "NA"
+        },
+        "CheckpointScore": "488",
+        "Result": {
+          "value": "Residential",
+          "code": "R"
+        },
+        "AuditNumber": "CP-CF3Y-H9VMS733    ",
+        "ShortAuditNumber": "2H9VMS7  ",
+        "DriverLicenseResult": {
+          "value": "Driver License number is missing",
+          "code": "M"
+        },
+        "MonthOfBirth": "",
+        "DayOfBirth": "",
+        "YearOfBirth": "",
+        "DateOfBirthMatch": {
+          "value": "DOB not provided on request",
+          "code": "6"
+        },
+        "OFACResult": {
+          "value": "No match",
+          "code": "1 "
+        },
+        "StandardizedAddresRecordsReturned": "01",
+        "ResidentialAddressDetailRecordsReturned": "00",
+        "BusinessAddressDetailRecordsReturned": "00",
+        "AddressHighRiskDetailRecordsReturned": "00",
+        "AddressHighRiskDescriptionRecordsReturned": "01",
+        "ResidentialPhoneDetailRecordsReturned": "00",
+        "BusinessPhoneDetailRecordsReturned": "00",
+        "PhoneHighRiskDetailRecordsReturned": "00",
+        "PhoneHighRiskDescriptionRecordsReturned": "00",
+        "SSNAddressDetailRecordsReturned": "01",
+        "ValidationSegmentsReturned": "01",
+        "DriverLicenseSegmentsReturned": "00",
+        "OFACRecordSegmentsReturned": "00",
+        "AuditRequestInformationRecordsReturned": "00",
+        "COARecordsReturned": "00",
+        "COADescriptionRecordsReturned": "00",
+        "PreviousAddressesReturned": "02",
+        "SSNFinderAddressesReturned": "01"
+      },
+      "StandardizedAddressDetail": {
+        "Surname": "NORTHRUP           ",
+        "FirstName": "PATTI     ",
+        "Initial": "",
+        "Address": "3910 FUTURA DR                     ",
+        "City": "ROSWELL                     ",
+        "State": "NM",
+        "ZipCode": "88201",
+        "ZipPlus4": "6796"
+      },
+      "ConsumerIDVerification": [
+        {
+          "Surname": "NORTHRUP           ",
+          "FirstName": "PATRICIA  ",
+          "Initial": "",
+          "Address": "2901 N MAIN ST                     ",
+          "City": "ROSWELL                     ",
+          "State": "NM",
+          "ZipCode": "88201",
+          "ZipPlus4": "6611",
+          "AreaCode": "505",
+          "Phone": "6238566",
+          "MonthOfBirth": "06",
+          "DayOfBirth": "09",
+          "YearOfBirth": "1956",
+          "DateOfBirthMatchCode": {
+            "value": "DOB not provided on request",
+            "code": "6"
+          },
+          "ReportedDate": "20051013",
+          "LastTouched": "20051013"
+        }
+      ],
+      "AddressHighRiskDetail": [
+        {
+          "BusinessName": "",
+          "Address": "",
+          "City": "",
+          "State": "",
+          "ZipCode": "",
+          "ZipPlus4": "",
+          "AreaCode": "",
+          "Phone": ""
+        }
+      ],
+      "AddressHighRiskDescription": {
+        "HighRiskDescription": "No high risk business at address/phone            "
+      },
+      "ResidentialPhoneDetail": [
+        {
+          "Surname": "",
+          "FirstName": "",
+          "Initial": "",
+          "Address": "",
+          "City": "",
+          "State": "",
+          "ZipCode": "",
+          "ZipPlus4": "",
+          "AreaCode": "",
+          "Phone": "",
+          "SpouseName": "",
+          "OtherHouseholdMemberName1": "",
+          "OtherHouseholdMemberName2": "",
+          "OtherHouseholdMemberName3": "",
+          "LastTouched": "",
+          "MonthsAtResidence": ""
+        }
+      ],
+      "PhoneHighRiskDetail": [
+        {
+          "BusinessName": "",
+          "Address": "",
+          "City": "",
+          "State": "",
+          "ZipCode": "",
+          "ZipPlus4": "",
+          "AreaCode": "",
+          "Phone": ""
+        }
+      ],
+      "PhoneHighRiskDescription": {
+        "HighRiskDescription": ""
+      },
+      "ChangeOfAddressDetail": [
+        {
+          "Name": "",
+          "Address": "",
+          "City": "",
+          "State": "",
+          "ZipCode": "",
+          "ZipPlus4": "",
+          "ReportedDate": "",
+          "LastTouched": ""
+        }
+      ],
+      "ValidationSegment": {
+        "Surname": "northrup           ",
+        "FirstName": "patti     ",
+        "MiddleInitial": "",
+        "SSN": "",
+        "SSNIssueState": "",
+        "SSNDeceased": {
+          "value": "No",
+          "code": "N"
+        },
+        "SSNFormat": {
+          "value": "SSN not provided or validated",
+          "code": " "
+        },
+        "SSNIssueStartRange": "",
+        "SSNIssueEndRange": "",
+        "SSNIssueResultCode": {
+          "value": "SSN issue date cannot be verified",
+          "code": "C"
+        },
+        "DriversLicenseFormatValidation": {
+          "value": "Driver's license not provided or validated",
+          "code": " "
+        },
+        "OFACValidationResult": {
+          "value": "No match",
+          "code": "1 "
+        }
+      },
+      "OFACRecordSegment": {
+        "OFACRecord": ""
+      },
+      "PreviousAddressSegment": [
+        {
+          "Address": "3910 FUTURA DR                     ",
+          "City": "ROSWELL                     ",
+          "State": "NM",
+          "ZipCode": "88201",
+          "ZipPlus4": "6796",
+          "ReportedDate": "20030101",
+          "LastUpdatedDate": "20031224"
+        },
+        {
+          "Address": "7112-87 PAN AMERICAN EAST FWY NE   ",
+          "City": "ALBUQUERQUE                 ",
+          "State": "NM",
+          "ZipCode": "87109",
+          "ZipPlus4": "4236",
+          "ReportedDate": "19900912",
+          "LastUpdatedDate": "20031116"
+        }
+      ],
+      "SSNFinderDetail": [
+        {
+          "Surname": "NORTHRUP           ",
+          "FirstName": "PATRICIA  ",
+          "Initial": "",
+          "Address": "2901 N MAIN ST                     ",
+          "City": "ROSWELL                     ",
+          "State": "NM",
+          "ZipCode": "88201",
+          "ZipPlus4": "6611",
+          "AreaCode": "505",
+          "Phone": "6238566",
+          "MonthOfBirth": "06",
+          "DayOfBirth": "09",
+          "YearOfBirth": "1956",
+          "DateOfBirthMatchCode": {
+            "value": "DOB not provided on request",
+            "code": "6"
+          },
+          "InputSSN": "",
+          "SSNOnFile": "666-65-0775",
+          "SSNResultCode": {
+            "value": "Match to full name/address-match performed using SSN finder",
+            "code": "FY"
+          },
+          "ReportedDate": "20051013",
+          "LastTouched": "20051013"
+        }
+      ]
+    },
+    "CCNumerics": {},
+    "CCStrings": {},
+    "KBA": {
+      "XMLVersion": "1",
+      "General": {
+        "SessionID": "325A6F9E250BF677EE858A9BE3D07875.preciseId4-1411142011540170000496455",
+        "KBAResultCode": 0,
+        "KBAResultCodeDescription": "KBA processing successful questions returned",
+        "NumberOfQuestions": 4
+      },
+      "QuestionSet": [
+        {
+          "QuestionType": 3,
+          "QuestionText": "According to your credit profile, you may have opened an auto loan in or around May 2009. Please select the lender for this account. If you do not have such an auto loan, select 'NONE OF THE ABOVE/DOES NOT APPLY'.",
+          "QuestionSelect": {
+            "QuestionChoice": [
+              "CHASE MANHATTAN BK",
+              "CITIFINANC",
+              "UNION ACCEPTANCE",
+              "ZIONS FIRST NATIONAL BANK",
+              "NONE OF THE ABOVE/DOES NOT APPLY"
+            ]
+          }
+        },
+        {
+          "QuestionType": 12,
+          "QuestionText": "I was born within a year or on the year of the date below.",
+          "QuestionSelect": {
+            "QuestionChoice": [
+              "1956",
+              "1959",
+              "1962",
+              "1965",
+              "NONE OF THE ABOVE/DOES NOT APPLY"
+            ]
+          }
+        },
+        {
+          "QuestionType": 1,
+          "QuestionText": "According to your credit profile, you may have opened a mortgage loan in or around May 2008. Please select the lender to whom you currently make your mortgage payments. If you do not have a mortgage, select 'NONE OF THE ABOVE/DOES NOT APPLY'.",
+          "QuestionSelect": {
+            "QuestionChoice": [
+              "SELECT PORTFOLIO SVCIN",
+              "HOMESIDE LENDING",
+              "WORLD SAVINGS",
+              "ROCK FINANCIAL CORP",
+              "NONE OF THE ABOVE/DOES NOT APPLY"
+            ]
+          }
+        },
+        {
+          "QuestionType": 23,
+          "QuestionText": "Which of the following is a current or previous employer? If there is not a matched employer name, please select 'NONE OF THE ABOVE'.",
+          "QuestionSelect": {
+            "QuestionChoice": [
+              "UNC APLLIANCE CO",
+              "KMAX INC DBA KIDS R KID",
+              "PPG IND",
+              "FARMERS - HOME OFFICE",
+              "NONE OF THE ABOVE/DOES NOT APPLY"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "authSession": "YTIzNmRhOTItOTM3YS00YTAyLWE2MDYtMGE4MmNlZWRmZDNh",
+  "error": null,
+  "success": true
+}
