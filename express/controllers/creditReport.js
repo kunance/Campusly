@@ -104,7 +104,7 @@ exports.authAndCreateUser = function (req, res, next) {
     logger.log("info", "Client query to pass to Experian: ", JSON.stringify(req.body.creditReportRequestorInfo));
 
     var options = {
-        url: config.experian.ip + "/" + config.experian.paths.getOwnReport,
+        url: config.experian.ip + config.experian.paths.getOwnReport,
         form: req.body.creditReportRequestorInfo,
         auth: {
             user: config.experian.auth.rented.username,
@@ -140,23 +140,29 @@ exports.authAndCreateUser = function (req, res, next) {
 
 
 /**
- *  The second part of the user registration process. This must include a transaction Identifier that was
-    returned as part of the original /user request that retrieved the question.
+ *  The second part of the user registration process. This must include an authorization seesion token that was
+    returned as part of the original /user request that retrieved the question. @see authAndCreateUser()
  *
- * @param req {  authSession: 'auth session token', answers : Array of Answers ( index of option starting from 1 ) }
+ * @param req {  authSession: 'auth session token', answer : [ integer for index of answer option starting from 1,
+  *      integer for index of answer option starting from 1, ... ] }
  *
  *
- * @param res
- * @param next
+ * @param res  success { success: true, UserToken: string };
+ *             failure { success: false, errorType: 'user | system', error: object | string};  TODO investigate errors more
  */
 exports.submitAuthenticateAnswers = function (req, res, next) {
 
     logger.log("info", "Client submitAuthenticateAnswers query payload to pass to Experian: ",
-        JSON.stringify(req.body.creditReportRequestorInfo));
+       req.body.creditReportRequestorInfo);
+
+    console.log("info", "Client submitAuthenticateAnswers query payload to pass to Experian: ",
+        req.body.creditReportRequestorInfo);
+
 
     var options = {
-        url: config.experian.ip + "/" + config.experian.paths.submitAuthAnswers,
+        url: config.experian.ip + config.experian.paths.submitAuthAnswers,
         form: req.body.creditReportRequestorInfo,
+        useQuerystring: true,  // so answer=1&answer=2
         auth: {
             user: config.experian.auth.rented.username,
             pass: config.experian.auth.rented.password
@@ -168,60 +174,96 @@ exports.submitAuthenticateAnswers = function (req, res, next) {
 
 
     request.post(options, function(err, httpResponse, body) {
+
+        var queryResult;
+
         if(err) {
             console.log("error: ", err);
-            res.json( JSON.parse({error: err}) );
+            queryResult = { success: false, errorType: 'system', error: err };
+            res.json( queryResult );
         }
+        else {
 
-        //var jsondBody = JSON.parse(body);
-        //
-        //
-        //
-        //var queryResult = { QuestionSet: jsondBody.preciseIDServer.KBA.QuestionSet,
-        //    authSession:  jsondBody.authSession,
-        //    error: jsondBody.error,
-        //    success: jsondBody.success };
-        //
-        //console.log(queryResult);
+            var jsonBody = JSON.parse(body);
 
-        res.json(JSON.parse(body));
 
+            if(!jsondBody.success) {
+                queryResult = { success: false, errorType: 'user', error: jsonBody.error };
+            }
+            else {
+                queryResult = {
+                    success: true,
+                    UserToken: jsonBody.UserToken
+                };
+            }
+
+            console.log(queryResult);
+            res.json(queryResult);
+
+        }
     });
 };
 
 
 
 /**
- * Check authentication status for existing user
+ * Check authentication status for existing user with their token
  *
- * @param req
- * @param res
- * @param next
+ * @param req  req.body = { userToken: string }
+ * @param res  success { "success": true, "authenticated": true }
+ *             failure { success: false, errorType: 'system', error: object | string};  TODO investigate errors more
  */
 exports.getAuthStatus = function (req, res, next) {
-//
-//URL: /ECP2P/api/auth/authstatus/{tokenId}
-//
-//Method: GET
-//
-//Sample Request:
-//
-//    curl –i -k -H "Accept: application/json" -u username:password " https://stg1-
-//
-//ss6.experian.com/ECP2P/api/auth/authstatus/ZmEzODc5NWMtMjM0YS00ZjZiLTk4NzMtMGY0ZjBmZGE
-//
-//5NTg3”
-//
-//Parameters:
-//
-//    userToken : The token used to identify the consumer whose report is being shared
-//
-//Response Fields:
-//
-//    authenticated {true | false }
-//
-//Sample Response: {"authenticated":true,"error":null,"success":true}
-//    |
+
+    logger.log("info", "Client getAuthStatus user token to pass to Experian: ",
+        req.param("userToken"));
+
+    console.log("info", "Client getAuthStatus user token to pass to Experian: ",
+        req.param("userToken"));
+
+
+    var options = {
+        url: config.experian.ip + config.experian.paths.getAuthStatus + req.param("userToken"),
+        form: req.body,
+        auth: {
+            user: config.experian.auth.rented.username,
+            pass: config.experian.auth.rented.password
+        },
+        headers: {
+            Accept: "application/json"
+        }
+    };
+
+
+    request.get(options, function(err, httpResponse, body) {
+
+        var queryResult;
+
+        if (err) {
+            logger.log("error", err);
+            console.log("error: ", err);
+
+            queryResult = {success: false, errorType: 'system', error: err};
+        }
+        else {
+
+            var jsonBody = JSON.parse(body);
+
+            if (!jsonBody.success) {
+                queryResult = {success: false, errorType: 'system', error: jsonBody.error};
+            }
+            else {
+                queryResult = {
+                    success: true,
+                    authenticated: jsonBody.authenticated
+                };
+            }
+
+            console.log(queryResult);
+        }
+
+        res.json(queryResult);
+    });
 };
 
 

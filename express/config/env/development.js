@@ -11,7 +11,7 @@ module.exports = {
         port: 443,
         ip: "https://stg1-ss6.experian.com",
         paths: {
-            getOwnReport: "ECP2P/api/user",
+            getOwnReport: "/ECP2P/api/user",
             submitAuthAnswers: "/ECP2P/api/user/answers",  // POST
             getAuthStatus: "/ECP2P/api/auth/authstatus/", // GET  /ECP2P/api/auth/authstatus/{tokenId}
             reAuthExistingToken: "/ECP2P/api/auth/",    //  GET /ECP2P/api/auth/{tokenId}
