@@ -12,10 +12,10 @@ module.exports = {
         ip: "https://stg1-ss6.experian.com",
         paths: {
             getOwnReport: "/ECP2P/api/user",
-            submitAuthAnswers: "/ECP2P/api/user/answers",  // POST
-            getAuthStatus: "/ECP2P/api/auth/authstatus/", // GET  /ECP2P/api/auth/authstatus/{tokenId}
-            reAuthExistingToken: "/ECP2P/api/auth/",    //  GET /ECP2P/api/auth/{tokenId}
-            submitAnswersReAuthExistingToken: "/ECP2P/api/auth/", // POST   /ECP2P/api/auth/{tokenId} service
+            submitAuthAnswers: "/ECP2P/api/user/answers",
+            getAuthStatus: "/ECP2P/api/auth/authstatus/",
+            reAuthExistingToken: "/ECP2P/api/auth/",
+            submitAnswersReAuthExistingToken: "/ECP2P/api/auth/answers",
             getCreditReport: "/ECP2P/api/report",   // POST
             shareCreditReport: "/ECP2P/api/share",  // POST
             getSharedCreditReport: "/ECP2P/api/share/get", // POST

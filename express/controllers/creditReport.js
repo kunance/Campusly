@@ -9,9 +9,9 @@ var path = require("path"),
 
 /**
  *
- * @param req  { creditReportRequestorInfo: { firstName: 'firstName' , lastName: 'lastName', currentAddress:
- *                  'currentAddress', currentCity: 'currentCity', currentState: 'currentState', currentZip:
- *                  'currentZip', [ssn: 'ssn']
+ * @param req  req.body.creditReportRequestorInfo: { firstName: 'firstName' , lastName:
+ *                  'lastName', currentAddress: 'currentAddress', currentCity: 'currentCity',
+ *                  currentState: 'currentState', currentZip: 'currentZip', [ssn: 'ssn']
  *              }
  * @returns {{valid: boolean}} or valid: false, errors: {}
  */
@@ -30,9 +30,9 @@ function _validateGetCreditReportRequest(req) {
 
 /**
  *
- * @param req   { creditReportRequestorInfo: { firstName: 'firstName' , lastName: 'lastName', currentAddress:
- *                  'currentAddress', currentCity: 'currentCity', currentState: 'currentState', currentZip:
- *                  'currentZip', [ssn: 'ssn']
+ * @param req   req.body.creditReportRequestorInfo: { firstName: 'firstName' ,
+ *                  lastName: 'lastName', currentAddress: 'currentAddress', currentCity: 'currentCity',
+ *                  currentState: 'currentState', currentZip: 'currentZip', [ssn: 'ssn']
  *              }
  * @param res
  * @param next
@@ -81,13 +81,13 @@ exports.getCreditReport = function (req, res, next) {
    questions are answered in the subsequent service call, the userToken is created and returned to the
    client.
  *
- * @param req { creditReportRequestorInfo: { firstName: 'firstName' , lastName: 'lastName', currentAddress:
+ * @param req  req.body.creditReportRequestorInfo: { firstName: 'firstName' , lastName: 'lastName', currentAddress:
  *                  'currentAddress', currentCity: 'currentCity', currentState: 'currentState', currentZip:
  *                  'currentZip', , [ssn: 'ssn']
  *              }
  * @param res  { QuestionSet: [ { QuestionType: integer, QuestionText: 'question', QuestionSelect: { QuestionChoice: [ 'value1'
  *                 'value2', .... ]  } }, ..... ],
- *                 authSession: "YzFmY2JhYTYtZmQ0MC00YzcyLTg5NGUtYTUxYTRmNTZiMjgz",
+ *                 authSession: "token",
  *                 error: object | 'string',
  *                 success: boolean
  */
@@ -122,14 +122,13 @@ exports.authAndCreateUser = function (req, res, next) {
             res.json( JSON.parse({error: err}) );
         }
 
-        var jsondBody = JSON.parse(body);
+        var jsonBody = JSON.parse(body);
 
 
-
-        var queryResult = { QuestionSet: jsondBody.preciseIDServer.KBA.QuestionSet,
-            authSession:  jsondBody.authSession,
-            error: jsondBody.error,
-            success: jsondBody.success };
+        var queryResult = { QuestionSet: jsonBody.preciseIDServer.KBA.QuestionSet,
+            authSession:  jsonBody.authSession,
+            error: jsonBody.error,
+            success: jsonBody.success };
 
         console.log(queryResult);
 
@@ -143,8 +142,9 @@ exports.authAndCreateUser = function (req, res, next) {
  *  The second part of the user registration process. This must include an authorization seesion token that was
     returned as part of the original /user request that retrieved the question. @see authAndCreateUser()
  *
- * @param req {  authSession: 'auth session token', answer : [ integer for index of answer option starting from 1,
-  *      integer for index of answer option starting from 1, ... ] }
+ * @param req     req.body.creditReportRequestorInfo: {  authSession: 'auth session token',
+ *                  answer : [ integer for index of answer option starting from 1,
+ *                  integer for index of answer option starting from 1, ... ] }
  *
  *
  * @param res  success { success: true, UserToken: string };
@@ -154,9 +154,6 @@ exports.submitAuthenticateAnswers = function (req, res, next) {
 
     logger.log("info", "Client submitAuthenticateAnswers query payload to pass to Experian: ",
        req.body.creditReportRequestorInfo);
-
-    console.log("info", "Client submitAuthenticateAnswers query payload to pass to Experian: ",
-        req.body.creditReportRequestorInfo);
 
 
     var options = {
@@ -187,7 +184,7 @@ exports.submitAuthenticateAnswers = function (req, res, next) {
             var jsonBody = JSON.parse(body);
 
 
-            if(!jsondBody.success) {
+            if(!jsonBody.success) {
                 queryResult = { success: false, errorType: 'user', error: jsonBody.error };
             }
             else {
@@ -215,16 +212,11 @@ exports.submitAuthenticateAnswers = function (req, res, next) {
  */
 exports.getAuthStatus = function (req, res, next) {
 
-    logger.log("info", "Client getAuthStatus user token to pass to Experian: ",
+    logger.log("info", "getAuthStatus() user token to pass to Experian: ",
         req.param("userToken"));
-
-    console.log("info", "Client getAuthStatus user token to pass to Experian: ",
-        req.param("userToken"));
-
 
     var options = {
         url: config.experian.ip + config.experian.paths.getAuthStatus + req.param("userToken"),
-        form: req.body,
         auth: {
             user: config.experian.auth.rented.username,
             pass: config.experian.auth.rented.password
@@ -269,52 +261,129 @@ exports.getAuthStatus = function (req, res, next) {
 
 /**
  *  After a token’s authenticated status has expired, re-authenticate a userToken
+ *  Do NOT call this method if the user is already authenticated ... you can first check with getAuthStatus()
  *
- * @param req
- * @param res
- * @param next
+ * @param req   userToken should be in the url
+ * @param res  { QuestionSet: [ { QuestionType: integer, QuestionText: 'question', QuestionSelect: { QuestionChoice: [ 'value1'
+ *                 'value2', .... ]  } }, ..... ],
+ *                 authSession: "token",
+ *                 error: object | 'string',  TODO investigate errors more
+ *                 success: boolean }
  */
 exports.reAuthExistingToken = function (req, res, next) {
-//URL: /ECP2P/api/auth/{tokenId}
-//userToken : The token used to identify the consumer whose report is being shared
-//request.get();
-//
-//Response Fields:
-//
-//    authSession : Identifier used to reference the set of questions when submitting the answers
-//
-//PreciseIDServer.KBA.QuestionSet: An array of questions
-//
-//Note: Submit the option number when submitting answers. Option numbers start with 1
 
+    logger.log("info", "reAuthExistingToken() user token to pass to Experian: ",
+        req.param("userToken"));
+
+    //TODO first call getAuthStatus() and only call reauth if you need to
+
+
+    var options = {
+        url: config.experian.ip + config.experian.paths.getAuthStatus + req.param("userToken"),
+        auth: {
+            user: config.experian.auth.rented.username,
+            pass: config.experian.auth.rented.password
+        },
+        headers: {
+            Accept: "application/json"
+        }
+    };
+
+    request.get(options, function(err, httpResponse, body) {
+
+        var queryResult;
+
+        if (err) {
+            logger.log("error", err);
+            console.log("error: ", err);
+
+            queryResult = {success: false, error: err};
+        }
+        else {
+
+            console.log("BODY:  ", body);
+
+            var jsonBody = JSON.parse(body);
+
+            if (!jsonBody.success) {
+                queryResult = {success: false, error: jsonBody.error};
+            }
+            else {
+
+                queryResult = { QuestionSet: jsonBody.preciseIDServer.KBA.QuestionSet,
+                    authSession:  jsonBody.authSession,
+                    success: true };
+            }
+
+            console.log(queryResult);
+        }
+
+        res.json(queryResult);
+    });
 };
 
 
-// Answer questions returned from the /ECP2P/api/auth/{tokenId} service
-//exports.submitAnswersReauthExistingToken = function (req, res, next) {
+/**
+ *  Answer questions returned from the /ECP2P/api/auth/{tokenId} service  ..... @see reAuthExistingToken()
+ *
+ *
+ * @param req  userToken should be in the url
+ *        req.body = {  authSession: 'auth session token', answer : [ integer for index of answer option starting from 1,
+  *      integer for index of answer option starting from 1, ... ] }
+ * @param res  success { success: true };
+ *             failure { success: false, errorType: 'user | system', error: object | string};  TODO investigate errors more
+ */
+exports.submitAnswersReauthExistingToken = function (req, res, next) {
 
-//URL: /ECP2P/api/auth/answers/{tokenId}
-//request.post();
-//Parameters:
-//
-//    URL Parameter :
-//
-//    userToken : The token used to identify the consumer whose report is being shared
-//
-//POST Parameter:
-//
-//    authSession : The session identifier retrieved with the questions
-//
-//Answer[] : Array of Answers ( index of option starting from 1 )
-//
-//Response Type: JSON
-//
-//Response Fields:
-//
-//    success {true | false }
-//
-//Sample Response: {"error":null,"success":true}
-//};
+    logger.log("info", "reAuthExistingToken() user token to pass to Experian: ", req.param("userToken"),
+                "body payload to pass: ", req.body);
+
+
+    var options = {
+        url: config.experian.ip + config.experian.paths.getAuthStatus + req.param("userToken"),
+        form: req.body,
+        useQuerystring: true,  // so answer=1&answer=2
+        auth: {
+            user: config.experian.auth.rented.username,
+            pass: config.experian.auth.rented.password
+        },
+        headers: {
+            Accept: "application/json"
+        }
+    };
+
+    request.post(options, function(err, httpResponse, body) {
+
+        var queryResult;
+
+        if (err) {
+            logger.log("error", err);
+            console.log("error: ", err);
+
+            queryResult = { success: false, errorType: 'system', error: err };
+        }
+        else {
+
+            console.log("BODY:  ", body);
+
+            var jsonBody = JSON.parse(body);
+
+            if (!jsonBody.success) {
+                queryResult = { success: false, errorType: 'user', error: jsonBody.error };
+            }
+            else {
+
+                queryResult = {
+                    success: true
+                };
+            }
+
+            console.log(queryResult);
+        }
+
+        res.json(queryResult);
+    });
+};
 
 
 /**

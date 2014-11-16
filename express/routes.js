@@ -33,9 +33,8 @@ module.exports = function (app) {
     // Server API Routes
 
     // this actually gets the users creditReport
-//    app.route("/api/creditReport/").
- //       post(creditReport.getCreditReport);
-
+    app.route("/api/creditReport/").
+        post(creditReport.getCreditReport);
 
     app.route("/api/experian/user").
         post(creditReport.authAndCreateUser);
@@ -43,9 +42,17 @@ module.exports = function (app) {
     app.route("/api/experian/user/answers").
         post(creditReport.submitAuthenticateAnswers);
 
+    // Are you currently authorized
     app.route("/api/experian/auth/authstatus/:userToken").
         get(creditReport.getAuthStatus);
 
+    // Reauthorized an expired token by getting some identity questions
+    app.route("/api/experian/auth/:userToken").
+        get(creditReport.reAuthExistingToken);
+
+    // Reauthorized an expired token by submitting answers to some identity questions
+    app.route("/api/experian/auth/:userToken").
+        post(creditReport.submitAnswersReauthExistingToken);
 
 
     // All undefined api routes should return a 404
