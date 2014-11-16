@@ -16,8 +16,8 @@ module.exports = {
             getAuthStatus: "/ECP2P/api/auth/authstatus/",
             reAuthExistingToken: "/ECP2P/api/auth/",
             submitAnswersReAuthExistingToken: "/ECP2P/api/auth/answers",
-            getCreditReport: "/ECP2P/api/report",   // POST
-            shareCreditReport: "/ECP2P/api/share",  // POST
+            getConsumerCreditReport: "/ECP2P/api/report",
+            shareCreditReport: "/ECP2P/api/share",
             getSharedCreditReport: "/ECP2P/api/share/get", // POST
             getArchivedConsumerReport: "/ECP2P/api/report/archive" // POST
 

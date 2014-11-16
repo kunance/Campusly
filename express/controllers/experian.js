@@ -275,11 +275,21 @@ exports.reAuthExistingToken = function (req, res, next) {
     logger.log("info", "reAuthExistingToken() user token to pass to Experian: ",
         req.param("userToken"));
 
-    //TODO first call getAuthStatus() and only call reauth if you need to
+    //TODO first call getAuthStatus() and only call reauth if you need to or you will get this in the res.body
+
+    //{
+    //    "success": false,
+    //    "error": {
+    //    "Message": "User is already verified",
+    //        "Code": "3002",
+    //        "Status": 402,
+    //        "FieldErrors": null
+    //    }
+    //}
 
 
     var options = {
-        url: config.experian.ip + config.experian.paths.getAuthStatus + req.param("userToken"),
+        url: config.experian.ip + config.experian.paths.reAuthExistingToken + req.param("userToken"),
         auth: {
             user: config.experian.auth.rented.username,
             pass: config.experian.auth.rented.password
@@ -335,12 +345,12 @@ exports.reAuthExistingToken = function (req, res, next) {
  */
 exports.submitAnswersReauthExistingToken = function (req, res, next) {
 
-    logger.log("info", "reAuthExistingToken() user token to pass to Experian: ", req.param("userToken"),
+    logger.log("info", "submitAnswersReauthExistingToken() user token to pass to Experian: ", req.param("userToken"),
                 "body payload to pass: ", req.body);
 
 
     var options = {
-        url: config.experian.ip + config.experian.paths.getAuthStatus + req.param("userToken"),
+        url: config.experian.ip + config.experian.paths.submitAnswersReAuthExistingToken + req.param("userToken"),
         form: req.body,
         useQuerystring: true,  // so answer=1&answer=2
         auth: {
@@ -391,81 +401,119 @@ exports.submitAnswersReauthExistingToken = function (req, res, next) {
    consumer specifically. The report can then be shared by referencing the transactionId in a following
    service.
 
- * @param req
- * @param res
- * @param next
+ * @param req  req.body: { productId: integer, consumerToken: "token", purposeType: integer }
+ *      Product ID  Description
+ *       1          Credit Report – Consumer View + 30 day share
+ *       9          Credit Report – Consumer View + Single Share
+ *
+ *       Purpose Type  not defined in Connect API guide  // TODO get allowed values and meanings
+ * @param success { success: true,  transactionId: integer, CreditProfile: { @see getCreditReportResponse.json } };
+ *             failure { success: false, error: object | string};  TODO investigate errors more
  */
 exports.getConsumerCreditReport = function (req, res, next) {
 
-//    URL: /ECP2P/api/report
-//
-//    request.post();
-//
-//    Sample Request:
-//
-//        curl –i -k -H "Accept: application/json" -u username:password "https://stg1-
-//
-//    ss6.experian.com/ECP2P/api/report -d
-//
-//    'productId=1&consumerToken=MWNiNjZlM2MtNzA4My00ZDA3LWI3ODMtZjdiZjg2OWM2YWQy
-//
-//    &purposeType=3' -H "Accept: application/json" -X POST
-//
-//    Parameters:
-//
-//        productId ( 1 | 9 )
-//
-//    consumerToken
-//
-//    purposeType
-//
-//    Response Fields:
-//
-//        TransactionId
-//
-//    CreditReportJSON
+    logger.log("info", "getConsumerCreditReport() payload to pass to Experian: ", req.body);
+
+
+    var options = {
+        url: config.experian.ip + config.experian.paths.getConsumerCreditReport,
+        form: req.body,
+        auth: {
+            user: config.experian.auth.rented.username,
+            pass: config.experian.auth.rented.password
+        },
+        headers: {
+            Accept: "application/json"
+        }
+    };
+
+    request.post(options, function(err, httpResponse, body) {
+
+        var queryResult;
+
+        if (err) {
+            logger.log("error", err);
+            console.log("error: ", err);
+
+            queryResult = { success: false, error: err };
+        }
+        else {
+
+            console.log("BODY:  ", body);
+
+            var jsonBody = JSON.parse(body);
+
+            if (!jsonBody.success) {
+                queryResult = { success: false, error: jsonBody.error };
+            }
+            else {
+
+                // TODO figure out if you need whole body or just part of it
+                queryResult = jsonBody;
+                //queryResult = {
+                //    success: true
+                //};
+            }
+        }
+
+        console.log(queryResult);
+        res.json(queryResult);
+    });
 };
 
 
 /**
  *  Share a consumer credit report previously purchased that qualifies for sharing.
  *
- * @param req
- * @param res
- * @param next
+ * @param req   req.body: { consumerToken: "token", endUserToken: "endUserToken", purposeType: integer,
+ *                          transactionId: "id" }    // txn id is returned from retrieving a credit report
+ * @param res success { success: true, shareId: "id" };
+ *             failure { success: false, error: object | string};  TODO investigate errors more
  */
-exports.getConsumerCreditReport = function (req, res, next) {
+exports.shareConsumerCreditReport = function (req, res, next) {
 
-//    URL: /ECP2P/api/share
-//    request.post();
-//
-//    Sample Request:
-//
-//        –i -k -H "Accept: application/json" -u username:password "https://stg1-
-//
-//    ss6.experian.com/ECP2P/api/share -d
-//
-//    'consumerToken=MWNiNjZlM2MtNzA4My00ZDA3LWI3ODMtZjdiZjg2OWM2YWQy& endUserToken
-//
-//        =ZTZjMGZkNzgtMDg4ZC00Y2UxLWE0ODctNDgyMTNhMjYxZGI3&purposeType=3& 'transactionId =ZZZZ'
-//
-//        -H "Accept: application/json" -X POST
-//
-//    Parameters:
-//
-//        consumerToken
-//
-//    endUserToken
-//
-//    purposeType
-//
-//    transactionId
-//
-//    Response Fields:
-//
-//        ShareId
-//
-//    Sample Response: TODO
+    logger.log("info", "shareConsumerCreditReport() payload to pass to Experian: ", req.body);
+    console.log("info", "shareConsumerCreditReport() payload to pass to Experian: ", req.body);
+
+    var options = {
+        url: config.experian.ip + config.experian.paths.shareCreditReport,
+        form: req.body,
+        auth: {
+            user: config.experian.auth.rented.username,
+            pass: config.experian.auth.rented.password
+        },
+        headers: {
+            Accept: "application/json"
+        }
+    };
+
+    request.post(options, function(err, httpResponse, body) {
+
+        var queryResult;
+
+        if (err) {
+            logger.log("error", err);
+            console.log("error: ", err);
+
+            queryResult = { success: false, error: err };
+        }
+        else {
+
+            console.log("BODY:  ", body);
+
+            var jsonBody = JSON.parse(body);
+
+            if (!jsonBody.success) {
+                queryResult = { success: false, error: jsonBody.error };
+            }
+            else {
+                queryResult = { success: true, shareId: jsonBody.shareId };
+            }
+        }
+
+        console.log(queryResult);
+        res.json(queryResult);
+    });
 };
 
 
@@ -478,31 +526,7 @@ exports.getConsumerCreditReport = function (req, res, next) {
  * @param next
  */
 exports.retrieveSharedConsumerCreditReportForEndUser = function (req, res, next) {
-//    URL: /ECP2P/api/share/get
-//
-//    Method: POST
-//
-//    Sample Request:
-//
-//        –i -k -H "Accept: application/json" -u username:password "https://stg1-ss6.experian.com/ECP2P
-//
-//    api/share/get
-//
-//    -d endUserToken=MWNiNjZlM2MtNzA4My00ZDA3LWI3ODMtZjdiZjg2OWM2YWQy &shareId=34' -H
-//
-//    "Accept: application/json" -X POST
-//
-//    Parameters:
-//
-//        shareId
-//
-//    endUserToken
-//
-//    Response Fields:
-//
-//        CreditReportJSON
-//
-//    Sample Response: See Appendix
+
 };
 
 
