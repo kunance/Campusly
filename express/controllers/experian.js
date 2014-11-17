@@ -507,7 +507,8 @@ exports.shareConsumerCreditReport = function (req, res, next) {
                 queryResult = { success: false, error: jsonBody.error };
             }
             else {
-                queryResult = { success: true, shareId: jsonBody.shareId };
+                queryResult = jsonBody;
+                // queryResult = { success: true, shareId: jsonBody.shareId };
             }
         }
 
