@@ -2,8 +2,7 @@
     <h2>Your Credit Report</h2>
 
 
-    <div ng-if="{{CreditProfile}}">
-
+    <div ng-if="creditReport">
         <br>
         <p>Report Date: <strong>{{Header.ReportDate}}</strong></p>
 
@@ -17,9 +16,9 @@
                 <tbody><tr>
                     <td>
                         <div>
-                            {{#each ConsumerIdentity}}
+                            <div ng-repeat="">
                                 {{#if @first}}<strong>{{Name.First}} {{Name.Middle}} {{Name.Surname}} {{Name.SecondSurname}} {{Name.Gen}}</strong>{{/if}}
-                            {{/each}}
+                            </div>
                             {{#each AddressInformation}}
                                 {{#if @first}}<address>{{StreetPrefix}} {{StreetName}} {{StreetPrefix}} <br>{{City}}, {{State}} {{Zip}}</address>{{/if}}
                             {{/each}}
