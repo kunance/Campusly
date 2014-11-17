@@ -1,0 +1,3997 @@
+{
+  "transactionId": 4422,
+  "CreditProfile": {
+    "Header": {
+      "ReportDate": "11/15/2014",
+      "ReportTime": "07:42:06 PM CT"
+    },
+    "ConsumerIdentity": [
+      {
+        "Name": {
+          "Type": {
+            "desc": null,
+            "code": null
+          },
+          "Surname": "NORTHRUP",
+          "First": "PATTI",
+          "Middle": "JO"
+        }
+      },
+      {
+        "Name": {
+          "Type": {
+            "desc": "Nickname",
+            "code": "N"
+          },
+          "Surname": "NORTHRUP",
+          "First": "PATRICIA",
+          "Middle": "JO"
+        }
+      },
+      {
+        "Name": {
+          "Type": {
+            "desc": "Nickname",
+            "code": "N"
+          },
+          "Surname": "NORTHRUP",
+          "First": "PATTY",
+          "Middle": null
+        }
+      },
+      {
+        "Name": {
+          "Type": {
+            "desc": "AKA",
+            "code": "A"
+          },
+          "Surname": "NORTHMP",
+          "First": "PATTI",
+          "Middle": null
+        }
+      },
+      {
+        "Name": {
+          "Type": {
+            "desc": "AKA",
+            "code": "A"
+          },
+          "Surname": "DONNA",
+          "First": "PATRICIA",
+          "Middle": "J"
+        }
+      }
+    ],
+    "AddressInformation": [
+      {
+        "FirstReportedDate": "03/01/2011",
+        "LastUpdatedDate": "02/24/2012",
+        "Origination": {
+          "desc": "Update",
+          "code": "2"
+        },
+        "TimesReported": "0",
+        "LastReportingSubcode": "1270246",
+        "DwellingType": {
+          "desc": "Single-family dwelling",
+          "code": "S"
+        },
+        "HomeOwnership": {
+          "desc": "Single-family dwelling",
+          "code": null
+        },
+        "StreetPrefix": null,
+        "StreetName": "3910 FUTURA DR",
+        "StreetSuffix": null,
+        "City": "ROSWELL",
+        "State": "NM",
+        "Zip": "88201",
+        "CensusGeoCode": null,
+        "CountyCode": null
+      },
+      {
+        "FirstReportedDate": "11/12/1998",
+        "LastUpdatedDate": "01/16/2012",
+        "Origination": {
+          "desc": "Update",
+          "code": "1"
+        },
+        "TimesReported": "0",
+        "LastReportingSubcode": null,
+        "DwellingType": {
+          "desc": "Single-family dwelling",
+          "code": "S"
+        },
+        "HomeOwnership": {
+          "desc": "Single-family dwelling",
+          "code": null
+        },
+        "StreetPrefix": null,
+        "StreetName": "7112-87 PAN AMERICAN EAST FW NE",
+        "StreetSuffix": null,
+        "City": "ALBUQUERQUE",
+        "State": "NM",
+        "Zip": "87109",
+        "CensusGeoCode": null,
+        "CountyCode": null
+      },
+      {
+        "FirstReportedDate": "09/27/2001",
+        "LastUpdatedDate": "10/17/2010",
+        "Origination": {
+          "desc": "Update",
+          "code": "1"
+        },
+        "TimesReported": "21",
+        "LastReportingSubcode": null,
+        "DwellingType": {
+          "desc": "Single-family dwelling",
+          "code": "S"
+        },
+        "HomeOwnership": {
+          "desc": "Single-family dwelling",
+          "code": null
+        },
+        "StreetPrefix": null,
+        "StreetName": "6713 HARPER DR NE",
+        "StreetSuffix": null,
+        "City": "ALBUQUERQUE",
+        "State": "NM",
+        "Zip": "87109",
+        "CensusGeoCode": null,
+        "CountyCode": null
+      }
+    ],
+    "EmploymentInformation": [
+      {
+        "Name": "FARMERS - HOME OFFICE",
+        "Zip": null,
+        "LastUpdatedDate": null,
+        "FirstReportedDate": "10/2013",
+        "Origination": {
+          "desc": "Inquiry",
+          "code": "2"
+        },
+        "AddressFirstLine": null,
+        "AddressSecondLine": null,
+        "AddressExtraLine": null
+      },
+      {
+        "Name": "OTHER",
+        "Zip": null,
+        "LastUpdatedDate": "07/2008",
+        "FirstReportedDate": "01/2008",
+        "Origination": {
+          "desc": "Inquiry",
+          "code": "2"
+        },
+        "AddressFirstLine": null,
+        "AddressSecondLine": null,
+        "AddressExtraLine": null
+      }
+    ],
+    "PublicRecord": [
+      {
+        "Status": {
+          "desc": "Bankruptcy chapter 7-discharged",
+          "code": "15"
+        },
+        "StatusDate": "08/28/2013",
+        "FilingDate": "05/18/2013",
+        "Evaluation": {
+          "desc": "Negative",
+          "code": "N"
+        },
+        "Amount": "$0",
+        "ConsumerComment": null,
+        "Court": {
+          "desc": "US BKPT CT NM ALBUQUER",
+          "code": "8000500"
+        },
+        "ReferenceNumber": "0416067MBM",
+        "PlaintiffName": null,
+        "DisputeFlag": null,
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Bankruptcy": {
+          "Type": {
+            "desc": null,
+            "code": null
+          },
+          "AssetAmount": "$0",
+          "LiabilitiesAmount": "$0",
+          "RepaymentPercent": null,
+          "AdjustmentPercent": null
+        },
+        "BookPageSequence": null
+      },
+      {
+        "Status": {
+          "desc": "Bankruptcy chapter 7-discharged",
+          "code": "15"
+        },
+        "StatusDate": "05/28/2013",
+        "FilingDate": "02/18/2013",
+        "Evaluation": {
+          "desc": "Negative",
+          "code": "N"
+        },
+        "Amount": "$0",
+        "ConsumerComment": null,
+        "Court": {
+          "desc": "US BKPT CT NM ALBUQUER",
+          "code": "8000500"
+        },
+        "ReferenceNumber": "0416067MBM",
+        "PlaintiffName": null,
+        "DisputeFlag": null,
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Bankruptcy": {
+          "Type": {
+            "desc": null,
+            "code": null
+          },
+          "AssetAmount": "$0",
+          "LiabilitiesAmount": "$0",
+          "RepaymentPercent": null,
+          "AdjustmentPercent": null
+        },
+        "BookPageSequence": null
+      }
+    ],
+    "Inquiry": [
+      {
+        "Date": "07/13/2014",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Unknown - Credit Extension, Review, Or Collection",
+          "code": "31"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "1234020",
+        "KOB": {
+          "desc": "Bank Credit Cards",
+          "code": "BC"
+        },
+        "SubscriberDisplayName": "CAPITALONE"
+      },
+      {
+        "Date": "07/08/2014",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Unknown - Credit Extension, Review, Or Collection",
+          "code": "31"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "1348650",
+        "KOB": {
+          "desc": "Lumber/Building Material/Hardware -- Non-Specific",
+          "code": "LZ"
+        },
+        "SubscriberDisplayName": "COMENITY BANK/AMHMFURN"
+      },
+      {
+        "Date": "06/13/2014",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Unknown - Credit Extension, Review, Or Collection",
+          "code": "31"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "3160050",
+        "KOB": {
+          "desc": "All Banks -- Non-Specific",
+          "code": "BB"
+        },
+        "SubscriberDisplayName": "WF DDA"
+      },
+      {
+        "Date": "06/13/2014",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Unknown - Credit Extension, Review, Or Collection",
+          "code": "31"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "1534540",
+        "KOB": {
+          "desc": "Finance Companies -- Non-Specific",
+          "code": "FZ"
+        },
+        "SubscriberDisplayName": "RIA FINANCIAL SERVICES"
+      },
+      {
+        "Date": "06/06/2014",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Unknown - Credit Extension, Review, Or Collection",
+          "code": "31"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "8906801",
+        "KOB": {
+          "desc": "Services, Not Elsewhere Classified",
+          "code": "ZS"
+        },
+        "SubscriberDisplayName": "SIGUE CORPORATION"
+      },
+      {
+        "Date": "05/25/2014",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Unknown - Credit Extension, Review, Or Collection",
+          "code": "31"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "1234020",
+        "KOB": {
+          "desc": "Bank Credit Cards",
+          "code": "BC"
+        },
+        "SubscriberDisplayName": "CAPITALONE"
+      },
+      {
+        "Date": "04/13/2014",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Unknown - Credit Extension, Review, Or Collection",
+          "code": "31"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "1234020",
+        "KOB": {
+          "desc": "Bank Credit Cards",
+          "code": "BC"
+        },
+        "SubscriberDisplayName": "CAPITALONE"
+      },
+      {
+        "Date": "04/12/2014",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Conventional Real Estate Loan, Including Purchase Money First",
+          "code": "26"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "0993840",
+        "KOB": {
+          "desc": "Mortgage Reporters",
+          "code": "FR"
+        },
+        "SubscriberDisplayName": "CBCINNOVIS"
+      },
+      {
+        "Date": "04/07/2014",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Real Estate Specific Type Unknown",
+          "code": "08"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "1974941",
+        "KOB": {
+          "desc": "Mortgage Reporters",
+          "code": "FR"
+        },
+        "SubscriberDisplayName": "CREDCO"
+      },
+      {
+        "Date": "03/13/2014",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Unknown - Credit Extension, Review, Or Collection",
+          "code": "31"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "3160050",
+        "KOB": {
+          "desc": "All Banks -- Non-Specific",
+          "code": "BB"
+        },
+        "SubscriberDisplayName": "WF DDA"
+      },
+      {
+        "Date": "03/13/2014",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Unknown - Credit Extension, Review, Or Collection",
+          "code": "31"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "1534540",
+        "KOB": {
+          "desc": "Finance Companies -- Non-Specific",
+          "code": "FZ"
+        },
+        "SubscriberDisplayName": "RIA FINANCIAL SERVICES"
+      },
+      {
+        "Date": "03/06/2014",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Unknown - Credit Extension, Review, Or Collection",
+          "code": "31"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "8906801",
+        "KOB": {
+          "desc": "Services, Not Elsewhere Classified",
+          "code": "ZS"
+        },
+        "SubscriberDisplayName": "SIGUE CORPORATION"
+      },
+      {
+        "Date": "02/25/2014",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Unknown - Credit Extension, Review, Or Collection",
+          "code": "31"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "1234020",
+        "KOB": {
+          "desc": "Bank Credit Cards",
+          "code": "BC"
+        },
+        "SubscriberDisplayName": "CAPITALONE"
+      },
+      {
+        "Date": "01/28/2014",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Unknown - Credit Extension, Review, Or Collection",
+          "code": "31"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "3154430",
+        "KOB": {
+          "desc": "All Banks -- Non-Specific",
+          "code": "BB"
+        },
+        "SubscriberDisplayName": "BANK OF THE WEST"
+      },
+      {
+        "Date": "01/12/2014",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Conventional Real Estate Loan, Including Purchase Money First",
+          "code": "26"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "0993840",
+        "KOB": {
+          "desc": "Mortgage Reporters",
+          "code": "FR"
+        },
+        "SubscriberDisplayName": "CBCINNOVIS"
+      },
+      {
+        "Date": "01/07/2014",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Real Estate Specific Type Unknown",
+          "code": "08"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "1974941",
+        "KOB": {
+          "desc": "Mortgage Reporters",
+          "code": "FR"
+        },
+        "SubscriberDisplayName": "CREDCO"
+      },
+      {
+        "Date": "12/28/2013",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Real Estate Specific Type Unknown",
+          "code": "08"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "1972176",
+        "KOB": {
+          "desc": "Mortgage Reporters",
+          "code": "FR"
+        },
+        "SubscriberDisplayName": "FIRST CHECK"
+      },
+      {
+        "Date": "10/28/2013",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Unknown - Credit Extension, Review, Or Collection",
+          "code": "31"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "3154430",
+        "KOB": {
+          "desc": "All Banks -- Non-Specific",
+          "code": "BB"
+        },
+        "SubscriberDisplayName": "BANK OF THE WEST"
+      },
+      {
+        "Date": "09/28/2013",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Real Estate Specific Type Unknown",
+          "code": "08"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "1972176",
+        "KOB": {
+          "desc": "Mortgage Reporters",
+          "code": "FR"
+        },
+        "SubscriberDisplayName": "FIRST CHECK"
+      },
+      {
+        "Date": "04/20/2013",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Collection Department/Agency/Attorney",
+          "code": "48"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "8980379",
+        "KOB": {
+          "desc": "Collections Attorney",
+          "code": "YL"
+        },
+        "SubscriberDisplayName": "LAWRENCE P ZAMZOK"
+      },
+      {
+        "Date": "01/20/2013",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Collection Department/Agency/Attorney",
+          "code": "48"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "8980379",
+        "KOB": {
+          "desc": "Collections Attorney",
+          "code": "YL"
+        },
+        "SubscriberDisplayName": "LAWRENCE P ZAMZOK"
+      },
+      {
+        "Date": "11/03/2012",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Conventional Real Estate Loan, Including Purchase Money First",
+          "code": "26"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "1566070",
+        "KOB": {
+          "desc": "Personal Loan Companies",
+          "code": "FP"
+        },
+        "SubscriberDisplayName": "CMI"
+      },
+      {
+        "Date": "10/05/2012",
+        "Amount": "UNK",
+        "Type": {
+          "desc": "Real Estate Specific Type Unknown",
+          "code": "08"
+        },
+        "Terms": {
+          "desc": null,
+          "code": "N/A"
+        },
+        "Subcode": "6995966",
+        "KOB": {
+          "desc": "Mortgage Reporters",
+          "code": "FR"
+        },
+        "SubscriberDisplayName": "EQUIFAX-LANDAM"
+      }
+    ],
+    "TradeLine": [
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "06/07/2008",
+        "StatusDate": "04/01/2014",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Real Estate Mortgage - With Or Without OtherCollateral. Usually A Second Mortgage",
+          "code": "27"
+        },
+        "TermsDuration": {
+          "desc": "360 Month",
+          "code": "360"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$36,800",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          }
+        ],
+        "BalanceDate": "04/26/2014",
+        "BalanceAmount": "0",
+        "Status": {
+          "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+          "code": "67"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "8",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "1",
+        "PaymentProfile": "9CCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "3557910",
+        "KOB": {
+          "desc": "Personal Loan Companies",
+          "code": "FP"
+        },
+        "SubscriberDisplayName": "CITIMORTGAGE",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "04/01/2014",
+          "AccountCondition": {
+            "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+            "code": "67"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Real Estate Mortgage - With Or Without OtherCollateral. Usually A Second Mortgage",
+            "code": "27"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": "04/01/2014",
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": "ACCOUNT TRANSFERRED TO ANOTHER LENDER",
+          "code": "31"
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "05/23/2014",
+        "StatusDate": "08/01/2014",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Conventional Real Estate Loan, Including Purchase Money First",
+          "code": "26"
+        },
+        "TermsDuration": {
+          "desc": "30 Year",
+          "code": "360"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$229,500",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          }
+        ],
+        "BalanceDate": "08/28/2014",
+        "BalanceAmount": null,
+        "Status": {
+          "desc": "Transferred",
+          "code": "05"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": "Transferred to another lender",
+        "AccountNumber": "",
+        "MonthsHistory": "3",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "BCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": "Estimated",
+        "LastPaymentDate": "07/07/2014",
+        "Subcode": "7907753",
+        "KOB": {
+          "desc": "Mortgage Companies",
+          "code": "FM"
+        },
+        "SubscriberDisplayName": "NEW CENTURY MORTGAGE C",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "08/01/2014",
+          "AccountCondition": {
+            "desc": "Transferred",
+            "code": "05"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Conventional Real Estate Loan, Including Purchase Money First",
+            "code": "26"
+          },
+          "SpecialComment": {
+            "desc": "ACCOUNT TRANSFERRED TO ANOTHER LENDER",
+            "code": "31"
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": null,
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "No additional review is required",
+          "code": "P"
+        },
+        "OpenDate": "07/28/2007",
+        "StatusDate": "07/01/2008",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Conventional Real Estate Loan, Including Purchase Money First",
+          "code": "26"
+        },
+        "TermsDuration": {
+          "desc": "15 Year",
+          "code": "180"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$151,330",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          }
+        ],
+        "BalanceDate": "07/03/2008",
+        "BalanceAmount": null,
+        "Status": {
+          "desc": "Paid satisfactorily",
+          "code": "12"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "12",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "BCCCCCCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "3994885",
+        "KOB": {
+          "desc": "Mortgage Companies",
+          "code": "FM"
+        },
+        "SubscriberDisplayName": "SAXON MORTGAGE SERVICE",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "07/01/2008",
+          "AccountCondition": {
+            "desc": "Paid/zero balance",
+            "code": "A2"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Conventional Real Estate Loan, Including Purchase Money First",
+            "code": "26"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": null,
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "No additional review is required",
+          "code": "P"
+        },
+        "OpenDate": "08/04/2007",
+        "StatusDate": "05/01/2008",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Real Estate Mortgage - With Or Without OtherCollateral. Usually A Second Mortgage",
+          "code": "27"
+        },
+        "TermsDuration": {
+          "desc": "180 Month",
+          "code": "180"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$10,000",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          }
+        ],
+        "BalanceDate": "05/28/2008",
+        "BalanceAmount": null,
+        "Status": {
+          "desc": "Paid satisfactorily",
+          "code": "12"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "8",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "B------C",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "1567260",
+        "KOB": {
+          "desc": "Personal Loan Companies",
+          "code": "FP"
+        },
+        "SubscriberDisplayName": "EQUICREDIT",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "05/01/2008",
+          "AccountCondition": {
+            "desc": "Paid/zero balance",
+            "code": "A2"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Real Estate Mortgage - With Or Without OtherCollateral. Usually A Second Mortgage",
+            "code": "27"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": null,
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "No additional review is required",
+          "code": "P"
+        },
+        "OpenDate": "09/18/1991",
+        "StatusDate": "12/01/2006",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Manufactured Home",
+          "code": "17"
+        },
+        "TermsDuration": {
+          "desc": "15 Month",
+          "code": "015"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$14,978",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          }
+        ],
+        "BalanceDate": "12/02/2006",
+        "BalanceAmount": null,
+        "Status": {
+          "desc": "Paid satisfactorily",
+          "code": "12"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "99",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "BCCCCCCCCCCCCC--CCCCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "3990772",
+        "KOB": {
+          "desc": "Mortgage Companies",
+          "code": "FM"
+        },
+        "SubscriberDisplayName": "VANDERBILT MORTGAGE",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "12/01/2006",
+          "AccountCondition": {
+            "desc": "Paid/zero balance",
+            "code": "A2"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Manufactured Home",
+            "code": "17"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": null,
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "05/28/2008",
+        "StatusDate": "09/01/2011",
+        "MaxDelinquencyDate": "04/01/2010",
+        "AccountType": {
+          "desc": "Conventional Real Estate Loan, Including Purchase Money First",
+          "code": "26"
+        },
+        "TermsDuration": {
+          "desc": "30 Year",
+          "code": "360"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$147,200",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          }
+        ],
+        "BalanceDate": "07/27/2014",
+        "BalanceAmount": "$0",
+        "Status": {
+          "desc": "Current/was 60 days past due",
+          "code": "37"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Open",
+          "code": "O"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "75",
+        "DelinquenciesOver30Days": "15",
+        "DelinquenciesOver60Days": "1",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "0----CCCCCCCCCCCCCCCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": "Estimated",
+        "LastPaymentDate": "05/24/2014",
+        "Subcode": "7950144",
+        "KOB": {
+          "desc": "Real Estate Sales And Rentals",
+          "code": "RE"
+        },
+        "SubscriberDisplayName": "SELECT PORTFOLIO SVCIN",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "09/01/2011",
+          "AccountCondition": {
+            "desc": "Open",
+            "code": "A1"
+          },
+          "PaymentStatus": {
+            "desc": "Current/was 60 days past due",
+            "code": "37"
+          },
+          "AccountType": {
+            "desc": "Conventional Real Estate Loan, Including Purchase Money First",
+            "code": "26"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": {
+          "desc": "60 days delinquent",
+          "code": "2"
+        },
+        "FirstDelinquencyDate": "08/01/2011",
+        "SecondDelinquencyDate": "07/01/2011"
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "07/09/2009",
+        "StatusDate": "07/01/2013",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Unknown",
+          "code": "31"
+        },
+        "TermsDuration": {
+          "desc": "81 Month",
+          "code": "081"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$5,051",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          },
+          {
+            "Value": "$3,706",
+            "Qualifier": {
+              "desc": "Charge off amount",
+              "code": "C"
+            }
+          }
+        ],
+        "BalanceDate": "10/28/2013",
+        "BalanceAmount": "$3,706",
+        "Status": {
+          "desc": "Unpaid balance reported as loss",
+          "code": "97"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "52",
+        "DelinquenciesOver30Days": "1",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "4",
+        "PaymentProfile": "99991CCCCCCCCCCCCCCCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": "Estimated",
+        "LastPaymentDate": "02/07/2013",
+        "Subcode": "3514110",
+        "KOB": {
+          "desc": "Personal Loan Companies",
+          "code": "FP"
+        },
+        "SubscriberDisplayName": "CITIFINANCIAL",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "07/01/2013",
+          "AccountCondition": {
+            "desc": "Unpaid balance reported as loss",
+            "code": "97"
+          },
+          "PaymentStatus": {
+            "desc": "30 days past due",
+            "code": "71"
+          },
+          "AccountType": {
+            "desc": "Unknown",
+            "code": "31"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": "10/01/2013",
+        "SecondDelinquencyDate": "09/01/2013"
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "10/28/2009",
+        "StatusDate": "08/01/2013",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Auto Loan",
+          "code": "00"
+        },
+        "TermsDuration": {
+          "desc": "79 Month",
+          "code": "079"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$29,553",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          }
+        ],
+        "BalanceDate": "08/10/2013",
+        "BalanceAmount": "0",
+        "Status": {
+          "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+          "code": "67"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "46",
+        "DelinquenciesOver30Days": "16",
+        "DelinquenciesOver60Days": "3",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "2",
+        "PaymentProfile": "9------9212-211111C1111C-",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "1631440",
+        "KOB": {
+          "desc": "Automobile Financing Company",
+          "code": "FA"
+        },
+        "SubscriberDisplayName": "FORD CRED",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "08/01/2013",
+          "AccountCondition": {
+            "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+            "code": "67"
+          },
+          "PaymentStatus": {
+            "desc": "Unpaid balance reported as loss",
+            "code": "97"
+          },
+          "AccountType": {
+            "desc": "Auto Loan",
+            "code": "00"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": "08/01/2013",
+        "SecondDelinquencyDate": "01/01/2013"
+      },
+      {
+        "SpecialComment": {
+          "desc": "ACCOUNT CLOSED DUE TO TRANSFER OR REFINANCE",
+          "code": "28"
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "06/24/2008",
+        "StatusDate": "11/01/2008",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Secured By Household Goods",
+          "code": "22"
+        },
+        "TermsDuration": {
+          "desc": "60 Month",
+          "code": "060"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$18,566",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          }
+        ],
+        "BalanceDate": "11/28/2008",
+        "BalanceAmount": null,
+        "Status": {
+          "desc": "Refinanced",
+          "code": "10"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": "Account closed due to refinance",
+        "AccountNumber": "",
+        "MonthsHistory": "6",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "BCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "3524210",
+        "KOB": {
+          "desc": "Personal Loan Companies",
+          "code": "FP"
+        },
+        "SubscriberDisplayName": "A F S C I",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "11/01/2008",
+          "AccountCondition": {
+            "desc": "Refinanced",
+            "code": "10"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Secured By Household Goods",
+            "code": "22"
+          },
+          "SpecialComment": {
+            "desc": "ACCOUNT CLOSED DUE TO TRANSFER OR REFINANCE",
+            "code": "28"
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": null,
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "No additional review is required",
+          "code": "P"
+        },
+        "OpenDate": "08/28/2009",
+        "StatusDate": "11/01/2009",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Auto Loan",
+          "code": "00"
+        },
+        "TermsDuration": {
+          "desc": "60 Month",
+          "code": "060"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$45,842",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          }
+        ],
+        "BalanceDate": "11/28/2009",
+        "BalanceAmount": null,
+        "Status": {
+          "desc": "Paid satisfactorily",
+          "code": "12"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "3",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "BCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "1631440",
+        "KOB": {
+          "desc": "Automobile Financing Company",
+          "code": "FA"
+        },
+        "SubscriberDisplayName": "FORD CRED",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "11/01/2009",
+          "AccountCondition": {
+            "desc": "Paid/zero balance",
+            "code": "A2"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Auto Loan",
+            "code": "00"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": null,
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "No additional review is required",
+          "code": "P"
+        },
+        "OpenDate": "10/24/2008",
+        "StatusDate": "09/01/2009",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Auto Loan",
+          "code": "00"
+        },
+        "TermsDuration": {
+          "desc": "60 Month",
+          "code": "060"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$39,984",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          }
+        ],
+        "BalanceDate": "09/28/2009",
+        "BalanceAmount": null,
+        "Status": {
+          "desc": "Paid satisfactorily",
+          "code": "12"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "12",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "BCCCCCCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "1631440",
+        "KOB": {
+          "desc": "Automobile Financing Company",
+          "code": "FA"
+        },
+        "SubscriberDisplayName": "FORD CRED",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "09/01/2009",
+          "AccountCondition": {
+            "desc": "Paid/zero balance",
+            "code": "A2"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Auto Loan",
+            "code": "00"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": null,
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "No additional review is required",
+          "code": "P"
+        },
+        "OpenDate": "08/22/2003",
+        "StatusDate": "05/01/2009",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Secured Loan",
+          "code": "02"
+        },
+        "TermsDuration": {
+          "desc": "72 Month",
+          "code": "072"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$20,275",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          }
+        ],
+        "BalanceDate": "05/28/2009",
+        "BalanceAmount": null,
+        "Status": {
+          "desc": "Paid satisfactorily",
+          "code": "12"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "70",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "BCCCCCCCCCCCCCCCCCCCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "3175030",
+        "KOB": {
+          "desc": "All Banks -- Non-Specific",
+          "code": "BB"
+        },
+        "SubscriberDisplayName": "FRANKLIN CAPITAL",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "05/01/2009",
+          "AccountCondition": {
+            "desc": "Paid/zero balance",
+            "code": "A2"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Secured Loan",
+            "code": "02"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": null,
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "No additional review is required",
+          "code": "P"
+        },
+        "OpenDate": "11/28/2008",
+        "StatusDate": "05/01/2009",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Secured By Household Goods",
+          "code": "22"
+        },
+        "TermsDuration": {
+          "desc": "48 Month",
+          "code": "048"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$10,762",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          }
+        ],
+        "BalanceDate": "05/28/2009",
+        "BalanceAmount": null,
+        "Status": {
+          "desc": "Paid satisfactorily",
+          "code": "12"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "7",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "BCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "3524210",
+        "KOB": {
+          "desc": "Personal Loan Companies",
+          "code": "FP"
+        },
+        "SubscriberDisplayName": "A F S C I",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "05/01/2009",
+          "AccountCondition": {
+            "desc": "Paid/zero balance",
+            "code": "A2"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Secured By Household Goods",
+            "code": "22"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": null,
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "No additional review is required",
+          "code": "P"
+        },
+        "OpenDate": "12/16/2007",
+        "StatusDate": "07/01/2008",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Auto Loan",
+          "code": "00"
+        },
+        "TermsDuration": {
+          "desc": "60 Month",
+          "code": "060"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$14,400",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          }
+        ],
+        "BalanceDate": "07/12/2008",
+        "BalanceAmount": null,
+        "Status": {
+          "desc": "Paid satisfactorily",
+          "code": "12"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "7",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "BCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "2531670",
+        "KOB": {
+          "desc": "Personal Loan Companies",
+          "code": "FP"
+        },
+        "SubscriberDisplayName": "SPRINGLEAF FINANCIAL S",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "07/01/2008",
+          "AccountCondition": {
+            "desc": "Paid/zero balance",
+            "code": "A2"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Auto Loan",
+            "code": "00"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": null,
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "No additional review is required",
+          "code": "P"
+        },
+        "OpenDate": "12/25/2005",
+        "StatusDate": "01/01/2008",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Secured By Household Goods and Other Collateral",
+          "code": "23"
+        },
+        "TermsDuration": {
+          "desc": "60 Month",
+          "code": "060"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$8,666",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          }
+        ],
+        "BalanceDate": "01/09/2008",
+        "BalanceAmount": null,
+        "Status": {
+          "desc": "Paid satisfactorily",
+          "code": "12"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "25",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "BCCCCCCCCCCCCCCCCCCCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "2531670",
+        "KOB": {
+          "desc": "Personal Loan Companies",
+          "code": "FP"
+        },
+        "SubscriberDisplayName": "SPRINGLEAF FINANCIAL S",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "01/01/2008",
+          "AccountCondition": {
+            "desc": "Paid/zero balance",
+            "code": "A2"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Secured By Household Goods and Other Collateral",
+            "code": "23"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": null,
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "No additional review is required",
+          "code": "P"
+        },
+        "OpenDate": "01/22/2004",
+        "StatusDate": "03/01/2006",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Lease",
+          "code": "13"
+        },
+        "TermsDuration": {
+          "desc": "24 Month",
+          "code": "024"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$27,543",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          }
+        ],
+        "BalanceDate": "03/28/2006",
+        "BalanceAmount": null,
+        "Status": {
+          "desc": "Paid satisfactorily",
+          "code": "12"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "27",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "BCCCCCCCCCCCCCCCCCC-CCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "1631440",
+        "KOB": {
+          "desc": "Automobile Financing Company",
+          "code": "FA"
+        },
+        "SubscriberDisplayName": "FORD CRED",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "03/01/2006",
+          "AccountCondition": {
+            "desc": "Paid/zero balance",
+            "code": "A2"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Lease",
+            "code": "13"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": null,
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "04/17/1998",
+        "StatusDate": "06/01/2011",
+        "MaxDelinquencyDate": "12/01/2008",
+        "AccountType": {
+          "desc": "Unsecured Loan",
+          "code": "01"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Joint Account",
+          "code": "4"
+        },
+        "Amount": [
+          {
+            "Value": "$3,156",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "04/14/2013",
+        "BalanceAmount": "$300",
+        "Status": {
+          "desc": "Current/was 60 days past due",
+          "code": "37"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Open",
+          "code": "O"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "99",
+        "DelinquenciesOver30Days": "11",
+        "DelinquenciesOver60Days": "2",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "CCCCCCCCCCCCCCCCCCCCCCC11",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": "Estimated",
+        "LastPaymentDate": "06/16/2013",
+        "Subcode": "1176400",
+        "KOB": {
+          "desc": "All Banks -- Non-Specific",
+          "code": "BB"
+        },
+        "SubscriberDisplayName": "HSBC/MS",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "06/01/2011",
+          "AccountCondition": {
+            "desc": "Open",
+            "code": "A1"
+          },
+          "PaymentStatus": {
+            "desc": "Current/was 60 days past due 2 times",
+            "code": "07"
+          },
+          "AccountType": {
+            "desc": "Unsecured Loan",
+            "code": "01"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": {
+          "desc": "60 days delinquent",
+          "code": "2"
+        },
+        "FirstDelinquencyDate": "05/01/2011",
+        "SecondDelinquencyDate": "04/01/2011"
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "No additional review is required",
+          "code": "P"
+        },
+        "OpenDate": "05/16/2009",
+        "StatusDate": "08/01/2014",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Auto Loan",
+          "code": "00"
+        },
+        "TermsDuration": {
+          "desc": "125 Month",
+          "code": "125"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$13,799",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          }
+        ],
+        "BalanceDate": "08/28/2014",
+        "BalanceAmount": "$7,300",
+        "Status": {
+          "desc": "Current",
+          "code": "11"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Open",
+          "code": "O"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "64",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "CCCCCCCCCCCCCCCCCCCCCCCCC",
+        "MonthlyPaymentAmount": "$198",
+        "MonthlyPaymentType": "Scheduled Term",
+        "LastPaymentDate": "03/08/2013",
+        "Subcode": "1555110",
+        "KOB": {
+          "desc": "Personal Loan Companies",
+          "code": "FP"
+        },
+        "SubscriberDisplayName": "CITIFINANC",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "08/01/2014",
+          "AccountCondition": {
+            "desc": "Open",
+            "code": "A1"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Auto Loan",
+            "code": "00"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": null,
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "No additional review is required",
+          "code": "P"
+        },
+        "OpenDate": "11/21/2008",
+        "StatusDate": "04/01/2013",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Auto Loan",
+          "code": "00"
+        },
+        "TermsDuration": {
+          "desc": "72 Month",
+          "code": "072"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$27,997",
+            "Qualifier": {
+              "desc": "Original",
+              "code": "O"
+            }
+          }
+        ],
+        "BalanceDate": "04/28/2013",
+        "BalanceAmount": "$16,541",
+        "Status": {
+          "desc": "Current",
+          "code": "11"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Open",
+          "code": "O"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Installment",
+          "code": "I"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "54",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "CCCCCCCCCCCCCCCCCCCCCCCCC",
+        "MonthlyPaymentAmount": "$603",
+        "MonthlyPaymentType": "Scheduled Term",
+        "LastPaymentDate": "03/17/2013",
+        "Subcode": "1574610",
+        "KOB": {
+          "desc": "Personal Loan Companies",
+          "code": "FP"
+        },
+        "SubscriberDisplayName": "CITI AUTO",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "04/01/2013",
+          "AccountCondition": {
+            "desc": "Open",
+            "code": "A1"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Auto Loan",
+            "code": "00"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": null,
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": "ACCOUNT CLOSED AT CREDIT GRANTOR'S REQUEST",
+          "code": "18"
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "05/28/2009",
+        "StatusDate": "07/01/2013",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Credit Card",
+          "code": "18"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$500",
+            "Qualifier": {
+              "desc": "Limit",
+              "code": "L"
+            }
+          },
+          {
+            "Value": "$1,065",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "07/06/2013",
+        "BalanceAmount": "0",
+        "Status": {
+          "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+          "code": "67"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Revolving",
+          "code": "R"
+        },
+        "ConsumerComment": "Account closed at credit grantor's request",
+        "AccountNumber": "",
+        "MonthsHistory": "50",
+        "DelinquenciesOver30Days": "4",
+        "DelinquenciesOver60Days": "1",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "1",
+        "PaymentProfile": "9CCCCCCCCCCCCCCCCCCCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "3278165",
+        "KOB": {
+          "desc": "Bank Credit Cards",
+          "code": "BC"
+        },
+        "SubscriberDisplayName": "CITI",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "07/01/2013",
+          "AccountCondition": {
+            "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+            "code": "67"
+          },
+          "PaymentStatus": {
+            "desc": "Seriously past due",
+            "code": "93"
+          },
+          "AccountType": {
+            "desc": "Credit Card",
+            "code": "18"
+          },
+          "SpecialComment": {
+            "desc": "ACCOUNT CLOSED AT CREDIT GRANTOR'S REQUEST",
+            "code": "18"
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": "07/01/2013",
+        "SecondDelinquencyDate": "12/01/2010"
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "03/19/2012",
+        "StatusDate": "05/01/2013",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Revolving Charge Account",
+          "code": "07"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$500",
+            "Qualifier": {
+              "desc": "Limit",
+              "code": "L"
+            }
+          },
+          {
+            "Value": "$643",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "05/28/2013",
+        "BalanceAmount": "0",
+        "Status": {
+          "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+          "code": "67"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Revolving",
+          "code": "R"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "16",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "1",
+        "PaymentProfile": "9CCCCCCCCCCCCC0C",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "3308810",
+        "KOB": {
+          "desc": "Variety Stores",
+          "code": "DV"
+        },
+        "SubscriberDisplayName": "SYNCB/SAMS CLUB",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "05/01/2013",
+          "AccountCondition": {
+            "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+            "code": "67"
+          },
+          "PaymentStatus": {
+            "desc": "60 days past due",
+            "code": "78"
+          },
+          "AccountType": {
+            "desc": "Revolving Charge Account",
+            "code": "07"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": "05/01/2013",
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": "ACCOUNT CLOSED AT CREDIT GRANTOR'S REQUEST",
+          "code": "18"
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "08/06/2009",
+        "StatusDate": "06/01/2013",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Credit Card",
+          "code": "18"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$460",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "06/06/2013",
+        "BalanceAmount": "0",
+        "Status": {
+          "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+          "code": "67"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Revolving",
+          "code": "R"
+        },
+        "ConsumerComment": "Account closed at credit grantor's request",
+        "AccountNumber": "",
+        "MonthsHistory": "46",
+        "DelinquenciesOver30Days": "3",
+        "DelinquenciesOver60Days": "1",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "1",
+        "PaymentProfile": "9CCCCCCCCCCCCCCCCCCCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "1270246",
+        "KOB": {
+          "desc": "Bank Credit Cards",
+          "code": "BC"
+        },
+        "SubscriberDisplayName": "CAP ONE",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "06/01/2013",
+          "AccountCondition": {
+            "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+            "code": "67"
+          },
+          "PaymentStatus": {
+            "desc": "Was 60 days past due/now 30",
+            "code": "77"
+          },
+          "AccountType": {
+            "desc": "Credit Card",
+            "code": "18"
+          },
+          "SpecialComment": {
+            "desc": "ACCOUNT CLOSED AT CREDIT GRANTOR'S REQUEST",
+            "code": "18"
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": "06/01/2013",
+        "SecondDelinquencyDate": "12/01/2010"
+      },
+      {
+        "SpecialComment": {
+          "desc": "ACCOUNT CLOSED AT CREDIT GRANTOR'S REQUEST",
+          "code": "18"
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "10/26/2009",
+        "StatusDate": "06/01/2013",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Credit Card",
+          "code": "18"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$517",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "06/05/2013",
+        "BalanceAmount": "0",
+        "Status": {
+          "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+          "code": "67"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Revolving",
+          "code": "R"
+        },
+        "ConsumerComment": "Account closed at credit grantor's request",
+        "AccountNumber": "",
+        "MonthsHistory": "45",
+        "DelinquenciesOver30Days": "3",
+        "DelinquenciesOver60Days": "2",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "1",
+        "PaymentProfile": "9CCCCCCCCCCCCCCCCCCCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "1270246",
+        "KOB": {
+          "desc": "Bank Credit Cards",
+          "code": "BC"
+        },
+        "SubscriberDisplayName": "CAP ONE",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "06/01/2013",
+          "AccountCondition": {
+            "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+            "code": "67"
+          },
+          "PaymentStatus": {
+            "desc": "Was 60 days past due/now 30",
+            "code": "77"
+          },
+          "AccountType": {
+            "desc": "Credit Card",
+            "code": "18"
+          },
+          "SpecialComment": {
+            "desc": "ACCOUNT CLOSED AT CREDIT GRANTOR'S REQUEST",
+            "code": "18"
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": "06/01/2013",
+        "SecondDelinquencyDate": "12/01/2010"
+      },
+      {
+        "SpecialComment": {
+          "desc": "ACCOUNT CLOSED AT CREDIT GRANTOR'S REQUEST",
+          "code": "18"
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "03/17/2012",
+        "StatusDate": "06/01/2013",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Credit Card",
+          "code": "18"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$671",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "06/06/2013",
+        "BalanceAmount": "0",
+        "Status": {
+          "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+          "code": "67"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Revolving",
+          "code": "R"
+        },
+        "ConsumerComment": "Account closed at credit grantor's request",
+        "AccountNumber": "",
+        "MonthsHistory": "16",
+        "DelinquenciesOver30Days": "1",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "1",
+        "PaymentProfile": "91CCCCCCCCCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "1270246",
+        "KOB": {
+          "desc": "Bank Credit Cards",
+          "code": "BC"
+        },
+        "SubscriberDisplayName": "CAP ONE",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "06/01/2013",
+          "AccountCondition": {
+            "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+            "code": "67"
+          },
+          "PaymentStatus": {
+            "desc": "30 days past due",
+            "code": "71"
+          },
+          "AccountType": {
+            "desc": "Credit Card",
+            "code": "18"
+          },
+          "SpecialComment": {
+            "desc": "ACCOUNT CLOSED AT CREDIT GRANTOR'S REQUEST",
+            "code": "18"
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": "06/01/2013",
+        "SecondDelinquencyDate": "05/01/2013"
+      },
+      {
+        "SpecialComment": {
+          "desc": "ACCOUNT CLOSED AT CREDIT GRANTOR'S REQUEST",
+          "code": "18"
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "03/27/2012",
+        "StatusDate": "06/01/2013",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Credit Card",
+          "code": "18"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$575",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "06/06/2013",
+        "BalanceAmount": "0",
+        "Status": {
+          "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+          "code": "67"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Revolving",
+          "code": "R"
+        },
+        "ConsumerComment": "Account closed at credit grantor's request",
+        "AccountNumber": "",
+        "MonthsHistory": "15",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "1",
+        "PaymentProfile": "9CCCCCCCCCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "1270246",
+        "KOB": {
+          "desc": "Bank Credit Cards",
+          "code": "BC"
+        },
+        "SubscriberDisplayName": "CAP ONE",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "06/01/2013",
+          "AccountCondition": {
+            "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+            "code": "67"
+          },
+          "PaymentStatus": {
+            "desc": "30 days past due",
+            "code": "71"
+          },
+          "AccountType": {
+            "desc": "Credit Card",
+            "code": "18"
+          },
+          "SpecialComment": {
+            "desc": "ACCOUNT CLOSED AT CREDIT GRANTOR'S REQUEST",
+            "code": "18"
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": "06/01/2013",
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": "ACCOUNT CLOSED AT CONSUMER'S REQUEST",
+          "code": "19"
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "10/16/2008",
+        "StatusDate": "05/01/2013",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Credit Card",
+          "code": "18"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$1,850",
+            "Qualifier": {
+              "desc": "Limit",
+              "code": "L"
+            }
+          },
+          {
+            "Value": "$972",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "05/28/2013",
+        "BalanceAmount": "0",
+        "Status": {
+          "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+          "code": "67"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Revolving",
+          "code": "R"
+        },
+        "ConsumerComment": "Account closed at consumer's request",
+        "AccountNumber": "",
+        "MonthsHistory": "56",
+        "DelinquenciesOver30Days": "1",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "1",
+        "PaymentProfile": "9CCCCCCCCCCCCCCCCCCCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "3321470",
+        "KOB": {
+          "desc": "Department And Variety Stores -- Non-Specific",
+          "code": "DZ"
+        },
+        "SubscriberDisplayName": "COMENITY BANK/SPIEGEL",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "05/01/2013",
+          "AccountCondition": {
+            "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+            "code": "67"
+          },
+          "PaymentStatus": {
+            "desc": "30 days past due",
+            "code": "71"
+          },
+          "AccountType": {
+            "desc": "Credit Card",
+            "code": "18"
+          },
+          "SpecialComment": {
+            "desc": "ACCOUNT CLOSED AT CONSUMER'S REQUEST",
+            "code": "19"
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": "05/01/2013",
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "03/03/2011",
+        "StatusDate": "06/01/2013",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Revolving Charge Account",
+          "code": "07"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$0",
+            "Qualifier": {
+              "desc": "Limit",
+              "code": "L"
+            }
+          },
+          {
+            "Value": "$2,848",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "06/18/2013",
+        "BalanceAmount": "0",
+        "Status": {
+          "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+          "code": "67"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Revolving",
+          "code": "R"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "28",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "1",
+        "PaymentProfile": "9CCCCCCCCCCCCCCCCCCCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "1323190",
+        "KOB": {
+          "desc": "Complete Department Stores",
+          "code": "DC"
+        },
+        "SubscriberDisplayName": "SEARS/CBSD",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "06/01/2013",
+          "AccountCondition": {
+            "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+            "code": "67"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Revolving Charge Account",
+            "code": "07"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": "06/01/2013",
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "06/08/2012",
+        "StatusDate": "06/01/2013",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Credit Card",
+          "code": "18"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$0",
+            "Qualifier": {
+              "desc": "Limit",
+              "code": "L"
+            }
+          },
+          {
+            "Value": "$796",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "06/12/2013",
+        "BalanceAmount": "0",
+        "Status": {
+          "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+          "code": "67"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Revolving",
+          "code": "R"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "13",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "1",
+        "PaymentProfile": "9CCCCCCCCCCC0",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "1230800",
+        "KOB": {
+          "desc": "Bank Credit Cards",
+          "code": "BC"
+        },
+        "SubscriberDisplayName": "SEARS/CBSD",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "06/01/2013",
+          "AccountCondition": {
+            "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+            "code": "67"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Credit Card",
+            "code": "18"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": "06/01/2013",
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "03/22/2012",
+        "StatusDate": "05/01/2013",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Revolving Charge Account",
+          "code": "07"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$0",
+            "Qualifier": {
+              "desc": "Limit",
+              "code": "L"
+            }
+          },
+          {
+            "Value": "$553",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "05/28/2013",
+        "BalanceAmount": "0",
+        "Status": {
+          "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+          "code": "67"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Revolving",
+          "code": "R"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "16",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "1",
+        "PaymentProfile": "9CCCCCCCCCCCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "1607340",
+        "KOB": {
+          "desc": "Lumber/Building Material/Hardware -- Non-Specific",
+          "code": "LZ"
+        },
+        "SubscriberDisplayName": "SYNCB/LOWES",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "05/01/2013",
+          "AccountCondition": {
+            "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+            "code": "67"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Revolving Charge Account",
+            "code": "07"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": "05/01/2013",
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "08/18/2008",
+        "StatusDate": "06/01/2013",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Revolving Charge Account",
+          "code": "07"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$858",
+            "Qualifier": {
+              "desc": "Limit",
+              "code": "L"
+            }
+          },
+          {
+            "Value": "$858",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "06/16/2013",
+        "BalanceAmount": "0",
+        "Status": {
+          "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+          "code": "67"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Revolving",
+          "code": "R"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "39",
+        "DelinquenciesOver30Days": "3",
+        "DelinquenciesOver60Days": "5",
+        "DelinquenciesOver90Days": "3",
+        "DerogCounter": "1",
+        "PaymentProfile": "91CCCCCCCCCCCCCCCCCCCCC32",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "1353320",
+        "KOB": {
+          "desc": "Bulk Purchase Finance",
+          "code": "FU"
+        },
+        "SubscriberDisplayName": "JEFFERSON CAPITAL",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "06/01/2013",
+          "AccountCondition": {
+            "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+            "code": "67"
+          },
+          "PaymentStatus": {
+            "desc": "Was 90 days past due/now 30 or 60",
+            "code": "79"
+          },
+          "AccountType": {
+            "desc": "Revolving Charge Account",
+            "code": "07"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": "06/01/2013",
+        "SecondDelinquencyDate": "05/01/2013"
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "06/27/2014",
+        "StatusDate": "09/01/2014",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Credit Card",
+          "code": "18"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Authorized User",
+          "code": "3"
+        },
+        "Amount": [
+          {
+            "Value": "$250",
+            "Qualifier": {
+              "desc": "Limit",
+              "code": "L"
+            }
+          },
+          {
+            "Value": "$230",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "09/02/2014",
+        "BalanceAmount": null,
+        "Status": {
+          "desc": "Lost or stolen",
+          "code": "03"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Revolving",
+          "code": "R"
+        },
+        "ConsumerComment": "Credit card lost or stolen",
+        "AccountNumber": "",
+        "MonthsHistory": "3",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "BCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "1210189",
+        "KOB": {
+          "desc": "Bank Credit Cards",
+          "code": "BC"
+        },
+        "SubscriberDisplayName": "FIRST PREMIER BANK",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "09/01/2014",
+          "AccountCondition": {
+            "desc": "Lost or stolen",
+            "code": "03"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Credit Card",
+            "code": "18"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": null,
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "01/03/2012",
+        "StatusDate": "06/01/2013",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Revolving Charge Account",
+          "code": "07"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$312",
+            "Qualifier": {
+              "desc": "Limit",
+              "code": "L"
+            }
+          },
+          {
+            "Value": "$314",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "06/15/2013",
+        "BalanceAmount": "$312",
+        "Status": {
+          "desc": "90 days past due",
+          "code": "80"
+        },
+        "AmountPastDue": "$51",
+        "OpenOrClosed": {
+          "desc": "Open",
+          "code": "O"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Revolving",
+          "code": "R"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "19",
+        "DelinquenciesOver30Days": "1",
+        "DelinquenciesOver60Days": "1",
+        "DelinquenciesOver90Days": "1",
+        "DerogCounter": "0",
+        "PaymentProfile": "321CCCCCCCCCCCCCCCC",
+        "MonthlyPaymentAmount": "$14",
+        "MonthlyPaymentType": "Scheduled Term",
+        "LastPaymentDate": "03/02/2013",
+        "Subcode": "3178962",
+        "KOB": {
+          "desc": "Bank Credit Cards",
+          "code": "BC"
+        },
+        "SubscriberDisplayName": "THD/CBNA",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "06/01/2013",
+          "AccountCondition": {
+            "desc": "Open",
+            "code": "A1"
+          },
+          "PaymentStatus": {
+            "desc": "90 days past due",
+            "code": "80"
+          },
+          "AccountType": {
+            "desc": "Revolving Charge Account",
+            "code": "07"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": "06/01/2013",
+        "SecondDelinquencyDate": "05/01/2013"
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "No additional review is required",
+          "code": "P"
+        },
+        "OpenDate": "06/27/2014",
+        "StatusDate": "09/01/2014",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Credit Card",
+          "code": "18"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Authorized User",
+          "code": "3"
+        },
+        "Amount": [
+          {
+            "Value": "$250",
+            "Qualifier": {
+              "desc": "Limit",
+              "code": "L"
+            }
+          },
+          {
+            "Value": "$230",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "09/02/2014",
+        "BalanceAmount": "$230",
+        "Status": {
+          "desc": "Current",
+          "code": "11"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Open",
+          "code": "O"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Revolving",
+          "code": "R"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "3",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "CCC",
+        "MonthlyPaymentAmount": "$20",
+        "MonthlyPaymentType": "Scheduled Term",
+        "LastPaymentDate": null,
+        "Subcode": "1210189",
+        "KOB": {
+          "desc": "Bank Credit Cards",
+          "code": "BC"
+        },
+        "SubscriberDisplayName": "FIRST PREMIER BANK",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "09/01/2014",
+          "AccountCondition": {
+            "desc": "Open",
+            "code": "A1"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Credit Card",
+            "code": "18"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": null,
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "No additional review is required",
+          "code": "P"
+        },
+        "OpenDate": "05/25/2014",
+        "StatusDate": "08/01/2014",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Credit Card",
+          "code": "18"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$300",
+            "Qualifier": {
+              "desc": "Limit",
+              "code": "L"
+            }
+          },
+          {
+            "Value": "$293",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "08/28/2014",
+        "BalanceAmount": "$255",
+        "Status": {
+          "desc": "Current",
+          "code": "11"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Open",
+          "code": "O"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Revolving",
+          "code": "R"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "3",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "0",
+        "PaymentProfile": "CCC",
+        "MonthlyPaymentAmount": "$15",
+        "MonthlyPaymentType": "Scheduled Term",
+        "LastPaymentDate": "08/08/2014",
+        "Subcode": "3240881",
+        "KOB": {
+          "desc": "Bank Credit Cards",
+          "code": "BC"
+        },
+        "SubscriberDisplayName": "CAP ONE",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "08/01/2014",
+          "AccountCondition": {
+            "desc": "Open",
+            "code": "A1"
+          },
+          "PaymentStatus": {
+            "desc": "Current",
+            "code": "11"
+          },
+          "AccountType": {
+            "desc": "Credit Card",
+            "code": "18"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": null,
+        "SecondDelinquencyDate": null
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "07/10/2009",
+        "StatusDate": "12/01/2010",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Revolving Charge Account",
+          "code": "07"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$147",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "12/21/2010",
+        "BalanceAmount": "$0",
+        "Status": {
+          "desc": "Current/was 90 days past due",
+          "code": "38"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Open",
+          "code": "O"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Revolving",
+          "code": "R"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "18",
+        "DelinquenciesOver30Days": "3",
+        "DelinquenciesOver60Days": "3",
+        "DelinquenciesOver90Days": "1",
+        "DerogCounter": "0",
+        "PaymentProfile": "021CC321CC21CCCCCC",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": "Estimated",
+        "LastPaymentDate": "12/20/2010",
+        "Subcode": "1348850",
+        "KOB": {
+          "desc": "Department And Variety Stores -- Non-Specific",
+          "code": "DZ"
+        },
+        "SubscriberDisplayName": "COMENITY BANK/CHADWCKS",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "12/01/2010",
+          "AccountCondition": {
+            "desc": "Inactive",
+            "code": "A4"
+          },
+          "PaymentStatus": {
+            "desc": "Current/was 90 days past due",
+            "code": "38"
+          },
+          "AccountType": {
+            "desc": "Revolving Charge Account",
+            "code": "07"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": "11/01/2010",
+        "SecondDelinquencyDate": "10/01/2010"
+      },
+      {
+        "SpecialComment": {
+          "desc": null,
+          "code": null
+        },
+        "Evaluation": {
+          "desc": "Closer review is required",
+          "code": "N"
+        },
+        "OpenDate": "05/22/2009",
+        "StatusDate": "05/01/2013",
+        "MaxDelinquencyDate": null,
+        "AccountType": {
+          "desc": "Revolving Charge Account",
+          "code": "07"
+        },
+        "TermsDuration": {
+          "desc": "Revolving",
+          "code": "REV"
+        },
+        "ECOA": {
+          "desc": "Individual",
+          "code": "1"
+        },
+        "Amount": [
+          {
+            "Value": "$532",
+            "Qualifier": {
+              "desc": "Limit",
+              "code": "L"
+            }
+          },
+          {
+            "Value": "$532",
+            "Qualifier": {
+              "desc": "High balance",
+              "code": "H"
+            }
+          }
+        ],
+        "BalanceDate": "05/28/2013",
+        "BalanceAmount": "$0",
+        "Status": {
+          "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+          "code": "67"
+        },
+        "AmountPastDue": null,
+        "OpenOrClosed": {
+          "desc": "Closed",
+          "code": "C"
+        },
+        "RevolvingOrInstallment": {
+          "desc": "Revolving",
+          "code": "R"
+        },
+        "ConsumerComment": null,
+        "AccountNumber": "",
+        "MonthsHistory": "1",
+        "DelinquenciesOver30Days": "0",
+        "DelinquenciesOver60Days": "0",
+        "DelinquenciesOver90Days": "0",
+        "DerogCounter": "1",
+        "PaymentProfile": "9",
+        "MonthlyPaymentAmount": null,
+        "MonthlyPaymentType": null,
+        "LastPaymentDate": null,
+        "Subcode": "2994819",
+        "KOB": {
+          "desc": "All others not classified elsewhere",
+          "code": "ZZ"
+        },
+        "SubscriberDisplayName": "MIDNIGHT VELVET",
+        "EnhancedPaymentData": {
+          "InitialPaymentLevelDate": "05/01/2013",
+          "AccountCondition": {
+            "desc": null,
+            "code": null
+          },
+          "PaymentStatus": {
+            "desc": "Debt included in or discharged through Bankruptcy Chapter 7, 11, or 12",
+            "code": "67"
+          },
+          "AccountType": {
+            "desc": "Revolving Charge Account",
+            "code": "07"
+          },
+          "SpecialComment": {
+            "desc": null,
+            "code": null
+          }
+        },
+        "MaxPayment": null,
+        "FirstDelinquencyDate": "05/01/2013",
+        "SecondDelinquencyDate": null
+      }
+    ],
+    "RiskModel": [
+      {
+        "Score": "628",
+        "Evaluation": {
+          "desc": null,
+          "code": null
+        },
+        "ModelIndicator": {
+          "desc": "Vantage Score 3.0",
+          "code": "V3"
+        },
+        "ScoreFactorCodeOne": "98",
+        "ScoreFactorCodeTwo": "85",
+        "ScoreFactorCodeThree": "14",
+        "ScoreFactorCodeFour": "30",
+        "ScoreFactorCodeFive": null,
+        "positiveScoreFactorCodeOne": "P08",
+        "positiveScoreFactorCodeTwo": "P34",
+        "positiveScoreFactorCodeThree": "P95",
+        "positiveScoreFactorCodeFour": "P07"
+      }
+    ],
+    "ConsumerAssistanceReferralAddress": {
+      "OfficeName": "EXPERIAN",
+      "StreetName": "701 EXPERIAN PARKWAY",
+      "POBox": "PO BOX 2002",
+      "CityStateZip": "ALLEN, TX 75013",
+      "Phone": "(888) 397-3742"
+    },
+    "ProfileSummary": {
+      "DisputedAccountsExcluded": 0,
+      "DelinquenciesOver30Days": 0,
+      "DelinquenciesOver60Days": 0,
+      "DelinquenciesOver90Days": 0,
+      "DerogCounter": 0,
+      "PublicRecordsCount": 0,
+      "TotalInquiries": 0,
+      "MonthlyPaymentPartialFlagDesc": null,
+      "InquiriesDuringLast6Months": 0,
+      "NowDelinquentDerog": 0,
+      "RealEstatePaymentPartialFlagDesc": null,
+      "TotalTradeItems": 0,
+      "WasDelinquentDerog": 0,
+      "RevolvingAvailablePartialFlagDesc": null,
+      "PaidAccounts": 0,
+      "hasProfileSummary": false,
+      "InstallmentBalance": null,
+      "MonthlyPayment": null,
+      "PastDueAmount": null,
+      "RealEstateBalance": null,
+      "RealEstatePayment": null,
+      "RevolvingBalance": null,
+      "RevolvingAvailablePercent": null,
+      "OldestTradeOpenDate": null,
+      "Y2KOldestTradeline": null,
+      "SatisfactoryAccount": 0
+    },
+    "Statement": null,
+    "InformationalMessage": [
+      {
+        "MessageText": "0083 SSN NOT PROVIDED",
+        "MessageNumber": "83"
+      }
+    ]
+  },
+  "error": null,
+  "success": true
+}

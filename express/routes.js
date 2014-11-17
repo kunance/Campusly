@@ -1,6 +1,6 @@
 "use strict";
 
-var creditReport = require("./controllers/creditReport"),
+var experian = require("./controllers/experian"),
 // index = ("./controllers/index"),
 //    user = require("./controllers/user"),
 //    middleware = require("./middleware"),
@@ -32,12 +32,37 @@ module.exports = function (app) {
 
     // Server API Routes
 
-    // this actually gets the users creditReport
-    app.route("/api/creditReport/").
-        post(creditReport.getCreditReport);
+    // get credit report based on the information given by the requestor
+    app.route("/api/experian/report").
+        post(experian.getCreditReport);
 
-//    app.route("/api/users/:userid/creditReport")
-//        .post(user.getCreditReport);
+    app.route("/api/experian/user").
+        post(experian.authAndCreateUser);
+
+    app.route("/api/experian/user/answers").
+        post(experian.submitAuthenticateAnswers);
+
+    // Are you currently authorized
+    app.route("/api/experian/auth/authstatus/:userToken").
+        get(experian.getAuthStatus);
+
+    // Reauthorized an expired token by getting some identity questions
+    app.route("/api/experian/auth/:userToken").
+        get(experian.reAuthExistingToken);
+
+    // Reauthorized an expired token by submitting answers to some identity questions
+    app.route("/api/experian/auth/:userToken").
+        post(experian.submitAnswersReauthExistingToken);
+
+    // get credit report for authorized user
+    app.route("/api/experian/user/report").
+        post(experian.getConsumerCreditReport);
+
+    //
+    app.route("/api/experian/shareReport").
+        post(experian.shareConsumerCreditReport);
+
+
 
 
     // All undefined api routes should return a 404
