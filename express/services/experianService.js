@@ -35,9 +35,8 @@ function _validateGetCreditReportRequest(req) {
  *                  currentState: 'currentState', currentZip: 'currentZip', [ssn: 'ssn']
  *              }
  * @param res
- * @param next
  */
-exports.getCreditReport = function (req, res, next) {
+exports.getCreditReport = function (req, res) {
 
     var validQuery = _validateGetCreditReportRequest(req);
 
@@ -77,9 +76,9 @@ exports.getCreditReport = function (req, res, next) {
 
 /**
  * Begin the process of creating an authenticated Connect user. If the name and address are found in
-   Experian’s system, a set of questions is returned to help verify the identity of the consumer. Once the
-   questions are answered in the subsequent service call, the userToken is created and returned to the
-   client.
+ Experian’s system, a set of questions is returned to help verify the identity of the consumer. Once the
+ questions are answered in the subsequent service call, the userToken is created and returned to the
+ client.
  *
  * @param req  req.body.creditReportRequestorInfo: { firstName: 'firstName' , lastName: 'lastName', currentAddress:
  *                  'currentAddress', currentCity: 'currentCity', currentState: 'currentState', currentZip:
@@ -91,7 +90,7 @@ exports.getCreditReport = function (req, res, next) {
  *                 error: object | 'string',
  *                 success: boolean
  */
-exports.authAndCreateUser = function (req, res, next) {
+exports.authAndCreateUser = function (req, res) {
 
     //var validQuery = _validateAuthAndCreateUserRequest(req);
     //
@@ -140,7 +139,7 @@ exports.authAndCreateUser = function (req, res, next) {
 
 /**
  *  The second part of the user registration process. This must include an authorization seesion token that was
-    returned as part of the original /user request that retrieved the question. @see authAndCreateUser()
+ returned as part of the original /user request that retrieved the question. @see authAndCreateUser()
  *
  * @param req     req.body.creditReportRequestorInfo: {  authSession: 'auth session token',
  *                  answer : [ integer for index of answer option starting from 1,
@@ -150,10 +149,10 @@ exports.authAndCreateUser = function (req, res, next) {
  * @param res  success { success: true, UserToken: string };
  *             failure { success: false, errorType: 'user | system', error: object | string};  TODO investigate errors more
  */
-exports.submitAuthenticateAnswers = function (req, res, next) {
+exports.submitAuthenticateAnswers = function (req, res) {
 
     logger.log("info", "Client submitAuthenticateAnswers query payload to pass to Experian: ",
-       req.body.creditReportRequestorInfo);
+        req.body.creditReportRequestorInfo);
 
 
     var options = {
@@ -210,7 +209,7 @@ exports.submitAuthenticateAnswers = function (req, res, next) {
  * @param res  success { "success": true, "authenticated": true }
  *             failure { success: false, errorType: 'system', error: object | string};  TODO investigate errors more
  */
-exports.getAuthStatus = function (req, res, next) {
+exports.getAuthStatus = function (req, res) {
 
     logger.log("info", "getAuthStatus() user token to pass to Experian: ",
         req.param("userToken"));
@@ -270,7 +269,7 @@ exports.getAuthStatus = function (req, res, next) {
  *                 error: object | 'string',  TODO investigate errors more
  *                 success: boolean }
  */
-exports.reAuthExistingToken = function (req, res, next) {
+exports.reAuthExistingToken = function (req, res) {
 
     logger.log("info", "reAuthExistingToken() user token to pass to Experian: ",
         req.param("userToken"));
@@ -343,10 +342,10 @@ exports.reAuthExistingToken = function (req, res, next) {
  * @param res  success { success: true };
  *             failure { success: false, errorType: 'user | system', error: object | string};  TODO investigate errors more
  */
-exports.submitAnswersReauthExistingToken = function (req, res, next) {
+exports.submitAnswersReauthExistingToken = function (req, res) {
 
     logger.log("info", "submitAnswersReauthExistingToken() user token to pass to Experian: ", req.param("userToken"),
-                "body payload to pass: ", req.body);
+        "body payload to pass: ", req.body);
 
 
     var options = {
@@ -398,8 +397,8 @@ exports.submitAnswersReauthExistingToken = function (req, res, next) {
 
 /**
  * Get the Connect credit report and Vantagescore. This request is for a credit report that is shown to the
-   consumer specifically. The report can then be shared by referencing the transactionId in a following
-   service.
+ consumer specifically. The report can then be shared by referencing the transactionId in a following
+ service.
 
  * @param req  req.body: { productId: integer, consumerToken: "token", purposeType: integer }
  *      Product ID  Description
@@ -407,10 +406,10 @@ exports.submitAnswersReauthExistingToken = function (req, res, next) {
  *       9          Credit Report – Consumer View + Single Share
  *
  *       Purpose Type  not defined in Connect API guide  // TODO get allowed values and meanings
- * @param success { success: true,  transactionId: integer, CreditProfile: { @see getCreditReportResponse.json } };
+ * @param success { success: true,  transactionId: integer, creditProfile: { @see getCreditReportResponse.json } };
  *             failure { success: false, error: object | string};  TODO investigate errors more
  */
-exports.getConsumerCreditReport = function (req, res, next) {
+exports.getConsumerCreditReport = function (req, res) {
 
     logger.log("info", "getConsumerCreditReport() payload to pass to Experian: ", req.body);
 
@@ -447,12 +446,11 @@ exports.getConsumerCreditReport = function (req, res, next) {
                 queryResult = { success: false, error: jsonBody.error };
             }
             else {
-
-                // TODO figure out if you need whole body or just part of it
-                queryResult = jsonBody;
-                //queryResult = {
-                //    success: true
-                //};
+                queryResult = {
+                    success: true,
+                    transactionId: jsonBody.transactionId,
+                    creditProfile: jsonBody.CreditProfile
+                };
             }
         }
 
@@ -470,7 +468,7 @@ exports.getConsumerCreditReport = function (req, res, next) {
  * @param res success { success: true, shareId: "id" };
  *             failure { success: false, error: object | string};  TODO investigate errors more
  */
-exports.shareConsumerCreditReport = function (req, res, next) {
+exports.shareConsumerCreditReport = function (req, res) {
 
     logger.log("info", "shareConsumerCreditReport() payload to pass to Experian: ", req.body);
     console.log("info", "shareConsumerCreditReport() payload to pass to Experian: ", req.body);
@@ -507,8 +505,8 @@ exports.shareConsumerCreditReport = function (req, res, next) {
                 queryResult = { success: false, error: jsonBody.error };
             }
             else {
-                queryResult = jsonBody;
-                // queryResult = { success: true, shareId: jsonBody.shareId };
+                // queryResult = jsonBody;
+                queryResult = { success: true, shareId: jsonBody.shareId };
             }
         }
 
@@ -520,49 +518,109 @@ exports.shareConsumerCreditReport = function (req, res, next) {
 
 /**
  * Retrieve a copy of the shared report. This can be called multiple times to retrieve previously pulled
-   reports. This retrieves an archived copy of the report and is not considered a new transaction.
+ reports. This retrieves an archived copy of the report and is not considered a new transaction.
  *
- * @param req
- * @param res
- * @param next
+ * @param req   req.body: { shareId: "share id", endUserToken: "endUserToken" }
+ * @param res   success { success: true, creditProfile: { @see getCreditReportResponse.json } };
+ *              failure { success: false, error: object | string};  TODO investigate errors more
  */
-exports.retrieveSharedConsumerCreditReportForEndUser = function (req, res, next) {
+exports.retrieveSharedConsumerCreditReportForEndUser = function (req, res) {
 
+    logger.log("info", "retrieveSharedConsumerCreditReportForEndUser() payload to pass to Experian: ", req.body);
+    console.log("info", "retrieveSharedConsumerCreditReportForEndUser() payload to pass to Experian: ", req.body);
+
+    var options = {
+        url: config.experian.ip + config.experian.paths.getSharedCreditReport,
+        form: req.body,
+        auth: {
+            user: config.experian.auth.rented.username,
+            pass: config.experian.auth.rented.password
+        },
+        headers: {
+            Accept: "application/json"
+        }
+    };
+
+    request.post(options, function(err, httpResponse, body) {
+
+        var queryResult;
+
+        if (err) {
+            logger.log("error", err);
+            console.log("error: ", err);
+
+            queryResult = { success: false, error: err };
+        }
+        else {
+
+            console.log("BODY:  ", body);
+
+            var jsonBody = JSON.parse(body);
+
+            if (!jsonBody.success) {
+                queryResult = { success: false, error: jsonBody.error };
+            }
+            else {
+                queryResult = { success: true, creditProfile: jsonBody.CreditProfile };
+            }
+        }
+
+        console.log(queryResult);
+        res.json(queryResult);
+    });
 };
 
 
 /**
  * Retrieve archived version of a consumer’s view of the report
  *
- * @param req
- * @param res
- * @param next
+ * @param req  req.body: { transactionId: "transaction id", consumerToken: "token" }
+ * @param res   success { success: true, creditProfile: { @see getCreditReportResponse.json } };
+ *              failure { success: false, error: object | string};  TODO investigate errors more
  */
-exports.retrieveArchivedConsumersReport = function (req, res, next) {
+exports.retrieveArchivedConsumersReport = function (req, res) {
 
-//    URL: /ECP2P/api/report/archive
-//
-//    Method: POST
-//
-//    Sample Request:
-//
-//        –i -k -H "Accept: application/json" -u username:password "https://stg1-
-//
-//    ss6.experian.com/ECP2P/api/report/archive -d
-//
-//    'consumerToken=MWNiNjZlM2MtNzA4My00ZDA3LWI3ODMtZjdiZjg2OWM2YWQy&transactionId=86' -
-//
-//    H "Accept: application/json" -X POST
-//
-//    Parameters:
-//
-//        consumerToken
-//
-//    transactionId
-//
-//    Response Fields:
-//
-//        CreditReportJSON
-//
-//    Sample Response: See Appendix
+    logger.log("info", "retrieveArchivedConsumersReport() payload to pass to Experian: ", req.body);
+    console.log("info", "retrieveArchivedConsumersReport() payload to pass to Experian: ", req.body);
+
+    var options = {
+        url: config.experian.ip + config.experian.paths.getArchivedConsumerReport,
+        form: req.body,
+        auth: {
+            user: config.experian.auth.rented.username,
+            pass: config.experian.auth.rented.password
+        },
+        headers: {
+            Accept: "application/json"
+        }
+    };
+
+    request.post(options, function(err, httpResponse, body) {
+
+        var queryResult;
+
+        if (err) {
+            logger.log("error", err);
+            console.log("error: ", err);
+
+            queryResult = { success: false, error: err };
+        }
+        else {
+
+            console.log("BODY:  ", body);
+
+            var jsonBody = JSON.parse(body);
+
+            if (!jsonBody.success) {
+                queryResult = { success: false, error: jsonBody.error };
+            }
+            else {
+                queryResult = { success: true, creditProfile: jsonBody.CreditProfile };
+            }
+        }
+
+        console.log(queryResult);
+        res.json(queryResult);
+    });
 };
+

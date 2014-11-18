@@ -1,6 +1,6 @@
 "use strict";
 
-var experian = require("./controllers/experian"),
+var experianCtrl = require("./controllers/experianCtrl"),
 // index = ("./controllers/index"),
 //    user = require("./controllers/user"),
 //    middleware = require("./middleware"),
@@ -34,33 +34,40 @@ module.exports = function (app) {
 
     // get credit report based on the information given by the requestor
     app.route("/api/experian/report").
-        post(experian.getCreditReport);
+        post(experianCtrl.getCreditReport);
 
     app.route("/api/experian/user").
-        post(experian.authAndCreateUser);
+        post(experianCtrl.authAndCreateUser);
 
     app.route("/api/experian/user/answers").
-        post(experian.submitAuthenticateAnswers);
+        post(experianCtrl.submitAuthenticateAnswers);
 
     // Are you currently authorized
     app.route("/api/experian/auth/authstatus/:userToken").
-        get(experian.getAuthStatus);
+        get(experianCtrl.getAuthStatus);
 
     // Reauthorized an expired token by getting some identity questions
     app.route("/api/experian/auth/:userToken").
-        get(experian.reAuthExistingToken);
+        get(experianCtrl.reAuthExistingToken);
 
     // Reauthorized an expired token by submitting answers to some identity questions
     app.route("/api/experian/auth/:userToken").
-        post(experian.submitAnswersReauthExistingToken);
+        post(experianCtrl.submitAnswersReauthExistingToken);
 
     // get credit report for authorized user
     app.route("/api/experian/user/report").
-        post(experian.getConsumerCreditReport);
+        post(experianCtrl.getConsumerCreditReport);
 
     //
     app.route("/api/experian/shareReport").
-        post(experian.shareConsumerCreditReport);
+        post(experianCtrl.shareConsumerCreditReport);
+
+    app.route("/api/experian/share/getReport").
+        post(experianCtrl.retrieveSharedConsumerCreditReportForEndUser);
+
+
+    app.route("/api/experian/report/archive").
+        post(experianCtrl.retrieveArchivedConsumersReport);
 
 
 
