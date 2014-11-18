@@ -168,8 +168,9 @@ angular.module('myApp.tenant', ['ngRoute'])
     }
 ])
 
-.controller('verifyTenantCtrl', ['$scope',
-    function($scope) {
+.controller('verifyTenantCtrl', ['$scope', function($scope) {
+
+     //   $scope.creditProfile = { "Header": {"ReportDate": "06/19/2014", "ReportTime": "05:53:01 PM CT"} };
 
         $scope.creditProfile = {"Header": {"ReportDate": "06/19/2014", "ReportTime": "05:53:01 PM CT"},
                 "ConsumerIdentity": [{"Name": {"Type": {"desc": null, "code": null}, "Surname": "WHALEN", "First": "ANABEL", "Middle": null}}, {"Name": {"Type": {"desc": "AKA", "code": "A"}, "Surname": "ZAJAC", "First": "ANABIL", "Middle": null}}, {"Name": {"Type": {"desc": "AKA", "code": "A"}, "Surname": "ZAJOE", "First": "ANNABELLE", "Middle": null}}, {"Name": {"Type": {"desc": "AKA", "code": "A"}, "Surname": "ZAJAC", "First": "SAENZ", "Middle": null}}, {"Name": {"Type": {"desc": "AKA", "code": "A"}, "Surname": "ZAJAC", "First": "ANGELICA", "Middle": null}}],

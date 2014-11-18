@@ -18,8 +18,8 @@ module.exports = {
             submitAnswersReAuthExistingToken: "/ECP2P/api/auth/answers",
             getConsumerCreditReport: "/ECP2P/api/report",
             shareCreditReport: "/ECP2P/api/share",
-            getSharedCreditReport: "/ECP2P/api/share/get", // POST
-            getArchivedConsumerReport: "/ECP2P/api/report/archive" // POST
+            getSharedCreditReport: "/ECP2P/api/share/get",
+            getArchivedConsumerReport: "/ECP2P/api/report/archive"
 
         },
         auth: {
