@@ -100,43 +100,47 @@
 <div class="row">
     <div class="col-sm-6">
         <fieldset class="readonly">
-          <legend>Emergency Contact</legend>
+            <legend>Vehicle Details</legend>
 
-           <div class="form-group">
-               <label class="control-label">Contact Info</label>
-               <span class="field-text">{{tenant.emergencyPhone}}</span>
-           </div>
+            <div class="form-group">
+                <label class="control-label">Year</label>
+                <span class="field-text">{{tenant.vehicle.year}}</span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Make</label>
+                <span class="field-text">{{tenant.vehicle.make}}</span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Model</label>
+                <span class="field-text">{{tenant.vehicle.model}}</span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Vehicle</label>
+                <span class="field-text">{{tenant.vehicle.license}}</span>
+            </div>
         </fieldset>
     </div>
     <div class="col-sm-6">
         <fieldset class="readonly">
-          <legend>Credit Report</legend>
-          <a href="{{tenant.creditReport}}" download="{{tenant.firstName}}-{{tenant.lastName}}-credit-report.pdf" class="field-text" ng-show="tenant.creditReport">Download <i class="glyphicon glyphicon-cloud-download"></i></a>
-          <span class="field-text" ng-hide="tenant.creditReport">We are verifying this tenant...</span>
+            <legend>Emergency Contact</legend>
+
+            <div class="form-group">
+                <label class="control-label">Contact Info</label>
+                <span class="field-text">{{tenant.emergencyPhone}}</span>
+            </div>
         </fieldset>
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-6">
-        <fieldset class="readonly">
-          <legend>Vehicle Details</legend>
+    <div class="col-sm-12">
+        <legend>Tenant Credit Report powered by &nbsp;<img src="assets/img/features/tenants/experian.png" height="60px"></legend>
+        <!--<fieldset class="readonly">-->
+          <!--<legend>Credit Report</legend>-->
+          <!--<a href="{{tenant.creditReport}}" download="{{tenant.firstName}}-{{tenant.lastName}}-credit-report.pdf" class="field-text" ng-show="tenant.creditReport">Download <i class="glyphicon glyphicon-cloud-download"></i></a>-->
+          <!--<span class="field-text" ng-hide="tenant.creditReport">We are verifying this tenant...</span>-->
+        <!--</fieldset>-->
 
-           <div class="form-group">
-               <label class="control-label">Year</label>
-               <span class="field-text">{{tenant.vehicle.year}}</span>
-           </div>
-           <div class="form-group">
-               <label class="control-label">Make</label>
-               <span class="field-text">{{tenant.vehicle.make}}</span>
-           </div>
-           <div class="form-group">
-               <label class="control-label">Model</label>
-               <span class="field-text">{{tenant.vehicle.model}}</span>
-           </div>
-           <div class="form-group">
-               <label class="control-label">Vehicle</label>
-               <span class="field-text">{{tenant.vehicle.vehicle}}</span>
-           </div>
-        </fieldset>
+
+
     </div>
 </div>

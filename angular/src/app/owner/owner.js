@@ -94,6 +94,13 @@ angular.module('myApp.owner', ['ngRoute'])
             controller: 'OwnerPropertyCtrl',
             profileRequired: OWNERS_ONLY
         });
+
+        $routeProvider.when('/owners/verify', {
+            authRequired: true,
+            templateUrl: 'owner/verify.tpl.html',
+            //controller: 'OwnerPropertyCtrl',
+            profileRequired: OWNERS_ONLY
+        });
     }
 ])
 
