@@ -6,6 +6,15 @@ module.exports = {
 //    mongo: {
 //        uri: "mongodb://localhost/rented-dev"
 //    },
+    mysql: {
+        connection: {
+            host: "localhost",
+            user: "rentedNode",
+            password: "rented",
+            database: "rv4",
+            charset: "utf8"
+        }
+    },
     experian: {
         protocol: "https",
         port: 443,
