@@ -9,3 +9,109 @@ To build and run the application:
 
     In node directory:
         node app
+
+
+
+
+How to setup EC2 instance after you create an micro ubuntu EC2 instance
+
+*** Modify your local ~/.ssh/config by adding two entries ... you get the pem file when you create the EC2 instance
+***  in my case I named the pem file  'RentedJR.pem'
+
+# You need this to ssh ec2Micro from your local machine into EC2 instance
+Host ec2Micro
+HostName ec2-54-149-70-41.us-west-2.compute.amazonaws.com
+User ubuntu
+IdentityFile ~/.ssh/RentedJR.pem
+
+# You need this to git push 'localBranch':'ec2Branch' from your local machine into EC2 instance
+Host ec2-54-149-70-41.us-west-2.compute.amazonaws.com
+HostName ec2-54-149-70-41.us-west-2.compute.amazonaws.com
+User ubuntu
+IdentityFile ~/.ssh/RentedJR.pem
+
+
+# ssh into your EC2 instance
+
+1 - Install node.js:
+--------------------
+sudo apt-get update
+sudo apt-get install -y python-software-properties python g++ make
+sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get update
+sudo apt-get install nodejs
+sudo apt-get install nginx
+
+2 - Install GIT:
+--------------------
+sudo apt-get install git
+
+3 - Install Forever:
+--------------------
+sudo npm install forever -g
+
+4 - Install PM2:
+--------------------
+sudo npm install pm2 -g
+
+
+# On EC2 instance
+$ cd /home/ubuntu
+$ mkdir repo_rented_do_not_delete
+$ cd repo_rented_do_not_delete/
+$ git init --bare
+
+# On local machine in your root directory, Rented, of you local cloned or forked repo
+$ git remote add AWS_micro_server ssh://ubuntu@ec2-54-149-70-41.us-west-2.compute.amazonaws.com/repo_rented_do_not_delete
+
+
+# On EC2 instance
+
+# modify the post-receive file by adding the following:
+vi /home/ubuntu/repo_rented_do_not_delete/hooks/post-receive
+#!/bin/bash
+
+while read oldrev newrev ref
+do
+  branch=`echo $ref | cut -d/ -f3`
+  echo branch
+  if [ "production" == "$branch" -o "master" == "$branch" ]; then
+
+    git --work-tree=/var/www/rented.co/public_html/ checkout -f $branch
+
+    echo 'Changes pushed to Amazon EC2 PROD.'
+  fi
+
+  if [ "Experian" == "$branch" ]; then
+
+    git --work-tree=/var/www/rented.co/experian/ checkout -f $branch
+
+    echo 'Changes pushed to Amazon EC2 PROD smoke box.'
+  fi
+done
+
+ubuntu@ip-172-31-30-26:~$ chmod +x hooks/post-receive
+
+# On EC2 instance, create directories for the repo's branches you will push over to the EC2 instance from your local machine
+$ sudo mkdir /var/www/rented.co
+$ sudo mkdir /var/www/rented.co/public_html
+$ sudo mkdir /var/www/rented.co/experian
+
+
+# Push code from your local machine
+$ git push AWS_micro_server master
+$ git push AWS_micro_server Experian
+
+# On EC2 instance, check code was copied into the appropriate directoroy from the post-recieve hook
+ubuntu@ip-172-31-30-26$ ls -lart /var/www/rented.co/public_html/
+ubuntu@ip-172-31-30-26:~/repo_rented_do_not_delete$ ls -lart /var/www/rented.co/experian/
+
+
+
+
+
+
+
+
+
+
