@@ -12,6 +12,14 @@ To build and run the application:
 
 
 
+Install mysql and sequelize-auto on your local machine globally to generate the ORM models to be used by Node code
+$ sudo npm install -g mysql
+$ sudo npm install -g sequelize-auto
+
+
+When you changing the ERD ( database schema) , you can quickly regenarate the models but please note if you use the models dir it will overwrite previous definitions
+$ sequelize-auto -h localhost -d Rented -u yourlocaladminuser -x yourlocaladminpassword -p 3306 -o "/Users/jraber/gitWorkspace/Rented/express/models" -e mysql
+
 
 How to setup EC2 instance after you create an micro ubuntu EC2 instance
 

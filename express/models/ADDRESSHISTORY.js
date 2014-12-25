@@ -33,11 +33,16 @@ module.exports = function(sequelize, DataTypes) {
     },
     endDate: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
     userId: {
       type: DataTypes.INTEGER(10),
       allowNull: true,
+    },
+    present: {
+      type: DataTypes.INTEGER(1),
+      allowNull: true,
+      defaultValue: '0'
     }
   });
 };

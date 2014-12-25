@@ -11,19 +11,24 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
     },
     preferredLeaseLength: {
-      type: DataTypes.ENUM('WEAKLY','MONTHLY','1YR','2YR','3YR','4+YR'),
+      type: DataTypes.INTEGER(3),
       allowNull: true,
     },
     preferredMoveIn: {
       type: DataTypes.DATE,
-      allowNull: true,
+      allowNull: false,
     },
     numOccupants: {
       type: DataTypes.INTEGER(11),
-      allowNull: true,
+      allowNull: false,
+      defaultValue: '1'
     },
     moveReason: {
       type: DataTypes.STRING,
+      allowNull: true,
+    },
+    preferredLeaseLengthUnit: {
+      type: DataTypes.ENUM('DAY','WEEK','MONTH','YEAR'),
       allowNull: true,
     }
   });
