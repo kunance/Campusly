@@ -121,24 +121,31 @@ done
 ubuntu@ip-172-31-30-26:~$ chmod +x hooks/post-receive
 
 ####  On EC2 instance, create directories for the repo's branches you will push over to the EC2 instance from your local machine
+```
 $ sudo mkdir /var/www/rented.co
 $ sudo mkdir /var/www/rented.co/public_html
 $ sudo mkdir /var/www/rented.co/experian
+```
 
 
 ####  Push code from your local machine
+```
 $ git push AWS_micro_server master
 $ git push AWS_micro_server Experian
+```
 
 ####  On EC2 instance, check code was copied into the appropriate directoroy from the post-recieve hook
-ubuntu@ip-172-31-30-26$ ls -lart /var/www/rented.co/public_html/
-ubuntu@ip-172-31-30-26:~/repo_rented_do_not_delete$ ls -lart /var/www/rented.co/experian/
+```
+$ ls -lart /var/www/rented.co/public_html/
+$ ls -lart /var/www/rented.co/experian/
+```
 
 
 
 #### Check Ubuntu version
-
+```
 $ lsb_release -a
+```
 No LSB modules are available.
 Distributor ID:	Ubuntu
 Description:	Ubuntu 14.04.1 LTS
@@ -149,11 +156,13 @@ Codename:	trusty
 ###  OpenSSL http://docs.aws.amazon.com/opsworks/latest/userguide/workingsecurity-ssl.html
 #### http://manpages.ubuntu.com/manpages/hardy/man1/version.1ssl.html
 #### check latest versions @  http://www.openssl.org/
+
+#### check your EC2 instance's version
 ```
 $ openssl version
 ```
-OpenSSL 1.0.1f 6 Jan 2014
 
+#### create a private key to be used for SSL by Nginx
 ```
 $ openssl genrsa 2048 > privkey.pem
 ```
