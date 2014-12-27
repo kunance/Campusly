@@ -118,7 +118,10 @@ do
 done
 ```
 
-ubuntu@ip-172-31-30-26:~$ chmod +x hooks/post-receive
+#### Ensure hook is executable
+```
+$ chmod +x hooks/post-receive
+```
 
 ####  On EC2 instance, create directories for the repo's branches you will push over to the EC2 instance from your local machine
 ```
