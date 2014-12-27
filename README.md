@@ -147,8 +147,8 @@ Codename:	trusty
 
 
 ###  OpenSSL http://docs.aws.amazon.com/opsworks/latest/userguide/workingsecurity-ssl.html
-# http://manpages.ubuntu.com/manpages/hardy/man1/version.1ssl.html
-# check latest versions @  http://www.openssl.org/
+#### http://manpages.ubuntu.com/manpages/hardy/man1/version.1ssl.html
+#### check latest versions @  http://www.openssl.org/
 ```
 $ openssl version
 ```
@@ -159,7 +159,7 @@ $ openssl genrsa 2048 > privkey.pem
 ```
 
 
-### You can also generate a self-signed certificate, which can be used for testing purposes only. For this example, use the following command line to generate a self-signed certificate.
+#### You can also generate a self-signed certificate, which can be used for testing purposes only. For this example, use the following command line to generate a self-signed certificate.
 ```
 $ openssl x509 -req -days 365 -in csr.pem -signkey privkey.pem -out server.crt
 ```
