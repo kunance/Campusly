@@ -10,14 +10,14 @@
 
 
 
-## Install mysql and sequelize-auto on your local machine globally to generate the ORM models to be used by Node code
+#### Install mysql and sequelize-auto on your local machine globally to generate the ORM models to be used by Node code
 ```
 $ sudo npm install -g mysql
 $ sudo npm install -g sequelize-auto
 ```
 
 
-### When you changing the ERD ( database schema) , you can quickly regenarate the models but note if you use the models dir it will overwrite previous definitions
+#### When you changing the ERD ( database schema) , you can quickly regenarate the models but note if you use the models dir it will overwrite previous definitions
 
 **Do NOT delete the directory since the index.js file that loads all the models is not regenerated**
 
