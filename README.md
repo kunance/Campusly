@@ -1,17 +1,16 @@
-# To build and run the application:
+## To build and run the application:
 
-## -- Locally:
-   In angular directory:
-        grunt build
-        grunt compile
-        grunt watch
+### In angular directory:
+        - grunt build
+        - grunt compile
+        - grunt watch
 
-##    In express directory:
+###    In express directory:
         node app
 
 
 
-# Install mysql and sequelize-auto on your local machine globally to generate the ORM models to be used by Node code
+## Install mysql and sequelize-auto on your local machine globally to generate the ORM models to be used by Node code
 ```
 $ sudo npm install -g mysql
 $ sudo npm install -g sequelize-auto
@@ -20,18 +19,19 @@ $ sudo npm install -g sequelize-auto
 
 ### When you changing the ERD ( database schema) , you can quickly regenarate the models but note if you use the models dir it will overwrite previous definitions
 
-*Do NOT delete the directory since the index.js file that loads all the models is not regenerated*
+**Do NOT delete the directory since the index.js file that loads all the models is not regenerated**
+
 Currently the config file is not used due to a bug https://github.com/sequelize/sequelize-auto/issues/6 but I haven't found a better alternative yet so you have to add manually to each generated model
 ```
 $ sequelize-auto -h localhost -d Rented -u renteddbadmin -x rentedrented -p 3306 -e mysql -c "../sequelizeAutoConfig.json"  -o "./models"
 ```
 
 
-# How to setup EC2 instance after you create an micro ubuntu EC2 instance
+## How to setup EC2 instance after you create an micro ubuntu EC2 instance
 
-# Modify your local ~/.ssh/config by adding two entries ... you get the pem file when you create the EC2 instance in my case I named the pem file  'RentedJR.pem'
+## Modify your local ~/.ssh/config by adding two entries ... you get the pem file when you create the EC2 instance in my case I named the pem file  'RentedJR.pem'
 
-### You need this to ssh ec2Micro from your local machine into EC2 instance
+#### You need this to ssh ec2Micro from your local machine into EC2 instance
 ```
 Host ec2Micro
 HostName ec2-54-149-70-41.us-west-2.compute.amazonaws.com
@@ -39,7 +39,7 @@ User ubuntu
 IdentityFile ~/.ssh/RentedJR.pem
 ```
 
-### You need this to git push 'localBranch':'ec2Branch' from your local machine into EC2 instance
+#### You need this to git push 'localBranch':'ec2Branch' from your local machine into EC2 instance
 ```
 Host ec2-54-149-70-41.us-west-2.compute.amazonaws.com
 HostName ec2-54-149-70-41.us-west-2.compute.amazonaws.com
@@ -48,12 +48,12 @@ IdentityFile ~/.ssh/RentedJR.pem
 ```
 
 
-### ssh into your EC2 instance
+#### ssh into your EC2 instance
 ```
 $ ssh ec2Mirco
 ```
 
-### Install node.js:
+#### Install node.js:
 ```
 sudo apt-get update
 sudo apt-get install -y python-software-properties python g++ make
@@ -63,30 +63,30 @@ sudo apt-get install nodejs
 sudo apt-get install nginx
 ```
 
-### Install GIT:
+#### Install GIT:
 ```
 sudo apt-get install git
 ```
 
-### Install Forever:
+#### Install Forever:
 ```
 sudo npm install forever -g
 ```
 
-### 4 Install PM2, Grunt, :
+#### 4 Install PM2, Grunt, :
 ```
 sudo npm install pm2 -g
 sudo npm install grunt-cli -g
 ```
 
-### Ensure permission for ubuntu user since you installed as sudo
+#### Ensure permission for ubuntu user since you installed as sudo
 ```
 $ cd /home/ubuntu/.npm
 $ sudo chown ubuntu:ubuntu *
 ```
 
 
-### On EC2 instance
+#### On EC2 instance
 ```
 $ cd /home/ubuntu
 $ mkdir repo_rented_do_not_delete
@@ -94,13 +94,13 @@ $ cd repo_rented_do_not_delete/
 $ git init --bare
 ```
 
-### On local machine in your root directory, Rented, of you local cloned or forked repo
+#### On local machine in your root directory, Rented, of you local cloned or forked repo
 ```
 $ git remote add AWS_micro_server ssh://ubuntu@ec2-54-149-70-41.us-west-2.compute.amazonaws.com/repo_rented_do_not_delete
 ```
 
 
-### On EC2 instance, modify the post-receive file by adding the following:
+#### On EC2 instance, modify the post-receive file by adding the following:
 
 ```
 $ vi /home/ubuntu/repo_rented_do_not_delete/hooks/post-receive
@@ -128,23 +128,23 @@ done
 
 ubuntu@ip-172-31-30-26:~$ chmod +x hooks/post-receive
 
-###  On EC2 instance, create directories for the repo's branches you will push over to the EC2 instance from your local machine
+####  On EC2 instance, create directories for the repo's branches you will push over to the EC2 instance from your local machine
 $ sudo mkdir /var/www/rented.co
 $ sudo mkdir /var/www/rented.co/public_html
 $ sudo mkdir /var/www/rented.co/experian
 
 
-###  Push code from your local machine
+####  Push code from your local machine
 $ git push AWS_micro_server master
 $ git push AWS_micro_server Experian
 
-###  On EC2 instance, check code was copied into the appropriate directoroy from the post-recieve hook
+####  On EC2 instance, check code was copied into the appropriate directoroy from the post-recieve hook
 ubuntu@ip-172-31-30-26$ ls -lart /var/www/rented.co/public_html/
 ubuntu@ip-172-31-30-26:~/repo_rented_do_not_delete$ ls -lart /var/www/rented.co/experian/
 
 
 
-### Check Ubuntu version
+#### Check Ubuntu version
 
 $ lsb_release -a
 No LSB modules are available.
@@ -154,20 +154,25 @@ Release:	14.04
 Codename:	trusty
 
 
-###  OpenSSL
+###  OpenSSL http://docs.aws.amazon.com/opsworks/latest/userguide/workingsecurity-ssl.html
 # http://manpages.ubuntu.com/manpages/hardy/man1/version.1ssl.html
 # check latest versions @  http://www.openssl.org/
+```
 $ openssl version
+```
 OpenSSL 1.0.1f 6 Jan 2014
 
-### http://docs.aws.amazon.com/opsworks/latest/userguide/workingsecurity-ssl.html
+```
 $ openssl genrsa 2048 > privkey.pem
+```
 
 
 ### You can also generate a self-signed certificate, which can be used for testing purposes only. For this example, use the following command line to generate a self-signed certificate.
+```
 $ openssl x509 -req -days 365 -in csr.pem -signkey privkey.pem -out server.crt
+```
 
-*Ensure you move server.crt, privkey.pem, and csr.pem into the directory that is configured in nginx.conf /home/ubuntu/certificates in my case*
+**Ensure you move server.crt, privkey.pem, and csr.pem into the directory that is configured in nginx.conf /home/ubuntu/certificates in my case**
 
 
 
