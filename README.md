@@ -29,7 +29,7 @@ $ sequelize-auto -h localhost -d Rented -u renteddbadmin -x rentedrented -p 3306
 
 ## How to setup EC2 instance after it is created
 
-#### Modify your local ~/.ssh/config by adding two entries for the newly created EC2 instance and pem file
+#### Modify your local ~/.ssh/config by adding two entries for the newly created EC2 instance and pem file (AWS key pair)
 
 #### You need this to ssh ec2Micro from your local machine into EC2 instance
 ```
@@ -39,7 +39,7 @@ User ubuntu
 IdentityFile ~/.ssh/RentedJR.pem
 ```
 
-#### You need this to git push 'localBranch':'ec2Branch' from your local machine into EC2 instance
+#### You need this entry to git push from your local machine into EC2 instance since most Git upstream definitions use a FQDN and don't use an alias
 ```
 Host ec2-54-149-70-41.us-west-2.compute.amazonaws.com
 HostName ec2-54-149-70-41.us-west-2.compute.amazonaws.com
