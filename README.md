@@ -29,7 +29,7 @@ $ sequelize-auto -h localhost -d Rented -u renteddbadmin -x rentedrented -p 3306
 
 ## How to setup EC2 instance after you create an micro ubuntu EC2 instance
 
-## Modify your local ~/.ssh/config by adding two entries ... you get the pem file when you create the EC2 instance in my case I named the pem file  'RentedJR.pem'
+#### Modify your local ~/.ssh/config by adding two entries ... you get the pem file when you create the EC2 instance in my case I named the pem file  'RentedJR.pem'
 
 #### You need this to ssh ec2Micro from your local machine into EC2 instance
 ```
