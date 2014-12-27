@@ -17,9 +17,9 @@ $ sudo npm install -g sequelize-auto
 ```
 
 
-#### When you changing the ERD ( database schema) , you can quickly regenarate the models but note if you use the models dir it will overwrite previous definitions
+#### When you changing the ERD (database schema) , you can quickly regenerate the models but note if you use the models dir it will overwrite previous definitions
 
-**Do NOT delete the directory since the index.js file that loads all the models is not regenerated**
+**Do NOT delete the directory since models/index.js loads all the models AND is not regenerated**
 
 Currently the config file is not used due to a bug https://github.com/sequelize/sequelize-auto/issues/6 but I haven't found a better alternative yet so you have to add manually to each generated model
 ```
@@ -27,9 +27,9 @@ $ sequelize-auto -h localhost -d Rented -u renteddbadmin -x rentedrented -p 3306
 ```
 
 
-## How to setup EC2 instance after you create an micro ubuntu EC2 instance
+## How to setup EC2 instance after it is created
 
-#### Modify your local ~/.ssh/config by adding two entries ... you get the pem file when you create the EC2 instance in my case I named the pem file  'RentedJR.pem'
+#### Modify your local ~/.ssh/config by adding two entries for the newly created EC2 instance and pem file
 
 #### You need this to ssh ec2Micro from your local machine into EC2 instance
 ```
