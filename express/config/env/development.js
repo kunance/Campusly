@@ -9,11 +9,18 @@ module.exports = {
     mysql: {
         connection: {
             host: "localhost",
-            user: "rentedNode",
-            password: "rented",
-            database: "rv4",
+            user: "renteddbadmin",
+            password: "rentedrented",
+            database: "Rented",
             charset: "utf8"
         }
+        //connection: {
+        //    host: "rentedv5.cyngrnmslnob.us-west-2.rds.amazonaws.com",  // localhost
+        //    user: "john",
+        //    password: "rentedrented",
+        //    database: "Rented",
+        //    charset: "utf8"
+        //}
     },
     experian: {
         protocol: "https",

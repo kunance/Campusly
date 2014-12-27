@@ -45,6 +45,19 @@ module.exports = function(sequelize, DataTypes) {
     built: {
       type: DataTypes.DATE,
       allowNull: true,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: 'CURRENT_TIMESTAMP'
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    deletedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
     }
   });
 };

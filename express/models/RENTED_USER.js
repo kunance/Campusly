@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('USER', { 
+  return sequelize.define('RENTED_USER', { 
     id: {
       type: DataTypes.INTEGER(10),
       allowNull: false,
@@ -88,6 +88,23 @@ module.exports = function(sequelize, DataTypes) {
     DRE: {
       type: DataTypes.INTEGER(8),
       allowNull: true,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: 'CURRENT_TIMESTAMP'
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    deletedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
     }
+  }, {
+    "timestamps": true,
+    "paranoid": true,
+    "freezeTableName": true
   });
 };

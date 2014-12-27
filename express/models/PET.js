@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('PETS', { 
+  return sequelize.define('PET', { 
     id: {
       type: DataTypes.INTEGER(10),
       allowNull: false,
@@ -20,6 +20,19 @@ module.exports = function(sequelize, DataTypes) {
     },
     weightLbs: {
       type: DataTypes.INTEGER(10),
+      allowNull: true,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: 'CURRENT_TIMESTAMP'
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    deletedAt: {
+      type: DataTypes.DATE,
       allowNull: true,
     }
   });

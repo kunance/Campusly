@@ -12,26 +12,26 @@ var sequelize = new Sequelize(
     config.mysql.connection.database,
     config.mysql.connection.user,
     config.mysql.connection.password, {
-      host: config.mysql.connection.host,
-      port:config.mysql.connection.port,
-      dialect: 'mysql'
+        host: config.mysql.connection.host,
+        port:config.mysql.connection.port,
+        dialect: 'mysql'
     });
 var db        = {};
 
 fs
-  .readdirSync(__dirname)
-  .filter(function(file) {
-    return (file.indexOf(".") !== 0) && (file !== basename);
-  })
-  .forEach(function(file) {
-    var model = sequelize["import"](path.join(__dirname, file));
-    db[model.name] = model;
-  });
+    .readdirSync(__dirname)
+    .filter(function(file) {
+        return (file.indexOf(".") !== 0) && (file !== basename);
+    })
+    .forEach(function(file) {
+        var model = sequelize["import"](path.join(__dirname, file));
+        db[model.name] = model;
+    });
 
 Object.keys(db).forEach(function(modelName) {
-  if ("associate" in db[modelName]) {
-    db[modelName].associate(db);
-  }
+    if ("associate" in db[modelName]) {
+        db[modelName].associate(db);
+    }
 });
 
 db.sequelize = sequelize;

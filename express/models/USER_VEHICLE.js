@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('USERVEHICLES', { 
+  return sequelize.define('USER_VEHICLE', { 
     id: {
       type: DataTypes.INTEGER(10),
       allowNull: false,
@@ -28,6 +28,19 @@ module.exports = function(sequelize, DataTypes) {
     },
     userId: {
       type: DataTypes.INTEGER(10),
+      allowNull: true,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: 'CURRENT_TIMESTAMP'
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    deletedAt: {
+      type: DataTypes.DATE,
       allowNull: true,
     }
   });
