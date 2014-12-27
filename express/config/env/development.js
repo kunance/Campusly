@@ -9,9 +9,9 @@ module.exports = {
     mysql: {
         connection: {
             host: "localhost",
-            user: "rentedNode",
-            password: "rented",
-            database: "rv4",
+            user: "john",
+            password: "rentedrented",
+            database: "Rented",
             charset: "utf8"
         }
     },
