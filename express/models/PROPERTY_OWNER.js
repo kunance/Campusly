@@ -1,13 +1,13 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('LESSEE', { 
-    leaseId: {
-      type: DataTypes.INTEGER(11),
+  return sequelize.define('PROPERTY_OWNER', { 
+    propertyOwnershipId: {
+      type: DataTypes.INTEGER(10),
       allowNull: false,
     },
-    userId: {
-      type: DataTypes.INTEGER(11),
+    ownerId: {
+      type: DataTypes.INTEGER(10),
       allowNull: false,
     },
     createdAt: {

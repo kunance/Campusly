@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('RENTALAPPLICANT', { 
+  return sequelize.define('RENTAL_APPLICANT', { 
     userId: {
       type: DataTypes.INTEGER(10),
       allowNull: false,
@@ -16,6 +16,19 @@ module.exports = function(sequelize, DataTypes) {
     },
     shareCredit: {
       type: 'BIT(1)',
+      allowNull: true,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: 'CURRENT_TIMESTAMP'
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    deletedAt: {
+      type: DataTypes.DATE,
       allowNull: true,
     }
   });

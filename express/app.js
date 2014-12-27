@@ -41,7 +41,7 @@ require("./routes")(app);
 var models = require("./models");
 
 
-models.USER.find(6).then(function(user) {
+models.RENTED_USER.find(6).then(function(user) {
 
     console.log(user);
 

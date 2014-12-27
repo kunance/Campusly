@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('RENTALAPPLICATION', { 
+  return sequelize.define('RENTAL_APPLICATION', { 
     id: {
       type: DataTypes.INTEGER(10),
       allowNull: false,
@@ -29,6 +29,19 @@ module.exports = function(sequelize, DataTypes) {
     },
     preferredLeaseLengthUnit: {
       type: DataTypes.ENUM('DAY','WEEK','MONTH','YEAR'),
+      allowNull: true,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: 'CURRENT_TIMESTAMP'
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    deletedAt: {
+      type: DataTypes.DATE,
       allowNull: true,
     }
   });

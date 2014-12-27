@@ -18,13 +18,13 @@ USE `Rented`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `ADDRESSHISTORY`
+-- Table structure for table `ADDRESS_HISTORY`
 --
 
-DROP TABLE IF EXISTS `ADDRESSHISTORY`;
+DROP TABLE IF EXISTS `ADDRESS_HISTORY`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ADDRESSHISTORY` (
+CREATE TABLE `ADDRESS_HISTORY` (
   `id` int(11) NOT NULL DEFAULT '0',
   `street` varchar(255) NOT NULL,
   `apt` varchar(20) DEFAULT NULL,
@@ -35,20 +35,23 @@ CREATE TABLE `ADDRESSHISTORY` (
   `endDate` datetime DEFAULT NULL,
   `userId` int(10) unsigned DEFAULT NULL,
   `present` tinyint(1) unsigned DEFAULT '0',
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `addresshistory_user_idx` (`userId`),
-  CONSTRAINT `addresshistory_user` FOREIGN KEY (`userId`) REFERENCES `USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `addresshistory_user` FOREIGN KEY (`userId`) REFERENCES `RENTED_USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `INVITEES`
+-- Table structure for table `INVITEE`
 --
 
-DROP TABLE IF EXISTS `INVITEES`;
+DROP TABLE IF EXISTS `INVITEE`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `INVITEES` (
+CREATE TABLE `INVITEE` (
   `id` int(10) unsigned NOT NULL,
   `firstName` varchar(45) NOT NULL,
   `lastName` varchar(45) NOT NULL,
@@ -59,9 +62,12 @@ CREATE TABLE `INVITEES` (
   `twitter` varchar(45) DEFAULT NULL,
   `googlePlus` varchar(45) DEFAULT NULL,
   `linkedIn` varchar(45) DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `invitees_invitorId_idx` (`invitorId`),
-  CONSTRAINT `invitees_invitorId` FOREIGN KEY (`invitorId`) REFERENCES `USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `invitees_invitorId` FOREIGN KEY (`invitorId`) REFERENCES `RENTED_USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -84,6 +90,9 @@ CREATE TABLE `LEASE` (
   `petDeposit` float DEFAULT NULL,
   `payee` varchar(45) DEFAULT NULL COMMENT 'trusted partner ID	reference to trustedPartnerID	need to see if the lease has property management company or not\nuserID of property owner	reference to userID	only refer to property owner if no property management company\nOther	<string>	Changed manually at the time of lease signing\nPayee will be only ONE of the 3 items (NOT ALL)	',
   `built` datetime DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `propertyId_idx` (`propertyId`),
   CONSTRAINT `propertyId` FOREIGN KEY (`propertyId`) REFERENCES `PROPERTY` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -100,30 +109,36 @@ DROP TABLE IF EXISTS `LESSEE`;
 CREATE TABLE `LESSEE` (
   `leaseId` int(11) unsigned NOT NULL,
   `userId` int(11) unsigned NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`leaseId`,`userId`),
   KEY `leaseId_idx` (`leaseId`),
   KEY `lessee_user_idx` (`userId`),
   CONSTRAINT `leaseId` FOREIGN KEY (`leaseId`) REFERENCES `LEASE` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `lessee_user` FOREIGN KEY (`userId`) REFERENCES `USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `lessee_user` FOREIGN KEY (`userId`) REFERENCES `RENTED_USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `PETS`
+-- Table structure for table `PET`
 --
 
-DROP TABLE IF EXISTS `PETS`;
+DROP TABLE IF EXISTS `PET`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `PETS` (
+CREATE TABLE `PET` (
   `id` int(10) unsigned NOT NULL,
   `userId` int(10) unsigned NOT NULL,
   `type` enum('cat','dog','bird','fish','other') NOT NULL,
   `breed` varchar(45) NOT NULL,
   `weightLbs` int(10) unsigned DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `pets_user_idx` (`userId`),
-  CONSTRAINT `pets_user` FOREIGN KEY (`userId`) REFERENCES `USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `pets_user` FOREIGN KEY (`userId`) REFERENCES `RENTED_USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -149,22 +164,28 @@ CREATE TABLE `PROPERTY` (
   `hoaFee` float DEFAULT NULL,
   `otherFee` float DEFAULT NULL,
   `status` enum('avail','pending','rented') DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `PROPERTYIMAGES`
+-- Table structure for table `PROPERTY_IMAGES`
 --
 
-DROP TABLE IF EXISTS `PROPERTYIMAGES`;
+DROP TABLE IF EXISTS `PROPERTY_IMAGES`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `PROPERTYIMAGES` (
+CREATE TABLE `PROPERTY_IMAGES` (
   `id` int(11) NOT NULL,
   `listingId` int(10) unsigned DEFAULT NULL,
   `propertyId` int(10) unsigned NOT NULL,
   `location` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `propertyimages_property_idx` (`propertyId`),
   KEY `propertyimages_listing_idx` (`listingId`),
@@ -174,13 +195,13 @@ CREATE TABLE `PROPERTYIMAGES` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `PROPERTYLEASEDEFAULTS`
+-- Table structure for table `PROPERTY_LEASE_DEFAULTS`
 --
 
-DROP TABLE IF EXISTS `PROPERTYLEASEDEFAULTS`;
+DROP TABLE IF EXISTS `PROPERTY_LEASE_DEFAULTS`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `PROPERTYLEASEDEFAULTS` (
+CREATE TABLE `PROPERTY_LEASE_DEFAULTS` (
   `id` int(10) unsigned NOT NULL,
   `propertyId` int(10) unsigned NOT NULL,
   `ownerId` int(10) unsigned NOT NULL,
@@ -191,41 +212,47 @@ CREATE TABLE `PROPERTYLEASEDEFAULTS` (
   `fishTankAllowed` tinyint(1) NOT NULL DEFAULT '0',
   `preferredLeaseLength` int(3) unsigned NOT NULL,
   `preferredLeaseUnit` enum('day','week','month','year') NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `propertyleasedefaults_owner_idx` (`ownerId`),
   KEY `propertyleasedefaults_property_idx` (`propertyId`),
-  CONSTRAINT `propertyleasedefaults_owner` FOREIGN KEY (`ownerId`) REFERENCES `USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `propertyleasedefaults_owner` FOREIGN KEY (`ownerId`) REFERENCES `RENTED_USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `propertyleasedefaults_property` FOREIGN KEY (`propertyId`) REFERENCES `PROPERTY` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `PROPERTYLIKES`
+-- Table structure for table `PROPERTY_LIKES`
 --
 
-DROP TABLE IF EXISTS `PROPERTYLIKES`;
+DROP TABLE IF EXISTS `PROPERTY_LIKES`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `PROPERTYLIKES` (
+CREATE TABLE `PROPERTY_LIKES` (
   `propertyId` int(10) unsigned NOT NULL,
   `userId` int(10) unsigned NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `propertylikes_property_idx` (`propertyId`),
   KEY `propertylikes_user_idx` (`userId`),
   CONSTRAINT `propertylikes_property` FOREIGN KEY (`propertyId`) REFERENCES `PROPERTY` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `propertylikes_user` FOREIGN KEY (`userId`) REFERENCES `USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `propertylikes_user` FOREIGN KEY (`userId`) REFERENCES `RENTED_USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `PROPERTYLISTING`
+-- Table structure for table `PROPERTY_LISTING`
 --
 
-DROP TABLE IF EXISTS `PROPERTYLISTING`;
+DROP TABLE IF EXISTS `PROPERTY_LISTING`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `PROPERTYLISTING` (
+CREATE TABLE `PROPERTY_LISTING` (
   `propertyId` int(10) unsigned NOT NULL,
   `monthlyPrice` float NOT NULL,
   `securityDeposit` float DEFAULT '0',
@@ -236,6 +263,9 @@ CREATE TABLE `PROPERTYLISTING` (
   `leaseLengthUnit` enum('day','week','month','year') NOT NULL,
   `contactPhone` varchar(45) NOT NULL COMMENT 'Should be either a property owner or property mgmt',
   `contactEmail` varchar(45) NOT NULL COMMENT 'Should be either a property owner or property mgmt',
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `propertylisting_property_idx` (`propertyId`),
   CONSTRAINT `propertylisting_property` FOREIGN KEY (`propertyId`) REFERENCES `PROPERTY` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -243,49 +273,58 @@ CREATE TABLE `PROPERTYLISTING` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `PROPERTYMGMTCO`
+-- Table structure for table `PROPERTY_MGMTCO`
 --
 
-DROP TABLE IF EXISTS `PROPERTYMGMTCO`;
+DROP TABLE IF EXISTS `PROPERTY_MGMTCO`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `PROPERTYMGMTCO` (
+CREATE TABLE `PROPERTY_MGMTCO` (
   `trustedPartnerId` int(10) unsigned NOT NULL,
   `phone` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`trustedPartnerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `PROPERTYOWNER`
+-- Table structure for table `PROPERTY_OWNER`
 --
 
-DROP TABLE IF EXISTS `PROPERTYOWNER`;
+DROP TABLE IF EXISTS `PROPERTY_OWNER`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `PROPERTYOWNER` (
+CREATE TABLE `PROPERTY_OWNER` (
   `propertyOwnershipId` int(10) unsigned NOT NULL,
   `ownerId` int(10) unsigned NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`propertyOwnershipId`,`ownerId`),
   KEY `propertyowner_user_idx` (`ownerId`),
   CONSTRAINT `propertyOwnershipFK` FOREIGN KEY (`propertyOwnershipId`) REFERENCES `PROPERTYOWNERSHIP` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `propertyowner_user` FOREIGN KEY (`ownerId`) REFERENCES `USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `propertyowner_user` FOREIGN KEY (`ownerId`) REFERENCES `RENTED_USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `PROPERTYOWNERSHIP`
+-- Table structure for table `PROPERTY_OWNERSHIP`
 --
 
-DROP TABLE IF EXISTS `PROPERTYOWNERSHIP`;
+DROP TABLE IF EXISTS `PROPERTY_OWNERSHIP`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `PROPERTYOWNERSHIP` (
+CREATE TABLE `PROPERTY_OWNERSHIP` (
   `startDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `endDate` datetime NOT NULL,
   `propertyFK` int(10) unsigned NOT NULL,
   `id` int(10) unsigned NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `property_idx` (`propertyFK`),
   KEY `propTime` (`startDate`,`endDate`,`propertyFK`),
@@ -294,33 +333,36 @@ CREATE TABLE `PROPERTYOWNERSHIP` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `RENTALAPPLICANT`
+-- Table structure for table `RENTAL_APPLICANT`
 --
 
-DROP TABLE IF EXISTS `RENTALAPPLICANT`;
+DROP TABLE IF EXISTS `RENTAL_APPLICANT`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `RENTALAPPLICANT` (
+CREATE TABLE `RENTAL_APPLICANT` (
   `userId` int(10) unsigned NOT NULL,
   `id` int(11) NOT NULL,
   `rentalAppId` int(10) unsigned NOT NULL,
   `shareCredit` bit(1) DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `rentalAppId_idx` (`rentalAppId`),
   KEY `rentalapplicant_user_idx` (`userId`),
   CONSTRAINT `rentalAppId` FOREIGN KEY (`rentalAppId`) REFERENCES `RENTALAPPLICATION` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `rentalapplicant_user` FOREIGN KEY (`userId`) REFERENCES `USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `rentalapplicant_user` FOREIGN KEY (`userId`) REFERENCES `RENTED_USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `RENTALAPPLICATION`
+-- Table structure for table `RENTAL_APPLICATION`
 --
 
-DROP TABLE IF EXISTS `RENTALAPPLICATION`;
+DROP TABLE IF EXISTS `RENTAL_APPLICATION`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `RENTALAPPLICATION` (
+CREATE TABLE `RENTAL_APPLICATION` (
   `id` int(10) unsigned NOT NULL,
   `propertyId` int(10) unsigned NOT NULL,
   `preferredLeaseLength` int(3) unsigned DEFAULT NULL,
@@ -328,6 +370,9 @@ CREATE TABLE `RENTALAPPLICATION` (
   `numOccupants` int(11) NOT NULL DEFAULT '1' COMMENT 'number of occupants needs to be filled in and should be >= to number of applicants for this specific application',
   `moveReason` varchar(255) DEFAULT NULL,
   `preferredLeaseLengthUnit` enum('day','week','month','year') DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `propFK_idx` (`propertyId`),
@@ -336,13 +381,13 @@ CREATE TABLE `RENTALAPPLICATION` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `USER`
+-- Table structure for table `RENTED_USER`
 --
 
-DROP TABLE IF EXISTS `USER`;
+DROP TABLE IF EXISTS `RENTED_USER`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `USER` (
+CREATE TABLE `RENTED_USER` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -364,18 +409,21 @@ CREATE TABLE `USER` (
   `creditReportDate` datetime DEFAULT NULL,
   `realtorLicenseState` varchar(2) DEFAULT NULL,
   `DRE` int(8) unsigned DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `USEREDUCATION`
+-- Table structure for table `USER_EDUCATION`
 --
 
-DROP TABLE IF EXISTS `USEREDUCATION`;
+DROP TABLE IF EXISTS `USER_EDUCATION`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `USEREDUCATION` (
+CREATE TABLE `USER_EDUCATION` (
   `id` int(10) unsigned NOT NULL,
   `userId` int(10) unsigned NOT NULL,
   `educationCenterName` varchar(45) NOT NULL,
@@ -386,20 +434,23 @@ CREATE TABLE `USEREDUCATION` (
   `graduationDate` datetime DEFAULT NULL,
   `major` varchar(45) DEFAULT NULL,
   `degreeType` enum('undergraduate','graduate','doctorate','post-doctorate') DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `usereducation_user_idx` (`userId`),
-  CONSTRAINT `usereducation_user` FOREIGN KEY (`userId`) REFERENCES `USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `usereducation_user` FOREIGN KEY (`userId`) REFERENCES `RENTED_USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `USERFINANCIALS`
+-- Table structure for table `USER_FINANCIAL`
 --
 
-DROP TABLE IF EXISTS `USERFINANCIALS`;
+DROP TABLE IF EXISTS `USER_FINANCIAL`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `USERFINANCIALS` (
+CREATE TABLE `USER_FINANCIAL` (
   `id` int(10) unsigned NOT NULL,
   `userId` int(10) unsigned NOT NULL,
   `startDate` datetime NOT NULL,
@@ -408,20 +459,23 @@ CREATE TABLE `USERFINANCIALS` (
   `householdAnnualIncome` int(10) unsigned DEFAULT NULL,
   `spouseAnnualIncome` int(10) unsigned DEFAULT NULL,
   `incomeProof` varchar(255) DEFAULT NULL COMMENT 'This should be a link to S3 that houses a (one) file that is the proof of income document(s) or pictures of the document(s)',
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `userfinancials_user_idx` (`userId`),
-  CONSTRAINT `userfinancials_user` FOREIGN KEY (`userId`) REFERENCES `USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `userfinancials_user` FOREIGN KEY (`userId`) REFERENCES `RENTED_USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `USEROCCUPATION`
+-- Table structure for table `USER_OCCUPATION`
 --
 
-DROP TABLE IF EXISTS `USEROCCUPATION`;
+DROP TABLE IF EXISTS `USER_OCCUPATION`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `USEROCCUPATION` (
+CREATE TABLE `USER_OCCUPATION` (
   `id` int(10) unsigned NOT NULL,
   `role` varchar(45) NOT NULL,
   `company` varchar(45) NOT NULL,
@@ -429,41 +483,47 @@ CREATE TABLE `USEROCCUPATION` (
   `end` datetime DEFAULT NULL,
   `presentlyEmployeed` tinyint(1) NOT NULL DEFAULT '0',
   `userId` int(10) unsigned NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `useroccupation_user_idx` (`userId`),
-  CONSTRAINT `useroccupation_user` FOREIGN KEY (`userId`) REFERENCES `USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `useroccupation_user` FOREIGN KEY (`userId`) REFERENCES `RENTED_USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `USERRECOMMENDATIONS`
+-- Table structure for table `USER_RECOMMENDATION`
 --
 
-DROP TABLE IF EXISTS `USERRECOMMENDATIONS`;
+DROP TABLE IF EXISTS `USER_RECOMMENDATION`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `USERRECOMMENDATIONS` (
+CREATE TABLE `USER_RECOMMENDATION` (
   `id` int(10) unsigned NOT NULL,
   `recommendedId` int(10) unsigned NOT NULL,
   `recommendorId` int(10) unsigned NOT NULL,
   `recommendedApproved` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `content` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `userrecommendations_recommended_idx` (`recommendedId`),
   KEY `userrecommendations_recommendor_idx` (`recommendorId`),
-  CONSTRAINT `userrecommendations_recommended` FOREIGN KEY (`recommendedId`) REFERENCES `USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `userrecommendations_recommendor` FOREIGN KEY (`recommendorId`) REFERENCES `USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `userrecommendations_recommended` FOREIGN KEY (`recommendedId`) REFERENCES `RENTED_USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `userrecommendations_recommendor` FOREIGN KEY (`recommendorId`) REFERENCES `RENTED_USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `USERREFERENCES`
+-- Table structure for table `USER_REFERENCE`
 --
 
-DROP TABLE IF EXISTS `USERREFERENCES`;
+DROP TABLE IF EXISTS `USER_REFERENCE`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `USERREFERENCES` (
+CREATE TABLE `USER_REFERENCE` (
   `id` int(10) unsigned NOT NULL,
   `userId` int(10) unsigned NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -472,20 +532,23 @@ CREATE TABLE `USERREFERENCES` (
   `lastName` varchar(45) NOT NULL,
   `relation` enum('relative','roommate','friend','spouse','landlord','colleague') NOT NULL,
   `startDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `userreferences_user_idx` (`userId`),
-  CONSTRAINT `userreferences_user` FOREIGN KEY (`userId`) REFERENCES `USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `userreferences_user` FOREIGN KEY (`userId`) REFERENCES `RENTED_USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `USERVEHICLES`
+-- Table structure for table `USER_VEHICLE`
 --
 
-DROP TABLE IF EXISTS `USERVEHICLES`;
+DROP TABLE IF EXISTS `USER_VEHICLE`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `USERVEHICLES` (
+CREATE TABLE `USER_VEHICLE` (
   `id` int(10) unsigned NOT NULL,
   `year` int(11) NOT NULL,
   `make` varchar(45) NOT NULL,
@@ -493,9 +556,12 @@ CREATE TABLE `USERVEHICLES` (
   `licensePlate` varchar(45) NOT NULL,
   `color` varchar(45) NOT NULL,
   `userId` int(10) unsigned DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `uservehicles_user_idx` (`userId`),
-  CONSTRAINT `uservehicles_user` FOREIGN KEY (`userId`) REFERENCES `USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `uservehicles_user` FOREIGN KEY (`userId`) REFERENCES `RENTED_USER` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=big5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
