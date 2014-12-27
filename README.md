@@ -63,23 +63,15 @@ sudo apt-get install nodejs
 sudo apt-get install nginx
 ```
 
-#### Install GIT:
+#### Install GIT, Forever, PM2, and Grunt:
 ```
 sudo apt-get install git
-```
-
-#### Install Forever:
-```
 sudo npm install forever -g
-```
-
-#### 4 Install PM2, Grunt, :
-```
 sudo npm install pm2 -g
 sudo npm install grunt-cli -g
 ```
 
-#### Ensure permission for ubuntu user since you installed as sudo
+#### Ensure permission for ubuntu user for globally installed tools since you installed as sudo
 ```
 $ cd /home/ubuntu/.npm
 $ sudo chown ubuntu:ubuntu *
