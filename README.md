@@ -120,7 +120,7 @@ do
 
     git --work-tree=/var/www/rentedBranches/experian/ checkout -f $branch
 
-    echo 'Changes pushed to Amazon EC2 for Experian branch.'
+    echo 'Changes pushed to Amazon EC2 for Experian.'
   fi
 done
 ```
