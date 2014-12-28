@@ -3,24 +3,21 @@
 module.exports = {
     env: "development",
     ip: "0.0.0.0",
-//    mongo: {
-//        uri: "mongodb://localhost/rented-dev"
-//    },
     mysql: {
-        connection: {
-            host: "localhost",
-            user: "renteddbadmin",
-            password: "rentedrented",
-            database: "Rented",
-            charset: "utf8"
-        }
         //connection: {
-        //    host: "rentedv5.cyngrnmslnob.us-west-2.rds.amazonaws.com",  // localhost
-        //    user: "john",
+        //    host: "localhost",
+        //    user: "renteddbadmin",
         //    password: "rentedrented",
         //    database: "Rented",
         //    charset: "utf8"
         //}
+        connection: {
+            host: "rentedv5.cyngrnmslnob.us-west-2.rds.amazonaws.com",  // localhost
+            user: "john",
+            password: "rentedrented",
+            database: "Rented",
+            charset: "utf8"
+        }
     },
     experian: {
         protocol: "https",

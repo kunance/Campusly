@@ -2,7 +2,7 @@
 
 // catch everything include modules that don't load properly
 process.on("uncaughtException", function (err) {
-    console.log(err);
+    console.log("Uncaught Exception!!!!!", err);
 });
 
 
@@ -31,7 +31,8 @@ app.use(function(req, res, next){
 });
 
 // added this line from Vinit's  file but need to change in express.js for differing environments
-app.use('/', express.static(path.join(__dirname, '../angular/build')));
+app.use('/', express.static(path.join(config.root, 'angular/build')));
+//app.set('views', config.root + '/angular/src');
 
 
 require("./config/express")(app);
@@ -41,9 +42,9 @@ require("./routes")(app);
 var models = require("./models");
 
 
-models.RENTED_USER.find(6).then(function(user) {
+models.RENTED_USER.find(7).then(function(user) {
 
-    console.log(user);
+    console.log(user.dataValues);
 
 }).catch(function(err) {
 
