@@ -132,9 +132,12 @@ $ chmod +x hooks/post-receive
 
 ####  On EC2 instance, create directories for the repo's branches you will push over to the EC2 instance from your local machine
 ```
-$ sudo mkdir /var/www/rented.co
-$ sudo mkdir /var/www/rented.co/public_html
-$ sudo mkdir /var/www/rented.co/experian
+$ sudo mkdir /var/www/rentedBranches/master
+$ sudo mkdir /var/www/rentedBranches/v1.02
+$ sudo mkdir /var/www/rentedBranches/experian
+$ sudo ln -s /var/www/rentedBranches/experian /var/www/rented.co
+$ sudo chown ubuntu:ubuntu rentedBranches
+$ sudo chown ubuntu:ubuntu rented.co
 ```
 
 
@@ -191,6 +194,10 @@ $ openssl x509 -req -days 365 -in csr.pem -signkey privkey.pem -out server.crt
 
 ### Current questions to be moved to wiki Q&A
 Should Nginx be installed in /usr/sbin/nginx since that is the default on ubuntu with sudo apt-get install nginx?
+
+Why was branch/angular/vendor not copied over to EC2 instance?  I had to manually copy the rebuild so it's it angular/build/vendor!!!!!
+
+
 
 
 

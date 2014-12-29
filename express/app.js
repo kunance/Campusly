@@ -30,10 +30,6 @@ app.use(function(req, res, next){
     next();
 });
 
-// added this line from Vinit's  file but need to change in express.js for differing environments
-app.use('/', express.static(path.join(config.root, 'angular/build')));
-//app.set('views', config.root + '/angular/src');
-
 
 require("./config/express")(app);
 require("./routes")(app);

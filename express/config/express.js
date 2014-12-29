@@ -27,29 +27,41 @@ module.exports = function (app) {
 
     if ("development" === env) {
 
-        // Disable caching of scripts for easier testing
-        app.use(function noCache(req, res, next) {
-            if (req.url.indexOf("/scripts/") === 0) {
-                res.header("Cache-Control", "no-cache, no-store, must-revalidate");
-                res.header("Pragma", "no-cache");
-                res.header("Expires", 0);
-            }
-            next();
+        // Disable caching of scripts for easier testing .... need to square away where the scripts live since
+        // they are spread out under src/app everywhere !!
+        //app.use(function noCache(req, res, next) {
+        //    if (req.url.indexOf("/scripts/") === 0) {
+        //        res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+        //        res.header("Pragma", "no-cache");
+        //        res.header("Expires", 0);
+        //    }
+        //    next();
+        //});
+
+
+        app.use(favicon(path.join(config.root, "angular/src/assets/img", "favicon.ico")));
+        console.log("Serving up static content from: ", path.join(config.root, "angular/build"), " because the grunt build and src directory need to be fixed!!!!" );
+        app.use(express.static(path.join(config.root, "angular/build")));
+        app.set("views", config.root + "/angular/build/src");
+
+        app.route("/").get(function(req, res) {
+            console.log("Serving up file: ", path.join(config.root, "angular/build/index.html"));
+            res.render(path.join(config.root, "angular/build/index.html"));
         });
-
-
-//        app.use(express.static(path.join(config.root, "../angular")));
-//        app.set("views", config.root + "../angular/src");
     }
 
 
-//    if ("production" === env) {
-//        app.use(compression());
-//        console.log("config.root", config.root);
-//        app.use(favicon(path.join(config.root, "public", "favicon.ico")));
-//        app.use(express.static(path.join(config.root, "public")));
-//        app.set("views", config.root + "/src");
-//    }
+    if ("production" === env) {
+        app.use(compression());
+        app.use(favicon(path.join(config.root, "dist/assets/img", "favicon.ico")));
+        app.use(express.static(path.join(config.root, "dist")));
+        //TODO look at removing this since there really should be no need for this
+        app.set("views", config.root + "/build/src");
+
+        app.route("/").get(function(req, res) {
+            res.render(path.join(config.root, "angular/dist/index.html"));
+        });
+    }
 
     app.engine("html", require("ejs").renderFile);
     app.set("view engine", "html");
