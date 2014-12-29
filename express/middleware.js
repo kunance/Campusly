@@ -12,7 +12,7 @@ module.exports = {
      */
     setUserCookie: function (req, res, next) {
         if (req.user) {
-            res.cookie('user', JSON.stringify(req.user));
+            res.cookie('rented', JSON.stringify(req.user));
         }
         next();
     }

@@ -96,7 +96,7 @@ $ git remote add AWS_micro_server ssh://ubuntu@ec2-54-149-70-41.us-west-2.comput
 
 ```
 $ vi /home/ubuntu/repo_rented_do_not_delete/hooks/post-receive
-\#!/bin/bash
+#!/bin/bash
 
 while read oldrev newrev ref
 do
@@ -104,16 +104,23 @@ do
   echo branch
   if [ "production" == "$branch" -o "master" == "$branch" ]; then
 
-    git --work-tree=/var/www/rented.co/public_html/ checkout -f $branch
+    git --work-tree=/var/www/rentedBranches/master/ checkout -f $branch
 
-    echo 'Changes pushed to Amazon EC2 PROD.'
+    echo 'Changes pushed to Amazon EC2 master.'
+  fi
+
+ if [ "v1.02" == "$branch" ]; then
+
+    git --work-tree=/var/www/rentedBranches/v1.02/ checkout -f $branch
+
+    echo 'Changes pushed to Amazon EC2 for v1.02.'
   fi
 
   if [ "Experian" == "$branch" ]; then
 
-    git --work-tree=/var/www/rented.co/experian/ checkout -f $branch
+    git --work-tree=/var/www/rentedBranches/experian/ checkout -f $branch
 
-    echo 'Changes pushed to Amazon EC2 PROD smoke box.'
+    echo 'Changes pushed to Amazon EC2 for Experian branch.'
   fi
 done
 ```
@@ -125,9 +132,12 @@ $ chmod +x hooks/post-receive
 
 ####  On EC2 instance, create directories for the repo's branches you will push over to the EC2 instance from your local machine
 ```
-$ sudo mkdir /var/www/rented.co
-$ sudo mkdir /var/www/rented.co/public_html
-$ sudo mkdir /var/www/rented.co/experian
+$ sudo mkdir /var/www/rentedBranches/master
+$ sudo mkdir /var/www/rentedBranches/v1.02
+$ sudo mkdir /var/www/rentedBranches/experian
+$ sudo ln -s /var/www/rentedBranches/experian /var/www/rented.co
+$ sudo chown ubuntu:ubuntu rentedBranches
+$ sudo chown ubuntu:ubuntu rented.co
 ```
 
 
@@ -184,6 +194,10 @@ $ openssl x509 -req -days 365 -in csr.pem -signkey privkey.pem -out server.crt
 
 ### Current questions to be moved to wiki Q&A
 Should Nginx be installed in /usr/sbin/nginx since that is the default on ubuntu with sudo apt-get install nginx?
+
+Why was branch/angular/vendor not copied over to EC2 instance?  I had to manually copy the rebuild so it's it angular/build/vendor!!!!!
+
+
 
 
 
