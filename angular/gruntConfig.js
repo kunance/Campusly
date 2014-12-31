@@ -71,18 +71,16 @@ module.exports = {
         js: [
             'vendor/jquery/dist/jquery.js',
             'vendor/underscore/underscore-min.js',
-            'vendor/firebase/firebase.js',
-            'vendor/firebase-simple-login/firebase-simple-login.js',
             'vendor/angular/angular.js',
             'vendor/angular-route/angular-route.js',
             'vendor/angular-sanitize/angular-sanitize.js',
             'vendor/angularfire/dist/angularfire.min.js',
+            'vendor/firebase/firebase.js',
             'vendor/angular-bootstrap/ui-bootstrap.js',
             'vendor/angular-bootstrap/ui-bootstrap-tpls.js',
             'vendor/bootstrap/dist/js/bootstrap.js',
             'vendor/moment/min/moment.min.js',
-            'vendor/angularytics/dist/angularytics.js',
-            'vendor/FlexSlider/jquery.flexslider.js',
+            'vendor/FlexSlider/jquery.flexslider-min.js',
             'vendor/holderjs/holder.js',
             'vendor/clndr/clndr.min.js',
             'vendor/ng-file-upload/angular-file-upload.min.js',
@@ -92,16 +90,19 @@ module.exports = {
             'vendor/angular-ui-utils/ui-utils.min.js',
             'vendor/angular-youtube-mb/src/angular-youtube-embed.js',
             'vendor/angulartics/src/angulartics.js',
+            // must pull angulartics-ga.js too or get JS error in browser and ga not in disst folder
             'vendor/angulartics/src/angulartics-ga.js',
+          //  'vendor/angulartics/dist/angulartics.min.js',
+            'vendor/angularytics/dist/angularytics.min.js',
 
             // adding in dependencies that where previous not managed by bower so where copied over into src directories and checked-in
             'vendor/jic/src/JIC.js',
             'vendor/chained/jquery.chained.min.js',
             'vendor/gmap3/dist/gmap3.min.js',
-            'vendor/markerclusteredplus/src/markerclusteredplus.js',
-            'vendor/google-infobox/google-infobox.js'
+            'vendor/markerclusteredplus/src/markerclusteredplus.js'
+            // 'vendor/google-infobox/google-infobox.js'
         ],
-        css: [],
+        css: ['vendor/flexslider/flexslider.css'],
         assets: [
             'vendor/FlexSlider/images/bg_play_pause.png',
             'vendor/underscore/underscore-min.map'

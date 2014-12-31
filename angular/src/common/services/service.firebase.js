@@ -29,7 +29,7 @@ angular.module('service.firebase', ['firebase'])
     }])
 
     // a simple utility to create references to Firebase paths
-    .factory('firebaseRef', ['Firebase', 'FBURL', function (Firebase, FBURL) {
+    .factory('firebaseRef', ['$firebase', 'FBURL', function ($firebase, FBURL) {
         /**
          * @function
          * @name firebaseRef
@@ -37,7 +37,8 @@ angular.module('service.firebase', ['firebase'])
          * @return a Firebase instance
          */
         return function (path) {
-            return new Firebase(pathRef([FBURL].concat(Array.prototype.slice.call(arguments))));
+            return new Firebase("https://burning-fire-386.firebaseio.com");
+          //  return new Firebase(pathRef([FBURL].concat(Array.prototype.slice.call(arguments))));
         }
     }])
 

@@ -27,9 +27,9 @@
                 self._authRequiredRedirect(next, self._loginPath);
             });
 
-            self._rootScope.$on('$firebaseSimpleLogin:login', angular.bind(this, this._login));
-            self._rootScope.$on('$firebaseSimpleLogin:logout', angular.bind(this, this._logout));
-            self._rootScope.$on('$firebaseSimpleLogin:error', angular.bind(this, this._error));
+            self._rootScope.$on('$firebaseSimpleAuth:login', angular.bind(this, this._login));
+            self._rootScope.$on('$firebaseSimpleAuth:logout', angular.bind(this, this._logout));
+            self._rootScope.$on('$firebaseSimpleAuth:error', angular.bind(this, this._error));
         },
 
         _checkCurrent: function () {

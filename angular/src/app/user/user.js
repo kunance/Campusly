@@ -33,7 +33,7 @@ angular.module('myApp.user', ['ngRoute'])
 
     .run(['$rootScope', 'syncData', function ($rootScope, syncData)
     {
-             $rootScope.$on('$firebaseSimpleLogin:login', function (e, user)
+             $rootScope.$on('$firebaseSimpleAuth:login', function (e, user)
              {
                     console.log('user profile',user);
 
@@ -47,7 +47,7 @@ angular.module('myApp.user', ['ngRoute'])
                     });
              });
 
-             $rootScope.$on('$firebaseSimpleLogin:logout', function ()
+             $rootScope.$on('$firebaseSimpleAuth:logout', function ()
              {
                     $rootScope.secondaryNav= null;
 

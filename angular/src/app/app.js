@@ -22,7 +22,7 @@ angular.module('myApp', [
         'ngSanitize',
         'angularytics',
         'angularFileUpload',
- //       'famous.angular',
+        'firebase',
         'uuid4',
         'ui.utils.masks',
         'ui.mask',

@@ -18,7 +18,7 @@
 angular.module('module.simpleLoginTools', [])
 
 /**
- * A service that returns a promise object, which is resolved once $firebaseSimpleLogin
+ * A service that returns a promise object, which is resolved once $firebaseAuth
  * is initialized.
  *
  * <code>
@@ -44,9 +44,9 @@ angular.module('module.simpleLoginTools', [])
         }
 
         var def = $q.defer(), subs = [];
-        subs.push($rootScope.$on('$firebaseSimpleLogin:login', fn));
-        subs.push($rootScope.$on('$firebaseSimpleLogin:logout', fn));
-        subs.push($rootScope.$on('$firebaseSimpleLogin:error', fn));
+        subs.push($rootScope.$on('$firebaseAuth:login', fn));
+        subs.push($rootScope.$on('$firebaseAuth:logout', fn));
+        subs.push($rootScope.$on('$firebaseAuth:error', fn));
         return def.promise;
     })
 
@@ -87,13 +87,13 @@ angular.module('module.simpleLoginTools', [])
  */
     .directive('ngShowAuth', function ($rootScope) {
         var loginState = 'logout';
-        $rootScope.$on('$firebaseSimpleLogin:login', function () {
+        $rootScope.$on('$firebaseAuth:login', function () {
             loginState = 'login';
         });
-        $rootScope.$on('$firebaseSimpleLogin:logout', function () {
+        $rootScope.$on('$firebaseAuth:logout', function () {
             loginState = 'logout';
         });
-        $rootScope.$on('$firebaseSimpleLogin:error', function () {
+        $rootScope.$on('$firebaseAuth:error', function () {
             loginState = 'error';
         });
 
@@ -147,9 +147,9 @@ angular.module('module.simpleLoginTools', [])
                 }
 
                 fn();
-                $rootScope.$on('$firebaseSimpleLogin:login', fn);
-                $rootScope.$on('$firebaseSimpleLogin:logout', fn);
-                $rootScope.$on('$firebaseSimpleLogin:error', fn);
+                $rootScope.$on('$firebaseAuth:login', fn);
+                $rootScope.$on('$firebaseAuth:logout', fn);
+                $rootScope.$on('$firebaseAuth:error', fn);
             }
         };
     });
