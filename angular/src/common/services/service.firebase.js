@@ -37,8 +37,8 @@ angular.module('service.firebase', ['firebase'])
          * @return a Firebase instance
          */
         return function (path) {
-            return new Firebase("https://burning-fire-386.firebaseio.com");
-          //  return new Firebase(pathRef([FBURL].concat(Array.prototype.slice.call(arguments))));
+           // return new Firebase("https://burning-fire-386.firebaseio.com");
+            return new Firebase(pathRef([FBURL].concat(Array.prototype.slice.call(arguments))));
         }
     }])
 
