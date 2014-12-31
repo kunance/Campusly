@@ -17,13 +17,20 @@
     "holderjs": "~2.4.0",
     "clndr": "~1.2.1",
     "ng-file-upload": "~1.6.5",
-    "famous-angular": "~0.3.0",
     "angular-uuid4": "~0.1.0",
     "async": "~0.9.0",
     "angular-input-masks": "~1.2.0",
     "angular-ui-utils": "~0.1.1",
     "angular-youtube-mb": "~0.1.3",
-    "angulartics": "latest"
+    "angulartics": "latest",
+    "jic": "git@github.com:brunobar79/J-I-C.git",
+    "chained": "1.0.0",
+    "markerclustererplus": "2.1.2",
+    "gmap3": "6.0.0",
+    "isotope": "2.1.0",
+    "bxslider-4": "4.1.2",
+    "flexslider": "git@github.com:woothemes/FlexSlider.git",
+    "google-infobox": "git@github.com:PepijnSenders/google-infobox.git"
   },
   "resolutions": {
     "angular": "1.2.23"

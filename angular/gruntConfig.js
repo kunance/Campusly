@@ -10,6 +10,8 @@ module.exports = {
     build_dir: 'build',
     compile_dir: 'dist',
 
+    src_dir: 'src',
+
     /**
      * This is a collection of file patterns that refer to our app code (the
      * stuff in `src/`). These file paths are used in the configuration of
@@ -84,27 +86,27 @@ module.exports = {
             'vendor/holderjs/holder.js',
             'vendor/clndr/clndr.min.js',
             'vendor/ng-file-upload/angular-file-upload.min.js',
-            //'vendor/famous/famous-global.js',
-            //'vendor/famous-angular/dist/famous-angular.js',
             'vendor/angular-uuid4/angular-uuid4.js',
             'vendor/async/lib/async.js',
             'vendor/angular-input-masks/releases/masks.min.js',
             'vendor/angular-ui-utils/ui-utils.min.js',
             'vendor/angular-youtube-mb/src/angular-youtube-embed.js',
             'vendor/angulartics/src/angulartics.js',
-            'vendor/angulartics/src/angulartics-ga.js'
+            'vendor/angulartics/src/angulartics-ga.js',
+
+            // adding in dependencies that where previous not managed by bower so where copied over into src directories and checked-in
+            'vendor/jic/src/JIC.js',
+            'vendor/chained/jquery.chained.min.js',
+            'vendor/gmap3/dist/gmap3.min.js',
+            'vendor/markerclusteredplus/src/markerclusteredplus.js',
+            'vendor/google-infobox/google-infobox.js'
         ],
         css: [],
         assets: [
             'vendor/FlexSlider/images/bg_play_pause.png',
             'vendor/underscore/underscore-min.map'
-            //'vendor/famous-angular/dist/famous-angular.css'
         ],
         fonts: [
-            //'vendor/fontawesome/fonts/fontawesome-webfont.eot',
-            //'vendor/fontawesome/fonts/fontawesome-webfont.svg',
-            //'vendor/fontawesome/fonts/fontawesome-webfont.ttf',
-            //'vendor/fontawesome/fonts/fontawesome-webfont.woff',
             'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.eot',
             'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.svg',
             'vendor/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf',
