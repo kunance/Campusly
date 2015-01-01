@@ -20,6 +20,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-ftp-deploy');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
 
+    grunt.loadNpmTasks('grunt-ng-annotate');
     grunt.loadNpmTasks('grunt-wiredep');
 
     /**
@@ -231,10 +232,24 @@ module.exports = function (grunt) {
             }
         },
 
+        //TODO replace ngmin with ngAnnotate
+        //ngAnnotate: {
+        //    compile: {
+        //        files: [
+        //            {
+        //                src: ['<%= app_files.js %>'],
+        //                cwd: '<%= build_dir %>',
+        //                dest: '<%= build_dir %>',
+        //                expand: true
+        //            }
+        //        ]
+        //    }
+        //},
+
         /**
-         * `ng-min` annotates the sources before minifying. That is, it allows us
-         * to code without the array syntax.
-         */
+        * `ng-min` annotates the sources before minifying and is just a pre-minifier. That is, it allows us
+        * to code without the array syntax.
+        */
         ngmin: {
             compile: {
                 files: [
@@ -620,10 +635,10 @@ module.exports = function (grunt) {
 
     /**
      * The `compile` task gets your app ready for deployment by concatenating and
-     * minifying your code.
+     * minifying your code.  TODO replace ngmin with ngAnnotate
      */
     grunt.registerTask('compile', [
-        'less:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'uglify', 'imagemin:compile', 'index:compile'
+        'less:compile', 'copy:compile_assets', 'ngmin', /*ngAnnotate,*/ 'concat:compile_js', 'uglify', 'imagemin:compile', 'index:compile'
     ]);
 
     /**
@@ -646,6 +661,9 @@ module.exports = function (grunt) {
         });
     }
 
+
+    //TODO remove this and replace with wiredep or processhtml for both the css and js deps AND remove the
+    // scriplets in the src/index.html for scripts and styles
     /**
      * The index.html template includes the stylesheet and javascript sources
      * based on dynamic names calculated in this Gruntfile. This task assembles
