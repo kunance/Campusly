@@ -1,14 +1,14 @@
 angular.module('service.login', ['firebase', 'service.firebase'])
-    .factory('loginService', ['$rootScope', '$firebaseAuth', 'firebaseRef', 'profileCreator', '$timeout',
-        function ($rootScope, $firebaseAuth, firebaseRef, profileCreator, $timeout) {
-            var auth = null;
+    .factory('loginService', ['$rootScope', 'firebaseRef', 'profileCreator', '$timeout',
+        function ($rootScope, firebaseRef, profileCreator, $timeout) {
+            var auth = firebaseRef();
+
             return {
                 init: function () {
-                    return auth = $firebaseAuth(firebaseRef());
                 },
 
                 fblogin : function(callback){
-                    assertAuth();
+                   // assertAuth();
                     auth.$login('facebook')
                     .then(function (user) {
                         if (callback) {
@@ -24,32 +24,46 @@ angular.module('service.login', ['firebase', 'service.firebase'])
                  * @returns {*}
                  */
                 login: function (email, pass, callback) {
-                    assertAuth();
-                    auth.$login('password', {
+                   // assertAuth();
+                    firebaseRef().authWithPassword({
                         email: email,
-                        password: pass,
-                        rememberMe: true
-                    }).then(function (user) {
-                        if (callback) {
-                            callback(null, user);
+                        password: pass
+                    }, function (error, authData) {
+                        if (error) {
+                            console.log("Login Failed!", error);
+                            $rootScope.auth.error = error;
+                            $rootScope.$broadcast("fbase:error", error);
+                        } else {
+                            console.log("Authenticated successfully with payload:", authData);
+                       //     console.log("Login callback: ", callback);
+                            $rootScope.auth.user = authData;
+                            $rootScope.$broadcast("fbase:login", authData);
+                            if(callback) {
+                                callback(null, authData);
+                            }
                         }
-                    }, callback);
+                    }, {rememberMe: true});
                 },
 
                 logout: function () {
-                    assertAuth();
-                    auth.$logout();
+                   // assertAuth();
+                   // auth.$logout();
+                    firebaseRef().unauth();
+                    $rootScope.$broadcast("fbase:login");
                 },
 
                 passwordReset: function (email,cb) {
-                    assertAuth();
-                    auth.$sendPasswordResetEmail(email).then(function () {
+                   // assertAuth();
+                   // auth.$sendPasswordResetEmail(email).then(function () {
+                   //     cb && cb(null);
+                   // }, cb);
+                    firebaseRef().resetPassowrd(email, function () {
                         cb && cb(null);
-                    }, cb);
+                    });
                 },
 
                 changePassword: function (opts) {
-                    assertAuth();
+                   // assertAuth();
                     var cb = opts.callback || function () {
                     };
                     if (!opts.oldpass || !opts.newpass) {
@@ -70,7 +84,7 @@ angular.module('service.login', ['firebase', 'service.firebase'])
                 },
 
                 createAccount: function (email, pass, callback) {
-                    assertAuth();
+                   // assertAuth();
                     auth.$createUser(email, pass).then(function (user) {
                         callback && callback(null, user);
                     }, callback);
@@ -80,6 +94,7 @@ angular.module('service.login', ['firebase', 'service.firebase'])
 
                 fetchProfile: function (id)
                 {
+                    console.log("Gonna fetch the profile for id: ", id);
                     var ref= firebaseRef('users',id),
                         profile= { $id: id },
                         extend= function (data)
@@ -105,11 +120,11 @@ angular.module('service.login', ['firebase', 'service.firebase'])
 
             };
 
-            function assertAuth() {
-                if (auth === null) {
-                    throw new Error('Must call loginService.init() before using its methods');
-                }
-            }
+            //function assertAuth() {
+            //    if (auth === null) {
+            //        throw new Error('Must call loginService.init() before using its methods');
+            //    }
+            //}
         }])
 
     .factory('profileCreator', ['firebaseRef', '$timeout', function (firebaseRef, $timeout) {

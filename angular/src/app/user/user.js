@@ -33,7 +33,7 @@ angular.module('myApp.user', ['ngRoute'])
 
     .run(['$rootScope', 'syncData', function ($rootScope, syncData)
     {
-             $rootScope.$on('$firebaseSimpleAuth:login', function (e, user)
+             $rootScope.$on('fbase:login', function (e, user)
              {
                     console.log('user profile',user);
 
@@ -47,7 +47,7 @@ angular.module('myApp.user', ['ngRoute'])
                     });
              });
 
-             $rootScope.$on('$firebaseSimpleAuth:logout', function ()
+             $rootScope.$on('fbase:logout', function ()
              {
                     $rootScope.secondaryNav= null;
 
@@ -125,6 +125,8 @@ angular.module('myApp.user', ['ngRoute'])
         };
 
         $scope.login = function (cb) {
+
+            console.log("login callback to use after: ", cb);
             $scope.err = null;
             if (!$scope.data.email) {
                 $scope.err = 'Please enter an email addresss';
@@ -144,6 +146,7 @@ angular.module('myApp.user', ['ngRoute'])
                         $scope.err= err.message;
                     }
                     else {
+                        console.log("I logged in successfully and gonna call callback: ", cb);
                         cb && cb(user);
 
                         if ($scope.$close){

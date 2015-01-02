@@ -4,7 +4,7 @@
  * This module monitors angularFire's authentication and performs actions based on authentication state.
  * directives/directive.ngcloakauth.js depends on this file
  *
- * Modify ng-cloak to hide content until FirebaseSimpleLogin resolves. Also
+ * Modify ng-cloak to hide content until authorization resolves. Also
  * provides ng-show-auth methods for displaying content only when certain login
  * states are active.
  *
@@ -13,24 +13,11 @@
         display: none !important;
    }
  *
- * See usage examples here: https://gist.github.com/katowulf/7328023
  */
 angular.module('module.simpleLoginTools', [])
-
-/**
- * A service that returns a promise object, which is resolved once $firebaseAuth
- * is initialized.
- *
- * <code>
- *    function(waitForAuth) {
- *        waitForAuth.then(function() {
- *            console.log('auth initialized');
- *        });
- *    }
- * </code>
- */
     .service('waitForAuth', function ($rootScope, $q, $timeout) {
         function fn(err) {
+            console.log("simpleLoginTools.waitForAuth fired!!!!!!");
             if ($rootScope.auth) {
                 $rootScope.auth.error = err instanceof Error ? err.toString() : null;
             }
@@ -44,9 +31,9 @@ angular.module('module.simpleLoginTools', [])
         }
 
         var def = $q.defer(), subs = [];
-        subs.push($rootScope.$on('$firebaseAuth:login', fn));
-        subs.push($rootScope.$on('$firebaseAuth:logout', fn));
-        subs.push($rootScope.$on('$firebaseAuth:error', fn));
+        subs.push($rootScope.$on('fbase:login', fn));
+        subs.push($rootScope.$on('fbase:logout', fn));
+        subs.push($rootScope.$on('fbase:error', fn));
         return def.promise;
     })
 
@@ -87,13 +74,13 @@ angular.module('module.simpleLoginTools', [])
  */
     .directive('ngShowAuth', function ($rootScope) {
         var loginState = 'logout';
-        $rootScope.$on('$firebaseAuth:login', function () {
+        $rootScope.$on('fbase:login', function () {
             loginState = 'login';
         });
-        $rootScope.$on('$firebaseAuth:logout', function () {
+        $rootScope.$on('fbase:logout', function () {
             loginState = 'logout';
         });
-        $rootScope.$on('$firebaseAuth:error', function () {
+        $rootScope.$on('fbase:error', function () {
             loginState = 'error';
         });
 
@@ -147,9 +134,9 @@ angular.module('module.simpleLoginTools', [])
                 }
 
                 fn();
-                $rootScope.$on('$firebaseAuth:login', fn);
-                $rootScope.$on('$firebaseAuth:logout', fn);
-                $rootScope.$on('$firebaseAuth:error', fn);
+                $rootScope.$on('fbase:login', fn);
+                $rootScope.$on('fbase:logout', fn);
+                $rootScope.$on('fbase:error', fn);
             }
         };
     });
