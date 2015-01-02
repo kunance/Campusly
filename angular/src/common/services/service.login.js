@@ -49,7 +49,7 @@ angular.module('service.login', ['firebase', 'service.firebase'])
                    // assertAuth();
                    // auth.$logout();
                     firebaseRef().unauth();
-                    $rootScope.$broadcast("fbase:login");
+                    $rootScope.$broadcast("fbase:logout");
                 },
 
                 passwordReset: function (email,cb) {
