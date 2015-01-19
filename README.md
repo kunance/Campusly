@@ -192,15 +192,6 @@ $ openssl x509 -req -days 365 -in csr.pem -signkey privkey.pem -out server.crt
 
 
 
-### Current questions to be moved to wiki Q&A
-Should Nginx be installed in /usr/sbin/nginx since that is the default on ubuntu with sudo apt-get install nginx?
-
-Why was branch/angular/vendor not copied over to EC2 instance?  I had to manually copy the rebuild so it's it angular/build/vendor!!!!!
-
-
-
-
-
 
 
 

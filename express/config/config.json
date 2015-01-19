@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "renteddbadmin",
+    "password": "rentedrented",
+    "database": "Rented",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "renteddbadmin",
+    "password": "rentedrented",
+    "database": "Rented",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "renteddbadmin",
+    "password": "rentedrented",
+    "database": "Rented",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
