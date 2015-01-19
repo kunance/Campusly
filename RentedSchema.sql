@@ -439,7 +439,7 @@ CREATE TABLE `RENTED_USER` (
   `lastname` varchar(50) NOT NULL,
   `middlename` varchar(50) DEFAULT NULL,
   `phone` int(10) DEFAULT NULL COMMENT 'supporting only US number only',
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `userImage` varchar(255) COMMENT 'location on storage like S3 or cloudfront   put a defaut image value here after its on S3',
   `twitter` varchar(45) DEFAULT NULL,
   `facebook` varchar(45) DEFAULT NULL,
   `googleplus` varchar(45) DEFAULT NULL,
@@ -456,6 +456,7 @@ CREATE TABLE `RENTED_USER` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 
 --
 -- Table structure for table `USER_EDUCATION`
