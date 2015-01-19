@@ -26,11 +26,12 @@ DROP TABLE IF EXISTS `ADDRESS_HISTORY`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ADDRESS_HISTORY` (
   `id` int(10) unsigned NOT NULL DEFAULT '0',
-  `street` varchar(255) NOT NULL,
-  `apt` varchar(20) DEFAULT NULL,
-  `city` varchar(45) NOT NULL,
-  `state` varchar(45) NOT NULL,
-  `zip` varchar(45) NOT NULL,
+  `streetNumeric` int(5) NOT NULL,
+  `streetAddress` varchar(255) NOT NULL,
+  `apt` varchar(6) DEFAULT NULL,
+  `city` varchar(30) NOT NULL COMMENT 'longest city name in US is 22',
+  `state` varchar(2) NOT NULL,
+  `zip` int(5) unsigned NOT NULL,
   `startDate` datetime NOT NULL,
   `endDate` datetime DEFAULT NULL,
   `userId` int(10) unsigned DEFAULT NULL,
@@ -58,12 +59,12 @@ CREATE TABLE `INVITEE` (
   `lastName` varchar(45) NOT NULL,
   `invitorId` int(10) unsigned NOT NULL COMMENT 'Ideally, this could be a userId or propertyMgmtCo id but relation doesn’t support plymorphic associations so just have it as userId for now',
   `email` varchar(45) DEFAULT NULL,
-  `phone` varchar(45) DEFAULT NULL,
+  `phone` int(10) DEFAULT NULL COMMENT 'supporting only US number only',
   `facebook` varchar(45) DEFAULT NULL,
   `twitter` varchar(45) DEFAULT NULL,
   `googlePlus` varchar(45) DEFAULT NULL,
   `linkedIn` varchar(45) DEFAULT NULL,
-  `viewProperty` bit(1) DEFAULT NULL,
+  `viewProperty` tinyint(1) DEFAULT NULL,
   `viewPropertyId` int(10) unsigned,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime DEFAULT NULL,
@@ -86,13 +87,13 @@ DROP TABLE IF EXISTS `LEASE`;
 CREATE TABLE `LEASE` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `propertyId` int(10) unsigned NOT NULL,
-  `approved` bit(1) DEFAULT NULL COMMENT 'Default value is NULL so you know that it hasn’t been approved or rejected yet',
+  `approved` tinyint(1) DEFAULT NULL COMMENT 'Default value is NULL so you know that it hasn’t been approved or rejected yet',
   `startDate` datetime NOT NULL,
   `endDate` datetime NOT NULL,
-  `paymentAmount` float NOT NULL,
+  `paymentAmount` float(5,2)  NOT NULL,
   `paymentInterval` enum('weekly','monthly','yearly') NOT NULL,
-  `securityDeposit` float DEFAULT NULL,
-  `petDeposit` float DEFAULT NULL,
+  `securityDeposit` float(5,2) DEFAULT NULL,
+  `petDeposit` float(4,2) DEFAULT NULL,
   `payee` varchar(45) DEFAULT NULL COMMENT 'trusted partner ID	reference to trustedPartnerID	need to see if the lease has property management company or not\nuserID of property owner	reference to userID	only refer to property owner if no property management company\nOther	<string>	Changed manually at the time of lease signing\nPayee will be only ONE of the 3 items (NOT ALL)	',
   `built` datetime DEFAULT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -156,20 +157,21 @@ DROP TABLE IF EXISTS `PROPERTY`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `PROPERTY` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `streetNumeric` int(5) NOT NULL,
   `streetAddress` varchar(255) NOT NULL,
-  `city` varchar(255) NOT NULL,
-  `state` varchar(255) NOT NULL,
-  `zip` int(10) unsigned NOT NULL,
-  `apt` varchar(10) DEFAULT NULL,
+  `city` varchar(30) NOT NULL COMMENT 'longest city name in US is 22',
+  `state`varchar(2) NOT NULL,
+  `zip` int(5) unsigned NOT NULL,
+  `apt` varchar(6) DEFAULT NULL,
   `bldg` varchar(10) DEFAULT NULL,
   `type` enum('apt','sfh','duplex','land','townhouse') DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL COMMENT '100 words or less',
-  `bedrooms` int(10) unsigned DEFAULT NULL,
-  `bathrooms` int(10) unsigned DEFAULT NULL,
-  `parkingSpots` int(10) unsigned DEFAULT NULL,
-  `livingAreaSqFt` int(10) unsigned DEFAULT NULL,
-  `hoaFee` float DEFAULT NULL,
-  `otherFee` float DEFAULT NULL,
+  `bedrooms` int(1) unsigned DEFAULT NULL,
+  `bathrooms` int(1) unsigned DEFAULT NULL,
+  `parkingSpots` int(1) unsigned DEFAULT NULL,
+  `livingAreaSqFt` int(5) unsigned DEFAULT NULL,
+  `hoaFee` int(4) DEFAULT NULL,
+  `otherFee` int(4) DEFAULT NULL,
   `status` enum('avail','pending','rented') DEFAULT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime DEFAULT NULL,
@@ -177,6 +179,82 @@ CREATE TABLE `PROPERTY` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+
+--
+-- Table structure for table `PROPERTY_LISTING`
+--
+
+DROP TABLE IF EXISTS `PROPERTY_LISTING`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `PROPERTY_LISTING` (
+  `propertyId` int(10) unsigned NOT NULL,
+  `monthlyPrice` float(5,2) NOT NULL,
+  `securityDeposit` float(5,2) DEFAULT '0',
+  `petDeposit` float(4,2) DEFAULT '0',
+  `availableMoveIn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `leaseEndDate` datetime ,
+  `leaseLength` int(3) unsigned NOT NULL,
+  `leaseLengthUnit` enum('day','week','month','year') NOT NULL,
+  `leaseType` enum('sub-lease','month-to-month','regular') NOT NULL,
+  `gender` enum('no preference', 'male preferred', 'female preferred', 'male only', 'female only') NOT NULL DEFAULT 'no preference',
+  `totalUtilityCost` int(4) NOT NULL,
+  `roomType` enum('single','double','triple', 'loft', 'living room') NOT NULL,
+  `sharedBathroom` tinyint(1) DEFAULT NULL,
+  `numRoomates` int(3) unsigned NOT NULL,
+  `furnished` tinyint(1) DEFAULT NULL,
+  `parkingAvailable` tinyint(1) DEFAULT NULL,
+  `smokingAllowed` tinyint(1) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `status` enum('available', 'rental pending', 'rented') DEFAULT 'available',
+  `contactPhone` int(10) DEFAULT NULL COMMENT 'supporting only US number only',
+  `contactEmail` varchar(45) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `propertylisting_property_idx` (`propertyId`),
+  CONSTRAINT `propertylisting_property` FOREIGN KEY (`propertyId`) REFERENCES `PROPERTY` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+--
+-- Table structure for table `LOOKING`
+--
+DROP TABLE IF EXISTS `LOOKING`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LOOKING` (
+  `id` int(10) unsigned NOT NULL,
+  `maxMonthlyRent` int(5) NOT NULL,
+  `utilitiesIncluded` tinyint(1)  NOT NULL,
+  `area` varchar(30)  COMMENT 'an area from a fixed list of cities or regions',
+  `distanceToUniv` float(3,2)  COMMENT 'in miles',
+  `moveInDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `lengthOfStay` int(3) unsigned  COMMENT 'in months',
+  `longTermIntention` tinyint(1) DEFAULT NULL,
+  `openToFullYearLeaseNewRoomates` tinyint(1)  DEFAULT NULL,
+  `roomType` enum('single','double','triple', 'loft', 'living room') DEFAULT NULL,
+  `sharedBathroom` tinyint(1)  DEFAULT NULL,
+  `gender` enum('no preference', 'male preferred', 'female preferred', 'male only', 'female only') NOT NULL DEFAULT 'no preference',
+  `numRoommates` int(2) unsigned DEFAULT NULL,
+  `furnished` tinyint(1) DEFAULT NULL,
+  `busRouteRequired` tinyint(1)  DEFAULT NULL,
+  `parkingNeeded` tinyint(1)  DEFAULT NULL,
+  `smokingAllowed` tinyint(1)  DEFAULT NULL,
+  `petsAllowed` tinyint(1)  DEFAULT NULL,
+  `coupleAllowed` tinyint(1)  DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
 
 --
 -- Table structure for table `PROPERTY_IMAGES`
@@ -252,44 +330,7 @@ CREATE TABLE `PROPERTY_LIKES` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `PROPERTY_LISTING`
---
 
-DROP TABLE IF EXISTS `PROPERTY_LISTING`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `PROPERTY_LISTING` (
-  `propertyId` int(10) unsigned NOT NULL,
-  `monthlyPrice` float NOT NULL,
-  `securityDeposit` float DEFAULT '0',
-  `petDeposit` float DEFAULT '0',
-  `availableMoveIn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `leaseEndDate` datetime ,
-  `leaseLength` int(3) unsigned NOT NULL,
-  `leaseLengthUnit` enum('day','week','month','year') NOT NULL,
-  `leaseType` enum('sub-lease','month-to-month','regular') NOT NULL,
-  `gender` enum('no preference', 'male preferred', 'female preferred', 'male only', 'female only') NOT NULL DEFAULT 'no preference',
-  `totalUtilityCost` int(10) NOT NULL,
-  `roomType` enum('single','double','triple', 'loft', 'living room') NOT NULL,
-  `sharedBathroom` bit(1) DEFAULT NULL,
-  `numRoomates` int(3) unsigned NOT NULL,
-  `furnished` bit(1) DEFAULT NULL,
-  `parkingAvailable` bit(1) DEFAULT NULL,
-  `smokingAllowed` bit(1) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `status` enum('available', 'rental pending', 'rented') DEFAULT 'available',
-  `contactPhone` varchar(45) NOT NULL COMMENT 'Should be either a property owner or property mgmt',
-  `contactEmail` varchar(45) NOT NULL COMMENT 'Should be either a property owner or property mgmt',
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updatedAt` datetime DEFAULT NULL,
-  `deletedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `propertylisting_property_idx` (`propertyId`),
-  CONSTRAINT `propertylisting_property` FOREIGN KEY (`propertyId`) REFERENCES `PROPERTY` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 
 --
@@ -345,7 +386,7 @@ CREATE TABLE `RENTAL_APPLICANT` (
   `userId` int(10) unsigned NOT NULL,
   `id` int(10) unsigned NOT NULL,
   `rentalAppId` int(10) unsigned NOT NULL,
-  `shareCredit` bit(1) DEFAULT NULL,
+  `shareCredit` tinyint(1) DEFAULT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime DEFAULT NULL,
   `deletedAt` datetime DEFAULT NULL,
@@ -397,7 +438,7 @@ CREATE TABLE `RENTED_USER` (
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `middlename` varchar(50) DEFAULT NULL,
-  `phone` varchar(45) DEFAULT NULL,
+  `phone` int(10) DEFAULT NULL COMMENT 'supporting only US number only',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
   `twitter` varchar(45) DEFAULT NULL,
   `facebook` varchar(45) DEFAULT NULL,
@@ -527,7 +568,7 @@ CREATE TABLE `USER_REFERENCE` (
   `id` int(10) unsigned NOT NULL,
   `userId` int(10) unsigned NOT NULL,
   `email` varchar(255) NOT NULL,
-  `phone` varchar(45) NOT NULL,
+  `phone` int(10) NOT NULL COMMENT 'supporting only US number only',
   `firstName` varchar(45) NOT NULL,
   `lastName` varchar(45) NOT NULL,
   `relation` enum('relative','roommate','friend','spouse','landlord','colleague') NOT NULL,
@@ -598,12 +639,12 @@ CREATE TABLE `UNIVERSITY` (
    `id` int(10) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `academicYearType` enum('quarter', 'semester') DEFAULT 'semester',
-  `streetNum` int(10) NOT NULL,
-  `street` varchar(255) NOT NULL,
-  `apt` varchar(20) DEFAULT NULL,
-  `city` varchar(45) NOT NULL,
-  `state` varchar(45) NOT NULL,
-  `zip` varchar(45) NOT NULL,
+  `streetNumeric` int(5) NOT NULL,
+  `streetAddress` varchar(255) NOT NULL,
+  `apt` varchar(6) DEFAULT NULL,
+  `city` varchar(30) NOT NULL COMMENT 'longest city name in US is 22',
+  `state` varchar(2) NOT NULL,
+  `zip` int(5) unsigned NOT NULL,
   `startDate` datetime NOT NULL,
   `endDate` datetime DEFAULT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -678,7 +719,7 @@ CREATE TABLE `PAYMENT` (
   `id` int(10) unsigned NOT NULL,
   `payerId` int(10) unsigned NOT NULL,
   `payeeId` int(10) unsigned NOT NULL,
-  `dollarAmount` float,
+  `dollarAmount` float(5,2),
   `reason` varchar(255),
   `rentPayment` tinyint(1) DEFAULT '0',
   `creditCheckPayment` tinyint(1) DEFAULT '0',
@@ -741,40 +782,6 @@ CREATE TABLE `FRIEND` (
 
 
 --
--- Table structure for table `LOOKING`
---
-DROP TABLE IF EXISTS `LOOKING`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LOOKING` (
-  `id` int(10) unsigned NOT NULL,
-  `maxMonthlyRent` float NOT NULL,
-  `utilitiesIncluded` tinyint(1)  NOT NULL DEFAULT '0',
-  `area` varchar(255)  COMMENT 'an area from a fixed list',
-  `distanceToUniv` float  COMMENT 'in miles',
-  `moveInDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `lengthOfStay` int(3) unsigned  COMMENT 'in months',
-  `longTermIntention` tinyint(1)  NOT NULL DEFAULT '0',
-  `openToFullYearLeaseNewRoomates` tinyint(1)  NOT NULL DEFAULT '0',
-  `roomType` enum('single', 'double', 'triple', 'loft', 'living room')  NOT NULL DEFAULT 'single',
-  `sharedBathroom` tinyint(1)  NOT NULL DEFAULT '1',
-  `gender` enum('no preference', 'male preferred', 'female preferred', 'male only', 'female only') NOT NULL DEFAULT 'no preference',
-  `numRoommates` int(2) unsigned  NOT NULL DEFAULT '3',
-  `furnished` tinyint(1)  NOT NULL DEFAULT '0',
-  `busRouteRequired` tinyint(1)  NOT NULL DEFAULT '0',
-  `parkingNeeded` tinyint(1)  NOT NULL DEFAULT '0',
-  `smokingAllowed` tinyint(1)  NOT NULL DEFAULT '0',
-  `petsAllowed` tinyint(1)  NOT NULL DEFAULT '0',
-  `coupleAllowed` tinyint(1)  NOT NULL DEFAULT '0',
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updatedAt` datetime DEFAULT NULL,
-  `deletedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
-
---
 -- Table structure for table `APARTMENT_COMPLEX`
 --
 DROP TABLE IF EXISTS `APARTMENT_COMPLEX`;
@@ -783,10 +790,10 @@ DROP TABLE IF EXISTS `APARTMENT_COMPLEX`;
 CREATE TABLE `APARTMENT_COMPLEX` (
   `id` int(10) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
-  `city` varchar(255) NOT NULL,
-  `state` varchar(3) NOT NULL,
+  `city` varchar(30) NOT NULL COMMENT 'longest city name in US is 22',
+  `state` varchar(2) NOT NULL,
   `zip` int(5) unsigned NOT NULL,
-  `distanceToUniv` float  COMMENT 'calculate with google maps api',
+  `distanceToUniv` float(3,2)  COMMENT 'calculate with google maps api',
   `petsAllowed` tinyint(1)  NOT NULL DEFAULT '0',
   `dogsAllowed` tinyint(1)  NOT NULL DEFAULT '0',
   `catsAllowed` tinyint(1)  NOT NULL DEFAULT '0',
@@ -810,7 +817,7 @@ DROP TABLE IF EXISTS `APARTMENT_COMPLEX_IMAGE`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `APARTMENT_COMPLEX_IMAGE` (
   `id` int(10) unsigned NOT NULL,
-  `complexId` int(10) unsigned DEFAULT NULL,
+  `complexId` int(10) unsigned NOT NULL,
   `location` varchar(255) NOT NULL COMMENT 'location on storage like S3 or cloudfront',
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime DEFAULT NULL,
@@ -830,7 +837,7 @@ DROP TABLE IF EXISTS `APARTMENT_COMPLEX_TRANSPORTATION`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `APARTMENT_COMPLEX_TRANSPORTATION` (
   `id` int(10) unsigned NOT NULL,
-  `complexId` int(10) unsigned DEFAULT NULL,
+  `complexId` int(10) unsigned NOT NULL,
   `shuttleRoute` varchar(255) NOT NULL,
   `busLine` int(10) unsigned NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -841,6 +848,29 @@ CREATE TABLE `APARTMENT_COMPLEX_TRANSPORTATION` (
   CONSTRAINT `aptComplexTrans_complexId` FOREIGN KEY (`complexId`) REFERENCES `APARTMENT_COMPLEX` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+
+
+DROP TABLE IF EXISTS `APARTMENT_COMPLEX_FLOOR_PLAN`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `APARTMENT_COMPLEX_FLOOR_PLAN` (
+  `id` int(10) unsigned NOT NULL,
+  `complexId` int(10) unsigned NOT NULL,
+  `bedrooms` int(1) unsigned NOT NULL,
+  `bathrooms` int(1) unsigned NOT NULL DEFAULT '1',
+  `parking` int(1) unsigned NOT NULL DEFAULT '0',
+  `living_area` int(4) unsigned NOT NULL COMMENT 'SQUARE FEET',
+  `washer_dryer` tinyint(1) NOT NULL DEFAULT '0',
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `aptComplexFloorPlan_complex_idx` (`complexId`),
+  CONSTRAINT `aptComplexFloorPlan_complexId` FOREIGN KEY (`complexId`) REFERENCES `APARTMENT_COMPLEX` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 
 
 
