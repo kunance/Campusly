@@ -1,0 +1,183 @@
+{
+  "id": "8b97ccbd-2588-299e-a155-bfcf436a26a5",
+  "name": "Rented experience",
+  "timestamp": 1414274662007,
+  "requests": [
+    {
+      "collectionId": "8b97ccbd-2588-299e-a155-bfcf436a26a5",
+      "id": "0a7e248d-f75a-b94a-0001-7b0bac2b4b99",
+      "name": "Experian User submit answers for ReAuth for an existing token",
+      "description": "",
+      "url": "http://localhost:8000/api/experian/auth/NjZlMWZlM2QtMTZjNS00NzkxLWJhMjgtNWExNjBhZTY5Mjc4",
+      "method": "POST",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "data": "{ \n \"authSession\": \"YWM0ZjM4MTUtZDA2MS00Njc3LTg5NTQtZTgyMzA2ZTVmNmM1\",\n  \"answer\": [5,1,5,3]\n}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "version": 2,
+      "time": 1416098634747
+    },
+    {
+      "collectionId": "8b97ccbd-2588-299e-a155-bfcf436a26a5",
+      "id": "126e89bc-595f-5c66-6591-ccb49885e678",
+      "name": "Experian Get Consumer Credit Report",
+      "description": "",
+      "url": "http://localhost:8000/api/experian/user/report",
+      "method": "POST",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "data": "{\"productId\": 1, \"consumerToken\": \"NjZlMWZlM2QtMTZjNS00NzkxLWJhMjgtNWExNjBhZTY5Mjc4\", \"purposeType\": 1}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "version": 2,
+      "time": 1416101217522
+    },
+    {
+      "collectionId": "8b97ccbd-2588-299e-a155-bfcf436a26a5",
+      "id": "765177ed-4cca-3ffa-a923-dd19e4a185a6",
+      "name": "get credit report w/ form data payload",
+      "description": "",
+      "url": "https://stg1-ss6.experian.com/ECP2P/api/user",
+      "method": "POST",
+      "headers": "Authorization: Basic Y29ubmVjdF9yZW50ZWQ6Y25jdDEwMTRl\nAccept: application/json\n",
+      "data": [
+        {
+          "key": "firstName",
+          "value": "patti",
+          "type": "text"
+        },
+        {
+          "key": "currentZip",
+          "value": "88201",
+          "type": "text"
+        },
+        {
+          "key": "lastName",
+          "value": "northrup",
+          "type": "text"
+        },
+        {
+          "key": "ssn",
+          "value": "666650775",
+          "type": "text"
+        },
+        {
+          "key": "currentAddress",
+          "value": "3910 futura dr",
+          "type": "text"
+        },
+        {
+          "key": "currentCity",
+          "value": "roswell",
+          "type": "text"
+        },
+        {
+          "key": "currentState",
+          "value": "NM",
+          "type": "text"
+        }
+      ],
+      "dataMode": "urlencoded",
+      "timestamp": 0,
+      "version": 2,
+      "time": 1414348628992
+    },
+    {
+      "collectionId": "8b97ccbd-2588-299e-a155-bfcf436a26a5",
+      "id": "b521fca1-9281-9051-4e8a-3087ea0d5774",
+      "name": "Experian User Auth Status",
+      "description": "",
+      "url": "http://localhost:8000/api/experian/auth/authstatus/NjZlMWZlM2QtMTZjNS00NzkxLWJhMjgtNWExNjBhZTY5Mjc4",
+      "method": "GET",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "data": "{ \"UserToken\": \"NjZlMWZlM2QtMTZjNS00NzkxLWJhMjgtNWExNjBhZTY5Mjc4\"\n}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "8b97ccbd-2588-299e-a155-bfcf436a26a5",
+      "id": "d3895224-569f-0226-728d-83066f3641fe",
+      "name": "Experian User ReAuth existing token",
+      "description": "",
+      "url": "http://localhost:8000/api/experian/auth/NjZlMWZlM2QtMTZjNS00NzkxLWJhMjgtNWExNjBhZTY5Mjc4",
+      "method": "GET",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "data": "{ \"UserToken\": \"NjZlMWZlM2QtMTZjNS00NzkxLWJhMjgtNWExNjBhZTY5Mjc4\"\n}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "8b97ccbd-2588-299e-a155-bfcf436a26a5",
+      "id": "dc885d49-d526-6768-41d6-68eb00668de7",
+      "name": "Experian Share Credit Report",
+      "description": "",
+      "url": "http://localhost:8000/api/experian/shareReport",
+      "method": "POST",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "data": "{\"transactionId\": \"4422\", \"consumerToken\": \"NjZlMWZlM2QtMTZjNS00NzkxLWJhMjgtNWExNjBhZTY5Mjc4\",\n \"endUserToken\": \"NjZlMWZlM2QtMTZjNS00NzkxLWJhMjgtNWExNjBhZTY5Mjc4\", \"purposeType\": 3}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "version": 2,
+      "time": 1416103119470
+    },
+    {
+      "collectionId": "8b97ccbd-2588-299e-a155-bfcf436a26a5",
+      "id": "dec93f2f-37ed-fd6b-c222-438a136b1b60",
+      "name": "Node get credit report w/ json payload",
+      "description": "",
+      "url": "http://localhost:8000/api/experian/report",
+      "method": "POST",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "data": "{ \"creditReportRequestorInfo\":\n  {\"firstName\": \"patti\",\n  \"lastName\": \"northrup\",\n  \"ssn\": \"666650775\",\n  \"currentAddress\": \"3910 futura dr\",\n  \"currentCity\": \"roswell\",\n  \"currentState\": \"NM\",\n  \"currentZip\": \"88201\"\n  }\n}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "version": 2,
+      "time": 1416101210750
+    },
+    {
+      "collectionId": "8b97ccbd-2588-299e-a155-bfcf436a26a5",
+      "id": "e0625203-26b3-65b1-a9db-3555f79113cf",
+      "name": "Experian User Auth Answers",
+      "description": "",
+      "url": "http://localhost:8000/api/experian/user/answers",
+      "method": "POST",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "data": "{ \"creditReportRequestorInfo\":\n { \"authSession\": \"YWM0ZjM4MTUtZDA2MS00Njc3LTg5NTQtZTgyMzA2ZTVmNmM1\",\n  \"answer\": [5,1,5,3]\n  }\n}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "version": 2,
+      "time": 1416092889869
+    },
+    {
+      "collectionId": "8b97ccbd-2588-299e-a155-bfcf436a26a5",
+      "id": "fb058fdd-13ba-3797-f6b7-4bd65ae0a405",
+      "name": "Auth User against Experian",
+      "description": "",
+      "url": "http://localhost:8000/api/experian/user",
+      "method": "POST",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "data": "{ \"creditReportRequestorInfo\":\n  {\"firstName\": \"patti\",\n  \"lastName\": \"northrup\",\n  \"currentAddress\": \"3910 futura dr\",\n  \"currentCity\": \"roswell\",\n  \"currentState\": \"NM\",\n  \"currentZip\": \"88201\"\n  }\n}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "version": 2,
+      "time": 1416019141016
+    },
+    {
+      "collectionId": "8b97ccbd-2588-299e-a155-bfcf436a26a5",
+      "id": "fd18a370-4401-38f3-0c09-1e4a036554b7",
+      "name": "get credit report w/ json payload",
+      "description": "",
+      "url": "https://stg1-ss6.experian.com/ECP2P/api/user",
+      "method": "POST",
+      "headers": "Authorization: Basic Y29ubmVjdF9yZW50ZWQ6Y25jdDEwMTRl\nAccept: application/json\nContent-Type: application/json\n",
+      "data": "{\"firstName\": \"patti\",\n\"lastName\": \"northrup\",\n\"ssn\": \"666650775\",\n\"currentAddress\": \"3910 futura dr\",\n\"currentCity\": \"roswell\",\n\"currentState\": \"NM\",\n\"currentZip\": \"88201\"\n}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "version": 2,
+      "time": 1414351650678
+    }
+  ]
+}

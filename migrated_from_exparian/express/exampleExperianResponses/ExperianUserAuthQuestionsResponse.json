@@ -1,0 +1,59 @@
+{
+  "QuestionSet": [
+    {
+      "QuestionType": 40,
+      "QuestionText": "Please select the term of your auto loan (in months) from the following choices. If your auto loan term is not one of the choices please select 'NONE OF THE ABOVE'.",
+      "QuestionSelect": {
+        "QuestionChoice": [
+          "24",
+          "36",
+          "48",
+          "60",
+          "NONE OF THE ABOVE/DOES NOT APPLY"
+        ]
+      }
+    },
+    {
+      "QuestionType": 12,
+      "QuestionText": "I was born within a year or on the year of the date below.",
+      "QuestionSelect": {
+        "QuestionChoice": [
+          "1956",
+          "1959",
+          "1962",
+          "1965",
+          "NONE OF THE ABOVE/DOES NOT APPLY"
+        ]
+      }
+    },
+    {
+      "QuestionType": 1,
+      "QuestionText": "According to your credit profile, you may have opened a mortgage loan in or around May 2008. Please select the lender to whom you currently make your mortgage payments. If you do not have a mortgage, select 'NONE OF THE ABOVE/DOES NOT APPLY'.",
+      "QuestionSelect": {
+        "QuestionChoice": [
+          "SELECT PORTFOLIO SVCIN",
+          "WESTAMERICA MTG",
+          "MANCHESTER MORTGAGE",
+          "SUN WEST MTG",
+          "NONE OF THE ABOVE/DOES NOT APPLY"
+        ]
+      }
+    },
+    {
+      "QuestionType": 23,
+      "QuestionText": "Which of the following is a current or previous employer? If there is not a matched employer name, please select 'NONE OF THE ABOVE'.",
+      "QuestionSelect": {
+        "QuestionChoice": [
+          "CNS AND INTERPRISES",
+          "FARMERS - HOME OFFICE",
+          "WALL SYSTEMS",
+          "ROBERTSHOM",
+          "NONE OF THE ABOVE/DOES NOT APPLY"
+        ]
+      }
+    }
+  ],
+  "authSession": "MzVlNmYzYzAtN2ZkMS00MjdkLWEyYzAtYTQ0Yzg3OWY1NDQ0",
+  "error": null,
+  "success": true
+}
