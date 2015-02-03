@@ -81,7 +81,7 @@ angular.module('baseCodeSqlApp')
        * @return {Promise}
        */
       changePassword: function(oldPassword, newPassword, callback) {
-        return User.changePassword({ id: currentUser._id }, {
+        return User.changePassword({ id: currentUser.id }, {
           oldPassword: oldPassword,
           newPassword: newPassword
         }, function(user) {

@@ -61,7 +61,7 @@ describe('Thing API:', function() {
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/things/' + newThing._id)
+        .get('/api/things/' + newThing.id)
         .expect(200)
         .expect('Content-Type', /json/)
         .end(function(err, res) {
@@ -89,7 +89,7 @@ describe('Thing API:', function() {
 
     beforeEach(function(done) {
       request(app)
-        .put('/api/things/' + newThing._id)
+        .put('/api/things/' + newThing.id)
         .send({
           name: 'Updated Thing',
           info: 'This is the updated thing!!!'
@@ -120,7 +120,7 @@ describe('Thing API:', function() {
 
     it('should respond with 204 on successful removal', function(done) {
       request(app)
-        .delete('/api/things/' + newThing._id)
+        .delete('/api/things/' + newThing.id)
         .expect(204)
         .end(function(err, res) {
           if (err) {
@@ -132,7 +132,7 @@ describe('Thing API:', function() {
 
     it('should respond with 404 when thing does not exist', function(done) {
       request(app)
-        .delete('/api/things/' + newThing._id)
+        .delete('/api/things/' + newThing.id)
         .expect(404)
         .end(function(err, res) {
           if (err) {

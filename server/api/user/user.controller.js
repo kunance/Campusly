@@ -36,7 +36,7 @@ function respondWith(res, statusCode) {
 exports.index = function(req, res) {
   User.findAll({
     attributes: [
-      '_id',
+      'id',
       'name',
       'email',
       'role',
@@ -56,13 +56,15 @@ exports.create = function(req, res, next) {
   req.body.runIdentityCheck= false;
   req.body.shareCreditReport= false;
   req.body.createdAt= new Date();
+  console.log('oco je req body');
   var newUser = User.build(req.body);
   console.log(newUser);
   newUser.setDataValue('provider', 'local');
   newUser.setDataValue('role', 'user');
   newUser.save()
     .then(function(user) {
-      var token = jwt.sign({ _id: user._id }, config.secrets.session, {
+      console.log('ovo je snimljeni id user: ', user.id);
+      var token = jwt.sign({ id: user.id }, config.secrets.session, {
         expiresInMinutes: 60 * 5
       });
       res.json({ token: token });
@@ -78,7 +80,7 @@ exports.show = function(req, res, next) {
 
   User.find({
     where: {
-      _id: userId
+      id: userId
     }
   })
     .then(function(user) {
@@ -97,7 +99,7 @@ exports.show = function(req, res, next) {
  * restriction: 'admin'
  */
 exports.destroy = function(req, res) {
-  User.destroy({ _id: req.params.id })
+  User.destroy({ id: req.params.id })
     .then(respondWith(res, 204))
     .catch(handleError(res));
 };
@@ -106,13 +108,13 @@ exports.destroy = function(req, res) {
  * Change a users password
  */
 exports.changePassword = function(req, res, next) {
-  var userId = req.user._id;
+  var userId = req.user.id;
   var oldPass = String(req.body.oldPassword);
   var newPass = String(req.body.newPassword);
 
   User.find({
     where: {
-      _id: userId
+      id: userId
     }
   })
     .then(function(user) {
@@ -131,18 +133,20 @@ exports.changePassword = function(req, res, next) {
  * Get my info
  */
 exports.me = function(req, res, next) {
-  var userId = req.user._id;
-
+  var userId = req.user.id;
+  console.log('ztarazija je me, a id je: ',req._id);
   User.find({
     where: {
-      _id: userId
+      id: userId
     },
     attributes: [
-      '_id',
-      'name',
+      'id',
+      'firstname',
       'email',
       'role',
-      'provider'
+      'provider',
+      'lastname'
+
     ]
   })
     .then(function(user) { // don't ever give out the password or salt

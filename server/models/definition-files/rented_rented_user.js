@@ -48,7 +48,7 @@ module.exports = {
           // Non-sensitive info we'll be putting in the token
           token: function() {
             return {
-              '_id': this._id,
+              'id': this.id,
               'role': this.role
             };
           }
@@ -318,7 +318,14 @@ module.exports = {
         "deletedAt": {
             type: Seq.DATE,
             field: "deletedAt"
-        }
+        },
+      "role": {
+        type: Seq.STRING(45),
+        field: "role",
+        defaultValue: 'user'
+      },
+      "provider": Seq.STRING(64),
+      "salt": Seq.STRING(128)
     },
     relations: [{
         type: "hasMany",

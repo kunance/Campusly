@@ -20,5 +20,18 @@ module.exports = {
             process.env.OPENSHIFT_MONGODB_DB_URL +
             process.env.OPENSHIFT_APP_NAME ||
             'mongodb://localhost/basecodesql'
+  },
+  sequelize: {
+    db: 'Rented',
+    username:'ivan',
+    password:'rentedrented',
+    options: {
+      logging: false,
+      dialect:'mysql',
+      host:'rented.cyngrnmslnob.us-west-2.rds.amazonaws.com',
+      define: {
+        timestamps: false
+      }
+    }
   }
 };

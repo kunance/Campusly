@@ -10,7 +10,7 @@ var validatePresenceOf = function(value) {
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
 
-    _id: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -60,7 +60,7 @@ module.exports = function(sequelize, DataTypes) {
       // Non-sensitive info we'll be putting in the token
       token: function() {
         return {
-          '_id': this._id,
+          'id': this.id,
           'role': this.role
         };
       }

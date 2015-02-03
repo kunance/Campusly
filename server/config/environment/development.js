@@ -8,13 +8,13 @@ module.exports = {
     uri: 'mongodb://localhost/basecodesql-dev'
   },
   sequelize: {
-    db: 'Rented',
-    username:'ivan',
-    password:'rentedrented',
+    db: 'rented',
+    username:'root',
+    password:'root',
     options: {
       logging: false,
       dialect:'mysql',
-      host:'rented.cyngrnmslnob.us-west-2.rds.amazonaws.com',
+      host:'localhost',
       define: {
         timestamps: false
       }

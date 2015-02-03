@@ -70,7 +70,7 @@ exports.index = function(req, res) {
 exports.show = function(req, res) {
   Thing.find({
     where: {
-      _id: req.params.id
+      id: req.params.id
     }
   })
     .then(handleEntityNotFound(res))
@@ -87,12 +87,12 @@ exports.create = function(req, res) {
 
 // Updates an existing thing in the DB.
 exports.update = function(req, res) {
-  if (req.body._id) {
-    delete req.body._id;
+  if (req.body.id) {
+    delete req.body.id;
   }
   Thing.find({
     where: {
-      _id: req.params.id
+      id: req.params.id
     }
   })
     .then(handleEntityNotFound(res))
@@ -105,7 +105,7 @@ exports.update = function(req, res) {
 exports.destroy = function(req, res) {
   Thing.find({
     where: {
-      _id: req.params.id
+      id: req.params.id
     }
   })
     .then(handleEntityNotFound(res))
