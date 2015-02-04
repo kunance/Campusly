@@ -8,7 +8,6 @@ var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 
 var validationError = function(res, statusCode) {
-  //console.log('ovo je res prcin ti isusa:', res);
   statusCode = statusCode || 422;
   return function(err) {
     console.log(err);
@@ -37,14 +36,18 @@ exports.index = function(req, res) {
   User.findAll({
     attributes: [
       'id',
-      'name',
+      'firstname',
+      'lastname',
       'email',
       'role',
-      'provider'
+      'provider',
+      'runIdentityCheck',
+      'shareCreditReport',
+      'createdAt'
     ]
   })
     .then(function(users) {
-      res.json(200, users);
+      res.json(users);
     })
     .catch(handleError(res));
 };
@@ -56,14 +59,11 @@ exports.create = function(req, res, next) {
   req.body.runIdentityCheck= false;
   req.body.shareCreditReport= false;
   req.body.createdAt= new Date();
-  console.log('oco je req body');
   var newUser = User.build(req.body);
-  console.log(newUser);
   newUser.setDataValue('provider', 'local');
   newUser.setDataValue('role', 'user');
   newUser.save()
     .then(function(user) {
-      console.log('ovo je snimljeni id user: ', user.id);
       var token = jwt.sign({ id: user.id }, config.secrets.session, {
         expiresInMinutes: 60 * 5
       });
@@ -129,12 +129,41 @@ exports.changePassword = function(req, res, next) {
     });
 };
 
+
+/*TODO implement update user details*/
+exports.changeUserDetails = function(req, res, next) {
+  var userId = req.user.id;
+  console.log('********************', req.user);
+  if (req.user.role !== 'admin' && userId != req.params.id.toString())
+    return res.send(403);
+
+  User.findOne({id: userId}).then(function (user) {
+    var updated = _.merge(user, req.body);
+    //  updated.addresses = req.body.addresses; //workaround -> merge function has a bug when merging addresses array
+    updated.save().then(function (err, usr) {
+      if (err) {
+        return handleError(res, err);
+      }
+      if (usr.salt) {
+        usr.salt = undefined;
+      }
+      if (usr.hashedPassword) {
+        usr.hashedPassword = undefined;
+      }
+      if (usr.__v) {
+        usr.__v = undefined;
+      }
+      return res.json(usr);
+    })
+  });
+}
+
+
 /**
  * Get my info
  */
 exports.me = function(req, res, next) {
   var userId = req.user.id;
-  console.log('ztarazija je me, a id je: ',req._id);
   User.find({
     where: {
       id: userId

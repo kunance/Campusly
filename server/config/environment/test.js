@@ -8,10 +8,13 @@ module.exports = {
     uri: 'mongodb://localhost/basecodesql-test'
   },
   sequelize: {
-    uri: 'sqlite://',
+    db: 'rentedTEST',
+    username:'root',
+    password:'root',
     options: {
       logging: false,
-      storage: 'test.sqlite',
+      dialect:'mysql',
+      host:'localhost',
       define: {
         timestamps: false
       }

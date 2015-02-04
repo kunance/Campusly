@@ -1,28 +1,27 @@
 'use strict';
 
+var _= require('lodash');
 var app = require('../../app');
-var User = require('../../sqldb').User;
+var sqldb = require('../../sqldb');
+var User = sqldb.model('rented.rentedUser');
 
-var userTemplate = {
-  provider: 'local',
-  name: 'Fake User',
-  email: 'test@test.com',
-  password: 'password'
-};
-
-var user = User.build(userTemplate);
+var user = User.build({provider: 'local', firstname: 'usermodel', lastname: 'usermodel',username: 'usermodel', email: 'usermodel@usermodel.com', password: 'password', role: 'owner', runIdentityCheck: false, shareCreditReport: false, createdAt: new Date()});
 
 describe('User Model', function() {
-  before(function() {
+
+  before(function(done) {
     // Sync and clear users before testing
     User.sync().then(function() {
-      return User.destroy();
+      //return User.destroy({truncate:true});
+      deleteUsers(done);
     });
   });
 
-  afterEach(function() {
-    return User.destroy();
+  afterEach(function(done) {
+    //return User.destroy({where: {id: '*'}});
+    deleteUsers(done);
   });
+
 
   it('should begin with no users', function() {
     return User.findAll()
@@ -38,7 +37,7 @@ describe('User Model', function() {
   });
 
   it('should fail when saving without an email', function() {
-    user.email = '';
+    user.email = null;
     return user.save().should.be.rejected;
   });
 
@@ -50,3 +49,18 @@ describe('User Model', function() {
     user.authenticate('blah').should.not.be.true;
   });
 });
+
+
+function deleteUsers(done) {
+  return User.findAll().then(function(users) {
+    if (users) {
+      if (_.isArray(users)) {
+        _(users).forEach(function (user) {user.destroy();});
+        done();
+      } else {
+        users.destroy();
+        done();
+      }
+    }
+  });
+}

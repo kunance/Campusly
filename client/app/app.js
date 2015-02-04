@@ -14,6 +14,7 @@ angular.module('baseCodeSqlApp', [
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
+    $locationProvider.hashPrefix('!');
   })
 
   .factory('authInterceptor', function($rootScope, $q, $cookieStore, $injector) {

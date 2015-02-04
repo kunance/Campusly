@@ -60,7 +60,8 @@ function hasRole(roleRequired) {
         next();
       }
       else {
-        res.send(403);
+        res.status(403);
+        next();
       }
     });
 }
