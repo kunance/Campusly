@@ -12,6 +12,10 @@ module.exports = function(app) {
   // Insert routes below
  // app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
+  //just temporary route
+  app.use('/api/images', require('./api/images'));
+//we might wanna have something like this later on:
+ // app.use('/api/users/:id/properties/:id/images', require('./api/images'));
 
   app.use('/auth', require('./auth'));
 

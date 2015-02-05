@@ -57,6 +57,12 @@ var all = {
     clientID:     process.env.GOOGLE_ID || 'id',
     clientSecret: process.env.GOOGLE_SECRET || 'secret',
     callbackURL:  (process.env.DOMAIN || '') + '/auth/google/callback'
+  },
+  aws_s3: {
+    key: 'AKIAJ5YZIB24A4YS4GBA',
+    secret: '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',
+    bucket: 'rented.user.pictures',
+    region: 'us-west-2'
   }
 };
 

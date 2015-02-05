@@ -16,6 +16,7 @@ var path = require('path');
 var config = require('./environment');
 var passport = require('passport');
 var session = require('express-session');
+var multer = require('multer');
 
 module.exports = function(app) {
   var env = app.get('env');
@@ -26,9 +27,12 @@ module.exports = function(app) {
   app.use(compression());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
+  app.use(bodyParser({ uploadDir: path.join(__dirname, 'tmp'), keepExtensions: true }));
   app.use(methodOverride());
   app.use(cookieParser());
   app.use(passport.initialize());
+  app.use(multer({dest: './uploads/'})); //just uploading files to server at the moment..
+
 
   // Persist sessions with mongoStore / sequelizeStore
   // We need to enable sessions for passport twitter because its an oauth 1.0 strategy
