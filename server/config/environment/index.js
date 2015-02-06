@@ -55,7 +55,7 @@ var all = {
 
   google: {
     clientID:     process.env.GOOGLE_ID || '1006272314768-br0o0pnvvrb5etsbcvv183t5afdegeni.apps.googleusercontent.com',
-    clientSecret: process.env.GOOGLE_SECRET || 'bXICpUtdjsE0y9n3N9HRCjk',
+    clientSecret: process.env.GOOGLE_SECRET || 'bXICpUtdjsE0y9n3N9-HRCjk',
     callbackURL: (process.env.DOMAIN || '') + '/auth/google/callback'
   },
   aws_s3: {

@@ -8,18 +8,23 @@ exports.setup = function(User, config) {
     callbackURL: config.google.callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
-    User.find({
-      'google.id': profile.id
-    })
+    User.find({where: {
+      'googleOAuthId': profile.id
+    }})
       .then(function(user) {
         if (!user) {
           user = User.build({
-            name: profile.displayName,
+            firstname: profile.name.givenName,
+            lastname: profile.name.familyName,
+            password:'password',
+            runIdentityCheck:false,
+            shareCreditReport:false,
+            createdAt: new Date(),
             email: profile.emails[0].value,
             role: 'user',
-            username: profile.username,
-            provider: 'google',
-            google: profile._json
+            username:  profile.displayName,
+            provider: profile.provider,
+            googleOAuthId:profile.id
           });
           user.save()
             .then(function(user) {
