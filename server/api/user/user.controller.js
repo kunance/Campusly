@@ -130,7 +130,7 @@ exports.changePassword = function(req, res, next) {
 };
 
 
-/*TODO implement update user details*/
+/**/
 exports.changeUserDetails = function(req, res, next) {
   var userId = req.user.id;
   console.log('********************', req.user);
@@ -174,7 +174,8 @@ exports.me = function(req, res, next) {
       'email',
       'role',
       'provider',
-      'lastname'
+      'lastname',
+      'username'
 
     ]
   })

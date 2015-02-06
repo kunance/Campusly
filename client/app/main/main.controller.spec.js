@@ -3,7 +3,7 @@
 describe('Controller: MainCtrl', function() {
 
   // load the controller's module
-  beforeEach(module('baseCodeSqlApp'));
+  beforeEach(module('RentedApp'));
   beforeEach(module('stateMock'));
   beforeEach(module('socketMock'));
 

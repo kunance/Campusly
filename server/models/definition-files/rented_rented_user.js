@@ -325,7 +325,10 @@ module.exports = {
         defaultValue: 'user'
       },
       "provider": Seq.STRING(64),
-      "salt": Seq.STRING(128)
+      "salt": Seq.STRING(128),
+        "facebookOAuthId": Seq.STRING(64),
+        "googleOAuthId": Seq.STRING(64),
+        "twitterOAuthId": Seq.STRING(64)
     },
     relations: [{
         type: "hasMany",

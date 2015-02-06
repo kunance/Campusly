@@ -42,21 +42,21 @@ var all = {
   },
 
   facebook: {
-    clientID:     process.env.FACEBOOK_ID || 'id',
-    clientSecret: process.env.FACEBOOK_SECRET || 'secret',
-    callbackURL:  (process.env.DOMAIN || '') + '/auth/facebook/callback'
+    clientID:    /* process.env.FACEBOOK_ID ||*/ '1482591365325802',
+    clientSecret: /*process.env.FACEBOOK_SECRET || */'693245cb35eb21919c4ec1c6d567c0c6',
+    callbackURL: (process.env.DOMAIN || '') + '/auth/facebook/callback'
   },
 
   twitter: {
     clientID:     process.env.TWITTER_ID || 'id',
     clientSecret: process.env.TWITTER_SECRET || 'secret',
-    callbackURL:  (process.env.DOMAIN || '') + '/auth/twitter/callback'
+    callbackURL: (process.env.DOMAIN || '') + '/auth/twitter/callback'
   },
 
   google: {
-    clientID:     process.env.GOOGLE_ID || 'id',
-    clientSecret: process.env.GOOGLE_SECRET || 'secret',
-    callbackURL:  (process.env.DOMAIN || '') + '/auth/google/callback'
+    clientID:     process.env.GOOGLE_ID || '1006272314768-br0o0pnvvrb5etsbcvv183t5afdegeni.apps.googleusercontent.com',
+    clientSecret: process.env.GOOGLE_SECRET || 'bXICpUtdjsE0y9n3N9HRCjk',
+    callbackURL: (process.env.DOMAIN || '') + '/auth/google/callback'
   },
   aws_s3: {
     key: 'AKIAJ5YZIB24A4YS4GBA',

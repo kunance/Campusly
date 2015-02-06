@@ -2,12 +2,12 @@
   "use strict";
 
   angular
-      .module('baseCodeSqlApp')
+      .module('RentedApp')
       .controller('SignupCtrl', SignupCtrl);
 
-  SignupCtrl.$inject=['Auth', '$state', '$window','FileUploader','$http'];
+  SignupCtrl.$inject=['Auth', '$state', '$window','FileUploader'];
 
-  function SignupCtrl(Auth, $state, $window, FileUploader, $http) {
+  function SignupCtrl(Auth, $state, $window, FileUploader) {
     var vm = this;
     vm.user = {};
     vm.errors = {};

@@ -610,6 +610,9 @@ CREATE TABLE `rented_user` (
   `deletedAt` datetime DEFAULT NULL,
   `role` VARCHAR(45) NULL DEFAULT 'user',
   `provider` VARCHAR(64) NULL, 
+  `facebookOAuthId` VARCHAR(64) NULL, 
+  `googleOAuthId` VARCHAR(64) NULL, 
+  `twitterOAuthId` VARCHAR(64) NULL, 
   `salt` VARCHAR(128) NOT NULL, 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;

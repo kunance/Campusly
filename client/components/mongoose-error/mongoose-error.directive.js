@@ -3,7 +3,7 @@
 /**
  * Removes server error when user updates input
  */
-angular.module('baseCodeSqlApp')
+angular.module('RentedApp')
   .directive('mongooseError', function () {
     return {
       restrict: 'A',

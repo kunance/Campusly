@@ -1,29 +1,40 @@
-'use strict';
+(function () {
+  "use strict";
 
-angular.module('baseCodeSqlApp')
-  .controller('LoginCtrl', function($scope, Auth, $state, $window) {
-    $scope.user = {};
-    $scope.errors = {};
+  angular
+    .module('RentedApp')
+    .controller('LoginCtrl', LoginCtrl);
 
-    $scope.login = function(form) {
-      $scope.submitted = true;
+  LoginCtrl.$inject = ['$scope', 'Auth', '$state', '$window'];
 
-      if (form.$valid) {
-        Auth.login({
-          email: $scope.user.email,
-          password: $scope.user.password
-        })
-        .then(function() {
-          // Logged in, redirect to home
-          $state.go('main');
-        })
-        .catch(function(err) {
-          $scope.errors.other = err.message;
-        });
-      }
-    };
+  function LoginCtrl($scope, Auth, $state, $window) {
+      $scope.user = {};
+      $scope.errors = {};
 
-    $scope.loginOauth = function(provider) {
-      $window.location.href = '/auth/' + provider;
-    };
-  });
+      $scope.login = function(form) {
+        $scope.submitted = true;
+
+        if (form.$valid) {
+          Auth.login({
+            email: $scope.user.email,
+            password: $scope.user.password
+          })
+            .then(function() {
+              // Logged in, redirect to home
+              $state.go('main');
+            })
+            .catch(function(err) {
+              $scope.errors.other = err.message;
+            });
+        }
+      };
+
+      $scope.loginOauth = function(provider) {
+        console.log(provider);
+        $window.location.href = '/auth/' + provider;
+      };
+    }
+
+
+}());
+

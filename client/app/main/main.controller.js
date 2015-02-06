@@ -1,27 +1,37 @@
 'use strict';
 
-angular.module('baseCodeSqlApp')
-  .controller('MainCtrl', function($rootScope, $scope, $http, socket) {
-    $scope.awesomeThings = [];
+angular
+  .module('RentedApp')
+  .controller('MainCtrl', MainCtrl);
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-      socket.syncUpdates('thing', $scope.awesomeThings);
-    });
+MainCtrl.$inject = ['$rootScope', '$scope', '$http', 'socket'];
 
-    $scope.addThing = function() {
-      if ($scope.newThing === '') {
-        return;
-      }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
-    };
+function MainCtrl($rootScope, $scope, $http, socket) {
+  var vm = this;
+  vm.address = {};
 
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing.id);
-    };
+    //$scope.awesomeThings = [];
+    //
+    //$http.get('/api/things').success(function(awesomeThings) {
+    //  $scope.awesomeThings = awesomeThings;
+    //  socket.syncUpdates('thing', $scope.awesomeThings);
+    //});
+    //
+    //$scope.addThing = function() {
+    //  if ($scope.newThing === '') {
+    //    return;
+    //  }
+    //  $http.post('/api/things', { name: $scope.newThing });
+    //  $scope.newThing = '';
+    //};
+    //
+    //$scope.deleteThing = function(thing) {
+    //  $http.delete('/api/things/' + thing.id);
+    //};
+    //
+    //$scope.$on('$destroy', function() {
+    //  socket.unsyncUpdates('thing');
+    //});
 
-    $scope.$on('$destroy', function() {
-      socket.unsyncUpdates('thing');
-    });
-  });
+
+  }

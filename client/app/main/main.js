@@ -1,11 +1,16 @@
-'use strict';
+(function () {
+  "use strict";
 
-angular.module('baseCodeSqlApp')
-  .config(function($stateProvider) {
-    $stateProvider
-      .state('main', {
-        url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
-      });
-  });
+  angular.module('RentedApp')
+    .config(function($stateProvider) {
+      $stateProvider
+        .state('main', {
+          url: '/',
+          templateUrl: 'app/main/main.html',
+          controller: 'MainCtrl',
+          controllerAs:'main',
+          authenticate: true
+        });
+    });
+
+}());

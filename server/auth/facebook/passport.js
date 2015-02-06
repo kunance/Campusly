@@ -8,18 +8,25 @@ exports.setup = function(User, config) {
     callbackURL: config.facebook.callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
-    User.find({
-      'facebook.id': profile.id
-    })
+    console.log(profile);
+    User.find({where: {
+      'facebookOAuthId': profile.id
+    }})
       .then(function(user) {
         if (!user) {
           user = User.build({
-            name: profile.displayName,
+            firstname: profile.name.givenName,
+            lastname: profile.name.familyName,
+            middlename: profile.name.middleName,
+            password:'password',
+            runIdentityCheck:false,
+            shareCreditReport:false,
+            createdAt: new Date(),
             email: profile.emails[0].value,
             role: 'user',
-            username: profile.username,
+            username:  profile.displayName,
             provider: 'facebook',
-            facebook: profile._json
+            facebookOAuthId:profile.id
           });
           user.save()
             .then(function(user) {
