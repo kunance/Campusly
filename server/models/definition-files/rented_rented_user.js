@@ -74,12 +74,12 @@ module.exports = {
         },
         beforeCreate: function(user, fields, fn) {
           user.updatePassword(fn);
-        },
+        }/*,
         beforeUpdate: function(user, fields, fn) {
           if (user.changed('password')) {
             user.updatePassword(fn);
           }
-        }
+        }*/
       },
 
       /**
@@ -215,6 +215,9 @@ module.exports = {
           } else {
             fn(null);
           }
+        },
+        changeUserInfo: function () {
+          console.log('alo ks ks');
         }
       }
     },

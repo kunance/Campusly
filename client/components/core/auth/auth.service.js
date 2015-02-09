@@ -75,7 +75,7 @@
 
 
         updateUser: function(user, callback) {
-          return UserResource.changeUserInfo({id: currentUser.id}, user,
+          return UserResource.changeInfo({id: currentUser.id}, user,
             function(usr) {
               return safeCb(callback)(null, usr);
             },
@@ -84,10 +84,6 @@
               return safeCb(callback)(err);
             }).$promise;
         },
-
-
-
-
         /**
          * Change password
          *
@@ -107,11 +103,6 @@
           }).$promise;
         },
 
-
-
-
-
-
         /**
          * Gets all available info on a user
          *   (synchronous|asynchronous)
@@ -123,7 +114,6 @@
           if (arguments.length === 0) {
             return currentUser;
           }
-
           var value = (currentUser.hasOwnProperty('$promise')) ? currentUser.$promise : currentUser;
           return $q.when(value)
             .then(function(user) {

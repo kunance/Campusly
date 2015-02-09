@@ -27,8 +27,8 @@
           controller: 'SignupCtrl',
           controllerAs:'signup'
         })
-        .state('settings', {
-          url: '/settings',
+        .state('password', {
+          url: '/password',
           templateUrl: 'app/account/settings/password/settings.html',
           controller: 'SettingsCtrl',
           authenticate: true

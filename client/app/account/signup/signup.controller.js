@@ -5,9 +5,9 @@
       .module('app.account')
       .controller('SignupCtrl', SignupCtrl);
 
-  SignupCtrl.$inject=['$scope', 'Auth', '$state', '$window','FileUploader'];
+  SignupCtrl.$inject=['$scope', 'common', '$state', '$window','FileUploader'];
 
-  function SignupCtrl($scope, Auth, $state, $window, FileUploader) {
+  function SignupCtrl($scope, common, $state, $window, FileUploader) {
     var vm = this;
     vm.user = {};
     vm.errors = {};
@@ -27,7 +27,7 @@
     vm.register = function (form) {
       vm.submitted = true;
       if (form.$valid) {
-        Auth.createUser({
+        common.Auth.createUser({
           firstname: vm.user.firstname,
           lastname: vm.user.lastname,
           middlename: vm.user.middlename,

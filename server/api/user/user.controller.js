@@ -72,26 +72,7 @@ exports.create = function(req, res, next) {
     })
     .catch(validationError(res));
 };
-/*
-exports.changeUserInfo = function(req, res, next) {
-  var userId = req.user.id;
-  //var oldPass = String(req.body.oldPassword);
-  //var newPass = String(req.body.newPassword);
 
-  User.find({
-    where: {
-      id: userId
-    }
-  })
-    .then(function(user) {
-res.send(200);
-
-        return user.save()
-          .then(respondWith(res, 200))
-          .catch(validationError(res));
-
-    });
-};*/
 
 /**
  * Get a single user
@@ -132,7 +113,6 @@ exports.changePassword = function(req, res, next) {
   var userId = req.user.id;
   var oldPass = String(req.body.oldPassword);
   var newPass = String(req.body.newPassword);
-
   User.find({
     where: {
       id: userId
@@ -148,6 +128,26 @@ exports.changePassword = function(req, res, next) {
         return res.send(403);
       }
     });
+};
+
+exports.changeInfo = function(req, res, next) {
+  var userId = req.user.id;
+  User.find({
+    where: {
+      id: userId
+    }
+  })
+    .then(function(user) {
+      if(user){
+        var updated = _.merge(user, req.body);
+        updated.updatedAt = new Date();
+        updated.save()
+         .then(respondWith(res, 200))
+         .catch(validationError(res));
+      } else{
+        res.send(401);
+      }
+    })
 };
 
 

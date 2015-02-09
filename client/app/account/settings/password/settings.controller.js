@@ -5,9 +5,9 @@
     .module('app.account')
     .controller('SettingsCtrl', SettingsCtrl);
 
-  SettingsCtrl.$inject = ['$scope', 'UserResource', 'Auth'];
+  SettingsCtrl.$inject = ['$scope', 'UserResource', 'common'];
 
-  function SettingsCtrl($scope, UserResource, Auth) {
+  function SettingsCtrl($scope, UserResource, common) {
       $scope.errors = {};
       $scope.$parent.seo = {
       pageTitle:'Set up your account',
@@ -18,7 +18,7 @@
       $scope.changePassword = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
-          Auth.changePassword($scope.user.oldPassword, $scope.user.newPassword)
+          common.Auth.changePassword($scope.user.oldPassword, $scope.user.newPassword)
             .then(function() {
               $scope.message = 'Password successfully changed.';
             })

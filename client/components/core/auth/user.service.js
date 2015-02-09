@@ -19,10 +19,10 @@
               id:'me'
             }
           },
-          changeUserInfo: {
+          changeInfo: {
             method: 'PUT',
             params: {
-              controller:'userInfo'
+              controller:'info'
             }
           }
         });

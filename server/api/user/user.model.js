@@ -90,7 +90,7 @@ module.exports = function(sequelize, DataTypes) {
       beforeUpdate: function(user, fields, fn) {
         if (user.changed('password')) {
           user.updatePassword(fn);
-        }
+        } else fn();
       }
     },
 
@@ -203,6 +203,7 @@ module.exports = function(sequelize, DataTypes) {
        * @api public
        */
       updatePassword: function(fn) {
+        console.log('ulazim!');
         // Handle new/update passwords
         if (this.password) {
           if (!validatePresenceOf(this.password) && authTypes.indexOf(this.provider) === -1) {
