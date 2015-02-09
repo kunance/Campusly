@@ -7,7 +7,7 @@
      * Angular modules
      */
     'ngCookies', 'ngResource', 'ngSanitize',
-    'ui.router', 'ui.bootstrap',, 'ngAnimate',
+    'ui.router', 'ui.bootstrap', 'ngAnimate',
     /*
      * Our reusable cross app code modules
      */

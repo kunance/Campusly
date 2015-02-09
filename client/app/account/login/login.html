@@ -1,11 +1,9 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
+<div ng-include="'components/layout/navbar/navbar.html'"></div>
 
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
       <h1>Login</h1>
-      <p>Accounts are reset on server restart from <code>server/config/seed.js</code>. Default account is <code>test@test.com</code> / <code>test</code></p>
-      <p>Admin account is <code>admin@admin.com</code> / <code>admin</code></p>
     </div>
     <div class="col-sm-12">
       <form class="form" name="form" ng-submit="login(form)" novalidate>
@@ -35,7 +33,8 @@
         <div>
           <a class="btn btn-facebook" href="" ng-click="loginOauth('facebook')"><i class="fa fa-facebook"></i> Connect with Facebook</a>
           <a class="btn btn-google-plus" href="" ng-click="loginOauth('google')"><i class="fa fa-google-plus"></i> Connect with Google+</a>
-          <a class="btn btn-twitter" href="" ng-click="loginOauth('twitter')"><i class="fa fa-twitter"></i> Connect with Twitter</a>
+          <a class="btn btn-linkedin" href="" ng-click="loginOauth('linkedin')"><i class="fa fa-linkedin"></i> Connect with Linkedin</a>
+          <!--<a class="btn btn-twitter" href="" ng-click="loginOauth('twitter')"><i class="fa fa-twitter"></i> Connect with Twitter</a>-->
         </div>
 
       </form>

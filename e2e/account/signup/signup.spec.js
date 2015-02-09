@@ -42,7 +42,7 @@ describe('Signup View', function() {
       UserModel.destroy().then(function() {
         page.signup(testUser);
 
-        var navbar = require('../../components/navbar/navbar.po');
+        var navbar = require('../../components/layout/navbar/navbar.po');
 
         expect(browser.getLocationAbsUrl()).to.eventually.equal(config.baseUrl + '/');
         expect(navbar.navbarAccountGreeting.getText()).to.eventually.equal('Hello ' + testUser.name);

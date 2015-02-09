@@ -1,8 +1,8 @@
 (function () {
   "use strict";
 
-  angular.module('RentedApp')
-    .factory('User', function ($resource) {
+  angular.module('app.core')
+    .factory('UserResource', function ($resource) {
       return $resource('/api/users/:id/:controller', {
           id: '@id'
         },
@@ -17,6 +17,12 @@
             method: 'GET',
             params: {
               id:'me'
+            }
+          },
+          changeUserInfo: {
+            method: 'PUT',
+            params: {
+              controller:'userInfo'
             }
           }
         });

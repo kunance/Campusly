@@ -16,7 +16,6 @@ if (config.seedDB) { require('./config/seed'); }
 
 // Setup server
 var app = express();
-app.use(require('prerender-node'));
 var server = require('http').createServer(app);
 var socketio = require('socket.io')(server, {
   serveClient: (config.env === 'production') ? false : true,
@@ -32,7 +31,6 @@ function startServer() {
     console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
   });
 }
-
 //sqldb.sequelize.sync()
 //  .then(startServer)
 //  .catch(function(err) {

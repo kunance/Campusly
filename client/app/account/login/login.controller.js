@@ -2,7 +2,7 @@
   "use strict";
 
   angular
-    .module('RentedApp')
+    .module('app.account')
     .controller('LoginCtrl', LoginCtrl);
 
   LoginCtrl.$inject = ['$scope', 'Auth', '$state', '$window'];
@@ -10,6 +10,12 @@
   function LoginCtrl($scope, Auth, $state, $window) {
       $scope.user = {};
       $scope.errors = {};
+
+    $scope.$parent.seo = {
+      pageTitle:'Please log in',
+      pageDescription:'place for logging in'
+    };
+    mixpanel.track("visited login view new");
 
       $scope.login = function(form) {
         $scope.submitted = true;

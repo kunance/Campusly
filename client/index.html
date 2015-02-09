@@ -3,16 +3,17 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<html ng-app="RentedApp">
+<html ng-app="RentedApp" ng-controller="PrerenderController">
   <head>
+    <script type="text/javascript" src="components/blocks/mixpanel/mixpanel.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="fragment" content="!">
     <base href="/">
-    <title>Rented co</title>
-    <meta name="description" content="">
-
     <meta name="viewport" content="width=device-width">
+    <meta name="fragment" content="!">
+    <!-- We define the SEO variables we want to dynamically update -->
+    <title>Rented co | {{ seo.pageTitle }}</title>
+    <meta name="description" content="{{ seo.pageDescription }}">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
@@ -27,7 +28,8 @@
       <link rel="stylesheet" href="app/admin/admin.css">
       <link rel="stylesheet" href="app/app.css">
       <link rel="stylesheet" href="app/main/main.css">
-      <link rel="stylesheet" href="components/modal/modal.css">
+      <link rel="stylesheet" href="components/layout/navbar/navbar.css">
+      <link rel="stylesheet" href="components/widgets/modal/modal.css">
       <!-- endinjector -->
     <!-- endbuild -->
   </head>
@@ -76,24 +78,29 @@
           <script src="app/app.js"></script>
           <script src="components/core/core.module.js"></script>
           <script src="components/widgets/widgets.module.js"></script>
+          <script src="components/layout/layout.module.js"></script>
+          <script src="app/account/account.module.js"></script>
 
           <!-- injector:js -->
-          <script src="app/account/account.js"></script>
+          <script src="app/account/account.routes.js"></script>
           <script src="app/account/login/login.controller.js"></script>
-          <script src="app/account/settings/settings.controller.js"></script>
+          <script src="app/account/settings/password/settings.controller.js"></script>
+          <script src="app/account/settings/user_info/user.info.controller.js"></script>
           <script src="app/account/signup/signup.controller.js"></script>
           <script src="app/admin/admin.controller.js"></script>
           <script src="app/admin/admin.js"></script>
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
-          <script src="components/auth/auth.service.js"></script>
-          <script src="components/auth/user.service.js"></script>
+          <script src="app/prerender.controller.js"></script>
+          <script src="components/blocks/socket/socket.service.js"></script>
+          <script src="components/core/auth/auth.service.js"></script>
+          <script src="components/core/auth/user.service.js"></script>
           <script src="components/core/common.js"></script>
-          <script src="components/modal/modal.service.js"></script>
-          <script src="components/mongoose-error/mongoose-error.directive.js"></script>
-          <script src="components/navbar/navbar.controller.js"></script>
-          <script src="components/socket/socket.service.js"></script>
+          <script src="components/layout/footer/footer.controller.js"></script>
+          <script src="components/layout/navbar/navbar.controller.js"></script>
           <script src="components/widgets/adress-autocomplete/adress-autocomplete.directive.js"></script>
+          <script src="components/widgets/modal/modal.service.js"></script>
+          <script src="components/widgets/mongoose-error/mongoose-error.directive.js"></script>
           <script src="components/widgets/widget.config.js"></script>
           <!-- endinjector -->
         <!-- endbuild -->

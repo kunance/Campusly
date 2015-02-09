@@ -2,13 +2,18 @@
   "use strict";
 
   angular
-    .module('RentedApp')
+    .module('app.account')
     .controller('SettingsCtrl', SettingsCtrl);
 
-  SettingsCtrl.$inject = ['$scope', 'User', 'Auth'];
+  SettingsCtrl.$inject = ['$scope', 'UserResource', 'Auth'];
 
-  function SettingsCtrl($scope, User, Auth) {
+  function SettingsCtrl($scope, UserResource, Auth) {
       $scope.errors = {};
+      $scope.$parent.seo = {
+      pageTitle:'Set up your account',
+      pageDescription:'Some description'
+    };
+    mixpanel.track("visited settings view new");
 
       $scope.changePassword = function(form) {
         $scope.submitted = true;

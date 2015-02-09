@@ -2,8 +2,18 @@
   "use strict";
 
   angular.module('RentedApp', [
+    /*
+     * Order is not important. Angular makes a
+     * pass to register all of the modules listed
+     */
     'app.core',
-    'app.widgets'
+    'app.widgets',
+
+    /*
+     * Feature areas
+     */
+    'app.layout',
+    'app.account'
   ])
     .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
       $urlRouterProvider

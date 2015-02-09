@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  angular.module('RentedApp')
+  angular.module('app.account')
     .config(function($stateProvider) {
       $stateProvider
         .state('login', {
@@ -29,8 +29,15 @@
         })
         .state('settings', {
           url: '/settings',
-          templateUrl: 'app/account/settings/settings.html',
+          templateUrl: 'app/account/settings/password/settings.html',
           controller: 'SettingsCtrl',
+          authenticate: true
+        })
+      .state('userInfo', {
+          url: '/userInfo',
+          templateUrl: 'app/account/settings/user_info/user.info.html',
+          controller: 'UserInfoCtrl',
+          controllerAs:'info',
           authenticate: true
         });
     })

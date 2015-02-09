@@ -12,7 +12,7 @@ exports.setup = function(User, config) {
       'facebookOAuthId': profile.id
     }})
       .then(function(user) {
-        if (!user) {
+        if (!user && profile.emails[0].value.match(/\.edu$/)) {
           user = User.build({
             firstname: profile.name.givenName,
             lastname: profile.name.familyName,

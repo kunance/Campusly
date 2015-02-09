@@ -1,8 +1,8 @@
 (function () {
   "use strict";
 
-  angular.module('RentedApp')
-    .factory('Auth', function Auth($http, User, $cookieStore, $q) {
+  angular.module('app.core')
+    .factory('Auth', function Auth($http, UserResource, $cookieStore, $q) {
       /**
        * Return a callback or noop function
        *
@@ -16,7 +16,7 @@
         currentUser = {};
 
       if ($cookieStore.get('token')) {
-        currentUser = User.get();
+        currentUser = UserResource.get();
       }
 
       return {
@@ -35,7 +35,7 @@
           })
             .then(function(res) {
               $cookieStore.put('token', res.data.token);
-              currentUser = User.get();
+              currentUser = UserResource.get();
               safeCb(callback)();
               return res.data;
             }, function(err) {
@@ -61,10 +61,10 @@
          * @return {Promise}
          */
         createUser: function(user, callback) {
-          return User.save(user,
+          return UserResource.save(user,
             function(data) {
               $cookieStore.put('token', data.token);
-              currentUser = User.get();
+              currentUser = UserResource.get();
               return safeCb(callback)(null, user);
             },
             function(err) {
@@ -72,6 +72,21 @@
               return safeCb(callback)(err);
             }.bind(this)).$promise;
         },
+
+
+        updateUser: function(user, callback) {
+          return UserResource.changeUserInfo({id: currentUser.id}, user,
+            function(usr) {
+              return safeCb(callback)(null, usr);
+            },
+            function(err) {
+             // this.logout();
+              return safeCb(callback)(err);
+            }).$promise;
+        },
+
+
+
 
         /**
          * Change password
@@ -82,7 +97,7 @@
          * @return {Promise}
          */
         changePassword: function(oldPassword, newPassword, callback) {
-          return User.changePassword({ id: currentUser.id }, {
+          return UserResource.changePassword({ id: currentUser.id }, {
             oldPassword: oldPassword,
             newPassword: newPassword
           }, function(user) {
@@ -91,6 +106,11 @@
             return safeCb(callback)(err);
           }).$promise;
         },
+
+
+
+
+
 
         /**
          * Gets all available info on a user

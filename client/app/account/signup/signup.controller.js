@@ -2,15 +2,21 @@
   "use strict";
 
   angular
-      .module('RentedApp')
+      .module('app.account')
       .controller('SignupCtrl', SignupCtrl);
 
-  SignupCtrl.$inject=['Auth', '$state', '$window','FileUploader'];
+  SignupCtrl.$inject=['$scope', 'Auth', '$state', '$window','FileUploader'];
 
-  function SignupCtrl(Auth, $state, $window, FileUploader) {
+  function SignupCtrl($scope, Auth, $state, $window, FileUploader) {
     var vm = this;
     vm.user = {};
     vm.errors = {};
+
+    $scope.$parent.seo = {
+      pageTitle:'Please sign in',
+      pageDescription:'place for signing in'
+    };
+    mixpanel.track("visited signup view new");
 
     vm.uploader = new FileUploader();
     vm.uploader.url = '/api/images';

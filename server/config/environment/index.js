@@ -42,15 +42,15 @@ var all = {
   },
 
   facebook: {
-    clientID:    /* process.env.FACEBOOK_ID ||*/ '1482591365325802',
-    clientSecret: /*process.env.FACEBOOK_SECRET || */'693245cb35eb21919c4ec1c6d567c0c6',
+    clientID:     process.env.FACEBOOK_ID || '1482591365325802',
+    clientSecret: process.env.FACEBOOK_SECRET || '693245cb35eb21919c4ec1c6d567c0c6',
     callbackURL: (process.env.DOMAIN || '') + '/auth/facebook/callback'
   },
 
   twitter: {
     clientID:     process.env.TWITTER_ID || 'id',
     clientSecret: process.env.TWITTER_SECRET || 'secret',
-    callbackURL: (process.env.DOMAIN || '') + '/auth/twitter/callback'
+    callbackURL:  (process.env.DOMAIN || '') + '/auth/twitter/callback'
   },
 
   google: {
@@ -58,11 +58,23 @@ var all = {
     clientSecret: process.env.GOOGLE_SECRET || 'bXICpUtdjsE0y9n3N9-HRCjk',
     callbackURL: (process.env.DOMAIN || '') + '/auth/google/callback'
   },
+
+  linkedin: {
+    consumerKey:     process.env.LINKEDIN_ID || 'empty',
+    consumerSecret:  process.env.LINKEDIN_SECRET || 'empty',
+    callbackURL:    (process.env.DOMAIN || '') + '/auth/linkedin/callback'
+  },
   aws_s3: {
     key: 'AKIAJ5YZIB24A4YS4GBA',
     secret: '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',
     bucket: 'rented.user.pictures',
     region: 'us-west-2'
+  },
+  prerender:{
+    Token: 'HpLWLFxfanDOCk8Ie2rO'
+  },
+  mandrill:{
+    APIkey: 'YvtcBLhzZG0bDa8C9rejHw'
   }
 };
 

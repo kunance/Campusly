@@ -6,6 +6,7 @@ var User = sqldb.model('rented.rentedUser');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var mandrill = require('../../components/mandrill');
 
 var validationError = function(res, statusCode) {
   statusCode = statusCode || 422;
@@ -71,6 +72,26 @@ exports.create = function(req, res, next) {
     })
     .catch(validationError(res));
 };
+/*
+exports.changeUserInfo = function(req, res, next) {
+  var userId = req.user.id;
+  //var oldPass = String(req.body.oldPassword);
+  //var newPass = String(req.body.newPassword);
+
+  User.find({
+    where: {
+      id: userId
+    }
+  })
+    .then(function(user) {
+res.send(200);
+
+        return user.save()
+          .then(respondWith(res, 200))
+          .catch(validationError(res));
+
+    });
+};*/
 
 /**
  * Get a single user
@@ -130,35 +151,6 @@ exports.changePassword = function(req, res, next) {
 };
 
 
-/**/
-exports.changeUserDetails = function(req, res, next) {
-  var userId = req.user.id;
-  console.log('********************', req.user);
-  if (req.user.role !== 'admin' && userId != req.params.id.toString())
-    return res.send(403);
-
-  User.findOne({id: userId}).then(function (user) {
-    var updated = _.merge(user, req.body);
-    //  updated.addresses = req.body.addresses; //workaround -> merge function has a bug when merging addresses array
-    updated.save().then(function (err, usr) {
-      if (err) {
-        return handleError(res, err);
-      }
-      if (usr.salt) {
-        usr.salt = undefined;
-      }
-      if (usr.hashedPassword) {
-        usr.hashedPassword = undefined;
-      }
-      if (usr.__v) {
-        usr.__v = undefined;
-      }
-      return res.json(usr);
-    })
-  });
-}
-
-
 /**
  * Get my info
  */
@@ -170,13 +162,14 @@ exports.me = function(req, res, next) {
     },
     attributes: [
       'id',
+      'middlename',
       'firstname',
       'email',
-      'role',
-      'provider',
+      'phone',
       'lastname',
-      'username'
-
+      'username',
+      'role',
+      'provider'
     ]
   })
     .then(function(user) { // don't ever give out the password or salt

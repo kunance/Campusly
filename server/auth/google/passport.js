@@ -1,5 +1,6 @@
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var mandrill = require('../../components/mandrill');
 
 exports.setup = function(User, config) {
   passport.use(new GoogleStrategy({
@@ -28,6 +29,7 @@ exports.setup = function(User, config) {
           });
           user.save()
             .then(function(user) {
+              mandrill.welcome(user);
               return done(null, user);
             })
             .catch(function(err) {
