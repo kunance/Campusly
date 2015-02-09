@@ -134,7 +134,7 @@ DROP TABLE IF EXISTS `PET`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `PET` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `userId` int(10) unsigned NOT NULL,
   `type` enum('cat','dog','bird','fish','other') NOT NULL,
   `breed` varchar(45) NOT NULL,
@@ -228,7 +228,7 @@ DROP TABLE IF EXISTS `LOOKING`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `LOOKING` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `maxMonthlyRent` int(5) NOT NULL,
   `utilitiesIncluded` tinyint(1)  NOT NULL,
   `area` varchar(30)  COMMENT 'an area from a fixed list of cities or regions',
@@ -264,7 +264,7 @@ DROP TABLE IF EXISTS `PROPERTY_IMAGES`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `PROPERTY_IMAGES` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `listingId` int(10) unsigned DEFAULT NULL COMMENT 'listing image may not exist for each property image',
   `propertyId` int(10) unsigned NOT NULL COMMENT 'if we decide to have listing images different from property images then create listing image table',
   `location` varchar(255) NOT NULL COMMENT 'location on storage like S3 or cloudfront',
@@ -287,7 +287,7 @@ DROP TABLE IF EXISTS `PROPERTY_LEASE_DEFAULTS`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `PROPERTY_LEASE_DEFAULTS` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `propertyId` int(10) unsigned NOT NULL,
   `ownerId` int(10) unsigned NOT NULL,
   `qtyDogsAllowed` int(2) unsigned NOT NULL DEFAULT '0',
@@ -364,7 +364,7 @@ CREATE TABLE `PROPERTY_OWNERSHIP` (
   `startDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `endDate` datetime NOT NULL,
   `propertyFK` int(10) unsigned NOT NULL,
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime DEFAULT NULL,
   `deletedAt` datetime DEFAULT NULL,
@@ -384,7 +384,7 @@ DROP TABLE IF EXISTS `RENTAL_APPLICANT`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `RENTAL_APPLICANT` (
   `userId` int(10) unsigned NOT NULL,
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `rentalAppId` int(10) unsigned NOT NULL,
   `shareCredit` tinyint(1) DEFAULT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -406,7 +406,7 @@ DROP TABLE IF EXISTS `RENTAL_APPLICATION`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `RENTAL_APPLICATION` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `propertyId` int(10) unsigned NOT NULL,
   `preferredLeaseLength` int(3) unsigned DEFAULT NULL,
   `preferredMoveIn` datetime NOT NULL,
@@ -454,7 +454,7 @@ CREATE TABLE `RENTED_USER` (
   `updatedAt` datetime DEFAULT NULL,
   `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -466,7 +466,7 @@ DROP TABLE IF EXISTS `USER_EDUCATION`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `USER_EDUCATION` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `userId` int(10) unsigned NOT NULL,
   `educationCenterName` varchar(45) NOT NULL,
   `type` enum('university','trade','military') DEFAULT 'university',
@@ -493,7 +493,7 @@ DROP TABLE IF EXISTS `USER_FINANCIAL`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `USER_FINANCIAL` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `userId` int(10) unsigned NOT NULL,
   `startDate` datetime NOT NULL,
   `endDate` datetime DEFAULT NULL,
@@ -518,7 +518,7 @@ DROP TABLE IF EXISTS `USER_OCCUPATION`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `USER_OCCUPATION` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `role` varchar(45) NOT NULL,
   `company` varchar(45) NOT NULL,
   `start` datetime NOT NULL,
@@ -542,7 +542,7 @@ DROP TABLE IF EXISTS `USER_RECOMMENDATION`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `USER_RECOMMENDATION` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `recommendedId` int(10) unsigned NOT NULL,
   `recommendorId` int(10) unsigned NOT NULL,
   `recommendedApproved` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -566,7 +566,7 @@ DROP TABLE IF EXISTS `USER_REFERENCE`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `USER_REFERENCE` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `userId` int(10) unsigned NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone` int(10) NOT NULL COMMENT 'supporting only US number only',
@@ -591,7 +591,7 @@ DROP TABLE IF EXISTS `USER_VEHICLE`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `USER_VEHICLE` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `year` int(10) unsigned NOT NULL,
   `make` varchar(45) NOT NULL,
   `model` varchar(45) NOT NULL,
@@ -615,7 +615,7 @@ DROP TABLE IF EXISTS `USER_COSIGNER`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `USER_COSIGNER` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `cosingeeId` int(10) unsigned NOT NULL,
   `cosginerId` int(10) unsigned NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -637,7 +637,7 @@ DROP TABLE IF EXISTS `UNIVERSITY`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `UNIVERSITY` (
-   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+   `id` int(10) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `academicYearType` enum('quarter', 'semester') DEFAULT 'semester',
   `streetNumeric` int(5) NOT NULL,
@@ -663,9 +663,9 @@ DROP TABLE IF EXISTS `UNIVERSITY_CALENDER_QUATER`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `UNIVERSITY_CALENDER_QUATER` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `universityId` int(10) unsigned NOT NULL,
-  `year` int(4) NOT NULL,
+  `year` varchar(255) NOT NULL,
   `fallQuaterStartDate`  datetime NOT NULL,
   `fallQuaterEndDate`  datetime NOT NULL,
   `winterQuaterStartDate`  datetime NOT NULL,
@@ -691,9 +691,9 @@ DROP TABLE IF EXISTS `UNIVERSITY_CALENDER_SEMESTER`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `UNIVERSITY_CALENDER_SEMESTER` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `universityId` int(10) unsigned NOT NULL,
-  `year` int(4) NOT NULL,
+  `year` varchar(255) NOT NULL,
   `fallSemesterStartDate`  datetime NOT NULL,
   `fallSemesterEndDate`  datetime NOT NULL,
   `springSemesterStartDate`  datetime NOT NULL,
@@ -717,7 +717,7 @@ DROP TABLE IF EXISTS `PAYMENT`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `PAYMENT` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `payerId` int(10) unsigned NOT NULL,
   `payeeId` int(10) unsigned NOT NULL,
   `dollarAmount` float(5,2),
@@ -744,7 +744,7 @@ DROP TABLE IF EXISTS `ROOMMATE`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ROOMMATE` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `userId` int(10) unsigned NOT NULL,
   `roommateId` int(10) unsigned NOT NULL,
   `fromDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -767,7 +767,7 @@ DROP TABLE IF EXISTS `FRIEND`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `FRIEND` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `userId` int(10) unsigned NOT NULL,
   `friendId` int(10) unsigned NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -789,7 +789,7 @@ DROP TABLE IF EXISTS `APARTMENT_COMPLEX`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `APARTMENT_COMPLEX` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `city` varchar(30) NOT NULL COMMENT 'longest city name in US is 22',
   `state` varchar(2) NOT NULL,
@@ -817,7 +817,7 @@ DROP TABLE IF EXISTS `APARTMENT_COMPLEX_IMAGE`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `APARTMENT_COMPLEX_IMAGE` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `complexId` int(10) unsigned NOT NULL,
   `location` varchar(255) NOT NULL COMMENT 'location on storage like S3 or cloudfront',
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -837,7 +837,7 @@ DROP TABLE IF EXISTS `APARTMENT_COMPLEX_TRANSPORTATION`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `APARTMENT_COMPLEX_TRANSPORTATION` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `complexId` int(10) unsigned NOT NULL,
   `shuttleRoute` varchar(255) NOT NULL,
   `busLine` int(10) unsigned NOT NULL,
@@ -856,7 +856,7 @@ DROP TABLE IF EXISTS `APARTMENT_COMPLEX_FLOOR_PLAN`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `APARTMENT_COMPLEX_FLOOR_PLAN` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `complexId` int(10) unsigned NOT NULL,
   `bedrooms` int(1) unsigned NOT NULL,
   `bathrooms` int(1) unsigned NOT NULL DEFAULT '1',
