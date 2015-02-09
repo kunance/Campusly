@@ -1,0 +1,214 @@
+<div class="header-shadow dashboard">
+
+    <div class="container">
+
+        <div class="row top-buffer-lg">
+            <div class="col-sm-6 text-center center">
+                <h1>My Dashboard</h1>
+                <h2>{{time | date:'MMMM dd, yyyy hh:mm'}} {{ time | date:'a' | lowercase }}</h2>
+            </div>
+        </div>
+
+        <div class="row vertical-buffer">
+            <div class="col-sm-4">
+                <div class="row">
+                  <div class="col-sm-4 nopad-right" style="padding-left: 30px;">
+                     <img ng-src="{{profile.picture || 'assets/img/avatar.png'}}" class="img-circle img-responsive">
+                  </div>
+                  <div class="col-sm-8">
+                    <h4 style="font-size: 24px; font-weight: bold;">{{profile.firstName}} {{profile.lastName}}</h4>
+                    <p>I have {{activeProperties}} unit(s) for rent.</p>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-offset-1 col-sm-7">
+                <div class="row">
+                    <div class="col-sm-offset-3 col-sm-3 counter">
+                        <p class="counter-val">{{offersNo}}</p>
+                        <p class="counter-desc">Offers</p>
+                    </div>
+                    <div class="col-sm-3 counter">
+                        <p class="counter-val">{{activeProperties}}</p>
+                        <p class="counter-desc">Active Properties</p>
+                    </div>
+                    <div class="col-sm-3 counter">
+                        <p class="counter-val">{{monthlyIncome | rentCurrency}}</p>
+                        <p class="counter-desc">Monthly Income</p>
+                    </div>
+                    <!--div class="col-sm-3 counter">
+                        <p class="counter-val">14 days</p>
+                        <p class="counter-desc">Left for...</p>
+                    </div-->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container dashboard">
+    <h5 class="top-buffer">Recent Offers</h5>
+
+    <div class="row properties">
+        <div class="col-sm-3" ng-repeat="property in properties | loadProperty:'':'lazy'" ng-show="property.address">
+            <ng-include src="'owner/partials/property-teaser.tpl.html'"></ng-include>
+            <a href="#/property/{{property.$id}}" class="btn btn-rented">View Property</a>
+            <a href="#/owners/properties/{{property.$id}}/status" class="btn btn-rented">View Offers</a>
+        </div>
+    </div>
+
+    <!-- Hiding this block
+    Placeholder till we get content
+
+    <div class="row" style="margin-top: 40px">
+        <div class="col-sm-9">
+           <h5 class="top-buffer">Savings</h5>
+           <div class="row savings">
+            <div class="col-sm-12">
+               <img src="assets/img/savings.png">
+            </div>
+           </div>
+        </div>
+
+        <div class="col-sm-3 inbox">
+           <h5>Tenants</h5>
+
+               
+           <div class="row message top-buffer">
+                <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-4 nopad-right">
+                         <img pl-holder="holder.js/60x60" class="img-circle">
+                      </div>
+                      <div class="col-sm-8 nopad-left">
+                        <p style="color: #6c757e">Don Johnson</p>
+                        <p style="color: #9d9d9d">San Francisco</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>Can you please send an electrician...<a style="color: inherit; font-weight: bold;" href="#">Read More</a></p>
+                        </div>
+                    </div>
+                </div>
+           </div>
+
+           <div class="row message top-buffer">
+                <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-4 nopad-right">
+                         <img pl-holder="holder.js/60x60" class="img-circle">
+                      </div>
+                      <div class="col-sm-8 nopad-left">
+                        <p style="color: #6c757e">Jackie Chan</p>
+                        <p style="color: #9d9d9d">San Jose</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>Our toilet is leaking, can we...<a style="color: inherit; font-weight: bold;" href="#">Read More</a></p>
+                        </div>
+                    </div>
+                </div>
+           </div>
+
+           <div class="row message top-buffer">
+                <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-4 nopad-right">
+                         <img pl-holder="holder.js/60x60" class="img-circle">
+                      </div>
+                      <div class="col-sm-8 nopad-left">
+                        <p style="color: #6c757e">Taylor Swift</p>
+                        <p style="color: #9d9d9d">Berkeley</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>Can we repaint our living room...<a style="color: inherit; font-weight: bold;" href="#">Read More</a></p>
+                        </div>
+                    </div>
+                </div>
+           </div>
+
+
+        </div>
+    </div> -->
+
+    <div class="row top-buffer">
+        <!-- Hiding this block, placeholder till we get content
+        <div class="col-sm-9">
+           <h5>Expenses</h5>
+
+           <div class="row expenses">
+              <div class="col-sm-3">
+                <div ng-repeat="progress in [expenses.upcomingVacancies]" ng-include="'partials/circular-bar.tpl.html'"></div>
+              </div>
+              <div class="col-sm-3">
+                <div ng-repeat="progress in [expenses.rentsPaid]" ng-include="'partials/circular-bar.tpl.html'"></div>
+              </div>
+              <div class="col-sm-3">
+                <div ng-repeat="progress in [expenses.expenseRatio]" ng-include="'partials/circular-bar.tpl.html'"></div>
+              </div>
+              <div class="col-sm-3">
+                <div ng-repeat="progress in [expenses.occupancyRate]" ng-include="'partials/circular-bar.tpl.html'"></div>
+              </div>
+           </div>
+           <div class="row expenses">
+              <div class="col-sm-3">
+                 <p>Upcoming Vacancies</p>
+              </div>
+              <div class="col-sm-3">
+                 <p>Rents Paid</p>
+              </div>
+              <div class="col-sm-3">
+                 <p>Expense Ratio</p>
+              </div>
+              <div class="col-sm-3">
+                 <p>Occupancy Rate</p>
+              </div>
+           </div>
+        </div> -->
+        <div class="col-sm-3 col-sm-offset-9 calendar">
+           <h5>Calendar</h5>
+           <div class="row">
+             <div id="mini-clndr" class="col-sm-12">
+             <script id="mini-clndr-template" type="text/template">
+
+            <div class="controls">
+              <div class="clndr-previous-button">&lsaquo;</div><div class="month"><%= month %> <%= year %></div><div class="clndr-next-button">&rsaquo;</div>
+            </div>
+
+            <div class="days-container">
+              <div class="days">
+                <div class="headers">
+                  <% _.each(daysOfTheWeek, function(day) { %><div class="day-header"><%= day %></div><% }); %>
+                </div>
+                <% _.each(days, function(day) { %><div class="<%= day.classes %>" id="<%= day.id %>"><%= day.day %></div><% }); %>
+              </div>
+              <div class="events">
+                <div class="headers">
+                  <div class="x-button">x</div>
+                  <div class="event-header">EVENTS</div>
+                </div>
+                <div class="events-list">
+                  <% _.each(eventsThisMonth, function(event) { %>
+                    <div class="event">
+                      <a href="<%= event.url %>"><%= moment(event.date).format('MMMM Do') %>: <%= event.title %></a>
+                    </div>
+                  <% }); %>
+                </div>
+              </div>
+            </div>
+
+          </script>
+             </div>
+           </div>
+        </div>
+    </div>
+
+</div>
+<div ng-repeat="property in props | loadProperty:'':'lazy'" style="display: none;">
+{{intercept(property)}}
+</div>

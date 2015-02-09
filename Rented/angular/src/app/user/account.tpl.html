@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="block-content block-content-small-padding">
+        <div class="block-content-inner">
+            <ng-include src="'user/partials/profile.tpl.html'"></ng-include>
+            <hr/>
+            <ng-include src="'user/partials/references.tpl.html'"></ng-include>
+            <div ng-show="properties.length>0">
+            <hr/>
+            <ng-include src="'user/partials/bidhistory.tpl.html'"></ng-include>
+            </div>
+            <!--<div class="col-sm-12 col-md-4">-->
+            <!--<fieldset>-->
+            <!--<legend>Change Email</legend>-->
+            <!--<p class="error" ng-show="emailerr">{{emailerr}}</p>-->
+            <!--<p class="good" ng-show="emailmsg">{{emailmsg}}</p>-->
+            <!--<div class="form-group">-->
+            <!--<label for="newEmailField">New Email</label>-->
+            <!--<input type="email" ng-keypress="reset()" ng-model="newemail" class="form-control" id="newEmailField" name="newEmail"/>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+            <!--<label for="passField">Password</label>-->
+            <!--<input type="password" ng-keypress="reset()" ng-model="pass" class="form-control" id="passField" name="pass"/>-->
+            <!--</div>-->
+            <!--<button ng-click="updateEmail()" class="btn btn-block btn-primary btn-inversed">update email</button>-->
+            <!--</fieldset>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>

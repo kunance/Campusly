@@ -1,0 +1,19 @@
+{
+    "name": "rented.co",
+    "description": "Rent Your Way",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "express": "3.x"
+    },
+    "devDependencies": {
+        "supervisor": "~0.4.1",
+        "grunt": "~0.4",
+        "grunt-contrib-jshint": "~0.2.0",
+        "grunt-contrib-nodeunit": "~0.1.2",
+        "grunt-bump": "0.0.6"
+    }
+}

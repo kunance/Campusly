@@ -1,0 +1,10 @@
+<div style="min-height: 234px;">
+<img ng-src="{{property.pictures[0]}}" class="img-responsive">
+</div>
+<p><strong>Number of offers:</strong> {{property.bids.length}}</p>
+<p>
+    <strong ng-hide="property.bestOffer.accepted">Best offer:</strong> 
+    <strong ng-show="property.bestOffer.accepted">Accepted offer:</strong> 
+    {{property.bestOffer.rentAmount | rentCurrency | nvl }}
+</p>
+<p><strong>Move In Date:</strong> {{property.bestOffer.moveInDate | date:'MMM dd' | nvl}}</p>

@@ -1,0 +1,5 @@
+{
+    "firebase": "burning-fire-386",
+    "public": "dist",
+    "rules": "config/security-rules.json"
+}

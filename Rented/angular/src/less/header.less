@@ -1,0 +1,132 @@
+#main {
+  padding-top: @navbar-height;
+}
+
+#header-wrapper {
+
+    .top-banner-channel {
+        margin-top: @navbar-height;
+        margin-bottom: 0px;
+    }
+
+    .navbar-inverse {
+
+        background-color: @gray-darker;
+        border-width: 0 0 0 0;        
+        font-size: 14px;
+
+        @media (min-width: @screen-sm-min) {
+           background-color: @brand-primary;
+        }
+
+        .navbar-nav > li > a.active {
+            color: @brand-primary;
+        }
+
+        .navbar-header {
+            background-color: @gray-darker;
+
+            @media (min-width: @screen-sm-min) {
+               background-color: @brand-primary;
+            }
+        }
+
+        .navbar-toggle {
+            background-color: @gray-darker;
+            color: @gray-darker;
+            margin-right: 15px;
+            border: 0px;
+        }
+
+        .nav-brand {
+            display: block;
+            background-image: url('img/logo-responsive.png');
+            background-repeat: no-repeat;
+            width: 140px;
+            height: 34px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            margin-left: 15px;
+
+            @media (min-width: @screen-sm-min) {
+               background-image: url('img/logo.png');
+               margin-left: 0px;
+            }
+
+            @media (min-width: @screen-md-min) {
+               width: 170px;
+            }
+        }
+
+        a.nav-user {
+            display: block;
+            overflow-y: hidden;
+            width: 150px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding-top: 18px;
+            padding-bottom: 12px;
+            padding-left: 0px;
+            padding-right: 0px;
+
+            @media (min-width: @screen-lg-min) {
+               width: auto;
+            }
+        }
+
+    }
+
+    .navbar-collapse {
+        background-color: #000000;
+    }
+
+    .header-black-hide {
+       display: none;
+       position: fixed;
+       background-color: #000000;
+       height: @navbar-height;
+       width: 400px;
+       top: 0px;
+       right: 0px;
+
+       @media (min-width: @screen-wd-min) {
+          width: 800px;
+       }
+    }
+
+    @media (min-width: @screen-md-min) {
+        ul.nav.primary {
+
+            li:first-child a {
+              margin-left: 33px;
+            }
+
+            li:nth-child(2) a {
+              margin-left: 55px;
+            }
+
+            li:nth-child(3) a {
+              margin-left: 55px;
+            }
+
+        }
+
+        ul.nav.secondary li:first-child a {
+          margin-right: 35px;
+        }
+    }
+
+    @media (min-width: @screen-sm-min) {
+
+        .header-black-hide {
+             display: block;
+        }
+
+        .navbar-collapse {
+            margin-bottom: 0px;
+        }
+
+    }
+
+}
+
