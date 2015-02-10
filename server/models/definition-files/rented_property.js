@@ -18,8 +18,8 @@ var orm     = require('model\index.js'),
 module.exports = model;
 
 // Some utility methods:
-util.getRelation("inviteeViewpropertyIds").onDelete = 'CASCADE'; 
-util.getAttribute("id").comment = 'This is the comment'; 
+util.getRelation("inviteeViewpropertyIds").onDelete = 'CASCADE';
+util.getAttribute("id").comment = 'This is the comment';
 
 ------------------------------------------------------------------------------------*/
 var orm = require('../index.js'),
@@ -84,6 +84,14 @@ module.exports = {
         "bedrooms": {
             type: Seq.BIGINT,
             field: "bedrooms"
+        },
+      "latitude": {
+            type: Seq.BIGINT,
+            field: "latitude"
+        },
+      "longitude": {
+            type: Seq.BIGINT,
+            field: "longitude"
         },
         "bathrooms": {
             type: Seq.BIGINT,

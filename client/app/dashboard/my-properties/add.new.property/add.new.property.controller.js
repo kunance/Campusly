@@ -32,6 +32,8 @@
       //});
       $http.post('/api/properties',{
         streetAddress: input.street,
+        latitude: input.location.latitude,
+        longitude: input.location.longitude,
         streetNumeric: input.number,
         city: input.city,
         state: input.country_short,
