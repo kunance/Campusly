@@ -131,7 +131,7 @@ exports.changePassword = function(req, res, next) {
 };
 
 exports.changeInfo = function(req, res, next) {
-  var userId = req.user.id;
+  var userId = req.user.id
   User.find({
     where: {
       id: userId
@@ -169,7 +169,8 @@ exports.me = function(req, res, next) {
       'lastname',
       'username',
       'role',
-      'provider'
+      'provider',
+      'userImage'
     ]
   })
     .then(function(user) { // don't ever give out the password or salt

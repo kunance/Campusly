@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Add new property</h1>
+    </div>
+    <div class="col-sm-12">
+      <label for="streetAddress">Address</label>
+      <input type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="addNew.property.streetAddress" ng-model="addNew.property.streetAddress.street"/>
+
+      <label for="streetNumber">Number</label>
+      <input type="text" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="addNew.property.streetAddress.number"/>
+
+      <label for="country">Country</label>
+      <input type="text" id="country" name="country" class="form-control"  placeholder="country" ng-model="addNew.property.streetAddress.country_short"/>
+
+      <label for="city">City</label>
+      <input type="text" id="city" name="city" class="form-control"  placeholder="city" ng-model="addNew.property.streetAddress.city"/>
+
+      <label for="zip">Zip code</label>
+      <input type="text" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="addNew.property.streetAddress.zip"/>
+
+      <label for="picture">Upload picture</label>
+      <input name="picture" type="file" nv-file-select uploader="addNew.uploader" id="picture" />
+      <ul>
+        <li ng-repeat="item in addNew.uploader.queue">
+          Name: <span ng-bind="item.file.name"></span><br/>
+          <button ng-click="item.upload()">upload</button>
+        </li>
+      </ul>
+      <br/>
+      <button class="btn btn-primary" ng-click="addNew.addNewProperty(addNew.property.streetAddress)">Save new property</button>
+
+    </div>
+
+
+
+  </div>
+  <pre>{{addNew.property |json}}</pre>
+</div>

@@ -27,19 +27,13 @@
           controller: 'SignupCtrl',
           controllerAs:'signup'
         })
-        .state('password', {
-          url: '/password',
-          templateUrl: 'app/account/settings/password/settings.html',
-          controller: 'SettingsCtrl',
-          authenticate: true
-        })
-      .state('userInfo', {
-          url: '/userInfo',
-          templateUrl: 'app/account/settings/user_info/user.info.html',
-          controller: 'UserInfoCtrl',
-          controllerAs:'info',
-          authenticate: true
+        .state('settings', {
+          url: '/settings',
+          templateUrl: 'app/account/settings/settings.html',
+          controller: 'SettingsCtrl'
+        //  controllerAs:'settings'
         });
+
     })
     .run(function($rootScope) {
       $rootScope.$on('$stateChangeStart', function(event, next, nextParams, current) {

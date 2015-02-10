@@ -18,20 +18,24 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+        <li ng-show="isLoggedIn()" ui-sref-active="active"><a ui-sref="myProperties">My properties</a></li>
+       <li ng-hide="!isLoggedIn()"> <img class="img-circle" ng-show="getCurrentUser().userImage" ng-src="/api/images{{getCurrentUser().userImage}}" style="height: 50px"/></li>
+       <li ng-hide="!isLoggedIn()"> <img  class="img-circle" ng-show="!getCurrentUser().userImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" style="height: 50px"/></li>
         <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Sign up</a></li>
         <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Login</a></li>
         <li ng-show="isLoggedIn()"><p class="navbar-text">Hello <strong>{{getCurrentUser().username}}</strong></p></li>
-        <li dropdown on-toggle="toggled(open)" ng-show="isLoggedIn()" ui-sref-active="active">
-          <a dropdown-toggle>
-            <i class="glyphicon glyphicon-cog"></i> Settings
-          </a>
-          <ul class="dropdown-menu">
-          <li><a ui-sref="password"><i class="fa fa-key"></i> Change password</a></li>
-          <li><a ui-sref="userInfo"><i class="fa fa-user"></i> Change user info</a></li>
-          <li><a ui-sref="paymentDetails"><i class="fa fa-credit-card"></i> Change payment details</a></li>
-        </ul>
-        </li>
-        <li ng-show="isLoggedIn()"><a ui-sref="logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+        <!--<li dropdown on-toggle="toggled(open)" ng-show="isLoggedIn()" ui-sref-active="active">-->
+          <!--<a dropdown-toggle>-->
+            <!--<i class="glyphicon glyphicon-cog"></i> Settings-->
+          <!--</a>-->
+          <!--<ul class="dropdown-menu">-->
+          <!--<li><a ui-sref="password"><i class="fa fa-key"></i> Change password</a></li>-->
+          <!--<li><a ui-sref="userInfo"><i class="fa fa-user"></i> Change user info</a></li>-->
+          <!--<li><a ui-sref="paymentDetails"><i class="fa fa-credit-card"></i> Change payment details</a></li>-->
+        <!--</ul>-->
+        <!--</li>-->
+        <li ng-show="isLoggedIn()" ui-sref-active="active"><a ui-sref="settings"><i class="glyphicon glyphicon-cog"></i> Settings</a></li>
+        <li ng-show="isLoggedIn()"  ui-sref-active="active"><a ui-sref="logout"><i class="fa fa-sign-out"></i> Logout</a></li>
       </ul>
     </div>
   </div>

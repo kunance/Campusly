@@ -5,7 +5,7 @@
   var fs = require('fs');
   var async = require('async');
   var config = require('../../config/environment');
-
+  var userinfo = require('../user/user.controller');
   // S3 Connector
   var connect = function() {
     return knox.createClient(config.aws_s3);
@@ -25,11 +25,11 @@
   var client = connect();
 
   exp.upload = function(req,res) {
-      var item = req.files.file,
+    var item = req.files.file,
       localPath = item.path,
       s3Path = '/' + item.name;
-
     async.waterfall([
+
       // Upload the file to S3
       function(callback) {
         client.putFile(

@@ -12,6 +12,7 @@
     /*
      * Feature areas
      */
+    'app.dashboard',
     'app.layout',
     'app.account'
   ])

@@ -2,7 +2,7 @@
   "use strict";
 
   angular.module('app.core')
-    .factory('Auth', function Auth($http, UserResource, $cookieStore, $q) {
+    .factory('Auth', function Auth($http, UserResource, $cookieStore, $q, PropertyResource) {
       /**
        * Return a callback or noop function
        *
@@ -73,6 +73,16 @@
             }.bind(this)).$promise;
         },
 
+        createProperty: function(property, callback) {
+          return PropertyResource.save(property,
+            function(data) {
+              return safeCb(callback)(null, property);
+            },
+            function(err) {
+            //  this.logout();
+              return safeCb(callback)(err);
+            }).$promise;
+        },
 
         updateUser: function(user, callback) {
           return UserResource.changeInfo({id: currentUser.id}, user,

@@ -3,17 +3,17 @@
 
   angular
     .module('app.account')
-    .controller('SettingsCtrl', SettingsCtrl);
+    .controller('PasswordCtrl', PasswordCtrl);
 
-  SettingsCtrl.$inject = ['$scope', 'UserResource', 'common'];
+  PasswordCtrl.$inject = ['$scope', 'UserResource', 'common'];
 
-  function SettingsCtrl($scope, UserResource, common) {
+  function PasswordCtrl($scope, UserResource, common) {
       $scope.errors = {};
       $scope.$parent.seo = {
       pageTitle:'Set up your account',
       pageDescription:'Some description'
     };
-    mixpanel.track("visited settings view new");
+  //  mixpanel.track("visited settings view new");
 
       $scope.changePassword = function(form) {
         $scope.submitted = true;

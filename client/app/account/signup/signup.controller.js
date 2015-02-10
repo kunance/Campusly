@@ -5,9 +5,9 @@
       .module('app.account')
       .controller('SignupCtrl', SignupCtrl);
 
-  SignupCtrl.$inject=['$scope', 'common', '$state', '$window','FileUploader'];
+  SignupCtrl.$inject=['$scope', 'common', '$state', '$window'];
 
-  function SignupCtrl($scope, common, $state, $window, FileUploader) {
+  function SignupCtrl($scope, common, $state, $window) {
     var vm = this;
     vm.user = {};
     vm.errors = {};
@@ -18,11 +18,7 @@
     };
     mixpanel.track("visited signup view new");
 
-    vm.uploader = new FileUploader();
-    vm.uploader.url = '/api/images';
-    vm.uploader.onSuccessItem = function (itm,res,status,header) {
-     vm.user.picUrl = res.saved;
-    };
+
 
     vm.register = function (form) {
       vm.submitted = true;
