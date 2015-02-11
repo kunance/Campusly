@@ -13,6 +13,10 @@ module.exports = function(app) {
  // app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
 
+  app.use('/api/users/:id/vehicles', require('./api/user/vehicle'));
+  app.use('/api/users/:id/pets', require('./api/user/pet'));
+  app.use('/api/users/:id/addresses', require('./api/user/address'));
+
   app.use('/api/properties', require('./api/properties'));
   //just temporary route
   app.use('/api/images', require('./api/images'));

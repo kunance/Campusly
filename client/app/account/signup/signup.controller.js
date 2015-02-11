@@ -16,7 +16,7 @@
       pageTitle:'Please sign in',
       pageDescription:'place for signing in'
     };
-    mixpanel.track("visited signup view new");
+    mixpanel.track("sign up");
 
 
 

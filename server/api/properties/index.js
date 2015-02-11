@@ -11,7 +11,7 @@ var router = express.Router();
 //router.get('/me', controller.me);
 //router.put('/:id/password', controller.changePassword);
 //router.put('/:id/info', controller.changeInfo);
-//router.get('/:id', controller.show);
+router.get('/:id', controller.show);
 router.post('/', controller.create);
 
 module.exports = router;

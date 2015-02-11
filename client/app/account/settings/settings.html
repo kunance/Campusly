@@ -1,6 +1,10 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 
+<div class="container">
+<button class="btn btn-primary" ui-sref=".password">Change password</button>
+<button class="btn btn-primary" ui-sref=".userInfo">Edit user info</button>
+<button class="btn btn-primary" ui-sref=".vehicle">Manage vehicles</button>
+<button class="btn btn-primary" ui-sref=".address">Manage addresses</button>
+<button class="btn btn-primary" ui-sref=".pets">Manage pets</button></div>
 
-<button ui-sref=".password">Change password</button>
-<button ui-sref=".userInfo">UserInfo</button>
-<div ui-view></div>
+<div ui-view class="container"></div>

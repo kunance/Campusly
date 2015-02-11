@@ -13,6 +13,7 @@ function MainCtrl($rootScope, $scope, $http, socket) {
     pageTitle:'Welcome to Rented co',
     pageDescription:'Beast and easiest way to rent a place'
   };
- // mixpanel.track("visited main view new");
+
+  mixpanel.track("visited main view, with passed object",{title:$scope.$parent.seo.pageTitle});
 
   }

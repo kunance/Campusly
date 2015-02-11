@@ -5,10 +5,11 @@
     .module('app.dashboard')
     .controller('AddNewPropertyCtrl',AddNewPropertyCtrl);
 
-  AddNewPropertyCtrl.$inject = ['$scope','FileUploader', 'common', '$http'];
+  AddNewPropertyCtrl.$inject = ['$scope','FileUploader', 'common', '$state'];
 
-  function AddNewPropertyCtrl($scope, FileUploader, common, $http) {
+  function AddNewPropertyCtrl($scope, FileUploader, common, $state) {
     var vm = this;
+    var dataservice = common.dataservice;
 
     vm.uploader = new FileUploader();
     vm.uploader.url = '/api/images';
@@ -16,34 +17,23 @@
       vm.me.userImage =res.saved;
     };
 
-
     vm.addNewProperty= function (input) {
-      //common.Auth.createProperty({
-      //  streetAddress: input.street,
-      //  streetNumeric: input.number,
-      //  city: input.city,
-      //  state: input.country,
-      //  zip: input.zip,
-      //  createdAt: new Date()
-      //}).then(function () {
-      //  //do smthn
-      //}).catch(function (err) {
-      //  console.log('error while saving property', err);
-      //});
-      $http.post('/api/properties',{
+      var trimmedZip = input.zip.replace(/\s/g, '');
+      dataservice.addProperty({
         streetAddress: input.street,
         latitude: input.location.latitude,
         longitude: input.location.longitude,
         streetNumeric: input.number,
         city: input.city,
         state: input.country_short,
-        zip: input.zip,
+        zip: trimmedZip,
         createdAt: new Date()
-      }).success(function (res) {
+      }).$promise.then(function () {
+        $state.go('myProperties')
+      }, function (err) {
+          console.log('error while saving property', err);
+        });
 
-      }).error(function (err) {
-        console.log('imas error', err);
-      })
     }
   }
 

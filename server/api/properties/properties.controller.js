@@ -3,7 +3,7 @@
 var _ = require('lodash');
 var sqldb = require('../../sqldb');
 var Property = sqldb.model('rented.property');
-var PropertyOwner = sqldb.model('rented.propertyOwner');
+var PropertyOwnership = sqldb.model('rented.propertyOwnership');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -29,22 +29,16 @@ function respondWith(res, statusCode) {
   };
 }
 
+exports.show = function (req, res, next) {
+//Todo fetching properties
+};
+
+
 exports.create = function(req, res, next) {
   var newProperty = Property.build(req.body);
-  //var newPropertyOwner = PropertyOwner.build({
-  //  ownerId: 60,
-  //  createdAt: new Date()
-  //});
   newProperty.save()
     .then(function(property) {
       res.json(property);
     })
     .catch(validationError(res));
-
-  //newPropertyOwner.save()
-  //  .then(function(newPropertyOwner) {
-  //    res.json(newPropertyOwner);
-  //  })
-  //  .catch(validationError(res));
-
 };

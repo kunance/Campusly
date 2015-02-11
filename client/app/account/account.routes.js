@@ -26,14 +26,7 @@
           templateUrl: 'app/account/signup/signup.html',
           controller: 'SignupCtrl',
           controllerAs:'signup'
-        })
-        .state('settings', {
-          url: '/settings',
-          templateUrl: 'app/account/settings/settings.html',
-          controller: 'SettingsCtrl'
-        //  controllerAs:'settings'
         });
-
     })
     .run(function($rootScope) {
       $rootScope.$on('$stateChangeStart', function(event, next, nextParams, current) {

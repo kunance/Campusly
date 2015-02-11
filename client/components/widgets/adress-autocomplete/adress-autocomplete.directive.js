@@ -70,11 +70,7 @@
   }
 
   var fillAddressData = function (place, address) {
-   // address.sve = place;
-   // address.number = place.address_components[0].long_name;
-    //address.street = place.address_components[1].long_name;
     address.full = place.formatted_address;
-  //  address.country = place.address_components[5].long_name;
     for (var i = 0; i < place.address_components.length; i++) {
       var addressType = place.address_components[i].types[0];
       switch(addressType) {
