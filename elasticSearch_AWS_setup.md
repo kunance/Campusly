@@ -24,9 +24,8 @@ V7N/W91MogXmhUxkNevFac/y/hyKOcRfw21kRzpG
 
 
 
-### https://gist.github.com/ricardo-rossi/8265589463915837429d
+### https://gist.github.com/ricardo-rossi/8265589463915837429d   copied below just in case gist above goes away :)
 
-### copied here just in case gist above goes away :)
 
 ### Install OpenJDK
 cd ~
@@ -70,6 +69,70 @@ curl http://localhost:9200
 ```
 
 
+### Stop ElasticSearch
+sudo service elasticsearch stop
 
-### Install https://github.com/jprante/elasticsearch-river-jdbc
+## Enable the elasticsearch start during the server start we should execute:
+	
+sudo update-rc.d elasticsearch defaults 95 10
+
+## Install the elasticsearch-cloud-aws plugin
+cd /usr/share/elasticsearch/
+sudo bin/plugin -install elasticsearch/elasticsearch-cloud-aws/2.3.0
+
+## Install is the kopf plugin, the one we would use to overview our cluster configuration
+sudo bin/plugin -install lmenezes/elasticsearch-kopf/1.2&nbsp;
+
+
+## Now, we should update the elasticsearch configuration file.
+## Backup the default file:
+sudo cp /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bak
+
+
+## Referencing http://pavelpolyakov.com/2014/08/14/elasticsearch-cluster-on-aws-part-2-configuring-the-elasticsearch/
+## Create the new elasticsearch.yml file, for hermes ( or another EC2 instance) it should look like this:
+# paths
+# path.data: "/srv/elasticsearch/data"
+ 
+# additional configuration
+bootstrap.mlockall: true
+indices.fielddata.cache.size: "30%"
+indices.cache.filter.size: "30%"
+ 
+# AWS discovery  keys made for elasticsearch user
+cloud.aws.access_key: "AKIAID32FB67NM4UWO2Q"
+cloud.aws.secret_key: "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"
+
+ 
+#plugin.mandatory: "cloud-aws"
+ 
+#cluster.name: "LogstashCluster"
+ 
+node.name: "hermes"
+ 
+discovery.type: "ec2"
+discovery.ec2.groups: "elasticsearch cluster"
+discovery.ec2.host_type: "public_ip"
+discovery.ec2.ping_timeout: "30s"
+discovery.ec2.availability_zones: "us-west-2"
+cloud.aws.region: "us-west-2"
+ 
+discovery.zen.ping.multicast.enabled: false
+ 
+# public facing elastic IP
+network.publish_host: "54.191.87.148"
+
+
+
+### start/restart our elasticsearch instance
+sudo service elasticsearch start
+
+
+### Install elasticsearch-river-jdbc  ( https://github.com/jprante/elasticsearch-river-jdbc)
+```
+cd /usr/share/elasticsearch
+
+sudo ./bin/plugin --install jdbc --url http://xbib.org/repository/org/xbib/elasticsearch/plugin/elasticsearch-river-jdbc/1.4.0.6/elasticsearch-river-jdbc-1.4.0.6-plugin.zip
+
+sudo curl -o mysql-connector-java-5.1.33.zip -L 'http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.33.zip/from/http://cdn.mysql.com/'
 
