@@ -74,7 +74,7 @@ var all = {
     Token: 'HpLWLFxfanDOCk8Ie2rO'
   },
   mandrill:{
-    APIkey: 'YvtcBLhzZG0bDa8C9rejHw'
+    APIkey: 'EXFHZXK5FFxIfxkDxknItQ'
   }
 };
 

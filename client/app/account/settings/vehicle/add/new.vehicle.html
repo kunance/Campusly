@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Add new vehicle</h1>
+    </div>
+    <div class="col-sm-12">
+
+      <label for="model">Model</label>
+      <input type="text" id="model" name="model" class="form-control" ng-model="newVehicle.tempVehicle.model"/>
+
+      <label for="make">Make</label>
+      <input type="text" id="make" name="make" class="form-control" ng-model="newVehicle.tempVehicle.make"/>
+
+      <label for="year">Year</label>
+      <input type="text" id="year" name="year" class="form-control" ng-model="newVehicle.tempVehicle.year"/>
+
+      <label for="license">License plate</label>
+      <input type="text" id="license" name="license" class="form-control" ng-model="newVehicle.tempVehicle.license"/>
+
+      <label for="color">Color</label>
+      <input type="text" id="color" name="color" class="form-control" ng-model="newVehicle.tempVehicle.color"/>
+
+      <br/>
+      <br/>
+      <button class="btn btn-primary" ng-click="newVehicle.addNewVehicle(newVehicle.tempVehicle)">Add new vehicle</button>
+      <button class="btn btn-primary" ui-sref="^">Back to vehicles overview</button>
+    </div>
+  </div>
+
+<pre>{{newVehicle.tempVehicle|json}}</pre>
+
+
+
+</div>

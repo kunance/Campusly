@@ -11,7 +11,6 @@
     var vm = this;
     vm.me = common.Auth.getCurrentUser();
     vm.tempMe =  Object.create(vm.me);
-
     vm.uploader = new FileUploader();
     vm.uploader.url = '/api/images';
     vm.uploader.onSuccessItem = function (itm,res,status,header) {
@@ -29,10 +28,10 @@ vm.saveUserInfo= function (input) {
     email:input.email
   })
     .then(function () {
-      console.log('updated');
+      console.log('User info updated');
     })
     .catch(function (err) {
-      console.log('error', err);
+      console.log('error while updating user info', err);
     });
 };
   }

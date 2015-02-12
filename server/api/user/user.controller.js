@@ -3,6 +3,8 @@
 var _ = require('lodash');
 var sqldb = require('../../sqldb');
 var User = sqldb.model('rented.rentedUser');
+var Vehicle = sqldb.model('rented.userVehicle');
+var Pets = sqldb.model('rented.pet');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -52,6 +54,39 @@ exports.index = function(req, res) {
     })
     .catch(handleError(res));
 };
+
+/**
+ * Get my info
+ */
+exports.me = function(req, res, next) {
+  var userid = req.user.id;
+  User.find({
+    where: {
+      id: userid
+    },
+    attributes: [
+      'id',
+      'middlename',
+      'firstname',
+      'email',
+      'phone',
+      'lastname',
+      'username',
+      'role',
+      'provider',
+      'userImage'
+    ]
+  })
+    .then(function(user) { // don't ever give out the password or salt
+      if (!user) { return res.json(401); }
+      res.json(user);
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+};
+
+
 
 /**
  * Creates a new user
@@ -131,7 +166,7 @@ exports.changePassword = function(req, res, next) {
 };
 
 exports.changeInfo = function(req, res, next) {
-  var userId = req.user.id
+  var userId = req.user.id;
   User.find({
     where: {
       id: userId
@@ -151,36 +186,20 @@ exports.changeInfo = function(req, res, next) {
 };
 
 
-/**
- * Get my info
- */
-exports.me = function(req, res, next) {
-  var userId = req.user.id;
-  User.find({
-    where: {
-      id: userId
-    },
-    attributes: [
-      'id',
-      'middlename',
-      'firstname',
-      'email',
-      'phone',
-      'lastname',
-      'username',
-      'role',
-      'provider',
-      'userImage'
-    ]
-  })
-    .then(function(user) { // don't ever give out the password or salt
-      if (!user) { return res.json(401); }
-      res.json(user);
+
+exports.changePets = function(req, res, next) {
+  req.body.userId = req.user.id;
+  req.body.createdAt = new Date();
+  console.log(req.body);
+  var newPet = Pets.build(req.body);
+
+  newPet.save()
+    .then(function(pet) {
+      res.json(pet);
     })
-    .catch(function(err) {
-      return next(err);
-    });
+    .catch(validationError(res));
 };
+
 
 /**
  * Authentication callback

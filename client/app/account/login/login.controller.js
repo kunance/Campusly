@@ -5,17 +5,17 @@
     .module('app.account')
     .controller('LoginCtrl', LoginCtrl);
 
-  LoginCtrl.$inject = ['$scope', 'Auth', '$state', '$window'];
+  LoginCtrl.$inject = ['$scope', 'Auth', '$state', '$window','$location'];
 
-  function LoginCtrl($scope, Auth, $state, $window) {
+  function LoginCtrl($scope, Auth, $state, $window, $location) {
       $scope.user = {};
       $scope.errors = {};
 
+    mixpanel.track('login');
     $scope.$parent.seo = {
       pageTitle:'Please log in',
       pageDescription:'place for logging in'
     };
-    mixpanel.track("visited login view new");
 
       $scope.login = function(form) {
         $scope.submitted = true;
@@ -26,7 +26,6 @@
             password: $scope.user.password
           })
             .then(function() {
-              // Logged in, redirect to home
               $state.go('main');
             })
             .catch(function(err) {

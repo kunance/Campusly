@@ -12,7 +12,8 @@ exports.setup = function(User, config) {
       'facebookOAuthId': profile.id
     }})
       .then(function(user) {
-        if (!user && profile.emails[0].value.match(/\.edu$/)) {
+        //add this to expression  "&& profile.emails[0].value.match(/\.edu$/)" to restrict other mails signup
+        if (!user) {
           user = User.build({
             firstname: profile.name.givenName,
             lastname: profile.name.familyName,

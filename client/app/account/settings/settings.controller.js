@@ -8,7 +8,7 @@
   SettingsCtrl.$inject = ['$scope'];
 
   function SettingsCtrl($scope) {
-   $scope.test = 'settings ctrl';
+
   }
 
 }());

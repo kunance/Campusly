@@ -74,12 +74,12 @@ module.exports = {
         },
         beforeCreate: function(user, fields, fn) {
           user.updatePassword(fn);
-        }/*,
+        },
         beforeUpdate: function(user, fields, fn) {
           if (user.changed('password')) {
             user.updatePassword(fn);
-          }
-        }*/
+          } else{ fn() }
+        }
       },
 
       /**
@@ -215,10 +215,8 @@ module.exports = {
           } else {
             fn(null);
           }
-        },
-        changeUserInfo: function () {
-          console.log('alo ks ks');
         }
+
       }
     },
     attributes: {
@@ -238,7 +236,13 @@ module.exports = {
         "email": {
             type: Seq.STRING(255),
             field: "email",
-            allowNull: false
+            allowNull: false,
+            unique: {
+              msg: 'The specified email address is already in use.'
+            },
+            validate: {
+              isEmail: true
+            }
         },
         "password": {
             type: Seq.STRING(32),

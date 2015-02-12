@@ -2,7 +2,7 @@
   "use strict";
 
   angular.module('app.core')
-    .factory('Auth', function Auth($http, UserResource, $cookieStore, $q, PropertyResource) {
+    .factory('Auth', function Auth($http, UserResource, $cookieStore, $q) {
       /**
        * Return a callback or noop function
        *
@@ -79,7 +79,6 @@
               return safeCb(callback)(null, property);
             },
             function(err) {
-            //  this.logout();
               return safeCb(callback)(err);
             }).$promise;
         },
@@ -90,7 +89,27 @@
               return safeCb(callback)(null, usr);
             },
             function(err) {
-             // this.logout();
+              return safeCb(callback)(err);
+            }).$promise;
+        },
+        //
+        //changeVehicle: function(vehicle, callback) {
+        //  return UserResource.changeVehicle({id: currentUser.id}, vehicle,
+        //    function(veh) {
+        //      return safeCb(callback)(null, veh);
+        //    },
+        //    function(err) {
+        //      // this.logout();
+        //      return safeCb(callback)(err);
+        //    }).$promise;
+        //},
+
+        changePets: function(pets, callback) {
+          return UserResource.changePets({id: currentUser.id}, pets,
+            function(pet) {
+              return safeCb(callback)(null, pet);
+            },
+            function(err) {
               return safeCb(callback)(err);
             }).$promise;
         },

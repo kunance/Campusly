@@ -13,7 +13,6 @@
       pageTitle:'Set up your account',
       pageDescription:'Some description'
     };
-  //  mixpanel.track("visited settings view new");
 
       $scope.changePassword = function(form) {
         $scope.submitted = true;
