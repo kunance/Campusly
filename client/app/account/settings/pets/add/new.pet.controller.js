@@ -22,6 +22,7 @@
       }).$promise
         .then(function () {
           console.log('new Pet added');
+          common.$state.go('^',{},{reload:true});
         })
         .catch(function (err) {
           console.log('error while creating new Pet', err);

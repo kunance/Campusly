@@ -106,7 +106,7 @@
          * Gets all available info on a user
          *   (synchronous|asynchronous)
          *
-         * @param  {Function|*} callback - optional, funciton(user)
+         * @param  {Function|*} callback - optional, function(user)
          * @return {Object|Promise}
          */
         getCurrentUser: function(callback) {

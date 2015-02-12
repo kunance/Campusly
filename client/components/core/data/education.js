@@ -14,9 +14,6 @@
         },
         editEducation: {
           method: 'PUT'
-          //params: {
-          //  id:'id'
-          //}
         }
         }
       );

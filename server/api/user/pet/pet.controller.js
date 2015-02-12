@@ -43,6 +43,39 @@ exports.newPet = function(req, res, next) {
     .catch(validationError(res));
 };
 
+exports.showPets= function(req, res, next) {
+  Pet.findAll({where:{userId:req.user.id}})
+    .then(function (pets) {
+      res.json(pets);
+    })
+    .catch(validationError(res));
+};
+
+exports.deletePet= function(req, res, next) {
+  Pet.destroy({where: { id: req.params.id }})
+    .then(respondWith(res, 204))
+    .catch(handleError(res));
+};
+
+exports.getPet= function(req, res, next) {
+  Pet.find({where: { id: req.params.id }})
+    .then(function (pets) {
+      res.json(pets);
+    })
+    .catch(handleError(res));
+};
+
+exports.savePet= function(req, res, next) {
+  Pet.find({where: { id: req.params.id }})
+    .then(function (pet) {
+      var updated = _.merge(pet, req.body);
+      updated.save().then(function (upd) {
+        res.json(upd);
+      })
+    })
+    .catch(handleError(res));
+};
+
 exports.authCallback = function(req, res, next) {
   res.redirect('/');
 };

@@ -22,7 +22,11 @@
      getAllEducations: getAllEducations,
      deleteEducation:deleteEducation,
      getEducation:getEducation,
-     editEducation:editEducation
+     editEducation:editEducation,
+     getAllPets: getAllPets,
+     deletePet:deletePet,
+     getSinglePet:getSinglePet,
+     editPet:editPet
     };
     return service;
 
@@ -110,5 +114,42 @@
           return safeCb(callback)(err);
         });
     }
+
+    function getAllPets(userId, data) {
+      return Pet.getAllPets({userId: userId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function deletePet(userId, educationId, data) {
+      return Pet.delete({userId: userId, id:educationId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function getSinglePet(userId, educationId, data) {
+      return Pet.get({userId: userId, id:educationId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function editPet(userId, educationId, data, callback) {
+      return Pet.editPet({userId: userId, id:educationId}, data,
+        function (edu) {
+          return safeCb(callback)(null, edu);
+        }, function (err) {
+          return safeCb(callback)(err);
+        });
+    }
+
   }
 }());

@@ -1,7 +1,30 @@
 
 <div ui-view="">
-  Information about pets <br/>
-  Table preview <br/>
-  links to edit pets data <br/>
-  <button class="btn btn-primary" ui-sref=".new">Add pet</button>
+  <table class="table table-bordered table-condensed">
+    <thead>
+    <tr>
+      <th>No.</th>
+      <th>Type</th>
+      <th>Breed</th>
+      <th>Weight in lbs</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in pet.listOfPets track by $index">
+      <td>{{$index+1}}</td>
+      <td>{{item.type}}</td>
+      <td>{{item.breed}}</td>
+      <td>{{item.weightLbs}}</td>
+      <td>
+        <div class="btnContainter ">
+          <button ui-sref=".edit({id: item.id})" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-edit"></i>Edit</button>
+          <button ng-click="pet.deletePet(item)" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>Delete</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-primary" ui-sref=".new">Add</button>
 </div>
