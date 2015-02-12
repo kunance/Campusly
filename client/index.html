@@ -5,7 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <html ng-app="RentedApp" ng-controller="PrerenderController">
   <head>
-    <script type="text/javascript" src="components/blocks/mixpanel/mixpanel.js"></script>
+    <!-- start Mixpanel --><script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+    for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+  mixpanel.init("bd202854d110bac5e72d7e034abdae01");</script><!-- end Mixpanel -->
+    <!--<script type="text/javascript" src="components/blocks/mixpanel/mixpanel.js"></script>-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="/">
@@ -89,6 +92,10 @@
           <script src="app/account/settings/address/add/new.address.route.js"></script>
           <script src="app/account/settings/address/address.controller.js"></script>
           <script src="app/account/settings/address/address.route.js"></script>
+          <script src="app/account/settings/education/add/new.education.controller.js"></script>
+          <script src="app/account/settings/education/add/new.education.route.js"></script>
+          <script src="app/account/settings/education/education.controller.js"></script>
+          <script src="app/account/settings/education/education.route.js"></script>
           <script src="app/account/settings/password/password.controller.js"></script>
           <script src="app/account/settings/password/password.route.js"></script>
           <script src="app/account/settings/pets/add/new.pet.controller.js"></script>
@@ -120,6 +127,7 @@
           <script src="components/core/common.js"></script>
           <script src="components/core/data/address.js"></script>
           <script src="components/core/data/dataservice.js"></script>
+          <script src="components/core/data/education.js"></script>
           <script src="components/core/data/pet.js"></script>
           <script src="components/core/data/property.js"></script>
           <script src="components/core/data/vehicle.js"></script>

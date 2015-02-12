@@ -5,14 +5,15 @@
     .module('app.core')
     .factory('common', common);
 
-  common.$inject = ['$location', '$q', '$rootScope', '$timeout', /*'logger',*/ 'Modal', /*'language', 'gettext',*/ 'dataservice','Auth'];
+  common.$inject = ['$location', '$q', '$rootScope', '$timeout', /*'logger',*/ 'Modal', /*'language', 'gettext',*/ 'dataservice', 'Auth', '$state'];
 
-  function common($location, $q, $rootScope, $timeout, /*logger,*/ Modal, /*language, gettext,  */dataservice,Auth) {
+  function common($location, $q, $rootScope, $timeout, /*logger,*/ Modal, /*language, gettext,  */dataservice, Auth, $state) {
     var throttles = {};
 
     var service = {
       // common angular dependencies
       $broadcast: $broadcast,
+      $state:$state,
       $emit: $emit,
       $on: $on,
       $q: $q,

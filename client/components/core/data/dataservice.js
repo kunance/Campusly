@@ -5,15 +5,17 @@
     .module('app.core')
     .factory('dataservice', dataservice);
 
-  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address'];
+  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education'];
 
-  function dataservice($http, $location, Property, Vehicle, Pet, Address) {
+  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education) {
 
     var service = {
      addProperty:addProperty,
      addVehicle:addVehicle,
      addPet: addPet,
-      addAddress: addAddress
+     addAddress: addAddress,
+     addEducation:addEducation,
+     getAllEducations: getAllEducations
     };
     return service;
 
@@ -47,6 +49,15 @@
         });
     }
 
+    function addEducation(userId, data) {
+      return Education.save({userId: userId}, data,
+        function(res) {
+          return res;
+        },
+        function(err) {
+          //handle this exception
+        });
+    }
     function addAddress(userId, data) {
       return Address.save({userId: userId}, data,
         function (res) {
@@ -55,6 +66,15 @@
         function (err) {
           //handle this exception
         });
+    }
+
+    function getAllEducations(userId, data) {
+      return Education.getAllEducations({userId: userId}, data,
+        function (res) {
+          return res;
+      }, function (err) {
+        //handle exception
+      });
     }
 
   }

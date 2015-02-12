@@ -1,0 +1,28 @@
+
+<div ui-view="">
+  <table class="table table-bordered table-condensed">
+    <thead>
+    <tr>
+      <th>No.</th>
+      <th>Education centre name</th>
+      <th>Type</th>
+      <th>Graduation</th>
+      <th>Major</th>
+      <th>degreeType</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in education.listOfEducations track by $index">
+      <td>{{$index+1}}</td>
+      <td>{{item.educationCenterName}}</td>
+      <td>{{item.type}}</td>
+      <td>{{item.graduation}}</td>
+      <td>{{item.major}}</td>
+      <td>{{item.degreeType}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  {{education.listOfEducations.type}}
+  <button class="btn btn-primary" ui-sref=".new">Add</button>
+</div>
