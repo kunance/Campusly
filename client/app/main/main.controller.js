@@ -12,8 +12,6 @@ function MainCtrl($rootScope, $scope, $http, socket, common) {
   vm.address = {};
 
   vm.me = Auth.getCurrentUser();
-  console.log(vm.me);
-  console.log(mixpanel);
   mixpanel.identify(vm.me.id);
   mixpanel.people.set({
     "$email": vm.me.email,

@@ -380,8 +380,6 @@ CREATE TABLE `property` (
   `status` enum('avail','pending','rented') DEFAULT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime DEFAULT NULL,
-    `latitude` VARCHAR(64) NULL, 
-    `longitude` VARCHAR(64) NULL, 
   `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

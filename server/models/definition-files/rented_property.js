@@ -29,7 +29,7 @@ module.exports = {
     options: {
         tableName: "property",
         //schema: "rented",
-        timestamps: false
+        timestamps: true
     },
     attributes: {
         "id": {
@@ -85,11 +85,11 @@ module.exports = {
             type: Seq.BIGINT,
             field: "bedrooms"
         },
-      "latitude": {
+       "latitude": {
             type: Seq.BIGINT,
             field: "latitude"
         },
-      "longitude": {
+       "longitude": {
             type: Seq.BIGINT,
             field: "longitude"
         },

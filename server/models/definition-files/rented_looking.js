@@ -19,7 +19,7 @@ module.exports = model;
 
 // Some utility methods:
 
-util.getAttribute("id").comment = 'This is the comment'; 
+util.getAttribute("id").comment = 'This is the comment';
 
 ------------------------------------------------------------------------------------*/
 var orm = require('../index.js'),
@@ -29,7 +29,7 @@ module.exports = {
     options: {
         tableName: "looking",
         //schema: "rented",
-        timestamps: false
+        timestamps: true
     },
     attributes: {
         "id": {

@@ -18,8 +18,8 @@ var orm     = require('model\index.js'),
 module.exports = model;
 
 // Some utility methods:
-util.getRelation("aptComplexFloorPlanComplexIds").onDelete = 'CASCADE'; 
-util.getAttribute("id").comment = 'This is the comment'; 
+util.getRelation("aptComplexFloorPlanComplexIds").onDelete = 'CASCADE';
+util.getAttribute("id").comment = 'This is the comment';
 
 ------------------------------------------------------------------------------------*/
 var orm = require('../index.js'),
@@ -29,7 +29,7 @@ module.exports = {
     options: {
         tableName: "apartment_complex",
         //schema: "rented",
-        timestamps: false
+        timestamps: true
     },
     attributes: {
         "id": {
@@ -40,10 +40,28 @@ module.exports = {
             allowNull: false,
             unique: "apartment_complex_pkey"
         },
+        "streetNumeric": {
+            type: Seq.INTEGER,
+            field: "streetNumeric",
+            allowNull: false
+        },
+        "streetAddress": {
+            type: Seq.STRING(255),
+            field: "streetAddress",
+            allowNull: false
+        },
         "name": {
             type: Seq.STRING(255),
             field: "name",
             allowNull: false
+        },
+        "latitude": {
+            type: Seq.BIGINT,
+            field: "latitude"
+        },
+        "longitude": {
+            type: Seq.BIGINT,
+            field: "longitude"
         },
         "city": {
             type: Seq.STRING(30),

@@ -18,8 +18,8 @@ var orm     = require('model\index.js'),
 module.exports = model;
 
 // Some utility methods:
-util.getRelation("relatedOwnerId").onDelete = 'CASCADE'; 
-util.getAttribute("propertyOwnershipId").comment = 'This is the comment'; 
+util.getRelation("relatedOwnerId").onDelete = 'CASCADE';
+util.getAttribute("propertyOwnershipId").comment = 'This is the comment';
 
 ------------------------------------------------------------------------------------*/
 var orm = require('../index.js'),
@@ -29,7 +29,7 @@ module.exports = {
     options: {
         tableName: "property_owner",
         //schema: "rented",
-        timestamps: false
+        timestamps: true
     },
     attributes: {
         "propertyOwnershipId": {

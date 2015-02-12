@@ -18,8 +18,8 @@ var orm     = require('model\index.js'),
 module.exports = model;
 
 // Some utility methods:
-util.getRelation("relatedUniversityId").onDelete = 'CASCADE'; 
-util.getAttribute("id").comment = 'This is the comment'; 
+util.getRelation("relatedUniversityId").onDelete = 'CASCADE';
+util.getAttribute("id").comment = 'This is the comment';
 
 ------------------------------------------------------------------------------------*/
 var orm = require('../index.js'),
@@ -29,7 +29,7 @@ module.exports = {
     options: {
         tableName: "university_calender_quater",
         //schema: "rented",
-        timestamps: false
+        timestamps: true
     },
     attributes: {
         "id": {

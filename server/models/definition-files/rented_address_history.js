@@ -18,8 +18,8 @@ var orm     = require('model\index.js'),
 module.exports = model;
 
 // Some utility methods:
-util.getRelation("relatedUserId").onDelete = 'CASCADE'; 
-util.getAttribute("id").comment = 'This is the comment'; 
+util.getRelation("relatedUserId").onDelete = 'CASCADE';
+util.getAttribute("id").comment = 'This is the comment';
 
 ------------------------------------------------------------------------------------*/
 var orm = require('../index.js'),
@@ -29,13 +29,14 @@ module.exports = {
     options: {
         tableName: "address_history",
         //schema: "rented",
-        timestamps: false
+        timestamps: true
     },
     attributes: {
         "id": {
             type: Seq.BIGINT,
             field: "id",
             primaryKey: true,
+            autoIncrement: true,
             allowNull: false,
             unique: "address_history_pkey"
         },

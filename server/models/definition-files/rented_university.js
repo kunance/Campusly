@@ -18,8 +18,8 @@ var orm     = require('model\index.js'),
 module.exports = model;
 
 // Some utility methods:
-util.getRelation("univcalquarterUniversities").onDelete = 'CASCADE'; 
-util.getAttribute("id").comment = 'This is the comment'; 
+util.getRelation("univcalquarterUniversities").onDelete = 'CASCADE';
+util.getAttribute("id").comment = 'This is the comment';
 
 ------------------------------------------------------------------------------------*/
 var orm = require('../index.js'),
@@ -29,7 +29,7 @@ module.exports = {
     options: {
         tableName: "university",
         //schema: "rented",
-        timestamps: false
+        timestamps: true
     },
     attributes: {
         "id": {
@@ -58,6 +58,14 @@ module.exports = {
             type: Seq.STRING(255),
             field: "streetAddress",
             allowNull: false
+        },
+        "latitude": {
+            type: Seq.BIGINT,
+            field: "latitude"
+        },
+        "longitude": {
+            type: Seq.BIGINT,
+            field: "longitude"
         },
         "apt": {
             type: Seq.STRING(6),

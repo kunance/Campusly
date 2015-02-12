@@ -36,7 +36,7 @@ module.exports = {
     options: {
         tableName: "rented_user",
         //schema: "rented",
-        timestamps: false,
+        timestamps: true,
         getterMethods: {
           // Public profile information
           profile: function() {
