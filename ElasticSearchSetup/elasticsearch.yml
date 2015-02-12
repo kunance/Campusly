@@ -1,0 +1,31 @@
+# paths
+path.data: "/var/lib/elasticsearch/data"
+
+# additional configuration
+bootstrap.mlockall: true
+indices.fielddata.cache.size: "30%"
+indices.cache.filter.size: "30%"
+
+# AWS discovery  keys made for elasticsearch user
+cloud.aws.access_key: "AKIAID32FB67NM4UWO2Q"
+cloud.aws.secret_key: "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"
+
+
+#plugin.mandatory: "cloud-aws"
+
+#cluster.name: "LogstashCluster"
+
+node.name: "hermes"
+
+discovery.type: "ec2"
+discovery.ec2.groups: "elastic search"
+discovery.ec2.host_type: "public_ip"
+discovery.ec2.ping_timeout: "30s"
+discovery.ec2.availability_zones: "us-west-2"
+cloud.aws.region: "us-west-2"
+
+discovery.zen.ping.multicast.enabled: false
+
+# public facing elastic IP
+network.publish_host: "54.191.87.148"
+

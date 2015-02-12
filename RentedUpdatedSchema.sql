@@ -57,9 +57,13 @@ DROP TABLE IF EXISTS `apartment_complex`;
 CREATE TABLE `apartment_complex` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
+  `streetNumeric` int(5) NOT NULL,
+  `streetAddress` varchar(255) NOT NULL,
   `city` varchar(30) NOT NULL COMMENT 'longest city name in US is 22',
   `state` varchar(2) NOT NULL,
   `zip` int(5) unsigned NOT NULL,
+  `latitude` decimal(10, 8),
+  `longitude` decimal(11, 8),
   `distanceToUniv` float(3,2) DEFAULT NULL COMMENT 'calculate with google maps api',
   `petsAllowed` tinyint(1) NOT NULL DEFAULT '0',
   `dogsAllowed` tinyint(1) NOT NULL DEFAULT '0',
@@ -74,6 +78,9 @@ CREATE TABLE `apartment_complex` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+
+
 
 --
 -- Table structure for table `apartment_complex_floor_plan`
@@ -360,6 +367,8 @@ CREATE TABLE `property` (
   `zip` int(5) unsigned NOT NULL,
   `apt` varchar(6) DEFAULT NULL,
   `bldg` varchar(10) DEFAULT NULL,
+  `latitude` decimal(10, 8),
+  `longitude` decimal(11, 8),
   `type` enum('apt','sfh','duplex','land','townhouse') DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL COMMENT '100 words or less',
   `bedrooms` int(1) unsigned DEFAULT NULL,
@@ -612,11 +621,11 @@ CREATE TABLE `rented_user` (
   `updatedAt` datetime DEFAULT NULL,
   `deletedAt` datetime DEFAULT NULL,
   `role` VARCHAR(45) NULL DEFAULT 'user',
-  `provider` VARCHAR(64) NULL, 
-  `facebookOAuthId` VARCHAR(64) NULL, 
-  `googleOAuthId` VARCHAR(64) NULL, 
-  `twitterOAuthId` VARCHAR(64) NULL, 
-  `salt` VARCHAR(128) NOT NULL, 
+  `provider` VARCHAR(64) NULL,
+  `facebookOAuthId` VARCHAR(64) NULL,
+  `googleOAuthId` VARCHAR(64) NULL,
+  `twitterOAuthId` VARCHAR(64) NULL,
+  `salt` VARCHAR(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -678,6 +687,8 @@ CREATE TABLE `university` (
   `city` varchar(30) NOT NULL COMMENT 'longest city name in US is 22',
   `state` varchar(2) NOT NULL,
   `zip` int(5) unsigned NOT NULL,
+  `latitude` decimal(10, 8),
+  `longitude` decimal(11, 8),
   `startDate` datetime NOT NULL,
   `endDate` datetime DEFAULT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
