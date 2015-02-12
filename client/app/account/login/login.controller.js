@@ -18,7 +18,6 @@
 
       $scope.login = function(form) {
         $scope.submitted = true;
-
         if (form.$valid) {
           Auth.login({
             email: $scope.user.email,
@@ -30,7 +29,7 @@
             .catch(function(err) {
               $scope.errors.other = err.message;
             });
-        }
+        }else{$scope.errors.other = "password's dont match"}
       };
 
       $scope.loginOauth = function(provider) {

@@ -44,9 +44,15 @@
         <div class="form-group" ng-class="{ 'has-success': form.password.$valid && signup.submitted, 'has-error': form.password.$invalid && signup.submitted }">
             <label for="password">Password</label>
             <input id="password" type="password" name="password" class="form-control" ng-model="signup.user.password" ng-minlength="3" required mongoose-error/>
-            <p class="help-block" ng-show="(form.password.$error.minlength || form.password.$error.required) && signup.submitted">Password must be at least 3 characters.</p>
-            <p class="help-block" ng-show="form.password.$error.mongoose">{{ signup.errors.password }}</p>
+
         </div>
+        <div class="form-group" ng-class="{ 'has-success': form.confirmPassword.$valid && signup.submitted, 'has-error': form.confirmPassword.$invalid && signup.submitted }">
+          <label for="confirmPassword">Confirm</label>
+          <input id="confirmPassword" type="password" name="confirmPassword" class="form-control" ng-model="signup.user.confirmPassword" match="signup.user.password" ng-minlength="3" required mongoose-error/>
+        </div>
+        <p class="help-block" ng-show="(form.password.$error.minlength || form.password.$error.required) && signup.submitted">Password must be at least 3 characters.</p>
+        <p class="help-block" ng-show="form.password.$error.mongoose">{{ signup.errors.password }}</p>
+
         <div>
           <button class="btn btn-inverse btn-lg btn-register" type="submit">Sign up</button>
           <a class="btn btn-default btn-lg btn-login" ui-sref="login">Login</a>
