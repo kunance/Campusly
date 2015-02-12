@@ -11,7 +11,6 @@
       $scope.user = {};
       $scope.errors = {};
 
-    mixpanel.track('login');
     $scope.$parent.seo = {
       pageTitle:'Please log in',
       pageDescription:'place for logging in'

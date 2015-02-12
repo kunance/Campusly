@@ -73,16 +73,6 @@
             }.bind(this)).$promise;
         },
 
-        createProperty: function(property, callback) {
-          return PropertyResource.save(property,
-            function(data) {
-              return safeCb(callback)(null, property);
-            },
-            function(err) {
-              return safeCb(callback)(err);
-            }).$promise;
-        },
-
         updateUser: function(user, callback) {
           return UserResource.changeInfo({id: currentUser.id}, user,
             function(usr) {
@@ -92,27 +82,7 @@
               return safeCb(callback)(err);
             }).$promise;
         },
-        //
-        //changeVehicle: function(vehicle, callback) {
-        //  return UserResource.changeVehicle({id: currentUser.id}, vehicle,
-        //    function(veh) {
-        //      return safeCb(callback)(null, veh);
-        //    },
-        //    function(err) {
-        //      // this.logout();
-        //      return safeCb(callback)(err);
-        //    }).$promise;
-        //},
 
-        changePets: function(pets, callback) {
-          return UserResource.changePets({id: currentUser.id}, pets,
-            function(pet) {
-              return safeCb(callback)(null, pet);
-            },
-            function(err) {
-              return safeCb(callback)(err);
-            }).$promise;
-        },
         /**
          * Change password
          *

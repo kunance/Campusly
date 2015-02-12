@@ -24,8 +24,9 @@ USE `Rented`;
 DROP TABLE IF EXISTS `address_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
+/*changed it from `id` int(10) unsigned NOT NULL DEFAULT '0', to:*/;
 CREATE TABLE `address_history` (
-  `id` int(10) unsigned NOT NULL DEFAULT '0',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `streetNumeric` int(5) NOT NULL,
   `streetAddress` varchar(255) NOT NULL,
   `apt` varchar(6) DEFAULT NULL,

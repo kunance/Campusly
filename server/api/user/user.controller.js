@@ -66,6 +66,7 @@ exports.me = function(req, res, next) {
     },
     attributes: [
       'id',
+      'createdAt',
       'middlename',
       'firstname',
       'email',
