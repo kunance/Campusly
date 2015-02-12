@@ -49,7 +49,32 @@ exports.showEducations= function(req, res, next) {
       res.json(educations);
     })
     .catch(validationError(res));
-}
+};
+
+exports.deleteEducation= function(req, res, next) {
+  Education.destroy({where: { id: req.params.id }})
+    .then(respondWith(res, 204))
+    .catch(handleError(res));
+};
+
+exports.getEducation= function(req, res, next) {
+  Education.find({where: { id: req.params.id }})
+    .then(function (education) {
+      res.json(education);
+    })
+    .catch(handleError(res));
+};
+
+exports.saveEducation= function(req, res, next) {
+  Education.find({where: { id: req.params.id }})
+    .then(function (education) {
+      var updated = _.merge(education, req.body);
+      updated.save().then(function (upd) {
+        res.json(upd);
+      })
+    })
+    .catch(handleError(res));
+};
 
 
 exports.authCallback = function(req, res, next) {

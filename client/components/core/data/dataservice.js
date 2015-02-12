@@ -9,13 +9,20 @@
 
   function dataservice($http, $location, Property, Vehicle, Pet, Address, Education) {
 
+    var safeCb = function(cb) {
+        return (angular.isFunction(cb)) ? cb : angular.noop;
+      };
+
     var service = {
      addProperty:addProperty,
      addVehicle:addVehicle,
      addPet: addPet,
      addAddress: addAddress,
      addEducation:addEducation,
-     getAllEducations: getAllEducations
+     getAllEducations: getAllEducations,
+     deleteEducation:deleteEducation,
+     getEducation:getEducation,
+     editEducation:editEducation
     };
     return service;
 
@@ -77,5 +84,31 @@
       });
     }
 
+    function deleteEducation(userId, educationId, data) {
+      return Education.delete({userId: userId, id:educationId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function getEducation(userId, educationId, data) {
+      return Education.get({userId: userId, id:educationId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function editEducation(userId, educationId, data, callback) {
+      return Education.editEducation({userId: userId, id:educationId}, data,
+        function (edu) {
+          return safeCb(callback)(null, edu);
+        }, function (err) {
+          return safeCb(callback)(err);
+        });
+    }
   }
 }());

@@ -11,6 +11,12 @@
             params: {
               id:'all'
             }
+        },
+        editEducation: {
+          method: 'PUT'
+          //params: {
+          //  id:'id'
+          //}
         }
         }
       );

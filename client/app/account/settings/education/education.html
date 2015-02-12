@@ -9,6 +9,7 @@
       <th>Graduation</th>
       <th>Major</th>
       <th>degreeType</th>
+      <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -19,6 +20,12 @@
       <td>{{item.graduation}}</td>
       <td>{{item.major}}</td>
       <td>{{item.degreeType}}</td>
+      <td>
+        <div class="btnContainter ">
+          <button ui-sref=".edit({id: item.id})" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-edit"></i>Edit</button>
+          <button ng-click="education.deleteEducation(item)" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>Delete</button>
+        </div>
+      </td>
     </tr>
     </tbody>
   </table>

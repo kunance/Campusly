@@ -37,3 +37,7 @@
     color: #000;
     padding: 0.2em 0;
 }
+.btnContainter > * {
+  width:48%;
+  min-width: 70px;
+}
