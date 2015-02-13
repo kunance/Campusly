@@ -5,10 +5,10 @@
     .module('app.account')
     .controller('SettingsCtrl', SettingsCtrl);
 
-  SettingsCtrl.$inject = ['$scope'];
+  SettingsCtrl.$inject = ['$scope', 'common'];
 
-  function SettingsCtrl($scope) {
-
+  function SettingsCtrl($scope, common) {
+  //  common.$state.go('settings.userInfo',{},{reload:true});
   }
 
 }());
