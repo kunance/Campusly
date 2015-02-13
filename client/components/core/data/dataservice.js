@@ -14,19 +14,23 @@
       };
 
     var service = {
-     addProperty:addProperty,
-     addVehicle:addVehicle,
-     addPet: addPet,
-     addAddress: addAddress,
-     addEducation:addEducation,
-     getAllEducations: getAllEducations,
-     deleteEducation:deleteEducation,
-     getEducation:getEducation,
-     editEducation:editEducation,
-     getAllPets: getAllPets,
-     deletePet:deletePet,
-     getSinglePet:getSinglePet,
-     editPet:editPet
+       addProperty:addProperty,
+       addVehicle:addVehicle,
+       addPet: addPet,
+       addAddress: addAddress,
+       addEducation:addEducation,
+       getAllEducations: getAllEducations,
+       deleteEducation:deleteEducation,
+       getEducation:getEducation,
+       editEducation:editEducation,
+       getAllPets: getAllPets,
+       deletePet:deletePet,
+       getSinglePet:getSinglePet,
+       editPet:editPet,
+       getAllAddresses: getAllAddresses,
+       deleteAddress:deleteAddress,
+       getAddress:getAddress,
+       editAddress:editAddress
     };
     return service;
 
@@ -150,6 +154,43 @@
           return safeCb(callback)(err);
         });
     }
+
+    function getAllAddresses(userId, data) {
+      return Address.getAllAddresses({userId: userId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function deleteAddress(userId, addressId, data) {
+      return Address.delete({userId: userId, id:addressId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function getAddress(userId, addressId, data) {
+      return Address.get({userId: userId, id:addressId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function editAddress(userId, addressId, data, callback) {
+      return Address.editAddress({userId: userId, id:addressId}, data,
+        function (adr) {
+          return safeCb(callback)(null, adr);
+        }, function (err) {
+          return safeCb(callback)(err);
+        });
+    }
+
 
   }
 }());

@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Edit address</h1>
+    </div>
+
+    <label for="streetAddress">Address</label>
+    <input type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Street name" ng-model="editAddress.tempAddress.streetAddress"/>
+
+    <label for="streetNumber">Number</label>
+    <input type="text" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="editAddress.tempAddress.streetNumeric"/>
+
+    <label for="country">Country</label>
+    <input type="text" id="country" name="country" class="form-control"  placeholder="country" ng-model="editAddress.tempAddress.state"/>
+
+    <label for="city">City</label>
+    <input type="text" id="city" name="city" class="form-control"  placeholder="city" ng-model="editAddress.tempAddress.city"/>
+
+    <label for="zip">Zip code</label>
+    <input type="text" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="editAddress.tempAddress.zip"/>
+
+    <label for="apt">Apt</label>
+    <input type="text" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="editAddress.tempAddress.apt"/><br/>
+
+    <label for="present">Present?</label><br/>
+    <label class="radio-inline"><input type="radio" name="present" id="present" ng-model="editAddress.tempAddress.present" value="1">Yes</label>
+    <label class="radio-inline"><input type="radio" name="present"  ng-model="editAddress.tempAddress.present" value="0">No</label><br/><br/>
+
+    <label for="about">About me</label>
+    <textarea name="about" id="about" cols="30" rows="5" placeholder="about me" data-ng-model="editAddress.tempAddress.aboutMe"  class="form-control" ></textarea>
+
+    <div class="row">
+      <div class="col-md-6">
+        <label for="start">Start date</label>
+        <p class="input-group">
+          <input type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="editAddress.tempAddress.startDate" is-open="datePickers.startDate" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+        </p>
+      </div>
+      <div class="col-md-6">
+        <label for="end">End date</label>
+        <p class="input-group">
+          <input type="text" id="end" class="form-control" datepicker-popup="{{format}}" ng-model="editAddress.tempAddress.endDate" is-open="datePickers.endDate"  close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event,'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+        </p>
+      </div>
+    </div>
+    <button class="btn btn-primary" ng-click="editAddress.saveAddress(editAddress.tempAddress)">Save Changes</button>
+    <button class="btn btn-primary" ui-sref="^">Back to address overview</button>
+
+
+    <br/>
+    <pre>{{editAddress.address |json}}</pre>
+
+  </div>
+</div>

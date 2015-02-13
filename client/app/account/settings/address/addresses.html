@@ -1,7 +1,41 @@
 
 <div ui-view="">
-  Information about addresses <br/>
-  Table preview <br/>
-  links to edit addresses <br/>
+  <table class="table table-bordered table-condensed">
+  <thead>
+  <tr>
+    <th>No.</th>
+    <th>Street name</th>
+    <th>Number</th>
+    <th>Apt</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zip code</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>Present</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="item in address.listOfAddresses track by $index">
+    <td>{{$index+1}}</td>
+    <td>{{item.streetAddress}}</td>
+    <td>{{item.streetNumeric}}</td>
+    <td>{{item.apt}}</td>
+    <td>{{item.city}}</td>
+    <td>{{item.state}}</td>
+    <td>{{item.zip}}</td>
+    <td>{{item.startDate | date: 'dd.MM.yyyy'}}</td>
+    <td>{{item.endDate | date: 'dd.MM.yyyy'}}</td>
+    <td>{{item.present}}</td>
+    <td>
+      <div class="btnContainter ">
+        <button ui-sref=".edit({id: item.id})" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-edit"></i>Edit</button>
+        <button ng-click="address.deleteAddress(item)" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i>Delete</button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
   <button class="btn btn-primary" ui-sref=".new">Add new address</button>
 </div>
