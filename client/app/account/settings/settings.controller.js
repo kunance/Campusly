@@ -8,7 +8,6 @@
   SettingsCtrl.$inject = ['$scope', 'common'];
 
   function SettingsCtrl($scope, common) {
-  //  common.$state.go('settings.userInfo',{},{reload:true});
   }
 
 }());

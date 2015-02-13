@@ -18,16 +18,27 @@
     };
 
     vm.addNewProperty= function (input) {
-      var trimmedZip = input.zip.replace(/\s/g, '');
+      var trimmedZip = input.streetAddress.zip.replace(/\s/g, '');
       dataservice.addProperty({
-        streetAddress: input.street,
-        latitude: input.location.latitude,
-        longitude: input.location.longitude,
-        streetNumeric: input.number,
-        city: input.city,
-        state: input.country_short,
+        streetAddress: input.streetAddress.street,
+        latitude: input.streetAddress.location.latitude,
+        longitude: input.streetAddress.location.longitude,
+        streetNumeric: input.streetAddress.number,
+        city: input.streetAddress.city,
+        state: input.streetAddress.country_short,
         zip: trimmedZip,
-        createdAt: new Date()
+        createdAt: new Date(),
+        apt:input.apt,
+        bldg:input.bldg,
+        type:input.type,
+        description:input.description,
+        bedrooms:input.bedrooms,
+        bathrooms:input.bathrooms,
+        parkingSpots:input.parkingSpots,
+        livingAreaSqFt:input.livingAreaSqFt,
+        hoaFee:input.hoaFee,
+        otherFee:input.otherFee,
+        status:input.status
       }).$promise.then(function () {
         $state.go('myProperties')
       }, function (err) {
