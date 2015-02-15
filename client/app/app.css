@@ -41,3 +41,6 @@
   width:48%;
   min-width: 70px;
 }
+.has-error input {
+  border-left: 3px solid #ff0000;
+}

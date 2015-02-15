@@ -29,6 +29,7 @@
           middlename: vm.user.middlename,
           username: vm.user.username,
           email: vm.user.email,
+          phone:vm.user.phone,
           password: vm.user.password
         })
           .then(function () {

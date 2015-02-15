@@ -23,7 +23,7 @@
         <li ng-hide="!isLoggedIn()"> <img class="img-circle" ng-if="!getCurrentUser().userImage" src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" style="height: 50px"/></li>
         <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Sign up</a></li>
         <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Login</a></li>
-        <li ng-show="isLoggedIn()"><p class="navbar-text">Hello <strong>{{getCurrentUser().username}}</strong></p></li>
+        <li ng-show="isLoggedIn()"><p class="navbar-text">Hello <strong>{{getCurrentUser().firstname}}</strong></p></li>
         <li ng-show="isLoggedIn()" ui-sref-active="active"><a ui-sref="settings"><i class="glyphicon glyphicon-cog"></i> Settings</a></li>
         <li ng-show="isLoggedIn()"  ui-sref-active="active"><a ui-sref="logout"><i class="fa fa-sign-out"></i> Logout</a></li>
       </ul>

@@ -10,31 +10,37 @@
 
         <div class="form-group" ng-class="{'has-success': form.firstname.$valid && signup.submitted, 'has-error': form.firstname.$invalid && signup.submitted}">
             <label for="firstname">First Name</label>
-            <input id="firstname" type="text" name="firstname" class="form-control" ng-model="signup.user.firstname" required/>
+            <input id="firstname" type="text" name="firstname" class="form-control" ng-model="signup.user.firstname" placeholder="First name" required/>
             <p class="help-block" ng-show="form.firstname.$error.required && signup.submitted">A first name is required</p>
         </div>
 
-        <div class="form-group" ng-class="{'has-success': form.middlename.$valid && signup.submitted, 'has-error': form.middlename.$invalid && signup.submitted}">
-            <label for="middlename">Middle Name</label>
-            <input id="middlename" type="text" name="middlename" class="form-control" ng-model="signup.user.middlename" required/>
-            <p class="help-block" ng-show="form.middlename.$error.required && signup.submitted">A middle name is required</p>
-        </div>
+        <!--<div class="form-group" ng-class="{'has-success': form.middlename.$valid && signup.submitted, 'has-error': form.middlename.$invalid && signup.submitted}">-->
+            <!--<label for="middlename">Middle Name</label>-->
+            <!--<input id="middlename" type="text" name="middlename" class="form-control" ng-model="signup.user.middlename" required/>-->
+            <!--<p class="help-block" ng-show="form.middlename.$error.required && signup.submitted">A middle name is required</p>-->
+        <!--</div>-->
 
         <div class="form-group" ng-class="{'has-success': form.lastname.$valid && signup.submitted, 'has-error': form.lastname.$invalid && signup.submitted}">
             <label for="lastname">Last Name</label>
-            <input id="lastname" type="text" name="lastname" class="form-control" ng-model="signup.user.lastname" required/>
+            <input id="lastname" type="text" name="lastname" class="form-control" ng-model="signup.user.lastname" placeholder="Last name" required/>
             <p class="help-block" ng-show="form.lastname.$error.required && signup.submitted">A last name is required</p>
         </div>
 
         <div class="form-group" ng-class="{'has-success': form.username.$valid && signup.submitted, 'has-error': form.username.$invalid && signup.submitted}">
             <label for="username">Username</label>
-            <input id="username" type="text" name="username" class="form-control" ng-model="signup.user.username" required/>
+            <input id="username" type="text" name="username" class="form-control" ng-model="signup.user.username" placeholder="Username" required/>
             <p class="help-block" ng-show="form.username.$error.required && signup.submitted">A username is required</p>
         </div>
 
+        <div class="form-group" ng-class="{'has-success': form.phone.$valid && signup.submitted, 'has-error': form.phone.$invalid && signup.submitted}">
+            <label for="phone">Phone number</label>
+            <input id="phone" type="text" name="phone" class="form-control" ng-model="signup.user.phone" ui-mask="999-999-9999" required/>
+          <p class="help-block" ng-show="form.username.$error.required && signup.submitted">A phone number is required</p>
+         </div>
+
         <div class="form-group" ng-class="{ 'has-success': form.email.$valid && signup.submitted, 'has-error': form.email.$invalid && signup.submitted }">
             <label for="email">Email</label>
-            <input id="email" type="email" name="email" class="form-control" ng-model="signup.user.email" ng-pattern="/\.edu$/"  required mongoose-error/>
+            <input id="email" type="email" name="email" class="form-control" ng-model="signup.user.email" ng-pattern="/\.edu$/" placeholder="Your email" required mongoose-error/>
             <p class="help-block" ng-show="form.email.$error.email && signup.submitted">Doesn't look like a valid email.</p>
             <p class="help-block" ng-show="form.email.$error.required && signup.submitted">What's your email address?</p>
             <p class="help-block" ng-show="!form.email.$error.email && !form.email.$error.required && form.email.$invalid && signup.submitted">Your email have to finish with .edu</p>
@@ -43,27 +49,32 @@
 
         <div class="form-group" ng-class="{ 'has-success': form.password.$valid && signup.submitted, 'has-error': form.password.$invalid && signup.submitted }">
             <label for="password">Password</label>
-            <input id="password" type="password" name="password" class="form-control" ng-model="signup.user.password" ng-minlength="3" required mongoose-error/>
+            <input id="password" type="password" name="password" class="form-control" ng-model="signup.user.password" ng-minlength="3" placeholder="Minimum 3 characters required" required mongoose-error/>
+        </div>
 
-        </div>
-        <div class="form-group" ng-class="{ 'has-success': form.confirmPassword.$valid && signup.submitted, 'has-error': form.confirmPassword.$invalid && signup.submitted }">
+        <div class="form-group" ng-class="{ 'has-success': form.password.$valid && signup.submitted, 'has-error': form.password.$invalid && signup.submitted }">
           <label for="confirmPassword">Confirm</label>
-          <input id="confirmPassword" type="password" name="confirmPassword" class="form-control" ng-model="signup.user.confirmPassword" match="signup.user.password" ng-minlength="3" required mongoose-error/>
+          <input id="confirmPassword" type="password" name="confirmPassword" class="form-control" ng-model="signup.user.confirmPassword" match="signup.user.password" placeholder="Repeat password" ng-minlength="3" required mongoose-error/>
+        <p class="help-block" ng-show="form.password.$error.required && signup.submitted">Please provide valid password</p>
+        <p class="help-block" ng-show="form.password.$error && signup.submitted && !form.password.$error.required">Password's dont match</p>
         </div>
-        <p class="help-block" ng-show="(form.password.$error.minlength || form.password.$error.required) && signup.submitted">Password must be at least 3 characters.</p>
+
+        <!--<p class="help-block" ng-show="(form.password.$error.minlength || form.password.$error.required) && signup.submitted">Password must be at least 3 characters.</p>-->
         <p class="help-block" ng-show="form.password.$error.mongoose">{{ signup.errors.password }}</p>
 
         <div>
           <button class="btn btn-inverse btn-lg btn-register" type="submit">Sign up</button>
           <a class="btn btn-default btn-lg btn-login" ui-sref="login">Login</a>
         </div>
-
+<pre>{{signup.user |json}}</pre>
         <hr>
         <div>
           <a class="btn btn-facebook" href="" ng-click="signup.loginOauth('facebook')"><i class="fa fa-facebook"></i> Connect with Facebook</a>
           <a class="btn btn-google-plus" href="" ng-click="signup.loginOauth('google')"><i class="fa fa-google-plus"></i> Connect with Google+</a>
-          <a class="btn btn-linkedin" href="" ng-click="signup.loginOauth('linkedin')"><i class="fa fa-linkedin"></i> Connect with Linkedin</a>
-          <!--<a class="btn btn-twitter" href="" ng-click="signup.loginOauth('twitter')"><i class="fa fa-twitter"></i> Connect with Twitter</a>-->
+
+          <!--TODO<a class="btn btn-linkedin" href="" ng-click="signup.loginOauth('linkedin')"><i class="fa fa-linkedin"></i> Connect with Linkedin</a>-->
+          <!--TODO<a class="btn btn-twitter" href="" ng-click="signup.loginOauth('twitter')"><i class="fa fa-twitter"></i> Connect with Twitter</a>-->
+
         </div>
 
       </form>
