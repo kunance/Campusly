@@ -4,9 +4,9 @@
   angular.module('app.account')
     .controller('PwdResetCtrl', PwdResetCtrl);
 
-  PwdResetCtrl.$inject = ['Auth', '$stateParams'];
+  PwdResetCtrl.$inject = ['Auth', '$stateParams','common'];
 
-  function PwdResetCtrl (Auth, $stateParams) {
+  function PwdResetCtrl (Auth, $stateParams,common) {
     var vm = this;
     var passwordResetToken = $stateParams.passwordResetToken;
     var pwdResetState = 'mailform';
@@ -41,7 +41,6 @@
     vm.resetStateIs = function(state) {
       return pwdResetState===state;
     };
-
   }
 
 })();

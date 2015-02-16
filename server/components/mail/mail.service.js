@@ -59,23 +59,23 @@ module.exports.confirm = function (templateName, user, subject, locals, callback
   })
 }
 
-//module.exports.passwordReset = function (templateName, user, subject, locals, callback) {
-//  var cb = callback || _.noop;
-//  generateMail(templateName, locals, function (html) {
-//    var params = {
-//      message: {
-//        from_email: 'rented@rented.com',
-//        to: [{email: user.email, name: (user.firstname + ' ' + user.lastname)}],
-//        subject: subject,
-//        html: html
-//      }
-//    };
-//    mandrill('/messages/send', params, function (error, info) {
-//      if (error) {cb(error, null)}
-//      else {
-//        console.log(info);
-//        cb(null, info.response)}
-//    });
-//  })
-//}
+module.exports.passwordReset = function (templateName, user, subject, locals, callback) {
+  var cb = callback || _.noop;
+  generateMail(templateName, locals, function (html) {
+    var params = {
+      message: {
+        from_email: 'rented@rented.com',
+        to: [{email: user.email, name: (user.firstname + ' ' + user.lastname)}],
+        subject: subject,
+        html: html
+      }
+    };
+    mandrill('/messages/send', params, function (error, info) {
+      if (error) {cb(error, null)}
+      else {
+        console.log(info);
+        cb(null, info.response)}
+    });
+  })
+}
 
