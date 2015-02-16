@@ -26,7 +26,19 @@ var all = {
 
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
-    session: 'base-code-sql-secret'
+    session: process.env.SESSION_SECRET ||  'base-code-sql-secret',
+    mailConfirmation : process.env.MAIL_CONFIRMATION_SECRET || 'mailConfirmation',
+    passwordReset: process.env.PASSWORD_RESET_SECRET || 'passwordReset'
+  },
+
+  mail: {
+    sendGridOptions : {
+      auth: {
+        api_user: 'RentedMailer',
+        api_key: 'ApiKey'
+      }
+    },
+    from: 'rented@rented.co'
   },
 
   // List of user roles

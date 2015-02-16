@@ -15,11 +15,7 @@
     vm.me = common.Auth.getCurrentUser();
 
     vm.addNewPet = function (input) {
-      dataservice.addPet(vm.me.id, {
-        type: input.type,
-        breed: input.breed,
-        weightLbs: input.weight
-      }).$promise
+      dataservice.addPet(vm.me.id, input).$promise
         .then(function () {
           console.log('new Pet added');
           common.$state.go('^',{},{reload:true});

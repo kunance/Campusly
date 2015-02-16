@@ -46,7 +46,7 @@ exports.newAddress = function(req, res, next) {
 exports.showAddresses= function(req, res, next) {
   Address.findAll({where:{userId:req.user.id}})
     .then(function (addresses) {
-      res.json(addresses);
+        res.json(addresses);
     })
     .catch(validationError(res));
 };

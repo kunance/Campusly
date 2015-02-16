@@ -9,6 +9,12 @@
           templateUrl: 'app/account/login/login.html',
           controller: 'LoginCtrl'
         })
+        .state('loginWithToken', {
+          url: '/login/:sessionToken',
+          templateUrl: 'app/account/login/login.html',
+          controller: 'LoginCtrl',
+          controllerAs: 'login'
+        })
         .state('logout', {
           url: '/logout?referrer',
           referrer: 'main',

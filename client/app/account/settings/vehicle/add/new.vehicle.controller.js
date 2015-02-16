@@ -15,13 +15,7 @@
     vm.me = common.Auth.getCurrentUser();
 
     vm.addNewVehicle = function (input) {
-      dataservice.addVehicle(vm.me.id, {
-        year:input.year,
-        make:input.make,
-        model:input.model,
-        licensePlate:input.license,
-        color:input.color
-      }).$promise
+      dataservice.addVehicle(vm.me.id, input).$promise
         .then(function () {
           console.log('new Vehicle added');
         })

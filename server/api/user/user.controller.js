@@ -66,13 +66,13 @@ exports.me = function(req, res, next) {
     },
     attributes: [
       'id',
+      'username','middlename',
+      'confirmedEmail',
       'createdAt',
-      'middlename',
       'firstname',
       'email',
       'phone',
       'lastname',
-      'username',
       'role',
       'provider',
       'userImage'
@@ -185,22 +185,6 @@ exports.changeInfo = function(req, res, next) {
       }
     })
 };
-
-
-
-exports.changePets = function(req, res, next) {
-  req.body.userId = req.user.id;
-  req.body.createdAt = new Date();
-  console.log(req.body);
-  var newPet = Pets.build(req.body);
-
-  newPet.save()
-    .then(function(pet) {
-      res.json(pet);
-    })
-    .catch(validationError(res));
-};
-
 
 /**
  * Authentication callback

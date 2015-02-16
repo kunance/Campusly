@@ -33,16 +33,7 @@
 
 
     vm.addNewEducation = function (input) {
-      dataservice.addEducation(vm.me.id, {
-          educationCenterName: input.educationCenterName,
-          type: input.type,
-          startDate: input.startDate,
-          endDate:input.endDate,
-          graduation:input.graduation,
-          graduationDate:input.graduationDate,
-          major:input.major,
-          degreeType:input.degreeType
-      }).$promise
+      dataservice.addEducation(vm.me.id, input).$promise
         .then(function () {
           console.log('new Education added');
           common.$state.go('^',{},{reload:true});

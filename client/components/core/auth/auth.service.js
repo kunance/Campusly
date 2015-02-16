@@ -2,7 +2,7 @@
   "use strict";
 
   angular.module('app.core')
-    .factory('Auth', function Auth($http, UserResource, $cookieStore, $q) {
+    .factory('Auth', function Auth($http, UserResource, $cookieStore, $q, Local, $localStorage, $state) {
       /**
        * Return a callback or noop function
        *
@@ -171,7 +171,106 @@
          */
         getToken: function() {
           return $cookieStore.get('token');
+        },
+
+        /**
+         * Confirm mail
+         *
+         * @param  {String}   mailConfirmationToken
+         * @param  {Function} callback    - optional
+         * @return {Promise}
+         */
+        confirmMail: function(mailConfirmationToken, callback) {
+          var cb = callback || angular.noop;
+          return Local.confirmMail({
+            mailConfirmationToken: mailConfirmationToken
+          }, function(data) {
+            $localStorage.token = data.token;
+            currentUser = UserResource.get();
+            return cb(currentUser);
+          }, function(err) {
+            return cb(err);
+          }).$promise;
+        },
+
+        /**
+         * Check if a user's mail is confirmed
+         *
+         * @return {Boolean}
+         */
+        isMailconfirmed: function() {
+          return currentUser.confirmedEmail;
+        },
+
+        /**
+         * Confirm mail
+         *
+         * @param  {Function} callback    - optional
+         * @return {Promise}
+         */
+        sendConfirmationMail: function(callback) {
+          var cb = callback || angular.noop;
+
+          return Local.verifyMail(function(user) {
+            return cb(user);
+          }, function(err) {
+            return cb(err);
+          }).$promise;
+        },
+
+        /**
+         * Send Reset password Mail
+         *
+         * @param  {String}   email address
+         * @param  {Function} callback    - optional
+         * @return {Promise}
+         */
+        sendPwdResetMail: function(email, newPassword, callback) {
+          var cb = callback || angular.noop;
+          return Local.resetPassword({
+            email: email,
+            newPassword : newPassword
+          }, function(user) {
+            return cb(user);
+          }, function(err) {
+            return cb(err);
+          }).$promise;
+        },
+
+        /**
+         * Change reseted password
+         *
+         * @param  {String}   passwordResetToken
+         * @param  {String}   newPassword
+         * @param  {Function} callback    - optional
+         * @return {Promise}
+         */
+        confirmResetedPassword: function(passwordResetToken, callback) {
+          var cb = callback || angular.noop;
+
+          return Local.confirmPassword({
+            passwordResetToken: passwordResetToken,
+          }, function(data) {
+            $localStorage.token = data.token;
+            currentUser = UserResource.get();
+            return cb(data);
+          }, function(err) {
+            return cb(err);
+          }).$promise;
+        },
+
+        /**
+         * Set session token
+         *
+         * @param  {String}   session token
+         * @return {Promise}
+         */
+        setSessionToken: function(sessionToken, callback) {
+          var cb = callback || angular.noop;
+          $localStorage.token = sessionToken;
+          currentUser = UserResource.get(cb);
         }
+
       };
     });
 

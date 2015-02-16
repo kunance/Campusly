@@ -33,16 +33,7 @@
     };
 
   vm.saveEducation = function (input) {
-    dataservice.editEducation(vm.me.id, educationId,{
-      educationCenterName:input.educationCenterName,
-      type:input.type,
-      startDate:input.startDate,
-      endDate:input.endDate,
-      graduation:input.graduation,
-      graduationDate:input.graduationDate,
-      major:input.major,
-      degreeType:input.degreeType
-    }, function () {
+    dataservice.editEducation(vm.me.id, educationId, input, function () {
       common.$state.go('^',{},{reload:true});
       console.log('Education updated');
     })

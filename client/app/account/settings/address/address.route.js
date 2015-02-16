@@ -20,9 +20,9 @@
   }
 
   function getAddresses(common) {
-    var dataservice = common.dataservice;
-    var me = common.Auth.getCurrentUser();
-    return dataservice.getAllAddresses(me)
+      var dataservice = common.dataservice;
+      var me = common.Auth.getCurrentUser();
+      return dataservice.getAllAddresses(me);
   }
 
 
