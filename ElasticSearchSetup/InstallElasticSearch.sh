@@ -1,49 +1,53 @@
-### https://gist.github.com/janpieper/2c96fb12d9b566a679a5
-### ElasticSearch version
-if [ -z "$1" ]; then
-  echo ""
-  echo "  Please specify the Elasticsearch version you want to install!"
-  echo ""
-  echo "    $ $0 1.4.2"
-  echo ""
-  exit 1
-fi
-
-ELASTICSEARCH_VERSION=$1
-
-if [[ ! "${ELASTICSEARCH_VERSION}" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
-  echo ""
-  echo "  The specified Elasticsearch version isn't valid!"
-  echo ""
-  echo "    $ $0 1.4.2"
-  echo ""
-  exit 2
-fi
+### https://gist.github.com/gourneau/66e0bd90c92ad829590b
 
 ### Install OpenJDK
 cd ~
+sudo add-apt-repository -y ppa:webupd8team/java
 sudo apt-get update
-sudo apt-get install openjdk-7-jre-headless -y
+echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
+sudo aptitude -y install oracle-java8-installer
 
-### Download and Install ElasticSearch
-### Check http://www.elasticsearch.org/download/ for latest version of ElasticSearch and replace wget link below
-wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.deb
-sudo dpkg -i elasticsearch-${ELASTICSEARCH_VERSION}.deb
+## Download and Install ElasticSearch using apt
+echo "Downloading and Installing latest stable 1.4 ElasticSearch using apt"
 
-### Install the Java Service Wrapper for ElasticSearch
-curl -L http://github.com/elasticsearch/elasticsearch-servicewrapper/tarball/master | tar -xz
-sudo mkdir /usr/local/share/elasticsearch
-sudo mkdir /usr/local/share/elasticsearch/bin
-sudo mv *servicewrapper*/service /usr/local/share/elasticsearch/bin/
-rm -Rf *servicewrapper*
-sudo /usr/local/share/elasticsearch/bin/service/elasticsearch install
-sudo ln -s `readlink -f /usr/local/share/elasticsearch/bin/service/elasticsearch` /usr/local/bin/rcelasticsearch
+### Download and install the Public Signing Key
+wget -qO - https://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
+
+### Add the following to your /etc/apt/sources.list to enable the repository
+sudo add-apt-repository "deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main"
+
+### Run apt-get update and the repository is ready for use. You can install it with :
+sudo apt-get update && sudo apt-get install elasticsearch
+
+cd /usr/share/elasticsearch
+
+## Install is the kopf plugin, the one we would use to overview our cluster configuration
+sudo ./bin/plugin -install lmenezes/elasticsearch-kopf/1.4.5
+
+
+## Install the elasticsearch-cloud-aws plugin
+#cd /usr/share/elasticsearch/
+sudo ./bin/plugin -install elasticsearch/elasticsearch-cloud-aws/2.4.1
+
+
+### Referencing http://pavelpolyakov.com/2014/08/14/elasticsearch-cluster-on-aws-part-2-configuring-the-elasticsearch/
+### Create the new elasticsearch.yml file, for hermes ( or another EC2 instance) and backup the default file:
+sudo cp  /etc/elasticsearch/elasticsearch.yml  /etc/elasticsearch/elasticsearch.yml.bak
+sudo cp ~/elasticsearch.yml  /etc/elasticsearch/elasticsearch.yml
+
+
+
+### Configure Elasticsearch to automatically start during bootup :
+sudo update-rc.d elasticsearch defaults 95 10
+
+
 
 ### Start ElasticSearch
-sudo service elasticsearch start
+#sudo service elasticsearch start
 
-### Make sure service is running
-curl http://localhost:9200
+### Make sure service is running ... but service takes a minute to run so don't auto test without a wait first
+#curl http://localhost:9200
 
 ### Should return something like this:
 #{
@@ -60,24 +64,8 @@ curl http://localhost:9200
 #}
 
 
-
 ### Stop ElasticSearch
-sudo service elasticsearch stop
+#sudo service elasticsearch stop
 
-## Enable the elasticsearch start during the server start we should execute:
 
-sudo update-rc.d elasticsearch defaults 95 10
-
-## Install the elasticsearch-cloud-aws plugin
-cd /usr/share/elasticsearch/
-sudo bin/plugin -install elasticsearch/elasticsearch-cloud-aws/2.3.0
-
-## Install is the kopf plugin, the one we would use to overview our cluster configuration
-sudo bin/plugin -install lmenezes/elasticsearch-kopf/1.2&nbsp;
-
-### Referencing http://pavelpolyakov.com/2014/08/14/elasticsearch-cluster-on-aws-part-2-configuring-the-elasticsearch/
-### Create the new elasticsearch.yml file, for hermes ( or another EC2 instance) it should look like this:
-### Now, we should update the elasticsearch configuration file, so backup the default file:
-
-sudo cp /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.bak
 
