@@ -24,18 +24,6 @@
             params: {
               controller:'info'
             }
-          },
-          changePets: {
-            method: 'POST',
-            params: {
-              controller:'pets'
-            }
-          },
-          changeVehicle: {
-            method: 'POST',
-            params: {
-              controller:'vehicle'
-            }
           }
         });
     });

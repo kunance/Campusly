@@ -124,6 +124,15 @@
             });
         },
 
+        getUser: function (userId, data) {
+          return UserResource.get({userId: userId}, data,
+            function (res) {
+              return res;
+            }, function (err) {
+              //handle exception
+            });
+        },
+
         /**
          * Check if a user is logged in
          *   (synchronous|asynchronous)

@@ -5,9 +5,9 @@
     .module('RentedApp')
     .controller('NavbarCtrl', NavbarCtrl);
 
-  NavbarCtrl.$inject = ['$scope', 'Auth'];
+  NavbarCtrl.$inject = ['$scope', 'Auth', 'common'];
 
-  function NavbarCtrl($scope, Auth) {
+  function NavbarCtrl($scope, Auth, common) {
       $scope.menu = [{
         'title': 'Home',
         'state': 'main'
