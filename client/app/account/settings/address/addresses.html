@@ -1,5 +1,6 @@
 
 <div ui-view="">
+<div cg-busy="{promise:address.listOfAddresses.$promise, message:'Loading Your Addresses', delay:100}">
   <table class="table table-bordered table-condensed">
   <thead>
   <tr>
@@ -37,5 +38,6 @@
   </tr>
   </tbody>
 </table>
+</div>
   <button class="btn btn-primary" ui-sref=".new">Add new address</button>
 </div>

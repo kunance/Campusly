@@ -22,6 +22,7 @@
       <!-- bower:css -->
       <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
       <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+      <link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -73,6 +74,8 @@
       <script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
       <script src="bower_components/angular-animate/angular-animate.js"></script>
       <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+      <script src="bower_components/angular-busy/dist/angular-busy.js"></script>
+      <script src="bower_components/ngstorage/ngStorage.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -87,7 +90,11 @@
 
           <!-- injector:js -->
           <script src="app/account/account.routes.js"></script>
+          <script src="app/account/confirm/confirm.controller.js"></script>
+          <script src="app/account/confirm/confirm.route.js"></script>
           <script src="app/account/login/login.controller.js"></script>
+          <script src="app/account/pwdreset/pwdreset.controller.js"></script>
+          <script src="app/account/pwdreset/pwdreset.route.js"></script>
           <script src="app/account/settings/address/add/new.address.controller.js"></script>
           <script src="app/account/settings/address/add/new.address.route.js"></script>
           <script src="app/account/settings/address/address.controller.js"></script>
@@ -138,6 +145,7 @@
           <script src="components/core/data/address.js"></script>
           <script src="components/core/data/dataservice.js"></script>
           <script src="components/core/data/education.js"></script>
+          <script src="components/core/data/local.js"></script>
           <script src="components/core/data/pet.js"></script>
           <script src="components/core/data/property.js"></script>
           <script src="components/core/data/vehicle.js"></script>

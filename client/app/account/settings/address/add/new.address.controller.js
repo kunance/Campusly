@@ -30,19 +30,8 @@
     };
 
     vm.addNewAddress= function (input) {
-      var trimmedZip = input.streetAddress.zip.replace(/\s/g, '');
-      dataservice.addAddress(vm.me.id, {
-        streetNumeric: input.streetAddress.number,
-        streetAddress: input.streetAddress.street,
-        apt: input.streetAddress.apt,
-        city:input.streetAddress.city,
-        state:input.streetAddress.country_short,
-        zip:trimmedZip,
-        startDate:input.startDate,
-        endDate:input.endDate,
-        aboutMe:input.about,
-        present:input.streetAddress.present
-      }).$promise
+      input.zip = input.zip.replace(/\s/g, '');
+      dataservice.addAddress(vm.me.id, input).$promise
         .then(function () {
           console.log('new Address added');
           common.$state.go('^',{},{reload:true});

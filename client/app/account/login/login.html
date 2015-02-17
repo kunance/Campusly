@@ -22,6 +22,7 @@
           <label for="confirmPassword">Confirm</label>
           <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" ng-model="user.confirmPassword" match="user.password" required>
         </div>
+        <a class="link text-right" translate ui-sref="askForPwdReset">Lost or forgotten your password?</a>
         <div class="form-group has-error">
           <p class="help-block" ng-show="form.email.$error.required && form.password.$error.required && submitted">Please enter your email and password.</p>
           <p class="help-block" ng-show="form.email.$error.email && submitted">Please enter a valid email.</p>

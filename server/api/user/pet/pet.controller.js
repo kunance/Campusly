@@ -33,9 +33,7 @@ function respondWith(res, statusCode) {
 exports.newPet = function(req, res, next) {
   req.body.userId = req.user.id;
   req.body.createdAt = new Date();
-  console.log(req.body);
   var newPet = Pet.build(req.body);
-
   newPet.save()
     .then(function(pet) {
       res.json(pet);

@@ -33,19 +33,8 @@
     };
 
     vm.saveAddress = function (input) {
-      var trimmedZip = input.zip.replace(/\s/g, '');
-      dataservice.editAddress(vm.me.id, addressesId,{
-        streetNumeric:input.streetNumeric,
-        streetAddress:input.streetAddress,
-        apt:input.apt,
-        city:input.city,
-        state:input.state,
-        zip:trimmedZip,
-        startDate:input.startDate,
-        endDate:input.endDate,
-        aboutMe:input.aboutMe,
-        present:input.present
-    }, function () {
+      input.zip = input.zip.replace(/\s/g, '');
+      dataservice.editAddress(vm.me.id, addressesId, input, function () {
         common.$state.go('^',{},{reload:true});
         console.log('Address updated');
       })

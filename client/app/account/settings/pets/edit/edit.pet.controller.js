@@ -16,11 +16,7 @@
     vm.me = common.Auth.getCurrentUser();
 
   vm.savePet = function (input) {
-    dataservice.editPet(vm.me.id, petId,{
-      type:input.type,
-      breed:input.breed,
-      weightLbs:input.weightLbs
-    }, function () {
+    dataservice.editPet(vm.me.id, petId, input, function () {
       common.$state.go('^',{},{reload:true});
       console.log('Pet updated');
     })

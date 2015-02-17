@@ -35,7 +35,7 @@
           <input type="email" id="email" name="email" class="form-control" ng-model="info.tempMe.email"/>
 
          <label for="phone">Phone number:</label>
-          <input type="text" id="phone" name="phone" class="form-control" ng-model="info.tempMe.phone"/>
+          <input type="text" id="phone" name="phone" class="form-control" ui-mask="999-999-9999" ng-model="info.tempMe.phone"/>
       <br/>
       <br/>
       <button class="btn btn-primary" ng-click="info.saveUserInfo(info.tempMe)">Save changes</button>

@@ -18,15 +18,8 @@
     };
 
 vm.saveUserInfo= function (input) {
-  common.Auth.updateUser({
-    userImage: vm.me.userImage,
-    firstname:input.firstname,
-    lastname:input.lastname,
-    middlename:input.middlename,
-    username:input.username,
-    phone:input.phone,
-    email:input.email
-  })
+  input.userImage=vm.me.userImage;
+  common.Auth.updateUser(input)
     .then(function () {
       console.log('User info updated');
     })

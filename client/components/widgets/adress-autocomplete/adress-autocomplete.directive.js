@@ -78,14 +78,14 @@
           address['city'] = place.address_components[i]['long_name'];
           break;
         case 'route':
-          address['street'] = place.address_components[i]['long_name'];
+          address['streetAddress'] = place.address_components[i]['long_name'];
           break;
         case 'street_number':
-          address['number'] = place.address_components[i]['long_name'];
+          address['streetNumeric'] = place.address_components[i]['long_name'];
           break;
         case 'country':
           address['country'] = place.address_components[i]['long_name'];
-          address['country_short'] = place.address_components[i]['short_name'];
+          address['state'] = place.address_components[i]['short_name'];
           break;
         case 'postal_code':
           address['zip'] = place.address_components[i]['short_name'];

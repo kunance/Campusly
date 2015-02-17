@@ -5,7 +5,8 @@
   angular
     .module('app.widgets', [
     'angularFileUpload',
-    'uiGmapgoogle-maps'
+    'uiGmapgoogle-maps',
+    'cgBusy'
   ]);
 
 })();

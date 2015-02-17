@@ -33,7 +33,6 @@
       };
 
       $scope.loginOauth = function(provider) {
-        console.log(provider);
         $window.location.href = '/auth/' + provider;
       };
     }

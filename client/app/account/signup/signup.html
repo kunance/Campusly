@@ -26,11 +26,11 @@
             <p class="help-block" ng-show="form.lastname.$error.required && signup.submitted">A last name is required</p>
         </div>
 
-        <div class="form-group" ng-class="{'has-success': form.username.$valid && signup.submitted, 'has-error': form.username.$invalid && signup.submitted}">
-            <label for="username">Username</label>
-            <input id="username" type="text" name="username" class="form-control" ng-model="signup.user.username" placeholder="Username" required/>
-            <p class="help-block" ng-show="form.username.$error.required && signup.submitted">A username is required</p>
-        </div>
+        <!--<div class="form-group" ng-class="{'has-success': form.username.$valid && signup.submitted, 'has-error': form.username.$invalid && signup.submitted}">-->
+            <!--<label for="username">Username</label>-->
+            <!--<input id="username" type="text" name="username" class="form-control" ng-model="signup.user.username" placeholder="Username" required/>-->
+            <!--<p class="help-block" ng-show="form.username.$error.required && signup.submitted">A username is required</p>-->
+        <!--</div>-->
 
         <div class="form-group" ng-class="{'has-success': form.phone.$valid && signup.submitted, 'has-error': form.phone.$invalid && signup.submitted}">
             <label for="phone">Phone number</label>
@@ -40,7 +40,8 @@
 
         <div class="form-group" ng-class="{ 'has-success': form.email.$valid && signup.submitted, 'has-error': form.email.$invalid && signup.submitted }">
             <label for="email">Email</label>
-            <input id="email" type="email" name="email" class="form-control" ng-model="signup.user.email" ng-pattern="/\.edu$/" placeholder="Your email" required mongoose-error/>
+          <!--ng-pattern="/\.edu$/"-->
+            <input id="email" type="email" name="email" class="form-control" ng-model="signup.user.email"  placeholder="Your email" required mongoose-error/>
             <p class="help-block" ng-show="form.email.$error.email && signup.submitted">Doesn't look like a valid email.</p>
             <p class="help-block" ng-show="form.email.$error.required && signup.submitted">What's your email address?</p>
             <p class="help-block" ng-show="!form.email.$error.email && !form.email.$error.required && form.email.$invalid && signup.submitted">Your email have to finish with .edu</p>

@@ -597,8 +597,9 @@ DROP TABLE IF EXISTS `rented_user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `rented_user` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL,
+  `username` varchar(50) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
+  `confirmedEmail` tinyint(1) NOT NULL DEFAULT '0',
   `password` varchar(128) NOT NULL,
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,

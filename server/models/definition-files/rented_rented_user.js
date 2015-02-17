@@ -183,6 +183,12 @@ module.exports = {
             });
         },
 
+        confirmMail : function(cb) {
+          this.confirmedEmail = true;
+          this.save()
+            .then(cb());
+        },
+
         /**
          * Update password field
          *
@@ -217,6 +223,7 @@ module.exports = {
           }
         }
 
+
       }
     },
     attributes: {
@@ -231,7 +238,7 @@ module.exports = {
         "username": {
             type: Seq.STRING(50),
             field: "username",
-            allowNull: false
+            allowNull: true
         },
         "email": {
             type: Seq.STRING(255),
@@ -300,6 +307,12 @@ module.exports = {
             field: "runIdentityCheck",
             allowNull: false
         },
+        "confirmedEmail": {
+          type: Seq.BOOLEAN,
+          field: "confirmedEmail",
+          allowNull: false,
+          defaultValue: false
+        },
         "shareCreditReport": {
             type: Seq.BOOLEAN,
             field: "shareCreditReport",
@@ -333,9 +346,9 @@ module.exports = {
       },
       "provider": Seq.STRING(64),
       "salt": Seq.STRING(128),
-        "facebookOAuthId": Seq.STRING(64),
-        "googleOAuthId": Seq.STRING(64),
-        "twitterOAuthId": Seq.STRING(64)
+      "facebookOAuthId": Seq.STRING(64),
+      "googleOAuthId": Seq.STRING(64),
+      "twitterOAuthId": Seq.STRING(64)
     },
     relations: [{
         type: "hasMany",
