@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Add finance</h1>
+    </div>
+    <div class="col-sm-12">
+      <div class="row">
+      <div class="col-md-6"><br/>
+        <label for="start">Start date</label>
+        <p class="input-group">
+          <input type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="addFinance.tempFinance.startDate" is-open="datePickers.startDate" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+        </p>
+      </div>
+      <div class="col-md-6"><br/>
+        <label for="end">End date</label>
+        <p class="input-group">
+          <input type="text" id="end" class="form-control" datepicker-popup="{{format}}" ng-model="addFinance.tempFinance.endDate" is-open="datePickers.endDate"  close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event,'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+        </p>
+      </div>
+      </div>
+
+      <label for="individualAnnualIncom">Individual annual income</label>
+      <input type="number" id="individualAnnualIncom" name="individualAnnualIncom" class="form-control" ng-model="addFinance.tempFinance.individualAnnualIncom"/>
+
+      <label for="householdAnnualIncome">Household annual income</label>
+      <input type="number" id="householdAnnualIncome" name="householdAnnualIncome" class="form-control" ng-model="addFinance.tempFinance.householdAnnualIncome"/>
+
+      <label for="spouseAnnualIncome">Spouse annual income</label>
+      <input type="number" id="spouseAnnualIncome" name="spouseAnnualIncome" class="form-control" ng-model="addFinance.tempFinance.spouseAnnualIncome"/>
+
+      <label for="incomeProof">Income proof</label>
+      <input type="text" id="incomeProof" name="incomeProof" class="form-control" ng-model="addFinance.tempFinance.incomeProof"/>
+      <br/>
+
+      <button class="btn btn-primary" ng-click="addFinance.addNewFinance(addFinance.tempFinance)">Add</button>
+      <button class="btn btn-primary" ui-sref="^">Back to education overview</button>
+
+      <pre>{{addFinance.tempFinance|json}}</pre>
+    </div>
+  </div>
+</div>

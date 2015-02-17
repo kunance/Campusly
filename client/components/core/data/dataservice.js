@@ -5,9 +5,9 @@
     .module('app.core')
     .factory('dataservice', dataservice);
 
-  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education'];
+  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance'];
 
-  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education) {
+  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education, Finance) {
 
     var safeCb = function(cb) {
         return (angular.isFunction(cb)) ? cb : angular.noop;
@@ -30,7 +30,12 @@
        getAllAddresses: getAllAddresses,
        deleteAddress:deleteAddress,
        getAddress:getAddress,
-       editAddress:editAddress
+       editAddress:editAddress,
+       addFinance:addFinance,
+       getAllFinances: getAllFinances,
+       deleteFinance:deleteFinance,
+       getFinance:getFinance,
+       editFinance:editFinance
     };
     return service;
 
@@ -75,6 +80,16 @@
     }
     function addAddress(userId, data) {
       return Address.save({userId: userId}, data,
+        function (res) {
+          return res;
+        },
+        function (err) {
+          //handle this exception
+        });
+    }
+
+    function addFinance(userId, data) {
+      return Finance.save({userId: userId}, data,
         function (res) {
           return res;
         },
@@ -191,6 +206,41 @@
         });
     }
 
+    function getAllFinances(userId, data) {
+      return Finance.getAllFinances({userId: userId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function deleteFinance(userId, addressId, data) {
+      return Finance.delete({userId: userId, id:addressId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function getFinance(userId, addressId, data) {
+      return Finance.get({userId: userId, id:addressId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function editFinance(userId, addressId, data, callback) {
+      return Finance.editFinance({userId: userId, id:addressId}, data,
+        function (adr) {
+          return safeCb(callback)(null, adr);
+        }, function (err) {
+          return safeCb(callback)(err);
+        });
+    }
 
   }
 }());
