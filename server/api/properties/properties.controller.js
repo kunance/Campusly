@@ -35,6 +35,7 @@ exports.show = function (req, res, next) {
 
 
 exports.create = function(req, res, next) {
+  req.body.createdAt = new Date();
   var newProperty = Property.build(req.body);
   newProperty.save()
     .then(function(property) {

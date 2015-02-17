@@ -5,28 +5,28 @@
     </div>
     <div class="col-sm-12">
       <label for="streetAddress">Address</label>
-      <input type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="addNew.property.streetAddress" ng-model="addNew.property.streetAddress.street"/>
+      <input type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="addNew.property.streetAddress" ng-model="addNew.property.streetAddress.streetAddress"/>
 
       <label for="streetNumber">Number</label>
-      <input type="text" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="addNew.property.streetAddress.number"/>
+      <input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="addNew.property.streetAddress.streetNumeric"/>
 
       <label for="country">Country</label>
-      <input type="text" id="country" name="country" class="form-control"  placeholder="country" ng-model="addNew.property.streetAddress.country_short"/>
+      <input type="text" id="country" name="country" class="form-control"  placeholder="country" ng-model="addNew.property.streetAddress.state"/>
 
       <label for="city">City</label>
       <input type="text" id="city" name="city" class="form-control"  placeholder="city" ng-model="addNew.property.streetAddress.city"/>
 
       <label for="zip">Zip code</label>
-      <input type="text" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="addNew.property.streetAddress.zip"/>
+      <input type="number" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="addNew.property.streetAddress.zip"/>
 
       <label for="apt">Apt</label>
-      <input type="text" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="addNew.property.apt"/>
+      <input type="number" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="addNew.property.streetAddress.apt"/>
 
       <label for="bldg">Bldg</label>
-      <input type="text" id="bldg" name="bldg" class="form-control"  placeholder="bldg" ng-model="addNew.property.bldg"/>
+      <input type="text" id="bldg" name="bldg" class="form-control"  placeholder="bldg" ng-model="addNew.property.streetAddress.bldg"/>
 
       <label for="type">Type</label>
-      <select id="type" class="form-control" data-ng-model="addNew.property.type">
+      <select id="type" class="form-control" data-ng-model="addNew.property.streetAddress.type">
         <option value="apt">Apt</option>
         <option value="sfh">sfh</option>
         <option value="duplex">Duplex</option>
@@ -35,32 +35,32 @@
       </select>
 
       <label for="bedrooms">Bedrooms?</label><br/>
-      <input type="number" id="bedrooms" name="bedrooms" class="form-control"  placeholder="Number of bedrooms" ng-model="addNew.property.bedrooms"/>
+      <input type="number" id="bedrooms" name="bedrooms" class="form-control"  placeholder="Number of bedrooms" ng-model="addNew.property.streetAddress.bedrooms"/>
 
       <label for="bathrooms">Bathrooms?</label><br/>
-      <input type="number" id="bathrooms" name="bathrooms" class="form-control"  placeholder="Number of bathrooms" ng-model="addNew.property.bathrooms"/>
+      <input type="number" id="bathrooms" name="bathrooms" class="form-control"  placeholder="Number of bathrooms" ng-model="addNew.property.streetAddress.bathrooms"/>
 
       <label for="parkingSpots">Parking spots?</label><br/>
-      <input type="number" id="parkingSpots" name="parkingSpots" class="form-control"  placeholder="Number of parking spots" ng-model="addNew.property.parkingSpots"/>
+      <input type="number" id="parkingSpots" name="parkingSpots" class="form-control"  placeholder="Number of parking spots" ng-model="addNew.property.streetAddress.parkingSpots"/>
 
       <label for="livingAreaSqFt">Living area SqFt</label><br/>
-      <input type="number" id="livingAreaSqFt" name="livingAreaSqFt" class="form-control"  placeholder="Living area sqFt" ng-model="addNew.property.livingAreaSqFt"/>
+      <input type="number" id="livingAreaSqFt" name="livingAreaSqFt" class="form-control"  placeholder="Living area sqFt" ng-model="addNew.property.streetAddress.livingAreaSqFt"/>
 
       <label for="hoaFee">Hoa fee</label><br/>
-      <input type="number" id="hoaFee" name="hoaFee" class="form-control"  placeholder="hoa fee" ng-model="addNew.property.hoaFee"/>
+      <input type="number" id="hoaFee" name="hoaFee" class="form-control"  placeholder="hoa fee" ng-model="addNew.property.streetAddress.hoaFee"/>
 
       <label for="otherFee">Other fee</label><br/>
-      <input type="number" id="otherFee" name="otherFee" class="form-control"  placeholder="other fee" ng-model="addNew.property.otherFee"/>
+      <input type="number" id="otherFee" name="otherFee" class="form-control"  placeholder="other fee" ng-model="addNew.property.streetAddress.otherFee"/>
 
       <label for="status">Type</label>
-      <select id="status" class="form-control" data-ng-model="addNew.property.status">
+      <select id="status" class="form-control" data-ng-model="addNew.property.streetAddress.status">
         <option value="avail">Available</option>
         <option value="pending">Pending</option>
         <option value="rented">Rented</option>
       </select>
 
       <label for="description">Property description</label>
-      <textarea name="description" id="description" cols="30" rows="5" placeholder="description" data-ng-model="addNew.property.description"  class="form-control" ></textarea>
+      <textarea name="description" id="description" cols="30" rows="5" placeholder="description" data-ng-model="addNew.property.streetAddress.description"  class="form-control" ></textarea>
 
       <label for="picture">Upload picture</label>
       <input name="picture" type="file" nv-file-select uploader="addNew.uploader" id="picture" />
@@ -71,7 +71,7 @@
         </li>
       </ul>
       <br/>
-      <button class="btn btn-primary" ng-click="addNew.addNewProperty(addNew.property)">Save new property</button>
+      <button class="btn btn-primary" ng-click="addNew.addNewProperty(addNew.property.streetAddress)">Save new property</button>
 
     </div>
 
