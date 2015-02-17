@@ -37,10 +37,14 @@
        deleteFinance:deleteFinance,
        getFinance:getFinance,
        editFinance:editFinance,
-      getAllOccupations: getAllOccupations,
-      deleteOccupation:deleteOccupation,
-      getOccupation:getOccupation,
-      editOccupation:editOccupation
+       getAllOccupations: getAllOccupations,
+       deleteOccupation:deleteOccupation,
+       getOccupation:getOccupation,
+       editOccupation:editOccupation,
+       getAllVehicles: getAllVehicles,
+       deleteVehicle:deleteVehicle,
+       getVehicle:getVehicle,
+       editVehicle:editVehicle
     };
     return service;
 
@@ -158,8 +162,8 @@
         });
     }
 
-    function deletePet(userId, educationId, data) {
-      return Pet.delete({userId: userId, id:educationId}, data,
+    function deletePet(userId, petId, data) {
+      return Pet.delete({userId: userId, id:petId}, data,
         function (res) {
           return res;
         }, function (err) {
@@ -167,8 +171,8 @@
         });
     }
 
-    function getSinglePet(userId, educationId, data) {
-      return Pet.get({userId: userId, id:educationId}, data,
+    function getSinglePet(userId, petId, data) {
+      return Pet.get({userId: userId, id:petId}, data,
         function (res) {
           return res;
         }, function (err) {
@@ -176,8 +180,8 @@
         });
     }
 
-    function editPet(userId, educationId, data, callback) {
-      return Pet.editPet({userId: userId, id:educationId}, data,
+    function editPet(userId, petId, data, callback) {
+      return Pet.editPet({userId: userId, id:petId}, data,
         function (edu) {
           return safeCb(callback)(null, edu);
         }, function (err) {
@@ -230,8 +234,8 @@
         });
     }
 
-    function deleteFinance(userId, addressId, data) {
-      return Finance.delete({userId: userId, id:addressId}, data,
+    function deleteFinance(userId, financeId, data) {
+      return Finance.delete({userId: userId, id:financeId}, data,
         function (res) {
           return res;
         }, function (err) {
@@ -239,8 +243,8 @@
         });
     }
 
-    function getFinance(userId, addressId, data) {
-      return Finance.get({userId: userId, id:addressId}, data,
+    function getFinance(userId, financeId, data) {
+      return Finance.get({userId: userId, id:financeId}, data,
         function (res) {
           return res;
         }, function (err) {
@@ -248,10 +252,10 @@
         });
     }
 
-    function editFinance(userId, addressId, data, callback) {
-      return Finance.editFinance({userId: userId, id:addressId}, data,
-        function (adr) {
-          return safeCb(callback)(null, adr);
+    function editFinance(userId, financeId, data, callback) {
+      return Finance.editFinance({userId: userId, id:financeId}, data,
+        function (res) {
+          return safeCb(callback)(null, res);
         }, function (err) {
           return safeCb(callback)(err);
         });
@@ -266,8 +270,8 @@
         });
     }
 
-    function deleteOccupation(userId, addressId, data) {
-      return Occupation.delete({userId: userId, id:addressId}, data,
+    function deleteOccupation(userId, occupationId, data) {
+      return Occupation.delete({userId: userId, id:occupationId}, data,
         function (res) {
           return res;
         }, function (err) {
@@ -275,8 +279,8 @@
         });
     }
 
-    function getOccupation(userId, addressId, data) {
-      return Occupation.get({userId: userId, id:addressId}, data,
+    function getOccupation(userId, occupationId, data) {
+      return Occupation.get({userId: userId, id:occupationId}, data,
         function (res) {
           return res;
         }, function (err) {
@@ -284,14 +288,51 @@
         });
     }
 
-    function editOccupation(userId, addressId, data, callback) {
-      return Occupation.editOccupation({userId: userId, id:addressId}, data,
-        function (adr) {
-          return safeCb(callback)(null, adr);
+    function editOccupation(userId, occupationId, data, callback) {
+      return Occupation.editOccupation({userId: userId, id:occupationId}, data,
+        function (res) {
+          return safeCb(callback)(null, res);
         }, function (err) {
           return safeCb(callback)(err);
         });
     }
+
+    function getAllVehicles(userId, data) {
+      return Vehicle.getAllVehicles({userId: userId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function deleteVehicle(userId, vehicleId, data) {
+      return Vehicle.delete({userId: userId, id:vehicleId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function getVehicle(userId, vehicleId, data) {
+      return Vehicle.get({userId: userId, id:vehicleId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function editVehicle(userId, vehicleId, data, callback) {
+      return Vehicle.editVehicle({userId: userId, id:vehicleId}, data,
+        function (res) {
+          return safeCb(callback)(null, res);
+        }, function (err) {
+          return safeCb(callback)(err);
+        });
+    }
+
 
 
   }

@@ -18,6 +18,7 @@
       dataservice.addVehicle(vm.me.id, input).$promise
         .then(function () {
           console.log('new Vehicle added');
+          common.$state.go('^',{},{reload:true});
         })
         .catch(function (err) {
           console.log('error while creating new Vehicle', err);
