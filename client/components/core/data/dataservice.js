@@ -5,9 +5,9 @@
     .module('app.core')
     .factory('dataservice', dataservice);
 
-  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education'];
+  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation'];
 
-  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education) {
+  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education, Finance, Occupation) {
 
     var safeCb = function(cb) {
         return (angular.isFunction(cb)) ? cb : angular.noop;
@@ -19,6 +19,7 @@
        addPet: addPet,
        addAddress: addAddress,
        addEducation:addEducation,
+       addOccupation:addOccupation,
        getAllEducations: getAllEducations,
        deleteEducation:deleteEducation,
        getEducation:getEducation,
@@ -30,7 +31,20 @@
        getAllAddresses: getAllAddresses,
        deleteAddress:deleteAddress,
        getAddress:getAddress,
-       editAddress:editAddress
+       editAddress:editAddress,
+       addFinance:addFinance,
+       getAllFinances: getAllFinances,
+       deleteFinance:deleteFinance,
+       getFinance:getFinance,
+       editFinance:editFinance,
+       getAllOccupations: getAllOccupations,
+       deleteOccupation:deleteOccupation,
+       getOccupation:getOccupation,
+       editOccupation:editOccupation,
+       getAllVehicles: getAllVehicles,
+       deleteVehicle:deleteVehicle,
+       getVehicle:getVehicle,
+       editVehicle:editVehicle
     };
     return service;
 
@@ -75,6 +89,26 @@
     }
     function addAddress(userId, data) {
       return Address.save({userId: userId}, data,
+        function (res) {
+          return res;
+        },
+        function (err) {
+          //handle this exception
+        });
+    }
+
+    function addFinance(userId, data) {
+      return Finance.save({userId: userId}, data,
+        function (res) {
+          return res;
+        },
+        function (err) {
+          //handle this exception
+        });
+    }
+
+    function addOccupation(userId, data) {
+      return Occupation.save({userId: userId}, data,
         function (res) {
           return res;
         },
@@ -128,8 +162,8 @@
         });
     }
 
-    function deletePet(userId, educationId, data) {
-      return Pet.delete({userId: userId, id:educationId}, data,
+    function deletePet(userId, petId, data) {
+      return Pet.delete({userId: userId, id:petId}, data,
         function (res) {
           return res;
         }, function (err) {
@@ -137,8 +171,8 @@
         });
     }
 
-    function getSinglePet(userId, educationId, data) {
-      return Pet.get({userId: userId, id:educationId}, data,
+    function getSinglePet(userId, petId, data) {
+      return Pet.get({userId: userId, id:petId}, data,
         function (res) {
           return res;
         }, function (err) {
@@ -146,8 +180,8 @@
         });
     }
 
-    function editPet(userId, educationId, data, callback) {
-      return Pet.editPet({userId: userId, id:educationId}, data,
+    function editPet(userId, petId, data, callback) {
+      return Pet.editPet({userId: userId, id:petId}, data,
         function (edu) {
           return safeCb(callback)(null, edu);
         }, function (err) {
@@ -190,6 +224,115 @@
           return safeCb(callback)(err);
         });
     }
+
+    function getAllFinances(userId, data) {
+      return Finance.getAllFinances({userId: userId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function deleteFinance(userId, financeId, data) {
+      return Finance.delete({userId: userId, id:financeId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function getFinance(userId, financeId, data) {
+      return Finance.get({userId: userId, id:financeId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function editFinance(userId, financeId, data, callback) {
+      return Finance.editFinance({userId: userId, id:financeId}, data,
+        function (res) {
+          return safeCb(callback)(null, res);
+        }, function (err) {
+          return safeCb(callback)(err);
+        });
+    }
+
+    function getAllOccupations(userId, data) {
+      return Occupation.getAllOccupations({userId: userId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function deleteOccupation(userId, occupationId, data) {
+      return Occupation.delete({userId: userId, id:occupationId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function getOccupation(userId, occupationId, data) {
+      return Occupation.get({userId: userId, id:occupationId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function editOccupation(userId, occupationId, data, callback) {
+      return Occupation.editOccupation({userId: userId, id:occupationId}, data,
+        function (res) {
+          return safeCb(callback)(null, res);
+        }, function (err) {
+          return safeCb(callback)(err);
+        });
+    }
+
+    function getAllVehicles(userId, data) {
+      return Vehicle.getAllVehicles({userId: userId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function deleteVehicle(userId, vehicleId, data) {
+      return Vehicle.delete({userId: userId, id:vehicleId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function getVehicle(userId, vehicleId, data) {
+      return Vehicle.get({userId: userId, id:vehicleId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function editVehicle(userId, vehicleId, data, callback) {
+      return Vehicle.editVehicle({userId: userId, id:vehicleId}, data,
+        function (res) {
+          return safeCb(callback)(null, res);
+        }, function (err) {
+          return safeCb(callback)(err);
+        });
+    }
+
 
 
   }

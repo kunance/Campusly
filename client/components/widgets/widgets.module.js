@@ -6,7 +6,8 @@
     .module('app.widgets', [
     'angularFileUpload',
     'uiGmapgoogle-maps',
-    'cgBusy'
+    'cgBusy',
+    'angular-progress-arc'
   ]);
 
 })();

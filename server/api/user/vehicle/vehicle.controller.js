@@ -43,6 +43,40 @@ exports.newVehicle = function(req, res, next) {
     .catch(validationError(res));
 };
 
+
+exports.showVehicles= function(req, res, next) {
+  Vehicle.findAll({where:{userId:req.user.id}})
+    .then(function (vehicle) {
+      res.json(vehicle);
+    })
+    .catch(validationError(res));
+};
+
+exports.deleteVehicle= function(req, res, next) {
+  Vehicle.destroy({where: { id: req.params.id }})
+    .then(respondWith(res, 204))
+    .catch(handleError(res));
+};
+
+exports.getVehicle= function(req, res, next) {
+  Vehicle.find({where: { id: req.params.id }})
+    .then(function (pets) {
+      res.json(pets);
+    })
+    .catch(handleError(res));
+};
+
+exports.saveVehicle= function(req, res, next) {
+  Vehicle.find({where: { id: req.params.id }})
+    .then(function (vehicle) {
+      var updated = _.merge(vehicle, req.body);
+      updated.save().then(function (upd) {
+        res.json(upd);
+      })
+    })
+    .catch(handleError(res));
+};
+
 exports.authCallback = function(req, res, next) {
   res.redirect('/');
 };

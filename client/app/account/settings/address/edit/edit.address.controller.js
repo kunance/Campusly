@@ -25,18 +25,18 @@
     $scope.clear = function () {
       $scope.dt = null;
     };
-
     $scope.open = function($event, number) {
       $event.preventDefault();
       $event.stopPropagation();
       $scope.datePickers[number]= true;
     };
-
     vm.saveAddress = function (input) {
-      input.zip = input.zip.replace(/\s/g, '');
+      var zip = input.zip.toString();
+      var trimmedZip = zip.replace(/\s+/g, '');
+      input.zip = Number(trimmedZip);
       dataservice.editAddress(vm.me.id, addressesId, input, function () {
-        common.$state.go('^',{},{reload:true});
         console.log('Address updated');
+        common.$state.go('^',{},{reload:true});
       })
 
     }

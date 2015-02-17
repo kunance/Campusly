@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Add occupation</h1>
+    </div>
+    <div class="col-sm-12">
+
+
+      <label for="presentlyEmployeed">Presently employeed?</label><br/>
+      <label class="radio-inline"><input type="radio" name="presentlyEmployeed" id="presentlyEmployeed" ng-model="editOccupation.tempOccupation.presentlyEmployeed" value="1">Yes</label>
+      <label class="radio-inline"><input type="radio" name="presentlyEmployeed" ng-model="editOccupation.tempOccupation.presentlyEmployeed" value="0">No</label>
+      <br/>
+
+      <div class="row">
+        <div class="col-md-6"><br/>
+          <label for="start">Start date</label>
+          <p class="input-group">
+            <input type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="editOccupation.tempOccupation.start" is-open="datePickers.startDate" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+          </p>
+        </div>
+        <div class="col-md-6" ng-if="editOccupation.tempOccupation.presentlyEmployeed==0"><br/>
+          <label for="end">End date</label>
+          <p class="input-group">
+            <input type="text" id="end" class="form-control" datepicker-popup="{{format}}" ng-model="editOccupation.tempOccupation.end" is-open="datePickers.endDate"  close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event,'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+          </p>
+        </div>
+      </div>
+
+      <label for="company">Company</label>
+      <input type="text" id="company" name="company" class="form-control" ng-model="editOccupation.tempOccupation.company"/>
+
+      <label for="role">Role</label>
+      <input type="text" id="role" name="role" class="form-control" ng-model="editOccupation.tempOccupation.role"/><br/>
+
+      <button class="btn btn-primary" ng-click="editOccupation.saveOccupation(editOccupation.tempOccupation)">Save changes</button>
+      <button class="btn btn-primary" ui-sref="^">Back to occupation overview</button>
+
+      <pre>{{editOccupation.tempOccupation|json}}</pre>
+    </div>
+  </div>
+</div>

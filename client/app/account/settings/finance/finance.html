@@ -16,8 +16,8 @@
     <tbody>
     <tr ng-repeat="item in finance.listOfFinances track by $index">
       <td>{{$index+1}}</td>
-      <td>{{item.startDate}}</td>
-      <td>{{item.endDate}}</td>
+      <td>{{item.startDate | date: 'dd.MM.yyyy'}}</td>
+      <td>{{item.endDate | date: 'dd.MM.yyyy'}}</td>
       <td>{{item.individualAnnualIncom}}</td>
       <td>{{item.householdAnnualIncome}}</td>
       <td>{{item.spouseAnnualIncome}}</td>

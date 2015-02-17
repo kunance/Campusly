@@ -66,7 +66,8 @@ exports.me = function(req, res, next) {
     },
     attributes: [
       'id',
-      'username','middlename',
+      'username',
+      'middlename',
       'confirmedEmail',
       'createdAt',
       'firstname',
@@ -119,13 +120,24 @@ exports.show = function(req, res, next) {
   User.find({
     where: {
       id: userId
-    }
+    },
+    attributes: [
+      'id',
+      'username',
+      'middlename',
+      'confirmedEmail',
+      'firstname',
+      'email',
+      'phone',
+      'lastname',
+      'userImage'
+    ]
   })
     .then(function(user) {
       if (!user) {
         return res.send(401);
       }
-      res.json(user.profile);
+      res.json(user);
     })
     .catch(function(err) {
       return next(err);
