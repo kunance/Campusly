@@ -5,9 +5,9 @@
     .module('app.core')
     .factory('dataservice', dataservice);
 
-  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance'];
+  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation'];
 
-  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education, Finance) {
+  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education, Finance, Occupation) {
 
     var safeCb = function(cb) {
         return (angular.isFunction(cb)) ? cb : angular.noop;
@@ -19,6 +19,7 @@
        addPet: addPet,
        addAddress: addAddress,
        addEducation:addEducation,
+       addOccupation:addOccupation,
        getAllEducations: getAllEducations,
        deleteEducation:deleteEducation,
        getEducation:getEducation,
@@ -35,7 +36,11 @@
        getAllFinances: getAllFinances,
        deleteFinance:deleteFinance,
        getFinance:getFinance,
-       editFinance:editFinance
+       editFinance:editFinance,
+      getAllOccupations: getAllOccupations,
+      deleteOccupation:deleteOccupation,
+      getOccupation:getOccupation,
+      editOccupation:editOccupation
     };
     return service;
 
@@ -90,6 +95,16 @@
 
     function addFinance(userId, data) {
       return Finance.save({userId: userId}, data,
+        function (res) {
+          return res;
+        },
+        function (err) {
+          //handle this exception
+        });
+    }
+
+    function addOccupation(userId, data) {
+      return Occupation.save({userId: userId}, data,
         function (res) {
           return res;
         },
@@ -241,6 +256,43 @@
           return safeCb(callback)(err);
         });
     }
+
+    function getAllOccupations(userId, data) {
+      return Occupation.getAllOccupations({userId: userId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function deleteOccupation(userId, addressId, data) {
+      return Occupation.delete({userId: userId, id:addressId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function getOccupation(userId, addressId, data) {
+      return Occupation.get({userId: userId, id:addressId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function editOccupation(userId, addressId, data, callback) {
+      return Occupation.editOccupation({userId: userId, id:addressId}, data,
+        function (adr) {
+          return safeCb(callback)(null, adr);
+        }, function (err) {
+          return safeCb(callback)(err);
+        });
+    }
+
 
   }
 }());

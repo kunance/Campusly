@@ -18,6 +18,7 @@ module.exports = function(app) {
   app.use('/api/users/:id/addresses', require('./api/user/address'));
   app.use('/api/users/:id/educations', require('./api/user/education'));
   app.use('/api/users/:id/finances', require('./api/user/finance'));
+  app.use('/api/users/:id/occupations', require('./api/user/occupation'));
   app.use('/api/properties', require('./api/properties'));
   //just temporary route
   app.use('/api/images', require('./api/images'));

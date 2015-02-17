@@ -12,18 +12,18 @@
         templateUrl: 'app/account/settings/occupation/occupation.html',
         controller: 'OccupationCtrl',
         controllerAs:'occupation',
-        //resolve:{
-        //  getOccupations: getOccupations
-        //},
+        resolve:{
+          getOccupations: getOccupations
+        },
         authenticate: true
       });
   }
 
-  //function getOccupations(common) {
-  //  var dataservice = common.dataservice;
-  //  var me = common.Auth.getCurrentUser();
-  //  return dataservice.getAllOccupations(me)
-  //}
+  function getOccupations(common) {
+    var dataservice = common.dataservice;
+    var me = common.Auth.getCurrentUser();
+    return dataservice.getAllOccupations(me)
+  }
 
 
 }());
