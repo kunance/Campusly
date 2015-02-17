@@ -8,7 +8,7 @@
     <input type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Street name" ng-model="editAddress.tempAddress.streetAddress"/>
 
     <label for="streetNumber">Number</label>
-    <input type="text" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="editAddress.tempAddress.streetNumeric"/>
+    <input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="editAddress.tempAddress.streetNumeric"/>
 
     <label for="country">Country</label>
     <input type="text" id="country" name="country" class="form-control"  placeholder="country" ng-model="editAddress.tempAddress.state"/>
@@ -17,10 +17,10 @@
     <input type="text" id="city" name="city" class="form-control"  placeholder="city" ng-model="editAddress.tempAddress.city"/>
 
     <label for="zip">Zip code</label>
-    <input type="text" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="editAddress.tempAddress.zip"/>
+    <input type="number" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="editAddress.tempAddress.zip"/>
 
     <label for="apt">Apt</label>
-    <input type="text" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="editAddress.tempAddress.apt"/><br/>
+    <input type="number" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="editAddress.tempAddress.apt"/><br/>
 
     <label for="present">Present?</label><br/>
     <label class="radio-inline"><input type="radio" name="present" id="present" ng-model="editAddress.tempAddress.present" value="1">Yes</label>

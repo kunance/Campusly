@@ -30,7 +30,9 @@
     };
 
     vm.addNewAddress= function (input) {
-      input.zip = input.zip.replace(/\s/g, '');
+      var zip = input.zip.toString();
+      var trimmedZip = zip.replace(/\s+/g, '');
+      input.zip = Number(trimmedZip);
       dataservice.addAddress(vm.me.id, input).$promise
         .then(function () {
           console.log('new Address added');

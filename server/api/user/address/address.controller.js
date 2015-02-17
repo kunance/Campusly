@@ -60,6 +60,7 @@ exports.getAddress= function(req, res, next) {
 };
 
 exports.saveAddress= function(req, res, next) {
+  console.log(req.body);
   Address.find({where: { id: req.params.id }})
     .then(function (address) {
       var updated = _.merge(address, req.body);

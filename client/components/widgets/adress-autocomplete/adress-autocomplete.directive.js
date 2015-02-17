@@ -81,14 +81,14 @@
           address['streetAddress'] = place.address_components[i]['long_name'];
           break;
         case 'street_number':
-          address['streetNumeric'] = place.address_components[i]['long_name'];
+          address['streetNumeric'] = Number(place.address_components[i]['long_name']);
           break;
         case 'country':
           address['country'] = place.address_components[i]['long_name'];
           address['state'] = place.address_components[i]['short_name'];
           break;
         case 'postal_code':
-          address['zip'] = place.address_components[i]['short_name'];
+          address['zip'] = Number(place.address_components[i]['short_name']);
           break;
         default:
           break;
