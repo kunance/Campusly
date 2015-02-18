@@ -99,7 +99,7 @@ img.center {
 }
 
 .jumbotron {
-  background: url(./../img/jumbotron/bg-ucsdC.jpg);
+  background: url(./../assets/images/jumbotron/bg-ucsdC.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 591px;
