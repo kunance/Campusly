@@ -24,7 +24,7 @@
             password: $scope.user.password
           })
             .then(function() {
-              $state.go('main');
+              $state.go('dashboard');
             })
             .catch(function(err) {
               $scope.errors.other = err.message;

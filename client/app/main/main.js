@@ -8,8 +8,8 @@
           url: '/',
           templateUrl: 'app/main/main.html',
           controller: 'MainCtrl',
-          controllerAs:'main',
-          authenticate: true
+          controllerAs:'main'
+        //  authenticate: true
         });
     });
 

@@ -1,0 +1,19 @@
+<div class="container">
+  <br/>
+  <tabset class="dashboard-sidebar">
+    <tab ng-repeat="tab in myProfile.tabs" ui-sref="{{tab.route}}" heading="{{tab.title}}"
+         disabled="true" active="tab.active" ng-click="myProfile.changeTab(tab)"></tab>
+  </tabset>
+  <div ui-view="" >
+  </div>
+
+  <div class="row">
+    <div class="delivery-bottom clearfix">
+      <button ng-show="!myProfile.isLastTab()" class="btn btn-small" ng-click="myProfile.proceed()">Next</button>
+      <button ng-show="myProfile.isLastTab()" class="btn btn-small" ng-click="myProfile.proceed()">Finish</button>
+      <!--<button ng-show="myProfile.buttons[myProfile.tabIndex].previous.show" class="btn btn-primary" ng-click="myProfile.previous()">{{myProfile.buttons[myProfile.tabIndex].previous.text}}</button>-->
+      <!--<button ng-show="myProfile.buttons[myProfile.tabIndex].next.show" class="btn btn-primary pull-right" ng-click="myProfile.next()">{{myProfile.buttons[myProfile.tabIndex].next.text}}</button>-->
+    </div>
+  </div>
+</div>
+<!--ng-disabled="!myProfile.readyToProceed()-->

@@ -10,7 +10,7 @@
   function config ($stateProvider, $urlRouterProvider) {
     // $urlRouterProvider.when('/dashboard', '/dashboard/summary');
     $stateProvider
-      .state('myProperties.addNew', {
+      .state('dashboard.myProperties.addNew', {
         url: '/addNew',
         templateUrl: 'app/dashboard/my-properties/add.new.property/add.new.property.html',
         controller: 'AddNewPropertyCtrl',

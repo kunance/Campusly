@@ -11,6 +11,9 @@
       $scope.menu = [{
         'title': 'Home',
         'state': 'main'
+      },{
+        'title': 'Dashboard',
+        'state': 'dashboard'
       }];
       $scope.isCollapsed = true;
       $scope.isLoggedIn = Auth.isLoggedIn;

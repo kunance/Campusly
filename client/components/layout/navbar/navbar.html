@@ -18,7 +18,6 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li ng-show="isLoggedIn()" ui-sref-active="active"><a ui-sref="myProperties">My properties</a></li>
         <li ng-hide="!isLoggedIn()"> <img class="img-circle" ng-if="getCurrentUser().userImage" ng-src="/api/images{{getCurrentUser().userImage}}" style="height: 50px"/></li>
         <li ng-hide="!isLoggedIn()"> <img class="img-circle" ng-if="!getCurrentUser().userImage" src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" style="height: 50px"/></li>
         <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Sign up</a></li>

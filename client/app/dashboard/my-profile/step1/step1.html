@@ -1,0 +1,158 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+    <div class="col-sm-4">
+      <h3>Contact informations</h3>
+        <!--<img class="img-circle" ng-if="step1.me.userImage" ng-src="/api/images{{step1.me.userImage}}" style="height: 80px"/>-->
+        <!--<img class="img-circle" ng-if="!step1.me.userImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" style="height: 80px"/>-->
+
+        <!--<input type="file" nv-file-select uploader="step1.uploader" id="fileUpload" /><br/>-->
+        <!--<ul>-->
+          <!--<li ng-repeat="item in step1.uploader.queue">-->
+            <!--Name: <span ng-bind="item.file.name"></span><br/>-->
+            <!--<button ng-click="item.upload()">upload</button>-->
+          <!--</li>-->
+        <!--</ul>-->
+
+      <label for="firstname">First name</label>
+      <input type="text" id="firstname" name="firstname" class="form-control" ng-model="step1.tempMe.firstname"/>
+
+      <label for="lastname">Last name</label>
+      <input type="text" id="lastname" name="lastname" class="form-control" ng-model="step1.tempMe.lastname"/>
+
+      <label for="username">User name</label>
+      <input type="text" id="username" name="username" class="form-control" ng-model="step1.tempMe.username "/>
+
+      <label for="middlename">Middle name</label>
+      <input type="text" id="middlename" name="middlename" class="form-control" ng-model="step1.tempMe.middlename"/>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" class="form-control" ng-model="step1.tempMe.email"/>
+
+      <label for="phone">Phone number:</label>
+      <input type="text" id="phone" name="phone" class="form-control" ui-mask="999-999-9999" ng-model="step1.tempMe.phone"/><br/>
+
+
+      <!--<button class="btn btn-primary" ng-click="step1.saveUserInfo(step1.tempMe)">Save changes</button>-->
+    </div>
+
+    <div class="col-sm-4">
+      <h3>Current address informations</h3>
+
+      <label for="streetAddress">Address</label>
+      <input type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="step1.address.streetAddress" ng-model="step1.address.streetAddress.streetAddress"/>
+
+      <label for="streetNumber">Number</label>
+      <input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="step1.address.streetAddress.streetNumeric"/>
+
+      <label for="country">Country</label>
+      <input type="text" id="country" name="country" class="form-control"  placeholder="country" ng-model="step1.address.streetAddress.state"/>
+
+      <label for="city">City</label>
+      <input type="text" id="city" name="city" class="form-control"  placeholder="city" ng-model="step1.address.streetAddress.city"/>
+
+      <label for="zip">Zip code</label>
+      <input type="number" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="step1.address.streetAddress.zip"/>
+
+      <!--<label for="apt">Apt</label>-->
+      <!--<input type="text" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="step1.address.streetAddress.apt"/><br/>-->
+
+      <!--<label for="present">Present?</label><br/>-->
+      <!--<label class="radio-inline"><input type="radio" name="present" id="present" ng-model="step1.address.streetAddress.present" value="1">Yes</label>-->
+      <!--<label class="radio-inline"><input type="radio" name="present"  ng-model="step1.address.streetAddress.present" value="0">No</label><br/><br/>-->
+
+      <!--<label for="about">About me</label>-->
+      <!--<textarea name="about" id="about" cols="30" rows="5" placeholder="about me" data-ng-model="step1.address.streetAddress.about"  class="form-control" ></textarea>-->
+
+      <!--<div class="row">-->
+        <!--<div class="col-md-6">-->
+          <!--<label for="start">Start date</label>-->
+          <!--<p class="input-group">-->
+            <!--<input type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="step1.address.streetAddress.startDate" is-open="datePickers.startDate" close-text="Close" />-->
+              <!--<span class="input-group-btn">-->
+                <!--<button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>-->
+              <!--</span>-->
+          <!--</p>-->
+        <!--</div>-->
+        <!--<div class="col-md-6">-->
+          <!--<label for="end">End date</label>-->
+          <!--<p class="input-group">-->
+            <!--<input type="text" id="end" class="form-control" datepicker-popup="{{format}}" ng-model="step1.address.streetAddress.endDate" is-open="datePickers.endDate"  close-text="Close" />-->
+              <!--<span class="input-group-btn">-->
+                <!--<button type="button" class="btn btn-default" ng-click="open($event,'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>-->
+              <!--</span>-->
+          <!--</p>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<button class="btn btn-primary" ng-click="step1.addNewAddress(step1.address.streetAddress)">Add new address</button>-->
+      <!--<button class="btn btn-primary" ui-sref="^">Back to address overview</button>-->
+    </div>
+
+      <div class="col-sm-4">
+        <h3>University information</h3>
+
+        <label for="educationCenterName">Education centre name</label>
+        <input type="text" id="educationCenterName" name="educationCenterName" class="form-control" ng-model="step1.tempEducation.educationCenterName"/>
+
+        <label for="type">Type</label>
+        <select id="type" class="form-control" data-ng-model="step1.tempEducation.type">
+          <option value="university">University</option>
+          <option value="trade">Trade</option>
+          <option value="military">Military</option>
+        </select>
+
+        <!--<label for="graduation">Graduated</label>-->
+        <!--<input type="checkbox" ng-model="step1.tempEducation.graduation" id="graduation" class="form-control" name="graduation"/>-->
+        <!--<br/>-->
+        <!--<label for="graduation">Graduated?</label><br/>-->
+        <!--<label class="radio-inline"><input type="radio" name="graduation" id="graduation" ng-model="step1.tempEducation.graduation" value="1">Yes</label>-->
+        <!--<label class="radio-inline"><input type="radio" name="graduation" id="graduation" ng-model="step1.tempEducation.graduation" value="0">No</label>-->
+
+        <!--<div class="row">-->
+          <!--<div class="col-md-4"><br/>-->
+            <label for="start">Start date</label>
+            <p class="input-group">
+              <input type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="step1.tempEducation.startDate" is-open="datePickers.startDate" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+          <!--</div>-->
+          <!--<div class="col-md-4"><br/>-->
+            <!--<label for="end">End date</label>-->
+            <!--<p class="input-group">-->
+              <!--<input type="text" id="end" class="form-control" datepicker-popup="{{format}}" ng-model="step1.tempEducation.endDate" is-open="datePickers.endDate"  close-text="Close" />-->
+              <!--<span class="input-group-btn">-->
+                <!--<button type="button" class="btn btn-default" ng-click="open($event,'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>-->
+              <!--</span>-->
+            <!--</p>-->
+          <!--</div>-->
+          <!--<div class="col-md-4" ng-if="step1.tempEducation.graduation==1"><br/>-->
+            <!--<label for="graduationDate">Graduation date</label>-->
+            <!--<p class="input-group">-->
+              <!--<input  type="text" id="graduationDate" class="form-control" datepicker-popup="{{format}}" ng-model="step1.tempEducation.graduationDate" is-open="datePickers.graduationDate"  close-text="Close" />-->
+              <!--<span class="input-group-btn">-->
+                <!--<button type="button" class="btn btn-default" ng-click="open($event,'graduationDate')"><i class="glyphicon glyphicon-calendar"></i></button>-->
+              <!--</span>-->
+            <!--</p>-->
+          <!--</div><div class="col-md-4" ng-if="step1.tempEducation.graduation==0"></div>    </div>-->
+
+        <label for="major">Major</label>
+        <input type="text" ng-model="step1.tempEducation.major" id="major" class="form-control" name="major"/>
+
+        <label for="degreeType">Degree type</label>
+        <select id="degreeType" class="form-control" data-ng-model="step1.tempEducation.degreeType">
+          <option value="undergraduate">Undergraduate</option>
+          <option value="graduate">Graduate</option>
+          <option value="doctorate">Doctorate</option>
+          <option value="post-doctorate">Post-doctorate</option>
+        </select>
+
+      </div>
+</div>
+    <!--<div class="row">-->
+      <!--<button class="btn btn-primary pull-right" ng-click="step1.next()">Next ></button>-->
+    <!--</div>-->
+</div>
+</div>
