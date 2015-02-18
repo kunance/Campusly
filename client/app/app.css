@@ -44,3 +44,368 @@
 .has-error input {
   border-left: 3px solid #ff0000;
 }
+
+/**
+* Custom style from Vinit
+*/
+
+
+
+/* ==========================================================================
+   Rented's custom styles
+   ========================================================================== */
+@font-face{
+  font-family: "ProximaNova";
+  src: url("./../assets/fonts/ProximaNova/ProximaNovaReg.otf") format("opentype");
+}
+
+@font-face{
+  font-family: "ProximaNova";
+  font-style: italic;
+  src: url("./../assets/fonts/ProximaNova/ProximaNovaBlackIt.otf") format("opentype");
+}
+
+@font-face{
+  font-family: "ProximaNova";
+  font-weight: bold;
+  src: url("./../assets/fonts/ProximaNova/ProximaNovaBold.otf") format("opentype");
+}
+
+@font-face{
+  font-family: "ProximaNova";
+  font-weight: 600;
+  src: url("./../assets/fonts/ProximaNova/ProximaNovaSbold.otf") format("opentype");
+}
+
+/* Light and thin font commented out of the style. To be revisted as needed.
+@font-face{
+	font-family: "ProximaNova";
+	src: url("./../assets/fonts/ProximaNova/ProximaNovaLight.otf") format("opentype");
+}
+
+@font-face{
+	font-family: "ProximaNova";
+	src: url("./../assets/fonts/ProximaNova/ProximaNovaThin.otf") format("opentype");
+} */
+
+body{
+  font-family: "ProximaNova";
+}
+
+img.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.jumbotron {
+  background: url(./../img/jumbotron/bg-ucsdC.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 591px;
+  margin-top: -20px;
+}
+
+.jumbotron h1 {
+  color: #FFFFFF;
+}
+
+.navbar.transparent.navbar-default .navbar-header {
+  background: rgba(0,0,0,0.5);
+}
+
+.navbar-header{
+  padding-top: 10px;
+}
+
+.navbar-inner {
+  min-height: 0px;
+}
+
+.navbar-brand,
+.navbar-right li a {
+  line-height: 70px;
+  height: 70px;
+  padding-top: 0;
+}
+
+.btn-rented-signup {
+  font-size: 14px;
+  background-color: #FFFFFF;
+  border-radius: 25px;
+  font-weight: 600;
+}
+
+.btn-rented-signup:hover {
+  background-color: #e4e4e4;
+  color: #000000;
+}
+
+.btn-rented-signup:active {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.btn-rented-signin {
+  font-size: 14px;
+  color: #FFFFFF;
+  background-color: transparent;
+  font-weight: 600;
+}
+
+.btn-rented-event {
+  font-size: 14px;
+  color: #f7953d;
+  background-color: transparent;
+  font-weight: 600;
+}
+
+.btn-rented-small {
+  font-size: 14px;
+  background-color: #f7953d;
+  border-radius: 25px;
+  color: #FFFFFF;
+  font-weight: 600;
+  width: 130px;
+  height: 30px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 3px 12px;
+}
+
+.btn-rented-small:hover {
+  background-color: #e4e4e4;
+  color: #000000;
+}
+
+.btn-rented-small:active {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.btn-rented-medium {
+  font-size: 14px;
+  background-color: #f7953d;
+  border-radius: 25px;
+  color: #FFFFFF;
+  font-weight: 600;
+  width: 140px;
+  height: 40px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 8px 12px;
+}
+
+.btn-rented-medium:hover {
+  background-color: #e4e4e4;
+  color: #000000;
+}
+
+.btn-rented-medium:active {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.btn-rented-large {
+  font-size: 18px;
+  text-transform: uppercase;
+  background-color: #f7953d;
+  border-radius: 25px;
+  color: #FFFFFF;
+  font-weight: bold;
+  width: 280px;
+  height: 50px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 12px 12px;
+}
+
+.btn-rented-large:hover {
+  background-color: #e4e4e4;
+  color: #000000;
+}
+
+.btn-rented-large:active {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+h1{
+  font-size: 50px;
+  font-weight: 600;
+}
+
+h2{
+  font-size: 24px;
+  font-weight: 600;
+}
+
+h3{
+  font-size: 18px;
+}
+
+.lead-msg{
+  padding-bottom: 50px;
+}
+
+.lead-img{
+  padding-bottom: 50px;
+}
+
+.lead-btn{
+  padding-bottom: 70px;
+}
+
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+  padding-bottom: 40px;
+  color: #5a5a5a;
+}
+
+#mc_embed_signup{
+  clear:left;
+  font:14px Helvetica,Arial,sans-serif;
+  margin-top: 50px;
+}
+
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper > .container {
+  padding-right: 0;
+  padding-left: 0;
+}
+.navbar-wrapper .navbar {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.navbar-wrapper .navbar .container {
+  width: auto;
+}
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  height: 500px;
+  margin-bottom: 60px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 500px;
+  background-color: #777;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 500px;
+}
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .col-lg-4 p {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 20px;
+  }
+  .navbar-wrapper .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .navbar-wrapper .navbar {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
+
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 992px) {
+  .featurette-heading {
+    margin-top: 120px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
