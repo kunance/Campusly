@@ -13,33 +13,10 @@ angular.module('RentedApp', [
   'app.layout',
   'app.account',
   'app.landing'
-]).config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
-  'use strict';
-
-<<<<<<< HEAD
-    /*
-     * Feature areas
-     */
-    'app.dashboard',
-    'app.layout',
-    'app.account'
-  ])
-    .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+])
+  .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
       $urlRouterProvider
         .otherwise('/dashboard');
-=======
-  // For any unmatched url, redirect to /
-  $urlRouterProvider
-    .otherwise('/');
->>>>>>> 28deb7ad8b7bc8873f37eb52da4eaf89f969a3dd
-
-
-  //$stateProvider.state('reportError', {
-  //  url: '/reportError',
-  //  templateUrl: 'partials/reportError.html',
-  //  controller: 'ReportErrorCtrl'
-  //});
-
 
   $locationProvider.html5Mode(true);
   $httpProvider.interceptors.push('authInterceptor');
@@ -104,11 +81,11 @@ angular.module('RentedApp', [
   .run(['$rootScope', '$state', 'Auth', '$stateParams', function ($rootScope, $state, Auth, $stateParams) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
-      console.log('Current state: ', $state.current.name);
-      console.log('Event: ', event);
-      console.log('Next: ', next);
+      //console.log('Current state: ', $state.current.name);
+      //console.log('Event: ', event);
+      //console.log('Next: ', next);
       Auth.isLoggedIn(function (loggedIn) {
-        console.log('logged in: ', loggedIn);
+        //console.log('logged in: ', loggedIn);
         if (next.authenticate && !loggedIn) {
           $state.go('login');
         }
