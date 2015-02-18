@@ -8,4 +8,23 @@ latitude,
 longitude)
 VALUES
 ("Playmor Terrace",	7991, "Playmore Terrace", "San Diego", "CA", 92122, 32.862427, -117.217784),
-("Nobel Court", 3771, "Nobel Drive", "San Diego", "CA", 92122, 32.867802, -117.226597);
+("Nobel Court", 3771, "Nobel Drive", "San Diego", "CA", 92122, 32.867802, -117.226597),
+("Costa Verde",	8720,	"Costa Verde Blvd",	"San Diego",	"CA", 92122,	32.870408,	-117.216815),
+("La Scala",	3845,	"Nobel Drive",	"San Diego",	"CA", 92122,	32.868376,	-117.2236),
+("Verano",	7575,	"Charmant Dr",	"San Diego",	"CA", 92122,	32.86441,	-117.226128),
+("Village Square",	8683,	"Via Mallorca",	"La Jolla",	"CA", 92037,	32.865001,	-117.234182),
+("La Regencia",	7655,	"Palmilla Drive",	"San Diego",	"CA", 92122,	32.864453,	-117.225059),
+("Regents Court",	8465,	"Regents Road",	"San Diego",	"CA", 92122,	32.866739,	-117.21953),
+("La Jolla Del Sol",	8046,	"Regents Road",	"San Diego",	"CA", 92122,	32.865472,	-117.222445),
+("Pines of La Jolla",	8310,	"Regents Road",	"San Diego",	"CA", 92122,	32.866108,	-117.22037),
+("International Gardens",	3417,	"Lebon Dr",	"San Diego",	"CA", 92122,	32.867008,	-117.224705),
+("Genesse Highlands",	8008,	"Camino Jonata",	"San Diego",	"CA", 92122,	32.863601,	-117.214521),
+("Boardwalk Apartments",	8840,	"Villa La Jolla Dr",	"La Jolla",	"CA", 92037,	32.86953,	-117.235024),
+("Valentia Apartments",	5305,	"Toscana Way",	"San Diego",	"CA", 92122,	32.869337,	-117.202552),
+("Villas of Renaissance",	5280,	"Fiore Terrace",	"San Diego",	"CA", 92122,	32.870453,	-117.20322),
+("La Jolla Crossroads",	9085,	"Judicial Dr",	"San Diego",	"CA", 92122,	32.872169,	-117.20372),
+("Regents La Jolla",	9253,	"Regents Road",	"La Jolla",	"CA", 92037,	32.874292,	-117.21827),
+("Westwood Apartments",	7936,	"Avenida Navidad",	"San Diego",	"CA", 92122,	32.863543,	-117.209386),
+("Gables Summerset",	11102,	"Caminito Alvarez",	"San Diego",	"CA", 92126,	32.907477,	-117.166516),
+("Venetian",	3955,	"Nobel Dr",	"San Diego",	"CA", 92122,	32.868202,	-117.221098);
+
