@@ -18,12 +18,15 @@ sudo ln -s /etc/elasticsearch/elasticsearch.yml /usr/share/elasticsearch/config/
 sudo service elasticsearch restart
 
 ### Make sure service is running ... but service takes a minute to run so don't auto test without a wait first
-#curl -XPUT 'localhost:9200/_river/my_jdbc_river/_meta' -d '{
-#    "type" : "jdbc",
-#    "jdbc" : {
-#        "url" : "jdbc:mysql://172-31-35-208:3306/Rented",
-#        "user" : "ivan",
-#        "password" : "rentedrented",
-#        "sql" : "select * from apartment_complex"
-#    }
-#}'
+curl -XPUT 'localhost:9200/_river/rentedAptComplexes/_meta' -d '{
+    "type" : "jdbc",
+    "jdbc" : {
+        "url" : "jdbc:mysql://rented.cyngrnmslnob.us-west-2.rds.amazonaws.com/Rented",
+        "user" : "ivan",
+        "password" : "rentedrented",
+        "index": "aptcomplexes",
+        "type": "aptcomplex",
+        "sql" : "select * from apartment_complex"
+    }
+}'
+

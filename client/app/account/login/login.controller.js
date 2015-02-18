@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 (function () {
   "use strict";
 
@@ -35,8 +36,45 @@
       $scope.loginOauth = function(provider) {
         $window.location.href = '/auth/' + provider;
       };
+=======
+angular
+  .module('app.account')
+  .controller('LoginCtrl', LoginCtrl);
+
+LoginCtrl.$inject = ['$scope', 'Auth', '$state', '$window', '$location'];
+
+function LoginCtrl($scope, Auth, $state, $window, $location) {
+  $scope.user = {};
+  $scope.errors = {};
+
+  $scope.$parent.seo = {
+    pageTitle: 'Please log in',
+    pageDescription: 'place for logging in'
+  };
+
+  $scope.login = function (form) {
+    $scope.submitted = true;
+    if (form.$valid) {
+      Auth.login({
+        email: $scope.user.email,
+        password: $scope.user.password
+      })
+        .then(function () {
+          $state.go('main');
+        })
+        .catch(function (err) {
+          $scope.errors.other = err.message;
+        });
+    } else {
+      $scope.errors.other = "password's dont match"
+>>>>>>> 28deb7ad8b7bc8873f37eb52da4eaf89f969a3dd
     }
+  };
+
+  $scope.loginOauth = function (provider) {
+    $window.location.href = '/auth/' + provider;
+  };
+}
 
 
-}());
 
