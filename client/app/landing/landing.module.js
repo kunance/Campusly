@@ -11,6 +11,10 @@ angular.module('app.landing', []).config(function ($stateProvider) {
       url: '/valuedetails',
       templateUrl: 'app/landing/valuedetails.html',
       controller: 'ValueDetailsCtrl'
+    }).state('landing.howto', {
+      url: '/howto',
+      templateUrl: 'app/landing/howto.html',
+      controller: 'HowToCtrl'
     })
 })
   .run(function ($rootScope) {
