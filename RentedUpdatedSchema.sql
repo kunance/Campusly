@@ -513,7 +513,7 @@ CREATE TABLE `property_owner` (
   `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`propertyOwnershipId`,`ownerId`),
   KEY `propertyowner_user_idx` (`ownerId`),
-  CONSTRAINT `propertyOwnershipFK` FOREIGN KEY (`propertyOwnershipId`) REFERENCES `propertyownership` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `propertyOwnershipFK` FOREIGN KEY (`propertyOwnershipId`) REFERENCES `property_ownership` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `propertyowner_user` FOREIGN KEY (`ownerId`) REFERENCES `rented_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

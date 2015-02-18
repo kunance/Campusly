@@ -1,23 +1,19 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div class="container">
 
-  <tabset class="dashboard-sidebar">
+  <tabset class="">
     <tab ng-repeat="tab in dashboard.tabs" ui-sref="{{tab.sref}}" heading="{{tab.title}}"
          active="tab.active" disabled="tab.disabled" select="setIndex($index)"></tab>
   </tabset>
 
 
   <div ui-view="">
-    <div class="container">
       <br/>
 <h1>dashboard view</h1>
-    </div>
 
   </div>
 
-
-
-  <div ng-include="'components/layout/footer/footer.html'"></div>
+<div ng-include="'components/layout/footer/footer.html'"></div>
 
 
 </div>

@@ -9,11 +9,12 @@
 
   function MyProfileCtrl($scope, common, FileUploader) {
     var vm = this;
-    //common.$state.go('dashboard.myProfile.step1');
+    common.$state.go('dashboard.myProfile.step1');
 
-    vm.buttons = getButtons();
     vm.tabs = getTabs();
     vm.tabIndex = 0;
+
+    vm.selectedTab = 0;
 
     function getTabs() {
       return [
@@ -22,23 +23,6 @@
         { title:'Step 3', disabled: true, route: '.step3', active: false }
       ];
     }
-
-    function getButtons() {
-      return [
-        {
-          previous: {show: false, text: ''},
-          next: {show: true, text: 'Proceed to step 2'}
-        },{
-          previous: {show: true, text: 'Back to step 1' },
-          next: {show: false, text: 'Proceed to step 2' }
-        },{
-          previous: {show: false, text: 'Back to step 2' },
-          next: {show: true, text: 'Done' }
-        }
-      ];
-    }
-
-  vm.selectedTab = 0;
 
     vm.tabSelected = function(index) {
       vm.selectedTab = index;
@@ -54,23 +38,10 @@
       if(!isLastTab()){
         vm.selectedTab++;
         vm.tabs[vm.selectedTab].active = true;
+        common.$state.go('dashboard.myProfile'+vm.tabs[vm.selectedTab].route)
       }
     };
 
-
-
-    $scope.$on("$stateChangeSuccess", function() { // Keep the right tab highlighted if the URL changes.
-      //vm.tabs.forEach(function(tab) {
-      //  if (vm.active(tab.route)) {
-      //    tab.active = true;
-      //    tab.disabled = false;
-      //    vm.tabIndex = vm.tabs.indexOf(tab);
-      //  } else {
-      //    tab.active = false;
-      //    tab.disabled = true;
-      //  }
-      //});
-    });
   }
 
 

@@ -5,10 +5,11 @@
     .module('app.account')
     .controller('Step2Ctrl', Step2Ctrl);
 
-  Step2Ctrl.$inject = ['common', 'FileUploader'];
+  Step2Ctrl.$inject = ['common'];
 
-  function Step2Ctrl(common, FileUploader) {
+  function Step2Ctrl(common) {
     var vm = this;
+
     //vm.me = getUserInfo;
     //vm.tempMe = Object.create(vm.me);
 
