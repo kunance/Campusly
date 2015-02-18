@@ -1,3 +1,4 @@
+// do NOT include braces because we are NOT creating a new module instance 'app.account' , we are just retrieving it
 angular.module('app.account')
   .config(function ($stateProvider) {
     'use strict';
