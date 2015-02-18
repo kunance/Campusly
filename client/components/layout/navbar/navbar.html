@@ -1,8 +1,5 @@
-<div class="navbar navbar-inverse navbar-static-top" ng-controller="NavbarCtrl">
-  <div class="container">
-
+<<div class="navbar navbar-inverse navbar-static-top" ng-controller="NavbarCtrl">
     <nav class="navbar transparent">
-      <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -24,9 +21,7 @@
           <li ng-show="isLoggedIn()"  ui-sref-active="active"><a ui-sref="logout"><i class="fa fa-sign-out"></i> Logout</a></li>
           </ul>
           <div style="color:white; margin-top:18px; font-size:13px" ng-hide="isMailconfirmed() || !isLoggedIn()">Your email address is not confirmed. Confirm <a href="/confirm">here</a></div>
-        </div>
       </div>
     </nav>
-  </div>
 </div>
 
