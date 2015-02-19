@@ -10,7 +10,7 @@
   function AddNewPropertyCtrl($scope, FileUploader, common, $state) {
     var vm = this;
     var dataservice = common.dataservice;
-
+    vm.me = common.Auth.getCurrentUser();
     vm.uploader = new FileUploader();
     vm.uploader.url = '/api/images';
     vm.uploader.onSuccessItem = function (itm,res,status,header) {
@@ -23,8 +23,9 @@
       input.zip = Number(trimmedZip);
       input.latitude= input.location.latitude;
       input.longitude= input.location.longitude;
+      input.userId = vm.me.id;
       dataservice.addProperty(input).$promise.then(function () {
-        $state.go('myProperties')
+        //$state.go('myProperties')
       }, function (err) {
           console.log('error while saving property', err);
         });

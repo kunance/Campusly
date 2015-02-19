@@ -33,8 +33,8 @@
           password: vm.user.password
         })
           .then(function () {
-            // Account created, redirect to home
-            $state.go('main');
+            // Account created, redirect to dashboard
+            $state.go('dashboard');
           })
           .catch(function (err) {
             err = err.data;
