@@ -1,8 +1,9 @@
-<div class="container">
+<div class="container" cg-busy="{promise:address.listOfAddresses.$promise, message:'Loading Your Profile', delay:100}">
   <br/>
   <tabset class="dashboard-sidebar">
     <tab ng-repeat="tab in myProfile.tabs" heading="{{tab.title}}"
-         disabled="true" active="tab.active" ng-click="false"></tab>
+         active="tab.active" ui-sref="{{tab.route}}"></tab>
+    <!--disabled="true" ng-click="false"-->
   </tabset>
 
   <div ui-view="" >
