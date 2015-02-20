@@ -6,6 +6,8 @@
       <h1>Sign up</h1>
     </div>
     <div class="col-sm-12">
+      <!-- novalidate is used to disable browser's native form validation -->
+      <!-- name attribute must be set so form instance is published into the scope of the signup controller -->
       <form class="form" name="form" ng-submit="signup.register(form)" novalidate>
 
         <div class="form-group" ng-class="{'has-success': form.firstname.$valid && signup.submitted, 'has-error': form.firstname.$invalid && signup.submitted}">
