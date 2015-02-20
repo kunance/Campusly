@@ -24,7 +24,7 @@
 
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-4" ng-show="!step1.address.length" >
       <h3>Current address informations</h3>
 
       <label for="streetAddress">Address</label>
@@ -64,7 +64,28 @@
       </div>
     </div>
 
-      <div class="col-sm-4">
+      <div class="col-sm-4" ng-show="step1.address.length" >
+        <h3>Current address informations</h3>
+        <table class="table table-bordered table-condensed">
+          <thead>
+          <tr>
+            <th>No.</th>
+            <th>Address</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="item in step1.address">
+            <td>{{$index+1}}</td>
+            <td>{{item.streetAddress}} {{item.streetNumeric}}</td>
+            <td>Add new, edit and delete options</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <div class="col-sm-4" ng-show="!step1.education.length">
         <h3>University information</h3>
 
         <label for="educationCenterName">Education centre name</label>
@@ -97,6 +118,29 @@
         </select>
 
       </div>
+
+      <div class="col-sm-4" ng-show="step1.education.length">
+        <h3>University information</h3>
+        <table class="table table-bordered table-condensed">
+          <thead>
+          <tr>
+            <th>No.</th>
+            <th>Education</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="item in step1.education">
+            <td>{{$index+1}}</td>
+            <td>{{item.educationCenterName}}</td>
+            <td>Add new, edit and delete options</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+
 </div>
 
 </div>

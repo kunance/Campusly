@@ -11,7 +11,8 @@ var router = express.Router();
 //router.get('/me', controller.me);
 //router.put('/:id/password', controller.changePassword);
 //router.put('/:id/info', controller.changeInfo);
+router.get('/all', controller.showAllProperties);
 router.get('/:id', controller.show);
-router.post('/', controller.create);
+router.post('/', controller.createProperty);
 
 module.exports = router;

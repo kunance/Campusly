@@ -13,7 +13,9 @@
         controller: 'Step1Ctrl',
         controllerAs:'step1',
         resolve: {
-          getUserInfo: getUserInfo
+          getUserInfo: getUserInfo,
+          getEducations: getEducations,
+          getAddresses: getAddresses
         },
         authenticate: true
       });
@@ -21,6 +23,18 @@
 
   function getUserInfo(common) {
     return common.Auth.getCurrentUser();
+  }
+
+  function getEducations(common) {
+    var dataservice = common.dataservice;
+    var me = common.Auth.getCurrentUser();
+    return dataservice.getAllEducations(me)
+  }
+
+  function getAddresses(common) {
+    var dataservice = common.dataservice;
+    var me = common.Auth.getCurrentUser();
+    return dataservice.getAllAddresses(me);
   }
 
 }());

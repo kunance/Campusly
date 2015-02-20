@@ -21,6 +21,7 @@
        addEducation:addEducation,
        addOccupation:addOccupation,
        getAllEducations: getAllEducations,
+       getAllProperties: getAllProperties,
        deleteEducation:deleteEducation,
        getEducation:getEducation,
        editEducation:editEducation,
@@ -124,6 +125,15 @@
       }, function (err) {
         //handle exception
       });
+    }
+
+    function getAllProperties(userId, data) {
+      return Property.getAllProperties({userId: userId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
     }
 
     function deleteEducation(userId, educationId, data) {

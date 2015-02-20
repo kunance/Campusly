@@ -94,6 +94,6 @@
           break;
       }
     }
-    address.location = {latitude: place.geometry.location.k, longitude: place.geometry.location.C};
+    address.location = {latitude: place.geometry.location.lat(), longitude: place.geometry.location.lng()};
   }
 }());

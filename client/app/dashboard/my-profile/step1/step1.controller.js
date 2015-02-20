@@ -5,14 +5,14 @@
     .module('app.account')
     .controller('Step1Ctrl', Step1Ctrl);
 
-  Step1Ctrl.$inject = ['common', 'getUserInfo', '$scope'];
+  Step1Ctrl.$inject = ['common', 'getUserInfo', 'getAddresses', 'getEducations', '$scope'];
 
-  function Step1Ctrl(common, getUserInfo, $scope) {
+  function Step1Ctrl(common, getUserInfo, getAddresses, getEducations, $scope) {
     var vm = this;
     vm.me = getUserInfo;
     vm.tempMe = Object.create(vm.me);
-    vm.address = {};
-    vm.education = {};
+    vm.address = getAddresses;
+    vm.education = getEducations;
 
     $scope.datePickers = {
       startDate: false,

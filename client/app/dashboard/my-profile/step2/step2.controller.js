@@ -5,11 +5,12 @@
     .module('app.account')
     .controller('Step2Ctrl', Step2Ctrl);
 
-  Step2Ctrl.$inject = ['common'];
+  Step2Ctrl.$inject = ['common', 'getPets', 'getAddresses'];
 
-  function Step2Ctrl(common) {
+  function Step2Ctrl(common, getPets, getAddresses) {
     var vm = this;
-
+    vm.pets = getPets;
+    vm.priorAddresses = getAddresses;
     //vm.me = getUserInfo;
     //vm.tempMe = Object.create(vm.me);
 

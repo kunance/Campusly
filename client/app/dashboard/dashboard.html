@@ -1,7 +1,7 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div class="container">
-
-  <tabset class="">
+<div class="col-dm-12">
+<tabset class="">
     <tab ng-repeat="tab in dashboard.tabs" ui-sref="{{tab.sref}}" heading="{{tab.title}}"
          active="tab.active" disabled="tab.disabled" select="setIndex($index)"></tab>
   </tabset>
@@ -12,8 +12,7 @@
 <h1>dashboard view</h1>
 
   </div>
+</div>
+</div>
 
 <div ng-include="'components/layout/footer/footer.html'"></div>
-
-
-</div>
