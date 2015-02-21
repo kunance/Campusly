@@ -61,6 +61,7 @@ Proxima Nova custom font - to be used for the whole website
 body{
   font-family: "ProximaNova";
   color: #333333;
+  font-size: 14px;
   /* background-color: #e8e8e8; */
 }
 
@@ -133,7 +134,7 @@ Main image and style for above the fold on the home-page
   background: url(../assets/images/jumbotron/bg-ucsdC.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 591px;
+  max-height: 590px;
   margin-top: -20px;
 }
 
@@ -439,7 +440,7 @@ Custom style h1
 50px semi-bold
 ========================================================================== */
 h1{
-  font-size: 50px;
+  font-size: 2em;
   font-weight: 600;
 }
 
@@ -448,7 +449,7 @@ Custom style h1
 24px semi-bold
 ========================================================================== */
 h2{
-  font-size: 24px;
+  font-size: 1.5em;
   font-weight: 600;
 }
 
@@ -457,14 +458,13 @@ Custom style h1
 18px semi-bold
 ========================================================================== */
 h3{
-  font-size: 18px;
+  font-size: 1em;
 }
 
 /* ==========================================================================
 Padding for lead message
 ========================================================================== */
 .lead-msg{
-  padding: 50px 100px;
 }
 
 .lead-msg.primary {
@@ -654,6 +654,31 @@ For mailchimp sign-up - not needed in main app
 }
 
 @media only screen and (min-width : 992px) {
+  h1{
+  font-size: 3.5em;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+Custom style h1
+24px semi-bold
+========================================================================== */
+h2{
+  font-size: 2em;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+Custom style h1
+18px semi-bold
+========================================================================== */
+h3{
+  font-size: 1.2em;
+}
+
+  .lead-msg {
+    padding: 50px 100px;
+  }
   footer .logo {
     text-align: left;
     margin-bottom: 0px;
