@@ -1,6 +1,30 @@
+.navbar {
+  background: #5e99a1;
+}
+.navbar-brand {
+  padding-top: 10px;
+  color: #fff;
+  font-size: 1em;
+}
+.navbar-brand img, span{
+  /*width: 78px;*/
+  position: relative;
+  display: inline-block;
+  bottom: 0;
+}
+
+.navbar-brand span {
+  line-height: 200%;
+  bottom: -8px;
+}
+
+.navbar-nav {
+  margin-top: 5px;
+}
+
 .navbar-wrapper .navbar {
-    border-radius: 0px;
-  }
+  border-radius: 0px;
+}
 .picture{
   background-image: url(./../../../assets/images/jumbotron/nav.jpg);
 }
