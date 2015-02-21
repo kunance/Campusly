@@ -5,17 +5,19 @@ angular.module('app.landing', []).config(function ($stateProvider) {
     .state('landing', {
       url: '/',
       templateUrl: 'app/landing/landing.html',
-      controller: 'LandingCtrl'
-    })
-    .state('landing.valuedetails', {
-      url: '/valuedetails',
-      templateUrl: 'app/landing/valuedetails.html',
-      controller: 'ValueDetailsCtrl'
-    }).state('landing.howto', {
-      url: '/howto',
-      templateUrl: 'app/landing/howto.html',
-      controller: 'HowToCtrl'
-    })
+      controller: 'LandingCtrl',
+      controllerAs: 'landing',
+      authenticate: false
+    });
+    //.state('landing.valuedetails', {
+    //  url: '/valuedetails',
+    //  templateUrl: 'app/landing/valuedetails.html',
+    //  controller: 'ValueDetailsCtrl'
+    //}).state('landing.howto', {
+    //  url: '/howto',
+    //  templateUrl: 'app/landing/howto.html',
+    //  controller: 'HowToCtrl'
+    //})
 })
   .run(function ($rootScope) {
     //$rootScope.$on('$stateChangeStart', function (event, next, nextParams, current) {

@@ -84,16 +84,14 @@ angular.module('RentedApp', [
       //console.log('Current state: ', $state.current.name);
       //console.log('Event: ', event);
       //console.log('Next: ', next);
-      Auth.isLoggedIn(function (loggedIn) {
-        //console.log('logged in: ', loggedIn);
-        if (next.authenticate && !loggedIn) {
-          $state.go('login');
-        }
-        else if(!loggedIn) {
-          $state.go('/');
-        }
-      });
-     // if( $state.current.name && !$state.current.name.includes('landing') ) {
+      if(next.authenticate) {
+        Auth.isLoggedIn(function (loggedIn) {
+          //console.log('logged in: ', loggedIn);
+          if (!loggedIn) {
+            $state.go('login');
+          }
+        });
+      }
     });
   }]);
 
