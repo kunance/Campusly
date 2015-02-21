@@ -8,6 +8,9 @@
   SignupCtrl.$inject=['$scope', 'common', '$state', '$window'];
 
   function SignupCtrl($scope, common, $state, $window) {
+
+    // vm for view model .... https://github.com/johnpapa/angularjs-styleguide#style-y032
+    /* jshint validthis: true */
     var vm = this;
     vm.user = {};
     vm.errors = {};
