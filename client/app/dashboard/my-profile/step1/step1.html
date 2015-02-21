@@ -1,146 +1,140 @@
   <div class="row">
     <div class="col-sm-12">
 
+  <div class="row well">
+    <h3>Contact informations</h3>
+    <hr/>
+    <div class="col-sm-2">
+        <img class="" ng-if="info.me.userImage" ng-src="/api/images{{info.me.userImage}}" height="130px"/>
+        <img class="" ng-if="!info.me.userImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" height="130px"/>
+    </div>
+
     <div class="col-sm-4">
-      <h3>Contact informations</h3>
-
-      <label for="firstname">First name</label>
-      <input type="text" id="firstname" name="firstname" class="form-control" ng-model="step1.tempMe.firstname"/>
-
-      <label for="lastname">Last name</label>
-      <input type="text" id="lastname" name="lastname" class="form-control" ng-model="step1.tempMe.lastname"/>
-
-      <!--<label for="username">User name</label>-->
-      <!--<input type="text" id="username" name="username" class="form-control" ng-model="step1.tempMe.username "/>-->
-
-      <label for="middlename">Middle name</label>
-      <input type="text" id="middlename" name="middlename" class="form-control" ng-model="step1.tempMe.middlename"/>
-
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" class="form-control" ng-model="step1.tempMe.email"/>
-
-      <label for="phone">Phone number:</label>
-      <input type="text" id="phone" name="phone" class="form-control" ui-mask="999-999-9999" ng-model="step1.tempMe.phone"/><br/>
-
-    </div>
-
-    <div class="col-sm-4" ng-show="!step1.address.length" >
-      <h3>Current address informations</h3>
-
-      <label for="streetAddress">Address</label>
-      <input type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="step1.address.streetAddress" ng-model="step1.address.streetAddress.streetAddress"/>
-
-      <label for="streetNumber">Number</label>
-      <input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="step1.address.streetAddress.streetNumeric"/>
-
-      <label for="country">Country</label>
-      <input type="text" id="country" name="country" class="form-control"  placeholder="country" ng-model="step1.address.streetAddress.state"/>
-
-      <label for="city">City</label>
-      <input type="text" id="city" name="city" class="form-control"  placeholder="city" ng-model="step1.address.streetAddress.city"/>
-
-      <label for="zip">Zip code</label>
-      <input type="number" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="step1.address.streetAddress.zip"/>
-
       <div class="row">
-        <div class="col-md-6">
-          <label for="start">Start date</label>
-          <p class="input-group">
-            <input type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="step1.address.streetAddress.startDate" is-open="datePickers.startDate" close-text="Close" />
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-          </p>
+        <div class="col-sm-6">
+          <label for="firstname">First name</label>
+          <input type="text" id="firstname" name="firstname" class="form-control" ng-model="step1.tempMe.firstname"/>
         </div>
-        <div class="col-md-6">
-          <label for="end">End date</label>
-          <p class="input-group">
-            <input type="text" id="end" class="form-control" datepicker-popup="{{format}}" ng-model="step1.address.streetAddress.endDate" is-open="datePickers.endDate"  close-text="Close" />
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open($event,'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-          </p>
+        <div class="col-sm-6">
+          <label for="lastname">Last name</label>
+          <input type="text" id="lastname" name="lastname" class="form-control" ng-model="step1.tempMe.lastname"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <label for="phone">Phone number:</label>
+          <input type="text" id="phone" name="phone" class="form-control" ui-mask="999-999-9999" ng-model="step1.tempMe.phone"/><br/>
+          <!--<label for="University">University</label>-->
+          <!--<input type="text" id="University" name="University" class="form-control" ng-model="step1.tempMe.firstname"/>-->
+        <!--</div>-->
+        <!--<div class="col-sm-3">-->
+          <!--<label for="Mayor">Mayor</label>-->
+          <!--<input type="text" id="Mayor" name="Mayor" class="form-control" ng-model="step1.tempMe.lastname"/>-->
+        <!--</div>-->
+        <!--<div class="col-sm-3">-->
+          <!--<label for="Year">Year</label>-->
+          <!--<input type="text" id="Year" name="Year" class="form-control" ng-model="step1.tempMe.lastname"/>-->
         </div>
       </div>
     </div>
 
-      <div class="col-sm-4" ng-show="step1.address.length" >
-        <h3>Current address informations</h3>
-        <table class="table table-bordered table-condensed">
-          <thead>
-          <tr>
-            <th>No.</th>
-            <th>Address</th>
-            <th>Action</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr ng-repeat="item in step1.address">
-            <td>{{$index+1}}</td>
-            <td>{{item.streetAddress}} {{item.streetNumeric}}</td>
-            <td>Add new, edit and delete options</td>
-          </tr>
-          </tbody>
-        </table>
+    <div class="col-sm-4">
+      <label for="about">About me</label>
+      <textarea name="about" id="about" cols="30" rows="4" placeholder="about me" data-ng-model="step1.tempMe.aboutMe"  class="form-control" ></textarea>
+  <!--2 cols left-->
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="dashboard-block address-block">
+      <div class="box box-border-bottom">
+        <h3>Address Details <a class="link float-right" ng-click="step1.addressModal({mode: 'add', addressData: {}})" href="#"><i class="fa fa-plus"></i> Add new ddress</a></h3>
       </div>
-
-
-      <div class="col-sm-4" ng-show="!step1.education.length">
-        <h3>University information</h3>
-
-        <label for="educationCenterName">Education centre name</label>
-        <input type="text" id="educationCenterName" name="educationCenterName" class="form-control" ng-model="step1.education.educationCenterName"/>
-
-        <label for="type">Type</label>
-        <select id="type" class="form-control" data-ng-model="step1.education.type">
-          <option value="university">University</option>
-          <option value="trade">Trade</option>
-          <option value="military">Military</option>
-        </select>
-
-            <label for="start">Start date</label>
-            <p class="input-group">
-              <input type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="step1.education.startDate" is-open="datePickers.graduationDate" close-text="Close" />
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open($event,'graduationDate')"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </p>
-
-        <label for="major">Major</label>
-        <input type="text" ng-model="step1.education.major" id="major" class="form-control" name="major"/>
-
-        <label for="degreeType">Degree type</label>
-        <select id="degreeType" class="form-control" data-ng-model="step1.education.degreeType">
-          <option value="undergraduate">Undergraduate</option>
-          <option value="graduate">Graduate</option>
-          <option value="doctorate">Doctorate</option>
-          <option value="post-doctorate">Post-doctorate</option>
-        </select>
-
+      <div class="box">
+        <div class="row">
+          <p ng-if="!step1.address.length">&nbsp U dont have any addresses, click "Add new address" to create one</p>
+          <div ng-if="step1.address.length" ng-repeat="(index,address) in step1.address">
+            <div class="col-md-3">
+              <div class="box" ng-class="{'address-primary': address.present}">
+                <h4><strong>{{step1.me.firstname}} {{step1.me.lastname}}</strong> <a href="#" ng-click="step1.addressModal({mode: 'edit', addressData: address, index:index})" class="float-right">Edit</a></h4>
+                {{address.streetAddress}} <br>
+                {{address.streetNumberic}}  <br>
+                {{address.state}}  <br>
+                {{address.city}}  <br>
+                {{address.zip}}  <br>
+                {{address.apt}}
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <div class="col-sm-4" ng-show="step1.education.length">
-        <h3>University information</h3>
-        <table class="table table-bordered table-condensed">
-          <thead>
-          <tr>
-            <th>No.</th>
-            <th>Education</th>
-            <th>Action</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr ng-repeat="item in step1.education">
-            <td>{{$index+1}}</td>
-            <td>{{item.educationCenterName}}</td>
-            <td>Add new, edit and delete options</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
+    <hr/>
 
+      <!--<div class="row">-->
+        <!--<div class="col-md-4">-->
+          <!--<label for="streetAddress">Address</label>-->
+            <!--<input type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="step1.address.streetAddress" ng-model="step1.address.streetAddress.streetAddress"/>-->
+        <!--</div>-->
 
+        <!--<div class="col-md-2">-->
+          <!--<label for="streetNumber">Number</label>-->
+          <!--<input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="step1.address.streetAddress.streetNumeric"/>-->
+        <!--</div>-->
 
+        <!--<div class="col-md-2">-->
+          <!--<label for="apt">Apt</label>-->
+          <!--<input type="text" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="step1.address.streetAddress.apt"/><br/>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;3 cols left&ndash;&gt;-->
+      <!--</div>-->
+
+      <!--<div class="row">-->
+        <!--<div class="col-md-4">-->
+          <!--<label for="city">City</label>-->
+          <!--<input type="text" id="city" name="city" class="form-control"  placeholder="city" ng-model="step1.address.streetAddress.city"/>-->
+        <!--</div>-->
+        <!--<div class="col-md-2">-->
+          <!--<label for="country">Country</label>-->
+          <!--<input type="text" id="country" name="country" class="form-control"  placeholder="country" ng-model="step1.address.streetAddress.state"/>-->
+        <!--</div>-->
+        <!--<div class="col-md-2">-->
+          <!--<label for="zip">Zip code</label>-->
+          <!--<input type="number" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="step1.address.streetAddress.zip"/><br/>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="row">-->
+        <!--<div class="col-md-2">-->
+              <!--<label for="present">Present?</label><br/>-->
+              <!--<label class="radio-inline"><input type="radio" name="present" id="present" ng-model="step1.address.streetAddress.present" value="1">Yes</label>-->
+              <!--<label class="radio-inline"><input type="radio" name="present"  ng-model="step1.address.streetAddress.present" value="0">No</label><br/><br/>-->
+            <!--</div>-->
+        <!--<div class="col-md-6">-->
+          <!--<div class="col-md-6">-->
+              <!--<label for="start">Start date</label>-->
+              <!--<p class="input-group">-->
+                <!--<input type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="newAddress.address.streetAddress.startDate" is-open="datePickers.startDate" close-text="Close" />-->
+                <!--<span class="input-group-btn">-->
+                <!--<button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>-->
+                <!--</span>-->
+              <!--</p>-->
+          <!--</div>-->
+          <!--<div class="col-md-6" ng-show="step1.address.streetAddress.present==0">-->
+            <!--<label for="end">End date</label>-->
+            <!--<p class="input-group">-->
+                <!--<input type="text" id="end" class="form-control" datepicker-popup="{{format}}" ng-model="newAddress.address.streetAddress.endDate" is-open="datePickers.endDate"  close-text="Close" />-->
+                <!--<span class="input-group-btn">-->
+                <!--<button type="button" class="btn btn-default" ng-click="open($event,'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>-->
+              <!--</span>-->
+            <!--</p>-->
+          <!--</div>-->
+      <!--</div>-->
+     </div>
+
+  </div>
 </div>
 
-</div>

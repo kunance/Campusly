@@ -278,6 +278,10 @@ module.exports = {
             type: Seq.STRING(255),
             field: "userImage"
         },
+        "aboutMe": {
+          type: Seq.STRING(255),
+          field: "aboutMe"
+        },
         "twitter": {
             type: Seq.STRING(45),
             field: "twitter"

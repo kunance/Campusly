@@ -5,14 +5,15 @@
     .module('app.account')
     .controller('Step1Ctrl', Step1Ctrl);
 
-  Step1Ctrl.$inject = ['common', 'getUserInfo', 'getAddresses', 'getEducations', '$scope'];
+  Step1Ctrl.$inject = ['common', 'getUserInfo', 'getAddresses', 'getEducations', '$scope', 'ModalService'];
 
-  function Step1Ctrl(common, getUserInfo, getAddresses, getEducations, $scope) {
+  function Step1Ctrl(common, getUserInfo, getAddresses, getEducations, $scope, ModalService) {
     var vm = this;
     vm.me = getUserInfo;
     vm.tempMe = Object.create(vm.me);
     vm.address = getAddresses;
     vm.education = getEducations;
+    vm.addressModal=addressModal;
 
     $scope.datePickers = {
       startDate: false,
@@ -59,6 +60,35 @@
     //      console.log('error while updating user info', err);
     //    });
     //});
+
+
+    function addressModal (data) {
+      ModalService.addAddress(JSON.parse(JSON.stringify(data)), function(resp) {
+        if (resp.mode === 'add') {
+          var input = resp.streetAddress;
+          var zip = input.zip.toString();
+          var trimmedZip = zip.replace(/\s+/g, '');
+          input.zip = Number(trimmedZip);
+          common.dataservice.addAddress(vm.me.id, input).$promise
+            .then(function (addr) {
+              vm.address.push(addr);
+              common.logger.success('Address successfully added.');
+            })
+            .catch(function () {
+              common.logger.error('Error while saving address.');
+            });
+        } else if (resp.mode === 'delete') {
+          var index = resp.index;
+          var id = resp.addressData.id;
+          common.dataservice.deleteAddress(vm.me.id, id, function () {
+            vm.address.splice(index, 1);
+            common.logger.success('Address successfully deleted.');
+          });
+        }
+
+      })();
+    }
+
 
   }
 

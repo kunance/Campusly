@@ -604,6 +604,7 @@ CREATE TABLE `rented_user` (
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `middlename` varchar(50) DEFAULT NULL,
+  `aboutMe` varchar(255) DEFAULT NULL,
   `phone` int(10) DEFAULT NULL COMMENT 'supporting only US number only',
   `userImage` varchar(255) DEFAULT NULL COMMENT 'location on storage like S3 or cloudfront   put a defaut image value here after its on S3',
   `twitter` varchar(45) DEFAULT NULL,

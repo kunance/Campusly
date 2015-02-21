@@ -37,8 +37,8 @@ exports.newAddress = function(req, res, next) {
   var newAddress = Address.build(req.body);
 
   newAddress.save()
-    .then(function(vehicle) {
-      res.json(vehicle);
+    .then(function(address) {
+      res.json(address);
     })
     .catch(validationError(res));
 };
