@@ -35,11 +35,11 @@
       input.zip = Number(trimmedZip);
       dataservice.addAddress(vm.me.id, input).$promise
         .then(function () {
-          console.log('new Address added');
+          common.logger.success('Address successfully added.');
           common.$state.go('^',{},{reload:true});
         })
         .catch(function (err) {
-          console.log('error while creating new Address', err);
+          common.logger.error('Error while saving address.');
         });
     }
 

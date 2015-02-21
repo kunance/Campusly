@@ -5,9 +5,9 @@
     .module('app.core')
     .factory('common', common);
 
-  common.$inject = ['$location', '$q', '$rootScope', '$timeout', /*'logger',*/ 'Modal', /*'language', 'gettext',*/ 'dataservice', 'Auth', '$state'];
+  common.$inject = ['$location', '$q', '$rootScope', '$timeout', 'logger', 'Modal', /*'language', 'gettext',*/ 'dataservice', 'Auth', '$state'];
 
-  function common($location, $q, $rootScope, $timeout, /*logger,*/ Modal, /*language, gettext,  */dataservice, Auth, $state) {
+  function common($location, $q, $rootScope, $timeout, logger, Modal, /*language, gettext,  */dataservice, Auth, $state) {
     var throttles = {};
 
     var service = {
@@ -20,12 +20,12 @@
       $timeout: $timeout,
       $watch: $watch,
       // generic
-    //  createSearchThrottle: createSearchThrottle,
-    //  debouncedThrottle: debouncedThrottle,
+      createSearchThrottle: createSearchThrottle,
+      debouncedThrottle: debouncedThrottle,
       isNumber: isNumber,
       isSameDate: isSameDate,
       isNullOrUndefined: isNullOrUndefined,
-    //  logger: logger, // for accessibility
+      logger: logger, // for accessibility
    //   language: language,
       translations: translations(),
       dataservice: dataservice,

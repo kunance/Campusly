@@ -35,11 +35,11 @@
     vm.addNewEducation = function (input) {
       dataservice.addEducation(vm.me.id, input).$promise
         .then(function () {
-          console.log('new Education added');
+          common.logger.success('Education successfully updated.');
           common.$state.go('^',{},{reload:true});
         })
         .catch(function (err) {
-          console.log('error while creating new Education', err);
+          common.logger.error('Error while saving education.');
         });
     }
 

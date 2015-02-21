@@ -17,11 +17,11 @@
     vm.addNewPet = function (input) {
       dataservice.addPet(vm.me.id, input).$promise
         .then(function () {
-          console.log('new Pet added');
+          common.logger.success('Pet successfully updated.');
           common.$state.go('^',{},{reload:true});
         })
         .catch(function (err) {
-          console.log('error while creating new Pet', err);
+          common.logger.error('Error while saving pet.');
         });
     }
 

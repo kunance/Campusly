@@ -35,11 +35,11 @@
     vm.addNewOccupation = function (input) {
       dataservice.addOccupation(vm.me.id, input).$promise
         .then(function () {
-          console.log('new Occupation added');
+          common.logger.success('Occupation successfully updated.');
           common.$state.go('^',{},{reload:true});
         })
         .catch(function (err) {
-          console.log('error while creating new Occupation', err);
+          common.logger.error('Error while saving occupation.');
         });
     }
 
