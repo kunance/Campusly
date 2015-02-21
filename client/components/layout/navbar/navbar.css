@@ -1,3 +1,6 @@
+.navbar-wrapper .navbar {
+    border-radius: 0px;
+  }
 .picture{
   background-image: url(./../../../assets/images/jumbotron/nav.jpg);
 }

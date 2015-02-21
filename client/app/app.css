@@ -3,39 +3,39 @@
  * Bootstrap Fonts
  */
 
-@font-face {
-    font-family: 'Glyphicons Halflings';
-    src: url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot');
-    src: url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
-    url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff') format('woff'),
-    url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
-    url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+ @font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot');
+  src: url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+  url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff') format('woff'),
+  url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+  url('../bower_components/bootstrap/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
 /**
  *Font Awesome Fonts
  */
 
-@font-face {
-    font-family: 'FontAwesome';
-    src: url('../bower_components/font-awesome/fonts/fontawesome-webfont.eot?v=4.1.0');
-    src: url('../bower_components/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.1.0') format('embedded-opentype'),
-    url('../bower_components/font-awesome/fonts/fontawesome-webfont.woff?v=4.1.0') format('woff'),
-    url('../bower_components/font-awesome/fonts/fontawesome-webfont.ttf?v=4.1.0') format('truetype'),
-    url('../bower_components/font-awesome/fonts/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+ @font-face {
+  font-family: 'FontAwesome';
+  src: url('../bower_components/font-awesome/fonts/fontawesome-webfont.eot?v=4.1.0');
+  src: url('../bower_components/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.1.0') format('embedded-opentype'),
+  url('../bower_components/font-awesome/fonts/fontawesome-webfont.woff?v=4.1.0') format('woff'),
+  url('../bower_components/font-awesome/fonts/fontawesome-webfont.ttf?v=4.1.0') format('truetype'),
+  url('../bower_components/font-awesome/fonts/fontawesome-webfont.svg?v=4.1.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 /**
  * App-wide Styles
  */
 
-.browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+ .browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
 }
 .btnContainter > * {
   width:48%;
@@ -59,46 +59,47 @@
 /* ==========================================================================
    Proxima Nova custom font - to be used for the whole website
    ========================================================================== */
-body{
-  font-family: "ProximaNova";
-  color: #333333;
-  /* background-color: #e8e8e8; */
-}
+   body{
+    font-family: "ProximaNova";
+    color: #333333;
+    /* background-color: #e8e8e8; */
+  }
 
 /* ==========================================================================
    Proxima Nova Regular
    ========================================================================== */
-@font-face{
-  font-family: "ProximaNova";
-  src: url("./../fonts/ProximaNova/ProximaNovaReg.otf") format("opentype");
-}
+   @font-face{
+    font-family: "ProximaNova";
+
+    src: url("../assets/fonts/ProximaNova/ProximaNovaReg.otf") format("opentype");
+  }
 
 /* ==========================================================================
    Proxima Nova Italics
    ========================================================================== */
-@font-face{
-  font-family: "ProximaNova";
-  font-style: italic;
-  src: url("./../fonts/ProximaNova/ProximaNovaBlackIt.otf") format("opentype");
-}
+   @font-face{
+    font-family: "ProximaNova";
+    font-style: italic;
+    src: url("../assets/fonts/ProximaNova/ProximaNovaBlackIt.otf") format("opentype");
+  }
 
 /* ==========================================================================
    Proxima Nova Bold
    ========================================================================== */
-@font-face{
-  font-family: "ProximaNova";
-  font-weight: bold;
-  src: url("./../fonts/ProximaNova/ProximaNovaBold.otf") format("opentype");
-}
+   @font-face{
+    font-family: "ProximaNova";
+    font-weight: bold;
+    src: url("../assets/fonts/ProximaNova/ProximaNovaBold.otf") format("opentype");
+  }
 
 /* ==========================================================================
    Proxima Nova Semi-Bold
    ========================================================================== */
-@font-face{
-  font-family: "ProximaNova";
-  font-weight: 600;
-  src: url("./../fonts/ProximaNova/ProximaNovaSbold.otf") format("opentype");
-}
+   @font-face{
+    font-family: "ProximaNova";
+    font-weight: 600;
+    src: url("../assets/fonts/ProximaNova/ProximaNovaSbold.otf") format("opentype");
+  }
 
 /* ==========================================================================
    Proxima Nova Light
@@ -106,8 +107,8 @@ body{
 /* Light and thin font commented out of the style. To be revisted as needed.
 @font-face{
 	font-family: "ProximaNova";
-	src: url("./../fonts/ProximaNova/ProximaNovaLight.otf") format("opentype");
-}*/
+	src: url("../assets/fonts/ProximaNova/ProximaNovaLight.otf") format("opentype");
+  }*/
 
 /* ==========================================================================
    Proxima Nova Thin
@@ -115,375 +116,387 @@ body{
 /* Light and thin font commented out of the style. To be revisted as needed.
 @font-face{
 	font-family: "ProximaNova";
-	src: url("./../fonts/ProximaNova/ProximaNovaThin.otf") format("opentype");
-} */
+	src: url("../assets/fonts/ProximaNova/ProximaNovaThin.otf") format("opentype");
+  } */
 
 /* ==========================================================================
    Center the images
    ========================================================================== */
-img.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
+   img.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
 /* ==========================================================================
    Main image and style for above the fold on the home-page
    ========================================================================== */
-.jumbotron {
-  background: url(./../img/jumbotron/bg-ucsdC.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 591px;
-  margin-top: -20px;
-}
+   .jumbotron {
+    background: url(../assets/images/jumbotron/bg-ucsdC.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 591px;
+    margin-top: -20px;
+  }
 
 /* ==========================================================================
    Jumbotron header color as white
    ========================================================================== */
-.jumbotron h1 {
-  color: #FFFFFF;
-}
+   .jumbotron h1 {
+    color: #FFFFFF;
+  }
 
 /* ==========================================================================
    Style for How It Works section
    ========================================================================== */
-.howitworks {
-  background: url(./../img/howitworks/bg-ucslb.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 600px;
-}
+   .howitworks {
+    background: url(../assets/images/howitworks/bg-ucslb.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 600px;
+  }
 
 /* ==========================================================================
    Style for footer
    ========================================================================== */
-.footer {
-  background: url(./../img/footer/bg-uci.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 400px;
-}
+   footer {
+    background: url(../assets/images/footer/bg-uci.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 400px;
+  }
 
+  footer  a {
+    color: #333333;
+  }
+
+  footer .logo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  footer .link {
+
+  }
 /* ==========================================================================
    Transparent class for transparent nav-bar
    ========================================================================== */
-.navbar.transparent.navbar-default .navbar-header {
-  background: rgba(0,0,0,0.5);
-}
+   .navbar.transparent.navbar-default .navbar-header {
+    background: rgba(0,0,0,0.5);
+  }
 
 /* ==========================================================================
    Navbar settings - not sure if these three are required
    ========================================================================== */
 
-.navbar-header{
-  padding-top: 10px;
-}
+   .navbar-header{
+    padding-top: 10px;
+  }
 
-.navbar-inner {
-  min-height: 0px;
-}
+  .navbar-inner {
+    min-height: 0px;
+  }
 
-.navbar-brand,
-.navbar-right li a {
-  line-height: 70px;
-  height: 70px;
-  padding-top: 0;
-}
+  .navbar-brand,
+  .navbar-right li a {
+    line-height: 70px;
+    height: 70px;
+    padding-top: 0;
+  }
 
 /* ==========================================================================
    Sign-up button class
    ========================================================================== */
-.btn-rented-signup {
-  font-size: 14px;
-  background-color: #FFFFFF;
-  border-radius: 25px;
-  font-weight: 600;
-}
+   .btn-rented-signup {
+    font-size: 14px;
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    font-weight: 600;
+  }
 
 /* ==========================================================================
    Sign-up button class - hover
    Color changes
    ========================================================================== */
 
-.btn-rented-signup:hover {
-  background-color: #e4e4e4;
-  color: #000000;
-}
+   .btn-rented-signup:hover {
+    background-color: #e4e4e4;
+    color: #000000;
+  }
 
 /* ==========================================================================
    Sign-up button class - active
    Color changes
    ========================================================================== */
-.btn-rented-signup:active {
-  background-color: #000000;
-  color: #FFFFFF;
-}
+   .btn-rented-signup:active {
+    background-color: #000000;
+    color: #FFFFFF;
+  }
 
 /* ==========================================================================
    Sign-in button class
    ========================================================================== */
-.btn-rented-signin {
-  font-size: 14px;
-  color: #FFFFFF;
-  background-color: transparent;
-  font-weight: 600;
-}
+   .btn-rented-signin {
+    font-size: 14px;
+    color: #FFFFFF;
+    background-color: transparent;
+    font-weight: 600;
+  }
 
 /* ==========================================================================
    Event button class
    ========================================================================== */
-.btn-rented-event {
-  font-size: 14px;
-  color: #f7953d;
-  background-color: transparent;
-  font-weight: 600;
-}
+   .btn-rented-event {
+    font-size: 14px;
+    color: #f7953d;
+    background-color: transparent;
+    font-weight: 600;
+  }
 
 /* ==========================================================================
    Small Rented button
    ========================================================================== */
-.btn-rented-small {
-  font-size: 14px;
-  border-radius: 25px;
-  font-weight: 600;
-  width: 130px;
-  height: 30px;
-  text-align: center;
-  margin: 0 auto;
-  padding: 3px 12px;
-}
+   .btn-rented-small {
+    font-size: 14px;
+    border-radius: 25px;
+    font-weight: 600;
+    width: 130px;
+    height: 30px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 3px 12px;
+  }
 
 /* ==========================================================================
    Small Rented button - primary color
    ========================================================================== */
-.btn-rented-small.primary{
-  background-color: #f7953d;
-  color: #FFFFFF;
-}
+   .btn-rented-small.primary{
+    background-color: #f7953d;
+    color: #FFFFFF;
+  }
 
 /* ==========================================================================
    Small Rented button - secondary color
    ========================================================================== */
-.btn-rented-small.secondary{
-  background-color: #56bfc3;
-  color: #FFFFFF;
-}
+   .btn-rented-small.secondary{
+    background-color: #56bfc3;
+    color: #FFFFFF;
+  }
 
 /* ==========================================================================
    Small Rented button - hover and active
    ========================================================================== */
-.btn-rented-small:hover {
-  background-color: #e4e4e4;
-  color: #000000;
-}
+   .btn-rented-small:hover {
+    background-color: #e4e4e4;
+    color: #000000;
+  }
 
-.btn-rented-small:active {
-  background-color: #000000;
-  color: #FFFFFF;
-}
+  .btn-rented-small:active {
+    background-color: #000000;
+    color: #FFFFFF;
+  }
 
 /* ==========================================================================
    Medium Rented button
    ========================================================================== */
-.btn-rented-medium {
-  font-size: 14px;
-  border-radius: 25px;
-  font-weight: 600;
-  width: 140px;
-  height: 40px;
-  text-align: center;
-  margin: 0 auto;
-  padding: 8px 12px;
-}
+   .btn-rented-medium {
+    font-size: 14px;
+    border-radius: 25px;
+    font-weight: 600;
+    width: 140px;
+    height: 40px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 8px 12px;
+  }
 
 /* ==========================================================================
    Medium Rented button - primary color
    ========================================================================== */
-.btn-rented-medium.primary{
-  background-color: #f7953d;
-  color: #FFFFFF;
-}
+   .btn-rented-medium.primary{
+    background-color: #f7953d;
+    color: #FFFFFF;
+  }
 
 /* ==========================================================================
    Medium Rented button - secondary color
    ========================================================================== */
-.btn-rented-medium.secondary{
-  background-color: #56bfc3;
-  color: #FFFFFF;
-}
+   .btn-rented-medium.secondary{
+    background-color: #56bfc3;
+    color: #FFFFFF;
+  }
 
 /* ==========================================================================
    Medium Rented button - hover and active
    ========================================================================== */
-.btn-rented-medium:hover {
-  background-color: #e4e4e4;
-  color: #000000;
-}
+   .btn-rented-medium:hover {
+    background-color: #e4e4e4;
+    color: #000000;
+  }
 
-.btn-rented-medium:active {
-  background-color: #000000;
-  color: #FFFFFF;
-}
+  .btn-rented-medium:active {
+    background-color: #000000;
+    color: #FFFFFF;
+  }
 
 /* ==========================================================================
    Large Rented button
    ========================================================================== */
-.btn-rented-large {
-  font-size: 18px;
-  text-transform: uppercase;
-  border-radius: 25px;
-  font-weight: bold;
-  width: 280px;
-  height: 50px;
-  text-align: center;
-  margin: 0 auto;
-  padding: 12px 12px;
-}
+   .btn-rented-large {
+    font-size: 18px;
+    text-transform: uppercase;
+    border-radius: 25px;
+    font-weight: bold;
+    width: 280px;
+    height: 50px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 12px 12px;
+  }
 
 /* ==========================================================================
    Large Rented button - primary color
    ========================================================================== */
-.btn-rented-large.primary{
-  background-color: #f7953d;
-  color: #FFFFFF;
-}
+   .btn-rented-large.primary{
+    background-color: #f7953d;
+    color: #FFFFFF;
+  }
 
 /* ==========================================================================
    Large Rented button - secondary color
    ========================================================================== */
-.btn-rented-large.secondary{
-  background-color: #56bfc3;
-  color: #FFFFFF;
-}
+   .btn-rented-large.secondary{
+    background-color: #56bfc3;
+    color: #FFFFFF;
+  }
 
 /* ==========================================================================
    Large Rented button - hover and active
    ========================================================================== */
-.btn-rented-large:hover {
-  background-color: #e4e4e4;
-  color: #000000;
-}
+   .btn-rented-large:hover {
+    background-color: #e4e4e4;
+    color: #000000;
+  }
 
-.btn-rented-large:active {
-  background-color: #000000;
-  color: #FFFFFF;
-}
+  .btn-rented-large:active {
+    background-color: #000000;
+    color: #FFFFFF;
+  }
 
 /* ==========================================================================
    Custom style h1
    50px semi-bold
    ========================================================================== */
-h1{
-  font-size: 50px;
-  font-weight: 600;
-}
+   h1{
+    font-size: 50px;
+    font-weight: 600;
+  }
 
 /* ==========================================================================
    Custom style h1
    24px semi-bold
    ========================================================================== */
-h2{
-  font-size: 24px;
-  font-weight: 600;
-}
+   h2{
+    font-size: 24px;
+    font-weight: 600;
+  }
 
 /* ==========================================================================
    Custom style h1
    18px semi-bold
    ========================================================================== */
-h3{
-  font-size: 18px;
-}
+   h3{
+    font-size: 18px;
+  }
 
 /* ==========================================================================
    Padding for lead message
    ========================================================================== */
-.lead-msg{
-  padding-bottom: 50px;
-}
+   .lead-msg{
+    padding-bottom: 50px;
+  }
 
 /* ==========================================================================
    Padding for lead image
    ========================================================================== */
-.lead-img{
-  padding-bottom: 50px;
-}
+   .lead-img{
+    padding-bottom: 50px;
+  }
 
 /* ==========================================================================
    Padding for footer message
    ========================================================================== */
-.footer-msg {
-  padding-top: 60px;
-  padding-bottom: 60px;
-}
+   .footer-msg {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
 
 /* ==========================================================================
    Padding for lead button
    ========================================================================== */
-.lead-btn{
-  padding-bottom: 70px;
-}
+   .lead-btn{
+    padding-bottom: 70px;
+  }
 
 /* ==========================================================================
    Padding for the three marketing icons
    ========================================================================== */
-.mkt-icons {
-  padding-bottom: 70px;
-}
+   .mkt-icons {
+    padding-bottom: 70px;
+  }
 
 /* ==========================================================================
    Padding for value proposition container below three icons
    ========================================================================== */
-.mkt-info {
-  padding-bottom: 70px;
-}
+   .mkt-info {
+    padding-bottom: 70px;
+  }
 
 /* ==========================================================================
    Padding for community header message
    ========================================================================== */
-.community-header{
-  padding-top: 70px;
-  padding-bottom: 60px;
-}
+   .community-header{
+    padding-top: 70px;
+    padding-bottom: 60px;
+  }
 
 /* ==========================================================================
    Community header h1 color style
    ========================================================================== */
-.community-header h1 {
-  color: #56bfc3;
-}
+   .community-header h1 {
+    color: #56bfc3;
+  }
 
 /* ==========================================================================
    Circular box for image with drop shadow
    ========================================================================== */
-.circular {
-  border-radius: 150px;
-  -webkit-border-radius: 150px;
-  -moz-border-radius: 150px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-}
+   .circular {
+    border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  }
 
 /* ==========================================================================
    Square box for image with drop shadow
    ========================================================================== */
-.square {
-  box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-}
+   .square {
+    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  }
 
 
 /* ==========================================================================
    For mailchimp sign-up - not needed in main app
    ========================================================================== */
-#mc_embed_signup{
-  clear:left;
-  font:14px Helvetica,Arial,sans-serif;
-  margin-top: 50px;
-}
+   #mc_embed_signup{
+    clear:left;
+    font:14px Helvetica,Arial,sans-serif;
+    margin-top: 50px;
+  }
 
 
 /* CUSTOMIZE THE NAVBAR
@@ -563,16 +576,31 @@ h3{
 
   /* The navbar becomes detached from the top, so we round the corners */
   .navbar-wrapper .navbar {
-    border-radius: 4px;
+    border-radius: 0px;
   }
 
   .featurette-heading {
     font-size: 50px;
+  }
+
+  footer .links{
+    text-align: center;
+  }
+
+  footer .logo {
+    text-align: center;
   }
 }
 
 @media (min-width: 992px) {
   .featurette-heading {
     margin-top: 120px;
+  }
+}
+
+@media only screen and (min-width : 992px) {
+  footer .logo {
+    text-align: left;
+    margin-bottom: 0px;
   }
 }
