@@ -79,7 +79,7 @@ var all = {
   aws_s3: {
     key: 'AKIAJ5YZIB24A4YS4GBA',
     secret: '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',
-    bucket: 'rented.user.pictures',
+    bucket: 'rented.images',
     region: 'us-west-2'
   },
   prerender:{

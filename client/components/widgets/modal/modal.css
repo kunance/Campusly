@@ -10,7 +10,7 @@
   background: #428bca;
 }
 .modal-info .modal-header {
-  background: #5bc0de;
+  background: #3399cc;
 }
 .modal-success .modal-header {
   background: #5cb85c;
@@ -20,4 +20,28 @@
 }
 .modal-danger .modal-header {
   background: #d9534f;
+}
+.modal-info .btn-confirm {
+  color: white;
+  background: #3399cc;
+}
+.modal-backdrop.am-fade {
+  opacity: .5;
+  transition: opacity .15s linear;
+}
+.ng-enter {
+  opacity: 0;
+}
+.ng-enter-active {
+   opacity: .5;
+ }
+
+.ng-leave {
+  opacity: .5;
+}
+.ng-leave-active {
+   opacity: 0;
+ }
+.pac-container {
+  z-index: 1051 !important;
 }

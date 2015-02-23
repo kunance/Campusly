@@ -32,12 +32,13 @@ exports.sendMailAddressConfirmationMail = function(req, res, next) {
     .then(function (user) {
       var mailConfirmationToken =  jwt.sign({user : user.id, email : user.email}, config.secrets.mailConfirmation, {expiresInMinutes: 1});
       mail.mailConfirmation.sendMail(user, mailConfirmationToken, function(err,resp){
+        if (!user) return res.json(401);
         if(err) res.send(403);
         else res.send(200);});
     })
     .catch(function (error) {
       if (error) return next(error);
-      if (!user) return res.json(401);
+
     })
 };
 
@@ -55,13 +56,14 @@ exports.confirmMailAddress = function(req, res, next) {
     if (data.exp < Date.now()) return res.send(403, {message: "The validation token has expired. You should sign in and ask for a new one."});
     User.find({where: {id: data.user}})
       .then(function (user) {
+        if (!user) return res.send(403, {message: "The validation token is invalid. You should sign in and ask for a new one."});
         user.confirmMail(function () {
           res.json({token: auth.signToken(user.id)});
         })
       })
       .catch(function (error) {
         if (error) return res.send(403, {message: "The validation token is invalid. You should sign in and ask for a new one."});
-        if (!user) return res.send(403, {message: "The validation token is invalid. You should sign in and ask for a new one."});
+
       });
   })
 };
@@ -74,12 +76,13 @@ exports.resetPassword = function(req, res, next) {
   var newPassword = String(req.query.newPassword);
   User.find({where:{email: email}})
     .then(function (user) {
+      if (!user) return res.send(403, { message: 'This email address is unknown' });
       var passwordResetToken = jwt.sign({userId: user.id, newPassword : newPassword}, config.secrets.passwordReset, {expiresInMinutes: 60 * 24});
       mail.passwordReset.sendMail(user, passwordResetToken, function(err,resp){if(err) res.send(403); else res.send(200);});
     })
     .catch(function (err) {
-      if (error)
-        if (error) return next(error);
+      if (err)
+        if (err) return next(err);
       if (!user) return res.send(403, { message: 'This email address is unknown' });
     });
 };

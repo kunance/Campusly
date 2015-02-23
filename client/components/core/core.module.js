@@ -6,12 +6,12 @@
     /*
      * Angular modules
      */
-    'ngCookies', 'ngResource', 'ngSanitize',
-    'ui.router', 'ui.bootstrap', 'ngAnimate', 'ngStorage',
+    'ngCookies', 'ngResource', 'ngSanitize', 'ngAnimate',
+    'ui.router', 'ui.bootstrap',  'mgcrea.ngStrap', 'ngStorage',
     /*
      * Our reusable cross app code modules
      */
-    'btford.socket-io'
+    'btford.socket-io', 'blocks.logger', 'blocks.exception'
 
     /*
      * 3rd Party modules

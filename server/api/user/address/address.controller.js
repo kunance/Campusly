@@ -37,8 +37,8 @@ exports.newAddress = function(req, res, next) {
   var newAddress = Address.build(req.body);
 
   newAddress.save()
-    .then(function(vehicle) {
-      res.json(vehicle);
+    .then(function(address) {
+      res.json(address);
     })
     .catch(validationError(res));
 };
@@ -54,6 +54,7 @@ exports.showAddresses= function(req, res, next) {
 exports.getAddress= function(req, res, next) {
   Address.find({where: { id: req.params.id }})
     .then(function (address) {
+      address.apt = Number(address.apt);
       res.json(address);
     })
     .catch(handleError(res));

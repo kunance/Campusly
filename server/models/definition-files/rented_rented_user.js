@@ -274,9 +274,13 @@ module.exports = {
             type: Seq.INTEGER,
             field: "phone"
         },
-        "userImage": {
+        "profileImage": {
             type: Seq.STRING(255),
-            field: "userImage"
+            field: "profileImage"
+        },
+        "aboutMe": {
+          type: Seq.STRING(255),
+          field: "aboutMe"
         },
         "twitter": {
             type: Seq.STRING(45),

@@ -35,11 +35,11 @@
     vm.addNewFinance = function (input) {
       dataservice.addFinance(vm.me.id, input).$promise
         .then(function () {
-          console.log('new Finance added');
+          common.logger.success('Finance successfully updated.');
           common.$state.go('^',{},{reload:true});
         })
         .catch(function (err) {
-          console.log('error while creating new Finance', err);
+          common.logger.error('Error while saving finance.');
         });
     }
 

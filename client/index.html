@@ -23,6 +23,7 @@
       <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
       <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
       <link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.css" />
+      <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -32,6 +33,7 @@
       <link rel="stylesheet" href="app/app.css">
       <link rel="stylesheet" href="app/main/main.css">
       <link rel="stylesheet" href="components/layout/navbar/navbar.css">
+      <link rel="stylesheet" href="components/widgets/fileupload/fileupload.css">
       <link rel="stylesheet" href="components/widgets/modal/modal.css">
       <!-- endinjector -->
     <!-- endbuild -->
@@ -77,6 +79,9 @@
       <script src="bower_components/angular-busy/dist/angular-busy.js"></script>
       <script src="bower_components/ngstorage/ngStorage.js"></script>
       <script src="bower_components/angular-progress-arc/angular-progress-arc.js"></script>
+      <script src="bower_components/toastr/toastr.js"></script>
+      <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+      <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -89,6 +94,8 @@
           <script src="app/account/account.module.js"></script>
           <script src="app/dashboard/dashboard.module.js"></script>
           <script src="app/landing/landing.module.js"></script>
+          <script src="components/blocks/logger/logger.module.js"></script>
+          <script src="components/blocks/exception/exception.module.js"></script>
 
           <!-- injector:js -->
           <script src="app/account/account.routes.js"></script>
@@ -144,13 +151,17 @@
           <script src="app/account/signup/signup.controller.js"></script>
           <script src="app/admin/admin.controller.js"></script>
           <script src="app/admin/admin.js"></script>
+          <script src="app/dashboard/connections/my.connection.controller.js"></script>
+          <script src="app/dashboard/connections/my.connection.route.js"></script>
           <script src="app/dashboard/dashboard.controller.js"></script>
+          <script src="app/dashboard/favorites/my.favorites.controller.js"></script>
+          <script src="app/dashboard/favorites/my.favorites.route.js"></script>
           <script src="app/dashboard/messages/messages.controller.js"></script>
           <script src="app/dashboard/messages/messages.route.js"></script>
-          <script src="app/dashboard/my-connections/my.connection.controller.js"></script>
-          <script src="app/dashboard/my-connections/my.connection.route.js"></script>
-          <script src="app/dashboard/my-favorites/my.favorites.controller.js"></script>
-          <script src="app/dashboard/my-favorites/my.favorites.route.js"></script>
+          <script src="app/dashboard/my-profile/add-address/new.address.ctrl.js"></script>
+          <script src="app/dashboard/my-profile/add-address/new.address.route.js"></script>
+          <script src="app/dashboard/my-profile/edit-address/edit.address.controller.js"></script>
+          <script src="app/dashboard/my-profile/edit-address/edit.address.route.js"></script>
           <script src="app/dashboard/my-profile/my.profile.controller.js"></script>
           <script src="app/dashboard/my-profile/my.profile.route.js"></script>
           <script src="app/dashboard/my-profile/step1/step1.controller.js"></script>
@@ -158,8 +169,6 @@
           <script src="app/dashboard/my-profile/step2/step1.controller.js"></script>
           <script src="app/dashboard/my-profile/step2/step2.controller.js"></script>
           <script src="app/dashboard/my-profile/step2/step2.route.js"></script>
-          <script src="app/dashboard/my-profile/step3/step3.controller.js"></script>
-          <script src="app/dashboard/my-profile/step3/step3.route.js"></script>
           <script src="app/dashboard/my-properties/add.new.property/add.new.property.controller.js"></script>
           <script src="app/dashboard/my-properties/add.new.property/add.new.route.js"></script>
           <script src="app/dashboard/my-properties/my.properties.controller.js"></script>
@@ -168,10 +177,15 @@
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
           <script src="app/prerender.controller.js"></script>
+          <script src="components/blocks/exception/exception-handler.js"></script>
+          <script src="components/blocks/exception/exception.js"></script>
+          <script src="components/blocks/logger/logger.js"></script>
           <script src="components/blocks/socket/socket.service.js"></script>
           <script src="components/core/auth/auth.service.js"></script>
           <script src="components/core/auth/user.service.js"></script>
           <script src="components/core/common.js"></script>
+          <script src="components/core/config.js"></script>
+          <script src="components/core/constants.js"></script>
           <script src="components/core/data/address.js"></script>
           <script src="components/core/data/dataservice.js"></script>
           <script src="components/core/data/education.js"></script>
@@ -185,6 +199,8 @@
           <script src="components/layout/navbar/navbar.controller.js"></script>
           <script src="components/widgets/adress-autocomplete/adress-autocomplete.directive.js"></script>
           <script src="components/widgets/confirm-password/confirm.password.directive.js"></script>
+          <script src="components/widgets/fileupload/fileupload.js"></script>
+          <script src="components/widgets/fileupload/ngthumb.js"></script>
           <script src="components/widgets/modal/modal.service.js"></script>
           <script src="components/widgets/mongoose-error/mongoose-error.directive.js"></script>
           <script src="components/widgets/phone-mask/phone.mask.js"></script>

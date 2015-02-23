@@ -82,6 +82,15 @@
               return safeCb(callback)(err);
             }).$promise;
         },
+        updateProfileImage: function(user, callback) {
+          return UserResource.changeProfileImage({id: currentUser.id}, user,
+            function(usr) {
+              return safeCb(callback)(null, usr);
+            },
+            function(err) {
+              return safeCb(callback)(err);
+            }).$promise;
+        },
 
         /**
          * Change password
@@ -151,6 +160,10 @@
               safeCb(callback)(is);
               return is;
             });
+        },
+
+        setCurrentUser: function(user) {
+          currentUser = user;
         },
 
         /**
@@ -266,6 +279,23 @@
           }, function(err) {
             return cb(err);
           }).$promise;
+        },
+
+        /**
+         * Waits for currentUser to resolve before checking if user is logged in
+         */
+        isLoggedInAsync: function(cb) {
+          if(currentUser.hasOwnProperty('$promise')) {
+            currentUser.$promise.then(function() {
+              cb(true);
+            }).catch(function() {
+              cb(false);
+            });
+          } else if(currentUser.hasOwnProperty('role')) {
+            cb(true);
+          } else {
+            cb(false);
+          }
         },
 
         /**

@@ -15,11 +15,11 @@
     vm.uploader = new FileUploader();
     vm.uploader.url = '/api/images';
     vm.uploader.onSuccessItem = function (itm,res,status,header) {
-      vm.me.userImage =res.saved;
+      vm.me.profileImage =res.saved;
     };
 
     vm.saveUserInfo= function (input) {
-      input.userImage=vm.me.userImage;
+      input.profileImage=vm.me.profileImage;
       common.Auth.updateUser(input)
         .then(function () {
           console.log('User info updated');

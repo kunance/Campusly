@@ -63,13 +63,8 @@
       <textarea name="description" id="description" cols="30" rows="5" placeholder="description" data-ng-model="addNew.property.streetAddress.description"  class="form-control" ></textarea>
 
       <label for="picture">Upload picture</label>
-      <input name="picture" type="file" nv-file-select uploader="addNew.uploader" id="picture" />
-      <ul>
-        <li ng-repeat="item in addNew.uploader.queue">
-          Name: <span ng-bind="item.file.name"></span><br/>
-          <button ng-click="item.upload()">upload</button>
-        </li>
-      </ul>
+      <div fileupload data="addNew.data"></div>
+
       <br/>
       <button class="btn btn-primary" ng-click="addNew.addNewProperty(addNew.property.streetAddress)">Save new property</button>
       <button class="btn btn-primary" ui-sref="^">Back to my properties</button>
