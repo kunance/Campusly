@@ -16,7 +16,7 @@
           }
           return;
         }
-
+        console.log('neki ctrl', ctrl);
         var matchGetter = $parse(attrs.match);
 
         scope.$watch(getMatchValue, function(){

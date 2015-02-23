@@ -12,8 +12,8 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li ng-hide="!isLoggedIn()"> <img class="img-circle" ng-if="getCurrentUser().userImage" ng-src="/api/images{{getCurrentUser().userImage}}" style="height: 50px"/></li>
-          <li ng-hide="!isLoggedIn()"> <img class="img-circle" ng-if="!getCurrentUser().userImage" src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" style="height: 50px"/></li>
+          <li ng-hide="!isLoggedIn()"> <img class="img-circle" ng-if="getCurrentUser().profileImage" ng-src="api/images{{getCurrentUser().profileImage}}" style="height: 50px"/></li>
+          <li ng-hide="!isLoggedIn()"> <img class="img-circle" ng-if="!getCurrentUser().profileImage" src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" style="height: 50px"/></li>
           <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="signup" class="btn btn-rented-signup">Sign up</a></li>
           <li ng-hide="isLoggedIn()" ui-sref-active="active"><a ui-sref="login" class="btn btn-rented-signin">Login</a></li>
           <li ng-show="isLoggedIn()"><p class="navbar-text">Hello <strong>{{getCurrentUser().firstname}}</strong></p></li>

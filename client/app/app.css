@@ -44,7 +44,10 @@
 .has-error input {
   border-left: 3px solid #ff0000;
 }
-
+/*.image-upload > input*/
+/*{*/
+  /*display: none;*/
+/*}*/
 /**
 * Custom style from Vinit
 */
@@ -62,7 +65,7 @@
 body{
   font-family: "ProximaNova";
   color: #333333;
-  /* background-color: #e8e8e8; */
+   /*background-color: #e8e8e8;*/
 }
 
 /* ==========================================================================

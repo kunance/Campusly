@@ -14,7 +14,7 @@
     vm.uploader = new FileUploader();
     vm.uploader.url = '/api/images';
     vm.uploader.onSuccessItem = function (itm,res,status,header) {
-      vm.me.userImage =res.saved;
+      vm.me.profileImage =res.saved;
     };
 
     vm.addNewProperty= function (input) {
@@ -31,6 +31,22 @@
         });
 
     }
+
+    vm.data = {
+      url:'/api/images',
+      successCallback: successCallback,
+      errorCallback: errorCallback
+    };
+
+    function successCallback(file, resp) {
+      console.log(file);
+      common.logger.success('Image '+file._file.name+' uploaded');
+    }
+
+    function errorCallback() {
+      common.logger.error('Error while uploading '+file._file.name+' image');
+    }
+
   }
 
 }());

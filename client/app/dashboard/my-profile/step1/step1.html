@@ -5,44 +5,65 @@
     <h3>Contact informations</h3>
     <hr/>
     <div class="col-sm-2">
-        <img class="" ng-if="info.me.userImage" ng-src="/api/images{{info.me.userImage}}" height="130px"/>
-        <img class="" ng-if="!info.me.userImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" height="130px"/>
-    </div>
+    <img class="" ng-if="step1.tempMe.profileImage" ng-src="api/users/{{step1.me.id}}/profileImage" height="130px"/>
+    <!--<img class="" ng-if="!step1.tempMe.userImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" height="130px"/>-->
+    <input type="file" nv-file-select uploader="step1.uploader" id="fileUpload"/>
+    <ul>
+      <li ng-repeat="item in step1.uploader.queue">
+        Name: <span ng-bind="item.file.name"></span><br/>
+        <button ng-click="item.upload()">upload</button>
+      </li>
+    </ul>
+  </div>
 
-    <div class="col-sm-4">
+    <form class="form" name="personalDataForm" ng-submit="step1.changePersonalData(personalDataForm)" novalidate>
+
+        <!--<img class="" ng-if="info.me.userImage" ng-src="/api/images{{info.me.userImage}}" height="130px"/>-->
+        <!--<img class="" ng-if="!info.me.userImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" height="130px"/>-->
+
+
+    <div class="col-sm-5">
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <label for="firstname">First name</label>
           <input type="text" id="firstname" name="firstname" class="form-control" ng-model="step1.tempMe.firstname"/>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <label for="lastname">Last name</label>
           <input type="text" id="lastname" name="lastname" class="form-control" ng-model="step1.tempMe.lastname"/>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <label for="phone">Phone number:</label>
-          <input type="text" id="phone" name="phone" class="form-control" ui-mask="999-999-9999" ng-model="step1.tempMe.phone"/><br/>
+          <input type="text" id="phone" name="phone" class="form-control" ui-mask="999-999-9999" ng-model="step1.tempMe.phone"/>
+        </div>
+      </div>
+      <!--<div class="row">-->
+        <!--<div class="col-sm-6">-->
           <!--<label for="University">University</label>-->
-          <!--<input type="text" id="University" name="University" class="form-control" ng-model="step1.tempMe.firstname"/>-->
+          <!--<input type="text" id="University" name="University" class="form-control" ng-model="step1.education.educationCenterName"/>-->
         <!--</div>-->
         <!--<div class="col-sm-3">-->
           <!--<label for="Mayor">Mayor</label>-->
-          <!--<input type="text" id="Mayor" name="Mayor" class="form-control" ng-model="step1.tempMe.lastname"/>-->
+          <!--<input type="text" id="Mayor" name="Mayor" class="form-control" ng-model="step1.education.major"/>-->
         <!--</div>-->
         <!--<div class="col-sm-3">-->
           <!--<label for="Year">Year</label>-->
-          <!--<input type="text" id="Year" name="Year" class="form-control" ng-model="step1.tempMe.lastname"/>-->
-        </div>
-      </div>
+          <!--<input type="text" id="Year" name="Year" class="form-control" ng-model="step1.education.year"/>-->
+        <!--</div>-->
+        <!---->
+      <!--</div>-->
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-5">
       <label for="about">About me</label>
-      <textarea name="about" id="about" cols="30" rows="4" placeholder="about me" data-ng-model="step1.tempMe.aboutMe"  class="form-control" ></textarea>
-  <!--2 cols left-->
+      <textarea name="aboutMe" id="about" cols="30" rows="4" placeholder="about me" data-ng-model="step1.tempMe.aboutMe"  class="form-control" ></textarea>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-primary float-right" ng-disabled="personalDataForm.$invalid || !personalDataForm.$dirty"> Update</button>
+      </div>
+    </div>
+    </form>
   </div>
 
   <div class="row">

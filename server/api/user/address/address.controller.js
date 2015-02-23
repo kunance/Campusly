@@ -54,6 +54,7 @@ exports.showAddresses= function(req, res, next) {
 exports.getAddress= function(req, res, next) {
   Address.find({where: { id: req.params.id }})
     .then(function (address) {
+      address.apt = Number(address.apt);
       res.json(address);
     })
     .catch(handleError(res));

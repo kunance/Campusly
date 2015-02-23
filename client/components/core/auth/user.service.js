@@ -19,6 +19,12 @@
               id:'me'
             }
           },
+          changeProfileImage: {
+            method: 'POST',
+            params: {
+              controller:'profileImage'
+            }
+          },
           changeInfo: {
             method: 'PUT',
             params: {
