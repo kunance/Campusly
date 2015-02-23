@@ -7,7 +7,7 @@
 
   MyPropertiesCtrl.$inject = ['$scope', 'common', 'FileUploader'/*, 'getAllProperties'*/];
 
-  function MyPropertiesCtrl($scope, common, FileUploader/*, getAllProperties*/) {
+  function MyPropertiesCtrl($scope, common, FileUploader /*, getAllProperties*/) {
     var vm = this;
     vm.property = {};
     vm.me = common.Auth.getCurrentUser();
@@ -15,11 +15,8 @@
 
     //console.log(vm.listOfProperties);
 
-    vm.uploader = new FileUploader();
-    vm.uploader.url = '/api/properties/:id/images';
-    vm.uploader.onSuccessItem = function (itm,res,status,header) {
-      vm.me.userImage =res.saved;
-    };
+
+
 
     $scope.images = [{
       src: 'http://www.gulfshores.com/!userfiles/content_images/stay/agc_2013_int_content-img_beach-houses.jpg',

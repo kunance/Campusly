@@ -78,7 +78,7 @@ angular.module('RentedApp', [
       }
     };
   })
-  .run(['$rootScope', '$state', 'Auth', '$stateParams', 'common', function ($rootScope, $state, Auth, $stateParams, common) {
+  .run(['$rootScope', '$state', 'Auth', '$stateParams', 'common', '$location', function ($rootScope, $state, Auth, $stateParams, common, $location) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       common.logger.info('Navigating to ' + next.url);

@@ -6,8 +6,8 @@
     <div class="col-sm-12">
 
       <div class="row">
-        <img class="img-circle" ng-if="editInfo.me.userImage" ng-src="/api/images{{editInfo.me.userImage}}" style="height: 80px"/>
-        <img class="img-circle" ng-if="!editInfo.me.userImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" style="height: 80px"/>
+        <img class="img-circle" ng-if="editInfo.me.profileImage" ng-src="/api/images{{editInfo.me.profileImage}}" style="height: 80px"/>
+        <img class="img-circle" ng-if="!editInfo.me.profileImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" style="height: 80px"/>
 
         <input type="file" nv-file-select uploader="editInfo.uploader" id="fileUpload" /><br/>
         <ul>

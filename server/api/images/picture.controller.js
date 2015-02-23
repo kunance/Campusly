@@ -6,6 +6,10 @@
   var async = require('async');
   var config = require('../../config/environment');
   var userinfo = require('../user/user.controller');
+  //var s3 = require('../../components/aws-s3/index');
+  //var sqldb = require('../../sqldb');
+  //var propertyImages = sqldb.model('rented.propertyImages');
+
   // S3 Connector
   var connect = function() {
     return knox.createClient(config.aws_s3);
@@ -24,38 +28,17 @@
 
   var client = connect();
 
+
   exp.upload = function(req,res) {
-    var item = req.files.file,
-      localPath = item.path,
-      s3Path = '/' + item.name;
-    async.waterfall([
-
-      // Upload the file to S3
-      function(callback) {
-        client.putFile(
-          localPath, s3Path,
-        function(err, result) {
-          if (result.statusCode !== 200) {
-            err = new Error('Upload Failure: ' + result.statusCode);
-          }
-          callback(err);
-        }
-        );
-      },
-
-      // Remove the temp file on local
-      function(callback) {
-        removeTemp(localPath, function(err) {
-          callback(err);
-        });
-      }
-    ], function(err) {
-      if (err) {
-        res.send(500, 'upload failure');
-      } else {
-        res.json({ saved: s3Path });
-      }
+    var item = req.files.file;
+    var localPath = item.path;
+    var s3Path = '/'+ item.name;
+    s3.upload(localPath, s3Path, function(err) {
+      if (err)
+        return res.send(500, 'upload failure');
+     // newPropertyImages= propertyImages.build()
     });
+
   };
 
   exp.download = function(req,res) {

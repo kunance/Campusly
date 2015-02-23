@@ -3,16 +3,172 @@
   <tabset class="dashboard-sidebar">
     <tab ng-repeat="tab in myProfile.tabs" heading="{{tab.title}}"
          active="tab.active" ui-sref="{{tab.route}}"></tab>
-    <!--disabled="true" ng-click="false"-->
+
   </tabset>
 
-  <div ui-view="" >
+<div ui-view="">
+  <div class="row">
+    <div class="col-sm-12">
 
+      <div class="row well">
+        <h3>Contact informations</h3>
+        <hr/>
+        <div class="col-sm-2">
+          <img class="" ng-if="myProfile.tempMe.profileImage" ng-src="api/images{{myProfile.tempMe.profileImage}}" height="130px"/>
+          <img class="" ng-if="!myProfile.tempMe.profileImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" height="130px"/>
+          <input type="file" nv-file-select uploader="myProfile.uploader" id="fileUpload"/>
+          <ul>
+            <li ng-repeat="item in myProfile.uploader.queue">
+              Name: <span ng-bind="item.file.name"></span><br/>
+              <button ng-click="item.upload()">upload</button>
+            </li>
+          </ul>
+        </div>
+
+        <form class="form" name="personalDataForm" ng-submit="myProfile.changePersonalData(personalDataForm)" novalidate>
+
+          <!--<img class="" ng-if="info.me.userImage" ng-src="/api/images{{info.me.userImage}}" height="130px"/>-->
+          <!--<img class="" ng-if="!info.me.userImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" height="130px"/>-->
+
+
+          <div class="col-sm-5">
+            <div class="row">
+              <div class="col-sm-4">
+                <label for="firstname">First name</label>
+                <input type="text" id="firstname" name="firstname" class="form-control" ng-model="myProfile.tempMe.firstname"/>
+              </div>
+              <div class="col-sm-4">
+                <label for="lastname">Last name</label>
+                <input type="text" id="lastname" name="lastname" class="form-control" ng-model="myProfile.tempMe.lastname"/>
+              </div>
+              <div class="col-sm-4">
+                <label for="phone">Phone number:</label>
+                <input type="text" id="phone" name="phone" class="form-control" ui-mask="999-999-9999" ng-model="myProfile.tempMe.phone"/>
+              </div>
+            </div>
+            <!--<div class="row">-->
+            <!--<div class="col-sm-6">-->
+            <!--<label for="University">University</label>-->
+            <!--<input type="text" id="University" name="University" class="form-control" ng-model="myProfile.education.educationCenterName"/>-->
+            <!--</div>-->
+            <!--<div class="col-sm-3">-->
+            <!--<label for="Mayor">Mayor</label>-->
+            <!--<input type="text" id="Mayor" name="Mayor" class="form-control" ng-model="myProfile.education.major"/>-->
+            <!--</div>-->
+            <!--<div class="col-sm-3">-->
+            <!--<label for="Year">Year</label>-->
+            <!--<input type="text" id="Year" name="Year" class="form-control" ng-model="myProfile.education.year"/>-->
+            <!--</div>-->
+            <!---->
+            <!--</div>-->
+          </div>
+
+          <div class="col-sm-5">
+            <label for="about">About me</label>
+            <textarea name="aboutMe" id="about" cols="30" rows="4" placeholder="about me" data-ng-model="myProfile.tempMe.aboutMe"  class="form-control" ></textarea>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary float-right" ng-disabled="personalDataForm.$invalid || !personalDataForm.$dirty"> Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="row">
+
+        <div class="dashboard-block address-block">
+          <div class="box box-border-bottom">
+            <h3>Address Details <a class="link float-right" ui-sref=".addNewAddress" href="#"><i class="fa fa-plus"></i> Add new address</a></h3>
+          </div>
+          <div class="box">
+            <div class="row">
+              <p ng-if="!myProfile.address.length">&nbsp U dont have any addresses, click "Add new address" to create one</p>
+              <div ng-if="myProfile.address.length" ng-repeat="(index,address) in myProfile.address">
+                <div class="col-md-3">
+                  <div class="box" ng-class="{'address-primary': address.present}">
+                    <h4><strong>{{myProfile.me.firstname}} {{myProfile.me.lastname}}</strong> <a href="#" ui-sref=".editAddress({id: address.id})" class="float-right">Edit</a></h4>
+                    {{address.streetAddress}} <br>
+                    {{address.streetNumberic}}  <br>
+                    {{address.state}}  <br>
+                    {{address.city}}  <br>
+                    {{address.zip}}  <br>
+                    {{address.apt}}
+                    <div class="clear"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr/>
+
+        <!--<div class="row">-->
+        <!--<div class="col-md-4">-->
+        <!--<label for="streetAddress">Address</label>-->
+        <!--<input type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="myProfile.address.streetAddress" ng-model="myProfile.address.streetAddress.streetAddress"/>-->
+        <!--</div>-->
+
+        <!--<div class="col-md-2">-->
+        <!--<label for="streetNumber">Number</label>-->
+        <!--<input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="myProfile.address.streetAddress.streetNumeric"/>-->
+        <!--</div>-->
+
+        <!--<div class="col-md-2">-->
+        <!--<label for="apt">Apt</label>-->
+        <!--<input type="text" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="myProfile.address.streetAddress.apt"/><br/>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;3 cols left&ndash;&gt;-->
+        <!--</div>-->
+
+        <!--<div class="row">-->
+        <!--<div class="col-md-4">-->
+        <!--<label for="city">City</label>-->
+        <!--<input type="text" id="city" name="city" class="form-control"  placeholder="city" ng-model="myProfile.address.streetAddress.city"/>-->
+        <!--</div>-->
+        <!--<div class="col-md-2">-->
+        <!--<label for="country">Country</label>-->
+        <!--<input type="text" id="country" name="country" class="form-control"  placeholder="country" ng-model="myProfile.address.streetAddress.state"/>-->
+        <!--</div>-->
+        <!--<div class="col-md-2">-->
+        <!--<label for="zip">Zip code</label>-->
+        <!--<input type="number" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="myProfile.address.streetAddress.zip"/><br/>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="row">-->
+        <!--<div class="col-md-2">-->
+        <!--<label for="present">Present?</label><br/>-->
+        <!--<label class="radio-inline"><input type="radio" name="present" id="present" ng-model="myProfile.address.streetAddress.present" value="1">Yes</label>-->
+        <!--<label class="radio-inline"><input type="radio" name="present"  ng-model="myProfile.address.streetAddress.present" value="0">No</label><br/><br/>-->
+        <!--</div>-->
+        <!--<div class="col-md-6">-->
+        <!--<div class="col-md-6">-->
+        <!--<label for="start">Start date</label>-->
+        <!--<p class="input-group">-->
+        <!--<input type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="newAddress.address.streetAddress.startDate" is-open="datePickers.startDate" close-text="Close" />-->
+        <!--<span class="input-group-btn">-->
+        <!--<button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>-->
+        <!--</span>-->
+        <!--</p>-->
+        <!--</div>-->
+        <!--<div class="col-md-6" ng-show="myProfile.address.streetAddress.present==0">-->
+        <!--<label for="end">End date</label>-->
+        <!--<p class="input-group">-->
+        <!--<input type="text" id="end" class="form-control" datepicker-popup="{{format}}" ng-model="newAddress.address.streetAddress.endDate" is-open="datePickers.endDate"  close-text="Close" />-->
+        <!--<span class="input-group-btn">-->
+        <!--<button type="button" class="btn btn-default" ng-click="open($event,'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>-->
+        <!--</span>-->
+        <!--</p>-->
+        <!--</div>-->
+        <!--</div>-->
+      </div>
+
+    </div>
   </div>
+</div>
 
-  <!--<div class="row">-->
-      <!--<button ng-show="!myProfile.isLastTab()" class="btn btn-primary pull-right" ng-click="myProfile.proceed()">Next</button>-->
-      <!--<button ng-show="myProfile.isLastTab()" class="btn btn-primary pull-right" ng-click="myProfile.proceed()">Finish</button>-->
-    <!--</div>-->
+
 </div>
 

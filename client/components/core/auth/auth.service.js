@@ -82,6 +82,15 @@
               return safeCb(callback)(err);
             }).$promise;
         },
+        updateProfileImage: function(user, callback) {
+          return UserResource.changeProfileImage({id: currentUser.id}, user,
+            function(usr) {
+              return safeCb(callback)(null, usr);
+            },
+            function(err) {
+              return safeCb(callback)(err);
+            }).$promise;
+        },
 
         /**
          * Change password
@@ -151,6 +160,10 @@
               safeCb(callback)(is);
               return is;
             });
+        },
+
+        setCurrentUser: function(user) {
+          currentUser = user;
         },
 
         /**

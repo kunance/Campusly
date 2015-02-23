@@ -16,29 +16,11 @@
             <p class="help-block" ng-show="form.firstname.$error.required && signup.submitted">A first name is required</p>
         </div>
 
-        <!--<div class="form-group" ng-class="{'has-success': form.middlename.$valid && signup.submitted, 'has-error': form.middlename.$invalid && signup.submitted}">-->
-            <!--<label for="middlename">Middle Name</label>-->
-            <!--<input id="middlename" type="text" name="middlename" class="form-control" ng-model="signup.user.middlename" required/>-->
-            <!--<p class="help-block" ng-show="form.middlename.$error.required && signup.submitted">A middle name is required</p>-->
-        <!--</div>-->
-
         <div class="form-group" ng-class="{'has-success': form.lastname.$valid && signup.submitted, 'has-error': form.lastname.$invalid && signup.submitted}">
             <label for="lastname">Last Name</label>
             <input id="lastname" type="text" name="lastname" class="form-control" ng-model="signup.user.lastname" placeholder="Last name" required/>
             <p class="help-block" ng-show="form.lastname.$error.required && signup.submitted">A last name is required</p>
         </div>
-
-        <!--<div class="form-group" ng-class="{'has-success': form.username.$valid && signup.submitted, 'has-error': form.username.$invalid && signup.submitted}">-->
-            <!--<label for="username">Username</label>-->
-            <!--<input id="username" type="text" name="username" class="form-control" ng-model="signup.user.username" placeholder="Username" required/>-->
-            <!--<p class="help-block" ng-show="form.username.$error.required && signup.submitted">A username is required</p>-->
-        <!--</div>-->
-
-        <!--<div class="form-group" ng-class="{'has-success': form.phone.$valid && signup.submitted, 'has-error': form.phone.$invalid && signup.submitted}">-->
-            <!--<label for="phone">Phone number</label>-->
-            <!--<input id="phone" type="text" name="phone" class="form-control" ng-model="signup.user.phone" ui-mask="999-999-9999" required/>-->
-          <!--<p class="help-block" ng-show="form.username.$error.required && signup.submitted">A phone number is required</p>-->
-         <!--</div>-->
 
         <div class="form-group" ng-class="{ 'has-success': form.email.$valid && signup.submitted, 'has-error': form.email.$invalid && signup.submitted }">
             <label for="email">Email</label>
@@ -55,7 +37,7 @@
             <input id="password" type="password" name="password" class="form-control" ng-model="signup.user.password" ng-minlength="3" placeholder="Minimum 3 characters required" required mongoose-error/>
         </div>
 
-        <div class="form-group" ng-class="{ 'has-success': form.password.$valid && signup.submitted, 'has-error': form.password.$invalid && signup.submitted }">
+        <div ng-if="signup.user.password"  class="form-group" ng-class="{ 'has-success': form.password.$valid && signup.submitted, 'has-error': form.password.$invalid && signup.submitted }">
           <label for="confirmPassword">Confirm</label>
           <input id="confirmPassword" type="password" name="confirmPassword" class="form-control" ng-model="signup.user.confirmPassword" match="signup.user.password" placeholder="Repeat password" ng-minlength="3" required mongoose-error/>
         <p class="help-block" ng-show="form.password.$error.required && signup.submitted">Please provide valid password</p>

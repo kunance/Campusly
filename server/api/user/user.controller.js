@@ -9,6 +9,7 @@ var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var mandrill = require('../../components/mandrill');
+var s3 = require('../../components/aws-s3/index');
 
 var validationError = function(res, statusCode) {
   statusCode = statusCode || 422;
@@ -66,6 +67,7 @@ exports.me = function(req, res, next) {
     },
     attributes: [
       'id',
+      'aboutMe',
       'username',
       'middlename',
       'confirmedEmail',
@@ -76,7 +78,7 @@ exports.me = function(req, res, next) {
       'lastname',
       'role',
       'provider',
-      'userImage'
+      'profileImage'
     ]
   })
     .then(function(user) { // don't ever give out the password or salt
@@ -130,7 +132,7 @@ exports.show = function(req, res, next) {
       'email',
       'phone',
       'lastname',
-      'userImage'
+      'profileImage'
     ]
   })
     .then(function(user) {
@@ -180,6 +182,7 @@ exports.changePassword = function(req, res, next) {
 
 exports.changeInfo = function(req, res, next) {
   var userId = req.user.id;
+  console.log(req.body);
   User.find({
     where: {
       id: userId
@@ -190,13 +193,69 @@ exports.changeInfo = function(req, res, next) {
         var updated = _.merge(user, req.body);
         updated.updatedAt = new Date();
         updated.save()
-         .then(respondWith(res, 200))
-         .catch(validationError(res));
+          .then(respondWith(res, 200))
+          .catch(validationError(res));
       } else{
         res.send(401);
       }
     })
 };
+
+exports.changeProfileImage = function(req, res, next) {
+  var item = req.files.file;
+  var localPath = item.path;
+  var s3Path = '/'+ item.name;
+  var userId = req.user.id;
+  s3.upload(localPath, s3Path, function(err) {
+    if (err)
+      return res.send(500, 'upload failure');
+    User.find({
+      where: {
+        id: userId
+      }
+    })
+      .then(function(user) {
+        if(user){
+          user.profileImage = s3Path;
+          user.save()
+            .then(res.send(200,user))
+            .catch(validationError(res));
+        } else{
+          res.send(401);
+        }
+      })
+  });
+
+};
+
+exports.downloadProfileImage = function(req, res, next) {
+  console.log('usa san');
+  User.find({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(function(user) {
+      if(user){
+        var s3Path = user.profileImage;
+        console.log('ovo je s3 path', s3Path);
+        s3.download(s3Path, function (err, imageStream) {
+          if(err) {
+            console.log('error sa s3', err);
+            res.send(500, err)
+          }
+          console.log('sad cu pipeat');
+          imageStream.pipe(res);
+        })
+      } else{
+        res.send(401);
+      }
+    })
+
+
+};
+
+
 
 /**
  * Authentication callback
