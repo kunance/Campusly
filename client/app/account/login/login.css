@@ -1,28 +1,300 @@
-.btn-facebook {
-  color: #fff;
-  background-color: #3B5998;
-  border-color: #133783;
-}
-.btn-linkedin {
-  color: #fff;
-  background-color: #BF91AB;
-  border-color: #BF91AB;
+body{
+  font-family: "ProximaNova";
+  color: #333333;
+  font-size: 14px;
+  /* background-color: #e8e8e8; */
 }
 
-.btn-twitter {
-  color: #fff;
-  background-color: #2daddc;
-  border-color: #0271bf;
+/* ==========================================================================
+Proxima Nova Regular
+========================================================================== */
+@font-face{
+  font-family: "ProximaNova";
+  src: url("../assets/fonts/ProximaNova/ProximaNovaReg.otf") format("opentype");
 }
 
-.btn-google-plus {
-  color: #fff;
-  background-color: #dd4b39;
-  border-color: #c53727;
+/* ==========================================================================
+Proxima Nova Italics
+========================================================================== */
+@font-face{
+  font-family: "ProximaNova";
+  font-style: italic;
+  src: url("../assets/fonts/ProximaNova/ProximaNovaBlackIt.otf") format("opentype");
 }
 
-.btn-github {
+/* ==========================================================================
+Proxima Nova Bold
+========================================================================== */
+@font-face{
+  font-family: "ProximaNova";
+  font-weight: bold;
+  src: url("../assets/fonts/ProximaNova/ProximaNovaBold.otf") format("opentype");
+}
+
+/* ==========================================================================
+Proxima Nova Semi-Bold
+========================================================================== */
+@font-face{
+  font-family: "ProximaNova";
+  font-weight: 600;
+  src: url("../assets/fonts/ProximaNova/ProximaNovaSbold.otf") format("opentype");
+}
+
+*, html, body {
+  outline: 0;
+  margin: 0;
+  padding: 0;
+  color: #666;
+  font-family: "Proxima Nova","Helvetica", sans-serif;
+}
+
+body {
+  background-color: #fff;
+}
+
+html, body {
+  font-size: 16px;
+  line-height: 1.5em;
+  height: 100%;
+  position: relative;
+}
+
+p, ul, ol {
+  margin: 0;
+}
+
+label input, label select, label textarea {
+  display: block;
+  margin-top: 10px;
+}
+
+label + label {
+  margin-top: 10px;
+}
+
+@media (min-width: 1200px) {
+  html, body {
+    font-size: 16px;
+  }
+}
+@media (max-width: 960px) {
+  html, body {
+    font-size: 15px;
+  }
+}
+@media (max-width: 768px) {
+  html, body {
+    font-size: 14px;
+  }
+  html .login-header .left-content, html .login-header .right-content, body .login-header .left-content, body .login-header .right-content {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+  html .login-header .right-content, body .login-header .right-content {
+    margin: 15px 0 0 0;
+  }
+}
+@media (max-width: 640px) {
+  html, body {
+    font-size: 13px;
+  }
+}
+@media (max-width: 480px) {
+  html, body {
+    font-size: 12px;
+  }
+}
+.link {
+  color: #f7953d;
+  font-family: "Proxima Nova";
+}
+.link:hover {
+  color: #f7953d;
+  text-decoration: underline;
+}
+
+.main {
+  min-height: 100%;
+  position: relative;
+}
+
+.main-form {
+  margin-top: 4em;
+}
+.main-form .lbl {
+  display: block;
+}
+.main-form .lbl input {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: solid 2px #e4e4e4;
+  padding: 10px 0;
+  font-family: "Proxima Nova";
+}
+.main-form .lbl input:focus {
+  border-color: #f7953d;
+}
+.main-form .lbl input.has-error {
+  border-bottom: solid 2px #f64343;
+}
+
+.main-form .lbl:nth-of-type(n+2) {
+  margin-top: 15px;
+}
+.main-form .options {
+  margin-top: 2em;
+  text-align: center;
+}
+.main-form .options .submit {
+  width: 100%;
+}
+.main-form .options span, .main-form .options .link {
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 25px;
+}
+.main-form .options .link {
+  color: #333333;
+}
+
+.btn, .lrg-btn, .small-btn {
+  height: 40px;
+  line-height: 40px;
+  border-radius: 25px;
+  font-family: "Proxima Nova";
+  display: inline-block;
+  border: none;
+  background-color: #f7953d;
   color: #fff;
-  background-color: #fafafa;
-  border-color: #ccc;
+  padding: 0 25px;
+}
+.btn:hover, .lrg-btn:hover, .small-btn:hover {
+  background-color: #f7953d;
+  color: #333333;
+}
+.btn:active, .lrg-btn:active, .small-btn:active {
+  background-color: #333333;
+  color: #fff;
+}
+
+.lrg-btn {
+  text-transform: uppercase;
+  height: 50px;
+  line-height: 50px;
+  font-family: "Proxima Nova";
+}
+
+.small-btn {
+  height: 30px;
+  line-height: 30px;
+}
+
+.login-header {
+  background-image: url("../../../assets/images/jumbotron/bg-ucsdA.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 15px 0;
+}
+.login-header .container {
+  display: table;
+}
+.login-header .left-content, .login-header .right-content {
+  display: table-cell;
+}
+.login-header .left-content *, .login-header .right-content * {
+  display: inline-block;
+}
+.login-header .right-content {
+  text-align: right;
+}
+.login-header .txt {
+  color: #fff;
+  margin-left: 10px;
+  position: relative;
+  top: .25em;
+}
+.login-header .sign-in {
+  color: #fff;
+  margin-right: 10px;
+}
+.login-header .sign-up {
+  background-color: #fff;
+  color: #333333;
+}
+
+.login-box {
+  max-width: 400px;
+  width: 100%;
+  margin: 50px auto;
+  padding: 15px;
+}
+.login-box .social {
+  margin-top: 30px;
+  display: table;
+  width: 100%;
+}
+.login-box .social .link {
+  display: table-cell;
+  width: 33.33%;
+}
+.login-box .social .link span {
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  padding-left: 31px;
+  color: #e4e4e4;
+  font-family: "Proxima Nova";
+}
+.login-box .social .link span:hover {
+  color: #f7953d;
+}
+.login-box .social .link span:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -12px;
+  width: 24px;
+  height: 24px;
+}
+.login-box .social .link.email span:before {
+  background-image: url("../../../assets/images/icons/email.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.login-box .social .link.email span:hover:before {
+  background-image: url("../../../assets/images/icons/email_hover.svg");
+}
+.login-box .social .link.fb {
+  text-align: center;
+}
+.login-box .social .link.fb span:before {
+  background-image: url("../../../assets/images/icons/facebook.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.login-box .social .link.fb span:hover:before {
+  background-image: url("../../../assets/images/icons/facebook_hover.svg");
+}
+.login-box .social .link.google {
+  text-align: right;
+}
+.login-box .social .link.google span:before {
+  background-image: url("../../../assets/images/icons/google.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.login-box .social .link.google span:hover:before {
+  background-image: url("../../../assets/images/icons/google_hover.svg");
+}
+
+.help-block{
+  font-size:0.7em;
+  color: #f64343;
 }
