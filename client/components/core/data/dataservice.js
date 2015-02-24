@@ -5,9 +5,9 @@
     .module('app.core')
     .factory('dataservice', dataservice);
 
-  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation'];
+  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation', 'Roommate'];
 
-  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education, Finance, Occupation) {
+  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education, Finance, Occupation, Roommate) {
 
     var safeCb = function(cb) {
         return (angular.isFunction(cb)) ? cb : angular.noop;
@@ -45,7 +45,11 @@
        getAllVehicles: getAllVehicles,
        deleteVehicle:deleteVehicle,
        getVehicle:getVehicle,
-       editVehicle:editVehicle
+       editVehicle:editVehicle,
+       getAllRoommates:getAllRoommates,
+       editRoommate:editRoommate,
+       deleteRoommate:deleteRoommate,
+       addRoommate: addRoommate,
     };
     return service;
 
@@ -71,6 +75,16 @@
 
     function addPet(userId, data) {
       return Pet.save({userId: userId}, data,
+        function(res) {
+          return res;
+        },
+        function(err) {
+          //handle this exception
+        });
+    }
+
+    function addRoommate(userId, data) {
+      return Roommate.save({userId: userId}, data,
         function(res) {
           return res;
         },
@@ -165,6 +179,33 @@
 
     function getAllPets(userId, data) {
       return Pet.getAllPets({userId: userId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function getAllRoommates(userId, data) {
+      return Roommate.getAllRoommates({userId: userId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        }).$promise
+    }
+
+    function editRoommate(userId, roommateId, data, callback) {
+      return Roommate.editRoommate({userId: userId, id:roommateId}, data,
+        function (room) {
+          return safeCb(callback)(null, room);
+        }, function (err) {
+          return safeCb(callback)(err);
+        });
+    }
+
+    function deleteRoommate(userId, roommateId, data) {
+      return Roommate.delete({userId: userId, id:roommateId}, data,
         function (res) {
           return res;
         }, function (err) {

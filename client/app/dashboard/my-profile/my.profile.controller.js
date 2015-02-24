@@ -5,15 +5,18 @@
     .module('app.dashboard')
     .controller('MyProfileCtrl', MyProfileCtrl);
 
-  MyProfileCtrl.$inject = ['$scope', 'common', 'FileUploader', 'getUserInfo', 'getAddresses', 'getEducations', '$cookieStore'];
+  MyProfileCtrl.$inject = ['$scope', 'common', 'FileUploader', 'getUserInfo', 'getAddresses', 'getEducations', '$cookieStore', 'getAllRoommates', 'getAllUsers'];
 
-  function MyProfileCtrl($scope, common, FileUploader, getUserInfo, getAddresses, getEducations, $cookieStore) {
+  function MyProfileCtrl($scope, common, FileUploader, getUserInfo, getAddresses, getEducations, $cookieStore, getAllRoommates, getAllUsers) {
     var vm = this;
     vm.me = getUserInfo;
     vm.tempMe = Object.create(vm.me);
     vm.address = getAddresses;
     vm.education = getEducations;
     vm.changePersonalData=changePersonalData;
+    vm.users = getAllUsers;
+    vm.roommates = getAllRoommates;
+
 
     $scope.datePickers = {
       startDate: false,
@@ -36,9 +39,8 @@
     vm.uploader.headers= {Authorization: 'Bearer ' + $cookieStore.get('token')};
     vm.uploader.onSuccessItem = function (itm,res,status,header) {
       vm.tempMe.profileImage = res.profileImage;
-      console.log(vm.tempMe.profileImage);
-      common.logger.success('successfully');
-    }
+      common.logger.success('Uploaded successfully');
+    };
 
     function changePersonalData(userDataForm) {
       if(userDataForm.$valid) {
@@ -53,42 +55,29 @@
       }
     }
 
+ vm.addNewRoommate=function(input){
+   if(!input) {return false;}
+   var roommate = input.originalObject;
+   common.dataservice.addRoommate(vm.me.id, roommate).$promise
+     .then(function (room) {
+       common.logger.success('successfully saved roommate')
+     })
+     .catch(function (err) {
+       common.logger.error('Something went wrong. Roommate not saved.');
+     });
+    };
 
-    //common.$state.go('dashboard.myProfile.step1');
+vm.removeRoommate= function (roommate) {
+    var index= vm.roommates.indexOf(roommate);
+    var id = roommate.id;
+    common. dataservice.deleteRoommate(vm.me.id, id, function () {
+      vm.roommates.splice(index, 1);
+      common.logger.success('Successfully removed roommate');
+  })
 
-    //vm.tabs = getTabs();
-    //vm.tabIndex = 0;
-    //
-    //vm.selectedTab = 0;
-    //
-    //function getTabs() {
-    //  return [
-    //    { title:'Step 1', disabled: true, route: '.step1', active: false },
-    //    { title:'Step 2', disabled: true, route: '.step2', active: false },
-    //    { title:'Step 3', disabled: true, route: '.step3', active: false }
-    //  ];
-    //}
-    //
-    //vm.tabSelected = function(index) {
-    //  vm.selectedTab = index;
-    //};
-    //
-    //var isLastTab = function() {
-    //  return vm.selectedTab === vm.tabs.length-1;
-    //};
-    //
-    //vm.isLastTab = isLastTab;
-    //
-    //vm.proceed = function() {
-    //  if(!isLastTab()){
-    //    vm.selectedTab++;
-    //    vm.tabs[vm.selectedTab].active = true;
-    //    common.$state.go('dashboard.myProfile'+vm.tabs[vm.selectedTab].route)
-    //  }
-    //};
+}
+
 
 
   }
-
-
 }());

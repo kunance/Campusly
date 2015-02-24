@@ -42,11 +42,8 @@ exports.index = function(req, res) {
       'id',
       'firstname',
       'lastname',
+      'profileImage',
       'email',
-      'role',
-      'provider',
-      'runIdentityCheck',
-      'shareCreditReport',
       'createdAt'
     ]
   })

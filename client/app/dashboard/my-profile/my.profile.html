@@ -76,7 +76,6 @@
       </div>
 
       <div class="row">
-
         <div class="dashboard-block address-block">
           <div class="box box-border-bottom">
             <h3>Address Details <a class="link float-right" ui-sref=".addNewAddress" href="#"><i class="fa fa-plus"></i> Add new address</a></h3>
@@ -88,12 +87,54 @@
                 <div class="col-md-3">
                   <div class="box" ng-class="{'address-primary': address.present}">
                     <h4><strong>{{myProfile.me.firstname}} {{myProfile.me.lastname}}</strong> <a href="#" ui-sref=".editAddress({id: address.id})" class="float-right">Edit</a></h4>
-                    {{address.streetAddress}} <br>
-                    {{address.streetNumberic}}  <br>
-                    {{address.state}}  <br>
-                    {{address.city}}  <br>
-                    {{address.zip}}  <br>
-                    {{address.apt}}
+                  <div class="row">
+                    <div class="col-md-4">
+                     Street:
+                   </div>
+                    <div class="col-md-8">
+                      {{address.streetAddress}}
+                   </div>
+                  </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        Number:
+                      </div>
+                      <div class="col-md-8">
+                        {{address.streetNumeric}}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        country:
+                      </div>
+                      <div class="col-md-8">
+                        {{address.state}}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        CIty:
+                      </div>
+                      <div class="col-md-8">
+                        {{address.city}}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        Zip code:
+                      </div>
+                      <div class="col-md-8">
+                        {{address.zip}}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        Apt:
+                      </div>
+                      <div class="col-md-8">
+                        {{address.apt}}
+                      </div>
+                    </div>
                     <div class="clear"></div>
                   </div>
                 </div>
@@ -101,74 +142,52 @@
             </div>
           </div>
         </div>
-
-        <hr/>
-
-        <!--<div class="row">-->
-        <!--<div class="col-md-4">-->
-        <!--<label for="streetAddress">Address</label>-->
-        <!--<input type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="myProfile.address.streetAddress" ng-model="myProfile.address.streetAddress.streetAddress"/>-->
-        <!--</div>-->
-
-        <!--<div class="col-md-2">-->
-        <!--<label for="streetNumber">Number</label>-->
-        <!--<input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="myProfile.address.streetAddress.streetNumeric"/>-->
-        <!--</div>-->
-
-        <!--<div class="col-md-2">-->
-        <!--<label for="apt">Apt</label>-->
-        <!--<input type="text" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="myProfile.address.streetAddress.apt"/><br/>-->
-        <!--</div>-->
-        <!--&lt;!&ndash;3 cols left&ndash;&gt;-->
-        <!--</div>-->
-
-        <!--<div class="row">-->
-        <!--<div class="col-md-4">-->
-        <!--<label for="city">City</label>-->
-        <!--<input type="text" id="city" name="city" class="form-control"  placeholder="city" ng-model="myProfile.address.streetAddress.city"/>-->
-        <!--</div>-->
-        <!--<div class="col-md-2">-->
-        <!--<label for="country">Country</label>-->
-        <!--<input type="text" id="country" name="country" class="form-control"  placeholder="country" ng-model="myProfile.address.streetAddress.state"/>-->
-        <!--</div>-->
-        <!--<div class="col-md-2">-->
-        <!--<label for="zip">Zip code</label>-->
-        <!--<input type="number" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="myProfile.address.streetAddress.zip"/><br/>-->
-        <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="row">-->
-        <!--<div class="col-md-2">-->
-        <!--<label for="present">Present?</label><br/>-->
-        <!--<label class="radio-inline"><input type="radio" name="present" id="present" ng-model="myProfile.address.streetAddress.present" value="1">Yes</label>-->
-        <!--<label class="radio-inline"><input type="radio" name="present"  ng-model="myProfile.address.streetAddress.present" value="0">No</label><br/><br/>-->
-        <!--</div>-->
-        <!--<div class="col-md-6">-->
-        <!--<div class="col-md-6">-->
-        <!--<label for="start">Start date</label>-->
-        <!--<p class="input-group">-->
-        <!--<input type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="newAddress.address.streetAddress.startDate" is-open="datePickers.startDate" close-text="Close" />-->
-        <!--<span class="input-group-btn">-->
-        <!--<button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>-->
-        <!--</span>-->
-        <!--</p>-->
-        <!--</div>-->
-        <!--<div class="col-md-6" ng-show="myProfile.address.streetAddress.present==0">-->
-        <!--<label for="end">End date</label>-->
-        <!--<p class="input-group">-->
-        <!--<input type="text" id="end" class="form-control" datepicker-popup="{{format}}" ng-model="newAddress.address.streetAddress.endDate" is-open="datePickers.endDate"  close-text="Close" />-->
-        <!--<span class="input-group-btn">-->
-        <!--<button type="button" class="btn btn-default" ng-click="open($event,'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>-->
-        <!--</span>-->
-        <!--</p>-->
-        <!--</div>-->
-        <!--</div>-->
       </div>
-
     </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="box box-border-bottom">
+          <h3>Current roommates <a class="link float-right" ng-click="myProfile.addNewRoommate(selectedMember)"><i class="fa fa-plus"></i> Add roommate</a></h3>
+        </div>
+<div class="row">
+  <angucomplete-alt id="members"
+                    placeholder="Search for roomate"
+                    pause="400"
+                    selected-object="selectedMember"
+                    local-data="myProfile.users.data"
+                    search-fields="full"
+                    title-field="firstname,lastname"
+                    description-field="email"
+                    image-field="profileImage"
+                    input-class="form-control form-control-small"
+                    match-class="redFont"/>
+</div>
+        <div class="box">
+          <div class="row">
+            <p ng-if="!myProfile.roommates.length">&nbsp U dont have any roommates, select roommate and click "Add roommate"</p>
+            <div ng-if="myProfile.roommates.length" ng-repeat="(index,roommate) in myProfile.roommates">
+              <div class="col-md-3">
+                <div class="box" ng-class="{'address-primary': roommate}">
+                  <div class="col-md-3">
+                    <img class="img-circle" ng-if="roommate.relatedRoommateId.profileImage" ng-src="api/images{{roommate.relatedRoommateId.profileImage}}" height="50px" style="margin-top: 10px"/>
+                     <img class="img-circle" ng-if="!roommate.relatedRoommateId.profileImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" height="50px" style="margin-top: 10px"/>
+                  </div>
+                  <div class="col-md-9">
+                  <h4><strong>{{roommate.relatedRoommateId.firstname}} {{roommate.relatedRoommateId.lastname}}</strong> <a ng-click="myProfile.removeRoommate(roommate)" class="float-right">[X]</a></h4>
+                  {{roommate.relatedRoommateId.email}}<br/>
+                    </div>
+
+                  <div class="clear"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
 </div>
-
-
 </div>
-
