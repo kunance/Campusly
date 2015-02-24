@@ -454,7 +454,7 @@ CREATE TABLE `property_likes` (
   PRIMARY KEY (`id`),
   KEY `propertylikes_property_idx` (`propertyId`),
   KEY `propertylikes_user_idx` (`userId`),
-  CONSTRAINT `propertylikes_property` FOREIGN KEY (`propertyId`) REFERENCES `property` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `propertylikes_property` FOREIGN KEY (`propertyId`), (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `propertylikes_user` FOREIGN KEY (`userId`) REFERENCES `rented_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -467,6 +467,46 @@ DROP TABLE IF EXISTS `property_listing`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `property_listing` (
+  `propertyId` int(10) unsigned NOT NULL,
+  `monthlyPrice` float(5,2) NOT NULL,
+  `securityDeposit` float(5,2) DEFAULT '0.00',
+  `petDeposit` float(4,2) DEFAULT '0.00',
+  `availableMoveIn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `leaseEndDate` datetime DEFAULT NULL,
+  `leaseLength` int(3) unsigned NOT NULL,
+  `leaseLengthUnit` enum('day','week','month','year') NOT NULL,
+  `leaseType` enum('sub-lease','month-to-month','regular') NOT NULL,
+  `gender` enum('no preference','male preferred','female preferred','male only','female only') NOT NULL DEFAULT 'no preference',
+  `totalUtilityCost` int(4) NOT NULL,
+  `roomType` enum('single','double','triple','loft','living room') NOT NULL,
+  `sharedBathroom` tinyint(1) DEFAULT NULL,
+  `numRoomates` int(3) unsigned NOT NULL,
+  `furnished` tinyint(1) DEFAULT NULL,
+  `parkingAvailable` tinyint(1) DEFAULT NULL,
+  `smokingAllowed` tinyint(1) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `status` enum('available','rental pending','rented') DEFAULT 'available',
+  `contactPhone` int(10) DEFAULT NULL COMMENT 'supporting only US number only',
+  `contactEmail` varchar(45) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `propertylisting_property_idx` (`propertyId`),
+  CONSTRAINT `propertylisting_property` FOREIGN KEY (`propertyId`) REFERENCES `property` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+--
+-- Table structure for table `property_listing`
+--
+
+DROP TABLE IF EXISTS `room_listing`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `room_listing` (
   `propertyId` int(10) unsigned NOT NULL,
   `monthlyPrice` float(5,2) NOT NULL,
   `securityDeposit` float(5,2) DEFAULT '0.00',
