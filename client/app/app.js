@@ -81,22 +81,25 @@ angular.module('RentedApp', [
   .run(['$rootScope', '$state', 'Auth', '$stateParams', 'common', '$location', function ($rootScope, $state, Auth, $stateParams, common, $location) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
-      common.logger.info('Navigating to ' + next.url);
-      common.Auth.isLoggedInAsync(function(loggedIn) {
-        if (next.authenticate && !loggedIn) {
-          $location.path('/login');
-        }})
       //console.log('Current state: ', $state.current.name);
       //console.log('Event: ', event);
       //console.log('Next: ', next);
-      if(next.authenticate) {
-        Auth.isLoggedIn(function (loggedIn) {
-          //console.log('logged in: ', loggedIn);
+      common.logger.info('Navigating to ' + next.url);
+      if (next.authenticate) {
+        common.Auth.isLoggedInAsync(function (loggedIn) {
           if (!loggedIn) {
-            $state.go('login');
+            $location.path('/login');
           }
         });
       }
+      //if(next.authenticate) {
+      //  Auth.isLoggedIn(function (loggedIn) {
+      //    //console.log('logged in: ', loggedIn);
+      //    if (!loggedIn) {
+      //      $state.go('login');
+      //    }
+      //  });
+      //}
     });
   }]);
 
