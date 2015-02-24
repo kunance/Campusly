@@ -164,11 +164,30 @@
         <!--</div>-->
         <!--</div>-->
       </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="box box-border-bottom">
+            <h3>Current roommate <a class="link float-right" ng-click="myProfile.addNewRoommate(selectedMember)" href="#"><i class="fa fa-plus"></i> Add new roommate</a></h3>
+          </div>
+      <angucomplete-alt id="members"
+                        placeholder="Search for roomate"
+                        pause="400"
+                        selected-object="selectedMember"
+                        local-data="users"
+                        search-fields="full"
+                        title-field="firstname,lastname"
+                        description-field="email"
+                        image-field="profileImage"
+                        input-class="form-control form-control-small"/>
 
+        </div>
     </div>
   </div>
-</div>
 
 
 </div>
 
+
+</div>
+
+</div>

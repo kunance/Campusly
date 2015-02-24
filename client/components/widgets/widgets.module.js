@@ -7,7 +7,8 @@
     'angularFileUpload',
     'uiGmapgoogle-maps',
     'cgBusy',
-    'angular-progress-arc'
+    'angular-progress-arc',
+    'angucomplete-alt'
   ]);
 
 })();
