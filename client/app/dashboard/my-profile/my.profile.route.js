@@ -18,7 +18,8 @@
           getUserInfo: getUserInfo,
           getEducations: getEducations,
           getAddresses: getAddresses,
-          getAllUsers:getAllUsers
+          getAllUsers:getAllUsers,
+          getAllRoommates:getAllRoommates
         },
         authenticate: true
       });
@@ -48,5 +49,9 @@
     });
   }
 
-
+  function getAllRoommates(common) {
+    var dataservice = common.dataservice;
+    var me = common.Auth.getCurrentUser();
+    return dataservice.getAllRoommates(me)
+  }
 }());
