@@ -6,7 +6,7 @@
       </a>
       <p class="txt" ng-hide="isLoggedIn()">A trusted network for off-campus hosting</p>
     </div>
-
+    
     <div class="right-content" ng-show="isLoggedIn()">
       <!-- <a ui-sref-active="active" ui-sref="settings"><i class="glyphicon glyphicon-cog"></i> Settings</a> -->
         <img class="img-circle" ng-if="getCurrentUser().userImage" ng-src="/api/images{{getCurrentUser().userImage}}" style="height: 50px"/>
