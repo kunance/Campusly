@@ -24,6 +24,7 @@
       <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
       <link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.css" />
       <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
+      <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -44,6 +45,7 @@
 
     <!-- Add your site or application content here -->
     <div ui-view=""></div>
+    <div ng-include="'components/layout/footer/footer.html'"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -80,6 +82,7 @@
       <script src="bower_components/toastr/toastr.js"></script>
       <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
       <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+      <script src="bower_components/angucomplete-alt/angucomplete-alt.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -191,6 +194,7 @@
           <script src="components/core/data/occupation.js"></script>
           <script src="components/core/data/pet.js"></script>
           <script src="components/core/data/property.js"></script>
+          <script src="components/core/data/roommates.js"></script>
           <script src="components/core/data/vehicle.js"></script>
           <script src="components/layout/footer/footer.controller.js"></script>
           <script src="components/layout/navbar/navbar.controller.js"></script>

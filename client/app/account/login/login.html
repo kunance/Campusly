@@ -1,47 +1,29 @@
-<div ng-include="'components/layout/navbar/navbar.html'"></div>
+<div class="main">
+  <div ng-include="'components/layout/navbar/navbar.html'"></div>
+  <section class="login-box">
+    <h2 class="heading">Create your account with...</h2>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h1>Login</h1>
-    </div>
-    <div class="col-sm-12">
-      <form class="form" name="form" ng-submit="login(form)" novalidate>
+    <article class="social">
+      <a class="link email"><span>Email</span></a>
+      <a class="link fb" ng-click="loginOauth('facebook')"><span>Facebook</span></a>
+      <a class="link google" ng-click="loginOauth('google')"><span>Google+</span></a>
+    </article>
 
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input id="email" type="email" name="email" class="form-control" ng-model="user.email" required>
-        </div>
+    <form class="main-form" name="form" ng-submit="login(form)" novalidate>
+      
+      <label class="lbl">
+        <input id="email" type="email" name="email" ng-model="user.email" placeholder="Email address (.edu required)" required>
+      </label>
 
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" class="form-control" ng-model="user.password" required>
-        </div>
+      <label class="lbl">
+        <input type="password" name="password" id="password" ng-model="user.password" required placeholder="Password">
+      </label>
 
-        <div class="form-group">
-          <label for="confirmPassword">Confirm</label>
-          <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" ng-model="user.confirmPassword" match="user.password" required>
-        </div>
-        <a class="link text-right" translate ui-sref="askForPwdReset">Lost or forgotten your password?</a>
-        <div class="form-group has-error">
-          <p class="help-block" ng-show="form.email.$error.required && form.password.$error.required && submitted">Please enter your email and password.</p>
-          <p class="help-block" ng-show="form.email.$error.email && submitted">Please enter a valid email.</p>
-          <p class="help-block">{{ errors.other }}</p>
-        </div>
-        <div>
-          <button class="btn btn-inverse btn-lg btn-login" type="submit">Login</button>
-          <a class="btn btn-default btn-lg btn-register" ui-sref="signup">Register</a>
-        </div>
+      <div class="options">
+        <input type="submit" value="Sign me in!" class="lrg-btn submit">
+        <span>Don't have an account? <a class="link" ui-sref="signup">Sign up</a></span>
+      </div>
 
-        <hr>
-        <div>
-          <a class="btn btn-facebook" href="" ng-click="loginOauth('facebook')"><i class="fa fa-facebook"></i> Connect with Facebook</a>
-          <a class="btn btn-google-plus" href="" ng-click="loginOauth('google')"><i class="fa fa-google-plus"></i> Connect with Google+</a>
-          <!--TODO<a class="btn btn-linkedin" href="" ng-click="loginOauth('linkedin')"><i class="fa fa-linkedin"></i> Connect with Linkedin</a>-->
-        </div>
-
-      </form>
-    </div>
-  </div>
-  <hr>
+    </form>
+  </section>
 </div>
