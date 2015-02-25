@@ -30,6 +30,7 @@
   },
   "resolutions": {
     "es5-shim": ">=3.4.0",
-    "angular": ">=1.2.19"
+    "angular": ">=1.2.19",
+    "angular-animate": "~1.2"
   }
 }

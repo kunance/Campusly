@@ -49,4 +49,10 @@ NOTE: when converting to PostgreSQL it might be necessarry to shorten some index
 
 Use [sequelize-pg-generator](https://www.npmjs.com/package/sequelize-pg-generator) to connect to PG database and generate sequelize models out of it.
 
+1. Use RazorSQL to convert MySql Rented database schema ( all tables ) into Postgres schema ... note that I haven't found a way to do this with views yet
+1. Create a Postgres database Rented  ( delete your old one first if applicable )
+1. run the RentedSchemaPG_v<number>.sql in sql window connected to Postgres Rented 
+1. cd Rented/server directory
+1. spgen -d Rented -u <username> -o models
+
 Note: when instatiating Sequelize, sequelize-pg-generator uses ‘postgre’ as default sql dialect.. If other DB is used instead of PG (i.e. MySQL) it have to be stated when instatiating Sequelize.
