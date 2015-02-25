@@ -5,25 +5,30 @@
     .module('app.dashboard')
     .controller('MyProfileCtrl', MyProfileCtrl);
 
-  MyProfileCtrl.$inject = ['$scope', 'common', 'FileUploader', 'getUserInfo', 'getAddresses', 'getEducations', '$cookieStore', 'getAllRoommates', 'getAllUsers'];
+  MyProfileCtrl.$inject = ['$scope', 'common', '$cookieStore', 'FileUploader', 'getUserInfo', 'getAddresses', 'getEducations', 'getAllRoommates', 'getAllUsers', 'getPets'];
 
-  function MyProfileCtrl($scope, common, FileUploader, getUserInfo, getAddresses, getEducations, $cookieStore, getAllRoommates, getAllUsers) {
+  function MyProfileCtrl($scope, common, $cookieStore, FileUploader, getUserInfo, getAddresses, getEducations, getAllRoommates, getAllUsers, getPets) {
     var vm = this;
     vm.me = getUserInfo;
     vm.tempMe = Object.create(vm.me);
     vm.address = getAddresses;
     vm.education = getEducations;
-    vm.changePersonalData=changePersonalData;
     vm.users = getAllUsers;
     vm.roommates = getAllRoommates;
+    vm.pets = getPets;
+    vm.changePersonalData = changePersonalData;
 
+    angular.forEach(vm.roommates, function (user) {
+      user.addressInfo = user.relatedRoommateId.addresshistoryUsers;
+    });
+
+    console.log(vm.pets);
 
     $scope.datePickers = {
       startDate: false,
       endDate:false,
       graduationDate:false
     };
-
     $scope.format = 'dd.MM.yyyy';
     $scope.clear = function () {
       $scope.dt = null;
@@ -55,28 +60,37 @@
       }
     }
 
- vm.addNewRoommate=function(input){
-   if(!input) {return false;}
-   var roommate = input.originalObject;
-   common.dataservice.addRoommate(vm.me.id, roommate).$promise
-     .then(function (room) {
-       common.logger.success('successfully saved roommate')
-     })
-     .catch(function (err) {
-       common.logger.error('Something went wrong. Roommate not saved.');
-     });
-    };
+     vm.addNewRoommate=function(input){
+     if(!input) {return false;}
+     var roommate = input.originalObject;
+     common.dataservice.addRoommate(vm.me.id, roommate).$promise
+       .then(function (room) {
+         common.logger.success('successfully saved roommate')
+       })
+       .catch(function (err) {
+         common.logger.error('Something went wrong. Roommate not saved.');
+       });
+      };
 
-vm.removeRoommate= function (roommate) {
-    var index= vm.roommates.indexOf(roommate);
-    var id = roommate.id;
-    common. dataservice.deleteRoommate(vm.me.id, id, function () {
-      vm.roommates.splice(index, 1);
-      common.logger.success('Successfully removed roommate');
-  })
+    vm.removeRoommate= function (roommate) {
+        var index= vm.roommates.indexOf(roommate);
+        var id = roommate.id;
+        common. dataservice.deleteRoommate(vm.me.id, id, function () {
+          vm.roommates.splice(index, 1);
+          common.logger.success('Successfully removed roommate');
+      })
 
-}
+    }
 
+    vm.deletePet= function (input) {
+      var index= vm.pets.indexOf(input);
+      var id = input.id;
+      common.dataservice.deletePet(vm.me.id, id, function () {
+        vm.pets.splice(index, 1);
+        common.logger.success('Pet deleted')
+      });
+
+    }
 
 
   }

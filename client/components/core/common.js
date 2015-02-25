@@ -5,9 +5,9 @@
     .module('app.core')
     .factory('common', common);
 
-  common.$inject = ['$http', '$location', '$q', '$rootScope', '$timeout', 'logger',/* 'Modal', 'language', 'gettext',*/ 'dataservice', 'Auth', '$state'];
+  common.$inject = ['$parse', '$http', '$location', '$q', '$rootScope', '$timeout', 'logger',/* 'Modal', 'language', 'gettext',*/ 'dataservice', 'Auth', '$state'];
 
-  function common($http, $location, $q, $rootScope, $timeout, logger,/* Modal, language, gettext,  */dataservice, Auth, $state) {
+  function common($parse, $http, $location, $q, $rootScope, $timeout, logger,/* Modal, language, gettext,  */dataservice, Auth, $state) {
     var throttles = {};
 
     var service = {
@@ -19,6 +19,7 @@
       $on: $on,
       $q: $q,
       $timeout: $timeout,
+      $parse:$parse,
       $watch: $watch,
       // generic
       createSearchThrottle: createSearchThrottle,

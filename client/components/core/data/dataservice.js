@@ -49,7 +49,7 @@
        getAllRoommates:getAllRoommates,
        editRoommate:editRoommate,
        deleteRoommate:deleteRoommate,
-       addRoommate: addRoommate,
+       addRoommate: addRoommate
     };
     return service;
 
@@ -246,7 +246,7 @@
           return res;
         }, function (err) {
           //handle exception
-        });
+        }).$promise;
     }
 
     function deleteAddress(userId, addressId, data) {
