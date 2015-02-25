@@ -687,10 +687,6 @@ For mailchimp sign-up - not needed in main app
 
 @media (max-width: 768px) {
 
-  .my-profile {
-    display: none;
-  }
-
   body nav.dashboard-submenu ul li {
     width: 100%;
     display: block;
@@ -790,22 +786,100 @@ nav.dashboard-submenu ul {
   display: table;
   width: 100%;
   table-layout: fixed;
+  list-style: none;
 }
 
-nav.dashboard-submenu ul li {
+nav.dashboard-submenu ul a {
   width: 2%;
   display: table-cell;
   padding: 6px 12px;
   text-align: center;
 }
 
-nav.dashboard-submenu ul li a {
+nav.dashboard-submenu ul a{
   color: #000;
+  border: 3px solid transparent;
 }
 
-nav.dashboard-submenu ul li a.active {
+nav.dashboard-submenu ul a:hover {
+  border-bottom: 3px solid #f7953d;
+  text-decoration: none;
+}
+
+nav.dashboard-submenu ul a.active li {
   font-weight: bold;
 }
+
+nav.dashboard-submenu > input,
+nav.dashboard-submenu > label {
+  display: none;
+}
+
+nav.dashboard-submenu > label {
+  width: 100%;
+  float: left;
+  padding: 10px;
+  padding-right: 0;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+@media (max-width: 992px) {
+.my-profile {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  nav.dashboard-submenu .container {
+    margin: 0;
+    padding: 0;
+  }
+  nav.dashboard-submenu > label, nav.dashboard-submenu ul li ul {
+    background: #fff;
+    display: block;
+  }
+  nav.dashboard-submenu > ul {
+    display: none;
+    clear: both;
+  }
+  nav.dashboard-submenu > input:checked + ul {
+    display: block;
+  }
+  nav.dashboard-submenu ul ul li a:before {
+    content:'↪ ';
+    display: inline;
+  }
+  nav.dashboard-submenu ul a {
+    float: none;
+    display: block;
+    border-right: none;
+    padding-left: 10px;
+    width: 100%;
+    border-bottom: 3px solid transparent;
+  }
+  nav.dashboard-submenu ul a:hover {
+    background: #f7953d;
+    cursor: hand;
+  }
+  nav.dashboard-submenu ul a:hover li{
+    color: #ffffff;
+  }
+  nav.dashboard-submenu li:hover ul {
+    position: relative;
+    width: auto;
+  }
+  nav.dashboard-submenu ul ul li:hover > ul {
+    right:auto;
+    top: auto;
+    left: auto;
+  }
+}
+
+/* White box */
 
 .white-box {
   border-radius: 5px;
