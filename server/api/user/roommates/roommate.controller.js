@@ -5,6 +5,7 @@ var _ = require('lodash');
 var sqldb = require('../../../sqldb');
 var User = sqldb.model('rented.rentedUser');
 var Roommate = sqldb.model('rented.roommate');
+var Address = sqldb.model('rented.addressHistory');
 var passport = require('passport');
 var config = require('../../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -48,14 +49,12 @@ exports.newRoommate = function(req, res, next) {
 
 
 exports.showRoommates= function(req, res, next) {
-  Roommate.findAll({where:{userId:req.user.id}, include: [{ model: User, as: 'relatedRoommateId' }] }).then(function(roommates) {
+  Roommate.findAll({where:{userId:req.user.id}, include: [{ model: User, as: 'relatedRoommateId',
+    include:[{ model: Address, as: 'addresshistoryUsers' }] }] }).then(function(roommates) {
     res.json(roommates);
   })
 
 };
-
-
-
 
 exports.deleteRoommate= function(req, res, next) {
   Roommate.destroy({where: { id: req.params.id }})
