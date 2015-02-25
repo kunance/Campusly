@@ -1,17 +1,17 @@
-<div class="container" cg-busy="{promise:address.listOfAddresses.$promise, message:'Loading Your Profile', delay:100}">
+<div class="container" cg-busy="{promise:myProfile.initializeData.$promise, message:'Loading Your Profile', delay:50}">
   <br/>
   <tabset class="dashboard-sidebar">
     <tab ng-repeat="tab in myProfile.tabs" heading="{{tab.title}}"
          active="tab.active" ui-sref="{{tab.route}}"></tab>
 
   </tabset>
-
+<!--<pre>{{myProfile.roommates | json}}</pre>-->
 <div ui-view="">
   <div class="row">
     <div class="col-sm-12">
 
       <div class="row well">
-        <h3>Contact informations</h3>
+        <h3>Your informations</h3>
         <hr/>
         <div class="col-sm-2">
           <img class="" ng-if="myProfile.tempMe.profileImage" ng-src="api/images{{myProfile.tempMe.profileImage}}" height="130px"/>
@@ -148,7 +148,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="box box-border-bottom">
-          <h3>Current roommates <a class="link float-right" ng-click="myProfile.addNewRoommate(selectedMember)"><i class="fa fa-plus"></i> Add roommate</a></h3>
+          <h3>Roommates ({{myProfile.roommates.length}})<a class="link float-right" ng-click="myProfile.addNewRoommate(selectedMember)"><i class="fa fa-plus"></i> Add roommate</a></h3>
         </div>
 <div class="row">
   <angucomplete-alt id="members"
@@ -166,7 +166,7 @@
         <div class="box">
           <div class="row">
             <p ng-if="!myProfile.roommates.length">&nbsp U dont have any roommates, select roommate and click "Add roommate"</p>
-            <div ng-if="myProfile.roommates.length" ng-repeat="(index,roommate) in myProfile.roommates">
+            <div ng-if="myProfile.roommates.length" ng-repeat="roommate in myProfile.roommates track by $index">
               <div class="col-md-3">
                 <div class="box" ng-class="{'address-primary': roommate}">
                   <div class="col-md-3">
@@ -174,8 +174,12 @@
                      <img class="img-circle" ng-if="!roommate.relatedRoommateId.profileImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" height="50px" style="margin-top: 10px"/>
                   </div>
                   <div class="col-md-9">
-                  <h4><strong>{{roommate.relatedRoommateId.firstname}} {{roommate.relatedRoommateId.lastname}}</strong> <a ng-click="myProfile.removeRoommate(roommate)" class="float-right">[X]</a></h4>
-                  {{roommate.relatedRoommateId.email}}<br/>
+                  <strong>{{roommate.relatedRoommateId.firstname}} {{roommate.relatedRoommateId.lastname}}</strong> <a ng-click="myProfile.removeRoommate(roommate)" class="float-right">[X]</a>
+                  <small>{{roommate.relatedRoommateId.email}}</small>
+                    <br/>
+                    <small>{{roommate.addressInfo[0].city}} {{roommate.addressInfo[0].zip}}</small>
+                    <br/>
+                    <small>{{roommate.addressInfo[0].streetAddress}} {{roommate.addressInfo[0].streetNumeric}}</small>
                     </div>
 
                   <div class="clear"></div>
@@ -186,6 +190,41 @@
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <h3>Pets ({{myProfile.pets.length}})</h3>
+      <hr/>
+
+      <div class="">
+        <p ng-if="!myProfile.pets.length">&nbsp U dont have any pets</p>
+          <div class="col-md-3">
+            <button class="btn btn-primary float-right" ui-sref=".addPet"> Add pet</button>
+          </div>
+        <div ng-if="myProfile.pets.length" ng-repeat="pet in myProfile.pets track by $index">
+          <div class="col-md-3">
+            <div class="box" ng-class="{'address-primary': pet}">
+              <div class="col-md-3">
+                <img ng-src="assets/images/r.jpg" height="50px" style="margin-top: 10px;"/>
+                <!--<img class="img-circle" ng-if="roommate.relatedRoommateId.profileImage" ng-src="api/images{{roommate.relatedRoommateId.profileImage}}" height="50px" style="margin-top: 10px"/>-->
+                <!--<img class="img-circle" ng-if="!roommate.relatedRoommateId.profileImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" height="50px" style="margin-top: 10px"/>-->
+              </div>
+              <div class="col-md-9">
+                <strong>{{pet.type}}</strong> <a ng-click="myProfile.deletePet(pet)" class="float-right">[X]</a><br/>
+                <small>{{pet.breed}}</small>
+                <br/>
+                <small> {{pet.weightLbs}}</small>
+              </div>
+
+              <div class="clear"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
 
 
   </div>

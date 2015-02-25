@@ -50,3 +50,8 @@ NOTE: when converting to PostgreSQL it might be necessarry to shorten some index
 Use [sequelize-pg-generator](https://www.npmjs.com/package/sequelize-pg-generator) to connect to PG database and generate sequelize models out of it.
 
 Note: when instatiating Sequelize, sequelize-pg-generator uses ‘postgre’ as default sql dialect.. If other DB is used instead of PG (i.e. MySQL) it have to be stated when instatiating Sequelize.
+
+## Data model nuanaces
+- Following a room means following a property
+- Looking means a user is advertising themselves - looking for a roommate or looking for someone with a room to contact the user
+- Update profile from dashboard takes the user in edit profile mode
