@@ -199,22 +199,14 @@ CREATE TABLE `invitee` (
   `firstName` varchar(45) NOT NULL,
   `lastName` varchar(45) NOT NULL,
   `invitorId` int(10) unsigned NOT NULL COMMENT 'Ideally, this could be a userId or propertyMgmtCo id but relation doesn’t support plymorphic associations so just have it as userId for now',
+  `roommate` tinyint(1) DEFAULT NULL COMMENT 'current roommate of invitor',
   `email` varchar(45) DEFAULT NULL,
-  `phone` int(10) DEFAULT NULL COMMENT 'supporting only US number only',
-  `facebook` varchar(45) DEFAULT NULL,
-  `twitter` varchar(45) DEFAULT NULL,
-  `googlePlus` varchar(45) DEFAULT NULL,
-  `linkedIn` varchar(45) DEFAULT NULL,
-  `viewProperty` tinyint(1) DEFAULT NULL,
-  `viewPropertyId` int(10) unsigned DEFAULT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime DEFAULT NULL,
   `deletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `invitee_invitor_idx` (`invitorId`),
-  KEY `invitee_viewproperty_idx` (`viewPropertyId`),
-  CONSTRAINT `invitee_invitorId` FOREIGN KEY (`invitorId`) REFERENCES `rented_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `invitee_viewpropertyId` FOREIGN KEY (`viewPropertyId`) REFERENCES `property` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `invitee_invitorId` FOREIGN KEY (`invitorId`) REFERENCES `rented_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -282,18 +274,16 @@ CREATE TABLE `looking` (
   `distanceToUniv` float(3,2) DEFAULT NULL COMMENT 'in miles',
   `moveInDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lengthOfStay` int(3) unsigned DEFAULT NULL COMMENT 'in months',
-  `longTermIntention` tinyint(1) DEFAULT NULL,
   `openToFullYearLeaseNewRoomates` tinyint(1) DEFAULT NULL,
-  `roomType` enum('single','double','triple','loft','living room') DEFAULT NULL,
+  `roomType` enum('single','double', 'living room') DEFAULT NULL,
   `sharedBathroom` tinyint(1) DEFAULT NULL,
-  `gender` enum('no preference','male preferred','female preferred','male only','female only') NOT NULL DEFAULT 'no preference',
+  `gender` enum('no preference','male only','female only') NOT NULL DEFAULT 'no preference',
   `numRoommates` int(2) unsigned DEFAULT NULL,
   `furnished` tinyint(1) DEFAULT NULL,
   `busRouteRequired` tinyint(1) DEFAULT NULL,
   `parkingNeeded` tinyint(1) DEFAULT NULL,
   `smokingAllowed` tinyint(1) DEFAULT NULL,
   `petsAllowed` tinyint(1) DEFAULT NULL,
-  `coupleAllowed` tinyint(1) DEFAULT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime DEFAULT NULL,
   `deletedAt` datetime DEFAULT NULL,
@@ -352,7 +342,7 @@ CREATE TABLE `pet` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `property`
+-- Table structure for table `property`   TODO add FK to apt complex DEFAULT is null
 --
 
 DROP TABLE IF EXISTS `property`;
@@ -369,7 +359,7 @@ CREATE TABLE `property` (
   `bldg` varchar(10) DEFAULT NULL,
   `latitude` decimal(10, 8),
   `longitude` decimal(11, 8),
-  `type` enum('apt','sfh','duplex','land','townhouse') DEFAULT NULL,
+  `type` enum('apt','sfh','townhouse') DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL COMMENT '100 words or less',
   `bedrooms` int(1) unsigned DEFAULT NULL,
   `bathrooms` int(1) unsigned DEFAULT NULL,
@@ -403,7 +393,7 @@ CREATE TABLE `property_images` (
   PRIMARY KEY (`id`),
   KEY `propertyimages_property_idx` (`propertyId`),
   KEY `propertyimages_listing_idx` (`listingId`),
-  CONSTRAINT `propertyimages_listing` FOREIGN KEY (`listingId`) REFERENCES `propertylisting` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `propertyimages_listing` FOREIGN KEY (`listingId`) REFERENCES `property_listing` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `propertyimages_property` FOREIGN KEY (`propertyId`) REFERENCES `property` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -498,6 +488,45 @@ CREATE TABLE `property_listing` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
+--
+-- Table structure for table `room_listing`
+--
+
+DROP TABLE IF EXISTS `room_listing`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `room_listing` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `propertyId` int(10) unsigned NOT NULL,
+  `creatorId` int(10) unsigned NOT NULL,
+  `monthlyPrice` float(5,2) NOT NULL,
+  `securityDeposit` float(5,2) DEFAULT '0.00',
+  `availableMoveIn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `leaseEndDate` datetime DEFAULT NULL,
+  `leaseType` enum('sub-lease','month-to-month','lease take over') NOT NULL,
+  `gender` enum('no preference','male only','female only') NOT NULL DEFAULT 'no preference',
+  `monthlyUtilityCost` int(4) NOT NULL COMMENT 'utility cost per room',
+  `roomType` enum('single','double','loft','living room') NOT NULL,
+  `sharedBathroom` tinyint(1) DEFAULT NULL,
+  `numRoomates` int(3) unsigned NOT NULL,
+  `furnished` tinyint(1) DEFAULT NULL COMMENT 'furnished room',
+  `parkingAvailable` tinyint(1) DEFAULT NULL COMMENT 'not always the same as the property having parking',
+  `smokingAllowed` tinyint(1) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `roomlisting_property_idx` (`propertyId`),
+  KEY `roomlisting_user_idx` (`creatorId`),
+  CONSTRAINT `roomlisting_property` FOREIGN KEY (`propertyId`) REFERENCES `property` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `roomlisting_user` FOREIGN KEY (`creatorId`) REFERENCES `rented_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+
 --
 -- Table structure for table `property_owner`
 --
@@ -558,7 +587,7 @@ CREATE TABLE `rental_applicant` (
   PRIMARY KEY (`id`),
   KEY `rentalAppId_idx` (`rentalAppId`),
   KEY `rentalapplicant_user_idx` (`userId`),
-  CONSTRAINT `rentalAppId` FOREIGN KEY (`rentalAppId`) REFERENCES `rentalapplication` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `rentalAppId` FOREIGN KEY (`rentalAppId`) REFERENCES `rental_application` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `rentalapplicant_user` FOREIGN KEY (`userId`) REFERENCES `rented_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -922,6 +951,11 @@ CREATE TABLE `user_vehicle` (
   CONSTRAINT `uservehicles_user` FOREIGN KEY (`userId`) REFERENCES `rented_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+
+CREATE OR REPLACE VIEW `room_listing_view` AS (
+	SELECT  p.streetNumeric, p.streetAddress, p.city, p.state,  p.zip,  p.apt,  p.bldg,  p.type,  p.bedrooms,  p.bathrooms,  rl.* FROM PROPERTY p, room_listing rl
+    WHERE rl.propertyId = p.id );
 
 --
 -- Dumping events for database 'rented'

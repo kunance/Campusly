@@ -7,7 +7,8 @@
 /*jslint node: true, stupid: true, nomen: true */
 "use strict";
 
-var Sequelize           = require('sequelize'),
+//var Sequelize           = require('sequelize'),
+var Sequelize = require('sequelize'),
     fs                  = require('fs'),
     path                = require('path'),
     util                = require('util'),
@@ -15,7 +16,7 @@ var Sequelize           = require('sequelize'),
     relationships       = {},
     modelsPath          = '',
     definitionDir       = 'definition-files',
-    definitionDirCustom = definitionDir + '-custom',
+    //definitionDirCustom = definitionDir + '-custom',
     debug               = false,
     debugFD             = '',
     sequelize           = null;
@@ -65,15 +66,15 @@ function defineRelation(modelName, relationType, targetModelName, options) {
 function getFileList() {
     var i, file, isOverridden = {}, files = [], customFiles, baseFiles;
     baseFiles = fs.readdirSync(path.join(modelsPath, definitionDir));
-    customFiles = fs.readdirSync(path.join(modelsPath, definitionDirCustom));
+ //   customFiles = fs.readdirSync(path.join(modelsPath, definitionDirCustom));
 
-    for (i = 0; i < customFiles.length; i = i + 1) {
-        file = customFiles[i];
-        if (file.match(/\.js$/)) {
-            isOverridden[file] = true;
-            files.push('./' + path.join(definitionDirCustom, file));
-        }
-    }
+    //for (i = 0; i < customFiles.length; i = i + 1) {
+    //    file = customFiles[i];
+    //    if (file.match(/\.js$/)) {
+    //        isOverridden[file] = true;
+    //        files.push('./' + path.join(definitionDirCustom, file));
+    //    }
+    //}
 
     for (i = 0; i < baseFiles.length; i = i + 1) {
         file = baseFiles[i];
@@ -140,7 +141,7 @@ module.exports = {};
  */
 module.exports.setup = function (database, username, password, obj) {
     if (typeof obj !== 'object') { obj = {}; }
-    if (obj.dialect === undefined || obj.dialect === null) { obj.dialect = 'postgres'; }
+    if (obj.dialect === undefined || obj.dialect === null) { obj.dialect = 'mysql'; }
 
     if (arguments.length === 2) {
         sequelize = new Sequelize(database, username);
@@ -162,6 +163,10 @@ module.exports.model = function (name) {
     return models[name];
 };
 
+//module.exports.models = function () {
+//    return models;
+//};
+
 /**
  * Returns Sequelize object.
  * @returns {Sequelize} - Sequelize object
@@ -169,3 +174,4 @@ module.exports.model = function (name) {
 module.exports.Sequelize = function () {
     return Sequelize;
 };
+module.exports.models = models;
