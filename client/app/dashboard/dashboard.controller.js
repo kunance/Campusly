@@ -52,6 +52,11 @@
       vm.aroundYou = data;
     });
 
+    $http.get("../assets/fake/messages.json")
+    .success(function(data){
+      vm.messages = data;
+    });
+
     // ================================================
     // END Getter for mock data 
     // ================================================

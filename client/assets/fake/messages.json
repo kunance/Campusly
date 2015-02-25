@@ -1,0 +1,32 @@
+[
+  {
+    "profile_picture": "http://lorempixel.com/250/250/cats/1",
+    "username": "Collier Burris",
+    "message": "Commodo labore ad cupidatat quis velit ut sit elit eu nisi pariatur in sint. Qui est enim eiusmod quis velit labore qui pariatur ex veniam laborum ut duis.",
+    "elapsed_time": "7 days ago"
+  },
+  {
+    "profile_picture": "http://lorempixel.com/250/250/cats/2",
+    "username": "Betsy Molina",
+    "message": "Amet consequat consectetur irure est ut excepteur ullamco labore. Esse nulla nostrud ipsum officia incididunt eu aute incididunt elit occaecat culpa irure sunt et.",
+    "elapsed_time": "10 months ago"
+  },
+  {
+    "profile_picture": "http://lorempixel.com/250/250/cats/3",
+    "username": "Rich Stevens",
+    "message": "Eiusmod do Lorem consequat aliqua sunt elit et laboris enim. Nisi dolor aute officia ex dolor mollit dolore nostrud pariatur non aliqua.",
+    "elapsed_time": "6 minutes ago"
+  },
+  {
+    "profile_picture": "http://lorempixel.com/250/250/cats/4",
+    "username": "Branch Ferguson",
+    "message": "Esse aliqua adipisicing veniam duis aliquip officia minim ea ullamco qui officia mollit. Anim nostrud aute non quis tempor amet esse duis.",
+    "elapsed_time": "6 days ago"
+  },
+  {
+    "profile_picture": "http://lorempixel.com/250/250/cats/5",
+    "username": "Wright Ferrell",
+    "message": "Pariatur labore sint et non ea nulla ullamco mollit sint consectetur excepteur. Ex minim incididunt cupidatat tempor eiusmod Lorem ullamco amet reprehenderit.",
+    "elapsed_time": "7 days ago"
+  }
+]
