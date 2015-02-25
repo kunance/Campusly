@@ -730,7 +730,7 @@ Dashboard styles
   bottom: 15px;
 }
 .slider .slick-prev, .slider .slick-next {
-  left: 120px;
+  /*left: 95%;*/
   top: auto;
 }
 .slider .slick-prev:before, .slider .slick-next:before {
@@ -915,8 +915,6 @@ nav.dashboard-submenu ul li a.active {
 
 .available-rooms .room .picture img {
   width: 100%;
-  position: relative;
-  top: -20px;
 }
 
 .available-rooms .room .info {

@@ -8,7 +8,7 @@
 
   DashboardCtrl.$inject=['common', '$scope', '$http'];
 
-  function DashboardCtrl(common, $scope) {
+  function DashboardCtrl(common, $scope, $http) {
     var vm = this;
     var Auth = common.Auth;
     vm.address = { };
@@ -31,6 +31,31 @@
       "$phone": vm.me.phone,
       "$last_login": new Date()
     });
+
+
+    // ================================================
+    // BEGIN Getter for mock data
+    // ================================================
+
+    $http.get("../assets/fake/available_rooms.json")
+    .success(function(data){
+      vm.availableRooms = data;
+    });
+
+    $http.get("../assets/fake/looking_for_room.json")
+    .success(function(data){
+      vm.lookingRoom = data;
+    });
+
+    $http.get("../assets/fake/around_you.json")
+    .success(function(data){
+      vm.aroundYou = data;
+    });
+
+    // ================================================
+    // END Getter for mock data 
+    // ================================================
+
 
     $scope.$parent.seo = {
       pageTitle:'Welcome to Rented co',
@@ -62,7 +87,7 @@
         }
       }
       ],
-       lookingRoom: [
+      lookingRoom: [
       {
         breakpoint: 1200,
         settings: {
@@ -77,7 +102,7 @@
         }
       }
       ],
-       aroundYou: [
+      aroundYou: [
       {
         breakpoint: 1200,
         settings: {

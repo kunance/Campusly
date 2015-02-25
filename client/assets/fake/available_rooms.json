@@ -1,22 +1,92 @@
-{ "available_rooms": 
-  [
-    {
-      "image_url": "http://lorempixel.com/400/200/city",
-      "value": 500,
-      "distance": "1.3 miles",
-      "kind": "single",
-      "roomates": 2,
-      "bathroom": "shared",
-      "availability_date": "2015-04-23T18:25:43.511Z"
-    },
-      {
-      "image_url": "http://lorempixel.com/400/200/city",
-      "value": 100,
-      "distance": "5.2 miles",
-      "kind": "Double",
-      "roomates": 5,
-      "bathroom": "shared",
-      "availability_date": "2015-03-12T8:12:34.511Z"
-    }
-  ]
-}
+[
+  {
+    "image_url": "http://lorempixel.com/400/250/city/1",
+    "value": 818,
+    "distance": "414.8 miles",
+    "kind": "Single",
+    "roommates": 1,
+    "bathroom": "Shared",
+    "availability_date": "2003-09-24"
+  },
+  {
+    "image_url": "http://lorempixel.com/400/250/city/2",
+    "value": 976,
+    "distance": "158.2 miles",
+    "kind": "Double",
+    "roommates": 2,
+    "bathroom": "Private",
+    "availability_date": "1985-12-10"
+  },
+  {
+    "image_url": "http://lorempixel.com/400/250/city/3",
+    "value": 430,
+    "distance": "314.5 miles",
+    "kind": "Single",
+    "roommates": 4,
+    "bathroom": "Private",
+    "availability_date": "1993-03-25"
+  },
+  {
+    "image_url": "http://lorempixel.com/400/250/city/4",
+    "value": 390,
+    "distance": "82.1 miles",
+    "kind": "Single",
+    "roommates": 1,
+    "bathroom": "Shared",
+    "availability_date": "2006-08-26"
+  },
+  {
+    "image_url": "http://lorempixel.com/400/250/city/5",
+    "value": 170,
+    "distance": "102.4 miles",
+    "kind": "Double",
+    "roommates": 2,
+    "bathroom": "Shared",
+    "availability_date": "1980-09-08"
+  },
+  {
+    "image_url": "http://lorempixel.com/400/250/city/6",
+    "value": 393,
+    "distance": "358.7 miles",
+    "kind": "Single",
+    "roommates": 4,
+    "bathroom": "Shared",
+    "availability_date": "2001-10-01"
+  },
+  {
+    "image_url": "http://lorempixel.com/400/250/city/7",
+    "value": 338,
+    "distance": "177.3 miles",
+    "kind": "Double",
+    "roommates": 1,
+    "bathroom": "Shared",
+    "availability_date": "1974-05-14"
+  },
+  {
+    "image_url": "http://lorempixel.com/400/250/city/8",
+    "value": 970,
+    "distance": "163 miles",
+    "kind": "Double",
+    "roommates": 4,
+    "bathroom": "Private",
+    "availability_date": "2005-03-23"
+  },
+  {
+    "image_url": "http://lorempixel.com/400/250/city/9",
+    "value": 163,
+    "distance": "216.1 miles",
+    "kind": "Single",
+    "roommates": 4,
+    "bathroom": "Private",
+    "availability_date": "1991-06-02"
+  },
+  {
+    "image_url": "http://lorempixel.com/400/250/city/10",
+    "value": 488,
+    "distance": "89.1 miles",
+    "kind": "Single",
+    "roommates": 4,
+    "bathroom": "Shared",
+    "availability_date": "2008-07-14"
+  }
+]

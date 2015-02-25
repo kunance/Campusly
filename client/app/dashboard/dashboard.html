@@ -13,26 +13,25 @@
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
           <h2> Available Rooms</h2>
           <div class="white-box available-rooms">
-            <slick dots="true" class="slider row" slides-to-show="3" slides-to-scroll="3" responsive="dashboard.breakpoints.availableRooms">
-
+            <slick dots="true" class="slider row" slides-to-show="3" slides-to-scroll="3" responsive="dashboard.breakpoints.availableRooms"  init-onload="true" data="dashboard.availableRooms">
               <!-- start room box -->
-              <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 room">
+              <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 room" ng-repeat="room in dashboard.availableRooms track by $index">
                 <div class="picture">
-                  <img src="../assets/fake/home.jpg" alt="">
+                  <img ng-src="{{room.image_url}}" alt="">
                 </div>
                 <div class="info">
                   <strong class="value">
-                    $700 mo.
+                    {{room.value | currency}} mo.
                   </strong>
                   <span class="distance">
-                    <i class="fa fa-map-marker"></i> 1.3 mi
+                    <i class="fa fa-map-marker"></i> {{room.distance}}
                   </span>
                 </div>
                 <ul class="specs">
-                  <li><i class="fa fa-bed"></i> Single</li>
-                  <li><i class="fa fa-users"></i> 2 roomates</li>
-                  <li><i class="fa fa-bed"></i> Shared bathroom</li>
-                  <li><i class="fa fa-calendar"></i> March 1</li>
+                  <li><i class="fa fa-bed"></i> {{room.kind}}</li>
+                  <li><i class="fa fa-users"></i> {{room.roommates}} roommates</li>
+                  <li><i class="fa fa-bed"></i> {{room.bathroom}} bathroom</li>
+                  <li><i class="fa fa-calendar"></i> {{room.availability_date | date }}</li>
                 </ul>
               </div>
               <!-- end room box -->
@@ -43,24 +42,24 @@
 
           <h2> Looking for a room</h2>
           <div class="white-box looking-for-room">
-            <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom">
+            <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" data="dashboard.lookingRoom">
 
               <!-- start room box -->
-              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room">
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="person in dashboard.lookingRoom track by $index">
                 <div class="media">
                   <div class="media-left">
                     <a href="#">
-                      <img class="media-object profile-image img-circle" src="../../assets/fake/girl.jpg" >
+                      <img class="media-object profile-image img-circle" ng-src="{{person.profile_picture}}" >
                     </a>
                   </div>
                   <div class="media-body">
-                    <h4 class="media-heading user-name">Kelley Andrews</h4>
-                    <p class="quote">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.</p>
+                    <h4 class="media-heading user-name">{{person.name}}</h4>
+                    <p class="quote">{{person.about_me}}</p>
                   </div>
                   <ul class="profile-info">
-                    <li>Max rent $560</li>
-                    <li>Female only</li>
-                    <li>15 mi radius</li>
+                    <li>{{person.max_rent | currency}}</li>
+                    <li>{{person.type}}</li>
+                    <li>{{person.distance}}</li>
                   </ul>
                 </div>
               </div>
@@ -74,13 +73,13 @@
           
           <div class="white-box around-you">
 
-            <slick dots="true" class="slider row" slides-to-show="5" slides-to-scroll="5" responsive="dashboard.breakpoints.aroundYou">
+            <slick dots="true" class="slider row" slides-to-show="5" slides-to-scroll="5" responsive="dashboard.breakpoints.aroundYou" init-onload="true" data="dashboard.aroundYou">
 
               <!-- start student box -->
-              <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 student">
-                <img src="../../assets/fake/boy.jpg" class="profile-image img-circle">
-                <h3>Andrew Jin</h3>
-                <em>Undergrad, UCL</em>
+              <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 student" ng-repeat="student in dashboard.aroundYou track by $index">
+                <img ng-src="{{student.profile_picture}}" class="profile-image img-circle">
+                <h3>{{student.name}}</h3>
+                <em>{{student.university}}</em>
               </div>
               <!-- end student box -->
 
