@@ -15,7 +15,7 @@ var Sequelize           = require('sequelize'),
     relationships       = {},
     modelsPath          = '',
     definitionDir       = 'definition-files',
-    definitionDirCustom = definitionDir + '-custom',
+ //   definitionDirCustom = definitionDir + '-custom',
     debug               = false,
     debugFD             = '',
     sequelize           = null;
@@ -65,15 +65,15 @@ function defineRelation(modelName, relationType, targetModelName, options) {
 function getFileList() {
     var i, file, isOverridden = {}, files = [], customFiles, baseFiles;
     baseFiles = fs.readdirSync(path.join(modelsPath, definitionDir));
-    customFiles = fs.readdirSync(path.join(modelsPath, definitionDirCustom));
+  //  customFiles = fs.readdirSync(path.join(modelsPath, definitionDirCustom));
 
-    for (i = 0; i < customFiles.length; i = i + 1) {
-        file = customFiles[i];
-        if (file.match(/\.js$/)) {
-            isOverridden[file] = true;
-            files.push('./' + path.join(definitionDirCustom, file));
-        }
-    }
+    //for (i = 0; i < customFiles.length; i = i + 1) {
+    //    file = customFiles[i];
+    //    if (file.match(/\.js$/)) {
+    //        isOverridden[file] = true;
+    //        files.push('./' + path.join(definitionDirCustom, file));
+    //    }
+    //}
 
     for (i = 0; i < baseFiles.length; i = i + 1) {
         file = baseFiles[i];

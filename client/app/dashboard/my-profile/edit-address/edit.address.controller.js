@@ -35,7 +35,7 @@
       var trimmedZip = zip.replace(/\s+/g, '');
       input.zip = Number(trimmedZip);
       dataservice.editAddress(vm.me.id, addressesId, input, function () {
-        console.log('Address updated');
+        common.logger.success('Address updated');
         common.$state.go('^',{},{reload:true});
       })
 
@@ -43,7 +43,7 @@
 
     vm.deleteAddress= function () {
       dataservice.deleteAddress(vm.me.id, addressesId, function () {
-        common.logger.success('Addres deleted');
+        common.logger.success('Address deleted');
         common.$state.go('^',{},{reload:true});
       })
       }

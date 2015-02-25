@@ -160,7 +160,7 @@ module.exports.setup = function (database, username, password, obj) {
  * @returns {object} - Sequelize model
  */
 module.exports.model = function (name) {
-    return models[name];
+  return models[name];
 };
 
 //module.exports.models = function () {
