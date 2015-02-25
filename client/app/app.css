@@ -730,7 +730,6 @@ Dashboard styles
   bottom: 15px;
 }
 .slider .slick-prev, .slider .slick-next {
-  /*left: 95%;*/
   top: auto;
 }
 .slider .slick-prev:before, .slider .slick-next:before {
@@ -944,4 +943,8 @@ nav.dashboard-submenu ul li a.active {
 
 .available-rooms .room ul.specs li {
   margin-top: 5px;
+}
+
+h2.section-title:nth-child(n+2) {
+  margin-top: 50px;
 }
