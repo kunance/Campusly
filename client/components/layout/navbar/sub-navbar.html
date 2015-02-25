@@ -1,0 +1,9 @@
+<nav class="dashboard-submenu">
+  <ul>
+    <div class="container">
+      <li ng-repeat="tab in dashboard.tabs">
+        <a ui-sref="{{tab.sref}}" active="tab.active" disabled="tab.disabled" class="active" select="setIndex($index)" > {{tab.title}}</a>
+      </li>
+    </div>
+  </ul>
+</nav>
