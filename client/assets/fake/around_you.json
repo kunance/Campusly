@@ -1,0 +1,32 @@
+[
+  {
+    "profile_picture": "http://lorempixel.com/250/250/cats/1",
+    "name": "Powers Herman",
+    "university": "Ph.D., Yale"
+  },
+  {
+    "profile_picture": "http://lorempixel.com/250/250/cats/2",
+    "name": "Dawn Shannon",
+    "university": "Ph.D., Cornell"
+  },
+  {
+    "profile_picture": "http://lorempixel.com/250/250/cats/3",
+    "name": "Luz Gentry",
+    "university": "Master, MIT"
+  },
+  {
+    "profile_picture": "http://lorempixel.com/250/250/cats/4",
+    "name": "Duffy Valentine",
+    "university": "Master, Stanford"
+  },
+  {
+    "profile_picture": "http://lorempixel.com/250/250/cats/5",
+    "name": "Teresa Cochran",
+    "university": "Master, Harvard"
+  },
+  {
+    "profile_picture": "http://lorempixel.com/250/250/cats/6",
+    "name": "Millicent Riggs",
+    "university": "Master, Johns Hopkins"
+  }
+]
