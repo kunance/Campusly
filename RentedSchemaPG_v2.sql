@@ -1,3 +1,5 @@
+set schema 'Rented';
+
 CREATE TABLE address_history (
 	"id" int NOT NULL,
 	streetNumeric int NOT NULL,

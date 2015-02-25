@@ -54,10 +54,9 @@ Use [sequelize-pg-generator](https://www.npmjs.com/package/sequelize-pg-generato
 1. Create a Postgres database Rented  ( delete your old one first if applicable )
 1. run the RentedSchemaPG_v<number>.sql in sql window connected to Postgres Rented 
 1. cd Rented/server directory
-1. spgen -d Rented -u <username> -o models
+1. spgen -d Rented -u <username> -s Rented -o models
 
-Note: when instatiating Sequelize, sequelize-pg-generator uses ‘postgre’ as default sql dialect.. If other DB is used instead of PG (i.e. MySQL) it have to be stated when instatiating Sequelize.
-=======
+
 Note: when instatiating Sequelize, sequelize-pg-generator uses ‘postgre’ as default sql dialect.. If other DB is used instead of PG (i.e. MySQL) it have to be stated when instatiating Sequelize.
 
 ## Data model nuanaces
