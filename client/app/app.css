@@ -853,6 +853,7 @@ nav.dashboard-submenu ul li a.active {
 
 .looking-for-room .media-body {
   padding-left: 10px;
+  height: 150px
 }
 
 .looking-for-room .media:first-child {
