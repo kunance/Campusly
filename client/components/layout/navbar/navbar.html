@@ -4,29 +4,29 @@
       <a href="/">
         <img src="../../../assets/images/rented-name-logo.png" alt="rented" class="logo">
       </a>
-      <p class="txt" ng-hide="isLoggedIn()">A trusted network for off-campus hosting</p>
+      <p class="txt" ng-hide="isLoggedIn()">secure off-campus housing community</p>
     </div>
-    
+
     <div class="right-content" ng-show="isLoggedIn()">
       <!-- <a ui-sref-active="active" ui-sref="settings"><i class="glyphicon glyphicon-cog"></i> Settings</a> -->
         <img class="img-circle" ng-if="getCurrentUser().userImage" ng-src="/api/images{{getCurrentUser().userImage}}" style="height: 50px"/>
         <a ui-sref-active="active" ui-sref="logout"><i class="fa fa-sign-out"></i> Logout</a>
-      
+
       <p>Hello <strong>{{getCurrentUser().firstname}}</strong></p>
     </div>
-    
+
     <div class="right-content" ng-show="!isLoggedIn()">
       <a ui-sref-active="active" ui-sref="login" class="link sign-in">Sign In</a>
-      <a ui-sref-active="active" ui-sref="signup" class="btn sign-up">Sign up for free</a>          
+      <a ui-sref-active="active" ui-sref="signup" class="btn sign-up">Sign up for free</a>
     </div>
   </div>
-  
+
   <div ng-hide="isMailconfirmed() || !isLoggedIn()">
     <div class="container">
       <span style="color:white; margin-top:18px; font-size:13px" >Your email address is not confirmed. Confirm <a href="/confirm">here</a></span>
     </div>
   </div>
-  
+
 </header>
 
 
