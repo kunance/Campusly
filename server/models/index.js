@@ -7,7 +7,8 @@
 /*jslint node: true, stupid: true, nomen: true */
 "use strict";
 
-var Sequelize           = require('sequelize'),
+//var Sequelize           = require('sequelize'),
+var Sequelize = require('sequelize'),
     fs                  = require('fs'),
     path                = require('path'),
     util                = require('util'),
@@ -140,7 +141,7 @@ module.exports = {};
  */
 module.exports.setup = function (database, username, password, obj) {
     if (typeof obj !== 'object') { obj = {}; }
-    if (obj.dialect === undefined || obj.dialect === null) { obj.dialect = 'postgres'; }
+    if (obj.dialect === undefined || obj.dialect === null) { obj.dialect = 'mysql'; }
 
     if (arguments.length === 2) {
         sequelize = new Sequelize(database, username);
