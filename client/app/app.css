@@ -135,6 +135,7 @@ Main image and style for above the fold on the home-page
   background-repeat: no-repeat;
   background-size: cover;
   max-height: 590px;
+  margin-top: -70px;
 }
 
 /* ==========================================================================
@@ -1381,4 +1382,111 @@ h2.section-title:nth-child(n+2) {
   transform: translateY(-50%) translateX(-50%);
   color: #fff;
 
+}
+
+
+
+/* My Properties Grid */
+
+.my-properties .property {
+}
+
+.my-properties .property .picture {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  overflow: hidden;
+  height: 150px;  
+  background: #ff0000;
+  margin-left: -20px;
+  margin-top: -20px;
+  width: calc(100% + 40px);
+}
+
+.my-properties .property .picture img{
+  width: 100%;
+  position: relative;
+}
+
+.my-properties .property .info {
+  font-weight: bold;
+  display: inline-block;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.my-properties .property .info .value {
+  color: #000000;
+  font-weight: bold;
+  float: left;
+  border-bottom: 3px solid #f7953d;
+}
+
+.my-properties .property .info .distance {
+  color: #000000;
+  float: right;
+}
+
+.my-properties .property ul.specs {
+  clear: both;
+  width: 100%;
+  display: block;
+  list-style:none;
+}
+
+.my-properties .property ul.specs li {
+  margin-top: 5px;
+}
+
+.flip-container {
+  perspective: 1000;
+}
+  /* flip the pane when hovered */
+  .flip-container:hover .flipper, .flip-container.hover .flipper {
+    transform: rotateY(180deg);
+  }
+
+.flip-container, .front, .back {
+  height: 300px;
+}
+
+/* flip speed goes here */
+.flipper {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+
+  position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+  backface-visibility: hidden;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+  z-index: 2;
+  /* for firefox 31 */
+  transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+  width: calc(100% + 40px);
+  border-radius: 5px;
+  background: #f7953d;
+  margin: -20px;
+  transform: rotateY(180deg);
+  display: table;
+}
+
+.back h2 {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: underline;
+  color: #fff;
 }
