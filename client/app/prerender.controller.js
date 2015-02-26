@@ -10,7 +10,7 @@
   function PrerenderController($scope) {
     $scope.seo = {
       pageTitle: 'Rented Home',
-      pageDescription: 'secure off-campus housing community'
+      pageDescription: 'Secure off-campus housing community. Connect with verified students. Find off-campus housing. Meet new students - walk safely, share a ride, attend events.'
     };
   }
 
