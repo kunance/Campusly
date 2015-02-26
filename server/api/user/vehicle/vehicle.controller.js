@@ -2,8 +2,8 @@
 
 var _ = require('lodash');
 var sqldb = require('../../../sqldb');
-var User = sqldb.model('rented.rentedUser');
-var Vehicle = sqldb.model('rented.userVehicle');
+var User = sqldb.model('rentedUser');
+var Vehicle = sqldb.model('userVehicle');
 var passport = require('passport');
 var config = require('../../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -12,7 +12,6 @@ var jwt = require('jsonwebtoken');
 var validationError = function(res, statusCode) {
   statusCode = statusCode || 422;
   return function(err) {
-    console.log(err);
     res.json(statusCode, err);
   };
 };
@@ -33,7 +32,6 @@ function respondWith(res, statusCode) {
 exports.newVehicle = function(req, res, next) {
   req.body.userId = req.user.id;
   req.body.createdAt = new Date();
-  console.log(req.body);
   var newVehicle = Vehicle.build(req.body);
 
   newVehicle.save()

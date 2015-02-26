@@ -3,7 +3,7 @@
 var express = require('express');
 var passport = require('passport');
 var config = require('../config/environment');
-var User = require('../sqldb').model('rented.rentedUser');
+var User = require('../sqldb').model('rentedUser');
 
 // Passport Configuration
 require('./local/passport').setup(User, config);

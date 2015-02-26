@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Edit vehicle</h1>
+    </div>
+    <div class="col-sm-12">
+
+      <label for="model">Model</label>
+      <input type="text" id="model" name="model" class="form-control" ng-model="editVehicle.tempVehicle.model"/>
+
+      <label for="make">Make</label>
+      <input type="text" id="make" name="make" class="form-control" ng-model="editVehicle.tempVehicle.make"/>
+
+      <label for="year">Year</label>
+      <input type="text" id="year" name="year" class="form-control" ng-model="editVehicle.tempVehicle.year"/>
+
+      <label for="license">License plate</label>
+      <input type="text" id="license" name="license" class="form-control" ng-model="editVehicle.tempVehicle.licensePlate"/>
+
+      <label for="color">Color</label>
+      <input type="text" id="color" name="color" class="form-control" ng-model="editVehicle.tempVehicle.color"/>
+
+      <br/>
+      <br/>
+      <button class="btn btn-primary" ng-click="editVehicle.saveVehicle(editVehicle.tempVehicle)">Save changes</button>
+      <button class="btn btn-primary" ng-click="editVehicle.delete()">Delete vehicle</button>
+      <button class="btn btn-primary" ui-sref="^">Back to my Profile overview</button>
+    </div>
+  </div>
+
+  <pre>{{editVehicle.tempVehicle|json}}</pre>
+
+
+
+</div>

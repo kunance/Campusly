@@ -8,7 +8,8 @@
     'uiGmapgoogle-maps',
     'cgBusy',
     'angular-progress-arc',
-    'angucomplete-alt'
+    'angucomplete-alt',
+    'slick'
   ]);
 
 })();

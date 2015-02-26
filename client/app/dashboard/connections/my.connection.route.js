@@ -11,7 +11,7 @@
     $stateProvider
       .state('dashboard.myConnections', {
         url: '/myConnections',
-        templateUrl: 'app/dashboard/my-connections/my.connection.html',
+        templateUrl: 'app/dashboard/connections/my.connection.html',
         controller: 'MyConnectionCtrl',
         controllerAs:'myConnection',
         authenticate: true
