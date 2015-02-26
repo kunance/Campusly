@@ -1,40 +1,77 @@
 <div class="container my-profile" cg-busy="{promise:myProfile.initializeData.$promise, message:'Loading Your Profile', delay:50}">
   <div ui-view="">
     <h2> Your Profile </h2>
-    <div class="row white-box about-me">
-      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-        <div class="picture">
-          <img src="../assets/fake/boy.jpg" class="img-circle" alt="">
+    <div class="white-box">
+      <div class="row about-me">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          <div class="picture">
+            <img src="../assets/fake/boy.jpg" class="img-circle" alt="">
+          </div>
+          <dl>
+            <dt>Name</dt>
+            <dd>Joao Mateus Scarpa</dd>
+            <dt>School</dt>
+            <dd>Caltech</dd>
+            <dt>Year</dt>
+            <dd>2016</dd>
+            <dt>Major</dt>
+            <dd>Computer Science</dd>
+            <dt>About me</dt>
+            <dd>
+              <p class="quote">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. At fugiat, magni iusto nostrum explicabo velit modi, ullam repudiandae praesentium obcaecati sunt ducimus consequatur id rerum iste excepturi nulla dicta tempore.
+              </p>
+            </dd>
+          </dl>
         </div>
-        <dl>
-          <dt>Name</dt>
-          <dd>Joao Mateus Scarpa</dd>
-          <dt>School</dt>
-          <dd>Caltech</dd>
-          <dt>Year</dt>
-          <dd>2016</dd>
-          <dt>Major</dt>
-          <dd>Computer Science</dd>
-          <dt>About me</dt>
-          <dd>
-            <p class="quote">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. At fugiat, magni iusto nostrum explicabo velit modi, ullam repudiandae praesentium obcaecati sunt ducimus consequatur id rerum iste excepturi nulla dicta tempore.
-            </p>
-          </dd>
-        </dl>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          <dl>
+            <dt>Phone Number</dt>
+            <dd>949-223-4563</dd>
+            <dt>Address</dt>
+            <dd>3454 Balboa Ave. Unit C</dd>
+            <dt>City State Zip</dt>
+            <dd>San Diego, CA, 92453</dd>
+            <dt>Time at address</dt>
+            <dd>1 year and 3 months</dd>
+          </dl>
+        </div>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-        <dl>
-          <dt>Phone Number</dt>
-          <dd>949-223-4563</dd>
-          <dt>Address</dt>
-          <dd>3454 Balboa Ave. Unit C</dd>
-          <dt>City State Zip</dt>
-          <dd>San Diego, CA, 92453</dd>
-          <dt>Time at address</dt>
-          <dd>1 year and 3 months</dd>
-        </dl>
+    </div>
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <h2> Roomates </h2>
+        <div class="white-box roomates">
+          <div class="roomate">
+            <div class="picture">
+              <img src="../assets/fake/boy.jpg" alt="" class="img-circle">
+            </div>
+            <div class="info">
+              <span class="name"> My Name </span>
+              <span class="email">rmcpherson@ucsd.edu</span>
+              <span class="university">University of California San Diego</span>
+              <span class="city">San Diego, CA</span>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <h2> Pets & Vehicle </h2>
+        <div class="white-box pets">
+          <div class="pet">
+            <div class="picture">
+              <img src="../assets/fake/boy.jpg" alt="" class="img-circle">
+            </div>
+            <div class="info">
+              <span class="name"> My Name </span>
+              <span class="email">rmcpherson@ucsd.edu</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

@@ -1579,6 +1579,8 @@ h2.section-title:nth-child(n+2) {
   text-align: center;
   vertical-align: middle;
   text-decoration: underline;
+}
+.back h2 a {
   color: #fff;
 }
 
@@ -1608,4 +1610,91 @@ h2.section-title:nth-child(n+2) {
 
 .my-profile div[class^="col-"]:first-child {
   border-right: 1px solid #e8e8e8;
+}
+
+.row {
+  margin-top: 20px;
+}
+
+
+/* My profile - Roomates */
+
+.my-profile .roomates .roomate {
+  border-bottom: 1px solid #efefef  ;
+}
+
+.my-profile .roomates .roomate .picture{
+  display: inline-block;
+  width: 20%;
+  float: left;
+}
+
+.my-profile .roomates .roomate .picture img {
+  width: 4em;
+  height: 4em;
+}
+
+.my-profile .roomates .roomate .info {
+  display: inline-block;
+  width: 70%;
+  line-height: 100%;
+
+}
+
+.my-profile .roomates .roomate .info span {
+  width: 100%;
+  display: block;
+  float: left;
+  font-size: 0.7em;
+}
+
+.my-profile .roomates .roomate .info span.name {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+
+.my-profile .pets .pet {
+  border-bottom: 1px solid #efefef  ;
+}
+
+.my-profile .pets .pet .picture{
+  display: inline-block;
+  width: 20%;
+  float: left;
+}
+
+.my-profile .pets .pet .picture img {
+  width: 4em;
+  height: 4em;
+}
+
+.my-profile .pets .pet .info {
+  display: inline-block;
+  width: 70%;
+  
+}
+
+.my-profile .pets .pet .info span {
+  width: 100%;
+  display: block;
+  float: left;
+  font-size: 0.7em;
+}
+
+.my-profile .pets .pet .info span.name {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #000;
+}
+
+
+.my-profile .pets, .my-profile .roomates {
+  min-height: 300px;
+}
+
+.my-profile .info {
+  height: 80px;
 }
