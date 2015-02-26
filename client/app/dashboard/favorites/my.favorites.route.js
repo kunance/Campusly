@@ -11,7 +11,7 @@
     $stateProvider
       .state('dashboard.myFavorites', {
         url: '/myFavorites',
-        templateUrl: 'app/dashboard/my-favorites/my.favorites.html',
+        templateUrl: 'app/dashboard/favorites/my.favorites.html',
         controller: 'MyFavoritesCtrl',
         controllerAs:'myFavorites',
         authenticate: true

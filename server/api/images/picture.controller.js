@@ -8,7 +8,7 @@
   var userinfo = require('../user/user.controller');
   //var s3 = require('../../components/aws-s3/index');
   //var sqldb = require('../../sqldb');
-  //var propertyImages = sqldb.model('rented.propertyImages');
+  //var propertyImages = sqldb.model('propertyImages');
 
   // S3 Connector
   var connect = function() {

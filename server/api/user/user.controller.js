@@ -2,9 +2,9 @@
 
 var _ = require('lodash');
 var sqldb = require('../../sqldb');
-var User = sqldb.model('rented.rentedUser');
-var Vehicle = sqldb.model('rented.userVehicle');
-var Pets = sqldb.model('rented.pet');
+var User = sqldb.model('rentedUser');
+var Vehicle = sqldb.model('userVehicle');
+var Pets = sqldb.model('pet');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -37,6 +37,9 @@ function respondWith(res, statusCode) {
  * restriction: 'admin'
  */
 exports.index = function(req, res) {
+  //console.log(req.user);
+  //console.log(req.body);
+  //console.log(req.params);
   User.findAll({
     attributes: [
       'id',
@@ -93,6 +96,9 @@ exports.me = function(req, res, next) {
  * Creates a new user
  */
 exports.create = function(req, res, next) {
+  console.log(req.body);
+  req.body.salt = "hardcoded";
+  req.body.confirmedEmail = false;
   req.body.runIdentityCheck= false;
   req.body.shareCreditReport= false;
   req.body.createdAt= new Date();
@@ -136,7 +142,9 @@ exports.show = function(req, res, next) {
       if (!user) {
         return res.send(401);
       }
+      else{
       res.json(user);
+      }
     })
     .catch(function(err) {
       return next(err);

@@ -5,9 +5,9 @@
     .module('app.dashboard')
     .controller('MyProfileCtrl', MyProfileCtrl);
 
-  MyProfileCtrl.$inject = ['$scope', 'common', '$cookieStore', 'FileUploader', 'getUserInfo', 'getAddresses', 'getEducations', 'getAllRoommates', 'getAllUsers', 'getPets'];
+  MyProfileCtrl.$inject = ['$scope', 'common', '$cookieStore', 'FileUploader', 'getUserInfo', 'getAddresses', 'getEducations', 'getAllRoommates', 'getAllUsers', 'getPets', 'getVehicles'];
 
-  function MyProfileCtrl($scope, common, $cookieStore, FileUploader, getUserInfo, getAddresses, getEducations, getAllRoommates, getAllUsers, getPets) {
+  function MyProfileCtrl($scope, common, $cookieStore, FileUploader, getUserInfo, getAddresses, getEducations, getAllRoommates, getAllUsers, getPets, getVehicles) {
     var vm = this;
     vm.me = getUserInfo;
     vm.tempMe = Object.create(vm.me);
@@ -16,6 +16,7 @@
     vm.users = getAllUsers;
     vm.roommates = getAllRoommates;
     vm.pets = getPets;
+    vm.vehicles = getVehicles;
     vm.changePersonalData = changePersonalData;
 
     angular.forEach(vm.roommates, function (user) {
@@ -80,18 +81,26 @@
           common.logger.success('Successfully removed roommate');
       })
 
-    }
+    };
 
-    vm.deletePet= function (input) {
-      var index= vm.pets.indexOf(input);
-      var id = input.id;
-      common.dataservice.deletePet(vm.me.id, id, function () {
-        vm.pets.splice(index, 1);
-        common.logger.success('Pet deleted')
-      });
-
-    }
-
+    //vm.deletePet= function (input) {
+    //  var index= vm.pets.indexOf(input);
+    //  var id = input.id;
+    //  common.dataservice.deletePet(vm.me.id, id, function () {
+    //    vm.pets.splice(index, 1);
+    //    common.logger.success('Pet deleted')
+    //  });
+    //
+    //}
+    //
+    //vm.deleteVehicle= function (input) {
+    //  var index= vm.listOfVehicles.indexOf(input);
+    //  var id = input.id;
+    //  dataservice.deleteVehicle(vm.me.id, id, function () {
+    //    vm.listOfVehicles.splice(index, 1);
+    //  });
+    //
+    //}
 
   }
 }());

@@ -5,7 +5,7 @@ var config = require('../config/environment');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var compose = require('composable-middleware');
-var User = require('../sqldb').model('rented.rentedUser');
+var User = require('../sqldb').model('rentedUser');
 var validateJwt = expressJwt({
   secret: config.secrets.session
 });

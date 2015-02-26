@@ -16,8 +16,8 @@
     vm.errors = {};
 
     $scope.$parent.seo = {
-      pageTitle:'Please sign in',
-      pageDescription:'place for signing in'
+      pageTitle:'Rented Sign-up',
+      pageDescription:'sign-up for rented for free'
     };
     mixpanel.track("sign up");
 
