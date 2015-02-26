@@ -1,4 +1,4 @@
-set schema 'Rented';
+set schema 'rented';
 
 CREATE TABLE address_history (
 	"id" int NOT NULL,
@@ -187,13 +187,13 @@ CREATE TABLE pet (
 );
 CREATE TABLE property (
 	"id" int NOT NULL,
-	streetNumeric int NOT NULL,
-	streetAddress varchar(255) NOT NULL,
-	city varchar(30) NOT NULL,
+	"streetNumeric" int NOT NULL,
+	"streetAddress" varchar(255) NOT NULL,
+	"city" varchar(30) NOT NULL,
 	"state" varchar(2) NOT NULL,
-	zip int NOT NULL,
-	apt varchar(6),
-	bldg varchar(10),
+	"zip" int NOT NULL,
+	"apt" varchar(6),
+	"bldg" varchar(10),
 	latitude numeric(10,8),
 	longitude numeric(11,8),
 	"type" varchar(250),
