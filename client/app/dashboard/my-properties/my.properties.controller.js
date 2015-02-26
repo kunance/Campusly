@@ -2,29 +2,31 @@
   "use strict";
 
   angular
-    .module('app.dashboard')
-    .controller('MyPropertiesCtrl', MyPropertiesCtrl);
+  .module('app.dashboard')
+  .controller('MyPropertiesCtrl', MyPropertiesCtrl);
 
-  MyPropertiesCtrl.$inject = ['$scope', 'common', 'FileUploader'/*, 'getAllProperties'*/];
+  MyPropertiesCtrl.$inject = ['$scope', 'common', 'FileUploader', '$http'/*, 'getAllProperties'*/];
 
-  function MyPropertiesCtrl($scope, common, FileUploader /*, getAllProperties*/) {
+  function MyPropertiesCtrl($scope, common, FileUploader, $http /*, getAllProperties*/) {
     var vm = this;
     vm.property = {};
     vm.me = common.Auth.getCurrentUser();
     //vm.listOfProperties=getAllProperties;
-
     //console.log(vm.listOfProperties);
 
 
+    // ================================================
+    // BEGIN Getter for mock data
+    // ================================================
 
+    $http.get("../assets/fake/available_rooms.json")
+    .success(function(data){
+      vm.availableRooms = data;
+    });
 
-    $scope.images = [{
-      src: 'http://www.gulfshores.com/!userfiles/content_images/stay/agc_2013_int_content-img_beach-houses.jpg',
-      title: 'Pic 1'
-    }, {
-      src: 'http://s.hswstatic.com/gif/become-white-house-volunteer-1.jpg',
-      title: 'Pic 2'
-    }];
+    // ================================================
+    // END Getter for mock data
+    // ================================================
 
   }
 

@@ -960,14 +960,21 @@ nav.dashboard-submenu > label {
 }
 
 /* White box */
-
 .white-box {
   border-radius: 5px;
   padding: 20px;
   background: #fff;
   box-shadow: 2px 2px 2px 0px #d3d3d3;
   position: relative;
+  margin: 5px;
 }
+
+.well {
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 2px 2px 2px 0px #d3d3d3;
+}
+
 .media-body, .media-left, .media-right {
   display: table-cell;
   vertical-align: top;
@@ -1431,6 +1438,7 @@ h2.section-title:nth-child(n+2) {
 /* My Properties Grid */
 
 .my-properties .property {
+  height: 350px;
 }
 
 .my-properties .property .picture {
@@ -1488,7 +1496,7 @@ h2.section-title:nth-child(n+2) {
 }
 
 .flip-container, .front, .back {
-  height: 300px;
+  height: 325px;
 }
 
 /* flip speed goes here */
@@ -1500,7 +1508,11 @@ h2.section-title:nth-child(n+2) {
 }
 
 /* hide back of pane during swap */
-.front, .back {
+.front {
+  backface-visibility: hidden;
+}
+
+.back {
   backface-visibility: hidden;
 
   position: absolute;
@@ -1508,20 +1520,17 @@ h2.section-title:nth-child(n+2) {
   left: 0;
 }
 
-/* front pane, placed above back */
 .front {
-  width: calc(100% + 40px);
+  width: 100%;
   border-radius: 5px;
   transform: rotateY(180deg);
   display: table;
   z-index: 2;
-  margin-left: -20px;
   transform: rotateY(0deg);
 }
 
 .back {
-  margin-left: -20px;
-  width: calc(100% + 40px);
+  width: 100%;
   border-radius: 5px;
   display: table;
   background: #f7953d;
