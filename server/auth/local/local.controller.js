@@ -6,7 +6,7 @@ var jwt = require('jsonwebtoken');
 var mail = require('../../components/mail');
 var config = require('../../config/environment');
 var sqldb = require('../../sqldb');
-var User = sqldb.model('rented.rentedUser');
+var User = sqldb.model('rentedUser');
 var auth = require('../auth.service');
 // ********************* Mail ***********************
 

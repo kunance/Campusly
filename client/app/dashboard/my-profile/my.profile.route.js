@@ -20,7 +20,8 @@
           getAddresses: getAddresses,
           getAllUsers:getAllUsers,
           getAllRoommates:getAllRoommates,
-          getPets: getPets
+          getPets: getPets,
+          getVehicles:getVehicles
         },
         authenticate: true
       });
@@ -50,7 +51,8 @@
 
   function getAllUsers(common, $q) {
     var deffered = $q.defer();
-    deffered.resolve( common.$http.get('/api/users').success(function (users) {
+    var me = common.Auth.getCurrentUser();
+    deffered.resolve( common.$http({method:'get', url:'/api/users', data:{"id":me.id}}).success(function (users) {
       angular.forEach(users, function (user) {
         user.full = user.firstname + ' ' + user.lastname;
       });
@@ -70,6 +72,12 @@
     var dataservice = common.dataservice;
     var me = common.Auth.getCurrentUser();
     return dataservice.getAllPets(me)
+  }
+
+  function getVehicles(common) {
+    var dataservice = common.dataservice;
+    var me = common.Auth.getCurrentUser();
+    return dataservice.getAllVehicles(me)
   }
 
 }());

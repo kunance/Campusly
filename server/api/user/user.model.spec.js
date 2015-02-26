@@ -3,7 +3,7 @@
 var _= require('lodash');
 var app = require('../../app');
 var sqldb = require('../../sqldb');
-var User = sqldb.model('rented.rentedUser');
+var User = sqldb.model('rentedUser');
 
 var user = User.build({provider: 'local', firstname: 'usermodel', lastname: 'usermodel',username: 'usermodel', email: 'usermodel@usermodel.com', password: 'password', role: 'owner', runIdentityCheck: false, shareCreditReport: false, createdAt: new Date()});
 

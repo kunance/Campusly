@@ -16,7 +16,7 @@ var Sequelize = require('sequelize'),
     relationships       = {},
     modelsPath          = '',
     definitionDir       = 'definition-files',
-    //definitionDirCustom = definitionDir + '-custom',
+ //   definitionDirCustom = definitionDir + '-custom',
     debug               = false,
     debugFD             = '',
     sequelize           = null;
@@ -66,7 +66,7 @@ function defineRelation(modelName, relationType, targetModelName, options) {
 function getFileList() {
     var i, file, isOverridden = {}, files = [], customFiles, baseFiles;
     baseFiles = fs.readdirSync(path.join(modelsPath, definitionDir));
- //   customFiles = fs.readdirSync(path.join(modelsPath, definitionDirCustom));
+  //  customFiles = fs.readdirSync(path.join(modelsPath, definitionDirCustom));
 
     //for (i = 0; i < customFiles.length; i = i + 1) {
     //    file = customFiles[i];
@@ -163,10 +163,6 @@ module.exports.model = function (name) {
     return models[name];
 };
 
-//module.exports.models = function () {
-//    return models;
-//};
-
 /**
  * Returns Sequelize object.
  * @returns {Sequelize} - Sequelize object
@@ -174,4 +170,3 @@ module.exports.model = function (name) {
 module.exports.Sequelize = function () {
     return Sequelize;
 };
-module.exports.models = models;

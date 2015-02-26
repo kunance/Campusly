@@ -2,8 +2,8 @@
 
 var _ = require('lodash');
 var sqldb = require('../../../sqldb');
-var User = sqldb.model('rented.rentedUser');
-var Education = sqldb.model('rented.userEducation');
+var User = sqldb.model('rentedUser');
+var Education = sqldb.model('userEducation');
 var passport = require('passport');
 var config = require('../../../config/environment');
 var jwt = require('jsonwebtoken');

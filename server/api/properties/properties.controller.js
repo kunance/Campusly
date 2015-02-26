@@ -2,10 +2,10 @@
 
 var _ = require('lodash');
 var sqldb = require('../../sqldb');
-var User = sqldb.model('rented.rentedUser');
-var Property = sqldb.model('rented.property');
-var PropertyOwnership = sqldb.model('rented.propertyOwnership');
-var PropertyOwner = sqldb.model('rented.propertyOwner');
+var User = sqldb.model('rentedUser');
+var Property = sqldb.model('property');
+var PropertyOwnership = sqldb.model('propertyOwnership');
+var PropertyOwner = sqldb.model('propertyOwner');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
