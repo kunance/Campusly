@@ -3,9 +3,9 @@
 
 var _ = require('lodash');
 var sqldb = require('../../../sqldb');
-var User = sqldb.model('rented.rentedUser');
-var Roommate = sqldb.model('rented.roommate');
-var Address = sqldb.model('rented.addressHistory');
+var User = sqldb.model('rentedUser');
+var Roommate = sqldb.model('roommate');
+var Address = sqldb.model('addressHistory');
 var passport = require('passport');
 var config = require('../../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -33,7 +33,8 @@ function respondWith(res, statusCode) {
 }
 
 exports.newRoommate = function(req, res, next) {
-  if(req.body.id === req.user.id) res.send(500);
+  if(req.body.id === req.user.id) {res.send(403)}
+  else {
   req.body.userId = req.user.id;
   req.body.createdAt = new Date();
   req.body.fromDate = new Date();
@@ -45,6 +46,7 @@ exports.newRoommate = function(req, res, next) {
       res.json(room);
     })
     .catch(validationError(res));
+  }
 };
 
 

@@ -209,7 +209,7 @@
                 <!--<img class="img-circle" ng-if="!roommate.relatedRoommateId.profileImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" height="50px" style="margin-top: 10px"/>-->
               </div>
               <div class="col-md-9">
-                <strong>{{pet.type}}</strong> <a ng-click="myProfile.deletePet(pet)" class="float-right">[X]</a><br/>
+                <strong>{{pet.type}}</strong> <a ui-sref=".editPet({id: pet.id})" class="float-right">Edit</a><br/>
                 <small>{{pet.breed}}</small>
                 <br/>
                 <small> {{pet.weightLbs}}</small>
@@ -220,12 +220,35 @@
           </div>
         </div>
       </div>
-
-
-
     </div>
 
+    <div class="row">
+      <h3>Vehicles ({{myProfile.vehicles.length}})</h3>
+      <hr/>
 
+      <div class="">
+        <p ng-if="!myProfile.vehicles.length">&nbsp U dont have any vehicles</p>
+        <div class="col-md-3">
+          <button class="btn btn-primary float-right" ui-sref=".addVehicle"> Add vehicle</button>
+        </div>
+        <div ng-if="myProfile.vehicles.length" ng-repeat="vehicle in myProfile.vehicles track by $index">
+          <div class="col-md-3">
+            <div class="box" ng-class="{'address-primary': vehicle}">
+              <div class="col-md-3">
+                <img ng-src="assets/images/r.jpg" height="50px" style="margin-top: 10px;"/>
+                <!--<img class="img-circle" ng-if="roommate.relatedRoommateId.profileImage" ng-src="api/images{{roommate.relatedRoommateId.profileImage}}" height="50px" style="margin-top: 10px"/>-->
+                <!--<img class="img-circle" ng-if="!roommate.relatedRoommateId.profileImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" height="50px" style="margin-top: 10px"/>-->
+              </div>
+              <div class="col-md-9">
+                <strong>{{vehicle.year}} {{vehicle.model}} {{vehicle.make}}</strong> <a ui-sref=".editVehicle({id: vehicle.id})" class="float-right">Edit</a><br/>
+                <small>{{vehicle.color}} | {{vehicle.licensePlate}}</small>
+              </div>
+              <div class="clear"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>
