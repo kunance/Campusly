@@ -782,6 +782,42 @@ footer .logo {
   body .my-listings .list-item .info .value {
     width: 100%;
   }
+  
+  body .my-profile .about-me .picture {
+    width: 100%;
+    text-align: center;
+  }
+
+  body .my-profile .about-me dl:last-child {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: -5px;
+  }
+
+  body .my-profile .about-me dl dt {
+    font-size: .9em;
+    margin-bottom: 0px;
+    color: #ccc;
+    width: 50%;
+    float: left;
+  }
+
+  body .my-profile .about-me dl dd {
+    float: left;
+    margin-bottom: 5px;
+    color: #000;
+    width: 50%;
+  }
+
+  body .my-profile .about-me dl dt, body .my-profile .about-me dl dd {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+
+  body .my-profile div[class^="col-"]:first-child {
+    border: none;
+  }
 
 }
 
@@ -966,7 +1002,6 @@ nav.dashboard-submenu > label {
   background: #fff;
   box-shadow: 2px 2px 2px 0px #d3d3d3;
   position: relative;
-  margin: 5px;
 }
 
 .well {
@@ -994,15 +1029,17 @@ nav.dashboard-submenu > label {
   height: 5em;
   width: 5em;
 }
-.looking-for-room p.quote::before, .looking-for-room p.quote::after{
+p.quote::before, .looking-for-room p.quote::after{
   content: "\"";
 }
 
-.looking-for-room p.quote{
-  font-family: "Proxima Nova";
+p.quote{
+  font-size: .8em;
+  font-family: Georgia;
   text-align: justify;
   line-height: 150%;
   font-style: italic;
+  color: #7b7b7b;
 }
 .looking-for-room h4.user-name{
   color: #000000;
@@ -1543,4 +1580,32 @@ h2.section-title:nth-child(n+2) {
   vertical-align: middle;
   text-decoration: underline;
   color: #fff;
+}
+
+/* My Profile */
+
+.my-profile .about-me .picture {
+  width: 30%;
+  height: 150px;
+  display: inline-block;
+  float:left;
+}
+.my-profile .about-me .picture img{
+  height: 130px;
+  width: 130px;
+}
+
+.my-profile .about-me dl dt {
+  font-size: .75em;
+  margin-bottom: 0px;
+  color: #ccc;
+}
+
+.my-profile .about-me dl dd {
+  margin-bottom: 5px;
+  color: #000;
+}
+
+.my-profile div[class^="col-"]:first-child {
+  border-right: 1px solid #e8e8e8;
 }

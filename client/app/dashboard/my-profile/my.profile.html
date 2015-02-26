@@ -1,255 +1,40 @@
-<div class="container" cg-busy="{promise:myProfile.initializeData.$promise, message:'Loading Your Profile', delay:50}">
-  <br/>
-  <tabset class="dashboard-sidebar">
-    <tab ng-repeat="tab in myProfile.tabs" heading="{{tab.title}}"
-         active="tab.active" ui-sref="{{tab.route}}"></tab>
-
-  </tabset>
-<!--<pre>{{myProfile.roommates | json}}</pre>-->
-<div ui-view="">
-  <div class="row">
-    <div class="col-sm-12">
-
-      <div class="row well">
-        <h3>Your informations</h3>
-        <hr/>
-        <div class="col-sm-2">
-          <img class="" ng-if="myProfile.tempMe.profileImage" ng-src="api/images{{myProfile.tempMe.profileImage}}" height="130px"/>
-          <img class="" ng-if="!myProfile.tempMe.profileImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" height="130px"/>
-          <input type="file" nv-file-select uploader="myProfile.uploader" id="fileUpload"/>
-          <ul>
-            <li ng-repeat="item in myProfile.uploader.queue">
-              Name: <span ng-bind="item.file.name"></span><br/>
-              <button ng-click="item.upload()">upload</button>
-            </li>
-          </ul>
+<div class="container my-profile" cg-busy="{promise:myProfile.initializeData.$promise, message:'Loading Your Profile', delay:50}">
+  <div ui-view="">
+    <h2> Your Profile </h2>
+    <div class="row white-box about-me">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="picture">
+          <img src="../assets/fake/boy.jpg" class="img-circle" alt="">
         </div>
-
-        <form class="form" name="personalDataForm" ng-submit="myProfile.changePersonalData(personalDataForm)" novalidate>
-
-          <!--<img class="" ng-if="info.me.userImage" ng-src="/api/images{{info.me.userImage}}" height="130px"/>-->
-          <!--<img class="" ng-if="!info.me.userImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" height="130px"/>-->
-
-
-          <div class="col-sm-5">
-            <div class="row">
-              <div class="col-sm-4">
-                <label for="firstname">First name</label>
-                <input type="text" id="firstname" name="firstname" class="form-control" ng-model="myProfile.tempMe.firstname"/>
-              </div>
-              <div class="col-sm-4">
-                <label for="lastname">Last name</label>
-                <input type="text" id="lastname" name="lastname" class="form-control" ng-model="myProfile.tempMe.lastname"/>
-              </div>
-              <div class="col-sm-4">
-                <label for="phone">Phone number:</label>
-                <input type="text" id="phone" name="phone" class="form-control" ui-mask="999-999-9999" ng-model="myProfile.tempMe.phone"/>
-              </div>
-            </div>
-            <!--<div class="row">-->
-            <!--<div class="col-sm-6">-->
-            <!--<label for="University">University</label>-->
-            <!--<input type="text" id="University" name="University" class="form-control" ng-model="myProfile.education.educationCenterName"/>-->
-            <!--</div>-->
-            <!--<div class="col-sm-3">-->
-            <!--<label for="Mayor">Mayor</label>-->
-            <!--<input type="text" id="Mayor" name="Mayor" class="form-control" ng-model="myProfile.education.major"/>-->
-            <!--</div>-->
-            <!--<div class="col-sm-3">-->
-            <!--<label for="Year">Year</label>-->
-            <!--<input type="text" id="Year" name="Year" class="form-control" ng-model="myProfile.education.year"/>-->
-            <!--</div>-->
-            <!---->
-            <!--</div>-->
-          </div>
-
-          <div class="col-sm-5">
-            <label for="about">About me</label>
-            <textarea name="aboutMe" id="about" cols="30" rows="4" placeholder="about me" data-ng-model="myProfile.tempMe.aboutMe"  class="form-control" ></textarea>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <button type="submit" class="btn btn-primary float-right" ng-disabled="personalDataForm.$invalid || !personalDataForm.$dirty"> Update</button>
-            </div>
-          </div>
-        </form>
+        <dl>
+          <dt>Name</dt>
+          <dd>Joao Mateus Scarpa</dd>
+          <dt>School</dt>
+          <dd>Caltech</dd>
+          <dt>Year</dt>
+          <dd>2016</dd>
+          <dt>Major</dt>
+          <dd>Computer Science</dd>
+          <dt>About me</dt>
+          <dd>
+            <p class="quote">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. At fugiat, magni iusto nostrum explicabo velit modi, ullam repudiandae praesentium obcaecati sunt ducimus consequatur id rerum iste excepturi nulla dicta tempore.
+            </p>
+          </dd>
+        </dl>
       </div>
-
-      <div class="row">
-        <div class="dashboard-block address-block">
-          <div class="box box-border-bottom">
-            <h3>Address Details <a class="link float-right" ui-sref=".addNewAddress" href="#"><i class="fa fa-plus"></i> Add new address</a></h3>
-          </div>
-          <div class="box">
-            <div class="row">
-              <p ng-if="!myProfile.address.length">&nbsp U dont have any addresses, click "Add new address" to create one</p>
-              <div ng-if="myProfile.address.length" ng-repeat="(index,address) in myProfile.address">
-                <div class="col-md-3">
-                  <div class="box" ng-class="{'address-primary': address.present}">
-                    <h4><strong>{{myProfile.me.firstname}} {{myProfile.me.lastname}}</strong> <a href="#" ui-sref=".editAddress({id: address.id})" class="float-right">Edit</a></h4>
-                  <div class="row">
-                    <div class="col-md-4">
-                     Street:
-                   </div>
-                    <div class="col-md-8">
-                      {{address.streetAddress}}
-                   </div>
-                  </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        Number:
-                      </div>
-                      <div class="col-md-8">
-                        {{address.streetNumeric}}
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        country:
-                      </div>
-                      <div class="col-md-8">
-                        {{address.state}}
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        CIty:
-                      </div>
-                      <div class="col-md-8">
-                        {{address.city}}
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        Zip code:
-                      </div>
-                      <div class="col-md-8">
-                        {{address.zip}}
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        Apt:
-                      </div>
-                      <div class="col-md-8">
-                        {{address.apt}}
-                      </div>
-                    </div>
-                    <div class="clear"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <dl>
+          <dt>Phone Number</dt>
+          <dd>949-223-4563</dd>
+          <dt>Address</dt>
+          <dd>3454 Balboa Ave. Unit C</dd>
+          <dt>City State Zip</dt>
+          <dd>San Diego, CA, 92453</dd>
+          <dt>Time at address</dt>
+          <dd>1 year and 3 months</dd>
+        </dl>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="box box-border-bottom">
-          <h3>Roommates ({{myProfile.roommates.length}})<a class="link float-right" ng-click="myProfile.addNewRoommate(selectedMember)"><i class="fa fa-plus"></i> Add roommate</a></h3>
-        </div>
-<div class="row">
-  <angucomplete-alt id="members"
-                    placeholder="Search for roomate"
-                    pause="400"
-                    selected-object="selectedMember"
-                    local-data="myProfile.users.data"
-                    search-fields="full"
-                    title-field="firstname,lastname"
-                    description-field="email"
-                    image-field="profileImage"
-                    input-class="form-control form-control-small"
-                    match-class="redFont"/>
-</div>
-        <div class="box">
-          <div class="row">
-            <p ng-if="!myProfile.roommates.length">&nbsp U dont have any roommates, select roommate and click "Add roommate"</p>
-            <div ng-if="myProfile.roommates.length" ng-repeat="roommate in myProfile.roommates track by $index">
-              <div class="col-md-3">
-                <div class="box" ng-class="{'address-primary': roommate}">
-                  <div class="col-md-3">
-                    <img class="img-circle" ng-if="roommate.relatedRoommateId.profileImage" ng-src="api/images{{roommate.relatedRoommateId.profileImage}}" height="50px" style="margin-top: 10px"/>
-                     <img class="img-circle" ng-if="!roommate.relatedRoommateId.profileImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" height="50px" style="margin-top: 10px"/>
-                  </div>
-                  <div class="col-md-9">
-                  <strong>{{roommate.relatedRoommateId.firstname}} {{roommate.relatedRoommateId.lastname}}</strong> <a ng-click="myProfile.removeRoommate(roommate)" class="float-right">[X]</a>
-                  <small>{{roommate.relatedRoommateId.email}}</small>
-                    <br/>
-                    <small>{{roommate.addressInfo[0].city}} {{roommate.addressInfo[0].zip}}</small>
-                    <br/>
-                    <small>{{roommate.addressInfo[0].streetAddress}} {{roommate.addressInfo[0].streetNumeric}}</small>
-                    </div>
-
-                  <div class="clear"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <h3>Pets ({{myProfile.pets.length}})</h3>
-      <hr/>
-
-      <div class="">
-        <p ng-if="!myProfile.pets.length">&nbsp U dont have any pets</p>
-          <div class="col-md-3">
-            <button class="btn btn-primary float-right" ui-sref=".addPet"> Add pet</button>
-          </div>
-        <div ng-if="myProfile.pets.length" ng-repeat="pet in myProfile.pets track by $index">
-          <div class="col-md-3">
-            <div class="box" ng-class="{'address-primary': pet}">
-              <div class="col-md-3">
-                <img ng-src="assets/images/r.jpg" height="50px" style="margin-top: 10px;"/>
-                <!--<img class="img-circle" ng-if="roommate.relatedRoommateId.profileImage" ng-src="api/images{{roommate.relatedRoommateId.profileImage}}" height="50px" style="margin-top: 10px"/>-->
-                <!--<img class="img-circle" ng-if="!roommate.relatedRoommateId.profileImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" height="50px" style="margin-top: 10px"/>-->
-              </div>
-              <div class="col-md-9">
-                <strong>{{pet.type}}</strong> <a ui-sref=".editPet({id: pet.id})" class="float-right">Edit</a><br/>
-                <small>{{pet.breed}}</small>
-                <br/>
-                <small> {{pet.weightLbs}}</small>
-              </div>
-
-              <div class="clear"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <h3>Vehicles ({{myProfile.vehicles.length}})</h3>
-      <hr/>
-
-      <div class="">
-        <p ng-if="!myProfile.vehicles.length">&nbsp U dont have any vehicles</p>
-        <div class="col-md-3">
-          <button class="btn btn-primary float-right" ui-sref=".addVehicle"> Add vehicle</button>
-        </div>
-        <div ng-if="myProfile.vehicles.length" ng-repeat="vehicle in myProfile.vehicles track by $index">
-          <div class="col-md-3">
-            <div class="box" ng-class="{'address-primary': vehicle}">
-              <div class="col-md-3">
-                <img ng-src="assets/images/r.jpg" height="50px" style="margin-top: 10px;"/>
-                <!--<img class="img-circle" ng-if="roommate.relatedRoommateId.profileImage" ng-src="api/images{{roommate.relatedRoommateId.profileImage}}" height="50px" style="margin-top: 10px"/>-->
-                <!--<img class="img-circle" ng-if="!roommate.relatedRoommateId.profileImage" ng-src="http://images.sodahead.com/polls/003831759/331109413_question_mark_face_answer_5_xlarge.jpeg" height="50px" style="margin-top: 10px"/>-->
-              </div>
-              <div class="col-md-9">
-                <strong>{{vehicle.year}} {{vehicle.model}} {{vehicle.make}}</strong> <a ui-sref=".editVehicle({id: vehicle.id})" class="float-right">Edit</a><br/>
-                <small>{{vehicle.color}} | {{vehicle.licensePlate}}</small>
-              </div>
-              <div class="clear"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
-</div>
 </div>
