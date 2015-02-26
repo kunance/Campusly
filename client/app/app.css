@@ -559,29 +559,29 @@ For mailchimp sign-up - not needed in main app
 /* ==========================================================================
    Icon class
    ========================================================================== */
-.icons {
-  width: 1.5em;
-}
+   .icons {
+    width: 1.5em;
+  }
 
 /* ==========================================================================
    Icon list
    ========================================================================== */
-.icon-list {
-  list-style: none;
-}
+   .icon-list {
+    list-style: none;
+  }
 
-.icon-list .icons {
-  margin-right: 5px;
-}
+  .icon-list .icons {
+    margin-right: 5px;
+  }
 
-.icon-list li {
-  font-size: 0.75em;
-  padding: 5px;
-}
+  .icon-list li {
+    font-size: 0.75em;
+    padding: 5px;
+  }
 
-ul > li {
-  margin-left: 15px;
-}
+  ul > li {
+    margin-left: 15px;
+  }
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
@@ -697,33 +697,38 @@ ul > li {
     font-weight: 600;
   }
 
-  /* ==========================================================================
-  Custom style h1
-  24px semi-bold
-  ========================================================================== */
-  h2{
-    font-size: 2em;
-    font-weight: 600;
-  }
+/* ==========================================================================
+Custom style h1
+24px semi-bold
+========================================================================== */
+h2{
+  font-size: 2em;
+  font-weight: 600;
+}
 
-  /* ==========================================================================
-  Custom style h1
-  18px semi-bold
-  ========================================================================== */
-  h3{
-    font-size: 1.2em;
-  }
+/* ==========================================================================
+Custom style h1
+18px semi-bold
+========================================================================== */
+h3{
+  font-size: 1.2em;
+}
 
-  .lead-msg {
-    padding: 50px 100px;
-  }
-  footer .logo {
-    text-align: left;
-    margin-bottom: 0px;
-  }
+.lead-msg {
+  padding: 50px 100px;
+}
+footer .logo {
+  text-align: left;
+  margin-bottom: 0px;
+}
 }
 
 @media (max-width: 768px) {
+
+  body .jumbotron {
+    margin-top: -120px;
+    padding-top: 120px;
+  }
 
   body nav.dashboard-submenu ul li {
     width: 100%;
@@ -759,7 +764,7 @@ ul > li {
     width: 40px;
     height: 40px;
   }
-  
+
   body .my-listings .list-item .edit {
     width: 100%;
     text-align: center;
@@ -1477,10 +1482,10 @@ h2.section-title:nth-child(n+2) {
 .flip-container {
   perspective: 1000;
 }
-  /* flip the pane when hovered */
-  .flip-container:hover .flipper, .flip-container.hover .flipper {
-    transform: rotateY(180deg);
-  }
+/* flip the pane when hovered */
+.flip-container:hover .flipper, .flip-container.hover .flipper {
+  transform: rotateY(180deg);
+}
 
 .flip-container, .front, .back {
   height: 300px;
@@ -1505,19 +1510,22 @@ h2.section-title:nth-child(n+2) {
 
 /* front pane, placed above back */
 .front {
+  width: calc(100% + 40px);
+  border-radius: 5px;
+  transform: rotateY(180deg);
+  display: table;
   z-index: 2;
-  /* for firefox 31 */
+  margin-left: -20px;
   transform: rotateY(0deg);
 }
 
-/* back, initially hidden pane */
 .back {
+  margin-left: -20px;
   width: calc(100% + 40px);
   border-radius: 5px;
-  background: #f7953d;
-  margin: -20px;
-  transform: rotateY(180deg);
   display: table;
+  background: #f7953d;
+  transform: rotateY(180deg);
 }
 
 .back h2 {
