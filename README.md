@@ -43,12 +43,34 @@ Thats all! Now go and open up your browser at [http://localhost:3000](http://loc
 - [DBConvert for MySQL & PostgreSQL](https://dbconvert.com/convert-mysql-to-postgresql-pro.php) - Is a reliable database converter performing data migration from MySQL to PostgreSQL and in opposite way. 
 - [sequelize-pg-generator](https://www.npmjs.com/package/sequelize-pg-generator) - This module is for auto generating Sequelize model from PostgreSQL databases. It reverse engineers your database and generates separate model files for each table.
 
-Convert RentedSchema.sql (MySQL) schema and apply it to postgresql DB using [DBConvert for MySQL & PostgreSQL trial](https://dbconvert.com/convert-mysql-to-postgresql-pro.php) or one of the other methods listed in [Converting from other Databases to PostgreSQL](https://wiki.postgresql.org/wiki/Converting_from_other_Databases_to_PostgreSQL)
+Convert RentedSchema_v2.sql (MySQL) schema and apply it to postgresql DB using [DBConvert for MySQL & PostgreSQL trial](https://dbconvert.com/convert-mysql-to-postgresql-pro.php) or one of the other methods listed in [Converting from other Databases to PostgreSQL](https://wiki.postgresql.org/wiki/Converting_from_other_Databases_to_PostgreSQL). Make sure that column names are camelCase, like they were in mySQL.
 
-NOTE: when converting to PostgreSQL it might be necessarry to shorten some index names dou to PostreSql index name length limitation.
+NOTE: when converting to PostgreSQL it might be necessarry to shorten some index names due to PostreSql index name length limitation. In our case i did following changes:
 
-Use [sequelize-pg-generator](https://www.npmjs.com/package/sequelize-pg-generator) to connect to PG database and generate sequelize models out of it.
+apartment_complex_floor_plan_PRIMARY_apartment_complex_floor_plan
+apartment_complex_transportation_PRIMARY_apartment_complex_transportation
+apartment_complex_transportation_PRIMARY_apartment_complex_transportation
 
+renamed to:
+
+apartment_complex_floor_plan_PRIMARY
+apartment_complex_transportation_PRIMARY
+apartment_complex_transportation_PRIMARY
+
+Once we have schema applied to PG, Use [sequelize-pg-generator](https://www.npmjs.com/package/sequelize-pg-generator) to connect to PG database and generate javascript models (use config file and make sure to set useSchemaName to false while generating models). All models will be generated correctly.
+CLI command: spgen -c <path to config file>
+config file is located at server/models/config/config.js
+
+Note: it's possible that some models will have to be extended manually. So far it's just rentedUser model which was manually added instance methods, save hooks etc (for salt, crypting etc..)
+
+Note: when instatiating Sequelize, sequelize-pg-generator uses ‘postgre’ as default sql dialect.. If other DB is used instead of PG (i.e. MySQL) it have to be stated when instatiating Sequelize.
+
+### Generation models on MAC (lowercase issue still not solved)
+Use RazorSQL to convert MySql Rented database schema ( all tables ) into Postgres schema ... note that I haven't found a way to do this with views yet
+Create a Postgres database Rented ( delete your old one first if applicable )
+run the RentedSchemaPG_v.sql in sql window connected to Postgres Rented
+cd Rented/server directory
+spgen -d Rented -u -s Rented -o models
 Note: when instatiating Sequelize, sequelize-pg-generator uses ‘postgre’ as default sql dialect.. If other DB is used instead of PG (i.e. MySQL) it have to be stated when instatiating Sequelize.
 
 ## Data model nuanaces
