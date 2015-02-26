@@ -53,13 +53,13 @@
     });
 
     // ================================================
-    // END Getter for mock data 
+    // END Getter for mock data
     // ================================================
 
 
     $scope.$parent.seo = {
-      pageTitle:'Welcome to Rented co',
-      pageDescription:'Beast and easiest way to rent a place'
+      pageTitle:'Rented Dashboard',
+      pageDescription:'secure off-campus housing community'
     };
 
     mixpanel.track("visited dashboard view, with passed object",{title:$scope.$parent.seo.pageTitle});

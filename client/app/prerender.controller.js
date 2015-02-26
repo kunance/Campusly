@@ -9,8 +9,8 @@
 
   function PrerenderController($scope) {
     $scope.seo = {
-      pageTitle: 'Welcome to rented co',
-      pageDescription: 'Best place for renting'
+      pageTitle: 'Rented Home',
+      pageDescription: 'secure off-campus housing community'
     };
   }
 

@@ -61,7 +61,7 @@ Proxima Nova custom font - to be used for the whole website
 body{
   font-family: "ProximaNova";
   color: #333333;
-  font-size: 14px;
+  font-size: 1em;
   /* background-color: #e8e8e8; */
 }
 
@@ -157,23 +157,26 @@ Style for How It Works section
 /* ==========================================================================
 Style for footer
 ========================================================================== */
-footer {
+.joinrented {
   background: url(../assets/images/footer/bg-uci.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 200px;
 }
 
-footer  a {
+.footer  a {
   color: #333333;
 }
 
-footer .logo {
+.footer .logo {
   text-align: center;
-  margin-bottom: 20px;
 }
 
-footer .link {
+.footer img {
+  margin-top: -7px;
+}
+
+.footer .link {
 
 }
 /* ==========================================================================
@@ -402,7 +405,7 @@ Large Rented button
   height: 50px;
   text-align: center;
   margin: 0 auto;
-  padding: 12px 12px;
+  padding: 8px 12px;
 }
 
 /* ==========================================================================
@@ -552,6 +555,32 @@ For mailchimp sign-up - not needed in main app
   margin-top: 50px;
 }
 
+/* ==========================================================================
+   Icon class
+   ========================================================================== */
+.icons {
+  width: 1.5em;
+}
+
+/* ==========================================================================
+   Icon list
+   ========================================================================== */
+.icon-list {
+  list-style: none;
+}
+
+.icon-list .icons {
+  margin-right: 5px;
+}
+
+.icon-list li {
+  font-size: 0.75em;
+  padding: 5px;
+}
+
+ul > li {
+  margin-left: 15px;
+}
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
@@ -643,6 +672,14 @@ For mailchimp sign-up - not needed in main app
 
   footer .logo {
     text-align: center;
+  }
+
+  .icons {
+    width: 1.2em;
+  }
+
+  .icon-list li {
+    font-size: 1.1em;
   }
 
 }
@@ -872,7 +909,7 @@ nav.dashboard-submenu ul li a.active {
   display: table-cell;
   width: 30%;
   white-space:nowrap;
-  padding:5px;  
+  padding:5px;
   text-align: center;
 }
 
