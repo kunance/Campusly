@@ -13,6 +13,7 @@
     /* jshint validthis: true */
     var vm = this;
     vm.user = {};
+    vm.user.confirmPassword = '';
     vm.errors = {};
 
     $scope.$parent.seo = {

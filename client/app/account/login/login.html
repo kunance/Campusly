@@ -10,7 +10,7 @@
     </article>
 
     <form class="main-form" name="form" ng-submit="login(form)" novalidate>
-      
+
       <label class="lbl">
         <input id="email" type="email" name="email" ng-model="user.email" placeholder="Email address (.edu required)" required>
       </label>
@@ -20,7 +20,7 @@
       </label>
 
       <div class="options">
-        <input type="submit" value="Sign me in!" class="lrg-btn submit">
+        <input type="submit" value="Sign me in!" class="lrg-btn submit" ui-sref=".signup">
         <span>Don't have an account? <a class="link" ui-sref="signup">Sign up</a></span>
       </div>
 
