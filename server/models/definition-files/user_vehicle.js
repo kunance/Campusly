@@ -28,7 +28,7 @@ module.exports = {
     modelName: "userVehicle",
     options: {
         tableName: "user_vehicle",
-    //    schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "user_vehicle_pkey"
+            unique: "idx_42150_PRIMARY"
         },
         "year": {
             type: Seq.BIGINT,
@@ -46,22 +46,22 @@ module.exports = {
             allowNull: false
         },
         "make": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "make",
             allowNull: false
         },
         "model": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "model",
             allowNull: false
         },
         "licensePlate": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "licensePlate",
             allowNull: false
         },
         "color": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "color",
             allowNull: false
         },
@@ -88,7 +88,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {

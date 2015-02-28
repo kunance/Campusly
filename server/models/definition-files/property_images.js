@@ -28,7 +28,7 @@ module.exports = {
     modelName: "propertyImages",
     options: {
         tableName: "property_images",
-   //     schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "property_images_pkey"
+            unique: "idx_41817_PRIMARY"
         },
         "listingId": {
             type: Seq.BIGINT,
@@ -54,7 +54,7 @@ module.exports = {
             referencesKey: "propertyId"
         },
         "location": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "location",
             allowNull: false
         },
@@ -75,7 +75,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "propertyListing",
-        schema: "rented",
+        schema: "public",
         table: "property_listing",
         source: "generator",
         details: {
@@ -87,7 +87,7 @@ module.exports = {
     }, {
         type: "belongsTo",
         model: "property",
-        schema: "rented",
+        schema: "public",
         table: "property",
         source: "generator",
         details: {

@@ -28,7 +28,7 @@ module.exports = {
     modelName: "university",
     options: {
         tableName: "university",
-    //    schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,15 +38,15 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "university_pkey"
+            unique: "idx_42031_PRIMARY"
         },
         "name": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "name",
             allowNull: false
         },
         "academicYearType": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('quarter', 'semester'),
             field: "academicYearType"
         },
         "streetNumeric": {
@@ -55,26 +55,26 @@ module.exports = {
             allowNull: false
         },
         "streetAddress": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "streetAddress",
             allowNull: false
         },
         "apt": {
-            type: Seq.STRING(6),
+            type: Seq.TEXT,
             field: "apt"
         },
         "city": {
-            type: Seq.STRING(30),
+            type: Seq.TEXT,
             field: "city",
             allowNull: false
         },
         "state": {
-            type: Seq.STRING(2),
+            type: Seq.TEXT,
             field: "state",
             allowNull: false
         },
         "zip": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "zip",
             allowNull: false
         },
@@ -112,7 +112,7 @@ module.exports = {
     relations: [{
         type: "hasMany",
         model: "universityCalenderQuater",
-        schema: "rented",
+        schema: "public",
         table: "university_calender_quater",
         source: "generator",
         details: {
@@ -124,7 +124,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "universityCalenderSemester",
-        schema: "rented",
+        schema: "public",
         table: "university_calender_semester",
         source: "generator",
         details: {

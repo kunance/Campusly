@@ -28,7 +28,7 @@ module.exports = {
     modelName: "addressHistory",
     options: {
         tableName: "address_history",
-     //   schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "address_history_pkey"
+            unique: "idx_41618_PRIMARY"
         },
         "streetNumeric": {
             type: Seq.INTEGER,
@@ -46,26 +46,26 @@ module.exports = {
             allowNull: false
         },
         "streetAddress": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "streetAddress",
             allowNull: false
         },
         "apt": {
-            type: Seq.STRING(6),
+            type: Seq.TEXT,
             field: "apt"
         },
         "city": {
-            type: Seq.STRING(30),
+            type: Seq.TEXT,
             field: "city",
             allowNull: false
         },
         "state": {
-            type: Seq.STRING(2),
+            type: Seq.TEXT,
             field: "state",
             allowNull: false
         },
         "zip": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "zip",
             allowNull: false
         },
@@ -85,7 +85,7 @@ module.exports = {
             referencesKey: "userId"
         },
         "aboutMe": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "aboutMe"
         },
         "present": {
@@ -109,7 +109,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {

@@ -28,7 +28,7 @@ module.exports = {
     modelName: "propertyLikes",
     options: {
         tableName: "property_likes",
-     //   schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -52,7 +52,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "property_likes_pkey"
+            unique: "idx_41849_PRIMARY"
         },
         "createdAt": {
             type: Seq.DATE,
@@ -71,7 +71,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "property",
-        schema: "rented",
+        schema: "public",
         table: "property",
         source: "generator",
         details: {
@@ -83,7 +83,7 @@ module.exports = {
     }, {
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {

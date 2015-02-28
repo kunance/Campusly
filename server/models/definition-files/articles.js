@@ -28,20 +28,20 @@ module.exports = {
     modelName: "articles",
     options: {
         tableName: "articles",
-     //   schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
         "id": {
-            type: Seq.INTEGER,
+            type: Seq.BIGINT,
             field: "id",
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "articles_pkey"
+            unique: "idx_41676_PRIMARY"
         },
         "title": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "title"
         },
         "content": {
@@ -59,7 +59,7 @@ module.exports = {
             allowNull: false
         },
         "userId": {
-            type: Seq.INTEGER,
+            type: Seq.BIGINT,
             field: "UserId"
         }
     },

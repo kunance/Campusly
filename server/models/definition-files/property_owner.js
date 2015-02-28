@@ -28,7 +28,7 @@ module.exports = {
     modelName: "propertyOwner",
     options: {
         tableName: "property_owner",
-    //    schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -37,7 +37,7 @@ module.exports = {
             field: "propertyOwnershipId",
             primaryKey: true,
             allowNull: false,
-            unique: "property_owner_pkey",
+            unique: "idx_41918_PRIMARY",
             references: "property_ownership",
             referencesKey: "propertyOwnershipId"
         },
@@ -46,7 +46,7 @@ module.exports = {
             field: "ownerId",
             primaryKey: true,
             allowNull: false,
-            unique: "property_owner_pkey",
+            unique: "idx_41918_PRIMARY",
             references: "rented_user",
             referencesKey: "ownerId"
         },
@@ -67,7 +67,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
@@ -79,7 +79,7 @@ module.exports = {
     }, {
         type: "belongsTo",
         model: "propertyOwnership",
-        schema: "rented",
+        schema: "public",
         table: "property_ownership",
         source: "generator",
         details: {

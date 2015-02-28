@@ -28,7 +28,7 @@ module.exports = {
     modelName: "universityCalenderQuater",
     options: {
         tableName: "university_calender_quater",
-     //   schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "university_calender_quater_pkey"
+            unique: "idx_42042_PRIMARY"
         },
         "universityId": {
             type: Seq.BIGINT,
@@ -109,7 +109,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "university",
-        schema: "rented",
+        schema: "public",
         table: "university",
         source: "generator",
         details: {

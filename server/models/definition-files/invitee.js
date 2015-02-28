@@ -28,7 +28,7 @@ module.exports = {
     modelName: "invitee",
     options: {
         tableName: "invitee",
-   //     schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -37,15 +37,15 @@ module.exports = {
             field: "id",
             primaryKey: true,
             allowNull: false,
-            unique: "invitee_pkey"
+            unique: "idx_41690_PRIMARY"
         },
         "firstName": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "firstName",
             allowNull: false
         },
         "lastName": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "lastName",
             allowNull: false
         },
@@ -61,7 +61,7 @@ module.exports = {
             field: "roommate"
         },
         "email": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "email"
         },
         "createdAt": {
@@ -81,7 +81,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
