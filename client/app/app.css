@@ -86,7 +86,7 @@ Proxima Nova Italics
 Proxima Nova Bold
 ========================================================================== */
 @font-face{
-  font-family: "ProximaNova";
+  font-family: "ProximaNovaBold";
   font-weight: bold;
   src: url("../assets/fonts/ProximaNova/ProximaNovaBold.otf") format("opentype");
 }
@@ -819,10 +819,12 @@ footer .logo {
     border: none;
   }
 
+  body .my-profile .invitation-box a.bubble{
+  }
+
+   body .my-profile .invitation-box .add span{
+  }
 }
-
-
-
 
 /* ==========================================================================
 Dashboard styles
@@ -1470,8 +1472,6 @@ h2.section-title:nth-child(n+2) {
 
 }
 
-
-
 /* My Properties Grid */
 
 .my-properties .property {
@@ -1612,6 +1612,10 @@ h2.section-title:nth-child(n+2) {
   border-right: 1px solid #e8e8e8;
 }
 
+.my-profile .invitation-box div[class^="col-"]:first-child {
+  border: none;
+}
+
 .row {
   margin-top: 20px;
 }
@@ -1697,4 +1701,67 @@ h2.section-title:nth-child(n+2) {
 
 .my-profile .info {
   height: 80px;
+}
+
+.my-profile .invitation-box {
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 15px;
+  padding-bottom: 25px;
+}
+
+.my-profile .invitation-box .or {
+  display: table;
+}
+
+.my-profile .invitation-box .or span {
+  font-family: "ProximaNovaBold";
+  color: #000;
+  display: table-cell;
+  vertical-align: middle;
+  padding-top: 20px;
+}
+
+.my-profile .invitation-box .add, .my-profile .invitation-box .invite {
+  display: table;
+}
+
+.my-profile .invitation-box .add a.bubble, .my-profile .invitation-box .add span {
+  display: table-cell;
+  vertical-align: middle;
+}
+.my-profile .invitation-box .add span {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.my-profile .invitation-box .invite a.bubble, .my-profile .invitation-box .invite span {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.my-profile .invitation-box .invite span {
+  text-align: right;
+  padding-right: 20px;
+}
+
+.my-profile .invitation-box span {
+  color: #56bfc3;
+}
+
+.my-profile .invitation-box a.bubble{
+  display: inline-block;
+  position: relative;
+  background: #56bfc3;
+  border-radius: 50%;
+  width: 4em;
+  height: 4em; 
+}
+
+.my-profile .invitation-box .bubble i{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  color: #fff;
+
 }
