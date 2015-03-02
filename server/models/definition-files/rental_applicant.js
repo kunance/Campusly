@@ -28,7 +28,7 @@ module.exports = {
     modelName: "rentalApplicant",
     options: {
         tableName: "rental_applicant",
-   //     schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -45,7 +45,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "rental_applicant_pkey"
+            unique: "idx_41932_PRIMARY"
         },
         "rentalAppId": {
             type: Seq.BIGINT,
@@ -75,7 +75,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "rentalApplication",
-        schema: "rented",
+        schema: "public",
         table: "rental_application",
         source: "generator",
         details: {
@@ -87,7 +87,7 @@ module.exports = {
     }, {
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {

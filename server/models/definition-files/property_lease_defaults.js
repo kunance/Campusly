@@ -28,7 +28,7 @@ module.exports = {
     modelName: "propertyLeaseDefaults",
     options: {
         tableName: "property_lease_defaults",
-     //   schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "property_lease_defaults_pkey"
+            unique: "idx_41837_PRIMARY"
         },
         "propertyId": {
             type: Seq.BIGINT,
@@ -55,17 +55,17 @@ module.exports = {
             referencesKey: "ownerId"
         },
         "qtyDogsAllowed": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "qtyDogsAllowed",
             allowNull: false
         },
         "qtyCatsAllowed": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "qtyCatsAllowed",
             allowNull: false
         },
         "qtyOtherAllowed": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "qtyOtherAllowed",
             allowNull: false
         },
@@ -80,12 +80,12 @@ module.exports = {
             allowNull: false
         },
         "preferredLeaseLength": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "preferredLeaseLength",
             allowNull: false
         },
         "preferredLeaseUnit": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('day', 'week', 'month', 'year'),
             field: "preferredLeaseUnit",
             allowNull: false
         },
@@ -106,7 +106,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
@@ -118,7 +118,7 @@ module.exports = {
     }, {
         type: "belongsTo",
         model: "property",
-        schema: "rented",
+        schema: "public",
         table: "property",
         source: "generator",
         details: {

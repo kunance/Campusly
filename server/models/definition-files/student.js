@@ -28,31 +28,31 @@ module.exports = {
     modelName: "student",
     options: {
         tableName: "student",
-     //   schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
         "firstname": {
-            type: Seq.STRING(30),
+            type: Seq.TEXT,
             field: "firstname",
             allowNull: false
         },
         "lastname": {
-            type: Seq.STRING(30),
+            type: Seq.TEXT,
             field: "lastname",
             allowNull: false
         },
         "email": {
-            type: Seq.STRING(60),
+            type: Seq.TEXT,
             field: "email"
         },
         "street": {
-            type: Seq.STRING(50),
+            type: Seq.TEXT,
             field: "Street",
             allowNull: false
         },
         "city": {
-            type: Seq.STRING(40),
+            type: Seq.TEXT,
             field: "city",
             allowNull: false
         }

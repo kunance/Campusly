@@ -28,7 +28,7 @@ module.exports = {
     modelName: "userFinancial",
     options: {
         tableName: "user_financial",
-      //  schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "user_financial_pkey"
+            unique: "idx_42093_PRIMARY"
         },
         "userId": {
             type: Seq.BIGINT,
@@ -69,7 +69,7 @@ module.exports = {
             field: "spouseAnnualIncome"
         },
         "incomeProof": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "incomeProof"
         },
         "createdAt": {
@@ -89,7 +89,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {

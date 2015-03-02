@@ -28,7 +28,7 @@ module.exports = {
     modelName: "apartmentComplexTransportation",
     options: {
         tableName: "apartment_complex_transportation",
-     //   schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "apartment_complex_transportation_pkey"
+            unique: "idx_41666_PRIMARY"
         },
         "complexId": {
             type: Seq.BIGINT,
@@ -48,7 +48,7 @@ module.exports = {
             referencesKey: "complexId"
         },
         "shuttleRoute": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "shuttleRoute",
             allowNull: false
         },
@@ -74,7 +74,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "apartmentComplex",
-        schema: "rented",
+        schema: "public",
         table: "apartment_complex",
         source: "generator",
         details: {
