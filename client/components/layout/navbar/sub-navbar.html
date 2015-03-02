@@ -1,9 +1,11 @@
 <nav class="dashboard-submenu">
+  <label for="toggle-mobile-menu">&#9776; Menu</label>
+  <input id="toggle-mobile-menu" type="checkbox"/>
   <ul>
     <div class="container">
-      <li ng-repeat="tab in dashboard.tabs">
-        <a ui-sref="{{tab.sref}}" active="tab.active" disabled="tab.disabled" class="active" select="setIndex($index)" > {{tab.title}}</a>
-      </li>
+      <a ui-sref="{{tab.sref}}" active="tab.active" disabled="tab.disabled" class="active" select="setIndex($index)" ng-repeat="tab in dashboard.tabs">
+        <li>{{tab.title}}</li>
+      </a>
     </div>
   </ul>
 </nav>
