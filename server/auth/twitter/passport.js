@@ -18,7 +18,9 @@ exports.setup = function(User, config) {
             username: profile.username,
             role: 'user',
             provider: 'twitter',
-            twitter: profile._json
+            twitter: profile._json,
+            confirmedEmail:false,
+            salt:'temporary'
           });
           user.save()
             .then(function(user) {

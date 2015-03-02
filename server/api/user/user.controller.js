@@ -97,7 +97,7 @@ exports.me = function(req, res, next) {
  */
 exports.create = function(req, res, next) {
   console.log(req.body);
-  req.body.salt = "hardcoded";
+  req.body.salt = "temporary";
   req.body.confirmedEmail = false;
   req.body.runIdentityCheck= false;
   req.body.shareCreditReport= false;

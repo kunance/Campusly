@@ -25,7 +25,9 @@ exports.setup = function(User, config) {
               role: 'user',
               username:  profile.displayName,
               provider: 'facebook',
-              consumerSecretOAuthId:profile.id
+              consumerSecretOAuthId:profile.id,
+              confirmedEmail:false,
+              salt:'temporary'
             });
             user.save()
               .then(function(user) {

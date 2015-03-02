@@ -15,6 +15,7 @@ module.exports = {
     options: {
       logging: false,
       dialect:'postgres',
+      "protocol": "postgres",
       host:'localhost',
       define: {
         timestamps: false

@@ -17,7 +17,7 @@ router
   }))
 
   .get('/callback', passport.authenticate('google', {
-  failureRedirect: '/signup',
+  failureRedirect: '/dashboard',
   session: false
 }), auth.setTokenCookie);
 
