@@ -6,9 +6,9 @@
   .module('app.dashboard')
   .controller('DashboardCtrl',DashboardCtrl);
 
-  DashboardCtrl.$inject=['common', '$scope', '$http'];
+  DashboardCtrl.$inject=['common', '$scope', '$http', '$window'];
 
-  function DashboardCtrl(common, $scope, $http) {
+  function DashboardCtrl(common, $scope, $http, $window) {
     var vm = this;
     var Auth = common.Auth;
     vm.address = { };
@@ -124,19 +124,26 @@
       ]
     }
 
+    function orderSliderButtons() {
+      setTimeout(function() {
+        $(".slider").each(function(index) {
+          var slider = $(".slider").eq(index)
+          var dotsX = parseInt(slider.find(".slick-dots").css("left"));
+          var dotsSize = parseInt(slider.find(".slick-dots").css("width"));
+          var nextBtnX = dotsX + dotsSize + 10;
+
+          slider.find(".slick-next").css("left", nextBtnX);
+        });
+      }, 500);
+    }
+
+    $(window).resize(function(){
+      orderSliderButtons();
+    });
+
+    angular.element(document).ready(function () {
+      orderSliderButtons();      
+    });
+
   }
-
-  angular.element(document).ready(function () {
-    setTimeout(function() {
-      $(".slider").each(function(index) {
-        var slider = $(".slider").eq(index)
-        var dotsX = parseInt(slider.find(".slick-dots").css("left"));
-        var dotsSize = parseInt(slider.find(".slick-dots").css("width"));
-        var nextBtnX = dotsX + dotsSize + 10;
-
-        slider.find(".slick-next").css("left", nextBtnX);
-      });
-    }, 500);
-  });
-
 }());
