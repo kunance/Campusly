@@ -28,7 +28,7 @@ module.exports = {
     modelName: "userOccupation",
     options: {
         tableName: "user_occupation",
-    //    schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,15 +38,15 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "user_occupation_pkey"
+            unique: "idx_42103_PRIMARY"
         },
         "role": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "role",
             allowNull: false
         },
         "company": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "company",
             allowNull: false
         },
@@ -88,7 +88,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {

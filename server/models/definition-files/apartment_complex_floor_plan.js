@@ -28,7 +28,7 @@ module.exports = {
     modelName: "apartmentComplexFloorPlan",
     options: {
         tableName: "apartment_complex_floor_plan",
-   //     schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "apartment_complex_floor_plan_pkey"
+            unique: "idx_41646_PRIMARY"
         },
         "complexId": {
             type: Seq.BIGINT,
@@ -48,22 +48,22 @@ module.exports = {
             referencesKey: "complexId"
         },
         "bedrooms": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "bedrooms",
             allowNull: false
         },
         "bathrooms": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "bathrooms",
             allowNull: false
         },
         "parking": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "parking",
             allowNull: false
         },
         "livingArea": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "living_area",
             allowNull: false
         },
@@ -89,7 +89,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "apartmentComplex",
-        schema: "rented",
+        schema: "public",
         table: "apartment_complex",
         source: "generator",
         details: {

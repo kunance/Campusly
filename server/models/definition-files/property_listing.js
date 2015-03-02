@@ -28,7 +28,7 @@ module.exports = {
     modelName: "propertyListing",
     options: {
         tableName: "property_listing",
-      //  schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -63,29 +63,29 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "property_listing_pkey"
+            unique: "idx_41905_PRIMARY"
         },
         "leaseEndDate": {
             type: Seq.DATE,
             field: "leaseEndDate"
         },
         "leaseLength": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "leaseLength",
             allowNull: false
         },
         "leaseLengthUnit": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('day', 'week', 'month', 'year'),
             field: "leaseLengthUnit",
             allowNull: false
         },
         "leaseType": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('sub-lease', 'month-to-month', 'regular'),
             field: "leaseType",
             allowNull: false
         },
         "gender": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('"no preference"', '"male preferred"', '"female preferred"', '"male only"', '"female only"'),
             field: "gender",
             allowNull: false
         },
@@ -95,7 +95,7 @@ module.exports = {
             allowNull: false
         },
         "roomType": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('single', 'double', 'triple', 'loft', '"living room"'),
             field: "roomType",
             allowNull: false
         },
@@ -104,7 +104,7 @@ module.exports = {
             field: "sharedBathroom"
         },
         "numRoomates": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "numRoomates",
             allowNull: false
         },
@@ -121,19 +121,19 @@ module.exports = {
             field: "smokingAllowed"
         },
         "description": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "description"
         },
         "status": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('available', '"rental pending"', 'rented'),
             field: "status"
         },
         "contactPhone": {
-            type: Seq.INTEGER,
+            type: Seq.BIGINT,
             field: "contactPhone"
         },
         "contactEmail": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "contactEmail",
             allowNull: false
         },
@@ -154,7 +154,7 @@ module.exports = {
     relations: [{
         type: "hasMany",
         model: "propertyImages",
-        schema: "rented",
+        schema: "public",
         table: "property_images",
         source: "generator",
         details: {
@@ -166,7 +166,7 @@ module.exports = {
     }, {
         type: "belongsTo",
         model: "property",
-        schema: "rented",
+        schema: "public",
         table: "property",
         source: "generator",
         details: {
@@ -178,7 +178,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "property",
-        schema: "rented",
+        schema: "public",
         table: "property",
         source: "generator",
         details: {

@@ -28,7 +28,7 @@ module.exports = {
     modelName: "property",
     options: {
         tableName: "property",
-    //    schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "property_pkey"
+            unique: "idx_41807_PRIMARY"
         },
         "streetNumeric": {
             type: Seq.INTEGER,
@@ -46,31 +46,31 @@ module.exports = {
             allowNull: false
         },
         "streetAddress": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "streetAddress",
             allowNull: false
         },
         "city": {
-            type: Seq.STRING(30),
+            type: Seq.TEXT,
             field: "city",
             allowNull: false
         },
         "state": {
-            type: Seq.STRING(2),
+            type: Seq.TEXT,
             field: "state",
             allowNull: false
         },
         "zip": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "zip",
             allowNull: false
         },
         "apt": {
-            type: Seq.STRING(6),
+            type: Seq.TEXT,
             field: "apt"
         },
         "bldg": {
-            type: Seq.STRING(10),
+            type: Seq.TEXT,
             field: "bldg"
         },
         "latitude": {
@@ -82,27 +82,27 @@ module.exports = {
             field: "longitude"
         },
         "type": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('apt', 'sfh', 'townhouse'),
             field: "type"
         },
         "description": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "description"
         },
         "bedrooms": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "bedrooms"
         },
         "bathrooms": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "bathrooms"
         },
         "parkingSpots": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "parkingSpots"
         },
         "livingAreaSqFt": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "livingAreaSqFt"
         },
         "hoaFee": {
@@ -114,7 +114,7 @@ module.exports = {
             field: "otherFee"
         },
         "status": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('avail', 'pending', 'rented'),
             field: "status"
         },
         "createdAt": {
@@ -134,7 +134,7 @@ module.exports = {
     relations: [{
         type: "hasMany",
         model: "lease",
-        schema: "rented",
+        schema: "public",
         table: "lease",
         source: "generator",
         details: {
@@ -146,7 +146,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "propertyImages",
-        schema: "rented",
+        schema: "public",
         table: "property_images",
         source: "generator",
         details: {
@@ -158,7 +158,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "propertyLeaseDefaults",
-        schema: "rented",
+        schema: "public",
         table: "property_lease_defaults",
         source: "generator",
         details: {
@@ -170,7 +170,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "propertyLikes",
-        schema: "rented",
+        schema: "public",
         table: "property_likes",
         source: "generator",
         details: {
@@ -182,7 +182,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "propertyListing",
-        schema: "rented",
+        schema: "public",
         table: "property_listing",
         source: "generator",
         details: {
@@ -194,7 +194,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "propertyOwnership",
-        schema: "rented",
+        schema: "public",
         table: "property_ownership",
         source: "generator",
         details: {
@@ -206,7 +206,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "rentalApplication",
-        schema: "rented",
+        schema: "public",
         table: "rental_application",
         source: "generator",
         details: {
@@ -218,7 +218,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "roomListing",
-        schema: "rented",
+        schema: "public",
         table: "room_listing",
         source: "generator",
         details: {
@@ -230,7 +230,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "propertyListing",
-        schema: "rented",
+        schema: "public",
         table: "property_listing",
         source: "generator",
         details: {
@@ -244,7 +244,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
@@ -258,7 +258,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
@@ -272,7 +272,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {

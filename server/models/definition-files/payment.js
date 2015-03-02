@@ -18,8 +18,8 @@ var orm     = require('models\index.js'),
 module.exports = model;
 
 // Some utility methods:
-util.getRelation("relatedPayeeId").onDelete = 'CASCADE'; 
-util.getAttribute("id").comment = 'This is the comment'; 
+util.getRelation("relatedPayeeId").onDelete = 'CASCADE';
+util.getAttribute("id").comment = 'This is the comment';
 
 ------------------------------------------------------------------------------------*/
 var orm = require('../index.js'),
@@ -28,7 +28,7 @@ module.exports = {
     modelName: "payment",
     options: {
         tableName: "payment",
-        schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "payment_pkey"
+            unique: "idx_41757_PRIMARY"
         },
         "payerId": {
             type: Seq.BIGINT,
@@ -59,7 +59,7 @@ module.exports = {
             field: "dollarAmount"
         },
         "reason": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "reason"
         },
         "rentPayment": {
@@ -71,7 +71,7 @@ module.exports = {
             field: "creditCheckPayment"
         },
         "paymentForm": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('"credit card"', 'ACH', 'cash'),
             field: "paymentForm"
         },
         "paymentDate": {
@@ -96,7 +96,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
@@ -108,7 +108,7 @@ module.exports = {
     }, {
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {

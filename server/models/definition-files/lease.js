@@ -28,7 +28,7 @@ module.exports = {
     modelName: "lease",
     options: {
         tableName: "lease",
-   //     schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "lease_pkey"
+            unique: "idx_41707_PRIMARY"
         },
         "propertyId": {
             type: Seq.BIGINT,
@@ -67,7 +67,7 @@ module.exports = {
             allowNull: false
         },
         "paymentInterval": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('weekly', 'monthly', 'yearly'),
             field: "paymentInterval",
             allowNull: false
         },
@@ -80,7 +80,7 @@ module.exports = {
             field: "petDeposit"
         },
         "payee": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "payee"
         },
         "built": {
@@ -104,7 +104,7 @@ module.exports = {
     relations: [{
         type: "hasMany",
         model: "lessee",
-        schema: "rented",
+        schema: "public",
         table: "lessee",
         source: "generator",
         details: {
@@ -116,7 +116,7 @@ module.exports = {
     }, {
         type: "belongsTo",
         model: "property",
-        schema: "rented",
+        schema: "public",
         table: "property",
         source: "generator",
         details: {
@@ -128,7 +128,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {

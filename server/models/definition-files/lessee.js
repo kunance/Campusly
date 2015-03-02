@@ -28,7 +28,7 @@ module.exports = {
     modelName: "lessee",
     options: {
         tableName: "lessee",
-    //    schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -37,7 +37,7 @@ module.exports = {
             field: "leaseId",
             primaryKey: true,
             allowNull: false,
-            unique: "lessee_pkey",
+            unique: "idx_41715_PRIMARY",
             references: "lease",
             referencesKey: "leaseId"
         },
@@ -46,7 +46,7 @@ module.exports = {
             field: "userId",
             primaryKey: true,
             allowNull: false,
-            unique: "lessee_pkey",
+            unique: "idx_41715_PRIMARY",
             references: "rented_user",
             referencesKey: "userId"
         },
@@ -67,7 +67,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "lease",
-        schema: "rented",
+        schema: "public",
         table: "lease",
         source: "generator",
         details: {
@@ -79,7 +79,7 @@ module.exports = {
     }, {
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {

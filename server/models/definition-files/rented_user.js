@@ -24,20 +24,19 @@ util.getAttribute("id").comment = 'This is the comment';
 ------------------------------------------------------------------------------------*/
 var orm = require('../index.js'),
     Seq = orm.Sequelize();
-var crypto = require('crypto');
+    var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var validatePresenceOf = function(value) {
   return value && value.length;
 };
-
 module.exports = {
     modelName: "rentedUser",
     options: {
         tableName: "rented_user",
-      //  schema: "rented",
+        //schema: "public",
         timestamps: false,
-      getterMethods: {
+        getterMethods: {
         // Public profile information
         profile: function() {
           return {
@@ -231,14 +230,14 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "rented_user_pkey"
+            unique: "idx_41960_PRIMARY"
         },
         "username": {
-            type: Seq.STRING(50),
+            type: Seq.TEXT,
             field: "username"
         },
         "email": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "email",
             allowNull: false
         },
@@ -248,58 +247,58 @@ module.exports = {
             allowNull: false
         },
         "password": {
-            type: Seq.STRING(128),
+            type: Seq.TEXT,
             field: "password",
             allowNull: false
         },
         "firstname": {
-            type: Seq.STRING(50),
+            type: Seq.TEXT,
             field: "firstname",
             allowNull: false
         },
         "lastname": {
-            type: Seq.STRING(50),
+            type: Seq.TEXT,
             field: "lastname",
             allowNull: false
         },
         "middlename": {
-            type: Seq.STRING(50),
+            type: Seq.TEXT,
             field: "middlename"
         },
         "aboutMe": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "aboutMe"
         },
         "phone": {
-            type: Seq.INTEGER,
+            type: Seq.BIGINT,
             field: "phone"
         },
         "profileImage": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "profileImage"
         },
         "twitter": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "twitter"
         },
         "facebook": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "facebook"
         },
         "googleplus": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "googleplus"
         },
         "linkedin": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "linkedin"
         },
         "experianIdToken": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "experianIdToken"
         },
         "creditCheckToken": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "creditCheckToken"
         },
         "runIdentityCheck": {
@@ -334,27 +333,27 @@ module.exports = {
             field: "deletedAt"
         },
         "role": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "role"
         },
         "provider": {
-            type: Seq.STRING(64),
+            type: Seq.TEXT,
             field: "provider"
         },
         "facebookOAuthId": {
-            type: Seq.STRING(64),
+            type: Seq.TEXT,
             field: "facebookOAuthId"
         },
         "googleOAuthId": {
-            type: Seq.STRING(64),
+            type: Seq.TEXT,
             field: "googleOAuthId"
         },
         "twitterOAuthId": {
-            type: Seq.STRING(64),
+            type: Seq.TEXT,
             field: "twitterOAuthId"
         },
         "salt": {
-            type: Seq.STRING(128),
+            type: Seq.TEXT,
             field: "salt",
             allowNull: false
         }
@@ -362,7 +361,7 @@ module.exports = {
     relations: [{
         type: "hasMany",
         model: "addressHistory",
-        schema: "rented",
+        schema: "public",
         table: "address_history",
         source: "generator",
         details: {
@@ -374,7 +373,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "friend",
-        schema: "rented",
+        schema: "public",
         table: "friend",
         source: "generator",
         details: {
@@ -386,7 +385,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "friend",
-        schema: "rented",
+        schema: "public",
         table: "friend",
         source: "generator",
         details: {
@@ -398,7 +397,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "invitee",
-        schema: "rented",
+        schema: "public",
         table: "invitee",
         source: "generator",
         details: {
@@ -410,7 +409,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "lessee",
-        schema: "rented",
+        schema: "public",
         table: "lessee",
         source: "generator",
         details: {
@@ -422,7 +421,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "payment",
-        schema: "rented",
+        schema: "public",
         table: "payment",
         source: "generator",
         details: {
@@ -434,7 +433,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "payment",
-        schema: "rented",
+        schema: "public",
         table: "payment",
         source: "generator",
         details: {
@@ -446,7 +445,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "pet",
-        schema: "rented",
+        schema: "public",
         table: "pet",
         source: "generator",
         details: {
@@ -458,7 +457,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "propertyLeaseDefaults",
-        schema: "rented",
+        schema: "public",
         table: "property_lease_defaults",
         source: "generator",
         details: {
@@ -470,7 +469,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "propertyLikes",
-        schema: "rented",
+        schema: "public",
         table: "property_likes",
         source: "generator",
         details: {
@@ -482,7 +481,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "propertyOwner",
-        schema: "rented",
+        schema: "public",
         table: "property_owner",
         source: "generator",
         details: {
@@ -494,7 +493,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "rentalApplicant",
-        schema: "rented",
+        schema: "public",
         table: "rental_applicant",
         source: "generator",
         details: {
@@ -506,7 +505,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "roomListing",
-        schema: "rented",
+        schema: "public",
         table: "room_listing",
         source: "generator",
         details: {
@@ -518,7 +517,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "roommate",
-        schema: "rented",
+        schema: "public",
         table: "roommate",
         source: "generator",
         details: {
@@ -530,7 +529,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "roommate",
-        schema: "rented",
+        schema: "public",
         table: "roommate",
         source: "generator",
         details: {
@@ -542,7 +541,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "userCosigner",
-        schema: "rented",
+        schema: "public",
         table: "user_cosigner",
         source: "generator",
         details: {
@@ -554,7 +553,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "userCosigner",
-        schema: "rented",
+        schema: "public",
         table: "user_cosigner",
         source: "generator",
         details: {
@@ -566,7 +565,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "userEducation",
-        schema: "rented",
+        schema: "public",
         table: "user_education",
         source: "generator",
         details: {
@@ -578,7 +577,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "userFinancial",
-        schema: "rented",
+        schema: "public",
         table: "user_financial",
         source: "generator",
         details: {
@@ -590,7 +589,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "userOccupation",
-        schema: "rented",
+        schema: "public",
         table: "user_occupation",
         source: "generator",
         details: {
@@ -602,7 +601,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "userRecommendation",
-        schema: "rented",
+        schema: "public",
         table: "user_recommendation",
         source: "generator",
         details: {
@@ -614,7 +613,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "userRecommendation",
-        schema: "rented",
+        schema: "public",
         table: "user_recommendation",
         source: "generator",
         details: {
@@ -626,7 +625,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "userReference",
-        schema: "rented",
+        schema: "public",
         table: "user_reference",
         source: "generator",
         details: {
@@ -638,7 +637,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "userVehicle",
-        schema: "rented",
+        schema: "public",
         table: "user_vehicle",
         source: "generator",
         details: {
@@ -650,7 +649,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
@@ -664,7 +663,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
@@ -678,7 +677,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "lease",
-        schema: "rented",
+        schema: "public",
         table: "lease",
         source: "generator",
         details: {
@@ -692,7 +691,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
@@ -706,7 +705,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
@@ -720,7 +719,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "property",
-        schema: "rented",
+        schema: "public",
         table: "property",
         source: "generator",
         details: {
@@ -734,7 +733,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "property",
-        schema: "rented",
+        schema: "public",
         table: "property",
         source: "generator",
         details: {
@@ -748,7 +747,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "propertyOwnership",
-        schema: "rented",
+        schema: "public",
         table: "property_ownership",
         source: "generator",
         details: {
@@ -762,7 +761,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "rentalApplication",
-        schema: "rented",
+        schema: "public",
         table: "rental_application",
         source: "generator",
         details: {
@@ -776,7 +775,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "property",
-        schema: "rented",
+        schema: "public",
         table: "property",
         source: "generator",
         details: {
@@ -790,7 +789,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
@@ -804,7 +803,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
@@ -818,7 +817,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
@@ -832,7 +831,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
@@ -846,7 +845,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
@@ -860,7 +859,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {

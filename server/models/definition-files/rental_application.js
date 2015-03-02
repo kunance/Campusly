@@ -28,7 +28,7 @@ module.exports = {
     modelName: "rentalApplication",
     options: {
         tableName: "rental_application",
-    //    schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "rental_application_pkey"
+            unique: "idx_41949_id_UNIQUE"
         },
         "propertyId": {
             type: Seq.BIGINT,
@@ -48,7 +48,7 @@ module.exports = {
             referencesKey: "propertyId"
         },
         "preferredLeaseLength": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "preferredLeaseLength"
         },
         "preferredMoveIn": {
@@ -62,11 +62,11 @@ module.exports = {
             allowNull: false
         },
         "moveReason": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "moveReason"
         },
         "preferredLeaseLengthUnit": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('day', 'week', 'month', 'year'),
             field: "preferredLeaseLengthUnit"
         },
         "createdAt": {
@@ -86,7 +86,7 @@ module.exports = {
     relations: [{
         type: "hasMany",
         model: "rentalApplicant",
-        schema: "rented",
+        schema: "public",
         table: "rental_applicant",
         source: "generator",
         details: {
@@ -98,7 +98,7 @@ module.exports = {
     }, {
         type: "belongsTo",
         model: "property",
-        schema: "rented",
+        schema: "public",
         table: "property",
         source: "generator",
         details: {
@@ -110,7 +110,7 @@ module.exports = {
     }, {
         type: "belongsToMany",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {

@@ -28,7 +28,7 @@ module.exports = {
     modelName: "userRecommendation",
     options: {
         tableName: "user_recommendation",
-    //    schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "user_recommendation_pkey"
+            unique: "idx_42114_PRIMARY"
         },
         "recommendedId": {
             type: Seq.BIGINT,
@@ -60,7 +60,7 @@ module.exports = {
             allowNull: false
         },
         "content": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "content"
         },
         "createdAt": {
@@ -80,7 +80,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
@@ -92,7 +92,7 @@ module.exports = {
     }, {
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {

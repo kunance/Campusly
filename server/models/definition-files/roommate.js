@@ -28,7 +28,7 @@ module.exports = {
     modelName: "roommate",
     options: {
         tableName: "roommate",
-      //  schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "roommate_pkey"
+            unique: "idx_41974_PRIMARY"
         },
         "userId": {
             type: Seq.BIGINT,
@@ -80,7 +80,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
@@ -92,7 +92,7 @@ module.exports = {
     }, {
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {
