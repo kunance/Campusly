@@ -1418,7 +1418,7 @@ h2.section-title:nth-child(n+2) {
 
 .my-listings .list-item .info .value{
   font-size: 1.3em;
-  width: 80px;
+  width: 100px;
   padding-bottom: 3px;
   border-bottom: 2px solid #f7953d;
   margin-bottom: 5px;
@@ -1436,7 +1436,7 @@ h2.section-title:nth-child(n+2) {
 .my-listings .list-item .edit {
   width: 100px;
   position: absolute;
-  top: 0;
+  top: 30px;
   right: 15px;
   display: table;
 }
