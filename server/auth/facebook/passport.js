@@ -26,8 +26,12 @@ exports.setup = function(User, config) {
             role: 'user',
             username:  profile.displayName,
             provider: 'facebook',
-            facebookOAuthId:profile.id
+            facebookOAuthId:profile.id,
+            confirmedEmail:false,
+            salt:'temporary'
           });
+          delete user.dataValues.id;
+          console.log('ovo je user', user);
           user.save()
             .then(function(user) {
               return done(null, user);

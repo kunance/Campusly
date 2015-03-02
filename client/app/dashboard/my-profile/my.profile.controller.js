@@ -23,8 +23,6 @@
       user.addressInfo = user.relatedRoommateId.addresshistoryUsers;
     });
 
-    console.log(vm.pets);
-
     $scope.datePickers = {
       startDate: false,
       endDate:false,

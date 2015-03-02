@@ -25,11 +25,13 @@ exports.setup = function(User, config) {
             role: 'user',
             username:  profile.displayName,
             provider: profile.provider,
-            googleOAuthId:profile.id
+            googleOAuthId:profile.id,
+            confirmedEmail:false,
+            salt:'temporary'
           });
           user.save()
             .then(function(user) {
-              mandrill.welcome(user);
+      //        mandrill.welcome(user); TODO mail send cases
               return done(null, user);
             })
             .catch(function(err) {
