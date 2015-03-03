@@ -1,4 +1,7 @@
-var Room = require('./models/room-listing');
+var sqldb = require('../../sqldb');
+var Room = sqldb.model('roomListing');
+
+// var Room = require('./../../models/room-listing');
 
 
 

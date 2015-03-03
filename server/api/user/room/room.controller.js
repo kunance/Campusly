@@ -1,3 +1,85 @@
+var sqldb = require('../../../sqldb');
+var Room = sqldb.model('roomListing');
+
+// var Room = require('./../../models/room-listing');
+
+
+
 /**
- * Created by jraber on 2/26/15.
+ *   This creates room in room_listing table
+ *
+ *
+ * @param req   { propertyId: 'string',  monthlyPrice: float  [smokingAllowed]: true|false, {//TODO finish documentation }  }
+ *
+ *
+ * @param res
+ * @param next
  */
+exports.createMyRoom = function(req, res, next) {
+
+};
+
+
+/**
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
+exports.getMyRoom = function(req, res, next) {
+
+
+};
+
+
+/**
+ *
+ *  Gets all rooms fully hydrated by default
+ *
+ *  Use param  min=true for room to return ony
+ *  {
+ *  image_url:
+ *  "value": 818,
+    "distance": this is distance to university (//TODO which university ???)
+    "kind": 'single' | 'double' | 'living room'
+    "num_roomates":
+    "bathroom": "Shared",
+    "availability_date": "2003-09-24"
+    }
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
+exports.getAllMyRooms = function(req, res, next) {
+
+
+};
+
+
+
+
+/**
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
+exports.deleteMyRoom = function(req, res, next) {
+
+  var room = new Room();
+
+  //var userId = req.params("userId");
+  //var id = req.params("id");
+
+  //Room.find( id = id, creatorId = userId {
+  //
+  //});
+
+};
+
+
+
+
+
+

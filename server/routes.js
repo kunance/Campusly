@@ -28,7 +28,7 @@ module.exports = function(app) {
   app.use('/api/rooms', require('./api/rooms') );
 
   // user managing their own room listing
-  app.use('/api/users/:userId/rooms', require('./api/users/room') );
+  app.use('/api/users/:userId/rooms', require('./api/user/room') );
 
 
   app.use('/auth', require('./auth'));

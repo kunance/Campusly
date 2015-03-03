@@ -1,8 +1,8 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./rooms.controller');
-var auth = require('../../auth/auth.service');
+var controller = require('./room.controller');
+var auth = require('../../../auth/auth.service');
 
 var router = express.Router();
 
@@ -13,13 +13,13 @@ var router = express.Router();
  *  Use param  min=true for room with only
  *
  */
-router.get('/', controller.getAllRooms);
+router.get('/', controller.getAllMyRooms);
 
 
 /**
  * @see payload required in controller
  */
-router.post('/', controller.createRoom);
+router.post('/', controller.createMyRoom);
 
 
 /**
@@ -32,7 +32,7 @@ router.put('/:id');
  * url looks like /api/users/:userId/rooms/:id
  */
 //router.delete(':userId', '/:id');
-router.delete('/:id', controller.deleteRoom);
+router.delete('/:id', controller.deleteMyRoom);
 
 
 

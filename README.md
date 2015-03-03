@@ -53,17 +53,9 @@ apartment_complex_transportation_PRIMARY_apartment_complex_transportation
 
 renamed to:
 
-<<<<<<< HEAD
-1. Use RazorSQL to convert MySql Rented database schema ( all tables ) into Postgres schema ... note that I haven't found a way to do this with views yet
-1. Create a Postgres database Rented  ( delete your old one first if applicable ) and schema 'rented'
-1. run the RentedSchemaPG_v<number>.sql in sql window connected to Postgres Rented 
-1. cd Rented/server directory
-1. spgen -d Rented -u <username> -s rented -o models
-=======
 apartment_complex_floor_plan_PRIMARY
 apartment_complex_transportation_PRIMARY
 apartment_complex_transportation_PRIMARY
->>>>>>> 8c4a7d01f18823f5cf7865a3b87b1dcbfc379f2a
 
 Once we have schema applied to PG, Use [sequelize-pg-generator](https://www.npmjs.com/package/sequelize-pg-generator) to connect to PG database and generate javascript models (use config file and make sure to set useSchemaName to false while generating models). All models will be generated correctly.
 CLI command: spgen -c <path to config file>
@@ -85,3 +77,7 @@ Note: when instatiating Sequelize, sequelize-pg-generator uses ‘postgre’ as 
 - Following a room means following a property
 - Looking means a user is advertising themselves - looking for a roommate or looking for someone with a room to contact the user
 - Update profile from dashboard takes the user in edit profile mode
+
+
+## Applying PG schema to existing ( empty ) PG database Rented
+ psql -d Rented -f RentedSchemaPG_v5.sql 
