@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Add new room</h1>
+    </div>
+    <div class="col-sm-12" id="room-specifics">
+
+      <!--"propertyId" bigint NOT NULL,-->
+
+
+      <!--"securityDeposit" double precision DEFAULT 0::double precision,-->
+      <!--"availableMoveIn" timestamp with time zone DEFAULT now() NOT NULL,-->
+      <!--"leaseEndDate" timestamp with time zone,-->
+      <!--"leaseType" "room_listing_leaseType" NOT NULL,-->
+      <!--gender room_listing_gender DEFAULT 'no preference'::room_listing_gender NOT NULL,-->
+      <!--"monthlyUtilityCost" integer NOT NULL,-->
+      <!--"roomType" "room_listing_roomType" NOT NULL,-->
+      <!--"sharedBathroom" boolean,-->
+      <!--"numRoomates" integer NOT NULL,-->
+      <!--furnished boolean,-->
+      <!--"parkingAvailable" boolean,-->
+      <!--"smokingAllowed" boolean,-->
+      <!--description text,-->
+      <label for="monthlyPrice">Monthly Rent</label>
+      <input type="text" id="monthlyPrice" name="monthlyPrice" class="form-control"  placeholder="Monthly price" ng-model="vm.room.monthlyPrice"/>
+
+    </div>
+    <div class="col-sm-12">
+      <label for="streetAddress">Address</label>
+      <input type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="vm.property.streetAddress" ng-model="vm.property.streetAddress.streetAddress"/>
+
+      <label for="streetNumber">Number</label>
+      <input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="vm.property.streetAddress.streetNumeric"/>
+
+      <label for="country">Country</label>
+      <input type="text" id="country" name="country" class="form-control"  placeholder="country" ng-model="vm.property.streetAddress.state"/>
+
+      <label for="city">City</label>
+      <input type="text" id="city" name="city" class="form-control"  placeholder="city" ng-model="vm.property.streetAddress.city"/>
+
+      <label for="zip">Zip code</label>
+      <input type="number" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="vm.property.streetAddress.zip"/>
+
+      <label for="apt">Apt</label>
+      <input type="number" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="vm.property.streetAddress.apt"/>
+
+      <label for="bldg">Bldg</label>
+      <input type="text" id="bldg" name="bldg" class="form-control"  placeholder="bldg" ng-model="vm.property.streetAddress.bldg"/>
+
+      <label for="type">Type</label>
+      <select id="type" class="form-control" data-ng-model="vm.property.streetAddress.type">
+        <option value="apt">Apt</option>
+        <option value="sfh">sfh</option>
+        <option value="duplex">Duplex</option>
+        <option value="land">Land</option>
+        <option value="townhouse">Townhouse</option>
+      </select>
+
+      <label for="bedrooms">Bedrooms?</label><br/>
+      <input type="number" id="bedrooms" name="bedrooms" class="form-control"  placeholder="Number of bedrooms" ng-model="vm.property.streetAddress.bedrooms"/>
+
+      <label for="bathrooms">Bathrooms?</label><br/>
+      <input type="number" id="bathrooms" name="bathrooms" class="form-control"  placeholder="Number of bathrooms" ng-model="vm.property.streetAddress.bathrooms"/>
+
+      <label for="parkingSpots">Parking spots?</label><br/>
+      <input type="number" id="parkingSpots" name="parkingSpots" class="form-control"  placeholder="Number of parking spots" ng-model="vm.property.streetAddress.parkingSpots"/>
+
+      <label for="livingAreaSqFt">Living area SqFt</label><br/>
+      <input type="number" id="livingAreaSqFt" name="livingAreaSqFt" class="form-control"  placeholder="Living area sqFt" ng-model="vm.property.streetAddress.livingAreaSqFt"/>
+
+      <label for="hoaFee">Hoa fee</label><br/>
+      <input type="number" id="hoaFee" name="hoaFee" class="form-control"  placeholder="hoa fee" ng-model="vm.property.streetAddress.hoaFee"/>
+
+      <label for="otherFee">Other fee</label><br/>
+      <input type="number" id="otherFee" name="otherFee" class="form-control"  placeholder="other fee" ng-model="vm.property.streetAddress.otherFee"/>
+
+      <label for="status">Type</label>
+      <select id="status" class="form-control" data-ng-model="vm.property.streetAddress.status">
+        <option value="avail">Available</option>
+        <option value="pending">Pending</option>
+        <option value="rented">Rented</option>
+      </select>
+
+      <label for="description">Property description</label>
+      <textarea name="description" id="description" cols="30" rows="5" placeholder="description" data-ng-model="vm.property.description"  class="form-control" ></textarea>
+
+      <label for="picture">Upload picture</label>
+      <div fileupload data="addNewRoom.data"></div>
+
+      <br/>
+      <button class="btn btn-primary" ng-click="addNewRoom.addNewRoom(vm.property.streetAddress)">Save new room</button>
+      <button class="btn btn-primary" ui-sref="^">Back to my rooms</button>
+
+    </div>
+
+
+
+  </div>
+  <pre>{{vm.property |json}}</pre>
+</div>

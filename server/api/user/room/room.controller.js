@@ -1,7 +1,31 @@
 var sqldb = require('../../../sqldb');
-var Room = sqldb.model('roomListing');
+// var Room = sqldb.model('roomListing');
+var RoomListing = sqldb.model('roomListing');
 
-// var Room = require('./../../models/room-listing');
+
+
+
+
+var validationError = function(res, statusCode) {
+  statusCode = statusCode || 422;
+  return function(err) {
+    console.log(err);
+    res.json(statusCode, err);
+  };
+};
+
+function handleError(res, statusCode) {
+  statusCode = statusCode || 500;
+  return function(err) {
+    res.send(statusCode, err);
+  };
+}
+function respondWith(res, statusCode) {
+  statusCode = statusCode || 200;
+  return function() {
+    res.send(statusCode);
+  };
+}
 
 
 
@@ -17,6 +41,14 @@ var Room = sqldb.model('roomListing');
  */
 exports.createMyRoom = function(req, res, next) {
 
+  var newRoomListing = RoomListing.build(req.body);
+
+  //TODO rework/research the catching of the error from sequelize and handling of it
+  newRoomListing.save()
+    .then(function(room) {
+      res.json({ room: room });
+    })
+    .catch(validationError(res));
 };
 
 
@@ -27,6 +59,34 @@ exports.createMyRoom = function(req, res, next) {
  * @param next
  */
 exports.getMyRoom = function(req, res, next) {
+
+  User.find({
+    where: {
+      id: userId
+    },
+    attributes: [
+      'id',
+      'username',
+      'middlename',
+      'confirmedEmail',
+      'firstname',
+      'email',
+      'phone',
+      'lastname',
+      'profileImage'
+    ]
+  })
+    .then(function(user) {
+      if (!user) {
+        return res.send(401);
+      }
+      else{
+        res.json(user);
+      }
+    })
+    .catch(function(err) {
+      return next(err);
+    });
 
 
 };

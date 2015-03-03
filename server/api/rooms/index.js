@@ -8,7 +8,7 @@ var router = express.Router();
 
 
 /**
- *  Gets all rooms fully hydrated
+ *  Gets all room listings fully hydrated
  *  Use param:
  *     min=true for room with only
  *
@@ -21,12 +21,16 @@ var router = express.Router();
  *  Coming soon more url params to support criteria for search
  *
  */
-router.get('/', controller.getAllRooms);
+router.get('/', controller.getAllRoomListings);
 
 
 
-// gets room with specific :id
-router.get('/:id', controller.getRoom);
+// gets room listing with specific :id
+router.get('/:id', controller.createRoomListing);
+
+
+router.delete('/:id', controller.deleteRoomListing);
+
 
 
 module.exports = router;

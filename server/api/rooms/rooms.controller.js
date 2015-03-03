@@ -1,8 +1,6 @@
 var sqldb = require('../../sqldb');
 var Room = sqldb.model('roomListing');
 
-// var Room = require('./../../models/room-listing');
-
 
 
 /**
@@ -15,7 +13,9 @@ var Room = sqldb.model('roomListing');
  * @param res
  * @param next
  */
-exports.createRoom = function(req, res, next) {
+exports.createRoomListing = function(req, res, next) {
+
+
 
 };
 
@@ -26,7 +26,7 @@ exports.createRoom = function(req, res, next) {
  * @param res
  * @param next
  */
-exports.getRoom = function(req, res, next) {
+exports.getRoomListing = function(req, res, next) {
 
 
 };
@@ -51,7 +51,7 @@ exports.getRoom = function(req, res, next) {
  * @param res
  * @param next
  */
-exports.getAllRooms = function(req, res, next) {
+exports.getAllRoomListings = function(req, res, next) {
 
 
 };
@@ -65,7 +65,7 @@ exports.getAllRooms = function(req, res, next) {
  * @param res
  * @param next
  */
-exports.deleteRoom = function(req, res, next) {
+exports.deleteRoomListing = function(req, res, next) {
 
   var room = new Room();
 
