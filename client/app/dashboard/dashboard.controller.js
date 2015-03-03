@@ -6,13 +6,15 @@
   .module('app.dashboard')
   .controller('DashboardCtrl',DashboardCtrl);
 
-  DashboardCtrl.$inject=['common', '$scope', '$http'];
+  DashboardCtrl.$inject=['common', '$scope', '$http', 'getLookings'];
 
-  function DashboardCtrl(common, $scope, $http) {
+  function DashboardCtrl(common, $scope, $http, getLookings) {
     var vm = this;
     var Auth = common.Auth;
     vm.address = { };
     vm.me = Auth.getCurrentUser();
+
+  //  vm.lookingRoom = getLookings; //get all user lookings
 
     vm.tabs = [
     { title:"Dashboard", sref:"dashboard", active: true },

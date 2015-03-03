@@ -72,7 +72,7 @@ module.exports = {
             field: "openToFullYearLeaseNewRoomates"
         },
         "roomType": {
-            type: Seq.ENUM('single', 'double', '"living room"'),
+            type: Seq.ENUM('single', 'double', 'living room'),
             field: "roomType"
         },
         "sharedBathroom": {
@@ -80,7 +80,7 @@ module.exports = {
             field: "sharedBathroom"
         },
         "gender": {
-            type: Seq.ENUM('"no preference"', '"male only"', '"female only"'),
+            type: Seq.ENUM('no preference', 'male only', 'female only'),
             field: "gender",
             allowNull: false
         },
@@ -120,7 +120,26 @@ module.exports = {
         "deletedAt": {
             type: Seq.DATE,
             field: "deletedAt"
-        }
+        },
+      "userId": {
+        type: Seq.BIGINT,
+        field: "userId",
+        allowNull: false,
+        references: "rented_user",
+        referencesKey: "userId"
+      }
     },
-    relations: []
+  relations: [{
+    type: "belongsTo",
+    model: "rentedUser",
+    schema: "public",
+    table: "rented_user",
+    source: "generator",
+    details: {
+      as: "relatedUserId",
+      foreignKey: "userId",
+      onDelete: "NO ACTION",
+      onUpdate: "NO ACTION"
+    }
+  }]
 };
