@@ -28,7 +28,7 @@ module.exports = {
     modelName: "userEducation",
     options: {
         tableName: "user_education",
-     //   schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "user_education_pkey"
+            unique: "idx_42081_PRIMARY"
         },
         "userId": {
             type: Seq.BIGINT,
@@ -48,12 +48,12 @@ module.exports = {
             referencesKey: "userId"
         },
         "educationCenterName": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "educationCenterName",
             allowNull: false
         },
         "type": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('university', 'trade', 'military'),
             field: "type"
         },
         "startDate": {
@@ -75,11 +75,11 @@ module.exports = {
             field: "graduationDate"
         },
         "major": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "major"
         },
         "degreeType": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('undergraduate', 'graduate', 'doctorate', 'post-doctorate'),
             field: "degreeType"
         },
         "createdAt": {
@@ -99,7 +99,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {

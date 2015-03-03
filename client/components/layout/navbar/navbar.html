@@ -1,4 +1,4 @@
-<header class="login-header" ng-controller="NavbarCtrl">
+<header class="login-header" ng-controller="NavbarCtrl" ng-class="{transparent: !isLoggedIn()}">
   <div class="container">
     <div class="left-content">
       <a href="/">
@@ -20,12 +20,12 @@
       <a ui-sref-active="active" ui-sref="signup" class="btn sign-up">Sign up for free</a>
     </div>
   </div>
-
-  <div ng-hide="isMailconfirmed() || !isLoggedIn()">
+  
+<!--   <div ng-hide="isMailconfirmed() || !isLoggedIn()">
     <div class="container">
       <span style="color:white; margin-top:18px; font-size:13px" >Your email address is not confirmed. Confirm <a href="/confirm">here</a></span>
     </div>
-  </div>
+  </div> -->
 
 </header>
 

@@ -1,6 +1,6 @@
 <div class="main">
   <div ng-include="'components/layout/navbar/navbar.html'"></div>
-  <section class="login-box">
+  <section class="login-box white-box">
     <h2 class="heading">Sign up</h2>
 
     <form class="main-form" name="form" ng-submit="signup.register(form)" novalidate>
@@ -33,7 +33,8 @@
       </label>
 
       <label class="lbl" ng-class="{ 'has-success': form.password.$valid && signup.submitted, 'has-error': form.password.$invalid && signup.submitted }">
-        <input type="password" ng-model="signup.user.confirmPassword" match="signup.user.password" placeholder="Repeat password" ng-minlength="3" required>
+        <input type="password" ng-model="signup.user.confirmPassword" match="signup.user.password" placeholder="Repeat password" ng-minlength="3" ui-validate=" '$value==signup.user.password' "
+               ui-validate-watch=" 'signup.user.password' " required>
         <p class="help-block" ng-show="form.password.$error.required && signup.submitted">Please provide valid password</p>
         <p class="help-block" ng-show="form.password.$error && signup.submitted && !form.password.$error.required">Password's dont match</p>
       </label>

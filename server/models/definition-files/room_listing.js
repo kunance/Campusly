@@ -28,7 +28,7 @@ module.exports = {
     modelName: "roomListing",
     options: {
         tableName: "room_listing",
-     //   schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "room_listing_pkey"
+            unique: "idx_42007_PRIMARY"
         },
         "propertyId": {
             type: Seq.BIGINT,
@@ -73,12 +73,12 @@ module.exports = {
             field: "leaseEndDate"
         },
         "leaseType": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('sub-lease', 'month-to-month', '"lease take over"'),
             field: "leaseType",
             allowNull: false
         },
         "gender": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('"no preference"', '"male only"', '"female only"'),
             field: "gender",
             allowNull: false
         },
@@ -88,7 +88,7 @@ module.exports = {
             allowNull: false
         },
         "roomType": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('single', 'double', 'loft', '"living room"'),
             field: "roomType",
             allowNull: false
         },
@@ -97,7 +97,7 @@ module.exports = {
             field: "sharedBathroom"
         },
         "numRoomates": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "numRoomates",
             allowNull: false
         },
@@ -114,7 +114,7 @@ module.exports = {
             field: "smokingAllowed"
         },
         "description": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "description"
         },
         "createdAt": {
@@ -134,7 +134,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "property",
-        schema: "rented",
+        schema: "public",
         table: "property",
         source: "generator",
         details: {
@@ -146,7 +146,7 @@ module.exports = {
     }, {
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {

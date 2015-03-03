@@ -9,11 +9,13 @@ module.exports = {
   },
   sequelize: {
     db: 'rented',
-    username:'root',
+    username:'postgres',
     password:'root',
+    port:5432,
     options: {
       logging: false,
-      dialect:'mysql',
+      dialect:'postgres',
+      "protocol": "postgres",
       host:'localhost',
       define: {
         timestamps: false

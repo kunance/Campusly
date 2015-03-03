@@ -22,13 +22,13 @@ module.exports = {
             'mongodb://localhost/basecodesql'
   },
   sequelize: {
-    db: 'Rented',
+    db: 'rented',
     username:'ivan',
     password:'rentedrented',
     options: {
       logging: false,
-      dialect:'mysql',
-      host:'rented.cyngrnmslnob.us-west-2.rds.amazonaws.com',
+      dialect:'postgres',
+      host:'rentedpg.cyngrnmslnob.us-west-2.rds.amazonaws.com',
       define: {
         timestamps: false
       }

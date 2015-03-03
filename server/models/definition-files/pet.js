@@ -28,7 +28,7 @@ module.exports = {
     modelName: "pet",
     options: {
         tableName: "pet",
-    //    schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "pet_pkey"
+            unique: "idx_41781_PRIMARY"
         },
         "userId": {
             type: Seq.BIGINT,
@@ -48,12 +48,12 @@ module.exports = {
             referencesKey: "userId"
         },
         "type": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('cat', 'dog', 'bird', 'fish', 'other'),
             field: "type",
             allowNull: false
         },
         "breed": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "breed",
             allowNull: false
         },
@@ -78,7 +78,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {

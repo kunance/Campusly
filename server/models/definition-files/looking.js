@@ -28,7 +28,7 @@ module.exports = {
     modelName: "looking",
     options: {
         tableName: "looking",
-    //    schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "looking_pkey"
+            unique: "idx_41737_PRIMARY"
         },
         "maxMonthlyRent": {
             type: Seq.INTEGER,
@@ -51,7 +51,7 @@ module.exports = {
             allowNull: false
         },
         "area": {
-            type: Seq.STRING(30),
+            type: Seq.TEXT,
             field: "area"
         },
         "distanceToUniv": {
@@ -64,7 +64,7 @@ module.exports = {
             allowNull: false
         },
         "lengthOfStay": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "lengthOfStay"
         },
         "openToFullYearLeaseNewRoomates": {
@@ -72,7 +72,7 @@ module.exports = {
             field: "openToFullYearLeaseNewRoomates"
         },
         "roomType": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('single', 'double', '"living room"'),
             field: "roomType"
         },
         "sharedBathroom": {
@@ -80,12 +80,12 @@ module.exports = {
             field: "sharedBathroom"
         },
         "gender": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('"no preference"', '"male only"', '"female only"'),
             field: "gender",
             allowNull: false
         },
         "numRoommates": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "numRoommates"
         },
         "furnished": {

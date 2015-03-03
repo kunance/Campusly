@@ -28,7 +28,7 @@ module.exports = {
     modelName: "userReference",
     options: {
         tableName: "user_reference",
-     //   schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,7 +38,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "user_reference_pkey"
+            unique: "idx_42139_PRIMARY"
         },
         "userId": {
             type: Seq.BIGINT,
@@ -48,27 +48,27 @@ module.exports = {
             referencesKey: "userId"
         },
         "email": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "email",
             allowNull: false
         },
         "phone": {
-            type: Seq.INTEGER,
+            type: Seq.BIGINT,
             field: "phone",
             allowNull: false
         },
         "firstName": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "firstName",
             allowNull: false
         },
         "lastName": {
-            type: Seq.STRING(45),
+            type: Seq.TEXT,
             field: "lastName",
             allowNull: false
         },
         "relation": {
-            type: Seq.CHAR(255),
+            type: Seq.ENUM('relative', 'roommate', 'friend', 'spouse', 'landlord', 'colleague'),
             field: "relation",
             allowNull: false
         },
@@ -94,7 +94,7 @@ module.exports = {
     relations: [{
         type: "belongsTo",
         model: "rentedUser",
-        schema: "rented",
+        schema: "public",
         table: "rented_user",
         source: "generator",
         details: {

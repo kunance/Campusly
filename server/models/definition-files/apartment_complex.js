@@ -28,7 +28,7 @@ module.exports = {
     modelName: "apartmentComplex",
     options: {
         tableName: "apartment_complex",
-   //     schema: "rented",
+        //schema: "public",
         timestamps: false
     },
     attributes: {
@@ -38,10 +38,10 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-            unique: "apartment_complex_pkey"
+            unique: "idx_41629_PRIMARY"
         },
         "name": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "name",
             allowNull: false
         },
@@ -51,22 +51,22 @@ module.exports = {
             allowNull: false
         },
         "streetAddress": {
-            type: Seq.STRING(255),
+            type: Seq.TEXT,
             field: "streetAddress",
             allowNull: false
         },
         "city": {
-            type: Seq.STRING(30),
+            type: Seq.TEXT,
             field: "city",
             allowNull: false
         },
         "state": {
-            type: Seq.STRING(2),
+            type: Seq.TEXT,
             field: "state",
             allowNull: false
         },
         "zip": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "zip",
             allowNull: false
         },
@@ -103,15 +103,15 @@ module.exports = {
             allowNull: false
         },
         "dogQtyAllowed": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "dogQtyAllowed"
         },
         "catQtyAllowed": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "catQtyAllowed"
         },
         "otherQtyAllowed": {
-            type: Seq.BIGINT,
+            type: Seq.INTEGER,
             field: "otherQtyAllowed"
         },
         "createdAt": {
@@ -131,7 +131,7 @@ module.exports = {
     relations: [{
         type: "hasMany",
         model: "apartmentComplexFloorPlan",
-        schema: "rented",
+        schema: "public",
         table: "apartment_complex_floor_plan",
         source: "generator",
         details: {
@@ -143,7 +143,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "apartmentComplexImage",
-        schema: "rented",
+        schema: "public",
         table: "apartment_complex_image",
         source: "generator",
         details: {
@@ -155,7 +155,7 @@ module.exports = {
     }, {
         type: "hasMany",
         model: "apartmentComplexTransportation",
-        schema: "rented",
+        schema: "public",
         table: "apartment_complex_transportation",
         source: "generator",
         details: {

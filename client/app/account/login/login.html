@@ -1,7 +1,7 @@
 <div class="main">
   <div ng-include="'components/layout/navbar/navbar.html'"></div>
-  <section class="login-box">
-    <h2 class="heading">Create your account with...</h2>
+  <section class="login-box white-box">
+    <h2 class="heading">Login with...</h2>
 
     <article class="social">
       <a class="link email"><span>Email</span></a>
@@ -10,7 +10,7 @@
     </article>
 
     <form class="main-form" name="form" ng-submit="login(form)" novalidate>
-      
+
       <label class="lbl">
         <input id="email" type="email" name="email" ng-model="user.email" placeholder="Email address (.edu required)" required>
       </label>

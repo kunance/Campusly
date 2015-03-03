@@ -85,18 +85,22 @@ angular.module('RentedApp', [
       //console.log('Event: ', event);
       //console.log('Next: ', next);
       common.logger.info('Navigating to ' + next.url);
-      if (next.authenticate) {
+   //   if (next.authenticate) {
         common.Auth.isLoggedInAsync(function (loggedIn) {
           if (!loggedIn) {
-            $location.path('/login');
+            $location.path('/');
+          } else {
+            $location.path('/dashboard');
           }
         });
-      }
+   //   }
+
+
       //if(next.authenticate) {
       //  Auth.isLoggedIn(function (loggedIn) {
       //    //console.log('logged in: ', loggedIn);
       //    if (!loggedIn) {
-      //      $state.go('login');
+      //      $state.go('dashboard');
       //    }
       //  });
       //}
