@@ -88,7 +88,7 @@ angular.module('RentedApp', [
    //   if (next.authenticate) {
         common.Auth.isLoggedInAsync(function (loggedIn) {
           if (!loggedIn) {
-            $location.path('/login');
+            $location.path('/');
           } else {
             $location.path('/dashboard');
           }
