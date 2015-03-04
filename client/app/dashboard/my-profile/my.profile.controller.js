@@ -14,14 +14,10 @@
     vm.address = getAddresses;
     vm.education = getEducations;
     vm.users = getAllUsers;
-    vm.roommates = getAllRoommates;
+    vm.roommates = getAllRoommates; //roomate info, his education info, his address info
     vm.pets = getPets;
     vm.vehicles = getVehicles;
     vm.changePersonalData = changePersonalData;
-
-    angular.forEach(vm.roommates, function (user) {
-      user.addressInfo = user.relatedRoommateId.addresshistoryUsers;
-    });
 
     $scope.datePickers = {
       startDate: false,
