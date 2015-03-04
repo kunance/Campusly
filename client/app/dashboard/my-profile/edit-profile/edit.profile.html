@@ -1,0 +1,130 @@
+<div class="container edit-profile" cg-busy="{promise:myProfile.initializeData.$promise, message:'Loading Your Profile', delay:50}">
+  <div ui-view="">
+    <div class="page-header">
+      <h2> Personal Data </h2>
+    </div>
+    <div class="white-box">
+      <div class="row about-me">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <form class="form" name="personalDataForm" ng-submit="myProfile.changePersonalData(personalDataForm)" novalidate>
+            <div class="row">
+
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <div class="picture text-center">
+                  <img ng-src="api/images{{myProfile.me.profileImage}}" class="img-circle">
+                  <input type="file" nv-file-select uploader="myProfile.uploader" id="fileUpload"/>
+                  <ul>
+                    <li ng-repeat="item in myProfile.uploader.queue">
+                      <button class="bubble" ng-click="item.upload()"><i class="fa fa-upload"></i></button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input class="form-control" type="text" id="firstname" name="firstname" ng-model="myProfile.tempMe.firstname"/>
+                </div>
+                <div class="form-group">
+                  <label>Last Name</label>
+                  <input class="form-control" type="text" id="lastname" name="lastname" ng-model="myProfile.tempMe.lastname"/>
+                </div>
+                <div class="form-group">
+                  <label> About Me</label>
+                  <textarea class="form-control" ng-model="myProfile.tempMe.aboutMe" c></textarea>
+                </div>
+              </div>
+            </div>
+            <input type="submit" class="btn" value="Save">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-header">
+      <h2> Education Data </h2>
+    </div>
+    <div class="white-box">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <form class="form" name="personalDataForm" ng-submit="myProfile.changePersonalData(personalDataForm)" novalidate>
+
+            <div class="form-group">
+              <label>University:</label>
+              <input class="form-control" type="text" id="University" name="University" ng-model="myProfile.education[0].educationCenterName"/>
+            </div>
+
+            <div class="form-group">
+              <label>Major</label>
+              <input class="form-control" type="text" id="major" name="major" ng-model="myProfile.education[0].major"/> 
+            </div>
+            
+            <div class="form-group">
+              <label>StartDate</label>
+              <input class="form-control" type="text" id="StartDate" name="StartDate" ng-model="myProfile.education[0].startDate"/>
+            </div>
+
+            <div class="form-group">
+              <label>EndDate</label>
+              <input class="form-control" type="text" id="EndDate" name="EndDate" ng-model="myProfile.education[0].endDate"/>
+            </div>
+
+            <input type="submit" class="btn" value="Save">
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="page-header">
+      <h2> Address Data </h2>
+    </div>
+    <div class="white-box">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <form class="form" name="personalDataForm" ng-submit="myProfile.changePersonalData(personalDataForm)" novalidate>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input class="form-control" type="text" id="phone" name="phone" ui-mask="999-999-9999" ng-model="myProfile.tempMe.phone"/>
+            </div>
+            
+            <div class="form-group">
+              <label>Address</label>
+              <input class="form-control" type="text" ng-model="myProfile.address[0].streetAddress"/>
+            </div>
+
+            <div class="form-group">
+              <label>Number</label>
+              <input class="form-control" type="text" ng-model="myProfile.address[0].streetNumeric"/>
+            </div>
+            
+            <div class="form-group">
+              <label>City</label>
+              <input class="form-control" type="text" ng-model="myProfile.address[0].city">
+            </div>
+            
+            <div class="form-group">
+              <label>State</label>
+              <input class="form-control" type="text" ng-model="myProfile.address[0].state">
+            </div>
+            
+            <div class="form-group">
+              <label>Address</label>
+              <input class="form-control" type="text" ng-model="myProfile.address[0].zip">
+            </div>
+            
+            <div class="form-group">
+              <label>Living here since</label>
+              <input type="text" class="form-control" ng-model="myProfile.address[0].startDate">
+            </div>
+
+            <input type="submit" class="btn" value="Save">
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

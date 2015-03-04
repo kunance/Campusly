@@ -209,6 +209,15 @@ label + label {
   background-repeat: no-repeat;
   padding: 15px 0;
 }
+
+.login-header .greetings {
+  color: #fff;
+}
+.login-header .profile-image {
+  height: 3em;
+  border: 2px solid #fff;
+}
+
 .login-header.transparent {
   background: transparent;
 }

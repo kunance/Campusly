@@ -180,6 +180,12 @@ Style for footer
 .footer .link {
 
 }
+
+.page-header {
+  padding-bottom: 0px;
+  margin: 0px; 
+  border-bottom: none; 
+}
 /* ==========================================================================
 Transparent class for transparent nav-bar
 ========================================================================== */
@@ -814,15 +820,9 @@ footer .logo {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
   }
-
-  body .my-profile div[class^="col-"]:first-child {
-    border: none;
-  }
-
-  body .my-profile .invitation-box a.bubble{
-  }
-
-   body .my-profile .invitation-box .add span{
+  body .edit-profile dl.personal-data {
+    float: none;
+    width: 100%;
   }
 }
 
@@ -981,7 +981,7 @@ nav.dashboard-submenu > label {
   }
   nav.dashboard-submenu ul a:hover {
     background: #f7953d;
-    cursor: hand;
+    cursor: pointer;
   }
   nav.dashboard-submenu ul a:hover li{
     color: #ffffff;
@@ -1031,7 +1031,7 @@ nav.dashboard-submenu > label {
   height: 5em;
   width: 5em;
 }
-p.quote::before, .looking-for-room p.quote::after{
+p.quote:before, .looking-for-room p.quote:after{
   content: "\"";
 }
 
@@ -1156,7 +1156,8 @@ h2.section-title:nth-child(n+2) {
   overflow-y: auto;
 }
 
-.my-profile .btn{
+
+.buttons-box .btn{
   width: 100%;
 }
 
@@ -1203,7 +1204,7 @@ h2.section-title:nth-child(n+2) {
 }
 
 .set-size {
-  font-size: 15em;
+  font-size: 14em;
 }
 .pie-wrapper {
   height: 1em;
@@ -1469,7 +1470,6 @@ h2.section-title:nth-child(n+2) {
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
   color: #fff;
-
 }
 
 /* My Properties Grid */
@@ -1587,10 +1587,13 @@ h2.section-title:nth-child(n+2) {
 /* My Profile */
 
 .my-profile .about-me .picture {
-  width: 30%;
-  height: 150px;
+  width: 100%;
+  height: 250px;
   display: inline-block;
   float:left;
+  padding-right: 20px;
+  text-align: center;
+
 }
 .my-profile .about-me .picture img{
   height: 130px;
@@ -1608,66 +1611,100 @@ h2.section-title:nth-child(n+2) {
   color: #000;
 }
 
-.my-profile div[class^="col-"]:first-child {
-  border-right: 1px solid #e8e8e8;
-}
-
-.my-profile .invitation-box div[class^="col-"]:first-child {
-  border: none;
-}
-
 .row {
   margin-top: 20px;
 }
 
 
-/* My profile - Roomates */
+/* My profile - roommates */
 
-.my-profile .roomates .roomate {
+.my-profile .roommates .roommate {
   border-bottom: 1px solid #efefef  ;
+  display: table;
+  width: 100%;
+  padding: 10px 0;
 }
 
-.my-profile .roomates .roomate .picture{
-  display: inline-block;
-  width: 20%;
-  float: left;
+.my-profile .roommates .roommate .picture{
+  display: table-cell;
+  width: 15%;
+  vertical-align: middle;
 }
 
-.my-profile .roomates .roomate .picture img {
+.my-profile .roommates .roommate .picture img {
   width: 4em;
   height: 4em;
 }
 
-.my-profile .roomates .roomate .info {
-  display: inline-block;
-  width: 70%;
+.my-profile .roommates .roommate .info {
+  display: table-cell;
   line-height: 100%;
-
+  vertical-align: middle;
+  padding: 10px 0px 10px 10px;
 }
 
-.my-profile .roomates .roomate .info span {
+.my-profile .roommates .roommate .info span {
   width: 100%;
   display: block;
   float: left;
   font-size: 0.7em;
 }
 
-.my-profile .roomates .roomate .info span.name {
+.my-profile .roommates .roommate .info span.name {
   font-size: 1.2em;
   font-weight: bold;
   color: #000;
   margin-bottom: 10px;
 }
 
+.my-profile select[disabled="disabled"] { 
+  display: block;
+  border: none;
+  background: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.my-profile input:read-only, .my-profile input:-moz-read-only {
+  border: none !important;
+  font-weight: bold;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.my-profile .pets .pet #weightLbs {
+  display: inline-block;
+  width: 20px;
+}
+
+.my-profile .pets .pet select {
+  display: block;
+  width: 100%;
+  margin: 2px 0;
+}
+.my-profile .pets .pet input {
+  display: block;
+  border: none;
+  border-bottom: 1px solid #f7953d;
+}
+
+.my-profile .pets .pet .actions a{
+  display: inline-block;
+  margin: 0 2px;
+}
 
 .my-profile .pets .pet {
-  border-bottom: 1px solid #efefef  ;
+  border-bottom: 1px solid #efefef;
+  display: table;
+  width: 100%;
+  padding: 10px 0 25px 0;
 }
 
 .my-profile .pets .pet .picture{
-  display: inline-block;
-  width: 20%;
-  float: left;
+  display: table-cell;
+  width: 15%;
 }
 
 .my-profile .pets .pet .picture img {
@@ -1676,31 +1713,32 @@ h2.section-title:nth-child(n+2) {
 }
 
 .my-profile .pets .pet .info {
-  display: inline-block;
-  width: 70%;
-  
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.my-profile .pets .pet .info .main-data span, .my-profile .pets .pet .info .main-data a {
+  display: block;
+}
+
+.my-profile .pets .pet .info .main-data a {
+  font-size: 0.8em;
+  color: #f7953d;
 }
 
 .my-profile .pets .pet .info span {
   width: 100%;
   display: block;
   float: left;
-  font-size: 0.7em;
+  font-size: 1em;
 }
 
-.my-profile .pets .pet .info span.name {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #000;
-}
-
-
-.my-profile .pets, .my-profile .roomates {
+.my-profile .pets, .my-profile .roommates {
   min-height: 300px;
 }
 
 .my-profile .info {
-  height: 80px;
+  height: 70px;
 }
 
 .my-profile .invitation-box {
@@ -1753,8 +1791,8 @@ h2.section-title:nth-child(n+2) {
   position: relative;
   background: #56bfc3;
   border-radius: 50%;
-  width: 4em;
-  height: 4em; 
+  width: 40px;
+  height: 40px; 
 }
 
 .my-profile .invitation-box .bubble i{
@@ -1764,4 +1802,69 @@ h2.section-title:nth-child(n+2) {
   transform: translateY(-50%) translateX(-50%);
   color: #fff;
 
+}
+
+.roommates .action-col {
+  display: table;
+  cursor: pointer;
+}
+
+.roommates .action-col span{
+  color: #f7953d;
+  display: table-cell;
+  vertical-align: middle;
+  padding-right: 10px;
+}
+
+.bubble{
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+  background: #f7953d;
+  border-radius: 50%;
+  min-width: 30px;
+  height: 30px; 
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.bubble i{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  color: #fff;
+}
+
+.bubble.remove{
+  background: rgb(245,27,87); 
+}
+
+.bubble.cancel{
+  background: #ccc; 
+  margin: 0 10px;
+}
+
+.bubble:disabled{
+  display: hidden;
+}
+
+
+/* Custom dropdown for angucomplete */
+
+#members_dropdown {
+  background: #efefef;
+  width: 100%;
+}
+
+.page-header .bubble {
+  float: right;
+  top: -40px;
+}
+
+#fileUpload {
+  width: 91px;
+  border: none;
+  margin: 20px auto;
 }
