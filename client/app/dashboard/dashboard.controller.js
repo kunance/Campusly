@@ -6,9 +6,11 @@
   .module('app.dashboard')
   .controller('DashboardCtrl',DashboardCtrl);
 
-  DashboardCtrl.$inject=['common', '$scope', '$http', 'getUserLookings', 'allLooking', 'universityData', '$window'];
 
-  function DashboardCtrl(common, $scope, $http, getUserLookings, allLooking, universityData, $window) {
+  DashboardCtrl.$inject=['common', '$scope', '$http', 'getUserLookings', 'allLooking', 'universityData', '$window', 'RoomListingView'];
+
+  function DashboardCtrl(common, $scope, $http, getUserLookings, allLooking, universityData, $window, RoomListingView) {
+
     var vm = this;
     var Auth = common.Auth;
     vm.address = { };
@@ -23,8 +25,9 @@
     { title:"Dashboard", sref:"dashboard", active: true },
     { title:"Messages", sref:".messages"},
     { title:"Around You", sref:".around"},
-    { title:"My properties", sref:".myProperties"},
+    { title:"Available rooms", sref:".myRooms"},
     { title:"Looking", sref:".looking"}];
+
 
     mixpanel.identify(vm.me.id);
     mixpanel.people.set({
@@ -41,9 +44,13 @@
     // BEGIN Getter for mock data
     // ================================================
 
-    $http.get("../assets/fake/available_rooms.json")
-    .success(function(data){
-      vm.availableRooms = data;
+    //$http.get("../assets/fake/available_rooms.json")
+    //.success(function(data){
+    //  vm.availableRooms = data;
+    //});
+
+    vm.availableRooms = RoomListingView.query({}, function() {
+
     });
 
     $http.get("../assets/fake/looking_for_room.json")

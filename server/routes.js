@@ -12,6 +12,7 @@ module.exports = function(app) {
   // Insert routes below
   app.use('/api/users', require('./api/user'));
 
+
   app.use('/api/users/:id/vehicles', require('./api/user/vehicle'));
   app.use('/api/users/:id/pets', require('./api/user/pet'));
   app.use('/api/users/:id/addresses', require('./api/user/address'));
@@ -22,8 +23,17 @@ module.exports = function(app) {
   app.use('/api/users/:id/lookings', require('./api/user/looking'));
   app.use('/api/properties', require('./api/properties'));
   app.use('/api/lookings', require('./api/lookings'));
+
   //just temporary route
   app.use('/api/images', require('./api/images'));
+
+
+  // pass in a min parameter for non fully hydrated room listing ... define what min is in the api documentation
+  app.use('/api/rooms', require('./api/rooms') );
+
+  // user managing their own room listing
+  app.use('/api/users/:userId/rooms', require('./api/user/room') );
+
 
   app.use('/auth', require('./auth'));
 

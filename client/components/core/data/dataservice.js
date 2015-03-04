@@ -5,9 +5,9 @@
     .module('app.core')
     .factory('dataservice', dataservice);
 
-  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation', 'Roommate', 'Looking'];
+  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation', 'Roommate', 'Looking', 'RoomListing'];
 
-  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education, Finance, Occupation, Roommate, Looking) {
+  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education, Finance, Occupation, Roommate, Looking, RoomListing) {
 
     var safeCb = function(cb) {
         return (angular.isFunction(cb)) ? cb : angular.noop;
@@ -50,13 +50,45 @@
        editRoommate:editRoommate,
        deleteRoommate:deleteRoommate,
        addRoommate: addRoommate,
+       addRoomListing: addRoomListing,
+       editRoomListing: editRoomListing,
+       deleteRoomListing: deleteRoomListing,
        getAllLookings : getAllLookings,
        addLooking: addLooking,
        editLooking:editLooking,
        getLooking:getLooking,
-      deleteLooking:deleteLooking
+       deleteLooking:deleteLooking
     };
     return service;
+
+    function addRoomListing(userId, data) {
+      return RoomListing.save({userId: userId}, data,
+        function(res) {
+          return res;
+        },
+        function(err) {
+          //handle this exception
+        });
+    }
+
+    function editRoomListing(userId, roomId, data) {
+      return RoomListing.edit({creatorId: userId, id: roomId}, data,
+        function(res) {
+          return res;
+        },
+        function(err) {
+          //handle this exception
+        });
+    }
+
+    function deleteRoomListing(userId, roomId, data) {
+      return RoomListing.delete({creatorId: userId, id: roomId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
 
     function addProperty(data) {
       return Property.save(data,
