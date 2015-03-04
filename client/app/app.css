@@ -1878,3 +1878,32 @@ h2.section-title:nth-child(n+2) {
   border: none;
   margin: 20px auto;
 }
+
+.badge {
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  background: #e8e8e8;
+  content: "";
+}
+
+.badge.pet {
+  background-image: url("../assets/images/pet.svg");
+  background-size: 2.7em;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-color: #f7953d;
+}
+
+.badge.vehicle {
+  background-image: url("../assets/images/vehicle.svg");
+  background-size: 2.7em;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-color: #f7953d;
+}
+
+.pet .info {
+  padding: 0px;
+
+}

@@ -68,6 +68,7 @@
       vm.showAddPet = false;
       vm.showAddVehicle = false;
       vm.selectedPet = null;
+      vm.selectedVehicle = null;
     }
 
     vm.uploader = new FileUploader();
@@ -82,9 +83,9 @@
       if(userDataForm.$valid) {
         common.Auth.updateUser(vm.tempMe)
         .then(function (user) {
-// common.Auth.setCurrentUser(user);
-common.logger.success('Personal data successfully changed.');
-})
+          /* common.Auth.setCurrentUser(user); */
+          common.logger.success('Personal data successfully changed.');
+        })
         .catch(function (err) {
           common.logger.error('Something went wrong. Changes are not saved.');
         });
@@ -122,9 +123,7 @@ common.logger.success('Personal data successfully changed.');
       .then(function () {
         common.logger.success('Pet successfully created.');
         vm.pets.push(input);
-        vm.showAddPet = false;
-        vm.showAddVehicle = false;
-        vm.showAddonButtons = false;
+        vm.cancelAddAddon();
       })
       .catch(function (err) {
         common.logger.error('Error while saving pet.');
@@ -148,10 +147,7 @@ common.logger.success('Personal data successfully changed.');
     vm.savePet = function (input) {
       common.dataservice.editPet(vm.me.id, input.id, input, function () {
         common.logger.success('Pet updated');
-        vm.showAddPet = false;
-        vm.showAddVehicle = false;
-        vm.showAddonButtons = false;
-        vm.selectedPet = null;
+        vm.cancelAddAddon();
       })
     }
 
@@ -163,6 +159,7 @@ common.logger.success('Personal data successfully changed.');
       .then(function () {
         common.logger.success('Vehicle successfully updated.');
         vm.vehicles.push(input);
+        vm.cancelAddAddon();
       })
       .catch(function (err) {
         common.logger.error('Error while saving vehicle.');
@@ -175,7 +172,28 @@ common.logger.success('Personal data successfully changed.');
       common.dataservice.deleteVehicle(vm.me.id, id, function () {
         vm.listOfVehicles.splice(index, 1);
       });
-
     }
+
+    vm.editVehicle = function (index) {
+      vm.selectedVehicle = index;
+    }
+
+    vm.deleteVehicle= function (input) {
+      var index= vm.vehicles.indexOf(input);
+      var id = input.id;
+      common.dataservice.deleteVehicle(vm.me.id, id, function () {
+        vm.vehicles.splice(index, 1);
+        vm.selectedVehicle = null;
+        common.logger.success('Vehicle deleted')
+      });    
+    }
+
+    vm.saveVehicle = function (input) {
+      common.dataservice.editVehicle(vm.me.id, input.id, input, function () {
+        common.logger.success('Vehicle updated');
+        vm.cancelAddAddon();
+      })
+    }
+
   }
 }());
