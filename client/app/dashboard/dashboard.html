@@ -1,15 +1,15 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
-<div class="dashboard-wrapper">    
+<div class="dashboard-wrapper">
   <div ui-view="">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 my-profile">
           <h2> You </h2>
-          
+
           <div class="white-box buttons-box">
             <a class="btn btn-rented primary" ui-sref="dashboard.myProperties.addNew">Post Available Property</a>
-            <a  class="btn btn-rented secondary">Post Looking</a>
+            <a  class="btn btn-rented secondary" ui-sref="dashboard.myProfile.addNewLooking">Post Looking</a>
           </div>
 
           <div class="white-box profile-sidebar">
@@ -35,7 +35,7 @@
             <!-- end message box -->
             <a  class="btn btn-rented primary"> Views all messages </a>
             <hr>
-            
+
             <div class="profile">
               <div class="set-size">
                 <div class="pie-wrapper progress-30">
@@ -47,7 +47,7 @@
                   <div class="shadow"></div>
                 </div>
               </div>
-              <h2> Jennifer Clardy 
+              <h2> Jennifer Clardy
                 <small> Your profile is 30% complete</small>
               </h2>
               <a  class="btn btn-rented secondary" ui-sref="dashboard.myProfile"> Complete Profile </a>
@@ -108,14 +108,15 @@
                     <li>{{person.distance}}</li>
                   </ul>
                 </div>
+                <button ui-sref=".myProfile.editLooking({id: person.id})">edit</button>
               </div>
               <!-- end room box -->
-              <hr>  
+              <hr>
             </slick>
           </div>
 
           <h2 class="section-title"> Around you</h2>
-          
+
           <div class="white-box around-you">
 
             <slick dots="true" class="slider row" slides-to-show="5" slides-to-scroll="5" responsive="dashboard.breakpoints.aroundYou" init-onload="true" data="dashboard.aroundYou">
@@ -132,7 +133,7 @@
           </div>
 
           <h2 class="section-title"> My listings</h2>
-          
+
           <div class="white-box my-listings">
 
             <slick dots="true" class="slider row" slides-to-show="1" slides-to-scroll="1">
@@ -145,7 +146,7 @@
                       <img src="http://lorempixel.com/400/250/city/3">
                     </div>
                   </div>
-                  
+
                   <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                     <div class="info">
                       <span class='value'> $700 mo</span>
@@ -155,7 +156,7 @@
                       </span>
                     </div>
                     <div class="edit">
-                      <span class='text'>Edit</span> 
+                      <span class='text'>Edit</span>
                       <a  class="bubble">
                         <i class="fa fa-pencil"></i>
                       </a>

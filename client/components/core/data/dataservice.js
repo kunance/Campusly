@@ -5,9 +5,9 @@
     .module('app.core')
     .factory('dataservice', dataservice);
 
-  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation', 'Roommate'];
+  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation', 'Roommate', 'Looking'];
 
-  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education, Finance, Occupation, Roommate) {
+  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education, Finance, Occupation, Roommate, Looking) {
 
     var safeCb = function(cb) {
         return (angular.isFunction(cb)) ? cb : angular.noop;
@@ -49,7 +49,12 @@
        getAllRoommates:getAllRoommates,
        editRoommate:editRoommate,
        deleteRoommate:deleteRoommate,
-       addRoommate: addRoommate
+       addRoommate: addRoommate,
+       getAllLookings : getAllLookings,
+       addLooking: addLooking,
+       editLooking:editLooking,
+       getLooking:getLooking,
+      deleteLooking:deleteLooking
     };
     return service;
 
@@ -384,7 +389,51 @@
         });
     }
 
+    function getAllLookings(userId, data) {
+      return Looking.getAllLookings({userId: userId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
 
+    function addLooking(userId, data) {
+      return Looking.save({userId: userId}, data,
+        function(res) {
+          return res;
+        },
+        function(err) {
+          //handle this exception
+        });
+    }
+
+    function editLooking(userId, lookingId, data, callback) {
+      return Looking.editLooking({userId: userId, id:lookingId}, data,
+        function (res) {
+          return safeCb(callback)(null, res);
+        }, function (err) {
+          return safeCb(callback)(err);
+        });
+    }
+
+    function getLooking(userId, lookingId, data) {
+      return Looking.get({userId: userId, id:lookingId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function deleteLooking(userId, lookingId, data) {
+      return Looking.delete({userId: userId, id:lookingId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
 
   }
 }());

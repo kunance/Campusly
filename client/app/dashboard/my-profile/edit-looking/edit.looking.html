@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="col-md-12">
+
+    <div class="col-md-4">
+      <label for="maxMonthlyRent">Max monthly rent</label>
+      <input type="number" id="maxMonthlyRent" name="maxMonthlyRent" class="form-control"  placeholder="Max monthly rent" ng-model="editLooking.tempLooking.maxMonthlyRent"/>
+
+      <label for="distanceToUniv">distance to university</label>
+      <input type="number" id="distanceToUniv" name="distanceToUniv" class="form-control"  placeholder="distance to university" ng-model="editLooking.tempLooking.distanceToUniv"/>
+
+      <label for="utilitiesIncluded">utilities included</label><br/>
+      <label class="radio-inline"><input type="radio" name="utilitiesIncluded" id="utilitiesIncluded" ng-model="editLooking.tempLooking.utilitiesIncluded" value="1">Yes</label>
+      <label class="radio-inline"><input type="radio" name="utilitiesIncluded"  ng-model="editLooking.tempLooking.utilitiesIncluded" value="0">No</label><br/><br/>
+
+      <label for="moveInDate">Move in date</label>
+      <p class="input-group">
+        <input type="text" id="moveInDate" class="form-control" datepicker-popup="{{format}}" ng-model="editLooking.tempLooking.moveInDate" is-open="datePickers.startDate" close-text="Close" />
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+      </p>
+
+      <label for="openToFullYearLeaseNewRoomates">Open To Full Year Lease New Roomates</label><br/>
+      <label class="radio-inline"><input type="radio" name="openToFullYearLeaseNewRoomates" id="openToFullYearLeaseNewRoomates" ng-model="editLooking.tempLooking.openToFullYearLeaseNewRoomates" value="1">Yes</label>
+      <label class="radio-inline"><input type="radio" name="openToFullYearLeaseNewRoomates"  ng-model="editLooking.tempLooking.openToFullYearLeaseNewRoomates" value="0">No</label><br/><br/>
+    </div>
+
+    <div class="col-md-4">
+      <label for="roomType">Room type</label>
+      <select id="roomType" class="form-control" ng-model="editLooking.tempLooking.roomType">
+        <option value="single">single</option>
+        <option value="double">double</option>
+        <option value="living room">living room</option>
+      </select>
+
+      <label for="gender">Gender</label>
+      <select id="gender" class="form-control" ng-model="editLooking.tempLooking.gender">
+        <option value="male only">male only</option>
+        <option value="female only">female only</option>
+        <option value="no preference">no preference</option>
+      </select>
+
+      <label for="sharedBathroom">Shared Bathroom</label><br/>
+      <label class="radio-inline"><input type="radio" name="sharedBathroom" id="sharedBathroom" ng-model="editLooking.tempLooking.sharedBathroom" value="1">Yes</label>
+      <label class="radio-inline"><input type="radio" name="sharedBathroom"  ng-model="editLooking.tempLooking.sharedBathroom" value="0">No</label><br/><br/>
+
+      <label for="numRoommates">Number of roommates</label>
+      <input type="number" id="numRoommates" name="numRoommates" class="form-control"  placeholder="num roommates" ng-model="editLooking.tempLooking.numRoommates"/>
+
+      <label for="furnished">furnished</label><br/>
+      <label class="radio-inline"><input type="radio" name="furnished" id="furnished" ng-model="editLooking.tempLooking.furnished" value="1">Yes</label>
+      <label class="radio-inline"><input type="radio" name="furnished"  ng-model="editLooking.tempLooking.furnished" value="0">No</label><br/><br/>
+
+    </div>
+    <div class="col-md-4">
+
+      <label for="busRouteRequired">Bus route required</label><br/>
+      <label class="radio-inline"><input type="radio" name="busRouteRequired" id="busRouteRequired" ng-model="editLooking.tempLooking.busRouteRequired" value="1">Yes</label>
+      <label class="radio-inline"><input type="radio" name="busRouteRequired"  ng-model="editLooking.tempLooking.busRouteRequired" value="0">No</label><br/><br/>
+
+      <label for="parkingNeeded">Parking Needed</label><br/>
+      <label class="radio-inline"><input type="radio" name="parkingNeeded" id="parkingNeeded" ng-model="editLooking.tempLooking.parkingNeeded" value="1">Yes</label>
+      <label class="radio-inline"><input type="radio" name="parkingNeeded"  ng-model="editLooking.tempLooking.parkingNeeded" value="0">No</label><br/><br/>
+
+      <label for="smokingAllowed">Smoking allowed</label><br/>
+      <label class="radio-inline"><input type="radio" name="smokingAllowed" id="smokingAllowed" ng-model="editLooking.tempLooking.smokingAllowed" value="1">Yes</label>
+      <label class="radio-inline"><input type="radio" name="smokingAllowed"  ng-model="editLooking.tempLooking.smokingAllowed" value="0">No</label><br/><br/>
+
+      <label for="petsAllowed">Pets allowed</label><br/>
+      <label class="radio-inline"><input type="radio" name="petsAllowed" id="petsAllowed" ng-model="editLooking.tempLooking.petsAllowed" value="1">Yes</label>
+      <label class="radio-inline"><input type="radio" name="petsAllowed"  ng-model="editLooking.tempLooking.petsAllowed" value="0">No</label><br/><br/>
+    </div>
+  </div>
+    <button ng-click="editLooking.saveChanges(editLooking.tempLooking)" class="btn btn-primary">Save changes</button>
+    <button ng-click="editLooking.delete()" class="btn btn-primary">delete looking</button>
+    <button ui-sref="^" class="btn btn-primary">back</button>
+</div>
+
+<pre>{{editLooking.tempLooking|json}}</pre>
