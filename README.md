@@ -77,3 +77,18 @@ Note: when instatiating Sequelize, sequelize-pg-generator uses ‘postgre’ as 
 - Following a room means following a property
 - Looking means a user is advertising themselves - looking for a roommate or looking for someone with a room to contact the user
 - Update profile from dashboard takes the user in edit profile mode
+
+## Inserting PG SQL schema on your local host
+1. Open PG Admin
+2. Delete existing local database 'rented'
+3. Create a new database 'rented' (case sensitive)
+4. Navigate to PG bin directory
+Ex. /Library/PostgreSQL/9.4/bin/
+5. Apply script to your local Postgres DB (using psql tool witch is located inside bin folder of pg installation)
+Ex. psql -U postgres rented < /Users/vinitmodi/Rented/RentedSchemaPG_v6.sql
+6. Tables will be inserted into the local 'rented' database 
+
+Requires:
+1. npm install as 2 new modules are added (pg, pg-hstore)
+2. check that configuration inside server\config\environment/development.js matches you local pg configuration (db name, user, password)
+Default is user: postgres and password: root
