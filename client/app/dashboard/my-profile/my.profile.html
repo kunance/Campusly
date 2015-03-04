@@ -140,13 +140,13 @@
           
           <div class="pet row" ng-repeat="pet in myProfile.pets track by $index">
             <div class="picture col-xs-2">
-              <img src="../assets/images/pet.svg" alt="" class="img-circle">
+              <span class="badge pet"></span>
             </div>
             <div class="info col-xs-6">
               <span class="main-data">
-                <input type="text" ng-model='pet.breed' ng-readonly="myProfile.selectedPet != $index">
+                <input type="text" ng-model='pet.breed' ng-readonly="myProfile.selectedPet != $index" class="col-xs-12">
               </span>
-              <span class="details">
+              <span class="details col-xs-12">
                 <select ng-model="pet.type" ng-disabled="myProfile.selectedPet != $index">
                   <option value="cat">Cat</option>
                   <option value="dog">Dog</option>
@@ -164,13 +164,26 @@
             </div>
           </div>
 
-          <div class="pet" ng-repeat="vehicle in myProfile.vehicles">
-            <div class="picture">
-              <img src="../assets/images/vehicle.svg" alt="" class="img-circle">
+          <div class="pet row" ng-repeat="vehicle in myProfile.vehicles">
+            <div class="picture col-xs-2">
+              <span class="badge vehicle">&nbsp;</span>
             </div>
-            <div class="info">
-              <span class="name"> {{vehicle.make}} {{vehicle.model}} {{vehicle.year}}</span>
-              <span class="email">{{vehicle.licensePlate}} - {{vehicle.color}} </span>
+            <div class="info col-xs-6">
+              <span class="main-data">
+              <input type="text" ng-model='vehicle.make' ng-readonly="myProfile.selectedVehicle != $index" class="col-xs-12">
+                <input type="text" ng-model='vehicle.model' ng-readonly="myProfile.selectedVehicle != $index" class="col-xs-5">
+                <input type="text" ng-model='vehicle.year' ng-readonly="myProfile.selectedVehicle != $index" class="col-xs-5 col-xs-offset-1">
+              </span>
+              <span class="details">
+                <input type="text" ng-model='vehicle.licensePlate' ng-readonly="myProfile.selectedVehicle != $index" class="col-xs-5">
+                <input type="text" ng-model='vehicle.color' ng-readonly="myProfile.selectedVehicle != $index" class="col-xs-5 col-xs-offset-1">
+              </span>
+            </div>
+            <div class="actions col-xs-4">
+              <a class="bubble" ng-click="myProfile.editVehicle($index)" ng-show="myProfile.selectedVehicle != $index"><i class="fa fa-pencil"></i></a>
+              <a class="bubble cancel" ng-click="myProfile.cancelAddAddon()" ng-hide="myProfile.selectedVehicle != $index"><i class="fa fa-close"></i></a>
+              <a class="bubble" ng-show="myProfile.selectedVehicle == $index" ng-click="myProfile.saveVehicle(vehicle)"><i class="fa fa-save"></i></a>
+              <a class="bubble remove" ng-click="myProfile.deleteVehicle(vehicle)" ng-show="myProfile.selectedVehicle == $index"><i class="fa fa-trash-o"></i></a>
             </div>
           </div>
         </div>
