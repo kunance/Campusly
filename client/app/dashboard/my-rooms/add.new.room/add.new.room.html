@@ -5,24 +5,61 @@
     </div>
     <div class="col-sm-12" id="room-specifics">
 
-      <!--"propertyId" bigint NOT NULL,-->
+      <label for="monthlyPrice">Monthly rent</label>
+      <input type="text" id="monthlyPrice" name="monthlyPrice" class="form-control"  placeholder="monthly price" ng-model="vm.room.monthlyPrice"/>
+
+      <label for="securityDeposit">Security deposit</label>
+      <input type="text" id="securityDeposit" name="securityDeposit" class="form-control"  placeholder="security deposit" ng-model="vm.room.securityDeposit"/>
+
+      <label for="monthlyUtilityCost">Monthly utility cost</label>
+      <input type="currency" id="monthlyUtilityCost" name="monthlyUtilityCost" class="form-control"  placeholder="monthly utility cost" ng-model="vm.room.monthlyUtilityCost"/>
+
+      <label for="availableMoveIn">Available</label>
+      <input type="date" id="availableMoveIn" name="availableMoveIn" class="form-control"  placeholder="available move-in" ng-model="vm.room.availableMoveIn"/>
+
+      <label for="leaseEndDate">Lease End Date</label>
+      <input type="text" id="leaseEndDate" name="monthlyPrice" class="form-control"  placeholder="Lease End Date" ng-model="vm.room.leaseEndDate"/>
+
+      <label for="leaseType">Lease type</label>
+      <select id="leaseType" class="form-control" data-ng-model="vm.room.leaseType">
+        <option value="sub-lease">Sub-lease</option>
+        <option value="month-to-month">Month to month</option>
+        <option value="lease take over">Lease take over</option>
+      </select>
+
+      <label for="gender">Gender preference</label>
+      <select id="gender"class="form-control" data-ng-model="vm.room.gender">
+        <option value="no preference">no preference</option>
+        <option value="male only">male only</option>
+        <option value="female only">female only</option>
+      </select>
+
+      <label for="roomType">Room type</label>
+      <select id="roomType"class="form-control" data-ng-model="vm.room.roomType">
+        <option value="single">single</option>
+        <option value="double">double</option>
+        <option value="loft">loft</option>
+        <option value="living room">living room</option>
+      </select>
+
+      <label for="numRoomates">Current number of roommates</label>
+      <input type="number" id="numRoomates" name="numRoomates" class="form-control" ng-model="vm.room.numRoomates"/>
 
 
-      <!--"securityDeposit" double precision DEFAULT 0::double precision,-->
-      <!--"availableMoveIn" timestamp with time zone DEFAULT now() NOT NULL,-->
-      <!--"leaseEndDate" timestamp with time zone,-->
-      <!--"leaseType" "room_listing_leaseType" NOT NULL,-->
-      <!--gender room_listing_gender DEFAULT 'no preference'::room_listing_gender NOT NULL,-->
-      <!--"monthlyUtilityCost" integer NOT NULL,-->
-      <!--"roomType" "room_listing_roomType" NOT NULL,-->
-      <!--"sharedBathroom" boolean,-->
-      <!--"numRoomates" integer NOT NULL,-->
-      <!--furnished boolean,-->
-      <!--"parkingAvailable" boolean,-->
-      <!--"smokingAllowed" boolean,-->
-      <!--description text,-->
-      <label for="monthlyPrice">Monthly Rent</label>
-      <input type="text" id="monthlyPrice" name="monthlyPrice" class="form-control"  placeholder="Monthly price" ng-model="vm.room.monthlyPrice"/>
+      <label for="sharedBath">Shared Bathroom</label>
+      <input type="checkbox" id="sharedBath" name="sharedBath" class="form-control"  placeholder="shared bath" ng-model="vm.room.sharedBath"/>
+
+      <label for="furnished">Furnished</label>
+      <input type="checkbox" id="furnished" name="furnished" class="form-control" ng-model="vm.room.furnished"/>
+
+      <label for="parkingAvailable">Parking available</label>
+      <input type="checkbox" id="parkingAvailable" name="parkingAvailable" class="form-control" ng-model="vm.room.parkingAvailable"/>
+
+      <label for="smokingAllowed">Smoking allowed</label>
+      <input type="checkbox" id="smokingAllowed" name="smokingAllowed" class="form-control" ng-model="vm.room.smokingAllowed"/>
+
+      <label for="roomDescription">Room description</label>
+      <textarea name="roomDescription" id="roomDescription" cols="30" rows="5" data-ng-model="vm.room.description"  class="form-control" ></textarea>
 
     </div>
     <div class="col-sm-12">
