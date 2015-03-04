@@ -8,7 +8,6 @@
   config.$inject=['$stateProvider', '$urlRouterProvider'];
 
   function config ($stateProvider, $urlRouterProvider) {
-    // $urlRouterProvider.when('/dashboard', '/dashboard/summary');
     $stateProvider
       .state('dashboard.myRooms.addNew', {
         url: '/addNew',

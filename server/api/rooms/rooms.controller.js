@@ -1,27 +1,11 @@
 var sqldb = require('../../sqldb');
-var Room = sqldb.model('roomListing');
+var RoomListing = sqldb.model('roomListingView');
 
 
-
-/**
- *   This creates room in room_listing table
- *
- *
- * @param req   { propertyId: 'string',  monthlyPrice: float  [smokingAllowed]: true|false, {//TODO finish documentation }  }
- *
- *
- * @param res
- * @param next
- */
-exports.createRoomListing = function(req, res, next) {
-
-
-
-};
 
 
 /**
- *
+ * Retrieve a specific room listing with both the room listing and property details
  * @param req
  * @param res
  * @param next
@@ -33,10 +17,10 @@ exports.getRoomListing = function(req, res, next) {
 
 
 /**
+ *  Gets all room listings with room listing and property details.  Default behavior is to return fully hydrated
+ *  models unless a filter is used in the query.
  *
- *  Gets all rooms fully hydrated by default
- *
- *  Use param  min=true for room to return ony
+ *  Use param  min=true to return room listings with the following fields
  *  {
  *  image_url:
  *  "value": 818,
@@ -46,6 +30,20 @@ exports.getRoomListing = function(req, res, next) {
     "bathroom": "Shared",
     "availability_date": "2003-09-24"
     }
+
+
+ Coming soon more url params to support criteria for search
+
+
+ *     If you use distance, you MUST pass in latitude and longitude
+ *     lat=8.3
+ *     long=8.2
+ *     distance=whole number in miles
+ *
+ *     Passing in lat, long to the api supports current location using mobile, your university, your current
+ *         home address, your gf/bf address, ...
+ *
+ *
  *
  * @param req
  * @param res
@@ -58,25 +56,6 @@ exports.getAllRoomListings = function(req, res, next) {
 
 
 
-
-/**
- *
- * @param req
- * @param res
- * @param next
- */
-exports.deleteRoomListing = function(req, res, next) {
-
-  var room = new Room();
-
-  //var userId = req.params("userId");
-  //var id = req.params("id");
-
-  //Room.find( id = id, creatorId = userId {
-  //
-  //});
-
-};
 
 
 

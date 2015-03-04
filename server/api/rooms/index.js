@@ -26,10 +26,7 @@ router.get('/', controller.getAllRoomListings);
 
 
 // gets room listing with specific :id
-router.get('/:id', controller.createRoomListing);
-
-
-router.delete('/:id', controller.deleteRoomListing);
+router.get('/:id', controller.getRoomListing);
 
 
 

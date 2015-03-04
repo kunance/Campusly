@@ -64,35 +64,6 @@ exports.createRoomListing = function(req, res, next) {
  */
 exports.getRoomListing = function(req, res, next) {
 
-  //User.find({
-  //  where: {
-  //    id: userId
-  //  },
-  //  attributes: [
-  //    'id',
-  //    'username',
-  //    'middlename',
-  //    'confirmedEmail',
-  //    'firstname',
-  //    'email',
-  //    'phone',
-  //    'lastname',
-  //    'profileImage'
-  //  ]
-  //})
-  //  .then(function(user) {
-  //    if (!user) {
-  //      return res.send(401);
-  //    }
-  //    else{
-  //      res.json(user);
-  //    }
-  //  })
-  //  .catch(function(err) {
-  //    return next(err);
-  //  });
-
-
 };
 
 
