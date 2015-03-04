@@ -17,8 +17,7 @@
     vm.tabs = [
       { title:"Dashboard", sref:"dashboard", active: true },
       { title:"My profile", sref:".myProfile"},
-//      { title:"My properties", sref:".myProperties"},
-      { title:"My rooms", sref:".myRooms"},
+      { title:"Available rooms", sref:".myRooms"},
       { title:"My connections", sref:".myConnections"},
       { title:"My favorites", sref:".myFavorites"},
       { title:"Messages", sref:".messages"}
