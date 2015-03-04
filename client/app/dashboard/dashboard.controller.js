@@ -21,11 +21,10 @@
 
     vm.tabs = [
     { title:"Dashboard", sref:"dashboard", active: true },
-    { title:"My profile", sref:".myProfile"},
+    { title:"Messages", sref:".messages"},
+    { title:"Around You", sref:""}, //Need to add sref state for looking
     { title:"My properties", sref:".myProperties"},
-    { title:"My connections", sref:".myConnections"},
-    { title:"My favorites", sref:".myFavorites"},
-    { title:"Messages", sref:".messages"}];
+    { title:"Looking", sref:""}]; //Need to add sref state for looking
 
     mixpanel.identify(vm.me.id);
     mixpanel.people.set({
@@ -147,7 +146,7 @@
     });
 
     angular.element(document).ready(function () {
-      orderSliderButtons();      
+      orderSliderButtons();
     });
 
   }
