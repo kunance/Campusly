@@ -555,7 +555,13 @@ var looking = Sequelize.define("looking",
      field: 'updatedAt' },
   deletedAt: 
    { type: { [Function] super_: [Function], key: 'DATE' },
-     field: 'deletedAt' } },
+     field: 'deletedAt' },
+  userId: 
+   { type: { [Function] super_: [Object], key: 'BIGINT' },
+     field: 'userId',
+     allowNull: false,
+     references: 'rented_user',
+     referencesKey: 'userId' } },
 { tableName: 'looking', timestamps: false });
 
 
@@ -2083,6 +2089,11 @@ lessee.belongsTo(lease, { as: 'relatedLeaseId',
   onUpdate: 'NO ACTION' });
 
 lessee.belongsTo(rentedUser, { as: 'relatedUserId',
+  foreignKey: 'userId',
+  onDelete: 'NO ACTION',
+  onUpdate: 'NO ACTION' });
+
+looking.belongsTo(rentedUser, { as: 'relatedUserId',
   foreignKey: 'userId',
   onDelete: 'NO ACTION',
   onUpdate: 'NO ACTION' });

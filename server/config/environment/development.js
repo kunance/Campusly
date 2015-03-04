@@ -8,7 +8,7 @@ module.exports = {
     uri: 'mongodb://localhost/basecodesql-dev'
   },
   sequelize: {
-    db: 'Rented',
+    db: 'rented',
     username:'postgres',
     password:'root',
     port:5432,

@@ -6,13 +6,15 @@
   .module('app.dashboard')
   .controller('DashboardCtrl',DashboardCtrl);
 
-  DashboardCtrl.$inject=['common', '$scope', '$http'];
+  DashboardCtrl.$inject=['common', '$scope', '$http', 'getLookings', 'RoomListingView'];
 
-  function DashboardCtrl(common, $scope, $http) {
+  function DashboardCtrl(common, $scope, $http, getLookings, RoomListingView) {
     var vm = this;
     var Auth = common.Auth;
     vm.address = { };
     vm.me = Auth.getCurrentUser();
+
+  //  vm.lookingRoom = getLookings; //get all user lookings
 
     vm.tabs = [
       { title:"Dashboard", sref:"dashboard", active: true },
@@ -38,9 +40,13 @@
     // BEGIN Getter for mock data
     // ================================================
 
-    $http.get("../assets/fake/available_rooms.json")
-    .success(function(data){
-      vm.availableRooms = data;
+    //$http.get("../assets/fake/available_rooms.json")
+    //.success(function(data){
+    //  vm.availableRooms = data;
+    //});
+
+    vm.availableRooms = RoomListingView.query({}, function() {
+
     });
 
     $http.get("../assets/fake/looking_for_room.json")
