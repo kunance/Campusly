@@ -1,0 +1,25 @@
+<div class="page-header">
+  <h2> Pets & Vehicles </h2>
+  <a class="bubble edit-profile"> <i class="fa fa-plus"></i> </a>
+</div>
+<div class="white-box pets">
+  <div class="pet" ng-repeat="pet in myProfile.pets">
+    <div class="picture">
+      <img src="../assets/images/pets.jpg" alt="" class="img-circle">
+    </div>
+    <div class="info">
+      <span class="name"> {{pet.breed}} </span>
+      <span class="email">{{pet.type}} - {{pet.weightLbs}}Lbs </span>
+    </div>
+  </div>
+
+  <div class="pet" ng-repeat="vehicle in myProfile.vehicles">
+    <div class="picture">
+      <img src="../assets/images/vehicle.png" alt="" class="img-circle">
+    </div>
+    <div class="info">
+      <span class="name"> {{vehicle.make}} {{vehicle.model}} {{vehicle.year}}</span>
+      <span class="email">{{vehicle.licensePlate}} - {{vehicle.color}} </span>
+    </div>
+  </div>
+</div>

@@ -8,11 +8,9 @@
     </div>
 
     <div class="right-content" ng-show="isLoggedIn()">
-      <!-- <a ui-sref-active="active" ui-sref="settings"><i class="glyphicon glyphicon-cog"></i> Settings</a> -->
-        <img class="img-circle" ng-if="getCurrentUser().userImage" ng-src="/api/images{{getCurrentUser().userImage}}" style="height: 50px"/>
-        <a ui-sref-active="active" ui-sref="logout"><i class="fa fa-sign-out"></i> Logout</a>
-
-      <p>Hello <strong>{{getCurrentUser().firstname}}</strong></p>
+      <p class="greetings">Hello <strong>{{getCurrentUser().firstname}}</strong></p>
+      <img class="img-circle profile-image" ng-if="getCurrentUser().profileImage" ng-src="/api/images{{getCurrentUser().profileImage}}">
+      <a class='bubble' ui-sref-active="active" ui-sref="logout"><i class="fa fa-sign-out"></i></a>
     </div>
 
     <div class="right-content" ng-show="!isLoggedIn()">

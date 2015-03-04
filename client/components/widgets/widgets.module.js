@@ -9,6 +9,7 @@
     'cgBusy',
     'angular-progress-arc',
     'angucomplete-alt',
+    'angularMoment',
     'slick'
   ]);
 

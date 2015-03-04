@@ -169,10 +169,13 @@ label + label {
   font-family: "Proxima Nova";
   display: inline-block;
   border: none;
-  background-color: #f7953d;
   color: #fff;
   padding: 0 25px;
 }
+.btn.btn-primary{
+  background-color: #f7953d;
+}
+
 .btn:hover, .lrg-btn:hover, .small-btn:hover {
   background-color: #f7953d;
   color: #333333;
@@ -209,6 +212,15 @@ label + label {
   background-repeat: no-repeat;
   padding: 15px 0;
 }
+
+.login-header .greetings {
+  color: #fff;
+}
+.login-header .profile-image {
+  height: 3em;
+  border: 2px solid #fff;
+}
+
 .login-header.transparent {
   background: transparent;
 }
