@@ -22,9 +22,9 @@
     vm.tabs = [
     { title:"Dashboard", sref:"dashboard", active: true },
     { title:"Messages", sref:".messages"},
-    { title:"Around You", sref:""}, //Need to add sref state for looking
+    { title:"Around You", sref:".around"},
     { title:"My properties", sref:".myProperties"},
-    { title:"Looking", sref:""}]; //Need to add sref state for looking
+    { title:"Looking", sref:".looking"}];
 
     mixpanel.identify(vm.me.id);
     mixpanel.people.set({
