@@ -13,16 +13,24 @@
           controllerAs:'dashboard',
           authenticate: true,
           resolve:{
-            getLookings:getLookings
+            getUserLookings:getUserLookings,
+            allLooking:allLooking
           }
         });
     });
 
-  function getLookings(common,$q) {
+  function getUserLookings(common,$q) {
     var deffered = $q.defer();
     var dataservice = common.dataservice;
     var me = common.Auth.getCurrentUser();
     deffered.resolve(dataservice.getAllLookings(me));
+    return deffered.promise;
+  }
+
+  function allLooking(common, $q) {
+    var deffered = $q.defer();
+    deffered.resolve(common.$http({method:'get', url:'/api/lookings/all'}).success(function () {
+    }));
     return deffered.promise;
   }
 
