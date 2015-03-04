@@ -36,11 +36,14 @@ exports.show = function (req, res, next) {
 };
 
 exports.showAllProperties= function(req, res, next) {
-  PropertyOwner.findAll({where: {ownerId:req.body.userId}}).then(function(tasks) {
-    res.json(tasks)
-
-
-  }).catch(validationError(res));
+  PropertyOwner.findAll({
+    where: {
+      ownerId:req.body.userId
+    }})
+    .then(function(properties) {
+    res.json(properties)
+  })
+    .catch(validationError(res));
 };
 
 exports.createProperty = function(req, res, next) {
@@ -69,6 +72,7 @@ exports.createProperty = function(req, res, next) {
     }).catch(validationError(res));
 
 };
+
 //return sequelize.transaction(function (call) {
 //  return Property.create({
 //    //ode ide property

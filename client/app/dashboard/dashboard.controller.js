@@ -6,14 +6,15 @@
   .module('app.dashboard')
   .controller('DashboardCtrl',DashboardCtrl);
 
-  DashboardCtrl.$inject=['common', '$scope', '$http', 'getUserLookings', 'allLooking'];
+  DashboardCtrl.$inject=['common', '$scope', '$http', 'getUserLookings', 'allLooking', 'universityData'];
 
-  function DashboardCtrl(common, $scope, $http, getUserLookings, allLooking) {
+  function DashboardCtrl(common, $scope, $http, getUserLookings, allLooking, universityData) {
     var vm = this;
     var Auth = common.Auth;
     vm.address = { };
     vm.me = Auth.getCurrentUser();
 
+    //vm.universityList = universityData.getUniversityList(); //list of all universities from service
     //vm.lookingRoom = getUserLookings; //get all user lookings
     //vm.allLookings = allLooking.data; //get all lookings (from all users)
 

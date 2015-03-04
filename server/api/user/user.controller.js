@@ -37,18 +37,9 @@ function respondWith(res, statusCode) {
  * restriction: 'admin'
  */
 exports.index = function(req, res) {
-  //console.log(req.user);
-  //console.log(req.body);
-  //console.log(req.params);
+  var userAttributes = ['id', 'firstname', 'lastname', 'profileImage', 'email', 'createdAt'];
   User.findAll({
-    attributes: [
-      'id',
-      'firstname',
-      'lastname',
-      'profileImage',
-      'email',
-      'createdAt'
-    ]
+    attributes: userAttributes
   })
     .then(function(users) {
       res.json(users);
@@ -60,26 +51,14 @@ exports.index = function(req, res) {
  * Get my info
  */
 exports.me = function(req, res, next) {
-  var userid = req.user.id;
+  var userAttributes = ['id', 'aboutMe', 'username', 'confirmedEmail', 'createdAt',
+    'firstname', 'email', 'phone', 'lastname', 'profileImage', 'role'];
+  var userId = req.user.id;
   User.find({
     where: {
-      id: userid
+      id: userId
     },
-    attributes: [
-      'id',
-      'aboutMe',
-      'username',
-      'middlename',
-      'confirmedEmail',
-      'createdAt',
-      'firstname',
-      'email',
-      'phone',
-      'lastname',
-      'role',
-      'provider',
-      'profileImage'
-    ]
+    attributes: userAttributes
   })
     .then(function(user) { // don't ever give out the password or salt
       if (!user) { return res.json(401); }
@@ -96,7 +75,6 @@ exports.me = function(req, res, next) {
  * Creates a new user
  */
 exports.create = function(req, res, next) {
-  console.log(req.body);
   req.body.salt = "temporary";
   req.body.confirmedEmail = false;
   req.body.runIdentityCheck= false;
@@ -121,22 +99,12 @@ exports.create = function(req, res, next) {
  */
 exports.show = function(req, res, next) {
   var userId = req.params.id;
-
+  var userAttributes = ['id', 'confirmedEmail', 'firstname', 'email', 'phone', 'lastname', 'profileImage'];
   User.find({
     where: {
       id: userId
     },
-    attributes: [
-      'id',
-      'username',
-      'middlename',
-      'confirmedEmail',
-      'firstname',
-      'email',
-      'phone',
-      'lastname',
-      'profileImage'
-    ]
+    attributes: userAttributes
   })
     .then(function(user) {
       if (!user) {
@@ -187,7 +155,6 @@ exports.changePassword = function(req, res, next) {
 
 exports.changeInfo = function(req, res, next) {
   var userId = req.user.id;
-  console.log(req.body);
   User.find({
     where: {
       id: userId
@@ -234,7 +201,6 @@ exports.changeProfileImage = function(req, res, next) {
 };
 
 exports.downloadProfileImage = function(req, res, next) {
-  console.log('usa san');
   User.find({
     where: {
       id: req.params.id
@@ -243,13 +209,10 @@ exports.downloadProfileImage = function(req, res, next) {
     .then(function(user) {
       if(user){
         var s3Path = user.profileImage;
-        console.log('ovo je s3 path', s3Path);
         s3.download(s3Path, function (err, imageStream) {
           if(err) {
-            console.log('error sa s3', err);
             res.send(500, err)
           }
-          console.log('sad cu pipeat');
           imageStream.pipe(res);
         })
       } else{
@@ -259,8 +222,6 @@ exports.downloadProfileImage = function(req, res, next) {
 
 
 };
-
-
 
 /**
  * Authentication callback

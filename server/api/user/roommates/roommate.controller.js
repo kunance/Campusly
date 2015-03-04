@@ -1,4 +1,3 @@
-
 'use strict';
 
 var _ = require('lodash');
@@ -53,12 +52,15 @@ exports.newRoommate = function(req, res, next) {
 
 exports.showRoommates= function(req, res, next) {
   var userAttributes = ['firstname', 'lastname', 'profileImage', 'email'];
-  Roommate.findAll({where:{userId:req.user.id},
+  Roommate.findAll({
+    where:{
+      userId:req.user.id
+    },
     include: [
       { model: User, attributes: userAttributes, as: 'relatedRoommateId',
-    include:[
-      { model: Address, as: 'addresshistoryUsers' },
-      { model: Education, as: 'usereducationUsers' }]
+        include:[
+          { model: Address, as: 'addresshistoryUsers' },
+          { model: Education, as: 'usereducationUsers' }]
       }
     ]
   }).then(function(roommates) {
@@ -68,13 +70,19 @@ exports.showRoommates= function(req, res, next) {
 };
 
 exports.deleteRoommate= function(req, res, next) {
-  Roommate.destroy({where: { id: req.params.id }})
+  Roommate.destroy({
+    where: {
+      id: req.params.id
+    }})
     .then(respondWith(res, 204))
     .catch(handleError(res));
 };
 
 exports.getRoommate= function(req, res, next) {
-  Roommate.find({where: { id: req.params.id }})
+  Roommate.find({
+    where: {
+      id: req.params.id
+    }})
     .then(function (room) {
       res.json(room);
     })
@@ -82,7 +90,10 @@ exports.getRoommate= function(req, res, next) {
 };
 
 exports.saveRoommate= function(req, res, next) {
-  Roommate.find({where: { id: req.params.id }})
+  Roommate.find({
+    where: {
+      id: req.params.id
+    }})
     .then(function (room) {
       var updated = _.merge(room, req.body);
       updated.save().then(function (upd) {
