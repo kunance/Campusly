@@ -12,8 +12,8 @@ var RoomListing = sqldb.model('roomListingView');
  */
 exports.getRoomListing = function(req, res, next) {
 
-  RoomListing.findAll();
-  
+//  RoomListing.findAll();
+
   res.json(
       {
         "image_url": "http://lorempixel.com/400/250/city/1",

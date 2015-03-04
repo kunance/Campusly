@@ -6,24 +6,28 @@
   .module('app.dashboard')
   .controller('DashboardCtrl',DashboardCtrl);
 
-  DashboardCtrl.$inject=['common', '$scope', '$http', 'getLookings', 'RoomListingView'];
 
-  function DashboardCtrl(common, $scope, $http, getLookings, RoomListingView) {
+  DashboardCtrl.$inject=['common', '$scope', '$http', 'getUserLookings', 'allLooking', 'universityData', '$window', 'RoomListingView'];
+
+  function DashboardCtrl(common, $scope, $http, getUserLookings, allLooking, universityData, $window, RoomListingView) {
+
     var vm = this;
     var Auth = common.Auth;
     vm.address = { };
     vm.me = Auth.getCurrentUser();
 
-  //  vm.lookingRoom = getLookings; //get all user lookings
+    //vm.universityList = universityData.getUniversityList(); //list of all universities from service
+    //vm.lookingRoom = getUserLookings; //get all user lookings
+    //vm.allLookings = allLooking.data; //get all lookings (from all users)
+
 
     vm.tabs = [
-      { title:"Dashboard", sref:"dashboard", active: true },
-      { title:"My profile", sref:".myProfile"},
-      { title:"Available rooms", sref:".myRooms"},
-      { title:"My connections", sref:".myConnections"},
-      { title:"My favorites", sref:".myFavorites"},
-      { title:"Messages", sref:".messages"}
-    ];
+    { title:"Dashboard", sref:"dashboard", active: true },
+    { title:"Messages", sref:".messages"},
+    { title:"Around You", sref:".around"},
+    { title:"Available rooms", sref:".myRooms"},
+    { title:"Looking", sref:".looking"}];
+
 
     mixpanel.identify(vm.me.id);
     mixpanel.people.set({
@@ -131,19 +135,26 @@
       ]
     }
 
+    function orderSliderButtons() {
+      setTimeout(function() {
+        $(".slider").each(function(index) {
+          var slider = $(".slider").eq(index)
+          var dotsX = parseInt(slider.find(".slick-dots").css("left"));
+          var dotsSize = parseInt(slider.find(".slick-dots").css("width"));
+          var nextBtnX = dotsX + dotsSize + 10;
+
+          slider.find(".slick-next").css("left", nextBtnX);
+        });
+      }, 500);
+    }
+
+    $(window).resize(function(){
+      orderSliderButtons();
+    });
+
+    angular.element(document).ready(function () {
+      orderSliderButtons();
+    });
+
   }
-
-  angular.element(document).ready(function () {
-    setTimeout(function() {
-      $(".slider").each(function(index) {
-        var slider = $(".slider").eq(index)
-        var dotsX = parseInt(slider.find(".slick-dots").css("left"));
-        var dotsSize = parseInt(slider.find(".slick-dots").css("width"));
-        var nextBtnX = dotsX + dotsSize + 10;
-
-        slider.find(".slick-next").css("left", nextBtnX);
-      });
-    }, 500);
-  });
-
 }());

@@ -10,12 +10,12 @@
   function config ($stateProvider, $urlRouterProvider) {
     // $urlRouterProvider.when('/dashboard', '/dashboard/summary');
     $stateProvider
-      .state('dashboard.myProperties.details', {
-        url: '/details',
-        templateUrl: 'app/dashboard/my-properties/property.details/property.details.html',
-        controller: 'PropertyDetailsCtrl',
-        controllerAs:'details',
-        authenticate: true
-      });
+    .state('dashboard.myProperties.details', {
+      url: '/details',
+      templateUrl: 'app/dashboard/my-properties/property.details/property.details.html',
+      controller: 'PropertyDetailsCtrl',
+      controllerAs:'details',
+      authenticate: true
+    });
   }
 }());

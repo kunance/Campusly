@@ -57,8 +57,8 @@ exports.deleteLooking= function(req, res, next) {
 
 exports.getLooking = function(req, res, next) {
   Looking.find({where: { id: req.params.id }})
-    .then(function (finance) {
-      res.json(finance);
+    .then(function (looking) {
+      res.json(looking);
     })
     .catch(handleError(res));
 };

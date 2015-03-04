@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<html ng-app="RentedApp" ng-controller="PrerenderController">
+<html ng-app="RentedApp" ng-controller="PrerenderController"  lang="en_US">
   <head>
     <!-- start Mixpanel --><script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
     for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
@@ -87,6 +87,8 @@
       <script src="bower_components/angucomplete-alt/angucomplete-alt.js"></script>
       <script src="bower_components/slick-carousel/slick/slick.min.js"></script>
       <script src="bower_components/angular-slick/dist/slick.js"></script>
+      <script src="bower_components/moment/moment.js"></script>
+      <script src="bower_components/angular-moment/angular-moment.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -156,11 +158,15 @@
           <script src="app/account/signup/signup.controller.js"></script>
           <script src="app/admin/admin.controller.js"></script>
           <script src="app/admin/admin.js"></script>
+          <script src="app/dashboard/around/around.controller.js"></script>
+          <script src="app/dashboard/around/around.route.js"></script>
           <script src="app/dashboard/connections/my.connection.controller.js"></script>
           <script src="app/dashboard/connections/my.connection.route.js"></script>
           <script src="app/dashboard/dashboard.controller.js"></script>
           <script src="app/dashboard/favorites/my.favorites.controller.js"></script>
           <script src="app/dashboard/favorites/my.favorites.route.js"></script>
+          <script src="app/dashboard/looking/looking.controller.js"></script>
+          <script src="app/dashboard/looking/looking.route.js"></script>
           <script src="app/dashboard/messages/messages.controller.js"></script>
           <script src="app/dashboard/messages/messages.route.js"></script>
           <script src="app/dashboard/my-profile/add-address/new.address.ctrl.js"></script>
@@ -177,6 +183,8 @@
           <script src="app/dashboard/my-profile/edit-looking/edit.looking.route.js"></script>
           <script src="app/dashboard/my-profile/edit-pet/edit.pet.controller.js"></script>
           <script src="app/dashboard/my-profile/edit-pet/edit.pet.route.js"></script>
+          <script src="app/dashboard/my-profile/edit-profile/edit.profile.controller.js"></script>
+          <script src="app/dashboard/my-profile/edit-profile/edit.profile.route.js"></script>
           <script src="app/dashboard/my-profile/edit-vehicle/edit.vehicle.controller.js"></script>
           <script src="app/dashboard/my-profile/edit-vehicle/edit.vehicle.route.js"></script>
           <script src="app/dashboard/my-profile/my.profile.controller.js"></script>
@@ -219,6 +227,7 @@
           <script src="components/core/data/roomListing.js"></script>
           <script src="components/core/data/roomListingView.js"></script>
           <script src="components/core/data/roommates.js"></script>
+          <script src="components/core/data/university.data.js"></script>
           <script src="components/core/data/vehicle.js"></script>
           <script src="components/layout/footer/footer.controller.js"></script>
           <script src="components/layout/navbar/navbar.controller.js"></script>

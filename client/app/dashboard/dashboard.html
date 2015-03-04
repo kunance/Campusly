@@ -34,24 +34,13 @@
               </div>
             </div>
             <!-- end message box -->
-            <a  class="btn btn-rented primary"> Views all messages </a>
+            <a  class="btn btn-primary btn-block"> Views all messages </a>
             <hr>
 
             <div class="profile">
-              <div class="set-size">
-                <div class="pie-wrapper progress-30">
-                  <span class="label"><img src="../assets/fake/girl.jpg" class="img-circle" alt=""></span>
-                  <div class="pie">
-                    <div class="left-side half-circle"></div>
-                    <div class="right-side half-circle"></div>
-                  </div>
-                  <div class="shadow"></div>
-                </div>
-              </div>
-              <h2> Jennifer Clardy
-                <small> Your profile is 30% complete</small>
-              </h2>
-              <a  class="btn btn-rented secondary" ui-sref="dashboard.myProfile"> Complete Profile </a>
+            <img src="../assets/fake/girl.jpg" class="img-circle" alt="">
+              <h2> Jennifer Clardy </h2>
+              <a  class="btn btn-secondary btn-block" ui-sref="dashboard.myProfile"> Complete Profile </a>
             </div>
 
 
@@ -87,7 +76,7 @@
             </slick>
           </div>
 
-          <h2 class="section-title"> Looking for a room</h2>
+          <h2 class="section-title"> Looking </h2>
           <div class="white-box looking-for-room">
             <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" data="dashboard.lookingRoom">
 
@@ -109,14 +98,13 @@
                     <li>{{person.distance}}</li>
                   </ul>
                 </div>
-                <button ui-sref=".myProfile.editLooking({id: person.id})">edit</button>
               </div>
               <!-- end room box -->
               <hr>
             </slick>
           </div>
 
-          <h2 class="section-title"> Around you</h2>
+          <h2 class="section-title"> Around You</h2>
 
           <div class="white-box around-you">
 
@@ -133,7 +121,7 @@
             </slick>
           </div>
 
-          <h2 class="section-title"> My listings</h2>
+          <h2 class="section-title"> My Posts</h2>
 
           <div class="white-box my-listings">
 
