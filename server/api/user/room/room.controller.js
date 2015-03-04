@@ -39,16 +39,20 @@ function respondWith(res, statusCode) {
  * @param res
  * @param next
  */
-exports.createMyRoom = function(req, res, next) {
+exports.createRoomListing = function(req, res, next) {
 
-  var newRoomListing = RoomListing.build(req.body);
+  console.log("Creating new room listing: ", req.body);
 
-  //TODO rework/research the catching of the error from sequelize and handling of it
-  newRoomListing.save()
-    .then(function(room) {
-      res.json({ room: room });
-    })
-    .catch(validationError(res));
+  res.json({});
+
+  //var newRoomListing = RoomListing.build(req.body);
+  //
+  ////TODO rework/research the catching of the error from sequelize and handling of it
+  //newRoomListing.save()
+  //  .then(function(room) {
+  //    res.json({ room: room });
+  //  })
+  //  .catch(validationError(res));
 };
 
 
@@ -58,35 +62,35 @@ exports.createMyRoom = function(req, res, next) {
  * @param res
  * @param next
  */
-exports.getMyRoom = function(req, res, next) {
+exports.getRoomListing = function(req, res, next) {
 
-  User.find({
-    where: {
-      id: userId
-    },
-    attributes: [
-      'id',
-      'username',
-      'middlename',
-      'confirmedEmail',
-      'firstname',
-      'email',
-      'phone',
-      'lastname',
-      'profileImage'
-    ]
-  })
-    .then(function(user) {
-      if (!user) {
-        return res.send(401);
-      }
-      else{
-        res.json(user);
-      }
-    })
-    .catch(function(err) {
-      return next(err);
-    });
+  //User.find({
+  //  where: {
+  //    id: userId
+  //  },
+  //  attributes: [
+  //    'id',
+  //    'username',
+  //    'middlename',
+  //    'confirmedEmail',
+  //    'firstname',
+  //    'email',
+  //    'phone',
+  //    'lastname',
+  //    'profileImage'
+  //  ]
+  //})
+  //  .then(function(user) {
+  //    if (!user) {
+  //      return res.send(401);
+  //    }
+  //    else{
+  //      res.json(user);
+  //    }
+  //  })
+  //  .catch(function(err) {
+  //    return next(err);
+  //  });
 
 
 };
@@ -111,12 +115,10 @@ exports.getMyRoom = function(req, res, next) {
  * @param res
  * @param next
  */
-exports.getAllMyRooms = function(req, res, next) {
+exports.getAllRoomListings = function(req, res, next) {
 
 
 };
-
-
 
 
 /**
@@ -125,7 +127,19 @@ exports.getAllMyRooms = function(req, res, next) {
  * @param res
  * @param next
  */
-exports.deleteMyRoom = function(req, res, next) {
+exports.editRoomListing = function(req, res, next) {
+
+
+};
+
+
+/**
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
+exports.deleteRoomListing = function(req, res, next) {
 
   var room = new Room();
 

@@ -12,6 +12,9 @@
     /* jshint validthis: true */
     var vm = this;
 
+    var dataservice = common.dataservice;
+
+
     vm.room = {};
     vm.property = {};
 
@@ -22,14 +25,15 @@
       vm.me.profileImage =res.saved;
     };
 
-    vm.addNewRoom = function (input) {
-      var zip = input.zip.toString();
+    vm.create = function (property, room, picture) {
+      var zip = property.address.zip.toString();
       var trimmedZip = zip.replace(/\s+/g, '');
-      input.zip = Number(trimmedZip);
-      input.latitude= input.location.latitude;
-      input.longitude= input.location.longitude;
-      input.creatorId = vm.me.id;
-      dataservice.addProperty(input).$promise.then(function () {
+      property.address.zip = Number(trimmedZip);
+      //input.latitude= input.location.latitude;
+      //input.longitude= input.location.longitude;
+      room.creatorId = vm.me.id;
+
+      dataservice.addRoomListing(vm.me.id, { room : room, property: property}).$promise.then(function () {
         //$state.go('myProperties')
       }, function (err) {
         console.log('error while saving property', err);

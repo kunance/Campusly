@@ -5,9 +5,9 @@
     .module('app.core')
     .factory('dataservice', dataservice);
 
-  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation', 'Roommate'];
+  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation', 'Roommate', 'RoomListing'];
 
-  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education, Finance, Occupation, Roommate) {
+  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education, Finance, Occupation, Roommate, RoomListing) {
 
     var safeCb = function(cb) {
         return (angular.isFunction(cb)) ? cb : angular.noop;
@@ -49,9 +49,41 @@
        getAllRoommates:getAllRoommates,
        editRoommate:editRoommate,
        deleteRoommate:deleteRoommate,
-       addRoommate: addRoommate
+       addRoommate: addRoommate,
+       addRoomListing: addRoomListing,
+       editRoomListing: editRoomListing,
+       deleteRoomListing: deleteRoomListing
     };
     return service;
+
+    function addRoomListing(userId, data) {
+      return RoomListing.save({userId: userId}, data,
+        function(res) {
+          return res;
+        },
+        function(err) {
+          //handle this exception
+        });
+    }
+
+    function editRoomListing(userId, roomId, data) {
+      return RoomListing.edit({creatorId: userId, id: roomId}, data,
+        function(res) {
+          return res;
+        },
+        function(err) {
+          //handle this exception
+        });
+    }
+
+    function deleteRoomListing(userId, roomId, data) {
+      return RoomListing.delete({creatorId: userId, id: roomId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
 
     function addProperty(data) {
       return Property.save(data,

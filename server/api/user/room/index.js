@@ -13,26 +13,29 @@ var router = express.Router();
  *  Use param  min=true for room with only
  *
  */
-router.get('/', controller.getAllMyRooms);
+router.get('/', controller.getAllRoomListings);
+
+
+router.get('/:id', controller.getRoomListing);
 
 
 /**
  * @see payload required in controller
  */
-router.post('/', controller.createMyRoom);
+router.post('/', controller.createRoomListing);
 
 
 /**
  * url looks like /api/users/:userId/rooms/:id
  */
-router.put('/:id');
+router.put('/:id', controller.editRoomListing);
 
 
 /**
  * url looks like /api/users/:userId/rooms/:id
  */
 //router.delete(':userId', '/:id');
-router.delete('/:id', controller.deleteMyRoom);
+router.delete('/:id', controller.deleteRoomListing);
 
 
 
