@@ -14,8 +14,8 @@
     vm.address = { };
     vm.me = Auth.getCurrentUser();
 
-    vm.lookingRoom = getUserLookings; //get all user lookings
-    vm.allLookings = allLooking.data; //get all lookings (from all users)
+    //vm.lookingRoom = getUserLookings; //get all user lookings
+    //vm.allLookings = allLooking.data; //get all lookings (from all users)
 
 
     vm.tabs = [
@@ -46,10 +46,10 @@
       vm.availableRooms = data;
     });
 
-    //$http.get("../assets/fake/looking_for_room.json")
-    //.success(function(data){
-    //  vm.lookingRoom = data;
-    //});
+    $http.get("../assets/fake/looking_for_room.json")
+    .success(function(data){
+      vm.lookingRoom = data;
+    });
 
     $http.get("../assets/fake/around_you.json")
     .success(function(data){
