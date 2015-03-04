@@ -169,10 +169,13 @@ label + label {
   font-family: "Proxima Nova";
   display: inline-block;
   border: none;
-  background-color: #f7953d;
   color: #fff;
   padding: 0 25px;
 }
+.btn.btn-primary{
+  background-color: #f7953d;
+}
+
 .btn:hover, .lrg-btn:hover, .small-btn:hover {
   background-color: #f7953d;
   color: #333333;

@@ -42,16 +42,8 @@
     <div class="row">
 
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-<<<<<<< HEAD
-        <div class="page-header">
-          <h2> Roommates </h2>
-          <a class="bubble edit-profile" ui-sref=".editProfile"> <i class="fa fa-pencil"></i> </a>
-        </div>
-        <div class="white-box roommates">
-          <div class="roommate" ng-repeat="roommate in myProfile.roommates">
-=======
         <h2> Roomates </h2>
-        <div class="white-box roomates">
+        <div class="white-box roommates">
           <div class="row invitation-box text-center">
 
             <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 add">
@@ -67,13 +59,13 @@
               <a class="bubble"><i class="fa fa-envelope"></i></a>
             </div>
           </div>
-
-          <div class="roomate">
->>>>>>> upstream/MVPMEAN
-            <div class="picture">
-              <img ng-src="api/images{{roommate.relatedroommateId.profileImage}}" alt="" class="img-circle">
+          <div class="row roommate" ng-repeat="roommate in myProfile.roommates">
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <div class="picture">
+                <img ng-src="api/images{{roommate.relatedroommateId.profileImage}}" alt="" class="img-circle">
+              </div>
             </div>
-            <div class="info">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 info">
               <span class="name"> {{roommate.relatedRoommateId.firstname}} {{roommate.relatedRoommateId.lastname}} </span>
               <span class="email">{{roommate.relatedRoommateId.email}}</span>
               <span class="university">UNIVERSITY MISSING IN API</span>
@@ -94,11 +86,15 @@
           </a>
         </div>
         <div class="white-box pets">
-          <div ng-show='myProfile.showAddonButtons'>
-            <a class="btn" ng-click="myProfile.toggleAddPet()"> Add Pet</a>
-            <a class="btn" ng-click="myProfile.toggleAddVehicle()"> Add Vehicle</a>
+          <div ng-show='myProfile.showAddonButtons' class="text-center">
+            <h3>What you wanna add?</h3>
+            <a class="btn btn-primary btn-half-block" ng-click="myProfile.toggleAddPet()"> Add Pet</a>
+            <a class="btn btn-secondary btn-half-block" ng-click="myProfile.toggleAddVehicle()"> Add Vehicle</a>
+            <hr>
           </div>
           <form ng-show="myProfile.showAddPet">
+            <h3> Add a new pet </h3>
+            <hr>
             <label for="type">Type</label>
             <select id="type" class="form-control" ng-model="addPet.tempPet.type">
               <option value="cat">Cat</option>
@@ -112,14 +108,39 @@
 
             <label for="weight">Weight in lbs</label>
             <input type="text" id="weight" name="weight" class="form-control" ng-model="addPet.tempPet.weightLbs"/>
-
+            <br>
             <button class="btn btn-primary" ng-click="myProfile.addNewPet(addPet.tempPet)">Add pet</button>
-            <button class="btn btn-default" ng-click="myProfile.cancelAddAddon()">Cancel</button>
+            <a class="btn btn-default" ng-click="myProfile.cancelAddAddon()">Cancel</i></a>
+            <hr>
+          </form>
+
+          <form ng-show="myProfile.showAddVehicle">
+            <h3> Add a new vehicle </h3>
+            <hr>
+            <label for="model">Model</label>
+            <input type="text" id="model" name="model" class="form-control" ng-model="newVehicle.tempVehicle.model"/>
+
+            <label for="make">Make</label>
+            <input type="text" id="make" name="make" class="form-control" ng-model="newVehicle.tempVehicle.make"/>
+
+            <label for="year">Year</label>
+            <input type="text" id="year" name="year" class="form-control" ng-model="newVehicle.tempVehicle.year"/>
+
+            <label for="license">License plate</label>
+            <input type="text" id="license" name="license" class="form-control" ng-model="newVehicle.tempVehicle.licensePlate"/>
+
+            <label for="color">Color</label>
+            <input type="text" id="color" name="color" class="form-control" ng-model="newVehicle.tempVehicle.color"/>
+
+            <br>
+            <button class="btn btn-primary" ng-click="myProfile.addNewVehicle(newVehicle.tempVehicle)">Add Vehicle</button>
+            <a class="btn btn-default" ng-click="myProfile.cancelAddAddon()">Cancel</i></a>
+            <hr>
           </form>
           
           <div class="pet row" ng-repeat="pet in myProfile.pets track by $index">
             <div class="picture col-xs-2">
-              <img src="../assets/images/pets.jpg" alt="" class="img-circle">
+              <img src="../assets/images/pet.svg" alt="" class="img-circle">
             </div>
             <div class="info col-xs-6">
               <span class="main-data">
@@ -132,7 +153,7 @@
                   <option value="bird">Bird</option>
                   <option value="fish">Fish</option>
                 </select>
-                <input id="weightLbs" type="text" ng-model='pet.weightLbs' ng-readonly="myProfile.selectedPet != $index" ui-mask="999">Lbs
+                <input id="weightLbs" type="text" ng-model='pet.weightLbs' ng-readonly="myProfile.selectedPet != $index">Lbs
               </span>
             </div>
             <div class="actions col-xs-4">
@@ -145,7 +166,7 @@
 
           <div class="pet" ng-repeat="vehicle in myProfile.vehicles">
             <div class="picture">
-              <img src="../assets/images/vehicle.png" alt="" class="img-circle">
+              <img src="../assets/images/vehicle.svg" alt="" class="img-circle">
             </div>
             <div class="info">
               <span class="name"> {{vehicle.make}} {{vehicle.model}} {{vehicle.year}}</span>

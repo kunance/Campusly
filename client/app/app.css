@@ -1380,11 +1380,24 @@ h2.section-title:nth-child(n+2) {
   font-size: 0.6em;
 }
 
-.secondary {
+.btn-secondary {
   background-color: #56bfc3;
 }
 
-.secondary:hover, .primary:hover{
+.btn-secondary:hover, .primary:hover{
+  background-color: #efefef;
+}
+
+.btn-default {
+  background-color: #e8e8e8;
+}
+
+.btn-half-block {
+  display: inline-block;
+  width: 45%;
+}
+
+.btn-default:hover, .primary:hover{
   background-color: #efefef;
 }
 
@@ -1611,10 +1624,6 @@ h2.section-title:nth-child(n+2) {
   color: #000;
 }
 
-.row {
-  margin-top: 20px;
-}
-
 
 /* My profile - roommates */
 
@@ -1622,7 +1631,7 @@ h2.section-title:nth-child(n+2) {
   border-bottom: 1px solid #efefef  ;
   display: table;
   width: 100%;
-  padding: 10px 0;
+  padding: 20px 0;
 }
 
 .my-profile .roommates .roommate .picture{
@@ -1666,7 +1675,18 @@ h2.section-title:nth-child(n+2) {
   appearance: none;
 }
 
-.my-profile input:read-only, .my-profile input:-moz-read-only {
+.my-profile .pets .pet select {
+  display: block;
+  width: 100%;
+  margin: 2px 0;
+}
+.my-profile .pets .pet input {
+  display: block;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.my-profile input[readonly="readonly"] {
   border: none !important;
   font-weight: bold;
   -webkit-appearance: none;
@@ -1676,23 +1696,13 @@ h2.section-title:nth-child(n+2) {
 
 .my-profile .pets .pet #weightLbs {
   display: inline-block;
-  width: 20px;
-}
-
-.my-profile .pets .pet select {
-  display: block;
-  width: 100%;
-  margin: 2px 0;
-}
-.my-profile .pets .pet input {
-  display: block;
-  border: none;
-  border-bottom: 1px solid #f7953d;
+  width: 25px;
 }
 
 .my-profile .pets .pet .actions a{
   display: inline-block;
   margin: 0 2px;
+  float: right;
 }
 
 .my-profile .pets .pet {
