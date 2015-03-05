@@ -17,7 +17,7 @@ var _ = require('lodash');
  */
 exports.getRoomListing = function(req, res, next) {
 
-  console.log('Getting room listing for: ', req.params("id") );
+  console.log('Getting room listing for: ', req.param("id") );
 
   var roomAttributes = ["monthlyPrice", "securityDeposit", "availableMoveIn", "leaseEndDate", "leaseType", "gender",
     "monthlyUtilityCost", "roomType", "sharedBathroom", "numRoomates", "furnished", "parkingAvailable", "smokingAllowed", "description"];
@@ -28,7 +28,7 @@ exports.getRoomListing = function(req, res, next) {
 
   var roomListingResponse = {};
 
-  RoomListing.find({  where: {id: req.params("id")}, attributes: roomAttributes, include:
+  RoomListing.find({  where: {id: req.param("id")}, attributes: roomAttributes, include:
     [ {model: Property,  attributes: propertyAttributes, as: 'relatedPropertyId'}]}).then(function(roomListing) {
 
     var roomDetails = roomListing.dataValues;
