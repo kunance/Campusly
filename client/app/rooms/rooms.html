@@ -1,5 +1,6 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
+
 <div class="main-wrapper">
   <div class="container available-rooms">
     <div class="row">
@@ -7,12 +8,18 @@
         <h2> Available Rooms </h2>
       </div>
       <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 room" ng-repeat="property in rooms.availableRooms">
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 room" ng-repeat="property in rooms.availableRooms">
           <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
             <div class="flipper">
               <div class="front white-box">
                 <div class="picture">
                   <img ng-src="{{property.image_url}}" alt="">
+                  <!--<div class="picture">-->
+                  <!--<img ng-src="{{room.propertyDetails.image_url}}" alt="">-->
+                  <!--</div>-->
+                  <!--<google-map center="map.center" zoom="map.zoom" draggable="true">-->
+                  <!--<marker coords="{{room.propertyDetails.coords}}" idKey="marker.idKey"></marker>-->
+                  <!--</google-map>-->
                 </div>
                 <div class="info">
                   <strong class="value">
@@ -30,7 +37,7 @@
                 </ul>
               </div>
               <div class="back">
-                <h2> View Detail </h2>
+                <a ui-sref="roomDetail({id: room.roomDetails.id})"> <h2>View Detail</h2> </a>
               </div>
             </div>
           </div>

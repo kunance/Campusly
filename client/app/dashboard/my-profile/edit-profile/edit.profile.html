@@ -36,6 +36,7 @@
               <div class="form-group">
                 <label> Phone Number</label>
                 <input class="form-control" type="text" id="phone" name="phone" ng-model="editProfile.tempMe.phone" ui-mask="999-999-9999">
+
               </div>
             </div>
           </div>
@@ -54,6 +55,10 @@
         <label for="educationCenterName">Education centre name</label>
         <input type="text" id="educationCenterName" name="educationCenterName" class="form-control" ng-model="editProfile.tempEducation.educationCenterName"/>
 
+        <select class="form-control" ng-model="editProfile.tempEducation.educationCenterName" ng-options="university.name for university in editProfile.universitiesList">
+          <option value="">-- Select university --</option>
+        </select>
+        
         <label for="type">Type</label>
         <select id="type" class="form-control" data-ng-model="editProfile.tempEducation.type">
           <option value="university">University</option>
@@ -111,8 +116,9 @@
           <br/>
 
           <button class="btn btn-primary" ng-click="editProfile.saveEducation(editProfile.tempEducation)">Save changes</button>
+
         </div>
-        {{editProfile.tempEducation | json}}
+
       </div>
     </div>
 

@@ -1254,46 +1254,6 @@ var rentedUser = Sequelize.define("rentedUser",
      updatePassword: [Function] } });
 
 
-var roommate = Sequelize.define("roommate",
-{ id: 
-   { type: { [Function] super_: [Object], key: 'BIGINT' },
-     field: 'id',
-     primaryKey: true,
-     autoIncrement: true,
-     allowNull: false,
-     unique: 'idx_41974_PRIMARY' },
-  userId: 
-   { type: { [Function] super_: [Object], key: 'BIGINT' },
-     field: 'userId',
-     allowNull: false,
-     references: 'rented_user',
-     referencesKey: 'userId' },
-  roommateId: 
-   { type: { [Function] super_: [Object], key: 'BIGINT' },
-     field: 'roommateId',
-     allowNull: false,
-     references: 'rented_user',
-     referencesKey: 'roommateId' },
-  fromDate: 
-   { type: { [Function] super_: [Function], key: 'DATE' },
-     field: 'fromDate',
-     allowNull: false },
-  toDate: 
-   { type: { [Function] super_: [Function], key: 'DATE' },
-     field: 'toDate' },
-  createdAt: 
-   { type: { [Function] super_: [Function], key: 'DATE' },
-     field: 'createdAt',
-     allowNull: false },
-  updatedAt: 
-   { type: { [Function] super_: [Function], key: 'DATE' },
-     field: 'updatedAt' },
-  deletedAt: 
-   { type: { [Function] super_: [Function], key: 'DATE' },
-     field: 'deletedAt' } },
-{ tableName: 'roommate', timestamps: false });
-
-
 var roomListing = Sequelize.define("roomListing",
 { id: 
    { type: { [Function] super_: [Object], key: 'BIGINT' },
@@ -1485,6 +1445,46 @@ var roomListingView = Sequelize.define("roomListingView",
    { type: { [Function] super_: [Function], key: 'DATE' },
      field: 'deletedAt' } },
 { tableName: 'room_listing_view', timestamps: false });
+
+
+var roommate = Sequelize.define("roommate",
+{ id: 
+   { type: { [Function] super_: [Object], key: 'BIGINT' },
+     field: 'id',
+     primaryKey: true,
+     autoIncrement: true,
+     allowNull: false,
+     unique: 'idx_41974_PRIMARY' },
+  userId: 
+   { type: { [Function] super_: [Object], key: 'BIGINT' },
+     field: 'userId',
+     allowNull: false,
+     references: 'rented_user',
+     referencesKey: 'userId' },
+  roommateId: 
+   { type: { [Function] super_: [Object], key: 'BIGINT' },
+     field: 'roommateId',
+     allowNull: false,
+     references: 'rented_user',
+     referencesKey: 'roommateId' },
+  fromDate: 
+   { type: { [Function] super_: [Function], key: 'DATE' },
+     field: 'fromDate',
+     allowNull: false },
+  toDate: 
+   { type: { [Function] super_: [Function], key: 'DATE' },
+     field: 'toDate' },
+  createdAt: 
+   { type: { [Function] super_: [Function], key: 'DATE' },
+     field: 'createdAt',
+     allowNull: false },
+  updatedAt: 
+   { type: { [Function] super_: [Function], key: 'DATE' },
+     field: 'updatedAt' },
+  deletedAt: 
+   { type: { [Function] super_: [Function], key: 'DATE' },
+     field: 'deletedAt' } },
+{ tableName: 'roommate', timestamps: false });
 
 
 var student = Sequelize.define("student",
@@ -1783,7 +1783,13 @@ var userEducation = Sequelize.define("userEducation",
      field: 'updatedAt' },
   deletedAt: 
    { type: { [Function] super_: [Function], key: 'DATE' },
-     field: 'deletedAt' } },
+     field: 'deletedAt' },
+  universityId: 
+   { type: { [Function] super_: [Object], key: 'BIGINT' },
+     field: 'universityId',
+     allowNull: false,
+     references: 'university',
+     referencesKey: 'universityId' } },
 { tableName: 'user_education', timestamps: false });
 
 
@@ -2514,16 +2520,6 @@ rentedUser.belongsToMany(rentedUser, { as: 'relatedUserrecommendationsRecommendo
   onDelete: 'NO ACTION',
   onUpdate: 'NO ACTION' });
 
-roommate.belongsTo(rentedUser, { as: 'relatedRoommateId',
-  foreignKey: 'roommateId',
-  onDelete: 'NO ACTION',
-  onUpdate: 'NO ACTION' });
-
-roommate.belongsTo(rentedUser, { as: 'relatedUserId',
-  foreignKey: 'userId',
-  onDelete: 'NO ACTION',
-  onUpdate: 'NO ACTION' });
-
 roomListing.belongsTo(property, { as: 'relatedPropertyId',
   foreignKey: 'propertyId',
   onDelete: 'NO ACTION',
@@ -2534,6 +2530,16 @@ roomListing.belongsTo(rentedUser, { as: 'relatedCreatorId',
   onDelete: 'NO ACTION',
   onUpdate: 'NO ACTION' });
 
+roommate.belongsTo(rentedUser, { as: 'relatedRoommateId',
+  foreignKey: 'roommateId',
+  onDelete: 'NO ACTION',
+  onUpdate: 'NO ACTION' });
+
+roommate.belongsTo(rentedUser, { as: 'relatedUserId',
+  foreignKey: 'userId',
+  onDelete: 'NO ACTION',
+  onUpdate: 'NO ACTION' });
+
 university.hasMany(universityCalenderQuater, { as: 'univcalquarterUniversities',
   foreignKey: 'universityId',
   onDelete: 'NO ACTION',
@@ -2541,6 +2547,18 @@ university.hasMany(universityCalenderQuater, { as: 'univcalquarterUniversities',
 
 university.hasMany(universityCalenderSemester, { as: 'univcalsemesterUniversities',
   foreignKey: 'universityId',
+  onDelete: 'NO ACTION',
+  onUpdate: 'NO ACTION' });
+
+university.hasMany(userEducation, { as: 'fKtoUniversities',
+  foreignKey: 'universityId',
+  onDelete: 'NO ACTION',
+  onUpdate: 'NO ACTION' });
+
+university.belongsToMany(rentedUser, { as: 'relatedFKtoUniversityUserIds',
+  foreignKey: 'universityId',
+  otherKey: 'userId',
+  through: 'user_education',
   onDelete: 'NO ACTION',
   onUpdate: 'NO ACTION' });
 
@@ -2561,6 +2579,11 @@ userCosigner.belongsTo(rentedUser, { as: 'relatedCosginerId',
 
 userCosigner.belongsTo(rentedUser, { as: 'relatedCosingeeId',
   foreignKey: 'cosingeeId',
+  onDelete: 'NO ACTION',
+  onUpdate: 'NO ACTION' });
+
+userEducation.belongsTo(university, { as: 'relatedUniversityId',
+  foreignKey: 'universityId',
   onDelete: 'NO ACTION',
   onUpdate: 'NO ACTION' });
 

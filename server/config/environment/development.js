@@ -10,7 +10,7 @@ module.exports = {
   sequelize: {
     db: 'rented',
     username:'postgres',
-    password:'root',
+    password:'postgres',
     port:5432,
     options: {
       logging: false,

@@ -3,22 +3,25 @@
 
   angular
   .module('app.dashboard')
-  .controller('editProfileCtrl', editProfileCtrl);
+  .controller('EditProfileCtrl', EditProfileCtrl);
 
-  editProfileCtrl.$inject = ['$scope', 'common', '$cookieStore', 'FileUploader', 'getUserInfo', 'getAddresses', 'getEducations'];
+  EditProfileCtrl.$inject = ['$scope', 'common', 'getUniversities', 'getEducations', 'getAddresses'];
 
-  function editProfileCtrl($scope, common, $cookieStore, FileUploader, getUserInfo, getAddresses, getEducations, getAllRoommates) {
-
+  function EditProfileCtrl($scope, common, getUniversities, getEducations, getAddresses) {
     var vm = this;
 
-    vm.me = getUserInfo;
-    vm.tempMe = Object.create(vm.me);
+    vm.universitiesList = getUniversities;
+    vm.educations = getEducations;
+    
     vm.tempAddress = getAddresses[0];
-    vm.tempEducation = getEducations[0];
+    vm.tempEducation = educations[0];
+    
+    vm.me = common.Auth.getCurrentUser();
+    vm.tempMe = Object.create(vm.me);
 
-    vm.changePersonalData = changePersonalData;
     vm.saveAddress = saveAddress;
     vm.saveEducation = saveEducation;
+    vm.changePersonalData = changePersonalData;
 
     vm.uploader = new FileUploader();
     vm.uploader.url = '/api/users/' + vm.me.id + '/profileImages';
@@ -74,6 +77,6 @@
         })
       }
     }
-    
+
   }
 }());
