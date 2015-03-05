@@ -1,7 +1,7 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
-<div class="dashboard-wrapper">
-  <div ui-view="">
+<div ui-view="">
+  <div class="main-wrapper">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 my-profile">
@@ -38,7 +38,7 @@
             <hr>
 
             <div class="profile">
-            <img src="../assets/fake/girl.jpg" class="img-circle" alt="">
+              <img src="../assets/fake/girl.jpg" class="img-circle" alt="">
               <h2> Jennifer Clardy </h2>
               <a  class="btn btn-secondary btn-block" ui-sref="dashboard.myProfile"> Complete Profile </a>
             </div>
@@ -49,6 +49,7 @@
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
           <h2 class="section-title"> Available Rooms</h2>
           <div class="white-box available-rooms">
+            
             <slick dots="true" class="slider row" slides-to-show="3" slides-to-scroll="3" responsive="dashboard.breakpoints.availableRooms"  init-onload="true" data="dashboard.availableRooms">
 
               <!-- start room box -->
