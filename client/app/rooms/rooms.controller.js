@@ -12,25 +12,18 @@
     vm.property = {};
     vm.me = common.Auth.getCurrentUser();
 
-    vm.availableRooms = RoomListingView.query({}, function() {
-
+    vm.availableRooms = RoomListingView.query(function(/*availRooms*/) {
+     // vm.availableRooms = availRooms;
+    //  console.log("availableRooms: ", vm.availableRooms);
     });
-    //vm.listOfProperties=getAllProperties;
-    //console.log(vm.listOfProperties);
+
+     console.log("availableRooms: ", vm.availableRooms);
 
 
-    // ================================================
-    // BEGIN Getter for mock data
-    // ================================================
-
-    $http.get("../assets/fake/available_rooms.json")
-      .success(function(data){
-        vm.availableRooms = data;
-      });
-
-    // ================================================
-    // END Getter for mock data
-    // ================================================
+    //$http.get("../assets/fake/available_rooms.json")
+    //  .success(function(data){
+    //    vm.availableRooms = data;
+    //  });
 
   }
 
