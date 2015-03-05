@@ -12,12 +12,13 @@
     vm.property = {};
     vm.me = common.Auth.getCurrentUser();
 
-    vm.roomDetail = RoomListingView.get( {id: 4},  function() {
-      // vm.availableRooms = availRooms;
-      //  console.log("availableRooms: ", vm.availableRooms);
+    //TODO grab the room id from url
+    var roomId = 4;
+    vm.roomDetail = RoomListingView.get( {id: roomId},  function(roomDetail) {
+      vm.roomDetail =  roomDetail;
+      console.log("roomDetail: ", vm.roomDetail);
     });
 
-    console.log("roomDetail: ", vm.roomDetail);
 
 
     //$http.get("../assets/fake/available_rooms.json")
