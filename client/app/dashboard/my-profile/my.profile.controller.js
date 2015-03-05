@@ -5,9 +5,10 @@
   .module('app.dashboard')
   .controller('MyProfileCtrl', MyProfileCtrl);
 
-  MyProfileCtrl.$inject = ['$scope', 'common', '$cookieStore', 'FileUploader', 'getUserInfo', 'getAddresses', 'getEducations', 'getAllRoommates', 'getAllUsers', 'getPets', 'getVehicles'];
+  MyProfileCtrl.$inject = ['$scope', 'common', '$cookieStore', 'getUserInfo', 'getAddresses', 'getEducations', 'getAllRoommates', 'getAllUsers', 'getPets', 'getVehicles'];
 
-  function MyProfileCtrl($scope, common, $cookieStore, FileUploader, getUserInfo, getAddresses, getEducations, getAllRoommates, getAllUsers, getPets, getVehicles) {
+  function MyProfileCtrl($scope, common, $cookieStore, getUserInfo, getAddresses, getEducations, getAllRoommates, getAllUsers, getPets, getVehicles) {
+    
     var vm = this;
     vm.me = getUserInfo;
     vm.tempMe = Object.create(vm.me);
@@ -17,7 +18,6 @@
     vm.roommates = getAllRoommates; //roomate info, his education info, his address info
     vm.pets = getPets;
     vm.vehicles = getVehicles;
-    vm.changePersonalData = changePersonalData;
 
     vm.showNewRoomate = false;
     vm.showAddonButtons = false;
@@ -35,6 +35,7 @@
     };
 
     $scope.format = 'dd.MM.yyyy';
+    
     $scope.clear = function () {
       $scope.dt = null;
     };
@@ -69,27 +70,6 @@
       vm.showAddVehicle = false;
       vm.selectedPet = null;
       vm.selectedVehicle = null;
-    }
-
-    vm.uploader = new FileUploader();
-    vm.uploader.url = '/api/users/' + vm.me.id + '/profileImages';
-    vm.uploader.headers= {Authorization: 'Bearer ' + $cookieStore.get('token')};
-    vm.uploader.onSuccessItem = function (itm,res,status,header) {
-      vm.tempMe.profileImage = res.profileImage;
-      common.logger.success('Uploaded successfully');
-    };
-
-    function changePersonalData(userDataForm) {
-      if(userDataForm.$valid) {
-        common.Auth.updateUser(vm.tempMe)
-        .then(function (user) {
-          /* common.Auth.setCurrentUser(user); */
-          common.logger.success('Personal data successfully changed.');
-        })
-        .catch(function (err) {
-          common.logger.error('Something went wrong. Changes are not saved.');
-        });
-      }
     }
 
     vm.toggleAddNewRoommate = function() {
@@ -150,7 +130,6 @@
         vm.cancelAddAddon();
       })
     }
-
 
     /* Vehicles */
 
