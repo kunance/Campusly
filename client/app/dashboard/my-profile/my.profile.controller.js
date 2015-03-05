@@ -49,19 +49,19 @@
       vm.showAddPet = true;
       vm.showAddVehicle = false;
       vm.showAddonButtons = false;
-    }
+    };
 
     vm.toggleAddVehicle = function(){
       vm.showAddVehicle = true;
       vm.showAddPet = false;
       vm.showAddonButtons = false;
-    }
+    };
 
     vm.toggleAddon = function(){
       vm.showAddonButtons = !vm.showAddonButtons;
       vm.showAddPet = false;
       vm.showAddVehicle = false;
-    }
+    };
 
     vm.cancelAddAddon = function (){
       vm.showAddonButtons = false;
@@ -69,7 +69,7 @@
       vm.showAddVehicle = false;
       vm.selectedPet = null;
       vm.selectedVehicle = null;
-    }
+    };
 
     vm.uploader = new FileUploader();
     vm.uploader.url = '/api/users/' + vm.me.id + '/profileImages';
@@ -141,7 +141,7 @@
         vm.pets.splice(index, 1);
         vm.selectedPet = null;
         common.logger.success('Pet deleted')
-      });    
+      });
     }
 
     vm.savePet = function (input) {
@@ -185,7 +185,7 @@
         vm.vehicles.splice(index, 1);
         vm.selectedVehicle = null;
         common.logger.success('Vehicle deleted')
-      });    
+      });
     }
 
     vm.saveVehicle = function (input) {

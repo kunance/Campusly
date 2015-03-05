@@ -22,6 +22,7 @@ module.exports = function(app) {
   app.use('/api/users/:id/roommates', require('./api/user/roommates'));
   app.use('/api/users/:id/lookings', require('./api/user/looking'));
   app.use('/api/properties', require('./api/properties'));
+  app.use('/api/universities', require('./api/universities'));
   app.use('/api/lookings', require('./api/lookings'));
 
   //just temporary route

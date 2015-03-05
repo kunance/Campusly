@@ -1783,7 +1783,13 @@ var userEducation = Sequelize.define("userEducation",
      field: 'updatedAt' },
   deletedAt: 
    { type: { [Function] super_: [Function], key: 'DATE' },
-     field: 'deletedAt' } },
+     field: 'deletedAt' },
+  universityId: 
+   { type: { [Function] super_: [Object], key: 'BIGINT' },
+     field: 'universityId',
+     allowNull: false,
+     references: 'university',
+     referencesKey: 'universityId' } },
 { tableName: 'user_education', timestamps: false });
 
 
@@ -2544,6 +2550,18 @@ university.hasMany(universityCalenderSemester, { as: 'univcalsemesterUniversitie
   onDelete: 'NO ACTION',
   onUpdate: 'NO ACTION' });
 
+university.hasMany(userEducation, { as: 'fKtoUniversities',
+  foreignKey: 'universityId',
+  onDelete: 'NO ACTION',
+  onUpdate: 'NO ACTION' });
+
+university.belongsToMany(rentedUser, { as: 'relatedFKtoUniversityUserIds',
+  foreignKey: 'universityId',
+  otherKey: 'userId',
+  through: 'user_education',
+  onDelete: 'NO ACTION',
+  onUpdate: 'NO ACTION' });
+
 universityCalenderQuater.belongsTo(university, { as: 'relatedUniversityId',
   foreignKey: 'universityId',
   onDelete: 'NO ACTION',
@@ -2561,6 +2579,11 @@ userCosigner.belongsTo(rentedUser, { as: 'relatedCosginerId',
 
 userCosigner.belongsTo(rentedUser, { as: 'relatedCosingeeId',
   foreignKey: 'cosingeeId',
+  onDelete: 'NO ACTION',
+  onUpdate: 'NO ACTION' });
+
+userEducation.belongsTo(university, { as: 'relatedUniversityId',
+  foreignKey: 'universityId',
   onDelete: 'NO ACTION',
   onUpdate: 'NO ACTION' });
 
