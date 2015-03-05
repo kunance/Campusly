@@ -48,7 +48,7 @@
     <div class="white-box">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <form class="form" name="personalDataForm" ng-submit="editProfile.changePersonalData(personalDataForm)" novalidate>
+          <form class="form" name="educationDataForm" ng-submit="editProfile.saveEducationData(educationDataForm)" novalidate>
 
             <div class="form-group">
               <label>University:</label>
@@ -83,44 +83,64 @@
     <div class="white-box">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <form class="form" name="personalDataForm" ng-submit="editProfile.changePersonalData(personalDataForm)" novalidate>
-            <div class="form-group">
-              <label>Phone Number</label>
-              <input class="form-control" type="text" id="phone" name="phone" ui-mask="999-999-9999" ng-model="editProfile.tempMe.phone"/>
-            </div>
+          <label for="streetAddress">Address</label>
+          <input type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Street name" ng-model="editProfile.tempAddress.streetAddress"/>
 
-            <div class="form-group">
-              <label>Address</label>
-              <input class="form-control" type="text" ng-model="editProfile.address[0].streetAddress"/>
-            </div>
+          <label for="streetNumber">Number</label>
+          <input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="editProfile.tempAddress.streetNumeric"/>
+          
+          <label for="zip">Zip code</label>
+          <input type="number" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="editProfile.tempAddress.zip"/>
 
-            <div class="form-group">
-              <label>Number</label>
-              <input class="form-control" type="text" ng-model="editProfile.address[0].streetNumeric"/>
-            </div>
+          <label for="country">Country</label>
+          <input type="text" id="country" name="country" class="form-control"  placeholder="country" ng-model="editProfile.tempAddress.country"/>
 
-            <div class="form-group">
-              <label>City</label>
-              <input class="form-control" type="text" ng-model="editProfile.address[0].city">
-            </div>
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" class="form-control"  placeholder="city" ng-model="editProfile.tempAddress.city"/>
 
-            <div class="form-group">
-              <label>State</label>
-              <input class="form-control" type="text" ng-model="editProfile.address[0].state">
-            </div>
+          <label for="city">State</label>
+          <input type="text" id="state" name="state" class="form-control"  placeholder="state" ng-model="editProfile.tempAddress.state"/>
 
-            <div class="form-group">
-              <label>Address</label>
-              <input class="form-control" type="text" ng-model="editProfile.address[0].zip">
-            </div>
+          <label for="apt">Apt</label>
+          <input type="number" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="editProfile.tempAddress.apt"/><br/>
 
-            <div class="form-group">
-              <label>Living here since</label>
-              <input type="text" class="form-control" ng-model="editProfile.address[0].startDate">
-            </div>
+          <label for="present">Present?</label><br/>
+          <label class="radio-inline"><input type="radio" name="present" id="present" ng-model="editProfile.tempAddress.present" value="1">Yes</label>
+          <label class="radio-inline"><input type="radio" name="present"  ng-model="editProfile.tempAddress.present" value="0">No</label><br/><br/>
 
-            <input type="submit" class="btn" value="Save">
-          </form>
+          <!-- <label for="about">About me</label>
+          <textarea name="about" id="about" cols="30" rows="5" placeholder="about me" data-ng-model="editProfile.tempAddress.aboutMe"  class="form-control" ></textarea> -->
+
+          <div class="row">
+            <div class="col-md-6">
+              <label for="start">Start date</label>
+              <p class="input-group">
+                <input type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="editProfile.tempAddress.startDate" is-open="datePickers.startDate" close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn" ng-click="open($event,'startDate')">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+                </span>
+              </p>
+            </div>
+            <div class="col-md-6">
+              <label for="end">End date</label>
+              <p class="input-group">
+                <input type="text" id="end" class="form-control" datepicker-popup="{{format}}" ng-model="editProfile.tempAddress.endDate" is-open="datePickers.endDate"  close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn" ng-click="open($event,'endDate')">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+                </span>
+              </p>
+            </div>
+          </div>
+          <button class="btn btn-primary" ng-click="editProfile.saveAddress(editProfile.tempAddress)">Save Changes</button>
+
+
+          <br/>
+          <pre>{{editProfile.tempAddress |json}}</pre>
+
 
         </div>
       </div>

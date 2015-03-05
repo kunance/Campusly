@@ -2,8 +2,8 @@
   "use strict";
 
   angular
-    .module('app.dashboard')
-    .controller('EditAddressCtrl', EditAddressCtrl);
+  .module('app.dashboard')
+  .controller('EditAddressCtrl', EditAddressCtrl);
 
   EditAddressCtrl.$inject = ['common', '$scope', 'getAddress', '$stateParams'];
 
@@ -38,7 +38,6 @@
         common.logger.success('Address updated');
         common.$state.go('^',{},{reload:true});
       })
-
     }
 
     vm.deleteAddress= function () {
@@ -46,7 +45,7 @@
         common.logger.success('Address deleted');
         common.$state.go('^',{},{reload:true});
       })
-      }
+    }
 
 
   }

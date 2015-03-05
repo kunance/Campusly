@@ -13,8 +13,10 @@
 
     vm.me = getUserInfo;
     vm.tempMe = Object.create(vm.me);
-    
+    vm.tempAddress = getAddresses[0];
+
     vm.changePersonalData = changePersonalData;
+    vm.saveAddress = saveAddress;
 
     vm.uploader = new FileUploader();
     vm.uploader.url = '/api/users/' + vm.me.id + '/profileImages';
@@ -35,6 +37,25 @@
         .catch(function (err) {
           common.logger.error('Something went wrong. Changes are not saved.');
         });
+      }
+    }
+
+    function saveAddress (input) {
+      console.log(input);
+      var zip = input.zip.toString();
+      var trimmedZip = zip.replace(/\s+/g, '');
+      input.zip = Number(trimmedZip);
+      if(vm.tempAddress.id){
+        common.dataservice.editAddress(vm.me.id, vm.tempAddress.id, input, function () {
+          common.logger.success('Address updated');
+          common.$state.go('^',{},{reload:true});
+        });
+      }else{
+        common.dataservice.addAddress(vm.me.id, input).$promise
+        .then(function () {
+          common.logger.success('Address successfully added.');
+          common.$state.go('^',{},{reload:true});
+        })
       }
     }
 
