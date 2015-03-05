@@ -9,7 +9,11 @@
 
   function config ($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('dashboard.myRooms.addNew', {
+      .state('dashboard.myrooms', {
+      url: '/myrooms',
+      abstract: true
+    })
+      .state('dashboard.myrooms.addNew', {
         url: '/addNew',
         templateUrl: 'app/dashboard/my-rooms/add.new.room/add.new.room.html',
         controller: 'AddNewRoomCtrl',

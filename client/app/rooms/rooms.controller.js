@@ -2,15 +2,19 @@
   "use strict";
 
   angular
-    .module('app.dashboard')
-    .controller('MyRoomsCtrl', MyRoomsCtrl);
+    .module('app.rooms')
+    .controller('RoomsCtrl', RoomsCtrl);
 
-  MyRoomsCtrl.$inject = ['$scope', 'common', 'FileUploader', '$http'];
+  RoomsCtrl.$inject = ['$scope', 'common', 'FileUploader', '$http', 'RoomListingView'];
 
-  function MyRoomsCtrl($scope, common, FileUploader, $http) {
+  function RoomsCtrl($scope, common, FileUploader, $http, RoomListingView) {
     var vm = this;
     vm.property = {};
     vm.me = common.Auth.getCurrentUser();
+
+    vm.availableRooms = RoomListingView.query({}, function() {
+
+    });
     //vm.listOfProperties=getAllProperties;
     //console.log(vm.listOfProperties);
 
