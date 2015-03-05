@@ -99,3 +99,14 @@ Requires:
 2. check that configuration inside server\config\environment/development.js matches you local pg configuration (db name, user, password)
 Default is user: postgres and password: root
 
+=======
+## Inserting university tables on to your local host
+1. Open PG Admin
+2. Select university table
+Located under rented/Schemas/public/tables/university
+3. Click on puzzle box - new terminal window will open up
+4. Copy sql code located at /database_scripts/universityData.sql
+5. Paste in terminal window
+6. Data is loaded in the tables
+7. To view table Click on Rows/View Data/View Top 100 Rows
+
