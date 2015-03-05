@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-group">
                   <label> About Me</label>
-                  <textarea class="form-control" ng-model="myProfile.tempMe.aboutMe" c></textarea>
+                  <textarea class="form-control" ng-model="myProfile.tempMe.aboutMe"></textarea>
                 </div>
               </div>
             </div>
@@ -48,29 +48,27 @@
     <div class="white-box">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <form class="form" name="personalDataForm" ng-submit="myProfile.changePersonalData(personalDataForm)" novalidate>
+          <form class="form" name="educationDataForm" ng-submit="editProfile.changeEducationData(educationDataForm)" novalidate>
 
-            <div class="form-group">
-              <label>University:</label>
-              <input class="form-control" type="text" id="University" name="University" ng-model="myProfile.education[0].educationCenterName"/>
-            </div>
-
+            <select class="form-control" ng-model="editProfile.educations[0].educationCenterName" ng-options="university.name for university in editProfile.universitiesList">
+              <option value="">-- Select university --</option>
+            </select>
             <div class="form-group">
               <label>Major</label>
-              <input class="form-control" type="text" id="major" name="major" ng-model="myProfile.education[0].major"/>
+              <input class="form-control" type="text" id="major" name="major" ng-model="editProfile.educations[0].major"/>
             </div>
 
             <div class="form-group">
               <label>StartDate</label>
-              <input class="form-control" type="text" id="StartDate" name="StartDate" ng-model="myProfile.education[0].startDate"/>
+              <input class="form-control" type="text" id="StartDate" name="StartDate" ng-model="editProfile.educations[0].startDate"/>
             </div>
 
             <div class="form-group">
               <label>EndDate</label>
-              <input class="form-control" type="text" id="EndDate" name="EndDate" ng-model="myProfile.education[0].endDate"/>
+              <input class="form-control" type="text" id="EndDate" name="EndDate" ng-model="editProfile.educations[0].endDate"/>
             </div>
 
-            <input type="submit" class="btn" value="Save">
+            <input type="submit" id="submit" class="btn" value="Save">
           </form>
         </div>
       </div>
