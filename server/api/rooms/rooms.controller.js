@@ -12,7 +12,9 @@ var RoomListing = sqldb.model('roomListingView');
  */
 exports.getRoomListing = function(req, res, next) {
 
-//  RoomListing.findAll();
+  RoomListing.findAll().then(function(roomListings) {
+    console.log('Room Listings: ', roomListings);
+  });
 
   res.json(
       {
@@ -62,6 +64,13 @@ exports.getRoomListing = function(req, res, next) {
  * @param next
  */
 exports.getAllRoomListings = function(req, res, next) {
+
+//  var lookingAttributes = ['distanceToUniv', 'maxMonthlyRent', 'gender'];
+  // attributes: roomAttributes,
+
+  //RoomListing.findAll({ where: {},  limit:100, order: '"monthlyPrice"'}).then(function(roomListings) {
+  //  console.log('Room Listings: ', roomListings);
+  //});
 
   res.json(
     [

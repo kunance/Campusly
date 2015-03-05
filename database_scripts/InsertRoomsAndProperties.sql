@@ -35,6 +35,6 @@ INSERT INTO room_listing ("propertyId",
   "parkingAvailable",
   "smokingAllowed",
   "description")
-VALUES (2, 2, 1000, 100, 'now', '2015-12-31 11:59:59-01', 'month-to-month', 'no preference', 100, 'single', 3, 'true', 'false', 'true', 'false', 'a spacious room 10 X 20');
+VALUES (3, 17, 1000, 100, 'now', '2015-12-31 11:59:59-01', 'month-to-month', 'no preference', 100, 'single', 3, 'true', 'false', 'true', 'false', 'a spacious room 10 X 20');
 
 

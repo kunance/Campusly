@@ -12,7 +12,8 @@ angular.module('RentedApp', [
   'app.dashboard',
   'app.layout',
   'app.account',
-  'app.landing'
+  'app.landing',
+  'app.rooms'
 ])
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
       $urlRouterProvider

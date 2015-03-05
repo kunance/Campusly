@@ -21,14 +21,6 @@
     //vm.allLookings = allLooking.data; //get all lookings (from all users)
 
 
-    vm.tabs = [
-    { title:"Dashboard", sref:"dashboard", active: true },
-    { title:"Messages", sref:".messages"},
-    { title:"Around You", sref:".around"},
-    { title:"Available rooms", sref:".myRooms"},
-    { title:"Looking", sref:".looking"}];
-
-
     mixpanel.identify(vm.me.id);
     mixpanel.people.set({
       "$email": vm.me.email,
@@ -43,11 +35,6 @@
     // ================================================
     // BEGIN Getter for mock data
     // ================================================
-
-    //$http.get("../assets/fake/available_rooms.json")
-    //.success(function(data){
-    //  vm.availableRooms = data;
-    //});
 
     vm.availableRooms = RoomListingView.query({}, function() {
 
