@@ -14,9 +14,11 @@
     vm.me = getUserInfo;
     vm.tempMe = Object.create(vm.me);
     vm.tempAddress = getAddresses[0];
+    vm.tempEducation = getEducations[0];
 
     vm.changePersonalData = changePersonalData;
     vm.saveAddress = saveAddress;
+    vm.saveEducation = saveEducation;
 
     vm.uploader = new FileUploader();
     vm.uploader.url = '/api/users/' + vm.me.id + '/profileImages';
@@ -59,6 +61,19 @@
       }
     }
 
+    function saveEducation (input) {
+      if(vm.tempEducation.id){
+        common.dataservice.editEducation(vm.me.id, vm.tempEducation.id, input, function () {
+          common.$state.go('^',{},{reload:true});
+          console.log('Education updated');
+        });
+      }else {
+        common.dataservice.addEducation(vm.me.id, input).$promise
+        .then(function () {
+          common.logger.success('Education successfully added.');
+        })
+      }
+    }
+    
   }
-
 }());

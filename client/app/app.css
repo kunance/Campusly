@@ -1752,3 +1752,11 @@ h2.section-title:nth-child(n+2) {
   padding: 0px;
 
 }
+
+.fa.fa-shower {
+  background-image: url("../assets/images/shower.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+}
