@@ -11,6 +11,10 @@
           'remove': {method: null},
           'delete': {method: null}
 
+        },
+        // options
+        {
+          cache: false
         });
     });
 
