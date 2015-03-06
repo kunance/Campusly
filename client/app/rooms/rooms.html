@@ -8,7 +8,7 @@
         <div class="flipper">
           <div class="front white-box">
             <div class="picture">
-              <img ng-src="{{room.propertyDetails.coords}}" alt="">
+              <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&zoom=14&size=400x250&markers=color:blue%7C{{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}">
             </div>
             <!--<google-map center="map.center" zoom="map.zoom" draggable="true">-->
                 <!--<marker coords="{{room.propertyDetails.coords}}" idKey="marker.idKey"></marker>-->
