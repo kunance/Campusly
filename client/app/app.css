@@ -290,6 +290,10 @@ Small Rented button
   transition: all 0.3s;
 }
 
+.btn i.fa {
+  color: #fff;
+}
+
 .btn-rounded {
   border-radius: 500px;
   width: 300px;
@@ -1004,6 +1008,11 @@ nav.dashboard-submenu > label {
   background: #fff;
   box-shadow: 2px 2px 2px 0px #d3d3d3;
   position: relative;
+}
+
+.white-box + .white-box{
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .well {
@@ -1759,4 +1768,26 @@ h2.section-title:nth-child(n+2) {
   background-repeat: no-repeat;
   width: 1em;
   height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-vehicle {
+  background-image: url("../assets/images/vehicle.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-pet {
+  background-image: url("../assets/images/pet.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
 }

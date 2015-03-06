@@ -32,16 +32,12 @@
     });
 
 
+    vm.availableRooms = RoomListingView.query({}, function() {});
+    vm.lookingRoom = allLooking.data;
+
     // ================================================
     // BEGIN Getter for mock data
     // ================================================
-
-    vm.availableRooms = RoomListingView.query({}, function() {});
-
-    $http.get("../assets/fake/looking_for_room.json")
-    .success(function(data){
-      vm.lookingRoom = data;
-    });
 
     $http.get("../assets/fake/around_you.json")
     .success(function(data){

@@ -20,7 +20,8 @@
     vm.vehicles = getVehicles;
 
     vm.showNewRoomate = false;
-    vm.showAddonButtons = false;
+    vm.showPetAddonButtons = false;
+    vm.showRoommatesAddonButtons = false;
     vm.showAddPet = false;
     vm.showAddVehicle = false;
 
@@ -51,39 +52,55 @@
     vm.toggleAddPet = function(){
       vm.showAddPet = true;
       vm.showAddVehicle = false;
-      vm.showAddonButtons = false;
+      vm.showPetAddonButtons = false;
     };
 
-    vm.toggleAddVehicle = function(){
-      vm.showAddVehicle = true;
-      vm.showAddPet = false;
-      vm.showAddonButtons = false;
+    vm.toggleAddRoommate = function(){
+      vm.showAddRoommate = true;
+      vm.showInviteRoomate = false;
+      vm.showRoommatesAddonButtons = false;
     };
 
-    vm.toggleAddon = function(){
-      vm.showAddonButtons = !vm.showAddonButtons;
+    vm.toggleRoommatesAddon = function(){
+      vm.showRoommatesAddonButtons = !vm.showRoommatesAddonButtons;
+      vm.showAddRoommate = false;
+      vm.showInviteRoomate = false;
+    };
+
+    vm.togglePetAddon = function(){
+      vm.showPetAddonButtons = !vm.showPetAddonButtons;
       vm.showAddPet = false;
       vm.showAddVehicle = false;
     };
 
-    vm.cancelAddAddon = function (){
-      vm.showAddonButtons = false;
+    vm.cancelPetAddAddon = function (){
+      vm.showPetAddonButtons = false;
       vm.showAddPet = false;
       vm.showAddVehicle = false;
       vm.selectedPet = null;
       vm.selectedVehicle = null;
     };
 
-    vm.toggleAddNewRoommate = function() {
-      vm.showNewRoomate = !vm.showNewRoomate;
-    }
+    vm.cancelRoommateAddAddon = function (){
+      vm.showRoommateAddonButtons = false;
+      vm.showAddRoommate = false;
+      vm.showInviteRoommate = false;
+    };
 
-    vm.addNewRoommate=function(input){
+    vm.toggleAddVehicle = function(){
+      vm.showAddVehicle = true;
+      vm.showAddPet = false;
+      vm.showPetAddonButtons = false;
+    };
+
+    $scope.addNewRoommate = function(input){
       if(!input) { return false; }
       var roommate = input.originalObject;
       common.dataservice.addRoommate(vm.me.id, roommate).$promise
-      .then(function (room) {
-        common.logger.success('successfully saved roommate')
+      .then(function (data) {
+        common.logger.success('Roommate successfully added!');
+        vm.roommates.push(data);
+        vm.cancelRoommateAddAddon();
       })
       .catch(function (err) {
         common.logger.error('Something went wrong. Roommate not saved.');
@@ -105,7 +122,7 @@
       .then(function () {
         common.logger.success('Pet successfully created.');
         vm.pets.push(input);
-        vm.cancelAddAddon();
+        vm.cancelPetAddAddon();
       })
       .catch(function (err) {
         common.logger.error('Error while saving pet.');
@@ -129,7 +146,7 @@
     vm.savePet = function (input) {
       common.dataservice.editPet(vm.me.id, input.id, input, function () {
         common.logger.success('Pet updated');
-        vm.cancelAddAddon();
+        vm.cancelPetAddAddon();
       })
     }
 
@@ -140,7 +157,7 @@
       .then(function () {
         common.logger.success('Vehicle successfully updated.');
         vm.vehicles.push(input);
-        vm.cancelAddAddon();
+        vm.cancelPetAddAddon();
       })
       .catch(function (err) {
         common.logger.error('Error while saving vehicle.');
@@ -172,7 +189,7 @@
     vm.saveVehicle = function (input) {
       common.dataservice.editVehicle(vm.me.id, input.id, input, function () {
         common.logger.success('Vehicle updated');
-        vm.cancelAddAddon();
+        vm.cancelPetAddAddon();
       })
     }
 
