@@ -54,21 +54,18 @@
               <!-- start room box -->
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 room" ng-repeat="room in dashboard.availableRooms track by $index">
                 <div class="picture">
-                  <img ng-src="{{room.image_url}}" alt="">
+                  <img ng-src="{{room.propertyDetails.coords}}" alt="">
                 </div>
                 <div class="info">
                   <strong class="value">
-                    {{room.value | currency}} mo.
+                    {{room.roomDetails.monthlyPrice | currency}} mo.
                   </strong>
-                  <span class="distance">
-                    <i class="fa fa-map-marker"></i> {{room.distance}}
-                  </span>
                 </div>
                 <ul class="specs">
-                  <li><i class="fa fa-bed"></i> {{room.kind}}</li>
-                  <li><i class="fa fa-users"></i> {{room.roommates}} roommates</li>
-                  <li><i class="fa fa-bed"></i> {{room.bathroom}} bathroom</li>
-                  <li><i class="fa fa-calendar"></i> {{room.availability_date | date }}</li>
+                  <li><i class="fa fa-bed"></i> {{room.roomDetails.roomType}}</li>
+                  <li><i class="fa fa-users"></i> {{room.roomDetails.numRoomates}} roommates</li>
+                  <li><i class="fa fa-show"></i> {{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
+                  <li><i class="fa fa-calendar"></i> {{room.roomDetails.availableMoveIn | date }}</li>
                 </ul>
               </div>
               <!-- end room box -->

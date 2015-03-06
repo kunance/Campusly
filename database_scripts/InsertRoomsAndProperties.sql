@@ -1,4 +1,4 @@
-INSERT INTO property ("streetNumeric",
+INSERT INTO property ("id", "streetNumeric",
   "streetAddress",
   "city",
   "state",
@@ -16,7 +16,7 @@ INSERT INTO property ("streetNumeric",
   "hoaFee",
   "otherFee",
   "status")
-VALUES (1290, 'Playmor Ave', 'San Jose', 'CA', 95126, '', '', 37.3161403, -121.91009730000002, 'townhouse', 'a cool space', 3, 2, 2, 1500, 100, 0, 'rented');
+VALUES (3, 1290, 'Playmor Ave', 'San Jose', 'CA', 95126, '', '', 37.3161403, -121.91009730000002, 'townhouse', 'a cool space', 3, 2, 2, 1500, 100, 0, 'rented');
 
 
 INSERT INTO room_listing ("propertyId",
