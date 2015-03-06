@@ -1,6 +1,42 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
-<div class="container" data-ng-model="room">
-{{room.roomDetails}}
+<div class="container">
+
+  <h2>Highlights</h2>
+  map  Is that interactive?  </br>
+
+  <strong class="value">
+    {{room.roomDetail.roomDetails.monthlyPrice | currency}} mo.
+  </strong>
+  </br>
+  </br>
+  {{room.roomDetail.propertyDetails.streetNumeric}} {{room.roomDetail.propertyDetails.streetAddress}} {{room.roomDetail.propertyDetails.apt}}, {{room.roomDetail.propertyDetails.city}}</br>
+  </br>
+  <ul class="specs">
+    <li><i class="fa fa-bed"></i> {{room.roomDetail.roomDetails.roomType}}</li>
+    <li><i class="fa fa-users"></i> {{room.roomDetail.roomDetails.numRoomates}} roommates</li>
+    <li><i class="fa fa-show"></i> {{room.roomDetail.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
+    <li><i class="fa fa-calendar"></i> {{room.roomDetail.roomDetails.availableMoveIn | date }}</li>
+  </ul>
+
+  <a>Share button</a>
+  <h2>Roommates</h2>
+  Add the roommate partial here and ensure it doesn't rely on the dashboard ctrl
+
+  <h2>Photos</h2>
+  {{room.roomDetail.propertyDetails.photos}}
+
+
+
+  <h2>Details</h2>
+  <h3>Property description</h3>
+  {{room.roomDetail.propertyDetails.description}}</br>
+  Security Deposit: ${{room.roomDetail.roomDetails.securityDeposit}}</br>
+  Pet Deposit: NA  <!-- {{room.roomDetail.roomDetails.petDeposit}} ? {{room.roomDetail.roomDetails.petDeposit}} : N/A  There is no pets in room_listing or property model --></br>
+  Pets: None  <!-- {{room.roomDetail.propertyDetails.pets}} ? {{room.roomDetail.propertyDetails.pets}} : None  There is no pets in room_listing or property model --></br>
+  Lease Terms:  {{room.roomDetail.roomDetails.leaseType}}</br>
+  Unit bedrooms: {{room.roomDetail.propertyDetails.bedrooms}}</br>
+  Parking: {{room.roomDetail.propertyDetails.parkingSpots}} spots</br>
+  Unit area: {{room.roomDetail.propertyDetails.livingAreaSqFt}} square feet</br>
 
 </div>

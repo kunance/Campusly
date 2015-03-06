@@ -8,13 +8,8 @@
   config.$inject=['$stateProvider', '$urlRouterProvider'];
 
   function config ($stateProvider, $urlRouterProvider) {
-    $stateProvider
-      .state('dashboard.myrooms', {
-      url: '/myrooms',
-      abstract: true
-    })
-      .state('dashboard.myrooms.addNew', {
-        url: '/addNew',
+    $stateProvider.state('dashboard.addNewRoom', {
+        url: '/addNewRooom',
         templateUrl: 'app/dashboard/my-rooms/add.new.room/add.new.room.html',
         controller: 'AddNewRoomCtrl',
         controllerAs:'addNewRoom',

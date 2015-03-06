@@ -5,29 +5,22 @@
     .module('app.roomDetail')
     .controller('RoomDetailCtrl', RoomDetailCtrl);
 
-  RoomDetailCtrl.$inject = ['$scope', 'common', 'FileUploader', '$http', 'RoomListingView'];
+  RoomDetailCtrl.$inject = ['$scope', '$http', '$stateParams',  'logger', 'Auth', 'RoomListingView'];
 
-  function RoomDetailCtrl($scope, common, FileUploader, $http, RoomListingView) {
+  function RoomDetailCtrl($scope, $http, $stateParams, logger, Auth, RoomListingView) {
     var vm = this;
     vm.property = {};
-    vm.me = common.Auth.getCurrentUser();
+    vm.me = Auth.getCurrentUser();
 
-    //TODO grab the room id from url
-    var roomId = 4;
-    vm.roomDetail = RoomListingView.get( {id: roomId},  function(roomDetail) {
-      vm.roomDetail =  roomDetail;
-      console.log("roomDetail: ", vm.roomDetail);
-    });
+    var roomId = $stateParams.id;
+    logger.log('Room id: ', roomId);
 
-
-
-    //$http.get("../assets/fake/available_rooms.json")
-    //  .success(function(data){
-    //    vm.availableRooms = data;
-    //  });
-
+    if(roomId) {
+      vm.roomDetail = RoomListingView.get({id: roomId}, function () {
+        // vm.roomDetail = roomDetail;
+        console.log("roomDetail: ", vm.roomDetail);
+      });
+    }
   }
-
-
 }());
 
