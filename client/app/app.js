@@ -92,7 +92,7 @@ angular.module('RentedApp', [
           if (!loggedIn) {
             $location.path('/');
             // $state.go('/');
-          } 
+          }
         });
       }
     });

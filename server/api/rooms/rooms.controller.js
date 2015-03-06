@@ -42,9 +42,9 @@ exports.getRoomListing = function(req, res, next) {
     delete propertyDetails.longitude;
 
 
-    var mashed = _.extend({}, { roomDetails: roomDetails }, { propertyDetails: propertyDetails } );
+    var roomListingResponse = _.extend({}, { roomDetails: roomDetails }, { propertyDetails: propertyDetails } );
 
-    delete mashed.roomDetails.relatedPropertyId;
+    delete roomListingResponse.roomDetails.relatedPropertyId;
 
     console.log('Room Listing: ', roomListingResponse);
 
