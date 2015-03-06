@@ -1,195 +1,198 @@
-<div class="container my-profile" cg-busy="{promise:myProfile.initializeData.$promise, message:'Loading Your Profile', delay:50}">
-  <div ui-view="">
-    <div class="page-header">
-      <h2> Your Profile </h2>
-      <a class="bubble edit-profile" ui-sref=".editProfile"> <i class="fa fa-pencil"></i> </a>
-    </div>
-    <div class="white-box">
-      <div class="row about-me">
-        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-          <div class="picture">
-            <img ng-src="api/images{{myProfile.me.profileImage}}" class="img-circle">
+<div class="main-wrapper">
+  <div class="container my-profile" cg-busy="{promise:myProfile.initializeData.$promise, message:'Loading Your Profile', delay:50}">
+    <div ui-view="">
+      <div class="page-header">
+        <h2> Your Profile </h2>
+        <a class="bubble edit-profile" ui-sref=".editProfile"> <i class="fa fa-pencil"></i> </a>
+      </div>
+      <div class="white-box">
+        <div class="row about-me">
+          <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+            <div class="picture">
+              <img ng-src="api/images{{myProfile.me.profileImage}}" class="img-circle">
+            </div>
           </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
-          <dl>
-            <dt>Name</dt>
-            <dd>{{myProfile.tempMe.firstname}} {{myProfile.tempMe.lastname}} </dd>
-            <dt>School</dt>
-            <dd>{{myProfile.education[0].educationCenterName}}</dd>
-            <dt>Year</dt>
-            <dd>{{myProfile.education[0].startDate | date:'yyyy'}}</dd>
-            <dt>Major</dt>
-            <dd>{{myProfile.education[0].major}}</dd>
-            <dt>About Me</dt>
-            <dd> <p class="quote"> {{myProfile.me.aboutMe}} </p> </dd>
-          </dl>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
-          <dl>
-            <dt>Phone Number</dt>
-            <dd>{{myProfile.me.phone}}</dd>
-            <dt>Address</dt>
-            <dd>{{myProfile.address[0].streetAddress}}, {{myProfile.address[0].streetNumeric}}</dd>
-            <dt>City State Zip</dt>
-            <dd>{{myProfile.address[0].city}}, {{myProfile.address[0].state}} - {{myProfile.address[0].zip}} </dd>
-            <dt>Time at address</dt>
-            <dd><span am-time-ago="myProfile.address[0].startDate"></span></dd>
-          </dl>
+          <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+            <dl>
+              <dt>Name</dt>
+              <dd>{{myProfile.tempMe.firstname}} {{myProfile.tempMe.lastname}} </dd>
+              <dt>School</dt>
+              <dd>{{myProfile.education[0].educationCenterName}}</dd>
+              <dt>Year</dt>
+              <dd>{{myProfile.education[0].startDate | date:'yyyy'}}</dd>
+              <dt>Major</dt>
+              <dd>{{myProfile.education[0].major}}</dd>
+              <dt>About Me</dt>
+              <dd> <p class="quote"> {{myProfile.me.aboutMe}} </p> </dd>
+            </dl>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+            <dl>
+              <dt>Phone Number</dt>
+              <dd>{{myProfile.me.phone}}</dd>
+              <dt>Address</dt>
+              <dd>{{myProfile.address[0].streetAddress}}, {{myProfile.address[0].streetNumeric}}</dd>
+              <dt>City State Zip</dt>
+              <dd>{{myProfile.address[0].city}}, {{myProfile.address[0].state}} - {{myProfile.address[0].zip}} </dd>
+              <dt>Time at address</dt>
+              <dd><span am-time-ago="myProfile.address[0].startDate"></span></dd>
+            </dl>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
+      <div class="row">
 
-      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-        <h2> Roomates </h2>
-        <div class="white-box roommates">
-          <div class="row invitation-box text-center">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+          <h2> Roomates </h2>
+          <div class="white-box roommates">
+            <div class="row invitation-box text-center">
 
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 add">
-              <a class="bubble"><i class="fa fa-plus"></i></a>
-              <span>Add</span>
-            </div>
+              <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 add">
+                <a class="bubble"><i class="fa fa-plus"></i></a>
+                <span>Add</span>
+              </div>
 
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 or">
-              <span> OR </span>
-            </div>
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 invite">
-              <span>Invite</span>
-              <a class="bubble"><i class="fa fa-envelope"></i></a>
-            </div>
-          </div>
-          <div class="row roommate" ng-repeat="roommate in myProfile.roommates">
-            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-              <div class="picture">
-                <img ng-src="api/images{{roommate.relatedroommateId.profileImage}}" alt="" class="img-circle">
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 or">
+                <span> OR </span>
+              </div>
+              <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 invite">
+                <span>Invite</span>
+                <a class="bubble"><i class="fa fa-envelope"></i></a>
               </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 info">
-              <span class="name"> {{roommate.relatedRoommateId.firstname}} {{roommate.relatedRoommateId.lastname}} </span>
-              <span class="email">{{roommate.relatedRoommateId.email}}</span>
-              <span class="university">UNIVERSITY MISSING IN API</span>
-              <span class="city">CITY/STATE MISSING IN API</span>
+            <div class="row roommate" ng-repeat="roommate in myProfile.roommates">
+              <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                <div class="picture">
+                  <img ng-src="api/images{{roommate.relatedroommateId.profileImage}}" alt="" class="img-circle">
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 info">
+                <span class="name"> {{roommate.relatedRoommateId.firstname}} {{roommate.relatedRoommateId.lastname}} </span>
+                <span class="email">{{roommate.relatedRoommateId.email}}</span>
+                <span class="university">UNIVERSITY MISSING IN API</span>
+                <span class="city">CITY/STATE MISSING IN API</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!--  PET & VEHICLE BOX  -->
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+          <div class="page-header">
+            <h2> Pets & Vehicles </h2>
+            <a class="bubble edit-profile" ng-click="myProfile.toggleAddon()">
+              <i class="fa fa-plus" ng-hide="myProfile.showAddonButtons"></i>
+              <i class="fa fa-minus" ng-show="myProfile.showAddonButtons"></i>
+            </a>
+          </div>
+          <div class="white-box pets">
+            <div ng-show='myProfile.showAddonButtons' class="text-center">
+              <h3>What you wanna add?</h3>
+              <a class="btn btn-primary btn-half-block" ng-click="myProfile.toggleAddPet()"> Add Pet</a>
+              <a class="btn btn-secondary btn-half-block" ng-click="myProfile.toggleAddVehicle()"> Add Vehicle</a>
+              <hr>
+            </div>
+            <form ng-show="myProfile.showAddPet">
+              <h3> Add a new pet </h3>
+              <hr>
+              <label for="type">Type</label>
+              <select id="type" class="form-control" ng-model="addPet.tempPet.type">
+                <option value="cat">Cat</option>
+                <option value="dog">Dog</option>
+                <option value="bird">Bird</option>
+                <option value="fish">Fish</option>
+              </select>
+
+              <label for="breed">breed</label>
+              <input type="text" id="breed" name="breed" class="form-control" ng-model="addPet.tempPet.breed"/>
+
+              <label for="weight">Weight in lbs</label>
+              <input type="text" id="weight" name="weight" class="form-control" ng-model="addPet.tempPet.weightLbs"/>
+              <br>
+              <button class="btn btn-primary" ng-click="myProfile.addNewPet(addPet.tempPet)">Add pet</button>
+              <a class="btn btn-default" ng-click="myProfile.cancelAddAddon()">Cancel</i></a>
+              <hr>
+            </form>
+
+            <form ng-show="myProfile.showAddVehicle">
+              <h3> Add a new vehicle </h3>
+              <hr>
+              <label for="model">Model</label>
+              <input type="text" id="model" name="model" class="form-control" ng-model="newVehicle.tempVehicle.model"/>
+
+              <label for="make">Make</label>
+              <input type="text" id="make" name="make" class="form-control" ng-model="newVehicle.tempVehicle.make"/>
+
+              <label for="year">Year</label>
+              <input type="text" id="year" name="year" class="form-control" ng-model="newVehicle.tempVehicle.year"/>
+
+              <label for="license">License plate</label>
+              <input type="text" id="license" name="license" class="form-control" ng-model="newVehicle.tempVehicle.licensePlate"/>
+
+              <label for="color">Color</label>
+              <input type="text" id="color" name="color" class="form-control" ng-model="newVehicle.tempVehicle.color"/>
+
+              <br>
+              <button class="btn btn-primary" ng-click="myProfile.addNewVehicle(newVehicle.tempVehicle)">Add Vehicle</button>
+              <a class="btn btn-default" ng-click="myProfile.cancelAddAddon()">Cancel</i></a>
+              <hr>
+            </form>
+
+            <div class="pet row" ng-repeat="pet in myProfile.pets track by $index">
+              <div class="picture col-xs-2">
+                <span class="badge pet"></span>
+              </div>
+              <div class="info col-xs-6">
+                <span class="main-data">
+                  <input type="text" ng-model='pet.breed' ng-readonly="myProfile.selectedPet != $index" class="col-xs-12">
+                </span>
+                <span class="details col-xs-12">
+                  <select ng-model="pet.type" ng-disabled="myProfile.selectedPet != $index">
+                    <option value="cat">Cat</option>
+                    <option value="dog">Dog</option>
+                    <option value="bird">Bird</option>
+                    <option value="fish">Fish</option>
+                  </select>
+                  <input id="weightLbs" type="text" ng-model='pet.weightLbs' ng-readonly="myProfile.selectedPet != $index">Lbs
+                </span>
+              </div>
+              <div class="actions col-xs-4">
+                <a class="bubble" ng-click="myProfile.editPet($index)" ng-show="myProfile.selectedPet != $index"><i class="fa fa-pencil"></i></a>
+                <a class="bubble cancel" ng-click="myProfile.cancelAddAddon()" ng-hide="myProfile.selectedPet != $index"><i class="fa fa-close"></i></a>
+                <a class="bubble" ng-show="myProfile.selectedPet == $index" ng-click="myProfile.savePet(pet)"><i class="fa fa-save"></i></a>
+                <a class="bubble remove" ng-click="myProfile.deletePet(pet)" ng-show="myProfile.selectedPet == $index"><i class="fa fa-trash-o"></i></a>
+              </div>
+            </div>
+
+            <div class="pet row" ng-repeat="vehicle in myProfile.vehicles">
+              <div class="picture col-xs-2">
+                <span class="badge vehicle">&nbsp;</span>
+              </div>
+              <div class="info col-xs-6">
+                <span class="main-data">
+                  <input type="text" ng-model='vehicle.make' ng-readonly="myProfile.selectedVehicle != $index" class="col-xs-12">
+                  <input type="text" ng-model='vehicle.model' ng-readonly="myProfile.selectedVehicle != $index" class="col-xs-5">
+                  <input type="text" ng-model='vehicle.year' ng-readonly="myProfile.selectedVehicle != $index" class="col-xs-5 col-xs-offset-1">
+                </span>
+                <span class="details">
+                  <input type="text" ng-model='vehicle.licensePlate' ng-readonly="myProfile.selectedVehicle != $index" class="col-xs-5">
+                  <input type="text" ng-model='vehicle.color' ng-readonly="myProfile.selectedVehicle != $index" class="col-xs-5 col-xs-offset-1">
+                </span>
+              </div>
+              <div class="actions col-xs-4">
+                <a class="bubble" ng-click="myProfile.editVehicle($index)" ng-show="myProfile.selectedVehicle != $index"><i class="fa fa-pencil"></i></a>
+                <a class="bubble cancel" ng-click="myProfile.cancelAddAddon()" ng-hide="myProfile.selectedVehicle != $index"><i class="fa fa-close"></i></a>
+                <a class="bubble" ng-show="myProfile.selectedVehicle == $index" ng-click="myProfile.saveVehicle(vehicle)"><i class="fa fa-save"></i></a>
+                <a class="bubble remove" ng-click="myProfile.deleteVehicle(vehicle)" ng-show="myProfile.selectedVehicle == $index"><i class="fa fa-trash-o"></i></a>
+              </div>
             </div>
           </div>
-
         </div>
+        <!-- END PET & VEHICLE BOX  -->
+
       </div>
-
-      <!--  PET & VEHICLE BOX  -->
-      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-        <div class="page-header">
-          <h2> Pets & Vehicles </h2>
-          <a class="bubble edit-profile" ng-click="myProfile.toggleAddon()">
-            <i class="fa fa-plus" ng-hide="myProfile.showAddonButtons"></i>
-            <i class="fa fa-minus" ng-show="myProfile.showAddonButtons"></i>
-          </a>
-        </div>
-        <div class="white-box pets">
-          <div ng-show='myProfile.showAddonButtons' class="text-center">
-            <h3>What you wanna add?</h3>
-            <a class="btn btn-primary btn-half-block" ng-click="myProfile.toggleAddPet()"> Add Pet</a>
-            <a class="btn btn-secondary btn-half-block" ng-click="myProfile.toggleAddVehicle()"> Add Vehicle</a>
-            <hr>
-          </div>
-          <form ng-show="myProfile.showAddPet">
-            <h3> Add a new pet </h3>
-            <hr>
-            <label for="type">Type</label>
-            <select id="type" class="form-control" ng-model="addPet.tempPet.type">
-              <option value="cat">Cat</option>
-              <option value="dog">Dog</option>
-              <option value="bird">Bird</option>
-              <option value="fish">Fish</option>
-            </select>
-
-            <label for="breed">breed</label>
-            <input type="text" id="breed" name="breed" class="form-control" ng-model="addPet.tempPet.breed"/>
-
-            <label for="weight">Weight in lbs</label>
-            <input type="text" id="weight" name="weight" class="form-control" ng-model="addPet.tempPet.weightLbs"/>
-            <br>
-            <button class="btn btn-primary" ng-click="myProfile.addNewPet(addPet.tempPet)">Add pet</button>
-            <a class="btn btn-default" ng-click="myProfile.cancelAddAddon()">Cancel</i></a>
-            <hr>
-          </form>
-
-          <form ng-show="myProfile.showAddVehicle">
-            <h3> Add a new vehicle </h3>
-            <hr>
-            <label for="model">Model</label>
-            <input type="text" id="model" name="model" class="form-control" ng-model="newVehicle.tempVehicle.model"/>
-
-            <label for="make">Make</label>
-            <input type="text" id="make" name="make" class="form-control" ng-model="newVehicle.tempVehicle.make"/>
-
-            <label for="year">Year</label>
-            <input type="text" id="year" name="year" class="form-control" ng-model="newVehicle.tempVehicle.year"/>
-
-            <label for="license">License plate</label>
-            <input type="text" id="license" name="license" class="form-control" ng-model="newVehicle.tempVehicle.licensePlate"/>
-
-            <label for="color">Color</label>
-            <input type="text" id="color" name="color" class="form-control" ng-model="newVehicle.tempVehicle.color"/>
-
-            <br>
-            <button class="btn btn-primary" ng-click="myProfile.addNewVehicle(newVehicle.tempVehicle)">Add Vehicle</button>
-            <a class="btn btn-default" ng-click="myProfile.cancelAddAddon()">Cancel</i></a>
-            <hr>
-          </form>
-
-          <div class="pet row" ng-repeat="pet in myProfile.pets track by $index">
-            <div class="picture col-xs-2">
-              <span class="badge pet"></span>
-            </div>
-            <div class="info col-xs-6">
-              <span class="main-data">
-                <input type="text" ng-model='pet.breed' ng-readonly="myProfile.selectedPet != $index" class="col-xs-12">
-              </span>
-              <span class="details col-xs-12">
-                <select ng-model="pet.type" ng-disabled="myProfile.selectedPet != $index">
-                  <option value="cat">Cat</option>
-                  <option value="dog">Dog</option>
-                  <option value="bird">Bird</option>
-                  <option value="fish">Fish</option>
-                </select>
-                <input id="weightLbs" type="text" ng-model='pet.weightLbs' ng-readonly="myProfile.selectedPet != $index">Lbs
-              </span>
-            </div>
-            <div class="actions col-xs-4">
-              <a class="bubble" ng-click="myProfile.editPet($index)" ng-show="myProfile.selectedPet != $index"><i class="fa fa-pencil"></i></a>
-              <a class="bubble cancel" ng-click="myProfile.cancelAddAddon()" ng-hide="myProfile.selectedPet != $index"><i class="fa fa-close"></i></a>
-              <a class="bubble" ng-show="myProfile.selectedPet == $index" ng-click="myProfile.savePet(pet)"><i class="fa fa-save"></i></a>
-              <a class="bubble remove" ng-click="myProfile.deletePet(pet)" ng-show="myProfile.selectedPet == $index"><i class="fa fa-trash-o"></i></a>
-            </div>
-          </div>
-
-          <div class="pet row" ng-repeat="vehicle in myProfile.vehicles">
-            <div class="picture col-xs-2">
-              <span class="badge vehicle">&nbsp;</span>
-            </div>
-            <div class="info col-xs-6">
-              <span class="main-data">
-                <input type="text" ng-model='vehicle.make' ng-readonly="myProfile.selectedVehicle != $index" class="col-xs-12">
-                <input type="text" ng-model='vehicle.model' ng-readonly="myProfile.selectedVehicle != $index" class="col-xs-5">
-                <input type="text" ng-model='vehicle.year' ng-readonly="myProfile.selectedVehicle != $index" class="col-xs-5 col-xs-offset-1">
-              </span>
-              <span class="details">
-                <input type="text" ng-model='vehicle.licensePlate' ng-readonly="myProfile.selectedVehicle != $index" class="col-xs-5">
-                <input type="text" ng-model='vehicle.color' ng-readonly="myProfile.selectedVehicle != $index" class="col-xs-5 col-xs-offset-1">
-              </span>
-            </div>
-            <div class="actions col-xs-4">
-              <a class="bubble" ng-click="myProfile.editVehicle($index)" ng-show="myProfile.selectedVehicle != $index"><i class="fa fa-pencil"></i></a>
-              <a class="bubble cancel" ng-click="myProfile.cancelAddAddon()" ng-hide="myProfile.selectedVehicle != $index"><i class="fa fa-close"></i></a>
-              <a class="bubble" ng-show="myProfile.selectedVehicle == $index" ng-click="myProfile.saveVehicle(vehicle)"><i class="fa fa-save"></i></a>
-              <a class="bubble remove" ng-click="myProfile.deleteVehicle(vehicle)" ng-show="myProfile.selectedVehicle == $index"><i class="fa fa-trash-o"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- END PET & VEHICLE BOX  -->
-
     </div>
   </div>
+
 </div>

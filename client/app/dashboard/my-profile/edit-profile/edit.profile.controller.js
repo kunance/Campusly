@@ -5,16 +5,16 @@
   .module('app.dashboard')
   .controller('EditProfileCtrl', EditProfileCtrl);
 
-  EditProfileCtrl.$inject = ['$scope', 'common', 'getUniversities', 'getEducations', 'getAddresses'];
+  EditProfileCtrl.$inject = ['$scope', '$cookieStore', 'common', 'getUniversities', 'getEducations', 'getAddresses', 'FileUploader'];
 
-  function EditProfileCtrl($scope, common, getUniversities, getEducations, getAddresses) {
+  function EditProfileCtrl($scope, $cookieStore, common, getUniversities, getEducations, getAddresses, FileUploader) {
     var vm = this;
 
     vm.universitiesList = getUniversities;
     vm.educations = getEducations;
     
     vm.tempAddress = getAddresses[0];
-    vm.tempEducation = educations[0];
+    vm.tempEducation = getEducations[0];
     
     vm.me = common.Auth.getCurrentUser();
     vm.tempMe = Object.create(vm.me);
@@ -65,6 +65,7 @@
     }
 
     function saveEducation (input) {
+      input.universityId = input.educationCenterName;
       if(vm.tempEducation.id){
         common.dataservice.editEducation(vm.me.id, vm.tempEducation.id, input, function () {
           common.$state.go('^',{},{reload:true});
@@ -77,6 +78,13 @@
         })
       }
     }
+
+    $scope.open = function($event, number) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.datePickers[number]= true;
+    };
+
 
   }
 }());

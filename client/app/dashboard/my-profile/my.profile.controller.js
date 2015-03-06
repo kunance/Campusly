@@ -29,9 +29,11 @@
     });
 
     $scope.datePickers = {
-      startDate: false,
-      endDate:false,
-      graduationDate:false
+      EducationStartDate: false,
+      EducationEndDate:false,
+      graduationDate:false,
+      AddresStartDate: false,
+      AddressEndDate:false,
     };
 
     $scope.format = 'dd.MM.yyyy';
