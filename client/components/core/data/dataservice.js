@@ -5,9 +5,9 @@
     .module('app.core')
     .factory('dataservice', dataservice);
 
-  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation', 'Roommate', 'Looking', 'RoomListing'];
+  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation', 'Roommate', 'Looking', 'RoomListing', 'University'];
 
-  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education, Finance, Occupation, Roommate, Looking, RoomListing) {
+  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education, Finance, Occupation, Roommate, Looking, RoomListing, University) {
 
     var safeCb = function(cb) {
         return (angular.isFunction(cb)) ? cb : angular.noop;
@@ -57,7 +57,8 @@
        addLooking: addLooking,
        editLooking:editLooking,
        getLooking:getLooking,
-       deleteLooking:deleteLooking
+       deleteLooking:deleteLooking,
+       getAllUniversities:getAllUniversities
     };
     return service;
 
@@ -460,6 +461,15 @@
 
     function deleteLooking(userId, lookingId, data) {
       return Looking.delete({userId: userId, id:lookingId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function getAllUniversities() {
+      return University.getAllUniversities(
         function (res) {
           return res;
         }, function (err) {

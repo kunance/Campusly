@@ -6,17 +6,34 @@
   .config(config);
 
   config.$inject=['$stateProvider'];
-  
+
   function config ($stateProvider, $urlRouterProvider) {
     // $urlRouterProvider.when('/dashboard', '/dashboard/summary');
     $stateProvider
     .state('dashboard.myProfile.editProfile', {
       url: '/edit',
       templateUrl: 'app/dashboard/my-profile/edit-profile/edit.profile.html',
-      controller: 'editProfileCtrl',
+      controller: 'EditProfileCtrl',
       controllerAs:'editProfile',
+        resolve:{
+          getUniversities:getUniversities,
+          getEducations: getEducations
+        },
       authenticate: true
     });
+  }
+
+  function getUniversities(common) {
+    var dataservice = common.dataservice;
+    return dataservice.getAllUniversities();
+  }
+
+  function getEducations(common, $q) {
+    var deffered = $q.defer();
+    var dataservice = common.dataservice;
+    var me = common.Auth.getCurrentUser();
+    deffered.resolve(dataservice.getAllEducations(me));
+    return deffered.promise;
   }
 
 }());
