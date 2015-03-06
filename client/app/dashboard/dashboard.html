@@ -54,7 +54,7 @@
               <!-- start room box -->
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 room" ng-repeat="room in dashboard.availableRooms track by $index">
                 <div class="picture">
-                  <img ng-src="{{room.propertyDetails.coords}}" alt="">
+                  <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&zoom=14&size=400x250&markers=color:blue%7C{{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}">
                 </div>
                 <div class="info">
                   <strong class="value">
