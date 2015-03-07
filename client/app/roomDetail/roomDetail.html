@@ -14,6 +14,19 @@
   </br>
   {{room.roomDetail.propertyDetails.streetNumeric}} {{room.roomDetail.propertyDetails.streetAddress}} {{room.roomDetail.propertyDetails.apt}}, {{room.roomDetail.propertyDetails.city}}</br>
   </br>
+
+  <div ng-show="room.userCurrentAddressAndUnivCoords">
+    <!-- call google maps api to get distance from students address to students university of record .. walking, bus, driving -->
+    miles from {{room.userCurrentAddressAndUnivCoords.univName}} </br>
+    <i class="fa fa-car"></i>5</br>
+    <i class="fa fa-bicycle"></i>10</br>
+    <i class="fa fa-child"></i>15</br>
+  </div>
+
+  <div ng-show="!room.userCurrentAddressAndUnivCoords">
+    <a ui-sref="dashboard.myProfile">Fill our univ</a>
+  </div>
+
   <ul class="specs">
     <li><i class="fa fa-bed"></i> {{room.roomDetail.roomDetails.roomType}}</li>
     <li><i class="fa fa-users"></i> {{room.roomDetail.roomDetails.numRoomates}} roommates</li>
