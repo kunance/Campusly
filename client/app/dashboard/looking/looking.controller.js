@@ -5,11 +5,15 @@
     .module('app.dashboard')
     .controller('LookingCtrl', LookingCtrl);
 
-  LookingCtrl.$inject = ['common'];
+  LookingCtrl.$inject = ['common', 'allLooking'];
 
-  function LookingCtrl(common) {
+  function LookingCtrl(common, allLooking) {
     var vm = this;
     vm.test = 'test looking ctrl';
+    vm.lookings = allLooking;
+
+    console.log('lookings: ',vm.lookings);
+
   }
 
 }());
