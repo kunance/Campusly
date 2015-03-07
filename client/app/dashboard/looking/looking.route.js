@@ -26,5 +26,4 @@
     var dataservice = common.dataservice;
     return dataservice.getEveryLooking();
   }
-
 }());

@@ -59,7 +59,8 @@
        getLooking:getLooking,
        deleteLooking:deleteLooking,
        getAllUniversities:getAllUniversities,
-       getEveryLooking:getEveryLooking
+       getEveryLooking:getEveryLooking,
+       getSingleLooking:getSingleLooking
     };
     return service;
 
@@ -453,6 +454,15 @@
 
     function getLooking(userId, lookingId, data) {
       return Looking.get({userId: userId, id:lookingId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
+    function getSingleLooking(lookingId, data) {
+      return Lookings.get({id:lookingId}, data,
         function (res) {
           return res;
         }, function (err) {

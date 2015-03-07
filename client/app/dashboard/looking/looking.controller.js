@@ -12,7 +12,8 @@
     vm.test = 'test looking ctrl';
     vm.lookings = allLooking;
 
-    console.log(vm.lookings);
+    console.log('lookings: ',vm.lookings);
+
   }
 
 }());

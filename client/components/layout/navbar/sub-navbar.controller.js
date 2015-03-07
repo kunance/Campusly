@@ -12,7 +12,6 @@
 
     vm.tabs = [
       { title:"Dashboard", sref:"dashboard", active: true },
-      { title:"Messages", sref:"dashboard.messages"},
       { title:"Around You", sref:"dashboard.around"},
       { title:"Available rooms", sref:"rooms"},
       { title:"Looking", sref:"dashboard.looking"}];

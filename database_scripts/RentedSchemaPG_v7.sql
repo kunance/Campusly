@@ -794,6 +794,7 @@ CREATE TABLE looking (
     area text,
     "distanceToUniv" double precision,
     "moveInDate" timestamp with time zone DEFAULT now() NOT NULL,
+    "moveOutDate" timestamp with time zone DEFAULT now(),
     "lengthOfStay" integer,
     "openToFullYearLeaseNewRoomates" boolean,
     "roomType" "looking_roomType",
@@ -2439,7 +2440,7 @@ COPY lessee ("leaseId", "userId", "createdAt", "updatedAt", "deletedAt") FROM st
 -- Data for Name: looking; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY looking (id, "maxMonthlyRent", "utilitiesIncluded", area, "distanceToUniv", "moveInDate", "lengthOfStay", "openToFullYearLeaseNewRoomates", "roomType", "sharedBathroom", gender, "numRoommates", furnished, "busRouteRequired", "parkingNeeded", "smokingAllowed", "petsAllowed", "createdAt", "updatedAt", "deletedAt", "userId") FROM stdin;
+COPY looking (id, "maxMonthlyRent", "utilitiesIncluded", area, "distanceToUniv", "moveInDate", "moveOutDate", "lengthOfStay", "openToFullYearLeaseNewRoomates", "roomType", "sharedBathroom", gender, "numRoommates", furnished, "busRouteRequired", "parkingNeeded", "smokingAllowed", "petsAllowed", "createdAt", "updatedAt", "deletedAt", "userId") FROM stdin;
 \.
 
 

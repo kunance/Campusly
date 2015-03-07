@@ -7,5 +7,6 @@ var auth = require('../../auth/auth.service');
 var router = express.Router();
 
 router.get('/all', controller.showAllLookings);
+router.get('/:id', controller.showSingleLooking);
 
 module.exports = router;

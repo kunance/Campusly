@@ -10,17 +10,17 @@
                   <div class="flipper">
                     <div class="front white-box">
                       <div class="picture">
-                        <img ng-src="api/images{{look.relatedUserId.profileImage}}" class="img-circle" height="100px" width="100px">
+                        <img ng-if="look.relatedUserId.profileImage" ng-src="api/images{{look.relatedUserId.profileImage}}" class="img-circle" height="100px" width="100px">
+                        <i ng-if="!look.relatedUserId.profileImage" class="fa fa-user" style="font-size:100px"></i>
                       </div>
-                      {{look.relatedUserId.firstname}} {{look.relatedUserId.lastname}}<br/>
-                      {{look.relatedUserId.aboutMe}}
+                      <strong class="value">
+                        {{look.relatedUserId.firstname}} {{look.relatedUserId.lastname}}
+                      </strong>
+                      <p class="quote">{{look.relatedUserId.aboutMe}}</p>
                       <!--<google-map center="map.center" zoom="map.zoom" draggable="true">-->
                       <!--<marker coords="{{room.propertyDetails.coords}}" idKey="marker.idKey"></marker>-->
                       <!--</google-map>-->
                       <div class="info">
-                        <strong class="value">
-                          {{looking.lookings.gender}}
-                        </strong>
                       </div>
                       <ul class="specs">
                         <li><i class="fa fa-users"></i> {{look.gender}}</li>
@@ -30,7 +30,7 @@
                       </ul>
                     </div>
                     <div class="back">
-                      <a ui-sref="lookingDetail({id: look.lookingDetails.id})"> <h2>View</h2> </a>
+                      <a ui-sref=".detail({id:look.id})"> <h2>View</h2> </a>
                     </div>
                   </div>
                 </div>
