@@ -1762,6 +1762,21 @@ h2.section-title:nth-child(n+2) {
 
 }
 
+h2.no-roommate{
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  top: 43%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+h2.no-roommate small{
+  display: block;
+
+}
+
+/* Custom Icons */
 .fa.fa-shower {
   background-image: url("../assets/images/shower.svg");
   background-size: 1em;
@@ -1791,3 +1806,4 @@ h2.section-title:nth-child(n+2) {
   position: relative;
   top: 2px;
 }
+
