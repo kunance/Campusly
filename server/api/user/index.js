@@ -16,4 +16,6 @@ router.get('/:id/profileImage',/* auth.isAuthenticated(), */controller.downloadP
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
 
+router.get('/:id/currentAddressAndUniv', auth.isAuthenticated(), controller.currentAddressAndUniv);
+
 module.exports = router;

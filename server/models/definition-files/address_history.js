@@ -69,6 +69,14 @@ module.exports = {
             field: "zip",
             allowNull: false
         },
+        "latitude": {
+          type: Seq.DECIMAL(10, 8),
+          field: "latitude"
+        },
+        "longitude": {
+          type: Seq.DECIMAL(11, 8),
+          field: "longitude"
+        },
         "startDate": {
             type: Seq.DATE,
             field: "startDate",

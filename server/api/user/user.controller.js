@@ -10,6 +10,7 @@ var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var mandrill = require('../../components/mandrill');
 var s3 = require('../../components/aws-s3/index');
+var UserCurAddressUnivCoords = sqldb.model('userCurAddressUnivCoords');
 
 var validationError = function(res, statusCode) {
   statusCode = statusCode || 422;
@@ -222,6 +223,31 @@ exports.downloadProfileImage = function(req, res, next) {
 
 
 };
+
+exports.currentAddressAndUniv = function(req, res, next) {
+
+  var attributes = ['userId', 'addressLatitude', 'addressLongitude', 'univLatitude', 'univLongitude', 'univName'];
+
+  UserCurAddressUnivCoords.find({
+    where: {
+      userId: req.params.id
+    },
+    attributes: attributes
+  })
+    .then(function(coords) {
+      if (!coords) {
+        return res.send(401);
+      }
+      else{
+        res.json(coords);
+      }
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+
+};
+
 
 /**
  * Authentication callback
