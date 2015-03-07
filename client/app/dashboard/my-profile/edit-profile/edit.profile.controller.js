@@ -52,13 +52,13 @@
       if(vm.tempAddress.id){
         common.dataservice.editAddress(vm.me.id, vm.tempAddress.id, input, function () {
           common.logger.success('Address updated');
-          common.$state.go('^',{},{reload:true});
         });
       }else{
+        input.latitude = input.location.latitude;
+        input.longitude = input.location.longitude;
         common.dataservice.addAddress(vm.me.id, input).$promise
         .then(function () {
           common.logger.success('Address successfully added.');
-          common.$state.go('^',{},{reload:true});
         })
       }
     }

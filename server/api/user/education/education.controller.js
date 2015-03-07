@@ -33,7 +33,7 @@ function respondWith(res, statusCode) {
 exports.newEducation = function(req, res, next) {
   req.body.userId = req.user.id;
   req.body.createdAt = new Date();
-  console.log(req.body);
+  req.body.graduation = false;
   var newEducation = Education.build(req.body);
 
   newEducation.save()

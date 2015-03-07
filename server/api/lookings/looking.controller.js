@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var sqldb = require('../../sqldb');
 var User = sqldb.model('rentedUser');
+var Education = sqldb.model('userEducation');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -47,13 +48,15 @@ exports.showAllLookings= function(req, res, next) {
 exports.showSingleLooking= function(req, res, next) {
   var lookingId = req.params.id;
   var userAttributes = ['firstname', 'lastname', 'profileImage', 'aboutMe'];
-  //var lookingAttributes = ['maxMonthlyRent', 'gender', 'id'];
   Looking.find({
     where:{id: lookingId},
-    /*attributes:lookingAttributes,*/
     include: [
-      { model: User, attributes: userAttributes, as: 'relatedUserId'}
+      { model: User, attributes: userAttributes, as: 'relatedUserId',
+        include:[
+          {model: Education, as: 'usereducationUsers'}
+        ]}
     ]
+
   }).then(function(lookings) {
     res.json(lookings)
 

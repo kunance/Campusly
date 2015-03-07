@@ -17,7 +17,8 @@
       controllerAs:'editProfile',
         resolve:{
           getUniversities:getUniversities,
-          getEducations: getEducations
+          getEducations: getEducations,
+          getAddresses: getAddresses
         },
       authenticate: true
     });
@@ -34,6 +35,12 @@
     var me = common.Auth.getCurrentUser();
     deffered.resolve(dataservice.getAllEducations(me));
     return deffered.promise;
+  }
+
+  function getAddresses(common) {
+    var dataservice = common.dataservice;
+    var me = common.Auth.getCurrentUser();
+    return dataservice.getAllAddresses(me);
   }
 
 }());
