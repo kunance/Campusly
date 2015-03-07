@@ -45,7 +45,7 @@
 
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
           <div class="page-header">
-            <h2> Roomates </h2>
+            <h2> Roommates </h2>
             <a class="bubble edit-profile" ng-click="myProfile.toggleRoommatesAddon()">
               <i class="fa fa-plus" ng-hide="myProfile.showRoommatesAddonButtons"></i>
               <i class="fa fa-minus" ng-show="myProfile.showRoommatesAddonButtons"></i>
@@ -88,7 +88,7 @@
             <h2 class="no-roommate" ng-hide="myProfile.showAddRoommate || myProfile.roommates.length > 0">
               You don't have any roommate yet.
               <small>
-                <a href="" ng-click="myProfile.toggleAddRoommate()">Click here</a> to find and add your rommates.
+                <a href="" ng-click="myProfile.toggleAddRoommate()">Click here</a> to find and add your roommates.
               </small>
             </h2>
             <div class="row roommate" ng-repeat="roommate in myProfile.roommates">
@@ -100,8 +100,8 @@
               <div class="col-xs-6 info">
                 <span class="name"> {{roommate.relatedRoommateId.firstname}} {{roommate.relatedRoommateId.lastname}} </span>
                 <span class="email">{{roommate.relatedRoommateId.email}}</span>
-                <span class="university">UNIVERSITY MISSING IN API</span>
-                <span class="city">CITY/STATE MISSING IN API</span>
+                <span class="university">{{roommate.relatedRoommateId.usereducationUsers[0].educationCenterName}}</span>
+                <span class="city">{{roommate.addressInfo[0].zip}} {{roommate.addressInfo[0].city}} / {{roommate.addressInfo[0].state}}</span>
               </div>
               <div class="actions col-xs-4">
                 <a class="bubble remove" ng-click="myProfile.removeRoommate(roommate)"><i class="fa fa-trash-o"></i></a>

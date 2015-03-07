@@ -8,7 +8,7 @@
   MyProfileCtrl.$inject = ['$scope', 'common', '$cookieStore', 'getUserInfo', 'getAddresses', 'getEducations', 'getAllRoommates', 'getAllUsers', 'getPets', 'getVehicles'];
 
   function MyProfileCtrl($scope, common, $cookieStore, getUserInfo, getAddresses, getEducations, getAllRoommates, getAllUsers, getPets, getVehicles) {
-    
+
     var vm = this;
     vm.me = getUserInfo;
     vm.tempMe = Object.create(vm.me);
@@ -18,7 +18,7 @@
     vm.roommates = getAllRoommates; //roomate info, his education info, his address info
     vm.pets = getPets;
     vm.vehicles = getVehicles;
-
+    console.log(vm.roommates);
     vm.showNewRoomate = false;
     vm.showPetAddonButtons = false;
     vm.showRoommatesAddonButtons = false;
@@ -38,7 +38,7 @@
     };
 
     $scope.format = 'dd.MM.yyyy';
-    
+
     $scope.clear = function () {
       $scope.dt = null;
     };
