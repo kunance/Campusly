@@ -64,6 +64,7 @@ exports.getLooking = function(req, res, next) {
 };
 
 exports.saveLooking = function(req, res, next) {
+  req.body.updatedAt = new Date();
   Looking.find({where: { id: req.params.id }})
     .then(function (looking) {
       var updated = _.merge(looking, req.body);

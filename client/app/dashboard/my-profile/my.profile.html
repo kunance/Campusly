@@ -53,9 +53,9 @@
           <div class="white-box roommates">
 
             <div ng-show='myProfile.showRoommatesAddonButtons' class="text-center">
-              <a class="btn btn-primary btn-half-block" ng-click="myProfile.toggleAddRoommate()"> 
+              <a class="btn btn-primary btn-half-block" ng-click="myProfile.toggleAddRoommate()">
                 <i class="fa fa-plus"></i>
-                Add Roommate 
+                Add Roommate
               </a>
               <a class="btn btn-secondary btn-half-block" ng-click="myProfile.toggleInviteRoomate()">
                 <i class="fa fa-envelope"></i>
@@ -67,7 +67,7 @@
             <div ng-show="myProfile.showAddRoommate">
               <a class="bubble cancel" ng-click="myProfile.cancelRoommateAddAddon()"><i class="fa fa-close"></i></a>
               <h3>Search for your Roommate using by email. </h3>
-              
+
               <angucomplete-alt id="members"
               placeholder="Search for roommate"
               pause="400"
@@ -81,11 +81,11 @@
               match-class="redFont"
               clear-selected="true">
               <hr>
-              
+
 
             </div>
-            <h2 class="no-roommate" ng-hide="myProfile.showAddRoommate || myProfile.roommates.length > 0"> 
-              You don't have any roommate yet. 
+            <h2 class="no-roommate" ng-hide="myProfile.showAddRoommate || myProfile.roommates.length > 0">
+              You don't have any roommate yet.
               <small>
                 <a href="" ng-click="myProfile.toggleAddRoommate()">Click here</a> to find and add your rommates.
               </small>
@@ -121,7 +121,7 @@
           </div>
           <div class="white-box pets">
             <div ng-show='myProfile.showPetAddonButtons' class="text-center">
-              <a class="btn btn-primary btn-half-block" ng-click="myProfile.toggleAddPet()"> 
+              <a class="btn btn-primary btn-half-block" ng-click="myProfile.toggleAddPet()">
                 <i class="fa fa-pet"></i> Add Pet
               </a>
               <a class="btn btn-secondary btn-half-block" ng-click="myProfile.toggleAddVehicle()">

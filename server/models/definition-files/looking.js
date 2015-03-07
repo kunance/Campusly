@@ -63,6 +63,10 @@ module.exports = {
             field: "moveInDate",
             allowNull: false
         },
+        "moveOutDate": {
+            type: Seq.DATE,
+            field: "moveOutDate"
+        },
         "lengthOfStay": {
             type: Seq.INTEGER,
             field: "lengthOfStay"

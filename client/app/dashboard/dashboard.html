@@ -26,7 +26,6 @@
           <h2 class="section-title"> Available Rooms</h2>
           <div class="white-box available-rooms">
             <slick dots="true" class="slider row" init-onload="true" data="dashboard.availableRooms" slides-to-show="3" slides-to-scroll="3" responsive="dashboard.breakpoints.availableRooms">
-
               <!-- start room box -->
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 room" ng-repeat="room in dashboard.availableRooms track by $index">
                 <div class="picture">
@@ -59,7 +58,8 @@
                 <div class="media">
                   <div class="media-left">
                     <a >
-                      <img class="media-object profile-image img-circle" ng-src="api/images/{{looking.relatedUserId.profileImage}}" >
+                      <img ng-if="looking.relatedUserId.profileImage" ng-src="api/images{{looking.relatedUserId.profileImage}}" class="img-circle" height="100px" width="100px">
+                      <i ng-if="!looking.relatedUserId.profileImage" class="fa fa-user" style="font-size:100px"></i>
                     </a>
                   </div>
                   <div class="media-body">
@@ -133,6 +133,54 @@
             </slick>
             <hr>
           </div>
+
+<!--my lookings just to showcase-->
+          <h2 class="section-title"> My lookings</h2>
+          <div class="white-box my-listings" >
+            <h2 ng-if="!dashboard.userLookings.length" >
+              You don't have posted lookings yet.
+              <small>
+                <a ui-sref="dashboard.myProfile.addNewLooking"><br/>Click here</a> to add looking.
+              </small>
+            </h2>
+            <slick dots="true" class="slider row" slides-to-show="1" slides-to-scroll="1" ng-if="dashboard.userLookings.length">
+
+              <!-- start list box -->
+              <div class="list-item" ng-repeat="look in dashboard.userLookings">
+                <div class="row" >
+                  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="picture">
+                      <img src="http://lorempixel.com/400/250/city/3">
+                    </div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="info">
+                      <span class='value'><i class="fa fa-money"></i> Max rent: {{look.maxMonthlyRent |currency}}</span>
+                      <span class='address'><i class="fa fa-transgender"></i> Gender: {{look.gender}} </span>
+                      <span class='address'><i class="fa fa-users"></i> Max roommates: {{look.numRoommates}} </span>
+                      <span class="elapsed-time">
+                        <small><i class="fa fa-clock-o"></i> Posted on {{look.createdAt | date:'longDate'}}</small>
+                        <small ng-if="look.updatedAt"><i class="fa fa-clock-o"></i> Edited {{look.updatedAt | amCalendar}}</small>
+                      </span>
+                    </div>
+                    <div class="edit">
+                      <span class='text'>Edit</span>
+                      <a class="bubble" ui-sref="dashboard.myProfile.editLooking({id:look.id})">
+                        <i class="fa fa-pencil"></i>
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <!-- end list box -->
+            </slick>
+            <hr>
+          </div>
+
+<!--ond of lookings  showcase-->
+
 
         </div>
       </div>

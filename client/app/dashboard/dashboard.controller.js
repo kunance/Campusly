@@ -35,6 +35,9 @@
     vm.availableRooms = RoomListingView.query({}, function() {});
 
     vm.lookingRoom = allLooking.data;
+    vm.userLookings = getUserLookings;
+
+    console.log('userL: ',vm.userLookings);
 
     // ================================================
     // BEGIN Getter for mock data

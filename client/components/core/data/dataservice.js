@@ -5,9 +5,9 @@
     .module('app.core')
     .factory('dataservice', dataservice);
 
-  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation', 'Roommate', 'Looking', 'RoomListing', 'University'];
+  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation', 'Roommate', 'Looking', 'RoomListing', 'University', 'Lookings'];
 
-  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education, Finance, Occupation, Roommate, Looking, RoomListing, University) {
+  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education, Finance, Occupation, Roommate, Looking, RoomListing, University, Lookings) {
 
     var safeCb = function(cb) {
         return (angular.isFunction(cb)) ? cb : angular.noop;
@@ -58,7 +58,9 @@
        editLooking:editLooking,
        getLooking:getLooking,
        deleteLooking:deleteLooking,
-       getAllUniversities:getAllUniversities
+       getAllUniversities:getAllUniversities,
+       getEveryLooking:getEveryLooking,
+       getSingleLooking:getSingleLooking
     };
     return service;
 
@@ -459,6 +461,15 @@
         });
     }
 
+    function getSingleLooking(lookingId, data) {
+      return Lookings.get({id:lookingId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
     function deleteLooking(userId, lookingId, data) {
       return Looking.delete({userId: userId, id:lookingId}, data,
         function (res) {
@@ -476,6 +487,15 @@
           //handle exception
         });
     }
+
+     function getEveryLooking() {
+          return Lookings.getEveryLooking(
+            function (res) {
+              return res;
+            }, function (err) {
+              //handle exception
+            });
+        }
 
   }
 }());

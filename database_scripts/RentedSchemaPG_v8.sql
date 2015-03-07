@@ -2,9 +2,9 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.4.1
--- Dumped by pg_dump version 9.4.1
--- Started on 2015-03-04 21:38:04
+-- Dumped from database version 9.4.0
+-- Dumped by pg_dump version 9.4.0
+-- Started on 2015-03-07 15:10:00
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -15,7 +15,7 @@ SET client_min_messages = warning;
 
 DROP DATABASE rented;
 --
--- TOC entry 2620 (class 1262 OID 23125)
+-- TOC entry 2626 (class 1262 OID 27225)
 -- Name: rented; Type: DATABASE; Schema: -; Owner: postgres
 --
 
@@ -44,7 +44,7 @@ CREATE SCHEMA public;
 ALTER SCHEMA public OWNER TO postgres;
 
 --
--- TOC entry 2621 (class 0 OID 0)
+-- TOC entry 2627 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
 --
@@ -53,17 +53,17 @@ COMMENT ON SCHEMA public IS 'standard public schema';
 
 
 --
--- TOC entry 241 (class 3079 OID 11855)
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
+-- TOC entry 242 (class 3079 OID 11855)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2623 (class 0 OID 0)
--- Dependencies: 241
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
+-- TOC entry 2629 (class 0 OID 0)
+-- Dependencies: 242
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -72,7 +72,7 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 593 (class 1247 OID 23127)
+-- TOC entry 594 (class 1247 OID 27227)
 -- Name: lease_paymentInterval; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -86,7 +86,7 @@ CREATE TYPE "lease_paymentInterval" AS ENUM (
 ALTER TYPE "lease_paymentInterval" OWNER TO postgres;
 
 --
--- TOC entry 596 (class 1247 OID 23134)
+-- TOC entry 597 (class 1247 OID 27234)
 -- Name: looking_gender; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -100,7 +100,7 @@ CREATE TYPE looking_gender AS ENUM (
 ALTER TYPE looking_gender OWNER TO postgres;
 
 --
--- TOC entry 599 (class 1247 OID 23142)
+-- TOC entry 600 (class 1247 OID 27242)
 -- Name: looking_roomType; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -114,7 +114,7 @@ CREATE TYPE "looking_roomType" AS ENUM (
 ALTER TYPE "looking_roomType" OWNER TO postgres;
 
 --
--- TOC entry 602 (class 1247 OID 23150)
+-- TOC entry 603 (class 1247 OID 27250)
 -- Name: payment_paymentForm; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -128,7 +128,7 @@ CREATE TYPE "payment_paymentForm" AS ENUM (
 ALTER TYPE "payment_paymentForm" OWNER TO postgres;
 
 --
--- TOC entry 605 (class 1247 OID 23158)
+-- TOC entry 606 (class 1247 OID 27258)
 -- Name: pet_type; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -144,7 +144,7 @@ CREATE TYPE pet_type AS ENUM (
 ALTER TYPE pet_type OWNER TO postgres;
 
 --
--- TOC entry 608 (class 1247 OID 23170)
+-- TOC entry 609 (class 1247 OID 27270)
 -- Name: property_lease_defaults_preferredLeaseUnit; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -159,7 +159,7 @@ CREATE TYPE "property_lease_defaults_preferredLeaseUnit" AS ENUM (
 ALTER TYPE "property_lease_defaults_preferredLeaseUnit" OWNER TO postgres;
 
 --
--- TOC entry 611 (class 1247 OID 23180)
+-- TOC entry 612 (class 1247 OID 27280)
 -- Name: property_listing_gender; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -175,7 +175,7 @@ CREATE TYPE property_listing_gender AS ENUM (
 ALTER TYPE property_listing_gender OWNER TO postgres;
 
 --
--- TOC entry 614 (class 1247 OID 23192)
+-- TOC entry 615 (class 1247 OID 27292)
 -- Name: property_listing_leaseLengthUnit; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -190,7 +190,7 @@ CREATE TYPE "property_listing_leaseLengthUnit" AS ENUM (
 ALTER TYPE "property_listing_leaseLengthUnit" OWNER TO postgres;
 
 --
--- TOC entry 617 (class 1247 OID 23202)
+-- TOC entry 618 (class 1247 OID 27302)
 -- Name: property_listing_leaseType; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -204,7 +204,7 @@ CREATE TYPE "property_listing_leaseType" AS ENUM (
 ALTER TYPE "property_listing_leaseType" OWNER TO postgres;
 
 --
--- TOC entry 620 (class 1247 OID 23210)
+-- TOC entry 621 (class 1247 OID 27310)
 -- Name: property_listing_roomType; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -220,7 +220,7 @@ CREATE TYPE "property_listing_roomType" AS ENUM (
 ALTER TYPE "property_listing_roomType" OWNER TO postgres;
 
 --
--- TOC entry 623 (class 1247 OID 23222)
+-- TOC entry 624 (class 1247 OID 27322)
 -- Name: property_listing_status; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -234,7 +234,7 @@ CREATE TYPE property_listing_status AS ENUM (
 ALTER TYPE property_listing_status OWNER TO postgres;
 
 --
--- TOC entry 626 (class 1247 OID 23230)
+-- TOC entry 627 (class 1247 OID 27330)
 -- Name: property_status; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -248,7 +248,7 @@ CREATE TYPE property_status AS ENUM (
 ALTER TYPE property_status OWNER TO postgres;
 
 --
--- TOC entry 629 (class 1247 OID 23238)
+-- TOC entry 630 (class 1247 OID 27338)
 -- Name: property_type; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -262,7 +262,7 @@ CREATE TYPE property_type AS ENUM (
 ALTER TYPE property_type OWNER TO postgres;
 
 --
--- TOC entry 632 (class 1247 OID 23246)
+-- TOC entry 633 (class 1247 OID 27346)
 -- Name: rental_application_preferredLeaseLengthUnit; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -277,7 +277,7 @@ CREATE TYPE "rental_application_preferredLeaseLengthUnit" AS ENUM (
 ALTER TYPE "rental_application_preferredLeaseLengthUnit" OWNER TO postgres;
 
 --
--- TOC entry 635 (class 1247 OID 23256)
+-- TOC entry 636 (class 1247 OID 27356)
 -- Name: room_listing_gender; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -291,7 +291,7 @@ CREATE TYPE room_listing_gender AS ENUM (
 ALTER TYPE room_listing_gender OWNER TO postgres;
 
 --
--- TOC entry 638 (class 1247 OID 23264)
+-- TOC entry 639 (class 1247 OID 27364)
 -- Name: room_listing_leaseType; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -305,7 +305,7 @@ CREATE TYPE "room_listing_leaseType" AS ENUM (
 ALTER TYPE "room_listing_leaseType" OWNER TO postgres;
 
 --
--- TOC entry 641 (class 1247 OID 23272)
+-- TOC entry 642 (class 1247 OID 27372)
 -- Name: room_listing_roomType; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -320,7 +320,7 @@ CREATE TYPE "room_listing_roomType" AS ENUM (
 ALTER TYPE "room_listing_roomType" OWNER TO postgres;
 
 --
--- TOC entry 644 (class 1247 OID 23282)
+-- TOC entry 645 (class 1247 OID 27382)
 -- Name: university_academicYearType; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -333,7 +333,7 @@ CREATE TYPE "university_academicYearType" AS ENUM (
 ALTER TYPE "university_academicYearType" OWNER TO postgres;
 
 --
--- TOC entry 647 (class 1247 OID 23288)
+-- TOC entry 648 (class 1247 OID 27388)
 -- Name: user_education_degreeType; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -348,7 +348,7 @@ CREATE TYPE "user_education_degreeType" AS ENUM (
 ALTER TYPE "user_education_degreeType" OWNER TO postgres;
 
 --
--- TOC entry 650 (class 1247 OID 23298)
+-- TOC entry 651 (class 1247 OID 27398)
 -- Name: user_education_type; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -362,7 +362,7 @@ CREATE TYPE user_education_type AS ENUM (
 ALTER TYPE user_education_type OWNER TO postgres;
 
 --
--- TOC entry 653 (class 1247 OID 23306)
+-- TOC entry 654 (class 1247 OID 27406)
 -- Name: user_reference_relation; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -383,8 +383,8 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 172 (class 1259 OID 23319)
--- Name: address_history; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 172 (class 1259 OID 27419)
+-- Name: address_history; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE address_history (
@@ -411,7 +411,7 @@ CREATE TABLE address_history (
 ALTER TABLE address_history OWNER TO postgres;
 
 --
--- TOC entry 173 (class 1259 OID 23327)
+-- TOC entry 173 (class 1259 OID 27427)
 -- Name: address_history_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -426,7 +426,7 @@ CREATE SEQUENCE address_history_id_seq
 ALTER TABLE address_history_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2624 (class 0 OID 0)
+-- TOC entry 2630 (class 0 OID 0)
 -- Dependencies: 173
 -- Name: address_history_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -435,8 +435,8 @@ ALTER SEQUENCE address_history_id_seq OWNED BY address_history.id;
 
 
 --
--- TOC entry 174 (class 1259 OID 23329)
--- Name: apartment_complex; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 174 (class 1259 OID 27429)
+-- Name: apartment_complex; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE apartment_complex (
@@ -466,8 +466,8 @@ CREATE TABLE apartment_complex (
 ALTER TABLE apartment_complex OWNER TO postgres;
 
 --
--- TOC entry 175 (class 1259 OID 23343)
--- Name: apartment_complex_floor_plan; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 175 (class 1259 OID 27443)
+-- Name: apartment_complex_floor_plan; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE apartment_complex_floor_plan (
@@ -487,7 +487,7 @@ CREATE TABLE apartment_complex_floor_plan (
 ALTER TABLE apartment_complex_floor_plan OWNER TO postgres;
 
 --
--- TOC entry 176 (class 1259 OID 23350)
+-- TOC entry 176 (class 1259 OID 27450)
 -- Name: apartment_complex_floor_plan_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -502,7 +502,7 @@ CREATE SEQUENCE apartment_complex_floor_plan_id_seq
 ALTER TABLE apartment_complex_floor_plan_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2625 (class 0 OID 0)
+-- TOC entry 2631 (class 0 OID 0)
 -- Dependencies: 176
 -- Name: apartment_complex_floor_plan_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -511,7 +511,7 @@ ALTER SEQUENCE apartment_complex_floor_plan_id_seq OWNED BY apartment_complex_fl
 
 
 --
--- TOC entry 177 (class 1259 OID 23352)
+-- TOC entry 177 (class 1259 OID 27452)
 -- Name: apartment_complex_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -526,7 +526,7 @@ CREATE SEQUENCE apartment_complex_id_seq
 ALTER TABLE apartment_complex_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2626 (class 0 OID 0)
+-- TOC entry 2632 (class 0 OID 0)
 -- Dependencies: 177
 -- Name: apartment_complex_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -535,8 +535,8 @@ ALTER SEQUENCE apartment_complex_id_seq OWNED BY apartment_complex.id;
 
 
 --
--- TOC entry 178 (class 1259 OID 23354)
--- Name: apartment_complex_image; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 178 (class 1259 OID 27454)
+-- Name: apartment_complex_image; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE apartment_complex_image (
@@ -552,7 +552,7 @@ CREATE TABLE apartment_complex_image (
 ALTER TABLE apartment_complex_image OWNER TO postgres;
 
 --
--- TOC entry 179 (class 1259 OID 23361)
+-- TOC entry 179 (class 1259 OID 27461)
 -- Name: apartment_complex_image_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -567,7 +567,7 @@ CREATE SEQUENCE apartment_complex_image_id_seq
 ALTER TABLE apartment_complex_image_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2627 (class 0 OID 0)
+-- TOC entry 2633 (class 0 OID 0)
 -- Dependencies: 179
 -- Name: apartment_complex_image_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -576,8 +576,8 @@ ALTER SEQUENCE apartment_complex_image_id_seq OWNED BY apartment_complex_image.i
 
 
 --
--- TOC entry 180 (class 1259 OID 23363)
--- Name: apartment_complex_transportation; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 180 (class 1259 OID 27463)
+-- Name: apartment_complex_transportation; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE apartment_complex_transportation (
@@ -594,7 +594,7 @@ CREATE TABLE apartment_complex_transportation (
 ALTER TABLE apartment_complex_transportation OWNER TO postgres;
 
 --
--- TOC entry 181 (class 1259 OID 23370)
+-- TOC entry 181 (class 1259 OID 27470)
 -- Name: apartment_complex_transportation_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -609,7 +609,7 @@ CREATE SEQUENCE apartment_complex_transportation_id_seq
 ALTER TABLE apartment_complex_transportation_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2628 (class 0 OID 0)
+-- TOC entry 2634 (class 0 OID 0)
 -- Dependencies: 181
 -- Name: apartment_complex_transportation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -618,8 +618,8 @@ ALTER SEQUENCE apartment_complex_transportation_id_seq OWNED BY apartment_comple
 
 
 --
--- TOC entry 182 (class 1259 OID 23372)
--- Name: articles; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 182 (class 1259 OID 27472)
+-- Name: articles; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE articles (
@@ -635,7 +635,7 @@ CREATE TABLE articles (
 ALTER TABLE articles OWNER TO postgres;
 
 --
--- TOC entry 183 (class 1259 OID 23378)
+-- TOC entry 183 (class 1259 OID 27478)
 -- Name: articles_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -650,7 +650,7 @@ CREATE SEQUENCE articles_id_seq
 ALTER TABLE articles_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2629 (class 0 OID 0)
+-- TOC entry 2635 (class 0 OID 0)
 -- Dependencies: 183
 -- Name: articles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -659,8 +659,8 @@ ALTER SEQUENCE articles_id_seq OWNED BY articles.id;
 
 
 --
--- TOC entry 184 (class 1259 OID 23380)
--- Name: friend; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 184 (class 1259 OID 27480)
+-- Name: friend; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE friend (
@@ -676,7 +676,7 @@ CREATE TABLE friend (
 ALTER TABLE friend OWNER TO postgres;
 
 --
--- TOC entry 185 (class 1259 OID 23384)
+-- TOC entry 185 (class 1259 OID 27484)
 -- Name: friend_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -691,7 +691,7 @@ CREATE SEQUENCE friend_id_seq
 ALTER TABLE friend_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2630 (class 0 OID 0)
+-- TOC entry 2636 (class 0 OID 0)
 -- Dependencies: 185
 -- Name: friend_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -700,8 +700,8 @@ ALTER SEQUENCE friend_id_seq OWNED BY friend.id;
 
 
 --
--- TOC entry 186 (class 1259 OID 23386)
--- Name: invitee; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 186 (class 1259 OID 27486)
+-- Name: invitee; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE invitee (
@@ -720,8 +720,8 @@ CREATE TABLE invitee (
 ALTER TABLE invitee OWNER TO postgres;
 
 --
--- TOC entry 187 (class 1259 OID 23393)
--- Name: lease; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 187 (class 1259 OID 27493)
+-- Name: lease; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE lease (
@@ -745,7 +745,7 @@ CREATE TABLE lease (
 ALTER TABLE lease OWNER TO postgres;
 
 --
--- TOC entry 188 (class 1259 OID 23400)
+-- TOC entry 188 (class 1259 OID 27500)
 -- Name: lease_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -760,7 +760,7 @@ CREATE SEQUENCE lease_id_seq
 ALTER TABLE lease_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2631 (class 0 OID 0)
+-- TOC entry 2637 (class 0 OID 0)
 -- Dependencies: 188
 -- Name: lease_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -769,8 +769,8 @@ ALTER SEQUENCE lease_id_seq OWNED BY lease.id;
 
 
 --
--- TOC entry 189 (class 1259 OID 23402)
--- Name: lessee; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 189 (class 1259 OID 27502)
+-- Name: lessee; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE lessee (
@@ -785,8 +785,8 @@ CREATE TABLE lessee (
 ALTER TABLE lessee OWNER TO postgres;
 
 --
--- TOC entry 190 (class 1259 OID 23406)
--- Name: looking; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 190 (class 1259 OID 27506)
+-- Name: looking; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE looking (
@@ -796,6 +796,7 @@ CREATE TABLE looking (
     area text,
     "distanceToUniv" double precision,
     "moveInDate" timestamp with time zone DEFAULT now() NOT NULL,
+    "moveOutDate" timestamp with time zone DEFAULT now(),
     "lengthOfStay" integer,
     "openToFullYearLeaseNewRoomates" boolean,
     "roomType" "looking_roomType",
@@ -817,7 +818,7 @@ CREATE TABLE looking (
 ALTER TABLE looking OWNER TO postgres;
 
 --
--- TOC entry 191 (class 1259 OID 23415)
+-- TOC entry 191 (class 1259 OID 27516)
 -- Name: looking_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -832,7 +833,7 @@ CREATE SEQUENCE looking_id_seq
 ALTER TABLE looking_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2632 (class 0 OID 0)
+-- TOC entry 2638 (class 0 OID 0)
 -- Dependencies: 191
 -- Name: looking_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -841,8 +842,8 @@ ALTER SEQUENCE looking_id_seq OWNED BY looking.id;
 
 
 --
--- TOC entry 192 (class 1259 OID 23417)
--- Name: payment; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 192 (class 1259 OID 27518)
+-- Name: payment; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE payment (
@@ -864,7 +865,7 @@ CREATE TABLE payment (
 ALTER TABLE payment OWNER TO postgres;
 
 --
--- TOC entry 193 (class 1259 OID 23427)
+-- TOC entry 193 (class 1259 OID 27528)
 -- Name: payment_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -879,7 +880,7 @@ CREATE SEQUENCE payment_id_seq
 ALTER TABLE payment_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2633 (class 0 OID 0)
+-- TOC entry 2639 (class 0 OID 0)
 -- Dependencies: 193
 -- Name: payment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -888,8 +889,8 @@ ALTER SEQUENCE payment_id_seq OWNED BY payment.id;
 
 
 --
--- TOC entry 194 (class 1259 OID 23429)
--- Name: pet; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 194 (class 1259 OID 27530)
+-- Name: pet; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE pet (
@@ -907,7 +908,7 @@ CREATE TABLE pet (
 ALTER TABLE pet OWNER TO postgres;
 
 --
--- TOC entry 195 (class 1259 OID 23436)
+-- TOC entry 195 (class 1259 OID 27537)
 -- Name: pet_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -922,7 +923,7 @@ CREATE SEQUENCE pet_id_seq
 ALTER TABLE pet_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2634 (class 0 OID 0)
+-- TOC entry 2640 (class 0 OID 0)
 -- Dependencies: 195
 -- Name: pet_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -931,8 +932,8 @@ ALTER SEQUENCE pet_id_seq OWNED BY pet.id;
 
 
 --
--- TOC entry 196 (class 1259 OID 23438)
--- Name: property; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 196 (class 1259 OID 27539)
+-- Name: property; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE property (
@@ -964,7 +965,7 @@ CREATE TABLE property (
 ALTER TABLE property OWNER TO postgres;
 
 --
--- TOC entry 197 (class 1259 OID 23445)
+-- TOC entry 197 (class 1259 OID 27546)
 -- Name: property_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -979,7 +980,7 @@ CREATE SEQUENCE property_id_seq
 ALTER TABLE property_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2635 (class 0 OID 0)
+-- TOC entry 2641 (class 0 OID 0)
 -- Dependencies: 197
 -- Name: property_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -988,8 +989,8 @@ ALTER SEQUENCE property_id_seq OWNED BY property.id;
 
 
 --
--- TOC entry 198 (class 1259 OID 23447)
--- Name: property_images; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 198 (class 1259 OID 27548)
+-- Name: property_images; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE property_images (
@@ -1006,7 +1007,7 @@ CREATE TABLE property_images (
 ALTER TABLE property_images OWNER TO postgres;
 
 --
--- TOC entry 199 (class 1259 OID 23454)
+-- TOC entry 199 (class 1259 OID 27555)
 -- Name: property_images_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1021,7 +1022,7 @@ CREATE SEQUENCE property_images_id_seq
 ALTER TABLE property_images_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2636 (class 0 OID 0)
+-- TOC entry 2642 (class 0 OID 0)
 -- Dependencies: 199
 -- Name: property_images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1030,8 +1031,8 @@ ALTER SEQUENCE property_images_id_seq OWNED BY property_images.id;
 
 
 --
--- TOC entry 200 (class 1259 OID 23456)
--- Name: property_lease_defaults; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 200 (class 1259 OID 27557)
+-- Name: property_lease_defaults; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE property_lease_defaults (
@@ -1054,7 +1055,7 @@ CREATE TABLE property_lease_defaults (
 ALTER TABLE property_lease_defaults OWNER TO postgres;
 
 --
--- TOC entry 201 (class 1259 OID 23465)
+-- TOC entry 201 (class 1259 OID 27566)
 -- Name: property_lease_defaults_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1069,7 +1070,7 @@ CREATE SEQUENCE property_lease_defaults_id_seq
 ALTER TABLE property_lease_defaults_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2637 (class 0 OID 0)
+-- TOC entry 2643 (class 0 OID 0)
 -- Dependencies: 201
 -- Name: property_lease_defaults_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1078,8 +1079,8 @@ ALTER SEQUENCE property_lease_defaults_id_seq OWNED BY property_lease_defaults.i
 
 
 --
--- TOC entry 202 (class 1259 OID 23467)
--- Name: property_likes; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 202 (class 1259 OID 27568)
+-- Name: property_likes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE property_likes (
@@ -1095,7 +1096,7 @@ CREATE TABLE property_likes (
 ALTER TABLE property_likes OWNER TO postgres;
 
 --
--- TOC entry 203 (class 1259 OID 23471)
+-- TOC entry 203 (class 1259 OID 27572)
 -- Name: property_likes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1110,7 +1111,7 @@ CREATE SEQUENCE property_likes_id_seq
 ALTER TABLE property_likes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2638 (class 0 OID 0)
+-- TOC entry 2644 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: property_likes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1119,8 +1120,8 @@ ALTER SEQUENCE property_likes_id_seq OWNED BY property_likes.id;
 
 
 --
--- TOC entry 204 (class 1259 OID 23473)
--- Name: property_listing; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 204 (class 1259 OID 27574)
+-- Name: property_listing; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE property_listing (
@@ -1155,7 +1156,7 @@ CREATE TABLE property_listing (
 ALTER TABLE property_listing OWNER TO postgres;
 
 --
--- TOC entry 205 (class 1259 OID 23485)
+-- TOC entry 205 (class 1259 OID 27586)
 -- Name: property_listing_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1170,7 +1171,7 @@ CREATE SEQUENCE property_listing_id_seq
 ALTER TABLE property_listing_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2639 (class 0 OID 0)
+-- TOC entry 2645 (class 0 OID 0)
 -- Dependencies: 205
 -- Name: property_listing_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1179,8 +1180,8 @@ ALTER SEQUENCE property_listing_id_seq OWNED BY property_listing.id;
 
 
 --
--- TOC entry 206 (class 1259 OID 23487)
--- Name: property_owner; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 206 (class 1259 OID 27588)
+-- Name: property_owner; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE property_owner (
@@ -1195,8 +1196,8 @@ CREATE TABLE property_owner (
 ALTER TABLE property_owner OWNER TO postgres;
 
 --
--- TOC entry 207 (class 1259 OID 23491)
--- Name: property_ownership; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 207 (class 1259 OID 27592)
+-- Name: property_ownership; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE property_ownership (
@@ -1213,7 +1214,7 @@ CREATE TABLE property_ownership (
 ALTER TABLE property_ownership OWNER TO postgres;
 
 --
--- TOC entry 208 (class 1259 OID 23496)
+-- TOC entry 208 (class 1259 OID 27597)
 -- Name: property_ownership_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1228,7 +1229,7 @@ CREATE SEQUENCE property_ownership_id_seq
 ALTER TABLE property_ownership_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2640 (class 0 OID 0)
+-- TOC entry 2646 (class 0 OID 0)
 -- Dependencies: 208
 -- Name: property_ownership_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1237,8 +1238,8 @@ ALTER SEQUENCE property_ownership_id_seq OWNED BY property_ownership.id;
 
 
 --
--- TOC entry 209 (class 1259 OID 23498)
--- Name: rental_applicant; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 209 (class 1259 OID 27599)
+-- Name: rental_applicant; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE rental_applicant (
@@ -1255,7 +1256,7 @@ CREATE TABLE rental_applicant (
 ALTER TABLE rental_applicant OWNER TO postgres;
 
 --
--- TOC entry 210 (class 1259 OID 23502)
+-- TOC entry 210 (class 1259 OID 27603)
 -- Name: rental_applicant_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1270,7 +1271,7 @@ CREATE SEQUENCE rental_applicant_id_seq
 ALTER TABLE rental_applicant_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2641 (class 0 OID 0)
+-- TOC entry 2647 (class 0 OID 0)
 -- Dependencies: 210
 -- Name: rental_applicant_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1279,8 +1280,8 @@ ALTER SEQUENCE rental_applicant_id_seq OWNED BY rental_applicant.id;
 
 
 --
--- TOC entry 211 (class 1259 OID 23504)
--- Name: rental_application; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 211 (class 1259 OID 27605)
+-- Name: rental_application; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE rental_application (
@@ -1300,7 +1301,7 @@ CREATE TABLE rental_application (
 ALTER TABLE rental_application OWNER TO postgres;
 
 --
--- TOC entry 212 (class 1259 OID 23512)
+-- TOC entry 212 (class 1259 OID 27613)
 -- Name: rental_application_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1315,7 +1316,7 @@ CREATE SEQUENCE rental_application_id_seq
 ALTER TABLE rental_application_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2642 (class 0 OID 0)
+-- TOC entry 2648 (class 0 OID 0)
 -- Dependencies: 212
 -- Name: rental_application_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1324,8 +1325,8 @@ ALTER SEQUENCE rental_application_id_seq OWNED BY rental_application.id;
 
 
 --
--- TOC entry 213 (class 1259 OID 23514)
--- Name: rented_user; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 213 (class 1259 OID 27615)
+-- Name: rented_user; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE rented_user (
@@ -1365,7 +1366,7 @@ CREATE TABLE rented_user (
 ALTER TABLE rented_user OWNER TO postgres;
 
 --
--- TOC entry 214 (class 1259 OID 23525)
+-- TOC entry 214 (class 1259 OID 27626)
 -- Name: rented_user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1380,7 +1381,7 @@ CREATE SEQUENCE rented_user_id_seq
 ALTER TABLE rented_user_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2643 (class 0 OID 0)
+-- TOC entry 2649 (class 0 OID 0)
 -- Dependencies: 214
 -- Name: rented_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1389,8 +1390,8 @@ ALTER SEQUENCE rented_user_id_seq OWNED BY rented_user.id;
 
 
 --
--- TOC entry 215 (class 1259 OID 23527)
--- Name: room_listing; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 215 (class 1259 OID 27628)
+-- Name: room_listing; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE room_listing (
@@ -1420,7 +1421,7 @@ CREATE TABLE room_listing (
 ALTER TABLE room_listing OWNER TO postgres;
 
 --
--- TOC entry 216 (class 1259 OID 23537)
+-- TOC entry 216 (class 1259 OID 27638)
 -- Name: room_listing_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1435,7 +1436,7 @@ CREATE SEQUENCE room_listing_id_seq
 ALTER TABLE room_listing_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2644 (class 0 OID 0)
+-- TOC entry 2650 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: room_listing_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1444,7 +1445,7 @@ ALTER SEQUENCE room_listing_id_seq OWNED BY room_listing.id;
 
 
 --
--- TOC entry 217 (class 1259 OID 23539)
+-- TOC entry 217 (class 1259 OID 27640)
 -- Name: room_listing_view; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -1487,8 +1488,8 @@ CREATE VIEW room_listing_view AS
 ALTER TABLE room_listing_view OWNER TO postgres;
 
 --
--- TOC entry 218 (class 1259 OID 23544)
--- Name: roommate; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 218 (class 1259 OID 27645)
+-- Name: roommate; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE roommate (
@@ -1506,7 +1507,7 @@ CREATE TABLE roommate (
 ALTER TABLE roommate OWNER TO postgres;
 
 --
--- TOC entry 219 (class 1259 OID 23549)
+-- TOC entry 219 (class 1259 OID 27650)
 -- Name: roommate_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1521,7 +1522,7 @@ CREATE SEQUENCE roommate_id_seq
 ALTER TABLE roommate_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2645 (class 0 OID 0)
+-- TOC entry 2651 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: roommate_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1530,8 +1531,8 @@ ALTER SEQUENCE roommate_id_seq OWNED BY roommate.id;
 
 
 --
--- TOC entry 220 (class 1259 OID 23551)
--- Name: student; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 220 (class 1259 OID 27652)
+-- Name: student; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE student (
@@ -1546,8 +1547,8 @@ CREATE TABLE student (
 ALTER TABLE student OWNER TO postgres;
 
 --
--- TOC entry 221 (class 1259 OID 23557)
--- Name: university; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 221 (class 1259 OID 27658)
+-- Name: university; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE university (
@@ -1573,8 +1574,8 @@ CREATE TABLE university (
 ALTER TABLE university OWNER TO postgres;
 
 --
--- TOC entry 222 (class 1259 OID 23565)
--- Name: university_calender_quater; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 222 (class 1259 OID 27666)
+-- Name: university_calender_quater; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE university_calender_quater (
@@ -1598,7 +1599,7 @@ CREATE TABLE university_calender_quater (
 ALTER TABLE university_calender_quater OWNER TO postgres;
 
 --
--- TOC entry 223 (class 1259 OID 23569)
+-- TOC entry 223 (class 1259 OID 27670)
 -- Name: university_calender_quater_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1613,7 +1614,7 @@ CREATE SEQUENCE university_calender_quater_id_seq
 ALTER TABLE university_calender_quater_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2646 (class 0 OID 0)
+-- TOC entry 2652 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: university_calender_quater_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1622,8 +1623,8 @@ ALTER SEQUENCE university_calender_quater_id_seq OWNED BY university_calender_qu
 
 
 --
--- TOC entry 224 (class 1259 OID 23571)
--- Name: university_calender_semester; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 224 (class 1259 OID 27672)
+-- Name: university_calender_semester; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE university_calender_semester (
@@ -1645,7 +1646,7 @@ CREATE TABLE university_calender_semester (
 ALTER TABLE university_calender_semester OWNER TO postgres;
 
 --
--- TOC entry 225 (class 1259 OID 23575)
+-- TOC entry 225 (class 1259 OID 27676)
 -- Name: university_calender_semester_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1660,7 +1661,7 @@ CREATE SEQUENCE university_calender_semester_id_seq
 ALTER TABLE university_calender_semester_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2647 (class 0 OID 0)
+-- TOC entry 2653 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: university_calender_semester_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1669,7 +1670,7 @@ ALTER SEQUENCE university_calender_semester_id_seq OWNED BY university_calender_
 
 
 --
--- TOC entry 226 (class 1259 OID 23577)
+-- TOC entry 226 (class 1259 OID 27678)
 -- Name: university_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1684,7 +1685,7 @@ CREATE SEQUENCE university_id_seq
 ALTER TABLE university_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2648 (class 0 OID 0)
+-- TOC entry 2654 (class 0 OID 0)
 -- Dependencies: 226
 -- Name: university_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1693,8 +1694,8 @@ ALTER SEQUENCE university_id_seq OWNED BY university.id;
 
 
 --
--- TOC entry 227 (class 1259 OID 23579)
--- Name: user_cosigner; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 227 (class 1259 OID 27680)
+-- Name: user_cosigner; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE user_cosigner (
@@ -1710,7 +1711,7 @@ CREATE TABLE user_cosigner (
 ALTER TABLE user_cosigner OWNER TO postgres;
 
 --
--- TOC entry 228 (class 1259 OID 23583)
+-- TOC entry 228 (class 1259 OID 27684)
 -- Name: user_cosigner_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1725,7 +1726,7 @@ CREATE SEQUENCE user_cosigner_id_seq
 ALTER TABLE user_cosigner_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2649 (class 0 OID 0)
+-- TOC entry 2655 (class 0 OID 0)
 -- Dependencies: 228
 -- Name: user_cosigner_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1734,8 +1735,8 @@ ALTER SEQUENCE user_cosigner_id_seq OWNED BY user_cosigner.id;
 
 
 --
--- TOC entry 229 (class 1259 OID 23585)
--- Name: user_education; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 229 (class 1259 OID 27686)
+-- Name: user_education; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE user_education (
@@ -1759,7 +1760,28 @@ CREATE TABLE user_education (
 ALTER TABLE user_education OWNER TO postgres;
 
 --
--- TOC entry 230 (class 1259 OID 23594)
+-- TOC entry 240 (class 1259 OID 27743)
+-- Name: user_cur_address_univ_coords; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW user_cur_address_univ_coords AS
+ SELECT ah."userId",
+    ah.latitude AS address_latitude,
+    ah.longitude AS address_longitude,
+    univ.latitude AS univ_latitude,
+    univ.longitude AS univ_longitude,
+    univ.name AS univ_name
+   FROM rented_user ru,
+    address_history ah,
+    user_education ue,
+    university univ
+  WHERE ((((ah.present = true) AND (ah."userId" = ru.id)) AND (ru.id = ue."userId")) AND (ue."universityId" = univ.id));
+
+
+ALTER TABLE user_cur_address_univ_coords OWNER TO postgres;
+
+--
+-- TOC entry 230 (class 1259 OID 27695)
 -- Name: user_education_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1774,7 +1796,7 @@ CREATE SEQUENCE user_education_id_seq
 ALTER TABLE user_education_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2650 (class 0 OID 0)
+-- TOC entry 2656 (class 0 OID 0)
 -- Dependencies: 230
 -- Name: user_education_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1783,8 +1805,8 @@ ALTER SEQUENCE user_education_id_seq OWNED BY user_education.id;
 
 
 --
--- TOC entry 231 (class 1259 OID 23596)
--- Name: user_financial; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 231 (class 1259 OID 27697)
+-- Name: user_financial; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE user_financial (
@@ -1805,7 +1827,7 @@ CREATE TABLE user_financial (
 ALTER TABLE user_financial OWNER TO postgres;
 
 --
--- TOC entry 232 (class 1259 OID 23603)
+-- TOC entry 232 (class 1259 OID 27704)
 -- Name: user_financial_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1820,7 +1842,7 @@ CREATE SEQUENCE user_financial_id_seq
 ALTER TABLE user_financial_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2651 (class 0 OID 0)
+-- TOC entry 2657 (class 0 OID 0)
 -- Dependencies: 232
 -- Name: user_financial_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1829,8 +1851,8 @@ ALTER SEQUENCE user_financial_id_seq OWNED BY user_financial.id;
 
 
 --
--- TOC entry 233 (class 1259 OID 23605)
--- Name: user_occupation; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 233 (class 1259 OID 27706)
+-- Name: user_occupation; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE user_occupation (
@@ -1850,7 +1872,7 @@ CREATE TABLE user_occupation (
 ALTER TABLE user_occupation OWNER TO postgres;
 
 --
--- TOC entry 234 (class 1259 OID 23613)
+-- TOC entry 234 (class 1259 OID 27714)
 -- Name: user_occupation_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1865,7 +1887,7 @@ CREATE SEQUENCE user_occupation_id_seq
 ALTER TABLE user_occupation_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2652 (class 0 OID 0)
+-- TOC entry 2658 (class 0 OID 0)
 -- Dependencies: 234
 -- Name: user_occupation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1874,8 +1896,8 @@ ALTER SEQUENCE user_occupation_id_seq OWNED BY user_occupation.id;
 
 
 --
--- TOC entry 235 (class 1259 OID 23615)
--- Name: user_recommendation; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 235 (class 1259 OID 27716)
+-- Name: user_recommendation; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE user_recommendation (
@@ -1893,7 +1915,7 @@ CREATE TABLE user_recommendation (
 ALTER TABLE user_recommendation OWNER TO postgres;
 
 --
--- TOC entry 236 (class 1259 OID 23623)
+-- TOC entry 236 (class 1259 OID 27724)
 -- Name: user_recommendation_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1908,7 +1930,7 @@ CREATE SEQUENCE user_recommendation_id_seq
 ALTER TABLE user_recommendation_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2653 (class 0 OID 0)
+-- TOC entry 2659 (class 0 OID 0)
 -- Dependencies: 236
 -- Name: user_recommendation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1917,8 +1939,8 @@ ALTER SEQUENCE user_recommendation_id_seq OWNED BY user_recommendation.id;
 
 
 --
--- TOC entry 237 (class 1259 OID 23625)
--- Name: user_reference; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 237 (class 1259 OID 27726)
+-- Name: user_reference; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE user_reference (
@@ -1939,7 +1961,7 @@ CREATE TABLE user_reference (
 ALTER TABLE user_reference OWNER TO postgres;
 
 --
--- TOC entry 238 (class 1259 OID 23633)
+-- TOC entry 238 (class 1259 OID 27734)
 -- Name: user_reference_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1954,7 +1976,7 @@ CREATE SEQUENCE user_reference_id_seq
 ALTER TABLE user_reference_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2654 (class 0 OID 0)
+-- TOC entry 2660 (class 0 OID 0)
 -- Dependencies: 238
 -- Name: user_reference_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1963,8 +1985,8 @@ ALTER SEQUENCE user_reference_id_seq OWNED BY user_reference.id;
 
 
 --
--- TOC entry 239 (class 1259 OID 23635)
--- Name: user_vehicle; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 239 (class 1259 OID 27736)
+-- Name: user_vehicle; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE user_vehicle (
@@ -1983,25 +2005,8 @@ CREATE TABLE user_vehicle (
 
 ALTER TABLE user_vehicle OWNER TO postgres;
 
-
-CREATE VIEW user_cur_address_univ_coords AS
- SELECT ah."userId" AS "userId",
-    ah."latitude" AS address_latitude,
-    ah."longitude" AS address_longitude,
-    univ."latitude" AS univ_latitude,
-    univ."longitude" AS univ_longitude,
-    univ."name" AS univ_name
-   FROM  rented_user ru,
-    address_history ah,
-    user_education ue,
-    university univ
-  WHERE (ah.present = 'true' AND ah."userId" = ru.id AND ru.id = ue."userId" AND ue."universityId" = univ.id);
-
-  ALTER TABLE user_cur_address_univ_coords OWNER TO postgres;
-
-
 --
--- TOC entry 240 (class 1259 OID 23642)
+-- TOC entry 241 (class 1259 OID 27747)
 -- Name: user_vehicle_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2016,8 +2021,8 @@ CREATE SEQUENCE user_vehicle_id_seq
 ALTER TABLE user_vehicle_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2655 (class 0 OID 0)
--- Dependencies: 240
+-- TOC entry 2661 (class 0 OID 0)
+-- Dependencies: 241
 -- Name: user_vehicle_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -2025,7 +2030,7 @@ ALTER SEQUENCE user_vehicle_id_seq OWNED BY user_vehicle.id;
 
 
 --
--- TOC entry 2176 (class 2604 OID 23644)
+-- TOC entry 2180 (class 2604 OID 27749)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2033,7 +2038,7 @@ ALTER TABLE ONLY address_history ALTER COLUMN id SET DEFAULT nextval('address_hi
 
 
 --
--- TOC entry 2185 (class 2604 OID 23645)
+-- TOC entry 2189 (class 2604 OID 27750)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2041,7 +2046,7 @@ ALTER TABLE ONLY apartment_complex ALTER COLUMN id SET DEFAULT nextval('apartmen
 
 
 --
--- TOC entry 2190 (class 2604 OID 23646)
+-- TOC entry 2194 (class 2604 OID 27751)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2049,7 +2054,7 @@ ALTER TABLE ONLY apartment_complex_floor_plan ALTER COLUMN id SET DEFAULT nextva
 
 
 --
--- TOC entry 2192 (class 2604 OID 23647)
+-- TOC entry 2196 (class 2604 OID 27752)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2057,7 +2062,7 @@ ALTER TABLE ONLY apartment_complex_image ALTER COLUMN id SET DEFAULT nextval('ap
 
 
 --
--- TOC entry 2194 (class 2604 OID 23648)
+-- TOC entry 2198 (class 2604 OID 27753)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2065,7 +2070,7 @@ ALTER TABLE ONLY apartment_complex_transportation ALTER COLUMN id SET DEFAULT ne
 
 
 --
--- TOC entry 2195 (class 2604 OID 23649)
+-- TOC entry 2199 (class 2604 OID 27754)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2073,7 +2078,7 @@ ALTER TABLE ONLY articles ALTER COLUMN id SET DEFAULT nextval('articles_id_seq':
 
 
 --
--- TOC entry 2197 (class 2604 OID 23650)
+-- TOC entry 2201 (class 2604 OID 27755)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2081,7 +2086,7 @@ ALTER TABLE ONLY friend ALTER COLUMN id SET DEFAULT nextval('friend_id_seq'::reg
 
 
 --
--- TOC entry 2200 (class 2604 OID 23651)
+-- TOC entry 2204 (class 2604 OID 27756)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2089,7 +2094,7 @@ ALTER TABLE ONLY lease ALTER COLUMN id SET DEFAULT nextval('lease_id_seq'::regcl
 
 
 --
--- TOC entry 2205 (class 2604 OID 23652)
+-- TOC entry 2210 (class 2604 OID 27757)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2097,7 +2102,7 @@ ALTER TABLE ONLY looking ALTER COLUMN id SET DEFAULT nextval('looking_id_seq'::r
 
 
 --
--- TOC entry 2210 (class 2604 OID 23653)
+-- TOC entry 2215 (class 2604 OID 27758)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2105,7 +2110,7 @@ ALTER TABLE ONLY payment ALTER COLUMN id SET DEFAULT nextval('payment_id_seq'::r
 
 
 --
--- TOC entry 2212 (class 2604 OID 23654)
+-- TOC entry 2217 (class 2604 OID 27759)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2113,7 +2118,7 @@ ALTER TABLE ONLY pet ALTER COLUMN id SET DEFAULT nextval('pet_id_seq'::regclass)
 
 
 --
--- TOC entry 2214 (class 2604 OID 23655)
+-- TOC entry 2219 (class 2604 OID 27760)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2121,7 +2126,7 @@ ALTER TABLE ONLY property ALTER COLUMN id SET DEFAULT nextval('property_id_seq':
 
 
 --
--- TOC entry 2216 (class 2604 OID 23656)
+-- TOC entry 2221 (class 2604 OID 27761)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2129,7 +2134,7 @@ ALTER TABLE ONLY property_images ALTER COLUMN id SET DEFAULT nextval('property_i
 
 
 --
--- TOC entry 2223 (class 2604 OID 23657)
+-- TOC entry 2228 (class 2604 OID 27762)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2137,7 +2142,7 @@ ALTER TABLE ONLY property_lease_defaults ALTER COLUMN id SET DEFAULT nextval('pr
 
 
 --
--- TOC entry 2225 (class 2604 OID 23658)
+-- TOC entry 2230 (class 2604 OID 27763)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2145,7 +2150,7 @@ ALTER TABLE ONLY property_likes ALTER COLUMN id SET DEFAULT nextval('property_li
 
 
 --
--- TOC entry 2232 (class 2604 OID 23659)
+-- TOC entry 2237 (class 2604 OID 27764)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2153,7 +2158,7 @@ ALTER TABLE ONLY property_listing ALTER COLUMN id SET DEFAULT nextval('property_
 
 
 --
--- TOC entry 2236 (class 2604 OID 23660)
+-- TOC entry 2241 (class 2604 OID 27765)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2161,7 +2166,7 @@ ALTER TABLE ONLY property_ownership ALTER COLUMN id SET DEFAULT nextval('propert
 
 
 --
--- TOC entry 2238 (class 2604 OID 23661)
+-- TOC entry 2243 (class 2604 OID 27766)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2169,7 +2174,7 @@ ALTER TABLE ONLY rental_applicant ALTER COLUMN id SET DEFAULT nextval('rental_ap
 
 
 --
--- TOC entry 2241 (class 2604 OID 23662)
+-- TOC entry 2246 (class 2604 OID 27767)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2177,7 +2182,7 @@ ALTER TABLE ONLY rental_application ALTER COLUMN id SET DEFAULT nextval('rental_
 
 
 --
--- TOC entry 2247 (class 2604 OID 23663)
+-- TOC entry 2252 (class 2604 OID 27768)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2185,7 +2190,7 @@ ALTER TABLE ONLY rented_user ALTER COLUMN id SET DEFAULT nextval('rented_user_id
 
 
 --
--- TOC entry 2252 (class 2604 OID 23664)
+-- TOC entry 2257 (class 2604 OID 27769)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2193,7 +2198,7 @@ ALTER TABLE ONLY room_listing ALTER COLUMN id SET DEFAULT nextval('room_listing_
 
 
 --
--- TOC entry 2255 (class 2604 OID 23665)
+-- TOC entry 2260 (class 2604 OID 27770)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2201,7 +2206,7 @@ ALTER TABLE ONLY roommate ALTER COLUMN id SET DEFAULT nextval('roommate_id_seq':
 
 
 --
--- TOC entry 2258 (class 2604 OID 23666)
+-- TOC entry 2263 (class 2604 OID 27771)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2209,7 +2214,7 @@ ALTER TABLE ONLY university ALTER COLUMN id SET DEFAULT nextval('university_id_s
 
 
 --
--- TOC entry 2260 (class 2604 OID 23667)
+-- TOC entry 2265 (class 2604 OID 27772)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2217,7 +2222,7 @@ ALTER TABLE ONLY university_calender_quater ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- TOC entry 2262 (class 2604 OID 23668)
+-- TOC entry 2267 (class 2604 OID 27773)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2225,7 +2230,7 @@ ALTER TABLE ONLY university_calender_semester ALTER COLUMN id SET DEFAULT nextva
 
 
 --
--- TOC entry 2264 (class 2604 OID 23669)
+-- TOC entry 2269 (class 2604 OID 27774)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2233,7 +2238,7 @@ ALTER TABLE ONLY user_cosigner ALTER COLUMN id SET DEFAULT nextval('user_cosigne
 
 
 --
--- TOC entry 2268 (class 2604 OID 23670)
+-- TOC entry 2273 (class 2604 OID 27775)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2241,7 +2246,7 @@ ALTER TABLE ONLY user_education ALTER COLUMN id SET DEFAULT nextval('user_educat
 
 
 --
--- TOC entry 2270 (class 2604 OID 23671)
+-- TOC entry 2275 (class 2604 OID 27776)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2249,7 +2254,7 @@ ALTER TABLE ONLY user_financial ALTER COLUMN id SET DEFAULT nextval('user_financ
 
 
 --
--- TOC entry 2273 (class 2604 OID 23672)
+-- TOC entry 2278 (class 2604 OID 27777)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2257,7 +2262,7 @@ ALTER TABLE ONLY user_occupation ALTER COLUMN id SET DEFAULT nextval('user_occup
 
 
 --
--- TOC entry 2276 (class 2604 OID 23673)
+-- TOC entry 2281 (class 2604 OID 27778)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2265,7 +2270,7 @@ ALTER TABLE ONLY user_recommendation ALTER COLUMN id SET DEFAULT nextval('user_r
 
 
 --
--- TOC entry 2279 (class 2604 OID 23674)
+-- TOC entry 2284 (class 2604 OID 27779)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2273,7 +2278,7 @@ ALTER TABLE ONLY user_reference ALTER COLUMN id SET DEFAULT nextval('user_refere
 
 
 --
--- TOC entry 2281 (class 2604 OID 23675)
+-- TOC entry 2286 (class 2604 OID 27780)
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2281,17 +2286,17 @@ ALTER TABLE ONLY user_vehicle ALTER COLUMN id SET DEFAULT nextval('user_vehicle_
 
 
 --
--- TOC entry 2548 (class 0 OID 23319)
+-- TOC entry 2554 (class 0 OID 27419)
 -- Dependencies: 172
 -- Data for Name: address_history; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY address_history (id, "streetNumeric", "streetAddress", apt, city, state, zip, "startDate", "endDate", "userId", "aboutMe", present, "createdAt", "updatedAt", "deletedAt") FROM stdin;
+COPY address_history (id, "streetNumeric", "streetAddress", apt, city, state, zip, latitude, longitude, "startDate", "endDate", "userId", "aboutMe", present, "createdAt", "updatedAt", "deletedAt") FROM stdin;
 \.
 
 
 --
--- TOC entry 2656 (class 0 OID 0)
+-- TOC entry 2662 (class 0 OID 0)
 -- Dependencies: 173
 -- Name: address_history_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2300,7 +2305,7 @@ SELECT pg_catalog.setval('address_history_id_seq', 1, true);
 
 
 --
--- TOC entry 2550 (class 0 OID 23329)
+-- TOC entry 2556 (class 0 OID 27429)
 -- Dependencies: 174
 -- Data for Name: apartment_complex; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2310,7 +2315,7 @@ COPY apartment_complex (id, name, "streetNumeric", "streetAddress", city, state,
 
 
 --
--- TOC entry 2551 (class 0 OID 23343)
+-- TOC entry 2557 (class 0 OID 27443)
 -- Dependencies: 175
 -- Data for Name: apartment_complex_floor_plan; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2320,7 +2325,7 @@ COPY apartment_complex_floor_plan (id, "complexId", bedrooms, bathrooms, parking
 
 
 --
--- TOC entry 2657 (class 0 OID 0)
+-- TOC entry 2663 (class 0 OID 0)
 -- Dependencies: 176
 -- Name: apartment_complex_floor_plan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2329,7 +2334,7 @@ SELECT pg_catalog.setval('apartment_complex_floor_plan_id_seq', 1, true);
 
 
 --
--- TOC entry 2658 (class 0 OID 0)
+-- TOC entry 2664 (class 0 OID 0)
 -- Dependencies: 177
 -- Name: apartment_complex_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2338,7 +2343,7 @@ SELECT pg_catalog.setval('apartment_complex_id_seq', 1, true);
 
 
 --
--- TOC entry 2554 (class 0 OID 23354)
+-- TOC entry 2560 (class 0 OID 27454)
 -- Dependencies: 178
 -- Data for Name: apartment_complex_image; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2348,7 +2353,7 @@ COPY apartment_complex_image (id, "complexId", location, "createdAt", "updatedAt
 
 
 --
--- TOC entry 2659 (class 0 OID 0)
+-- TOC entry 2665 (class 0 OID 0)
 -- Dependencies: 179
 -- Name: apartment_complex_image_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2357,7 +2362,7 @@ SELECT pg_catalog.setval('apartment_complex_image_id_seq', 1, true);
 
 
 --
--- TOC entry 2556 (class 0 OID 23363)
+-- TOC entry 2562 (class 0 OID 27463)
 -- Dependencies: 180
 -- Data for Name: apartment_complex_transportation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2367,7 +2372,7 @@ COPY apartment_complex_transportation (id, "complexId", "shuttleRoute", "busLine
 
 
 --
--- TOC entry 2660 (class 0 OID 0)
+-- TOC entry 2666 (class 0 OID 0)
 -- Dependencies: 181
 -- Name: apartment_complex_transportation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2376,7 +2381,7 @@ SELECT pg_catalog.setval('apartment_complex_transportation_id_seq', 1, true);
 
 
 --
--- TOC entry 2558 (class 0 OID 23372)
+-- TOC entry 2564 (class 0 OID 27472)
 -- Dependencies: 182
 -- Data for Name: articles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2386,7 +2391,7 @@ COPY articles (id, title, content, "createdAt", "updatedAt", "UserId") FROM stdi
 
 
 --
--- TOC entry 2661 (class 0 OID 0)
+-- TOC entry 2667 (class 0 OID 0)
 -- Dependencies: 183
 -- Name: articles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2395,7 +2400,7 @@ SELECT pg_catalog.setval('articles_id_seq', 1, true);
 
 
 --
--- TOC entry 2560 (class 0 OID 23380)
+-- TOC entry 2566 (class 0 OID 27480)
 -- Dependencies: 184
 -- Data for Name: friend; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2405,7 +2410,7 @@ COPY friend (id, "userId", "friendId", "createdAt", "updatedAt", "deletedAt") FR
 
 
 --
--- TOC entry 2662 (class 0 OID 0)
+-- TOC entry 2668 (class 0 OID 0)
 -- Dependencies: 185
 -- Name: friend_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2414,7 +2419,7 @@ SELECT pg_catalog.setval('friend_id_seq', 1, true);
 
 
 --
--- TOC entry 2562 (class 0 OID 23386)
+-- TOC entry 2568 (class 0 OID 27486)
 -- Dependencies: 186
 -- Data for Name: invitee; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2424,7 +2429,7 @@ COPY invitee (id, "firstName", "lastName", "invitorId", roommate, email, "create
 
 
 --
--- TOC entry 2563 (class 0 OID 23393)
+-- TOC entry 2569 (class 0 OID 27493)
 -- Dependencies: 187
 -- Data for Name: lease; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2434,7 +2439,7 @@ COPY lease (id, "propertyId", approved, "startDate", "endDate", "paymentAmount",
 
 
 --
--- TOC entry 2663 (class 0 OID 0)
+-- TOC entry 2669 (class 0 OID 0)
 -- Dependencies: 188
 -- Name: lease_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2443,7 +2448,7 @@ SELECT pg_catalog.setval('lease_id_seq', 1, true);
 
 
 --
--- TOC entry 2565 (class 0 OID 23402)
+-- TOC entry 2571 (class 0 OID 27502)
 -- Dependencies: 189
 -- Data for Name: lessee; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2453,26 +2458,26 @@ COPY lessee ("leaseId", "userId", "createdAt", "updatedAt", "deletedAt") FROM st
 
 
 --
--- TOC entry 2566 (class 0 OID 23406)
+-- TOC entry 2572 (class 0 OID 27506)
 -- Dependencies: 190
 -- Data for Name: looking; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY looking (id, "maxMonthlyRent", "utilitiesIncluded", area, "distanceToUniv", "moveInDate", "lengthOfStay", "openToFullYearLeaseNewRoomates", "roomType", "sharedBathroom", gender, "numRoommates", furnished, "busRouteRequired", "parkingNeeded", "smokingAllowed", "petsAllowed", "createdAt", "updatedAt", "deletedAt", "userId") FROM stdin;
+COPY looking (id, "maxMonthlyRent", "utilitiesIncluded", area, "distanceToUniv", "moveInDate", "moveOutDate", "lengthOfStay", "openToFullYearLeaseNewRoomates", "roomType", "sharedBathroom", gender, "numRoommates", furnished, "busRouteRequired", "parkingNeeded", "smokingAllowed", "petsAllowed", "createdAt", "updatedAt", "deletedAt", "userId") FROM stdin;
 \.
 
 
 --
--- TOC entry 2664 (class 0 OID 0)
+-- TOC entry 2670 (class 0 OID 0)
 -- Dependencies: 191
 -- Name: looking_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('looking_id_seq', 1, true);
+SELECT pg_catalog.setval('looking_id_seq', 2, true);
 
 
 --
--- TOC entry 2568 (class 0 OID 23417)
+-- TOC entry 2574 (class 0 OID 27518)
 -- Dependencies: 192
 -- Data for Name: payment; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2482,7 +2487,7 @@ COPY payment (id, "payerId", "payeeId", "dollarAmount", reason, "rentPayment", "
 
 
 --
--- TOC entry 2665 (class 0 OID 0)
+-- TOC entry 2671 (class 0 OID 0)
 -- Dependencies: 193
 -- Name: payment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2491,7 +2496,7 @@ SELECT pg_catalog.setval('payment_id_seq', 1, true);
 
 
 --
--- TOC entry 2570 (class 0 OID 23429)
+-- TOC entry 2576 (class 0 OID 27530)
 -- Dependencies: 194
 -- Data for Name: pet; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2501,7 +2506,7 @@ COPY pet (id, "userId", type, breed, "weightLbs", "createdAt", "updatedAt", "del
 
 
 --
--- TOC entry 2666 (class 0 OID 0)
+-- TOC entry 2672 (class 0 OID 0)
 -- Dependencies: 195
 -- Name: pet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2510,7 +2515,7 @@ SELECT pg_catalog.setval('pet_id_seq', 1, true);
 
 
 --
--- TOC entry 2572 (class 0 OID 23438)
+-- TOC entry 2578 (class 0 OID 27539)
 -- Dependencies: 196
 -- Data for Name: property; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2521,7 +2526,7 @@ COPY property (id, "streetNumeric", "streetAddress", city, state, zip, apt, bldg
 
 
 --
--- TOC entry 2667 (class 0 OID 0)
+-- TOC entry 2673 (class 0 OID 0)
 -- Dependencies: 197
 -- Name: property_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2530,7 +2535,7 @@ SELECT pg_catalog.setval('property_id_seq', 2, true);
 
 
 --
--- TOC entry 2574 (class 0 OID 23447)
+-- TOC entry 2580 (class 0 OID 27548)
 -- Dependencies: 198
 -- Data for Name: property_images; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2540,7 +2545,7 @@ COPY property_images (id, "listingId", "propertyId", location, "createdAt", "upd
 
 
 --
--- TOC entry 2668 (class 0 OID 0)
+-- TOC entry 2674 (class 0 OID 0)
 -- Dependencies: 199
 -- Name: property_images_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2549,7 +2554,7 @@ SELECT pg_catalog.setval('property_images_id_seq', 1, true);
 
 
 --
--- TOC entry 2576 (class 0 OID 23456)
+-- TOC entry 2582 (class 0 OID 27557)
 -- Dependencies: 200
 -- Data for Name: property_lease_defaults; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2559,7 +2564,7 @@ COPY property_lease_defaults (id, "propertyId", "ownerId", "qtyDogsAllowed", "qt
 
 
 --
--- TOC entry 2669 (class 0 OID 0)
+-- TOC entry 2675 (class 0 OID 0)
 -- Dependencies: 201
 -- Name: property_lease_defaults_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2568,7 +2573,7 @@ SELECT pg_catalog.setval('property_lease_defaults_id_seq', 1, true);
 
 
 --
--- TOC entry 2578 (class 0 OID 23467)
+-- TOC entry 2584 (class 0 OID 27568)
 -- Dependencies: 202
 -- Data for Name: property_likes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2578,7 +2583,7 @@ COPY property_likes ("propertyId", "userId", id, "createdAt", "updatedAt", "dele
 
 
 --
--- TOC entry 2670 (class 0 OID 0)
+-- TOC entry 2676 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: property_likes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2587,7 +2592,7 @@ SELECT pg_catalog.setval('property_likes_id_seq', 1, true);
 
 
 --
--- TOC entry 2580 (class 0 OID 23473)
+-- TOC entry 2586 (class 0 OID 27574)
 -- Dependencies: 204
 -- Data for Name: property_listing; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2597,7 +2602,7 @@ COPY property_listing ("propertyId", "monthlyPrice", "securityDeposit", "petDepo
 
 
 --
--- TOC entry 2671 (class 0 OID 0)
+-- TOC entry 2677 (class 0 OID 0)
 -- Dependencies: 205
 -- Name: property_listing_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2606,7 +2611,7 @@ SELECT pg_catalog.setval('property_listing_id_seq', 1, true);
 
 
 --
--- TOC entry 2582 (class 0 OID 23487)
+-- TOC entry 2588 (class 0 OID 27588)
 -- Dependencies: 206
 -- Data for Name: property_owner; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2617,7 +2622,7 @@ COPY property_owner ("propertyOwnershipId", "ownerId", "createdAt", "updatedAt",
 
 
 --
--- TOC entry 2583 (class 0 OID 23491)
+-- TOC entry 2589 (class 0 OID 27592)
 -- Dependencies: 207
 -- Data for Name: property_ownership; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2628,7 +2633,7 @@ COPY property_ownership ("startDate", "endDate", "propertyFK", id, "createdAt", 
 
 
 --
--- TOC entry 2672 (class 0 OID 0)
+-- TOC entry 2678 (class 0 OID 0)
 -- Dependencies: 208
 -- Name: property_ownership_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2637,7 +2642,7 @@ SELECT pg_catalog.setval('property_ownership_id_seq', 2, true);
 
 
 --
--- TOC entry 2585 (class 0 OID 23498)
+-- TOC entry 2591 (class 0 OID 27599)
 -- Dependencies: 209
 -- Data for Name: rental_applicant; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2647,7 +2652,7 @@ COPY rental_applicant ("userId", id, "rentalAppId", "shareCredit", "createdAt", 
 
 
 --
--- TOC entry 2673 (class 0 OID 0)
+-- TOC entry 2679 (class 0 OID 0)
 -- Dependencies: 210
 -- Name: rental_applicant_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2656,7 +2661,7 @@ SELECT pg_catalog.setval('rental_applicant_id_seq', 1, true);
 
 
 --
--- TOC entry 2587 (class 0 OID 23504)
+-- TOC entry 2593 (class 0 OID 27605)
 -- Dependencies: 211
 -- Data for Name: rental_application; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2666,7 +2671,7 @@ COPY rental_application (id, "propertyId", "preferredLeaseLength", "preferredMov
 
 
 --
--- TOC entry 2674 (class 0 OID 0)
+-- TOC entry 2680 (class 0 OID 0)
 -- Dependencies: 212
 -- Name: rental_application_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2675,26 +2680,27 @@ SELECT pg_catalog.setval('rental_application_id_seq', 1, true);
 
 
 --
--- TOC entry 2589 (class 0 OID 23514)
+-- TOC entry 2595 (class 0 OID 27615)
 -- Dependencies: 213
 -- Data for Name: rented_user; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY rented_user (id, username, email, "confirmedEmail", password, firstname, lastname, middlename, "aboutMe", phone, "profileImage", twitter, facebook, googleplus, linkedin, "experianIdToken", "creditCheckToken", "runIdentityCheck", "shareCreditReport", "identityDate", "creditReportDate", "createdAt", "updatedAt", "deletedAt", role, provider, "facebookOAuthId", "googleOAuthId", "twitterOAuthId", salt) FROM stdin;
+17	Ivan Kraljina Mornar	imornar@gmail.com	f	xXtYP+WEAslUZ0R041do4G3dkJPbfjeyLhEsK/sTDdl9M6+87H/aVbgDr86gFOoZupEZVoeO1J0gWIWSU9figA==	Ivan	Mornar	Kraljina	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	f	\N	\N	2015-03-07 15:00:22.448+01	\N	\N	user	facebook	10204963775268656	\N	\N	eWb5Ft5ID350cLeddkIYtQ==
 \.
 
 
 --
--- TOC entry 2675 (class 0 OID 0)
+-- TOC entry 2681 (class 0 OID 0)
 -- Dependencies: 214
 -- Name: rented_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('rented_user_id_seq', 16, true);
+SELECT pg_catalog.setval('rented_user_id_seq', 17, true);
 
 
 --
--- TOC entry 2591 (class 0 OID 23527)
+-- TOC entry 2597 (class 0 OID 27628)
 -- Dependencies: 215
 -- Data for Name: room_listing; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2704,7 +2710,7 @@ COPY room_listing (id, "propertyId", "creatorId", "monthlyPrice", "securityDepos
 
 
 --
--- TOC entry 2676 (class 0 OID 0)
+-- TOC entry 2682 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: room_listing_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2713,7 +2719,7 @@ SELECT pg_catalog.setval('room_listing_id_seq', 1, true);
 
 
 --
--- TOC entry 2593 (class 0 OID 23544)
+-- TOC entry 2599 (class 0 OID 27645)
 -- Dependencies: 218
 -- Data for Name: roommate; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2723,7 +2729,7 @@ COPY roommate (id, "userId", "roommateId", "fromDate", "toDate", "createdAt", "u
 
 
 --
--- TOC entry 2677 (class 0 OID 0)
+-- TOC entry 2683 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: roommate_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2732,7 +2738,7 @@ SELECT pg_catalog.setval('roommate_id_seq', 1, true);
 
 
 --
--- TOC entry 2595 (class 0 OID 23551)
+-- TOC entry 2601 (class 0 OID 27652)
 -- Dependencies: 220
 -- Data for Name: student; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2742,7 +2748,7 @@ COPY student (firstname, lastname, email, "Street", city) FROM stdin;
 
 
 --
--- TOC entry 2596 (class 0 OID 23557)
+-- TOC entry 2602 (class 0 OID 27658)
 -- Dependencies: 221
 -- Data for Name: university; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2752,7 +2758,7 @@ COPY university (id, name, "academicYearType", "streetNumeric", "streetAddress",
 
 
 --
--- TOC entry 2597 (class 0 OID 23565)
+-- TOC entry 2603 (class 0 OID 27666)
 -- Dependencies: 222
 -- Data for Name: university_calender_quater; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2762,7 +2768,7 @@ COPY university_calender_quater (id, "universityId", year, "fallQuaterStartDate"
 
 
 --
--- TOC entry 2678 (class 0 OID 0)
+-- TOC entry 2684 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: university_calender_quater_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2771,7 +2777,7 @@ SELECT pg_catalog.setval('university_calender_quater_id_seq', 1, true);
 
 
 --
--- TOC entry 2599 (class 0 OID 23571)
+-- TOC entry 2605 (class 0 OID 27672)
 -- Dependencies: 224
 -- Data for Name: university_calender_semester; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2781,7 +2787,7 @@ COPY university_calender_semester (id, "universityId", year, "fallSemesterStartD
 
 
 --
--- TOC entry 2679 (class 0 OID 0)
+-- TOC entry 2685 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: university_calender_semester_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2790,7 +2796,7 @@ SELECT pg_catalog.setval('university_calender_semester_id_seq', 1, true);
 
 
 --
--- TOC entry 2680 (class 0 OID 0)
+-- TOC entry 2686 (class 0 OID 0)
 -- Dependencies: 226
 -- Name: university_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2799,7 +2805,7 @@ SELECT pg_catalog.setval('university_id_seq', 1, true);
 
 
 --
--- TOC entry 2602 (class 0 OID 23579)
+-- TOC entry 2608 (class 0 OID 27680)
 -- Dependencies: 227
 -- Data for Name: user_cosigner; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2809,7 +2815,7 @@ COPY user_cosigner (id, "cosingeeId", "cosginerId", "createdAt", "updatedAt", "d
 
 
 --
--- TOC entry 2681 (class 0 OID 0)
+-- TOC entry 2687 (class 0 OID 0)
 -- Dependencies: 228
 -- Name: user_cosigner_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2818,7 +2824,7 @@ SELECT pg_catalog.setval('user_cosigner_id_seq', 1, true);
 
 
 --
--- TOC entry 2604 (class 0 OID 23585)
+-- TOC entry 2610 (class 0 OID 27686)
 -- Dependencies: 229
 -- Data for Name: user_education; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2828,7 +2834,7 @@ COPY user_education (id, "userId", "educationCenterName", type, "startDate", "en
 
 
 --
--- TOC entry 2682 (class 0 OID 0)
+-- TOC entry 2688 (class 0 OID 0)
 -- Dependencies: 230
 -- Name: user_education_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2837,7 +2843,7 @@ SELECT pg_catalog.setval('user_education_id_seq', 1, true);
 
 
 --
--- TOC entry 2606 (class 0 OID 23596)
+-- TOC entry 2612 (class 0 OID 27697)
 -- Dependencies: 231
 -- Data for Name: user_financial; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2847,7 +2853,7 @@ COPY user_financial (id, "userId", "startDate", "endDate", "individualAnnualInco
 
 
 --
--- TOC entry 2683 (class 0 OID 0)
+-- TOC entry 2689 (class 0 OID 0)
 -- Dependencies: 232
 -- Name: user_financial_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2856,7 +2862,7 @@ SELECT pg_catalog.setval('user_financial_id_seq', 1, true);
 
 
 --
--- TOC entry 2608 (class 0 OID 23605)
+-- TOC entry 2614 (class 0 OID 27706)
 -- Dependencies: 233
 -- Data for Name: user_occupation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2866,7 +2872,7 @@ COPY user_occupation (id, role, company, start, "end", "presentlyEmployeed", "us
 
 
 --
--- TOC entry 2684 (class 0 OID 0)
+-- TOC entry 2690 (class 0 OID 0)
 -- Dependencies: 234
 -- Name: user_occupation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2875,7 +2881,7 @@ SELECT pg_catalog.setval('user_occupation_id_seq', 1, true);
 
 
 --
--- TOC entry 2610 (class 0 OID 23615)
+-- TOC entry 2616 (class 0 OID 27716)
 -- Dependencies: 235
 -- Data for Name: user_recommendation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2885,7 +2891,7 @@ COPY user_recommendation (id, "recommendedId", "recommendorId", "recommendedAppr
 
 
 --
--- TOC entry 2685 (class 0 OID 0)
+-- TOC entry 2691 (class 0 OID 0)
 -- Dependencies: 236
 -- Name: user_recommendation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2894,7 +2900,7 @@ SELECT pg_catalog.setval('user_recommendation_id_seq', 1, true);
 
 
 --
--- TOC entry 2612 (class 0 OID 23625)
+-- TOC entry 2618 (class 0 OID 27726)
 -- Dependencies: 237
 -- Data for Name: user_reference; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2904,7 +2910,7 @@ COPY user_reference (id, "userId", email, phone, "firstName", "lastName", relati
 
 
 --
--- TOC entry 2686 (class 0 OID 0)
+-- TOC entry 2692 (class 0 OID 0)
 -- Dependencies: 238
 -- Name: user_reference_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -2913,7 +2919,7 @@ SELECT pg_catalog.setval('user_reference_id_seq', 1, true);
 
 
 --
--- TOC entry 2614 (class 0 OID 23635)
+-- TOC entry 2620 (class 0 OID 27736)
 -- Dependencies: 239
 -- Data for Name: user_vehicle; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2923,8 +2929,8 @@ COPY user_vehicle (id, year, make, model, "licensePlate", color, "userId", "crea
 
 
 --
--- TOC entry 2687 (class 0 OID 0)
--- Dependencies: 240
+-- TOC entry 2693 (class 0 OID 0)
+-- Dependencies: 241
 -- Name: user_vehicle_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -2932,8 +2938,8 @@ SELECT pg_catalog.setval('user_vehicle_id_seq', 1, true);
 
 
 --
--- TOC entry 2283 (class 2606 OID 23677)
--- Name: idx_41618_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2288 (class 2606 OID 27782)
+-- Name: idx_41618_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY address_history
@@ -2941,8 +2947,8 @@ ALTER TABLE ONLY address_history
 
 
 --
--- TOC entry 2286 (class 2606 OID 23679)
--- Name: idx_41629_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2291 (class 2606 OID 27784)
+-- Name: idx_41629_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY apartment_complex
@@ -2950,8 +2956,8 @@ ALTER TABLE ONLY apartment_complex
 
 
 --
--- TOC entry 2288 (class 2606 OID 23681)
--- Name: idx_41646_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2293 (class 2606 OID 27786)
+-- Name: idx_41646_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY apartment_complex_floor_plan
@@ -2959,8 +2965,8 @@ ALTER TABLE ONLY apartment_complex_floor_plan
 
 
 --
--- TOC entry 2291 (class 2606 OID 23683)
--- Name: idx_41656_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2296 (class 2606 OID 27788)
+-- Name: idx_41656_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY apartment_complex_image
@@ -2968,8 +2974,8 @@ ALTER TABLE ONLY apartment_complex_image
 
 
 --
--- TOC entry 2294 (class 2606 OID 23685)
--- Name: idx_41666_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2299 (class 2606 OID 27790)
+-- Name: idx_41666_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY apartment_complex_transportation
@@ -2977,8 +2983,8 @@ ALTER TABLE ONLY apartment_complex_transportation
 
 
 --
--- TOC entry 2297 (class 2606 OID 23687)
--- Name: idx_41676_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2302 (class 2606 OID 27792)
+-- Name: idx_41676_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY articles
@@ -2986,8 +2992,8 @@ ALTER TABLE ONLY articles
 
 
 --
--- TOC entry 2299 (class 2606 OID 23689)
--- Name: idx_41685_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2304 (class 2606 OID 27794)
+-- Name: idx_41685_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY friend
@@ -2995,8 +3001,8 @@ ALTER TABLE ONLY friend
 
 
 --
--- TOC entry 2303 (class 2606 OID 23691)
--- Name: idx_41690_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2308 (class 2606 OID 27796)
+-- Name: idx_41690_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY invitee
@@ -3004,8 +3010,8 @@ ALTER TABLE ONLY invitee
 
 
 --
--- TOC entry 2306 (class 2606 OID 23693)
--- Name: idx_41707_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2311 (class 2606 OID 27798)
+-- Name: idx_41707_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY lease
@@ -3013,8 +3019,8 @@ ALTER TABLE ONLY lease
 
 
 --
--- TOC entry 2309 (class 2606 OID 23695)
--- Name: idx_41715_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2314 (class 2606 OID 27800)
+-- Name: idx_41715_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY lessee
@@ -3022,8 +3028,8 @@ ALTER TABLE ONLY lessee
 
 
 --
--- TOC entry 2313 (class 2606 OID 23697)
--- Name: idx_41737_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2318 (class 2606 OID 27802)
+-- Name: idx_41737_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY looking
@@ -3031,8 +3037,8 @@ ALTER TABLE ONLY looking
 
 
 --
--- TOC entry 2316 (class 2606 OID 23699)
--- Name: idx_41757_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2321 (class 2606 OID 27804)
+-- Name: idx_41757_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY payment
@@ -3040,8 +3046,8 @@ ALTER TABLE ONLY payment
 
 
 --
--- TOC entry 2320 (class 2606 OID 23701)
--- Name: idx_41781_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2325 (class 2606 OID 27806)
+-- Name: idx_41781_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY pet
@@ -3049,8 +3055,8 @@ ALTER TABLE ONLY pet
 
 
 --
--- TOC entry 2323 (class 2606 OID 23703)
--- Name: idx_41807_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2328 (class 2606 OID 27808)
+-- Name: idx_41807_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY property
@@ -3058,8 +3064,8 @@ ALTER TABLE ONLY property
 
 
 --
--- TOC entry 2325 (class 2606 OID 23705)
--- Name: idx_41817_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2330 (class 2606 OID 27810)
+-- Name: idx_41817_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY property_images
@@ -3067,8 +3073,8 @@ ALTER TABLE ONLY property_images
 
 
 --
--- TOC entry 2329 (class 2606 OID 23707)
--- Name: idx_41837_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2334 (class 2606 OID 27812)
+-- Name: idx_41837_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY property_lease_defaults
@@ -3076,8 +3082,8 @@ ALTER TABLE ONLY property_lease_defaults
 
 
 --
--- TOC entry 2333 (class 2606 OID 23709)
--- Name: idx_41849_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2338 (class 2606 OID 27814)
+-- Name: idx_41849_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY property_likes
@@ -3085,8 +3091,8 @@ ALTER TABLE ONLY property_likes
 
 
 --
--- TOC entry 2337 (class 2606 OID 23711)
--- Name: idx_41905_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2342 (class 2606 OID 27816)
+-- Name: idx_41905_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY property_listing
@@ -3094,8 +3100,8 @@ ALTER TABLE ONLY property_listing
 
 
 --
--- TOC entry 2340 (class 2606 OID 23713)
--- Name: idx_41918_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2345 (class 2606 OID 27818)
+-- Name: idx_41918_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY property_owner
@@ -3103,8 +3109,8 @@ ALTER TABLE ONLY property_owner
 
 
 --
--- TOC entry 2343 (class 2606 OID 23715)
--- Name: idx_41924_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2348 (class 2606 OID 27820)
+-- Name: idx_41924_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY property_ownership
@@ -3112,8 +3118,8 @@ ALTER TABLE ONLY property_ownership
 
 
 --
--- TOC entry 2347 (class 2606 OID 23717)
--- Name: idx_41932_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2352 (class 2606 OID 27822)
+-- Name: idx_41932_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY rental_applicant
@@ -3121,8 +3127,8 @@ ALTER TABLE ONLY rental_applicant
 
 
 --
--- TOC entry 2351 (class 2606 OID 23719)
--- Name: idx_41949_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2356 (class 2606 OID 27824)
+-- Name: idx_41949_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY rental_application
@@ -3130,8 +3136,8 @@ ALTER TABLE ONLY rental_application
 
 
 --
--- TOC entry 2355 (class 2606 OID 23721)
--- Name: idx_41960_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2360 (class 2606 OID 27826)
+-- Name: idx_41960_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY rented_user
@@ -3139,8 +3145,8 @@ ALTER TABLE ONLY rented_user
 
 
 --
--- TOC entry 2361 (class 2606 OID 23723)
--- Name: idx_41974_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2366 (class 2606 OID 27828)
+-- Name: idx_41974_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY roommate
@@ -3148,8 +3154,8 @@ ALTER TABLE ONLY roommate
 
 
 --
--- TOC entry 2357 (class 2606 OID 23725)
--- Name: idx_42007_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2362 (class 2606 OID 27830)
+-- Name: idx_42007_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY room_listing
@@ -3157,8 +3163,8 @@ ALTER TABLE ONLY room_listing
 
 
 --
--- TOC entry 2365 (class 2606 OID 23727)
--- Name: idx_42031_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2370 (class 2606 OID 27832)
+-- Name: idx_42031_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY university
@@ -3166,8 +3172,8 @@ ALTER TABLE ONLY university
 
 
 --
--- TOC entry 2367 (class 2606 OID 23729)
--- Name: idx_42042_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2372 (class 2606 OID 27834)
+-- Name: idx_42042_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY university_calender_quater
@@ -3175,8 +3181,8 @@ ALTER TABLE ONLY university_calender_quater
 
 
 --
--- TOC entry 2370 (class 2606 OID 23731)
--- Name: idx_42049_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2375 (class 2606 OID 27836)
+-- Name: idx_42049_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY university_calender_semester
@@ -3184,8 +3190,8 @@ ALTER TABLE ONLY university_calender_semester
 
 
 --
--- TOC entry 2373 (class 2606 OID 23733)
--- Name: idx_42056_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2378 (class 2606 OID 27838)
+-- Name: idx_42056_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY user_cosigner
@@ -3193,8 +3199,8 @@ ALTER TABLE ONLY user_cosigner
 
 
 --
--- TOC entry 2378 (class 2606 OID 23735)
--- Name: idx_42081_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2383 (class 2606 OID 27840)
+-- Name: idx_42081_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY user_education
@@ -3202,8 +3208,8 @@ ALTER TABLE ONLY user_education
 
 
 --
--- TOC entry 2381 (class 2606 OID 23737)
--- Name: idx_42093_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2386 (class 2606 OID 27842)
+-- Name: idx_42093_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY user_financial
@@ -3211,8 +3217,8 @@ ALTER TABLE ONLY user_financial
 
 
 --
--- TOC entry 2384 (class 2606 OID 23739)
--- Name: idx_42103_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2389 (class 2606 OID 27844)
+-- Name: idx_42103_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY user_occupation
@@ -3220,8 +3226,8 @@ ALTER TABLE ONLY user_occupation
 
 
 --
--- TOC entry 2387 (class 2606 OID 23741)
--- Name: idx_42114_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2392 (class 2606 OID 27846)
+-- Name: idx_42114_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY user_recommendation
@@ -3229,8 +3235,8 @@ ALTER TABLE ONLY user_recommendation
 
 
 --
--- TOC entry 2391 (class 2606 OID 23743)
--- Name: idx_42139_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2396 (class 2606 OID 27848)
+-- Name: idx_42139_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY user_reference
@@ -3238,8 +3244,8 @@ ALTER TABLE ONLY user_reference
 
 
 --
--- TOC entry 2394 (class 2606 OID 23745)
--- Name: idx_42150_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2399 (class 2606 OID 27850)
+-- Name: idx_42150_PRIMARY; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY user_vehicle
@@ -3247,359 +3253,359 @@ ALTER TABLE ONLY user_vehicle
 
 
 --
--- TOC entry 2376 (class 1259 OID 24005)
--- Name: fki_FKtoUniversity; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2381 (class 1259 OID 27851)
+-- Name: fki_FKtoUniversity; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX "fki_FKtoUniversity" ON user_education USING btree ("universityId");
 
 
 --
--- TOC entry 2284 (class 1259 OID 23746)
--- Name: idx_41618_addresshistory_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2289 (class 1259 OID 27852)
+-- Name: idx_41618_addresshistory_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41618_addresshistory_user_idx ON address_history USING btree ("userId");
 
 
 --
--- TOC entry 2289 (class 1259 OID 23747)
--- Name: idx_41646_aptComplexFloorPlan_complex_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2294 (class 1259 OID 27853)
+-- Name: idx_41646_aptComplexFloorPlan_complex_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX "idx_41646_aptComplexFloorPlan_complex_idx" ON apartment_complex_floor_plan USING btree ("complexId");
 
 
 --
--- TOC entry 2292 (class 1259 OID 23748)
--- Name: idx_41656_aptComplexImage_complex_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2297 (class 1259 OID 27854)
+-- Name: idx_41656_aptComplexImage_complex_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX "idx_41656_aptComplexImage_complex_idx" ON apartment_complex_image USING btree ("complexId");
 
 
 --
--- TOC entry 2295 (class 1259 OID 23749)
--- Name: idx_41666_aptComplexTrans_complex_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2300 (class 1259 OID 27855)
+-- Name: idx_41666_aptComplexTrans_complex_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX "idx_41666_aptComplexTrans_complex_idx" ON apartment_complex_transportation USING btree ("complexId");
 
 
 --
--- TOC entry 2300 (class 1259 OID 23750)
--- Name: idx_41685_friend_friend_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2305 (class 1259 OID 27856)
+-- Name: idx_41685_friend_friend_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41685_friend_friend_idx ON friend USING btree ("friendId");
 
 
 --
--- TOC entry 2301 (class 1259 OID 23751)
--- Name: idx_41685_friend_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2306 (class 1259 OID 27857)
+-- Name: idx_41685_friend_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41685_friend_user_idx ON friend USING btree ("userId");
 
 
 --
--- TOC entry 2304 (class 1259 OID 23752)
--- Name: idx_41690_invitee_invitor_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2309 (class 1259 OID 27858)
+-- Name: idx_41690_invitee_invitor_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41690_invitee_invitor_idx ON invitee USING btree ("invitorId");
 
 
 --
--- TOC entry 2307 (class 1259 OID 23753)
--- Name: idx_41707_propertyId_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2312 (class 1259 OID 27859)
+-- Name: idx_41707_propertyId_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX "idx_41707_propertyId_idx" ON lease USING btree ("propertyId");
 
 
 --
--- TOC entry 2310 (class 1259 OID 23754)
--- Name: idx_41715_leaseId_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2315 (class 1259 OID 27860)
+-- Name: idx_41715_leaseId_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX "idx_41715_leaseId_idx" ON lessee USING btree ("leaseId");
 
 
 --
--- TOC entry 2311 (class 1259 OID 23755)
--- Name: idx_41715_lessee_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2316 (class 1259 OID 27861)
+-- Name: idx_41715_lessee_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41715_lessee_user_idx ON lessee USING btree ("userId");
 
 
 --
--- TOC entry 2314 (class 1259 OID 23756)
--- Name: idx_41737_looking_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2319 (class 1259 OID 27862)
+-- Name: idx_41737_looking_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41737_looking_user_idx ON looking USING btree ("userId");
 
 
 --
--- TOC entry 2317 (class 1259 OID 23757)
--- Name: idx_41757_payment_payee_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2322 (class 1259 OID 27863)
+-- Name: idx_41757_payment_payee_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41757_payment_payee_idx ON payment USING btree ("payeeId");
 
 
 --
--- TOC entry 2318 (class 1259 OID 23758)
--- Name: idx_41757_payment_payer_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2323 (class 1259 OID 27864)
+-- Name: idx_41757_payment_payer_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41757_payment_payer_idx ON payment USING btree ("payerId");
 
 
 --
--- TOC entry 2321 (class 1259 OID 23759)
--- Name: idx_41781_pets_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2326 (class 1259 OID 27865)
+-- Name: idx_41781_pets_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41781_pets_user_idx ON pet USING btree ("userId");
 
 
 --
--- TOC entry 2326 (class 1259 OID 23760)
--- Name: idx_41817_propertyimages_listing_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2331 (class 1259 OID 27866)
+-- Name: idx_41817_propertyimages_listing_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41817_propertyimages_listing_idx ON property_images USING btree ("listingId");
 
 
 --
--- TOC entry 2327 (class 1259 OID 23761)
--- Name: idx_41817_propertyimages_property_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2332 (class 1259 OID 27867)
+-- Name: idx_41817_propertyimages_property_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41817_propertyimages_property_idx ON property_images USING btree ("propertyId");
 
 
 --
--- TOC entry 2330 (class 1259 OID 23762)
--- Name: idx_41837_propertyleasedefaults_owner_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2335 (class 1259 OID 27868)
+-- Name: idx_41837_propertyleasedefaults_owner_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41837_propertyleasedefaults_owner_idx ON property_lease_defaults USING btree ("ownerId");
 
 
 --
--- TOC entry 2331 (class 1259 OID 23763)
--- Name: idx_41837_propertyleasedefaults_property_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2336 (class 1259 OID 27869)
+-- Name: idx_41837_propertyleasedefaults_property_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41837_propertyleasedefaults_property_idx ON property_lease_defaults USING btree ("propertyId");
 
 
 --
--- TOC entry 2334 (class 1259 OID 23764)
--- Name: idx_41849_propertylikes_property_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2339 (class 1259 OID 27870)
+-- Name: idx_41849_propertylikes_property_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41849_propertylikes_property_idx ON property_likes USING btree ("propertyId");
 
 
 --
--- TOC entry 2335 (class 1259 OID 23765)
--- Name: idx_41849_propertylikes_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2340 (class 1259 OID 27871)
+-- Name: idx_41849_propertylikes_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41849_propertylikes_user_idx ON property_likes USING btree ("userId");
 
 
 --
--- TOC entry 2338 (class 1259 OID 23766)
--- Name: idx_41905_propertylisting_property_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2343 (class 1259 OID 27872)
+-- Name: idx_41905_propertylisting_property_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41905_propertylisting_property_idx ON property_listing USING btree ("propertyId");
 
 
 --
--- TOC entry 2341 (class 1259 OID 23767)
--- Name: idx_41918_propertyowner_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2346 (class 1259 OID 27873)
+-- Name: idx_41918_propertyowner_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41918_propertyowner_user_idx ON property_owner USING btree ("ownerId");
 
 
 --
--- TOC entry 2344 (class 1259 OID 23768)
--- Name: idx_41924_propTime; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2349 (class 1259 OID 27874)
+-- Name: idx_41924_propTime; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX "idx_41924_propTime" ON property_ownership USING btree ("startDate", "endDate", "propertyFK");
 
 
 --
--- TOC entry 2345 (class 1259 OID 23769)
--- Name: idx_41924_property_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2350 (class 1259 OID 27875)
+-- Name: idx_41924_property_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41924_property_idx ON property_ownership USING btree ("propertyFK");
 
 
 --
--- TOC entry 2348 (class 1259 OID 23770)
--- Name: idx_41932_rentalAppId_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2353 (class 1259 OID 27876)
+-- Name: idx_41932_rentalAppId_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX "idx_41932_rentalAppId_idx" ON rental_applicant USING btree ("rentalAppId");
 
 
 --
--- TOC entry 2349 (class 1259 OID 23771)
--- Name: idx_41932_rentalapplicant_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2354 (class 1259 OID 27877)
+-- Name: idx_41932_rentalapplicant_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41932_rentalapplicant_user_idx ON rental_applicant USING btree ("userId");
 
 
 --
--- TOC entry 2352 (class 1259 OID 23772)
--- Name: idx_41949_id_UNIQUE; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2357 (class 1259 OID 27878)
+-- Name: idx_41949_id_UNIQUE; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE UNIQUE INDEX "idx_41949_id_UNIQUE" ON rental_application USING btree (id);
 
 
 --
--- TOC entry 2353 (class 1259 OID 23773)
--- Name: idx_41949_propFK_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2358 (class 1259 OID 27879)
+-- Name: idx_41949_propFK_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX "idx_41949_propFK_idx" ON rental_application USING btree ("propertyId");
 
 
 --
--- TOC entry 2362 (class 1259 OID 23774)
--- Name: idx_41974_roommate_roomie_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2367 (class 1259 OID 27880)
+-- Name: idx_41974_roommate_roomie_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41974_roommate_roomie_idx ON roommate USING btree ("roommateId");
 
 
 --
--- TOC entry 2363 (class 1259 OID 23775)
--- Name: idx_41974_roommate_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2368 (class 1259 OID 27881)
+-- Name: idx_41974_roommate_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_41974_roommate_user_idx ON roommate USING btree ("userId");
 
 
 --
--- TOC entry 2358 (class 1259 OID 23776)
--- Name: idx_42007_roomlisting_property_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2363 (class 1259 OID 27882)
+-- Name: idx_42007_roomlisting_property_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_42007_roomlisting_property_idx ON room_listing USING btree ("propertyId");
 
 
 --
--- TOC entry 2359 (class 1259 OID 23777)
--- Name: idx_42007_roomlisting_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2364 (class 1259 OID 27883)
+-- Name: idx_42007_roomlisting_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_42007_roomlisting_user_idx ON room_listing USING btree ("creatorId");
 
 
 --
--- TOC entry 2368 (class 1259 OID 23778)
--- Name: idx_42042_univcalquarter_university_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2373 (class 1259 OID 27884)
+-- Name: idx_42042_univcalquarter_university_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_42042_univcalquarter_university_idx ON university_calender_quater USING btree ("universityId");
 
 
 --
--- TOC entry 2371 (class 1259 OID 23779)
--- Name: idx_42049_univcalsemester_university_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2376 (class 1259 OID 27885)
+-- Name: idx_42049_univcalsemester_university_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_42049_univcalsemester_university_idx ON university_calender_semester USING btree ("universityId");
 
 
 --
--- TOC entry 2374 (class 1259 OID 23780)
--- Name: idx_42056_usercosigner_cosginer_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2379 (class 1259 OID 27886)
+-- Name: idx_42056_usercosigner_cosginer_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_42056_usercosigner_cosginer_idx ON user_cosigner USING btree ("cosginerId");
 
 
 --
--- TOC entry 2375 (class 1259 OID 23781)
--- Name: idx_42056_usercosigner_cosingee_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2380 (class 1259 OID 27887)
+-- Name: idx_42056_usercosigner_cosingee_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_42056_usercosigner_cosingee_idx ON user_cosigner USING btree ("cosingeeId");
 
 
 --
--- TOC entry 2379 (class 1259 OID 23782)
--- Name: idx_42081_usereducation_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2384 (class 1259 OID 27888)
+-- Name: idx_42081_usereducation_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_42081_usereducation_user_idx ON user_education USING btree ("userId");
 
 
 --
--- TOC entry 2382 (class 1259 OID 23783)
--- Name: idx_42093_userfinancials_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2387 (class 1259 OID 27889)
+-- Name: idx_42093_userfinancials_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_42093_userfinancials_user_idx ON user_financial USING btree ("userId");
 
 
 --
--- TOC entry 2385 (class 1259 OID 23784)
--- Name: idx_42103_useroccupation_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2390 (class 1259 OID 27890)
+-- Name: idx_42103_useroccupation_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_42103_useroccupation_user_idx ON user_occupation USING btree ("userId");
 
 
 --
--- TOC entry 2388 (class 1259 OID 23785)
--- Name: idx_42114_userrecommendations_recommended_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2393 (class 1259 OID 27891)
+-- Name: idx_42114_userrecommendations_recommended_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_42114_userrecommendations_recommended_idx ON user_recommendation USING btree ("recommendedId");
 
 
 --
--- TOC entry 2389 (class 1259 OID 23786)
--- Name: idx_42114_userrecommendations_recommendor_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2394 (class 1259 OID 27892)
+-- Name: idx_42114_userrecommendations_recommendor_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_42114_userrecommendations_recommendor_idx ON user_recommendation USING btree ("recommendorId");
 
 
 --
--- TOC entry 2392 (class 1259 OID 23787)
--- Name: idx_42139_userreferences_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2397 (class 1259 OID 27893)
+-- Name: idx_42139_userreferences_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_42139_userreferences_user_idx ON user_reference USING btree ("userId");
 
 
 --
--- TOC entry 2395 (class 1259 OID 23788)
--- Name: idx_42150_uservehicles_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
+-- TOC entry 2400 (class 1259 OID 27894)
+-- Name: idx_42150_uservehicles_user_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE INDEX idx_42150_uservehicles_user_idx ON user_vehicle USING btree ("userId");
 
 
 --
--- TOC entry 2431 (class 2606 OID 24000)
+-- TOC entry 2435 (class 2606 OID 27895)
 -- Name: FKtoUniversity; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3608,7 +3614,7 @@ ALTER TABLE ONLY user_education
 
 
 --
--- TOC entry 2396 (class 2606 OID 23789)
+-- TOC entry 2401 (class 2606 OID 27900)
 -- Name: addresshistory_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3617,7 +3623,7 @@ ALTER TABLE ONLY address_history
 
 
 --
--- TOC entry 2397 (class 2606 OID 23794)
+-- TOC entry 2402 (class 2606 OID 27905)
 -- Name: aptComplexFloorPlan_complexId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3626,7 +3632,7 @@ ALTER TABLE ONLY apartment_complex_floor_plan
 
 
 --
--- TOC entry 2398 (class 2606 OID 23799)
+-- TOC entry 2403 (class 2606 OID 27910)
 -- Name: aptComplexImage_complexId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3635,7 +3641,7 @@ ALTER TABLE ONLY apartment_complex_image
 
 
 --
--- TOC entry 2399 (class 2606 OID 23804)
+-- TOC entry 2404 (class 2606 OID 27915)
 -- Name: aptComplexTrans_complexId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3644,7 +3650,7 @@ ALTER TABLE ONLY apartment_complex_transportation
 
 
 --
--- TOC entry 2400 (class 2606 OID 23809)
+-- TOC entry 2405 (class 2606 OID 27920)
 -- Name: friend_friendId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3653,7 +3659,7 @@ ALTER TABLE ONLY friend
 
 
 --
--- TOC entry 2401 (class 2606 OID 23814)
+-- TOC entry 2406 (class 2606 OID 27925)
 -- Name: friend_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3662,7 +3668,7 @@ ALTER TABLE ONLY friend
 
 
 --
--- TOC entry 2402 (class 2606 OID 23819)
+-- TOC entry 2407 (class 2606 OID 27930)
 -- Name: invitee_invitorId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3671,7 +3677,7 @@ ALTER TABLE ONLY invitee
 
 
 --
--- TOC entry 2404 (class 2606 OID 23824)
+-- TOC entry 2409 (class 2606 OID 27935)
 -- Name: leaseId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3680,7 +3686,7 @@ ALTER TABLE ONLY lessee
 
 
 --
--- TOC entry 2405 (class 2606 OID 23829)
+-- TOC entry 2410 (class 2606 OID 27940)
 -- Name: lessee_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3689,7 +3695,7 @@ ALTER TABLE ONLY lessee
 
 
 --
--- TOC entry 2406 (class 2606 OID 23834)
+-- TOC entry 2411 (class 2606 OID 27945)
 -- Name: looking_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3698,7 +3704,7 @@ ALTER TABLE ONLY looking
 
 
 --
--- TOC entry 2407 (class 2606 OID 23839)
+-- TOC entry 2412 (class 2606 OID 27950)
 -- Name: payment_payee; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3707,7 +3713,7 @@ ALTER TABLE ONLY payment
 
 
 --
--- TOC entry 2408 (class 2606 OID 23844)
+-- TOC entry 2413 (class 2606 OID 27955)
 -- Name: payment_payer; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3716,7 +3722,7 @@ ALTER TABLE ONLY payment
 
 
 --
--- TOC entry 2409 (class 2606 OID 23849)
+-- TOC entry 2414 (class 2606 OID 27960)
 -- Name: pets_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3725,7 +3731,7 @@ ALTER TABLE ONLY pet
 
 
 --
--- TOC entry 2421 (class 2606 OID 23854)
+-- TOC entry 2426 (class 2606 OID 27965)
 -- Name: propFK; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3734,7 +3740,7 @@ ALTER TABLE ONLY rental_application
 
 
 --
--- TOC entry 2418 (class 2606 OID 23859)
+-- TOC entry 2423 (class 2606 OID 27970)
 -- Name: propertyFK; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3743,7 +3749,7 @@ ALTER TABLE ONLY property_ownership
 
 
 --
--- TOC entry 2403 (class 2606 OID 23864)
+-- TOC entry 2408 (class 2606 OID 27975)
 -- Name: propertyId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3752,7 +3758,7 @@ ALTER TABLE ONLY lease
 
 
 --
--- TOC entry 2417 (class 2606 OID 23869)
+-- TOC entry 2422 (class 2606 OID 27980)
 -- Name: propertyOwnershipFK; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3761,7 +3767,7 @@ ALTER TABLE ONLY property_owner
 
 
 --
--- TOC entry 2410 (class 2606 OID 23874)
+-- TOC entry 2415 (class 2606 OID 27985)
 -- Name: propertyimages_listing; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3770,7 +3776,7 @@ ALTER TABLE ONLY property_images
 
 
 --
--- TOC entry 2411 (class 2606 OID 23879)
+-- TOC entry 2416 (class 2606 OID 27990)
 -- Name: propertyimages_property; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3779,7 +3785,7 @@ ALTER TABLE ONLY property_images
 
 
 --
--- TOC entry 2412 (class 2606 OID 23884)
+-- TOC entry 2417 (class 2606 OID 27995)
 -- Name: propertyleasedefaults_owner; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3788,7 +3794,7 @@ ALTER TABLE ONLY property_lease_defaults
 
 
 --
--- TOC entry 2413 (class 2606 OID 23889)
+-- TOC entry 2418 (class 2606 OID 28000)
 -- Name: propertyleasedefaults_property; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3797,7 +3803,7 @@ ALTER TABLE ONLY property_lease_defaults
 
 
 --
--- TOC entry 2414 (class 2606 OID 23894)
+-- TOC entry 2419 (class 2606 OID 28005)
 -- Name: propertylikes_property; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3806,7 +3812,7 @@ ALTER TABLE ONLY property_likes
 
 
 --
--- TOC entry 2415 (class 2606 OID 23899)
+-- TOC entry 2420 (class 2606 OID 28010)
 -- Name: propertylikes_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3815,7 +3821,7 @@ ALTER TABLE ONLY property_likes
 
 
 --
--- TOC entry 2416 (class 2606 OID 23904)
+-- TOC entry 2421 (class 2606 OID 28015)
 -- Name: propertylisting_property; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3824,7 +3830,7 @@ ALTER TABLE ONLY property_listing
 
 
 --
--- TOC entry 2419 (class 2606 OID 23914)
+-- TOC entry 2424 (class 2606 OID 28020)
 -- Name: rentalAppId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3833,7 +3839,7 @@ ALTER TABLE ONLY rental_applicant
 
 
 --
--- TOC entry 2420 (class 2606 OID 23919)
+-- TOC entry 2425 (class 2606 OID 28025)
 -- Name: rentalapplicant_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3842,7 +3848,7 @@ ALTER TABLE ONLY rental_applicant
 
 
 --
--- TOC entry 2422 (class 2606 OID 23924)
+-- TOC entry 2427 (class 2606 OID 28030)
 -- Name: roomlisting_property; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3851,7 +3857,7 @@ ALTER TABLE ONLY room_listing
 
 
 --
--- TOC entry 2423 (class 2606 OID 23929)
+-- TOC entry 2428 (class 2606 OID 28035)
 -- Name: roomlisting_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3860,7 +3866,7 @@ ALTER TABLE ONLY room_listing
 
 
 --
--- TOC entry 2424 (class 2606 OID 23934)
+-- TOC entry 2429 (class 2606 OID 28040)
 -- Name: roommate_rommieId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3869,7 +3875,7 @@ ALTER TABLE ONLY roommate
 
 
 --
--- TOC entry 2425 (class 2606 OID 23939)
+-- TOC entry 2430 (class 2606 OID 28045)
 -- Name: roommate_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3878,7 +3884,7 @@ ALTER TABLE ONLY roommate
 
 
 --
--- TOC entry 2426 (class 2606 OID 23944)
+-- TOC entry 2431 (class 2606 OID 28050)
 -- Name: univcalquarter_university; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3887,7 +3893,7 @@ ALTER TABLE ONLY university_calender_quater
 
 
 --
--- TOC entry 2427 (class 2606 OID 23949)
+-- TOC entry 2432 (class 2606 OID 28055)
 -- Name: univcalsemester_university; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3896,7 +3902,7 @@ ALTER TABLE ONLY university_calender_semester
 
 
 --
--- TOC entry 2428 (class 2606 OID 23954)
+-- TOC entry 2433 (class 2606 OID 28060)
 -- Name: usercosigner_cosginer; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3905,7 +3911,7 @@ ALTER TABLE ONLY user_cosigner
 
 
 --
--- TOC entry 2429 (class 2606 OID 23959)
+-- TOC entry 2434 (class 2606 OID 28065)
 -- Name: usercosigner_cosingee; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3914,7 +3920,7 @@ ALTER TABLE ONLY user_cosigner
 
 
 --
--- TOC entry 2430 (class 2606 OID 23964)
+-- TOC entry 2436 (class 2606 OID 28070)
 -- Name: usereducation_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3923,7 +3929,7 @@ ALTER TABLE ONLY user_education
 
 
 --
--- TOC entry 2432 (class 2606 OID 23969)
+-- TOC entry 2437 (class 2606 OID 28075)
 -- Name: userfinancials_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3932,7 +3938,7 @@ ALTER TABLE ONLY user_financial
 
 
 --
--- TOC entry 2433 (class 2606 OID 23974)
+-- TOC entry 2438 (class 2606 OID 28080)
 -- Name: useroccupation_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3941,7 +3947,7 @@ ALTER TABLE ONLY user_occupation
 
 
 --
--- TOC entry 2434 (class 2606 OID 23979)
+-- TOC entry 2439 (class 2606 OID 28085)
 -- Name: userrecommendations_recommended; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3950,7 +3956,7 @@ ALTER TABLE ONLY user_recommendation
 
 
 --
--- TOC entry 2435 (class 2606 OID 23984)
+-- TOC entry 2440 (class 2606 OID 28090)
 -- Name: userrecommendations_recommendor; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3959,7 +3965,7 @@ ALTER TABLE ONLY user_recommendation
 
 
 --
--- TOC entry 2436 (class 2606 OID 23989)
+-- TOC entry 2441 (class 2606 OID 28095)
 -- Name: userreferences_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3968,7 +3974,7 @@ ALTER TABLE ONLY user_reference
 
 
 --
--- TOC entry 2437 (class 2606 OID 23994)
+-- TOC entry 2442 (class 2606 OID 28100)
 -- Name: uservehicles_user; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3977,7 +3983,7 @@ ALTER TABLE ONLY user_vehicle
 
 
 --
--- TOC entry 2622 (class 0 OID 0)
+-- TOC entry 2628 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -3988,7 +3994,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2015-03-04 21:38:04
+-- Completed on 2015-03-07 15:10:00
 
 --
 -- PostgreSQL database dump complete

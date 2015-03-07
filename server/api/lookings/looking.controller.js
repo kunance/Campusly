@@ -31,10 +31,26 @@ function respondWith(res, statusCode) {
 
 exports.showAllLookings= function(req, res, next) {
   var userAttributes = ['firstname', 'lastname', 'profileImage', 'aboutMe'];
-  var lookingAttributes = ['distanceToUniv', 'maxMonthlyRent', 'gender'];
+  var lookingAttributes = ['maxMonthlyRent', 'gender', 'id'];
   Looking.findAll({
     where:{},
     attributes:lookingAttributes,
+    include: [
+      { model: User, attributes: userAttributes, as: 'relatedUserId'}
+    ]
+  }).then(function(lookings) {
+    res.json(lookings)
+
+  }).catch(validationError(res));
+};
+
+exports.showSingleLooking= function(req, res, next) {
+  var lookingId = req.params.id;
+  var userAttributes = ['firstname', 'lastname', 'profileImage', 'aboutMe'];
+  //var lookingAttributes = ['maxMonthlyRent', 'gender', 'id'];
+  Looking.find({
+    where:{id: lookingId},
+    /*attributes:lookingAttributes,*/
     include: [
       { model: User, attributes: userAttributes, as: 'relatedUserId'}
     ]
