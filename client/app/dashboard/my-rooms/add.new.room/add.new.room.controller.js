@@ -29,8 +29,8 @@
       var zip = property.address.zip.toString();
       var trimmedZip = zip.replace(/\s+/g, '');
       property.address.zip = Number(trimmedZip);
-      //input.latitude= input.location.latitude;
-      //input.longitude= input.location.longitude;
+      property.coords.latitude = property.location.latitude;
+      property.coords.longitude = property.location.longitude;
       room.creatorId = vm.me.id;
 
       dataservice.addRoomListing(vm.me.id, { room : room, property: property}).$promise.then(function () {

@@ -3,7 +3,9 @@
 <div class="container">
 
   <h2>Highlights</h2>
-  map  Is that interactive?  </br>
+  <div class="picture">
+    <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.roomDetail.propertyDetails.coords.latitude}},{{room.roomDetail.propertyDetails.coords.longitude}}&zoom=14&size=400x250&markers=color:blue%7C{{room.roomDetail.propertyDetails.coords.latitude}},{{room.roomDetail.propertyDetails.coords.longitude}}">
+  </div>
 
   <strong class="value">
     {{room.roomDetail.roomDetails.monthlyPrice | currency}} mo.
