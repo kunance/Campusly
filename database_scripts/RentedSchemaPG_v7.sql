@@ -395,6 +395,8 @@ CREATE TABLE address_history (
     city text NOT NULL,
     state text NOT NULL,
     zip integer NOT NULL,
+    latitude numeric(10,8) NOT NULL,
+    longitude numeric(11,8) NOT NULL,
     "startDate" timestamp with time zone NOT NULL,
     "endDate" timestamp with time zone,
     "userId" bigint,
@@ -1981,6 +1983,23 @@ CREATE TABLE user_vehicle (
 
 
 ALTER TABLE user_vehicle OWNER TO postgres;
+
+
+CREATE VIEW user_cur_address_univ_coords AS
+ SELECT ah."userId" AS "userId",
+    ah."latitude" AS address_latitude,
+    ah."longitude" AS address_longitude,
+    univ."latitude" AS univ_latitude,
+    univ."longitude" AS univ_longitude,
+    univ."name" AS univ_name
+   FROM  rented_user ru,
+    address_history ah,
+    user_education ue,
+    university univ
+  WHERE (ah.present = 'true' AND ah."userId" = ru.id AND ru.id = ue."userId" AND ue."universityId" = univ.id);
+
+  ALTER TABLE user_cur_address_univ_coords OWNER TO postgres;
+  
 
 --
 -- TOC entry 240 (class 1259 OID 23642)

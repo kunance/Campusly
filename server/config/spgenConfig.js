@@ -5,10 +5,10 @@ module.exports = {
     "database": {
       "host": "127.0.0.1",
       "port": 5432,
-      "user": "jraber",
+      "user": "postgres",
       "password": "password",
-      "database": "Rented",
-      "schema": ["rented"]
+      "database": "rented",
+      "schema": ["public"]
     },
     //"template": {
     //  "engine": "swig",

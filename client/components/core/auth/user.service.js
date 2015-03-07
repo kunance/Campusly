@@ -30,6 +30,12 @@
             params: {
               controller:'info'
             }
+          },
+          getCurrentAddressAndUniv: {
+            method: 'GET',
+            params: {
+              controller:'currentAddressAndUniv'
+            }
           }
         });
     });

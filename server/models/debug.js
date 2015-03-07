@@ -29,6 +29,26 @@ var addressHistory = Sequelize.define("addressHistory",
    { type: { [Function] super_: [Object], key: 'INTEGER' },
      field: 'zip',
      allowNull: false },
+  latitude: 
+   { type: 
+      { options: [Object],
+        _length: undefined,
+        _zerofill: undefined,
+        _decimals: undefined,
+        _precision: 10,
+        _scale: 8,
+        _unsigned: undefined },
+     field: 'latitude' },
+  longitude: 
+   { type: 
+      { options: [Object],
+        _length: undefined,
+        _zerofill: undefined,
+        _decimals: undefined,
+        _precision: 11,
+        _scale: 8,
+        _unsigned: undefined },
+     field: 'longitude' },
   startDate: 
    { type: { [Function] super_: [Function], key: 'DATE' },
      field: 'startDate',
@@ -1738,6 +1758,56 @@ var userCosigner = Sequelize.define("userCosigner",
    { type: { [Function] super_: [Function], key: 'DATE' },
      field: 'deletedAt' } },
 { tableName: 'user_cosigner', timestamps: false });
+
+
+var userCurAddressUnivCoords = Sequelize.define("userCurAddressUnivCoords",
+{ userId: 
+   { type: { [Function] super_: [Object], key: 'BIGINT' },
+     field: 'userId' },
+  addressLatitude: 
+   { type: 
+      { options: [Object],
+        _length: undefined,
+        _zerofill: undefined,
+        _decimals: undefined,
+        _precision: 10,
+        _scale: 8,
+        _unsigned: undefined },
+     field: 'address_latitude' },
+  addressLongitude: 
+   { type: 
+      { options: [Object],
+        _length: undefined,
+        _zerofill: undefined,
+        _decimals: undefined,
+        _precision: 11,
+        _scale: 8,
+        _unsigned: undefined },
+     field: 'address_longitude' },
+  univLatitude: 
+   { type: 
+      { options: [Object],
+        _length: undefined,
+        _zerofill: undefined,
+        _decimals: undefined,
+        _precision: 10,
+        _scale: 8,
+        _unsigned: undefined },
+     field: 'univ_latitude' },
+  univLongitude: 
+   { type: 
+      { options: [Object],
+        _length: undefined,
+        _zerofill: undefined,
+        _decimals: undefined,
+        _precision: 11,
+        _scale: 8,
+        _unsigned: undefined },
+     field: 'univ_longitude' },
+  univName: 
+   { type: { [Function] super_: [Function], key: 'TEXT' },
+     field: 'univ_name' } },
+{ tableName: 'user_cur_address_univ_coords', timestamps: false });
 
 
 var userEducation = Sequelize.define("userEducation",

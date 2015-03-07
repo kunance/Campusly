@@ -63,11 +63,15 @@
 
     </div>
     <div class="col-sm-12">
-      <label for="streetAddress">Address</label>
+
+      <label for="streetNumber">Street Number</label>
+      <input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="vm.property.address.streetNumeric"/>
+
+      <label for="streetAddress">Street Name</label>
       <input type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="vm.property.address" ng-model="vm.property.address.streetAddress"/>
 
-      <label for="streetNumber">Number</label>
-      <input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="vm.property.address.streetNumeric"/>
+      <label for="apt">Apt Number</label>
+      <input type="number" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="vm.property.address.apt"/>
 
       <label for="country">Country</label>
       <input type="text" id="country" name="country" class="form-control"  placeholder="country" ng-model="vm.property.address.state"/>
@@ -78,18 +82,10 @@
       <label for="zip">Zip code</label>
       <input type="number" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="vm.property.address.zip"/>
 
-      <label for="apt">Apt</label>
-      <input type="number" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="vm.property.address.apt"/>
-
-      <label for="bldg">Bldg</label>
-      <input type="text" id="bldg" name="bldg" class="form-control"  placeholder="bldg" ng-model="vm.property.address.bldg"/>
-
       <label for="type">Type</label>
       <select id="type" class="form-control" data-ng-model="vm.property.type">
-        <option value="apt">Apt</option>
-        <option value="sfh">sfh</option>
-        <option value="duplex">Duplex</option>
-        <option value="land">Land</option>
+        <option value="apt">Apartment</option>
+        <option value="sfh">Single family house</option>
         <option value="townhouse">Townhouse</option>
       </select>
 
@@ -98,31 +94,6 @@
 
       <label for="bathrooms">Bathrooms?</label><br/>
       <input type="number" id="bathrooms" name="bathrooms" class="form-control"  placeholder="Number of bathrooms" ng-model="vm.property.bathrooms"/>
-
-      <label for="parkingSpots">Parking spots?</label><br/>
-      <input type="number" id="parkingSpots" name="parkingSpots" class="form-control"  placeholder="Number of parking spots" ng-model="vm.property.parkingSpots"/>
-
-      <label for="livingAreaSqFt">Living area SqFt</label><br/>
-      <input type="number" id="livingAreaSqFt" name="livingAreaSqFt" class="form-control"  placeholder="Living area sqFt" ng-model="vm.property.livingAreaSqFt"/>
-
-      <label for="hoaFee">Hoa fee</label><br/>
-      <input type="number" id="hoaFee" name="hoaFee" class="form-control"  placeholder="hoa fee" ng-model="vm.property.hoaFee"/>
-
-      <label for="otherFee">Other fee</label><br/>
-      <input type="number" id="otherFee" name="otherFee" class="form-control"  placeholder="other fee" ng-model="vm.property.otherFee"/>
-
-      <!--<label for="status">Type</label>-->
-      <!--<select id="status" class="form-control" data-ng-model="vm.property.status">-->
-        <!--<option value="avail">Available</option>-->
-        <!--<option value="pending">Pending</option>-->
-        <!--<option value="rented">Rented</option>-->
-      <!--</select>-->
-
-      <label for="description">Property description</label>
-      <textarea name="description" id="description" cols="30" rows="5" placeholder="description" data-ng-model="vm.property.description"  class="form-control" ></textarea>
-
-      <!--<label for="picture">Upload picture</label>-->
-      <!--<div fileupload data="addNewRoom.room.picture"></div>-->
 
       <br/>
       <button class="btn btn-primary" ng-click="addNewRoom.create(vm.property, vm.room, vm.picture)">Save new room</button>
