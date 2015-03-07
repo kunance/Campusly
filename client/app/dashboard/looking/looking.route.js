@@ -14,8 +14,17 @@
         templateUrl: 'app/dashboard/looking/looking.html',
         controller: 'LookingCtrl',
         controllerAs:'looking',
-        authenticate: true
+        authenticate: true,
+        resolve:{
+          allLooking:allLooking
+        }
       });
 
   }
+
+  function allLooking(common) {
+    var dataservice = common.dataservice;
+    return dataservice.getEveryLooking();
+  }
+
 }());

@@ -2,9 +2,40 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h2> Looking</h2>
         <div class="white-box ">
-          <h1>{{looking.test}}</h1>
+            <h2> Looking </h2>
+            <div class="row  my-rooms">
+              <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 property" ng-repeat="look in looking.lookings">
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                  <div class="flipper">
+                    <div class="front white-box">
+                      <div class="picture">
+                        <img ng-src="api/images{{look.relatedUserId.profileImage}}" class="img-circle" height="100px" width="100px">
+                      </div>
+                      {{look.relatedUserId.firstname}} {{look.relatedUserId.lastname}}<br/>
+                      {{look.relatedUserId.aboutMe}}
+                      <!--<google-map center="map.center" zoom="map.zoom" draggable="true">-->
+                      <!--<marker coords="{{room.propertyDetails.coords}}" idKey="marker.idKey"></marker>-->
+                      <!--</google-map>-->
+                      <div class="info">
+                        <strong class="value">
+                          {{looking.lookings.gender}}
+                        </strong>
+                      </div>
+                      <ul class="specs">
+                        <li><i class="fa fa-users"></i> {{look.gender}}</li>
+                        <li><i class="fa fa-money"></i> {{look.maxMonthlyRent | currency}}</li>
+                        <!--<li><i class="fa fa-show"></i> {{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>-->
+                        <!--<li><i class="fa fa-calendar"></i> {{room.roomDetails.availableMoveIn | date }}</li>-->
+                      </ul>
+                    </div>
+                    <div class="back">
+                      <a ui-sref="lookingDetail({id: look.lookingDetails.id})"> <h2>View</h2> </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
       </div>
     </div>
