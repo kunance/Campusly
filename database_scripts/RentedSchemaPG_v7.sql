@@ -796,7 +796,6 @@ CREATE TABLE looking (
     area text,
     "distanceToUniv" double precision,
     "moveInDate" timestamp with time zone DEFAULT now() NOT NULL,
-    "moveOutDate" timestamp with time zone DEFAULT now(),
     "lengthOfStay" integer,
     "openToFullYearLeaseNewRoomates" boolean,
     "roomType" "looking_roomType",
@@ -1999,7 +1998,7 @@ CREATE VIEW user_cur_address_univ_coords AS
   WHERE (ah.present = 'true' AND ah."userId" = ru.id AND ru.id = ue."userId" AND ue."universityId" = univ.id);
 
   ALTER TABLE user_cur_address_univ_coords OWNER TO postgres;
-  
+
 
 --
 -- TOC entry 240 (class 1259 OID 23642)
@@ -2459,7 +2458,7 @@ COPY lessee ("leaseId", "userId", "createdAt", "updatedAt", "deletedAt") FROM st
 -- Data for Name: looking; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY looking (id, "maxMonthlyRent", "utilitiesIncluded", area, "distanceToUniv", "moveInDate", "moveOutDate", "lengthOfStay", "openToFullYearLeaseNewRoomates", "roomType", "sharedBathroom", gender, "numRoommates", furnished, "busRouteRequired", "parkingNeeded", "smokingAllowed", "petsAllowed", "createdAt", "updatedAt", "deletedAt", "userId") FROM stdin;
+COPY looking (id, "maxMonthlyRent", "utilitiesIncluded", area, "distanceToUniv", "moveInDate", "lengthOfStay", "openToFullYearLeaseNewRoomates", "roomType", "sharedBathroom", gender, "numRoommates", furnished, "busRouteRequired", "parkingNeeded", "smokingAllowed", "petsAllowed", "createdAt", "updatedAt", "deletedAt", "userId") FROM stdin;
 \.
 
 
