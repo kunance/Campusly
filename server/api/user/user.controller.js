@@ -166,7 +166,9 @@ exports.changeInfo = function(req, res, next) {
         var updated = _.merge(user, req.body);
         updated.updatedAt = new Date();
         updated.save()
-          .then(respondWith(res, 200))
+          .then(function (updatedUser) {
+            res.send(updatedUser)
+          })
           .catch(validationError(res));
       } else{
         res.send(401);
