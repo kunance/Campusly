@@ -1,8 +1,12 @@
 <div class="container">
-  <div class="col-md-12">
+  <div class="row">
+    <div class="page-header">
+      <h2>New looking</h2>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 white-box">
 
-    <div class="col-md-4">
-      <label for="maxMonthlyRent">Max monthly rent</label>
+      <div class="col-md-4">
+        <label for="maxMonthlyRent">Max monthly rent</label>
         <input type="number" id="maxMonthlyRent" name="maxMonthlyRent" class="form-control"  placeholder="Max monthly rent" ng-model="newLooking.tempLooking.maxMonthlyRent"/>
 
         <label for="distanceToUniv">distance to university</label>
@@ -12,20 +16,20 @@
         <label class="radio-inline"><input type="radio" name="utilitiesIncluded" id="utilitiesIncluded" ng-model="newLooking.tempLooking.utilitiesIncluded" value="1">Yes</label>
         <label class="radio-inline"><input type="radio" name="utilitiesIncluded"  ng-model="newLooking.tempLooking.utilitiesIncluded" value="0">No</label><br/><br/>
 
-          <label for="moveInDate">Move in date</label>
-          <p class="input-group">
-            <input type="text" id="moveInDate" class="form-control" datepicker-popup="{{format}}" ng-model="newLooking.tempLooking.moveInDate" is-open="datePickers.startDate" close-text="Close" />
-                    <span class="input-group-btn">
-                      <button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-          </p>
+        <label for="moveInDate">Move in date</label>
+        <p class="input-group">
+          <input type="text" id="moveInDate" class="form-control" datepicker-popup="{{format}}" ng-model="newLooking.tempLooking.moveInDate" is-open="datePickers.startDate" close-text="Close" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
 
         <label for="openToFullYearLeaseNewRoomates">Open To Full Year Lease New Roomates</label><br/>
         <label class="radio-inline"><input type="radio" name="openToFullYearLeaseNewRoomates" id="openToFullYearLeaseNewRoomates" ng-model="newLooking.tempLooking.openToFullYearLeaseNewRoomates" value="1">Yes</label>
         <label class="radio-inline"><input type="radio" name="openToFullYearLeaseNewRoomates"  ng-model="newLooking.tempLooking.openToFullYearLeaseNewRoomates" value="0">No</label><br/><br/>
       </div>
 
-     <div class="col-md-4">
+      <div class="col-md-4">
         <label for="roomType">Room type</label>
         <select id="roomType" class="form-control" ng-model="newLooking.tempLooking.roomType">
           <option value="single">single</option>
@@ -51,8 +55,8 @@
         <label class="radio-inline"><input type="radio" name="furnished" id="furnished" ng-model="newLooking.tempLooking.furnished" value="1">Yes</label>
         <label class="radio-inline"><input type="radio" name="furnished"  ng-model="newLooking.tempLooking.furnished" value="0">No</label><br/><br/>
 
-    </div>
-   <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
 
         <label for="busRouteRequired">Bus route required</label><br/>
         <label class="radio-inline"><input type="radio" name="busRouteRequired" id="busRouteRequired" ng-model="newLooking.tempLooking.busRouteRequired" value="1">Yes</label>
@@ -69,9 +73,9 @@
         <label for="petsAllowed">Pets allowed</label><br/>
         <label class="radio-inline"><input type="radio" name="petsAllowed" id="petsAllowed" ng-model="newLooking.tempLooking.petsAllowed" value="1">Yes</label>
         <label class="radio-inline"><input type="radio" name="petsAllowed"  ng-model="newLooking.tempLooking.petsAllowed" value="0">No</label><br/><br/>
+      </div>
+      <button ng-click="newLooking.add(newLooking.tempLooking)" class="btn btn-primary">Add looking</button>
+      <pre>{{newLooking.tempLooking|json}}</pre>
     </div>
-  <button ng-click="newLooking.add(newLooking.tempLooking)" class="btn btn-primary">Add looking</button>
   </div>
 </div>
-
-<pre>{{newLooking.tempLooking|json}}</pre>

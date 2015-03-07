@@ -5,50 +5,86 @@
   .module('app.dashboard')
   .controller('EditProfileCtrl', EditProfileCtrl);
 
-  EditProfileCtrl.$inject = ['$scope', 'common', 'getUniversities', 'getEducations'];
+  EditProfileCtrl.$inject = ['$scope', '$cookieStore', 'common', 'getUniversities', 'getEducations', 'getAddresses', 'FileUploader'];
 
-  function EditProfileCtrl($scope, common, getUniversities, getEducations) {
+  function EditProfileCtrl($scope, $cookieStore, common, getUniversities, getEducations, getAddresses, FileUploader) {
     var vm = this;
-    vm.changePersonalData = changePersonalData;
-    vm.changeEducationData = changeEducationData;
+
     vm.universitiesList = getUniversities;
     vm.educations = getEducations;
+    
+    vm.tempAddress = getAddresses[0];
+    vm.tempEducation = getEducations[0];
+    
     vm.me = common.Auth.getCurrentUser();
+    vm.tempMe = Object.create(vm.me);
+
+    vm.saveAddress = saveAddress;
+    vm.saveEducation = saveEducation;
+    vm.changePersonalData = changePersonalData;
+
+    vm.uploader = new FileUploader();
+    vm.uploader.url = '/api/users/' + vm.me.id + '/profileImages';
+    vm.uploader.headers= {Authorization: 'Bearer ' + $cookieStore.get('token')};
+
+    vm.uploader.onSuccessItem = function (itm,res,status,header) {
+      vm.tempMe.profileImage = res.profileImage;
+      common.logger.success('Uploaded successfully');
+    };
 
     function changePersonalData(userDataForm) {
       if(userDataForm.$valid) {
         common.Auth.updateUser(vm.tempMe)
         .then(function (user) {
-            common.logger.success('Personal data successfully changed.');
-          })
+          /* common.Auth.setCurrentUser(user); */
+          common.logger.success('Personal data successfully changed.');
+        })
         .catch(function (err) {
           common.logger.error('Something went wrong. Changes are not saved.');
         });
       }
     }
 
-    function changeEducationData(form) {
-    //  vm.educations[0].universityId = vm.educations[0].educationCenterName.id;
-    //  vm.educations[0].educationCenterName = vm.educations[0].educationCenterName.name;
-    //  vm.educations[0].graduation = false;
-    // if (form.$valid) {
-    //   if (vm.educations.length == 0) {
-    //     common.dataservice.addEducation(vm.me.id, vm.educations[0]).$promise
-    //       .then(function (education) {
-    //         common.logger.success('Education successfully added.');
-    //       })
-    //       .catch(function (err) {
-    //         common.logger.error('Error while saving education.');
-    //       });
-    //   } else {
-    //     common.dataservice.editEducation(vm.me.id, vm.educations[0].id, vm.educations[0], function () {
-    //       common.logger.success('Education successfully updated.');
-    //     })
-    //   }
-    // }
-    //
+    function saveAddress (input) {
+      console.log(input);
+      var zip = input.zip.toString();
+      var trimmedZip = zip.replace(/\s+/g, '');
+      input.zip = Number(trimmedZip);
+      if(vm.tempAddress.id){
+        common.dataservice.editAddress(vm.me.id, vm.tempAddress.id, input, function () {
+          common.logger.success('Address updated');
+          common.$state.go('^',{},{reload:true});
+        });
+      }else{
+        common.dataservice.addAddress(vm.me.id, input).$promise
+        .then(function () {
+          common.logger.success('Address successfully added.');
+          common.$state.go('^',{},{reload:true});
+        })
+      }
     }
 
-  }
+    function saveEducation (input) {
+      input.universityId = input.educationCenterName;
+      if(vm.tempEducation.id){
+        common.dataservice.editEducation(vm.me.id, vm.tempEducation.id, input, function () {
+          common.$state.go('^',{},{reload:true});
+          console.log('Education updated');
+        });
+      }else {
+        common.dataservice.addEducation(vm.me.id, input).$promise
+        .then(function () {
+          common.logger.success('Education successfully added.');
+        })
+      }
+    }
 
+    $scope.open = function($event, number) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.datePickers[number]= true;
+    };
+
+
+  }
 }());

@@ -33,6 +33,7 @@ function respondWith(res, statusCode) {
 }
 
 exports.newRoommate = function(req, res, next) {
+  var userAttributes = ['firstname', 'lastname', 'profileImage', 'email'];
   if(req.body.id === req.user.id) {res.send(403)}
   else {
   req.body.userId = req.user.id;
@@ -43,7 +44,20 @@ exports.newRoommate = function(req, res, next) {
   var newRoommate = Roommate.build(req.body);
   newRoommate.save()
     .then(function(room) {
-      res.json(room);
+      Roommate.find({
+        where:{
+          userId:room.userId
+        },
+        include: [
+        { model: User, attributes: userAttributes, as: 'relatedRoommateId',
+        include:[
+        { model: Address, as: 'addresshistoryUsers' },
+        { model: Education, as: 'usereducationUsers' }]
+      }
+      ]
+      }).then(function(roommates) {
+        res.json(roommates);
+      })
     })
     .catch(validationError(res));
   }

@@ -5,9 +5,10 @@
   .module('app.dashboard')
   .controller('MyProfileCtrl', MyProfileCtrl);
 
-  MyProfileCtrl.$inject = ['$scope', 'common', '$cookieStore', 'FileUploader', 'getUserInfo', 'getAddresses', 'getEducations', 'getAllRoommates', 'getAllUsers', 'getPets', 'getVehicles'];
+  MyProfileCtrl.$inject = ['$scope', 'common', '$cookieStore', 'getUserInfo', 'getAddresses', 'getEducations', 'getAllRoommates', 'getAllUsers', 'getPets', 'getVehicles'];
 
-  function MyProfileCtrl($scope, common, $cookieStore, FileUploader, getUserInfo, getAddresses, getEducations, getAllRoommates, getAllUsers, getPets, getVehicles) {
+  function MyProfileCtrl($scope, common, $cookieStore, getUserInfo, getAddresses, getEducations, getAllRoommates, getAllUsers, getPets, getVehicles) {
+    
     var vm = this;
     vm.me = getUserInfo;
     vm.tempMe = Object.create(vm.me);
@@ -17,10 +18,10 @@
     vm.roommates = getAllRoommates; //roomate info, his education info, his address info
     vm.pets = getPets;
     vm.vehicles = getVehicles;
-    vm.changePersonalData = changePersonalData;
 
     vm.showNewRoomate = false;
-    vm.showAddonButtons = false;
+    vm.showPetAddonButtons = false;
+    vm.showRoommatesAddonButtons = false;
     vm.showAddPet = false;
     vm.showAddVehicle = false;
 
@@ -29,12 +30,15 @@
     });
 
     $scope.datePickers = {
-      startDate: false,
-      endDate:false,
-      graduationDate:false
+      EducationStartDate: false,
+      EducationEndDate:false,
+      graduationDate:false,
+      AddresStartDate: false,
+      AddressEndDate:false,
     };
 
     $scope.format = 'dd.MM.yyyy';
+    
     $scope.clear = function () {
       $scope.dt = null;
     };
@@ -48,60 +52,55 @@
     vm.toggleAddPet = function(){
       vm.showAddPet = true;
       vm.showAddVehicle = false;
-      vm.showAddonButtons = false;
+      vm.showPetAddonButtons = false;
     };
 
-    vm.toggleAddVehicle = function(){
-      vm.showAddVehicle = true;
-      vm.showAddPet = false;
-      vm.showAddonButtons = false;
+    vm.toggleAddRoommate = function(){
+      vm.showAddRoommate = true;
+      vm.showInviteRoomate = false;
+      vm.showRoommatesAddonButtons = false;
     };
 
-    vm.toggleAddon = function(){
-      vm.showAddonButtons = !vm.showAddonButtons;
+    vm.toggleRoommatesAddon = function(){
+      vm.showRoommatesAddonButtons = !vm.showRoommatesAddonButtons;
+      vm.showAddRoommate = false;
+      vm.showInviteRoomate = false;
+    };
+
+    vm.togglePetAddon = function(){
+      vm.showPetAddonButtons = !vm.showPetAddonButtons;
       vm.showAddPet = false;
       vm.showAddVehicle = false;
     };
 
-    vm.cancelAddAddon = function (){
-      vm.showAddonButtons = false;
+    vm.cancelPetAddAddon = function (){
+      vm.showPetAddonButtons = false;
       vm.showAddPet = false;
       vm.showAddVehicle = false;
       vm.selectedPet = null;
       vm.selectedVehicle = null;
     };
 
-    vm.uploader = new FileUploader();
-    vm.uploader.url = '/api/users/' + vm.me.id + '/profileImages';
-    vm.uploader.headers= {Authorization: 'Bearer ' + $cookieStore.get('token')};
-    vm.uploader.onSuccessItem = function (itm,res,status,header) {
-      vm.tempMe.profileImage = res.profileImage;
-      common.logger.success('Uploaded successfully');
+    vm.cancelRoommateAddAddon = function (){
+      vm.showRoommateAddonButtons = false;
+      vm.showAddRoommate = false;
+      vm.showInviteRoommate = false;
     };
 
-    function changePersonalData(userDataForm) {
-      if(userDataForm.$valid) {
-        common.Auth.updateUser(vm.tempMe)
-        .then(function (user) {
-          /* common.Auth.setCurrentUser(user); */
-          common.logger.success('Personal data successfully changed.');
-        })
-        .catch(function (err) {
-          common.logger.error('Something went wrong. Changes are not saved.');
-        });
-      }
-    }
+    vm.toggleAddVehicle = function(){
+      vm.showAddVehicle = true;
+      vm.showAddPet = false;
+      vm.showPetAddonButtons = false;
+    };
 
-    vm.toggleAddNewRoommate = function() {
-      vm.showNewRoomate = !vm.showNewRoomate;
-    }
-
-    vm.addNewRoommate=function(input){
+    $scope.addNewRoommate = function(input){
       if(!input) { return false; }
       var roommate = input.originalObject;
       common.dataservice.addRoommate(vm.me.id, roommate).$promise
-      .then(function (room) {
-        common.logger.success('successfully saved roommate')
+      .then(function (data) {
+        common.logger.success('Roommate successfully added!');
+        vm.roommates.push(data);
+        vm.cancelRoommateAddAddon();
       })
       .catch(function (err) {
         common.logger.error('Something went wrong. Roommate not saved.');
@@ -123,7 +122,7 @@
       .then(function () {
         common.logger.success('Pet successfully created.');
         vm.pets.push(input);
-        vm.cancelAddAddon();
+        vm.cancelPetAddAddon();
       })
       .catch(function (err) {
         common.logger.error('Error while saving pet.');
@@ -147,10 +146,9 @@
     vm.savePet = function (input) {
       common.dataservice.editPet(vm.me.id, input.id, input, function () {
         common.logger.success('Pet updated');
-        vm.cancelAddAddon();
+        vm.cancelPetAddAddon();
       })
     }
-
 
     /* Vehicles */
 
@@ -159,7 +157,7 @@
       .then(function () {
         common.logger.success('Vehicle successfully updated.');
         vm.vehicles.push(input);
-        vm.cancelAddAddon();
+        vm.cancelPetAddAddon();
       })
       .catch(function (err) {
         common.logger.error('Error while saving vehicle.');
@@ -191,7 +189,7 @@
     vm.saveVehicle = function (input) {
       common.dataservice.editVehicle(vm.me.id, input.id, input, function () {
         common.logger.success('Vehicle updated');
-        vm.cancelAddAddon();
+        vm.cancelPetAddAddon();
       })
     }
 

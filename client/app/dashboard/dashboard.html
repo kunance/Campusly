@@ -1,7 +1,7 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
-<div class="dashboard-wrapper">
-  <div ui-view="">
+<div ui-view="">
+  <div class="main-wrapper">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 my-profile">
@@ -9,46 +9,23 @@
 
           <div class="white-box buttons-box">
 
-            <a class="btn btn-rented primary" ui-sref="dashboard.addNewRoom">Post Available Room</a>
-            <a  class="btn btn-rented secondary" ui-sref="dashboard.myProfile.addNewLooking">Post Looking</a>
+            <a class="btn btn-primary" ui-sref="dashboard.addNewRoom">Post Available Room</a>
+            <a  class="btn btn-secondary" ui-sref="dashboard.myProfile.addNewLooking">Post Looking</a>
+
           </div>
 
           <div class="white-box profile-sidebar">
-            <div class="messages">
-              <h4>New messages</h4>
-              <hr>
-              <!-- start message box -->
-              <div class="message-box" ng-repeat="message in dashboard.messages">
-                <div class="media">
-                  <div class="media-left">
-                    <a >
-                      <img class="media-object profile-image img-circle" ng-src="{{message.profile_picture}}">
-                    </a>
-                  </div>
-                  <div class="media-body">
-                    <h4 class="media-heading user-name">{{message.username}}</h4>
-                    <p class="message">{{message.message}}</p>
-                    <em class="elapsed-time"> <i class="fa fa-clock-o"></i> {{message.elapsed_time}} </em>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- end message box -->
-            <a  class="btn btn-primary btn-block"> Views all messages </a>
-            <hr>
-
             <div class="profile">
-            <img src="../assets/fake/girl.jpg" class="img-circle" alt="">
+              <img src="../assets/fake/girl.jpg" class="img-circle" alt="">
               <h2> Jennifer Clardy </h2>
               <a  class="btn btn-secondary btn-block" ui-sref="dashboard.myProfile"> Complete Profile </a>
             </div>
-
-
           </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
           <h2 class="section-title"> Available Rooms</h2>
           <div class="white-box available-rooms">
+            
             <slick dots="true" class="slider row" slides-to-show="3" slides-to-scroll="3" responsive="dashboard.breakpoints.availableRooms"  init-onload="true" data="dashboard.availableRooms">
 
               <!-- start room box -->
@@ -62,10 +39,12 @@
                   </strong>
                 </div>
                 <ul class="specs">
+
                   <li><i class="fa fa-bed"></i> {{room.roomDetails.roomType}}</li>
                   <li><i class="fa fa-users"></i> {{room.roomDetails.numRoomates}} roommates</li>
-                  <li><i class="fa fa-show"></i> {{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
+                  <li><i class="fa fa-shower"></i> {{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
                   <li><i class="fa fa-calendar"></i> {{room.roomDetails.availableMoveIn | date }}</li>
+
                 </ul>
               </div>
               <!-- end room box -->
@@ -79,21 +58,23 @@
             <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" data="dashboard.lookingRoom">
 
               <!-- start room box -->
-              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="person in dashboard.lookingRoom track by $index">
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index">
                 <div class="media">
                   <div class="media-left">
                     <a >
-                      <img class="media-object profile-image img-circle" ng-src="{{person.profile_picture}}" >
+                      <img class="media-object profile-image img-circle" ng-src="api/images/{{looking.relatedUserId.profileImage}}" >
                     </a>
                   </div>
                   <div class="media-body">
-                    <h4 class="media-heading user-name">{{person.name}}</h4>
-                    <p class="quote">{{person.about_me}}</p>
+                    <h4 class="media-heading user-name">
+                      {{looking.relatedUserId.firstname}} {{looking.relatedUserId.lastname}}
+                      </h4>
+                    <p class="quote">{{looking.relatedUserId.aboutMe}}</p>
                   </div>
                   <ul class="profile-info">
-                    <li>{{person.max_rent | currency}}</li>
-                    <li>{{person.type}}</li>
-                    <li>{{person.distance}}</li>
+                    <li>{{looking.maxMonthlyRent | currency}}</li>
+                    <li>{{looking.gender}}</li>
+                    <li>{{looking.distanceToUniv}} miles </li>
                   </ul>
                 </div>
               </div>
