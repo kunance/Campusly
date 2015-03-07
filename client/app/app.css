@@ -1807,3 +1807,8 @@ h2.no-roommate small{
   top: 2px;
 }
 
+
+a.view-all {
+top: -10px;
+position: relative;
+}

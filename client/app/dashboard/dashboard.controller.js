@@ -7,9 +7,9 @@
   .controller('DashboardCtrl',DashboardCtrl);
 
 
-  DashboardCtrl.$inject=['common', '$scope', '$http', 'getUserLookings', 'allLooking', 'universityData', '$window', 'RoomListingView'];
+  DashboardCtrl.$inject=['common', '$scope', '$http', 'getUserLookings', 'allLooking', 'universityData', 'RoomListingView'];
 
-  function DashboardCtrl(common, $scope, $http, getUserLookings, allLooking, universityData, $window, RoomListingView) {
+  function DashboardCtrl(common, $scope, $http, getUserLookings, allLooking, universityData, RoomListingView) {
 
     var vm = this;
     var Auth = common.Auth;
@@ -33,6 +33,7 @@
 
 
     vm.availableRooms = RoomListingView.query({}, function() {});
+
     vm.lookingRoom = allLooking.data;
 
     // ================================================
@@ -42,11 +43,6 @@
     $http.get("../assets/fake/around_you.json")
     .success(function(data){
       vm.aroundYou = data;
-    });
-
-    $http.get("../assets/fake/messages.json")
-    .success(function(data){
-      vm.messages = data;
     });
 
     // ================================================
@@ -126,7 +122,7 @@
 
           slider.find(".slick-next").css("left", nextBtnX);
         });
-      }, 700);
+      }, 1000);
     }
 
     $(window).resize(function(){
