@@ -27,11 +27,9 @@
     return deffered.promise;
   }
 
-  function allLooking(common, $q) {
-    var deffered = $q.defer();
-    deffered.resolve(common.$http({method:'get', url:'/api/lookings/all'}).success(function () {
-    }));
-    return deffered.promise;
+  function allLooking(common) {
+    var dataservice = common.dataservice;
+    return dataservice.getEveryLooking();
   }
 
 

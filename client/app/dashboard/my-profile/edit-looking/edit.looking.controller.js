@@ -39,6 +39,7 @@
       vm.saveChanges= function (input) {
         dataservice.editLooking(vm.me.id, lookingId, input, function () {
           common.logger.success('Looking updated');
+          common.$state.go('dashboard', {}, {reload: true});
         })
       }
 

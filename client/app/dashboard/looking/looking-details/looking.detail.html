@@ -4,7 +4,8 @@
 
   <strong class="value">
     Created by: {{detail.lookingDetail.relatedUserId.firstname}} {{detail.lookingDetail.relatedUserId.lastname}}<br>
-    Date of creation: {{detail.lookingDetail.createdAt | date:'shortDate'}} at {{detail.lookingDetail.createdAt | date:'shortTime'}}
+    University: {{detail.lookingDetail.relatedUserId.usereducationUsers[0].educationCenterName}}<br/>
+    Date of creation: {{detail.lookingDetail.createdAt | date:'shortDate'}} at {{detail.lookingDetail.createdAt | date:'shortTime'}}<br/>
   </strong>
   </br>
   </br>

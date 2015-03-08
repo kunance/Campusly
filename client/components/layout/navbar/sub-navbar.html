@@ -4,7 +4,7 @@
     <input id="toggle-mobile-menu" type="checkbox"/>
     <ul>
       <div class="container">
-        <a ui-sref="{{tab.sref}}" active="tab.active" disabled="tab.disabled" class="active" select="setIndex($index)" ng-repeat="tab in subnav.tabs">
+        <a ui-sref="{{tab.sref}}" ui-sref-opts="{reload:true}" active="tab.active" disabled="tab.disabled" class="active" select="setIndex($index)" ng-repeat="tab in subnav.tabs">
           <li>{{tab.title}}</li>
         </a>
       </div>

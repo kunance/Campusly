@@ -54,7 +54,8 @@
           <div class="white-box looking-for-room">
             <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" data="dashboard.lookingRoom">
               <!-- start room box -->
-              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index">
+              <!--TODO make some hover effect so its more intinuitive for user-->
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index" ui-sref=".looking.detail({id:looking.id})">
                 <div class="media">
                   <div class="media-left">
                     <a >
@@ -166,7 +167,7 @@
                     </div>
                     <div class="edit">
                       <span class='text'>Edit</span>
-                      <a class="bubble" ui-sref="dashboard.myProfile.editLooking({id:look.id})">
+                      <a class="bubble" ui-sref="dashboard.myProfile.editLooking({id:look.id})" ui-sref-opts="{reload:true}">
                         <i class="fa fa-pencil"></i>
                       </a>
                     </div>
