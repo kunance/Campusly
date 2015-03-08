@@ -94,7 +94,8 @@
             <div class="row roommate" ng-repeat="roommate in myProfile.roommates">
               <div class="col-xs-2">
                 <div class="picture">
-                  <img ng-src="api/images{{roommate.relatedroommateId.profileImage}}" alt="" class="img-circle">
+                  <img ng-if="roommate.relatedroommateId.profileImage" ng-src="api/images{{roommate.relatedroommateId.profileImage}}" alt="" class="img-circle">
+                  <i ng-if="!roommate.relatedroommateId.profileImage" class="fa fa-user" style="font-size:80px"></i>
                 </div>
               </div>
               <div class="col-xs-6 info">

@@ -51,8 +51,14 @@
           </div>
 
           <h2 class="section-title"> Looking </h2>
-          <div class="white-box looking-for-room">
-            <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" data="dashboard.lookingRoom">
+          <div class="white-box looking-for-room" >
+            <h2 ng-if="!dashboard.lookingRoom.length" >
+              Currently no one is looking for a room, why dont you be the first?
+              <small>
+                <a ui-sref="dashboard.myProfile.addNewLooking"><br/>Click here</a> to add looking.
+              </small>
+            </h2>
+            <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" data="dashboard.lookingRoom" ng-if="dashboard.lookingRoom.length">
               <!-- start room box -->
               <!--TODO make some hover effect so its more intinuitive for user-->
               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index" ui-sref=".looking.detail({id:looking.id})">
