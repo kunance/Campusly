@@ -44,9 +44,14 @@ exports.newEducation = function(req, res, next) {
 };
 
 exports.showEducations= function(req, res, next) {
-  Education.findAll({where:{userId:req.user.id}})
+  //Education.findAll({where:{userId:req.user.id}})
+  Education.findOne({where:{userId:req.user.id}})
     .then(function (educations) {
+      if(educations){
       res.json(educations);
+      }else{
+        res.json({});
+      }
     })
     .catch(validationError(res));
 };

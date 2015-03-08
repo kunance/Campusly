@@ -29,12 +29,10 @@
     return dataservice.getAllUniversities();
   }
 
-  function getEducations(common, $q) {
-    var deffered = $q.defer();
+  function getEducations(common) {
     var dataservice = common.dataservice;
     var me = common.Auth.getCurrentUser();
-    deffered.resolve(dataservice.getAllEducations(me));
-    return deffered.promise;
+    return dataservice.getAllEducations(me);
   }
 
   function getAddresses(common) {

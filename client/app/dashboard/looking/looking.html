@@ -16,7 +16,7 @@
                       <strong class="value">
                         {{look.relatedUserId.firstname}} {{look.relatedUserId.lastname}}
                       </strong>
-                      <p class="quote">{{look.relatedUserId.aboutMe}}</p>
+                      <p class="quote" ng-if="look.relatedUserId.aboutMe">{{look.relatedUserId.aboutMe}}"</p>
                       <!--<google-map center="map.center" zoom="map.zoom" draggable="true">-->
                       <!--<marker coords="{{room.propertyDetails.coords}}" idKey="marker.idKey"></marker>-->
                       <!--</google-map>-->

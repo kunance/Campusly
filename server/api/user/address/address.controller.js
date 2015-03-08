@@ -30,6 +30,15 @@ function respondWith(res, statusCode) {
   };
 }
 
+function adoptData(input) {
+  var adopted =JSON.parse(JSON.stringify(input));
+  adopted.location = {
+    latitude: input.latitude,
+    longitude: input.longitude
+  };
+  return adopted;
+}
+
 exports.newAddress = function(req, res, next) {
   req.body.userId = req.user.id;
   req.body.createdAt = new Date();
@@ -44,9 +53,14 @@ exports.newAddress = function(req, res, next) {
 };
 
 exports.showAddresses= function(req, res, next) {
-  Address.findAll({where:{userId:req.user.id}})
+  //Address.findAll({where:{userId:req.user.id}}) //removed for MVP
+  Address.findOne({where:{userId:req.user.id}})
     .then(function (addresses) {
-        res.json(addresses);
+      if(addresses) {
+        res.json({streetAddress: adoptData(addresses)});
+      }else{
+        res.json({});
+      }
     })
     .catch(validationError(res));
 };
