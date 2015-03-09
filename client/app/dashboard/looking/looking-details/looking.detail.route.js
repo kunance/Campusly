@@ -16,7 +16,9 @@
         controllerAs:'detail',
         authenticate: true,
         resolve:{
-          getLookingById:getLookingById
+          getLookingById:getLookingById,
+          getUserInfo: getUserInfo,
+          getEducations: getEducations
         }
       });
   }
@@ -25,6 +27,20 @@
     var dataservice = common.dataservice;
     var lookingId = $stateParams.id;
     return dataservice.getSingleLooking(lookingId);
+  }
+
+  function getUserInfo(common, $q) {
+    var deffered = $q.defer();
+    deffered.resolve(common.Auth.getCurrentUser());
+    return deffered.promise;
+  }
+
+  function getEducations(common, $q) {
+    var deffered = $q.defer();
+    var dataservice = common.dataservice;
+    var me = common.Auth.getCurrentUser();
+    deffered.resolve(dataservice.getAllEducations(me));
+    return deffered.promise;
   }
 
 

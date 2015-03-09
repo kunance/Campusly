@@ -103,8 +103,8 @@
                 <span class="email">{{roommate.relatedRoommateId.email}}</span>
                 <span class="university" ng-if="roommate.relatedRoommateId.usereducationUsers[0].educationCenterName">{{roommate.relatedRoommateId.usereducationUsers[0].educationCenterName}}</span>
                 <span class="university" ng-if="!roommate.relatedRoommateId.usereducationUsers[0].educationCenterName">User didn't provide education data</span>
-                <span class="city" ng-if="roommate.addressInfo.length">{{roommate.addressInfo[0].zip}} {{roommate.addressInfo[0].city}} / {{roommate.addressInfo[0].state}}</span>
-                <span class="city" ng-if="!roommate.addressInfo.length">User didn't provide address data</span>
+                <span class="city" ng-if="roommate.relatedRoommateId.addresshistoryUsers.length">{{roommate.relatedRoommateId.addresshistoryUsers[0].zip}} {{roommate.relatedRoommateId.addresshistoryUsers[0].city}} / {{roommate.relatedRoommateId.addresshistoryUsers[0].state}}</span>
+                <span class="city" ng-if="!roommate.relatedRoommateId.addresshistoryUsers.length">User didn't provide address data</span>
               </div>
               <div class="actions col-xs-4">
                 <a class="bubble remove" ng-click="myProfile.removeRoommate(roommate)"><i class="fa fa-trash-o"></i></a>

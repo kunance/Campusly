@@ -5,11 +5,13 @@
     .module('app.dashboard')
     .controller('LookingDetailCtrl', LookingDetailCtrl);
 
-  LookingDetailCtrl.$inject = ['$scope', '$stateParams', 'logger', 'Auth', 'common', 'getLookingById'];
+  LookingDetailCtrl.$inject = ['getEducations', '$stateParams', 'logger', 'getUserInfo', 'common', 'getLookingById'];
 
-  function LookingDetailCtrl($scope, $stateParams, logger, Auth, common, getLookingById) {
+  function LookingDetailCtrl(getEducations, $stateParams, logger, getUserInfo, common, getLookingById) {
     var vm = this;
-    vm.me = Auth.getCurrentUser();
+    vm.me = getUserInfo;
+    vm.tempMe = Object.create(vm.me);
+    vm.education = getEducations;
 
     var lookingId = $stateParams.id;
 
