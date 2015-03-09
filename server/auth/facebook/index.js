@@ -14,7 +14,7 @@ router
   }))
 
   .get('/callback', passport.authenticate('facebook', {
-    failureRedirect: '/dashboard',
+    failureRedirect: '/verifyEdu',
     session: false
   }), auth.setTokenCookie);
 
