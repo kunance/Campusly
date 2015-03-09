@@ -18,7 +18,6 @@
     vm.roommates = getAllRoommates; //roomate info, his education info, his address info
     vm.pets = getPets;
     vm.vehicles = getVehicles;
-    console.log(vm.roommates);
     vm.showNewRoomate = false;
     vm.showPetAddonButtons = false;
     vm.showRoommatesAddonButtons = false;
@@ -28,7 +27,7 @@
     angular.forEach(vm.roommates, function (user) {
       user.addressInfo = user.relatedRoommateId.addresshistoryUsers;
     });
-
+    console.log(vm.roommates);
     $scope.datePickers = {
       EducationStartDate: false,
       EducationEndDate:false,
@@ -73,8 +72,22 @@
       vm.showAddVehicle = false;
     };
 
-    vm.cancelPetAddAddon = function (){
-      vm.showPetAddonButtons = false;
+    vm.cancelPetAddAddon = function (a){
+      if(a){
+      vm.showPetAddonButtons = true;}
+      if(!a){
+      vm.showPetAddonButtons = false;}
+      vm.showAddPet = false;
+      vm.showAddVehicle = false;
+      vm.selectedPet = null;
+      vm.selectedVehicle = null;
+    };
+
+    vm.cancelVehicleAddAddon = function (a){
+      if(a){
+        vm.showPetAddonButtons = true;}
+      if(!a){
+        vm.showPetAddonButtons = false;}
       vm.showAddPet = false;
       vm.showAddVehicle = false;
       vm.selectedPet = null;

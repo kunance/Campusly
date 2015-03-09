@@ -6,7 +6,6 @@
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 my-profile">
           <h2> You </h2>
-
           <div class="white-box buttons-box">
 
             <a class="btn btn-primary" ui-sref="dashboard.addNewRoom">Post Available Room</a>
@@ -51,8 +50,14 @@
           </div>
 
           <h2 class="section-title"> Looking </h2>
-          <div class="white-box looking-for-room">
-            <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" data="dashboard.lookingRoom">
+          <div class="white-box looking-for-room" >
+            <h2 ng-if="!dashboard.lookingRoom.length" >
+              Currently no one is looking for a room, why dont you be the first?
+              <small>
+                <a ui-sref="dashboard.myProfile.addNewLooking"><br/>Click here</a> to add looking.
+              </small>
+            </h2>
+            <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" data="dashboard.lookingRoom" ng-if="dashboard.lookingRoom.length">
               <!-- start room box -->
               <!--TODO make some hover effect so its more intinuitive for user-->
               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index" ui-sref=".looking.detail({id:looking.id})">
@@ -67,7 +72,7 @@
                     <h4 class="media-heading user-name">
                       {{looking.relatedUserId.firstname}} {{looking.relatedUserId.lastname}}
                     </h4>
-                    <p class="quote">{{looking.relatedUserId.aboutMe}}</p>
+                    <p class="quote" ng-if="looking.relatedUserId.aboutMe">{{looking.relatedUserId.aboutMe}}</p>
                   </div>
                   <ul class="profile-info">
                     <li>{{looking.maxMonthlyRent | currency}}</li>
@@ -97,46 +102,46 @@
             <a class="pull-right btn-rented-event view-all" ui-sref="dashboard.around">View All</a>
           </div>
 
-          <h2 class="section-title"> My Posts</h2>
+          <!--<h2 class="section-title"> My Posts</h2>-->
 
-          <div class="white-box my-listings">
+          <!--<div class="white-box my-listings">-->
 
-            <slick dots="true" class="slider row" slides-to-show="1" slides-to-scroll="1">
+            <!--<slick dots="true" class="slider row" slides-to-show="1" slides-to-scroll="1">-->
 
-              <!-- start list box -->
-              <div class="list-item">
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="picture">
-                      <img src="http://lorempixel.com/400/250/city/3">
-                    </div>
-                  </div>
+              <!--&lt;!&ndash; start list box &ndash;&gt;-->
+              <!--<div class="list-item">-->
+                <!--<div class="row">-->
+                  <!--<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">-->
+                    <!--<div class="picture">-->
+                      <!--<img src="http://lorempixel.com/400/250/city/3">-->
+                    <!--</div>-->
+                  <!--</div>-->
 
-                  <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                    <div class="info">
-                      <span class='value'> $700 mo</span>
-                      <span class='address'> 122 Balboa Ave. Unit C, San Diego</span>
-                      <span class="elapsed-time">
-                        <i class="fa fa-clock-o"></i> Posted on April 14th - edited 2hs ago
-                      </span>
-                    </div>
-                    <div class="edit">
-                      <span class='text'>Edit</span>
-                      <a  class="bubble">
-                        <i class="fa fa-pencil"></i>
-                      </a>
-                    </div>
-                  </div>
+                  <!--<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">-->
+                    <!--<div class="info">-->
+                      <!--<span class='value'> $700 mo</span>-->
+                      <!--<span class='address'> 122 Balboa Ave. Unit C, San Diego</span>-->
+                      <!--<span class="elapsed-time">-->
+                        <!--<i class="fa fa-clock-o"></i> Posted on April 14th - edited 2hs ago-->
+                      <!--</span>-->
+                    <!--</div>-->
+                    <!--<div class="edit">-->
+                      <!--<span class='text'>Edit</span>-->
+                      <!--<a  class="bubble">-->
+                        <!--<i class="fa fa-pencil"></i>-->
+                      <!--</a>-->
+                    <!--</div>-->
+                  <!--</div>-->
 
-                </div>
-              </div>
-              <!-- end list box -->
-            </slick>
-            <hr>
-          </div>
+                <!--</div>-->
+              <!--</div>-->
+              <!--&lt;!&ndash; end list box &ndash;&gt;-->
+            <!--</slick>-->
+            <!--<hr>-->
+          <!--</div>-->
 
 <!--my lookings just to showcase-->
-          <h2 class="section-title"> My lookings</h2>
+          <h2 class="section-title"> My Posts</h2>
           <div class="white-box my-listings" >
             <h2 ng-if="!dashboard.userLookings.length" >
               You don't have posted lookings yet.

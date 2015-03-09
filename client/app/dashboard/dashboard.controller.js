@@ -7,9 +7,9 @@
   .controller('DashboardCtrl',DashboardCtrl);
 
 
-  DashboardCtrl.$inject=['common', '$scope', '$http', 'getUserLookings', 'allLooking', 'universityData', 'RoomListingView'];
+  DashboardCtrl.$inject=['common', '$scope', '$http', 'getUserLookings', 'allLooking', 'universityData', 'RoomListingView', 'distanceCalculator'];
 
-  function DashboardCtrl(common, $scope, $http, getUserLookings, allLooking, universityData, RoomListingView) {
+  function DashboardCtrl(common, $scope, $http, getUserLookings, allLooking, universityData, RoomListingView, distanceCalculator) {
 
     var vm = this;
     var Auth = common.Auth;
@@ -19,7 +19,6 @@
     //vm.universityList = universityData.getUniversityList(); //list of all universities from service
     //vm.lookingRoom = getUserLookings; //get all user lookings
     //vm.allLookings = allLooking.data; //get all lookings (from all users)
-
 
     mixpanel.identify(vm.me.id);
     mixpanel.people.set({
@@ -37,8 +36,6 @@
     vm.lookingRoom = allLooking;
 
     vm.userLookings = getUserLookings;
-
-    console.log('userL: ',vm.userLookings);
 
     // ================================================
     // BEGIN Getter for mock data
@@ -114,7 +111,7 @@
         }
       }
       ]
-    }
+    };
 
     function orderSliderButtons() {
       setTimeout(function() {
@@ -136,6 +133,26 @@
     angular.element(document).ready(function () {
       orderSliderButtons();
     });
+
+    //// ================================================
+    ////@ simple distance calculation
+    //var src={
+    //  latitude:'37.87220000',
+    //  longitude:'-122.25869800'
+    //};
+    //var dest={
+    //  latitude:'38.53823200',
+    //  longitude:'-121.76171300'
+    //};
+    //var mode = 'WALKING';// WALKING DRIVING BICYCLING TRANSIT
+    //var unitSystem = 'METRIC'; //IMPERIAL METRIC
+    //common.$timeout(function () {
+    //  distanceCalculator.calculateDistance(src, dest, mode, unitSystem).then(function (distance) {
+    //    console.log(distance.text);
+    //  });
+    //}, 1000); //timeout because maps need some time to load
+    ////@END
+    //// ================================================
 
   }
 }());
