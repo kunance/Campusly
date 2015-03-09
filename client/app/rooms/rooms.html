@@ -20,10 +20,10 @@
                   </strong>
                 </div>
                 <ul class="specs">
-                  <li><i class="fa fa-bed"></i> {{room.kind}}</li>
-                  <li><i class="fa fa-users"></i> {{room.roommates}} roommates</li>
-                  <li><i class="fa fa-bed"></i> {{room.bathroom}} bathroom</li>
-                  <li><i class="fa fa-calendar"></i> {{room.availability_date | date }}</li>
+                  <li><i class="fa fa-bed"></i> {{room.roomDetails.roomType}}</li>
+                  <li><i class="fa fa-users"></i> {{room.roomDetails.numRoomates}} roommates</li>
+                  <li><i class="fa fa-shower"></i> {{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
+                  <li><i class="fa fa-calendar"></i> {{room.roomDetails.availableMoveIn | date }}</li>
                 </ul>
               </div>
               <div class="back">
