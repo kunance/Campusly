@@ -238,7 +238,7 @@ exports.currentAddressAndUniv = function(req, res, next) {
   })
     .then(function(coords) {
       if (!coords) {
-        return res.send({});
+        return res.send();
       }
       else{
         res.json(coords);
