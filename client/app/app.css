@@ -1442,13 +1442,14 @@ h2.section-title:nth-child(n+2) {
   transform: rotateY(180deg);
 }
 
-.back h2 {
+.back a {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
   text-decoration: underline;
+  color: #fff;
 }
-.back h2 a {
+.back a h2 {
   color: #fff;
 }
 

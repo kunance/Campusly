@@ -15,8 +15,8 @@
 
           <div class="white-box profile-sidebar">
             <div class="profile">
-              <img src="../assets/fake/girl.jpg" class="img-circle" alt="">
-              <h2> Jennifer Clardy </h2>
+              <img class="img-circle" ng-if="dashboard.me.profileImage" ng-src="/api/images{{dashboard.me.profileImage}}">
+              <h2> {{dashboard.me.firstname}} {{dashboard.me.lastname}} </h2>
               <a  class="btn btn-secondary btn-block" ui-sref="dashboard.myProfile"> Complete Profile </a>
             </div>
           </div>
@@ -44,7 +44,6 @@
                 </ul>
               </div>
               <!-- end room box -->
-
             </slick>
             <hr>
             <a class="pull-right btn-rented-event view-all" ui-sref="rooms">View All</a>
