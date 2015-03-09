@@ -17,7 +17,7 @@
             <dl>
               <dt>Name</dt>
               <dd>{{myProfile.tempMe.firstname}} {{myProfile.tempMe.lastname}} </dd>
-              <dt>School</dt>
+              <dt>University</dt>
               <dd>{{myProfile.education.educationCenterName}}</dd>
               <dt>Year</dt>
               <dd>{{myProfile.education.startDate | date:'yyyy'}}</dd>
@@ -32,11 +32,9 @@
               <dt>Phone Number</dt>
               <dd ng-show="myProfile.me.phone">{{myProfile.me.phone}}</dd>
               <dt>Address</dt>
-              <dd ng-show="myProfile.address.streetAddress">{{myProfile.address.streetAddress.streetAddress}}, {{myProfile.address.streetAddress.streetNumeric}}</dd>
+              <dd ng-show="myProfile.address.streetAddress">{{myProfile.address.streetAddress.streetNumeric}} {{myProfile.address.streetAddress.streetAddress}}</dd>
               <dt>City State Zip</dt>
-              <dd ng-show="myProfile.address.streetAddress">{{myProfile.address.streetAddress.city}}, {{myProfile.address.streetAddress.state}} - {{myProfile.address.streetAddress.zip}} </dd>
-              <dt>Time at address</dt>
-              <dd><span am-time-ago="myProfile.address.streetAddress.startDate"></span></dd>
+              <dd ng-show="myProfile.address.streetAddress">{{myProfile.address.streetAddress.city}}, {{myProfile.address.streetAddress.state}} {{myProfile.address.streetAddress.zip}} </dd>
             </dl>
           </div>
         </div>
