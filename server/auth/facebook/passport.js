@@ -13,7 +13,7 @@ exports.setup = function(User, config) {
     }})
       .then(function(user) {
         //add this to expression  "&& profile.emails[0].value.match(/\.edu$/)" to restrict other mails signup
-        if (!user && profile.emails[0].value.match(/\.edu$/)) {
+        if (!user) {
           user = User.build({
             firstname: profile.name.givenName,
             lastname: profile.name.familyName,
