@@ -6,9 +6,9 @@ module.exports = {
       "host": "127.0.0.1",
       "port": 5432,
       "user": "postgres",
-      "password": "password",
+      "password": "postgres",
       "database": "rented",
-      "schema": ["public"]
+      "schema": []
     },
     //"template": {
     //  "engine": "swig",
@@ -17,7 +17,7 @@ module.exports = {
     //},
     "output": {
       "log": true,
-      "folder": "./models",
+      "folder": "./temp_models",
       "beautify": true,
       "indent": 4,
       "preserveNewLines": false,

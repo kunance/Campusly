@@ -73,6 +73,11 @@ cd Rented/server directory
 spgen -d Rented -u -s Rented -o models
 Note: when instatiating Sequelize, sequelize-pg-generator uses ‘postgre’ as default sql dialect.. If other DB is used instead of PG (i.e. MySQL) it have to be stated when instatiating Sequelize.
 
+## Updating models
+1. Create temporary models 
+spgen -d rented -u postgres -o temp_models
+2. Cherry pick changes for now
+
 ## Data model nuanaces
 - Following a room means following a property
 - Looking means a user is advertising themselves - looking for a roommate or looking for someone with a room to contact the user

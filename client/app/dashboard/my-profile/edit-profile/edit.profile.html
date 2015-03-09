@@ -1,6 +1,6 @@
 <div class="container edit-profile" cg-busy="{promise:editProfile.initializeData.$promise, message:'Loading Your Profile', delay:50}">
   <div class="page-header">
-    <h2> Personal Data </h2>
+    <h2> Personal </h2>
   </div>
   <div class="white-box">
     <div class="row about-me">
@@ -41,21 +41,20 @@
               </div>
             </div>
           </div>
-          <input type="submit" class="btn" value="Save">
+          <input type="submit" class="btn-rented-medium primary pull-right" value="Save">
         </form>
       </div>
     </div>
   </div>
 
   <div class="page-header">
-    <h2> Education Data </h2>
+    <h2> University </h2>
   </div>
   <div class="white-box">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="form-group">
-<pre>{{editProfile.tempEducation|json}}</pre>
-          <label for="educationCenterName">Education centre name</label>
+          <label for="educationCenterName">University name</label>
           <select id="educationCenterName" class="form-control"
                   ng-model="editProfile.tempEducation.educationCenterName"
                   ng-options="university.name for university in editProfile.universitiesList">
@@ -63,14 +62,6 @@
           </select>
         </div>
 
-        <div class="form-group">
-          <label for="type">Type</label>
-          <select id="type" class="form-control" data-ng-model="editProfile.tempEducation.type">
-            <option value="university">University</option>
-            <option value="trade">Trade</option>
-            <option value="military">Military</option>
-          </select>
-        </div>
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <div class="form-group">
@@ -78,7 +69,7 @@
               <p class="input-group">
                 <input type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="editProfile.tempEducation.startDate" is-open="datePickers.EducationStartDate" close-text="Close" />
                 <span class="input-group-btn">
-                  <button type="button" class="btn" ng-click="open($event,'EducationStartDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                  <button type="btn-rented-medium primary" class="btn" ng-click="open($event,'EducationStartDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
               </p>
             </div>
@@ -88,17 +79,9 @@
         <label for="major">Major</label>
         <input type="text" ng-model="editProfile.tempEducation.major" id="major" class="form-control" name="major"/>
 
-        <label for="degreeType">Degree type</label>
-        <select id="degreeType" class="form-control" data-ng-model="editProfile.tempEducation.degreeType">
-          <option value="undergraduate">Undergraduate</option>
-          <option value="graduate">Graduate</option>
-          <option value="doctorate">Doctorate</option>
-          <option value="post-doctorate">Post-doctorate</option>
-        </select>
-
         <br/>
 
-        <button class="btn btn-primary" ng-click="editProfile.saveEducation(editProfile.tempEducation)">Save changes</button>
+        <button class="btn-rented-medium primary pull-right" ng-click="editProfile.saveEducation(editProfile.tempEducation)">Save</button>
 
       </div>
 
@@ -115,13 +98,18 @@
         <label for="streetAddress">Address lookup</label>
         <input  type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="editProfile.tempAddress.streetAddress"/>
 
-        <label for="streetName">Street name</label>
-        <input type="text" id="streetName" name="streetName" class="form-control"  placeholder="Street name" ng-model="editProfile.tempAddress.streetAddress.streetAddress" readonly/>
+        <br>
 
-        <label for="streetNumber">Number</label>
+        <label for="streetNumber">Street Number</label>
         <input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="editProfile.tempAddress.streetAddress.streetNumeric" readonly/>
 
-        <label for="zip">Zip code</label>
+        <label for="streetName">Street Name</label>
+        <input type="text" id="streetName" name="streetName" class="form-control"  placeholder="Street name" ng-model="editProfile.tempAddress.streetAddress.streetAddress" readonly/>
+
+        <label for="apt">Apt No.</label>
+        <input type="number" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="editProfile.tempAddress.streetAddress.apt"/>
+
+        <label for="zip">Zip Code</label>
         <input type="number" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="editProfile.tempAddress.streetAddress.zip" readonly/>
 
         <label for="city">City</label>
@@ -130,34 +118,9 @@
         <label for="city">State</label>
         <input type="text" id="state" name="state" class="form-control"  placeholder="state" ng-model="editProfile.tempAddress.streetAddress.state" readonly/>
 
-        <label for="apt">Apt</label>
-        <input type="number" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="editProfile.tempAddress.streetAddress.apt"/><br/>
+        <br>
 
-        <div class="row">
-          <div class="col-md-6">
-            <label for="start">Start date</label>
-            <p class="input-group">
-              <input type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="editProfile.tempAddress.streetAddress.startDate" is-open="datePickers.AddressStartDate" close-text="Close" />
-              <span class="input-group-btn">
-                <button type="button" class="btn" ng-click="open($event,'AddressStartDate')">
-                  <i class="glyphicon glyphicon-calendar"></i>
-                </button>
-              </span>
-            </p>
-          </div>
-          <div class="col-md-6">
-            <label for="end">End date</label>
-            <p class="input-group">
-              <input type="text" id="end" class="form-control" datepicker-popup="{{format}}" ng-model="editProfile.tempAddress.streetAddress.endDate" is-open="datePickers.AddressEndDate" close-text="Close" />
-              <span class="input-group-btn">
-                <button type="button" class="btn" ng-click="open($event,'AddressEndDate')">
-                  <i class="glyphicon glyphicon-calendar"></i>
-                </button>
-              </span>
-            </p>
-          </div>
-        </div>
-        <button class="btn btn-primary" ng-click="editProfile.saveAddress(editProfile.tempAddress.streetAddress)">Save Changes</button>
+        <button class="btn-rented-medium primary pull-right" ng-click="editProfile.saveAddress(editProfile.tempAddress.streetAddress)">Save</button>
       </div>
     </div>
   </div>
