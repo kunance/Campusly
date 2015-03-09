@@ -3,6 +3,9 @@
 var _ = require('lodash');
 var sqldb = require('../../sqldb');
 var User = sqldb.model('rentedUser');
+var Pets = sqldb.model('pet');
+var Vehicles = sqldb.model('userVehicle');
+var Education = sqldb.model('userEducation');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -36,7 +39,11 @@ exports.showAllLookings= function(req, res, next) {
     where:{},
     attributes:lookingAttributes,
     include: [
-      { model: User, attributes: userAttributes, as: 'relatedUserId'}
+      { model: User, attributes: userAttributes, as: 'relatedUserId',
+        include: [
+          { model: Pets, as: 'petsUsers'},
+          { model: Vehicles, as: 'uservehiclesUsers'}]
+      }
     ]
   }).then(function(lookings) {
     res.json(lookings)
@@ -47,13 +54,17 @@ exports.showAllLookings= function(req, res, next) {
 exports.showSingleLooking= function(req, res, next) {
   var lookingId = req.params.id;
   var userAttributes = ['firstname', 'lastname', 'profileImage', 'aboutMe'];
-  //var lookingAttributes = ['maxMonthlyRent', 'gender', 'id'];
   Looking.find({
     where:{id: lookingId},
-    /*attributes:lookingAttributes,*/
     include: [
-      { model: User, attributes: userAttributes, as: 'relatedUserId'}
+      { model: User, attributes: userAttributes, as: 'relatedUserId',
+        include:[
+          {model: Education, as: 'usereducationUsers'},
+          { model: Pets, as: 'petsUsers'},
+          { model: Vehicles, as: 'uservehiclesUsers'}
+        ]}
     ]
+
   }).then(function(lookings) {
     res.json(lookings)
 

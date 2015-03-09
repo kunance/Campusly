@@ -7,7 +7,7 @@
         {
           getAllEducations: {
             method: 'GET',
-            isArray:true,
+            //isArray:true,//for MVP
             params: {
               id:'all'
             }

@@ -4,7 +4,7 @@
   <div class="container available-rooms">
     <div class="row">
       <div class="page-header">
-        <h2> Available Rooms </h2>
+        <h2> Available Rooms   need selection sorted by (newest, price, ??)  since sort by price is default</h2>
       </div>
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 room" ng-repeat="room in rooms.availableRooms">
@@ -20,10 +20,10 @@
                   </strong>
                 </div>
                 <ul class="specs">
-                  <li><i class="fa fa-bed"></i> {{room.kind}}</li>
-                  <li><i class="fa fa-users"></i> {{room.roommates}} roommates</li>
-                  <li><i class="fa fa-bed"></i> {{room.bathroom}} bathroom</li>
-                  <li><i class="fa fa-calendar"></i> {{room.availability_date | date }}</li>
+                  <li><i class="fa fa-bed"></i> {{room.roomDetails.roomType}}</li>
+                  <li><i class="fa fa-users"></i> {{room.roomDetails.numRoomates}} roommates</li>
+                  <li><i class="fa fa-shower"></i> {{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
+                  <li><i class="fa fa-calendar"></i> {{room.roomDetails.availableMoveIn | date }}</li>
                 </ul>
               </div>
               <div class="back">
