@@ -12,10 +12,18 @@
 
     vm.universitiesList = getUniversities;
     vm.educations = getEducations;
-    
-    vm.tempAddress = getAddresses[0];
-    vm.tempEducation = getEducations[0];
-    
+
+    vm.tempAddress = getAddresses;
+    vm.tempEducation = getEducations;
+
+    if(vm.tempAddress.streetAddress){
+    var AddressStatus = vm.tempAddress.streetAddress;
+    var addressId=AddressStatus.id;
+    }
+    if(vm.tempEducation.educationCenterName){
+    var EducationStatus = vm.tempEducation.educationCenterName;
+    var educationId = vm.tempEducation.id;
+    }
     vm.me = common.Auth.getCurrentUser();
     vm.tempMe = Object.create(vm.me);
 
@@ -36,7 +44,7 @@
       if(userDataForm.$valid) {
         common.Auth.updateUser(vm.tempMe)
         .then(function (user) {
-          /* common.Auth.setCurrentUser(user); */
+           common.Auth.setCurrentUser(user);
           common.logger.success('Personal data successfully changed.');
         })
         .catch(function (err) {
@@ -46,30 +54,29 @@
     }
 
     function saveAddress (input) {
-      console.log(input);
       var zip = input.zip.toString();
       var trimmedZip = zip.replace(/\s+/g, '');
       input.zip = Number(trimmedZip);
-      if(vm.tempAddress.id){
-        common.dataservice.editAddress(vm.me.id, vm.tempAddress.id, input, function () {
-          common.logger.success('Address updated');
-          common.$state.go('^',{},{reload:true});
+      input.latitude = input.location.latitude;
+      input.longitude = input.location.longitude;
+      if(status){
+        common.dataservice.editAddress(vm.me.id, addressId, input, function () {
+          common.logger.success('Address successfully updated');
         });
       }else{
         common.dataservice.addAddress(vm.me.id, input).$promise
         .then(function () {
           common.logger.success('Address successfully added.');
-          common.$state.go('^',{},{reload:true});
         })
       }
     }
 
     function saveEducation (input) {
-      input.universityId = input.educationCenterName;
-      if(vm.tempEducation.id){
-        common.dataservice.editEducation(vm.me.id, vm.tempEducation.id, input, function () {
-          common.$state.go('^',{},{reload:true});
-          console.log('Education updated');
+      input.universityId = input.educationCenterName.id;
+      input.educationCenterName = input.educationCenterName.name;
+      if(EducationStatus){
+        common.dataservice.editEducation(vm.me.id, educationId, input, function () {
+          common.logger.success('Education successfully updated');
         });
       }else {
         common.dataservice.addEducation(vm.me.id, input).$promise
@@ -84,6 +91,12 @@
       $event.stopPropagation();
       $scope.datePickers[number]= true;
     };
+
+    $scope.$watch(vm.me, function (newVal) {
+      if (newVal !== undefined) {
+        vm.tempMe = JSON.parse(JSON.stringify(newVal));
+      }
+    }, true);
 
 
   }

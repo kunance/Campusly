@@ -7,9 +7,9 @@
   .controller('DashboardCtrl',DashboardCtrl);
 
 
-  DashboardCtrl.$inject=['common', '$scope', '$http', 'getUserLookings', 'allLooking', 'universityData', '$window', 'RoomListingView'];
+  DashboardCtrl.$inject=['common', '$scope', '$http', 'getUserLookings', 'allLooking', 'universityData', 'RoomListingView', 'distanceCalculator'];
 
-  function DashboardCtrl(common, $scope, $http, getUserLookings, allLooking, universityData, $window, RoomListingView) {
+  function DashboardCtrl(common, $scope, $http, getUserLookings, allLooking, universityData, RoomListingView, distanceCalculator) {
 
     var vm = this;
     var Auth = common.Auth;
@@ -19,7 +19,6 @@
     //vm.universityList = universityData.getUniversityList(); //list of all universities from service
     //vm.lookingRoom = getUserLookings; //get all user lookings
     //vm.allLookings = allLooking.data; //get all lookings (from all users)
-
 
     mixpanel.identify(vm.me.id);
     mixpanel.people.set({
@@ -33,7 +32,10 @@
 
 
     vm.availableRooms = RoomListingView.query({}, function() {});
-    vm.lookingRoom = allLooking.data;
+
+    vm.lookingRoom = allLooking;
+
+    vm.userLookings = getUserLookings;
 
     // ================================================
     // BEGIN Getter for mock data
@@ -42,11 +44,6 @@
     $http.get("../assets/fake/around_you.json")
     .success(function(data){
       vm.aroundYou = data;
-    });
-
-    $http.get("../assets/fake/messages.json")
-    .success(function(data){
-      vm.messages = data;
     });
 
     // ================================================
@@ -114,7 +111,7 @@
         }
       }
       ]
-    }
+    };
 
     function orderSliderButtons() {
       setTimeout(function() {
@@ -126,7 +123,7 @@
 
           slider.find(".slick-next").css("left", nextBtnX);
         });
-      }, 700);
+      }, 1000);
     }
 
     $(window).resize(function(){
@@ -136,6 +133,26 @@
     angular.element(document).ready(function () {
       orderSliderButtons();
     });
+
+    //// ================================================
+    ////@ simple distance calculation
+    //var src={
+    //  latitude:'37.87220000',
+    //  longitude:'-122.25869800'
+    //};
+    //var dest={
+    //  latitude:'38.53823200',
+    //  longitude:'-121.76171300'
+    //};
+    //var mode = 'WALKING';// WALKING DRIVING BICYCLING TRANSIT
+    //var unitSystem = 'METRIC'; //IMPERIAL METRIC
+    //common.$timeout(function () {
+    //  distanceCalculator.calculateDistance(src, dest, mode, unitSystem).then(function (distance) {
+    //    console.log(distance.text);
+    //  });
+    //}, 1000); //timeout because maps need some time to load
+    ////@END
+    //// ================================================
 
   }
 }());

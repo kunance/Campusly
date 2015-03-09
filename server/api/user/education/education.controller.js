@@ -33,7 +33,7 @@ function respondWith(res, statusCode) {
 exports.newEducation = function(req, res, next) {
   req.body.userId = req.user.id;
   req.body.createdAt = new Date();
-  console.log(req.body);
+  req.body.graduation = false;
   var newEducation = Education.build(req.body);
 
   newEducation.save()
@@ -44,9 +44,14 @@ exports.newEducation = function(req, res, next) {
 };
 
 exports.showEducations= function(req, res, next) {
-  Education.findAll({where:{userId:req.user.id}})
+  //Education.findAll({where:{userId:req.user.id}})
+  Education.findOne({where:{userId:req.user.id}})
     .then(function (educations) {
+      if(educations){
       res.json(educations);
+      }else{
+        res.json({});
+      }
     })
     .catch(validationError(res));
 };

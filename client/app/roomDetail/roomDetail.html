@@ -24,7 +24,7 @@
   </div>
 
   <div ng-show="!room.userCurrentAddressAndUnivCoords">
-    <a ui-sref="dashboard.myProfile">Fill our univ</a>
+    <a ui-sref="dashboard.myProfile">Update Profile to view distance from your university</a>
   </div>
 
   <ul class="specs">
@@ -45,13 +45,17 @@
 
   <h2>Details</h2>
   <h3>Property description</h3>
-  {{room.roomDetail.propertyDetails.description}}</br>
-  Security Deposit: ${{room.roomDetail.roomDetails.securityDeposit}}</br>
-  Pet Deposit: NA  <!-- {{room.roomDetail.roomDetails.petDeposit}} ? {{room.roomDetail.roomDetails.petDeposit}} : N/A  There is no pets in room_listing or property model --></br>
-  Pets: None  <!-- {{room.roomDetail.propertyDetails.pets}} ? {{room.roomDetail.propertyDetails.pets}} : None  There is no pets in room_listing or property model --></br>
-  Lease Terms:  {{room.roomDetail.roomDetails.leaseType}}</br>
-  Unit bedrooms: {{room.roomDetail.propertyDetails.bedrooms}}</br>
-  Parking: {{room.roomDetail.propertyDetails.parkingSpots}} spots</br>
-  Unit area: {{room.roomDetail.propertyDetails.livingAreaSqFt}} square feet</br>
+  <p>
+    {{room.roomDetail.roomDetails.description}}
+  </p>
+  <ul style="list-style: none"> <!-- Add class in CSS -->
+    <li ng-show="room.roomDetail.roomDetails.securityDeposit">Security Deposit: ${{room.roomDetail.roomDetails.securityDeposit}}</li>
+    <li>Lease Terms:  {{room.roomDetail.roomDetails.leaseType}}</li>
+    <li>Unit bedrooms: {{room.roomDetail.propertyDetails.bedrooms}}</li>
+    <li>Unit bathrooms: {{room.roomDetail.propertyDetails.bathrooms}}</li>
+    <li>Parking: {{room.roomDetail.roomDetails.parkingAvailable}}</li>
+    <li>Furnished: {{room.roomDetail.roomDetails.furnished}}</li>
+    <li>Smoking Allowed: {{room.roomDetail.roomDetails.smokingAllowed}}</li>
+  </ul>
 
 </div>

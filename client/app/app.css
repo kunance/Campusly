@@ -183,8 +183,8 @@ Style for footer
 
 .page-header {
   padding-bottom: 0px;
-  margin: 0px; 
-  border-bottom: none; 
+  margin: 0px;
+  border-bottom: none;
 }
 /* ==========================================================================
 Transparent class for transparent nav-bar
@@ -761,7 +761,7 @@ footer .logo {
   body .my-listings .list-item {
     width: 100%;
     text-align: center;
-  } 
+  }
 
   body .my-listings .list-item .edit span{
     display: block;
@@ -792,7 +792,7 @@ footer .logo {
   body .my-listings .list-item .info .value {
     width: 100%;
   }
-  
+
   body .my-profile .about-me .picture {
     width: 100%;
     text-align: center;
@@ -1230,7 +1230,7 @@ h2.section-title:nth-child(n+2) {
 }
 
 .my-profile .profile h2 small{
-  display: block; 
+  display: block;
   font-size: 0.6em;
 }
 
@@ -1328,7 +1328,7 @@ h2.section-title:nth-child(n+2) {
   background: #f7953d;
   border-radius: 50%;
   width: 2em;
-  height: 2em; 
+  height: 2em;
 }
 
 .my-listings .list-item .bubble i{
@@ -1345,11 +1345,11 @@ h2.section-title:nth-child(n+2) {
   height: 350px;
 }
 
-.my-properties .property .picture {
+.properties .property .picture {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   overflow: hidden;
-  height: 150px;  
+  height: 150px;
   background: #ff0000;
   margin-left: -20px;
   margin-top: -20px;
@@ -1520,7 +1520,7 @@ h2.section-title:nth-child(n+2) {
   margin-bottom: 10px;
 }
 
-.my-profile select[disabled="disabled"] { 
+.my-profile select[disabled="disabled"] {
   display: block;
   border: none;
   background: transparent;
@@ -1656,7 +1656,7 @@ h2.section-title:nth-child(n+2) {
   background: #56bfc3;
   border-radius: 50%;
   width: 40px;
-  height: 40px; 
+  height: 40px;
 }
 
 .my-profile .invitation-box .bubble i{
@@ -1687,7 +1687,7 @@ h2.section-title:nth-child(n+2) {
   background: #f7953d;
   border-radius: 50%;
   min-width: 30px;
-  height: 30px; 
+  height: 30px;
   border: none;
   margin: 5px;
   cursor: pointer;
@@ -1702,11 +1702,11 @@ h2.section-title:nth-child(n+2) {
 }
 
 .bubble.remove{
-  background: rgb(245,27,87); 
+  background: rgb(245,27,87);
 }
 
 .bubble.cancel{
-  background: #ccc; 
+  background: #ccc;
   margin: 0 10px;
 }
 
@@ -1807,3 +1807,8 @@ h2.no-roommate small{
   top: 2px;
 }
 
+
+a.view-all {
+top: -10px;
+position: relative;
+}

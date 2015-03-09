@@ -8,7 +8,7 @@
   MyProfileCtrl.$inject = ['$scope', 'common', '$cookieStore', 'getUserInfo', 'getAddresses', 'getEducations', 'getAllRoommates', 'getAllUsers', 'getPets', 'getVehicles'];
 
   function MyProfileCtrl($scope, common, $cookieStore, getUserInfo, getAddresses, getEducations, getAllRoommates, getAllUsers, getPets, getVehicles) {
-    
+
     var vm = this;
     vm.me = getUserInfo;
     vm.tempMe = Object.create(vm.me);
@@ -18,7 +18,6 @@
     vm.roommates = getAllRoommates; //roomate info, his education info, his address info
     vm.pets = getPets;
     vm.vehicles = getVehicles;
-
     vm.showNewRoomate = false;
     vm.showPetAddonButtons = false;
     vm.showRoommatesAddonButtons = false;
@@ -28,7 +27,7 @@
     angular.forEach(vm.roommates, function (user) {
       user.addressInfo = user.relatedRoommateId.addresshistoryUsers;
     });
-
+    console.log(vm.roommates);
     $scope.datePickers = {
       EducationStartDate: false,
       EducationEndDate:false,
@@ -38,7 +37,7 @@
     };
 
     $scope.format = 'dd.MM.yyyy';
-    
+
     $scope.clear = function () {
       $scope.dt = null;
     };
@@ -73,8 +72,22 @@
       vm.showAddVehicle = false;
     };
 
-    vm.cancelPetAddAddon = function (){
-      vm.showPetAddonButtons = false;
+    vm.cancelPetAddAddon = function (a){
+      if(a){
+      vm.showPetAddonButtons = true;}
+      if(!a){
+      vm.showPetAddonButtons = false;}
+      vm.showAddPet = false;
+      vm.showAddVehicle = false;
+      vm.selectedPet = null;
+      vm.selectedVehicle = null;
+    };
+
+    vm.cancelVehicleAddAddon = function (a){
+      if(a){
+        vm.showPetAddonButtons = true;}
+      if(!a){
+        vm.showPetAddonButtons = false;}
       vm.showAddPet = false;
       vm.showAddVehicle = false;
       vm.selectedPet = null;

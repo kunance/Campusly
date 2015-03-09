@@ -9,7 +9,8 @@
         <div class="row about-me">
           <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
             <div class="picture">
-              <img ng-src="api/images{{myProfile.me.profileImage}}" class="img-circle">
+              <img ng-if="myProfile.me.profileImage" ng-src="api/images{{myProfile.me.profileImage}}" class="img-circle">
+              <i ng-if="!myProfile.me.profileImage" class="fa fa-user" style="font-size:120px"></i>
             </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
@@ -17,25 +18,25 @@
               <dt>Name</dt>
               <dd>{{myProfile.tempMe.firstname}} {{myProfile.tempMe.lastname}} </dd>
               <dt>School</dt>
-              <dd>{{myProfile.education[0].educationCenterName}}</dd>
+              <dd>{{myProfile.education.educationCenterName}}</dd>
               <dt>Year</dt>
-              <dd>{{myProfile.education[0].startDate | date:'yyyy'}}</dd>
+              <dd>{{myProfile.education.startDate | date:'yyyy'}}</dd>
               <dt>Major</dt>
-              <dd>{{myProfile.education[0].major}}</dd>
+              <dd>{{myProfile.education.major}}</dd>
               <dt>About Me</dt>
-              <dd> <p class="quote"> {{myProfile.me.aboutMe}} </p> </dd>
+              <dd> <p class="quote" ng-if="myProfile.me.aboutMe"> {{myProfile.me.aboutMe}}" </p> </dd>
             </dl>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
             <dl>
               <dt>Phone Number</dt>
-              <dd>{{myProfile.me.phone}}</dd>
+              <dd ng-show="myProfile.me.phone">{{myProfile.me.phone}}</dd>
               <dt>Address</dt>
-              <dd>{{myProfile.address[0].streetAddress}}, {{myProfile.address[0].streetNumeric}}</dd>
+              <dd ng-show="myProfile.address.streetAddress">{{myProfile.address.streetAddress.streetAddress}}, {{myProfile.address.streetAddress.streetNumeric}}</dd>
               <dt>City State Zip</dt>
-              <dd>{{myProfile.address[0].city}}, {{myProfile.address[0].state}} - {{myProfile.address[0].zip}} </dd>
+              <dd ng-show="myProfile.address.streetAddress">{{myProfile.address.streetAddress.city}}, {{myProfile.address.streetAddress.state}} - {{myProfile.address.streetAddress.zip}} </dd>
               <dt>Time at address</dt>
-              <dd><span am-time-ago="myProfile.address[0].startDate"></span></dd>
+              <dd><span am-time-ago="myProfile.address.streetAddress.startDate"></span></dd>
             </dl>
           </div>
         </div>
@@ -44,7 +45,7 @@
 
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
           <div class="page-header">
-            <h2> Roomates </h2>
+            <h2> Roommates </h2>
             <a class="bubble edit-profile" ng-click="myProfile.toggleRoommatesAddon()">
               <i class="fa fa-plus" ng-hide="myProfile.showRoommatesAddonButtons"></i>
               <i class="fa fa-minus" ng-show="myProfile.showRoommatesAddonButtons"></i>
@@ -53,9 +54,9 @@
           <div class="white-box roommates">
 
             <div ng-show='myProfile.showRoommatesAddonButtons' class="text-center">
-              <a class="btn btn-primary btn-half-block" ng-click="myProfile.toggleAddRoommate()"> 
+              <a class="btn btn-primary btn-half-block" ng-click="myProfile.toggleAddRoommate()">
                 <i class="fa fa-plus"></i>
-                Add Roommate 
+                Add Roommate
               </a>
               <a class="btn btn-secondary btn-half-block" ng-click="myProfile.toggleInviteRoomate()">
                 <i class="fa fa-envelope"></i>
@@ -67,7 +68,7 @@
             <div ng-show="myProfile.showAddRoommate">
               <a class="bubble cancel" ng-click="myProfile.cancelRoommateAddAddon()"><i class="fa fa-close"></i></a>
               <h3>Search for your Roommate using by email. </h3>
-              
+
               <angucomplete-alt id="members"
               placeholder="Search for roommate"
               pause="400"
@@ -81,26 +82,29 @@
               match-class="redFont"
               clear-selected="true">
               <hr>
-              
+
 
             </div>
-            <h2 class="no-roommate" ng-hide="myProfile.showAddRoommate || myProfile.roommates.length > 0"> 
-              You don't have any roommate yet. 
+            <h2 class="no-roommate" ng-hide="myProfile.showAddRoommate || myProfile.roommates.length > 0">
+              You don't have any roommate yet.
               <small>
-                <a href="" ng-click="myProfile.toggleAddRoommate()">Click here</a> to find and add your rommates.
+                <a href="" ng-click="myProfile.toggleAddRoommate()">Click here</a> to find and add your roommates.
               </small>
             </h2>
             <div class="row roommate" ng-repeat="roommate in myProfile.roommates">
               <div class="col-xs-2">
                 <div class="picture">
-                  <img ng-src="api/images{{roommate.relatedroommateId.profileImage}}" alt="" class="img-circle">
+                  <img ng-if="roommate.relatedRoommateId.profileImage" ng-src="api/images{{roommate.relatedRoommateId.profileImage}}" alt="" class="img-circle">
+                  <i ng-if="!roommate.relatedRoommateId.profileImage" class="fa fa-user" style="font-size:80px"></i>
                 </div>
               </div>
               <div class="col-xs-6 info">
                 <span class="name"> {{roommate.relatedRoommateId.firstname}} {{roommate.relatedRoommateId.lastname}} </span>
                 <span class="email">{{roommate.relatedRoommateId.email}}</span>
-                <span class="university">UNIVERSITY MISSING IN API</span>
-                <span class="city">CITY/STATE MISSING IN API</span>
+                <span class="university" ng-if="roommate.relatedRoommateId.usereducationUsers[0].educationCenterName">{{roommate.relatedRoommateId.usereducationUsers[0].educationCenterName}}</span>
+                <span class="university" ng-if="!roommate.relatedRoommateId.usereducationUsers[0].educationCenterName">User didn't provide education data</span>
+                <span class="city" ng-if="roommate.addressInfo.length">{{roommate.addressInfo[0].zip}} {{roommate.addressInfo[0].city}} / {{roommate.addressInfo[0].state}}</span>
+                <span class="city" ng-if="!roommate.addressInfo.length">User didn't provide address data</span>
               </div>
               <div class="actions col-xs-4">
                 <a class="bubble remove" ng-click="myProfile.removeRoommate(roommate)"><i class="fa fa-trash-o"></i></a>
@@ -121,7 +125,7 @@
           </div>
           <div class="white-box pets">
             <div ng-show='myProfile.showPetAddonButtons' class="text-center">
-              <a class="btn btn-primary btn-half-block" ng-click="myProfile.toggleAddPet()"> 
+              <a class="btn btn-primary btn-half-block" ng-click="myProfile.toggleAddPet()">
                 <i class="fa fa-pet"></i> Add Pet
               </a>
               <a class="btn btn-secondary btn-half-block" ng-click="myProfile.toggleAddVehicle()">
@@ -147,7 +151,7 @@
               <input type="text" id="weight" name="weight" class="form-control" ng-model="addPet.tempPet.weightLbs"/>
               <br>
               <button class="btn btn-primary" ng-click="myProfile.addNewPet(addPet.tempPet)">Add pet</button>
-              <a class="btn btn-default" ng-click="myProfile.cancelAddAddon()">Cancel</i></a>
+              <a class="btn btn-default" ng-click="myProfile.cancelPetAddAddon('a')">Cancel</i></a>
               <hr>
             </form>
 
@@ -171,7 +175,7 @@
 
               <br>
               <button class="btn btn-primary" ng-click="myProfile.addNewVehicle(newVehicle.tempVehicle)">Add Vehicle</button>
-              <a class="btn btn-default" ng-click="myProfile.cancelAddAddon()">Cancel</i></a>
+              <a class="btn btn-default" ng-click="myProfile.cancelVehicleAddAddon('a')">Cancel</i></a>
               <hr>
             </form>
 
@@ -195,7 +199,7 @@
               </div>
               <div class="actions col-xs-4">
                 <a class="bubble" ng-click="myProfile.editPet($index)" ng-show="myProfile.selectedPet != $index"><i class="fa fa-pencil"></i></a>
-                <a class="bubble cancel" ng-click="myProfile.cancelAddAddon()" ng-hide="myProfile.selectedPet != $index"><i class="fa fa-close"></i></a>
+                <a class="bubble cancel" ng-click="myProfile.cancelPetAddAddon()" ng-hide="myProfile.selectedPet != $index"><i class="fa fa-close"></i></a>
                 <a class="bubble" ng-show="myProfile.selectedPet == $index" ng-click="myProfile.savePet(pet)"><i class="fa fa-save"></i></a>
                 <a class="bubble remove" ng-click="myProfile.deletePet(pet)" ng-show="myProfile.selectedPet == $index"><i class="fa fa-trash-o"></i></a>
               </div>
@@ -218,7 +222,7 @@
               </div>
               <div class="actions col-xs-4">
                 <a class="bubble" ng-click="myProfile.editVehicle($index)" ng-show="myProfile.selectedVehicle != $index"><i class="fa fa-pencil"></i></a>
-                <a class="bubble cancel" ng-click="myProfile.cancelAddAddon()" ng-hide="myProfile.selectedVehicle != $index"><i class="fa fa-close"></i></a>
+                <a class="bubble cancel" ng-click="myProfile.cancelVehicleAddAddon()" ng-hide="myProfile.selectedVehicle != $index"><i class="fa fa-close"></i></a>
                 <a class="bubble" ng-show="myProfile.selectedVehicle == $index" ng-click="myProfile.saveVehicle(vehicle)"><i class="fa fa-save"></i></a>
                 <a class="bubble remove" ng-click="myProfile.deleteVehicle(vehicle)" ng-show="myProfile.selectedVehicle == $index"><i class="fa fa-trash-o"></i></a>
               </div>

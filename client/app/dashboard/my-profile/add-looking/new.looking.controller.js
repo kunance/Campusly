@@ -33,7 +33,7 @@ vm.add= function (input) {
  dataservice.addLooking(vm.me.id, input).$promise
    .then(function () {
      common.logger.success('Looking successfully added.');
-     common.$state.go('dashboard',{},{reload:true});
+     common.$state.go('dashboard', {}, {reload: true});
    })
    .catch(function (err) {
      common.logger.error('Error while saving looking.');
