@@ -26,7 +26,7 @@ exports.createPropertyFromCreateRoom = function(propertyDetails, cb) {
 
 /**
  *   TODO after MVP then to ensure data/service model can be different from view model
- *   
+ *
  * @param propertyDetails
  * @param cb
  */

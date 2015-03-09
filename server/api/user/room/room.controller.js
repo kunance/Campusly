@@ -50,7 +50,9 @@ exports.createRoomListing = function(req, res, next) {
 
   var propertyDetails = angular.clone(req.body.property);
 
-  propertyDetails = propertySrv.transView2ModelPropertyDetails(propertyDetails);
+  propertySrv.transView2ModelPropertyDetails(propertyDetails, function(err, transPropertyDetails) {
+    propertyDetails = transPropertyDetails;
+  });
 
   propertySrv.createPropertyFromCreateRoom(propertyDetails, function(error, property) {
 
