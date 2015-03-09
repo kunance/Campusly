@@ -3,106 +3,106 @@
     <div class="col-sm-12">
       <h1>Add new room</h1>
     </div>
-    <div class="col-sm-12" id="room-specifics">
+    <form name="newRoomForm" ng-submit="addNewRoom.create()" novalidate>
+      <div class="col-sm-12" id="room-specifics">
+        <label for="monthlyPrice">Monthly rent</label>
+        <input type="number" id="monthlyPrice" required name="monthlyPrice" class="form-control"  placeholder="monthly price" ng-model="addNewRoom.room.monthlyPrice">
+        <div ng-show="newRoomForm.room.monthlyPrice.$dirty && newRoomForm.room.monthlyPrice.$invalid">
+          <p class="help-block error" >Enter a the monthly rent</p>
+        </div>
 
-      <label for="monthlyPrice">Monthly rent</label>
-      <input type="text" id="monthlyPrice" name="monthlyPrice" class="form-control"  placeholder="monthly price" ng-model="vm.room.monthlyPrice"/>
+        <label for="securityDeposit">Security deposit</label>
+        <input type="currency" id="securityDeposit" required name="securityDeposit" class="form-control"  placeholder="security deposit" ng-model="addNewRoom.room.securityDeposit"/>
 
-      <label for="securityDeposit">Security deposit</label>
-      <input type="text" id="securityDeposit" name="securityDeposit" class="form-control"  placeholder="security deposit" ng-model="vm.room.securityDeposit"/>
+        <label for="monthlyUtilityCost">Monthly utility cost</label>
+        <input type="currency" id="monthlyUtilityCost" required name="monthlyUtilityCost" class="form-control"  placeholder="monthly utility cost" ng-model="addNewRoom.room.monthlyUtilityCost"/>
 
-      <label for="monthlyUtilityCost">Monthly utility cost</label>
-      <input type="currency" id="monthlyUtilityCost" name="monthlyUtilityCost" class="form-control"  placeholder="monthly utility cost" ng-model="vm.room.monthlyUtilityCost"/>
+        <label for="availableMoveIn">Available</label>
+        <input type="date" id="availableMoveIn" required name="availableMoveIn" class="form-control"  placeholder="available move-in" ng-model="addNewRoom.room.availableMoveIn"/>
 
-      <label for="availableMoveIn">Available</label>
-      <input type="date" id="availableMoveIn" name="availableMoveIn" class="form-control"  placeholder="available move-in" ng-model="vm.room.availableMoveIn"/>
+        <label for="leaseEndDate">Lease End Date</label>
+        <input type="date" id="leaseEndDate" required name="monthlyPrice" class="form-control"  placeholder="Lease End Date" ng-model="addNewRoom.room.leaseEndDate"/>
 
-      <label for="leaseEndDate">Lease End Date</label>
-      <input type="text" id="leaseEndDate" name="monthlyPrice" class="form-control"  placeholder="Lease End Date" ng-model="vm.room.leaseEndDate"/>
+        <label for="leaseType">Lease type</label>
+        <select id="leaseType" class="form-control" ng-model="addNewRoom.room.leaseType" required>
+          <option value="sub-lease">Sub-lease</option>
+          <option value="month-to-month">Month to month</option>
+          <option value="lease take over">Lease take over</option>
+        </select>
 
-      <label for="leaseType">Lease type</label>
-      <select id="leaseType" class="form-control" data-ng-model="vm.room.leaseType">
-        <option value="sub-lease">Sub-lease</option>
-        <option value="month-to-month">Month to month</option>
-        <option value="lease take over">Lease take over</option>
-      </select>
+        <label for="gender">Gender preference</label>
+        <select id="gender"class="form-control" ng-model="addNewRoom.room.gender" required>
+          <option value="no preference">no preference</option>
+          <option value="male only">male only</option>
+          <option value="female only">female only</option>
+        </select>
 
-      <label for="gender">Gender preference</label>
-      <select id="gender"class="form-control" data-ng-model="vm.room.gender">
-        <option value="no preference">no preference</option>
-        <option value="male only">male only</option>
-        <option value="female only">female only</option>
-      </select>
+        <label for="roomType">Room type</label>
+        <select id="roomType"class="form-control" ng-model="addNewRoom.room.roomType" required>
+          <option value="single">single</option>
+          <option value="double">double</option>
+          <option value="loft">loft</option>
+          <option value="living room">living room</option>
+        </select>
 
-      <label for="roomType">Room type</label>
-      <select id="roomType"class="form-control" data-ng-model="vm.room.roomType">
-        <option value="single">single</option>
-        <option value="double">double</option>
-        <option value="loft">loft</option>
-        <option value="living room">living room</option>
-      </select>
-
-      <label for="numRoomates">Current number of roommates</label>
-      <input type="number" id="numRoomates" name="numRoomates" class="form-control" ng-model="vm.room.numRoomates"/>
-
-
-      <label for="sharedBath">Shared Bathroom</label>
-      <input type="checkbox" id="sharedBath" name="sharedBath" class="form-control"  placeholder="shared bath" ng-model="vm.room.sharedBath"/>
-
-      <label for="furnished">Furnished</label>
-      <input type="checkbox" id="furnished" name="furnished" class="form-control" ng-model="vm.room.furnished"/>
-
-      <label for="parkingAvailable">Parking available</label>
-      <input type="checkbox" id="parkingAvailable" name="parkingAvailable" class="form-control" ng-model="vm.room.parkingAvailable"/>
-
-      <label for="smokingAllowed">Smoking allowed</label>
-      <input type="checkbox" id="smokingAllowed" name="smokingAllowed" class="form-control" ng-model="vm.room.smokingAllowed"/>
-
-      <label for="roomDescription">Room description</label>
-      <textarea name="roomDescription" id="roomDescription" cols="30" rows="5" data-ng-model="vm.room.description"  class="form-control" ></textarea>
-
-    </div>
-    <div class="col-sm-12">
-
-      <label for="streetNumber">Street Number</label>
-      <input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="vm.property.address.streetNumeric"/>
-
-      <label for="streetAddress">Street Name</label>
-      <input type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="vm.property.address" ng-model="vm.property.address.streetAddress"/>
-
-      <label for="apt">Apt Number</label>
-      <input type="number" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="vm.property.address.apt"/>
-
-      <label for="country">Country</label>
-      <input type="text" id="country" name="country" class="form-control"  placeholder="country" ng-model="vm.property.address.state"/>
-
-      <label for="city">City</label>
-      <input type="text" id="city" name="city" class="form-control"  placeholder="city" ng-model="vm.property.address.city"/>
-
-      <label for="zip">Zip code</label>
-      <input type="number" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="vm.property.address.zip"/>
-
-      <label for="type">Type</label>
-      <select id="type" class="form-control" data-ng-model="vm.property.type">
-        <option value="apt">Apartment</option>
-        <option value="sfh">Single family house</option>
-        <option value="townhouse">Townhouse</option>
-      </select>
-
-      <label for="bedrooms">Bedrooms?</label><br/>
-      <input type="number" id="bedrooms" name="bedrooms" class="form-control"  placeholder="Number of bedrooms" ng-model="vm.property.bedrooms"/>
-
-      <label for="bathrooms">Bathrooms?</label><br/>
-      <input type="number" id="bathrooms" name="bathrooms" class="form-control"  placeholder="Number of bathrooms" ng-model="vm.property.bathrooms"/>
-
-      <br/>
-      <button class="btn btn-primary" ng-click="addNewRoom.create(vm.property, vm.room, vm.picture)">Save new room</button>
-      <button class="btn btn-primary" ui-sref="^">Back to my rooms</button>
-
-    </div>
+        <label for="numRoomates">Current number of roommates</label>
+        <input type="number" id="numRoomates" required name="numRoomates" class="form-control" ng-model="addNewRoom.room.numRoomates" min="1" max="10"/>
 
 
+        <label for="sharedBath">Shared Bathroom</label>
+        <input type="checkbox" id="sharedBath" required name="sharedBath" class="form-control"  placeholder="shared bath" ng-model="addNewRoom.room.sharedBath"/>
 
+        <label for="furnished">Furnished</label>
+        <input type="checkbox" id="furnished" required name="furnished" class="form-control" ng-model="addNewRoom.room.furnished"/>
+
+        <label for="parkingAvailable">Parking available</label>
+        <input type="checkbox" id="parkingAvailable" required name="parkingAvailable" class="form-control" ng-model="addNewRoom.room.parkingAvailable"/>
+
+        <label for="smokingAllowed">Smoking allowed</label>
+        <input type="checkbox" id="smokingAllowed" required name="smokingAllowed" class="form-control" ng-model="addNewRoom.room.smokingAllowed"/>
+
+        <label for="roomDescription">Room description</label>
+        <textarea required name="roomDescription" id="roomDescription" cols="30" rows="5" ng-model="addNewRoom.room.description"  class="form-control" ></textarea>
+
+      </div>
+      <div class="col-sm-12">
+
+        <label for="streetNumber">Street Number</label>
+        <input type="number" id="streetNumber" required name="streetNumber" class="form-control"  placeholder="Street number" address-autocomplete="addNewRoom.property.address" ng-model="addNewRoom.property.address.streetNumeric"/>
+
+        <label for="streetAddress">Street Name</label>
+        <input type="text" id="streetAddress" required name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="addNewRoom.property.address" ng-model="addNewRoom.property.address.streetAddress"/>
+
+        <label for="apt">Apt Number</label>
+        <input type="number" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="addNewRoom.property.address.apt"/>
+
+        <label for="country">Country</label>
+        <input type="text" id="country" required name="country" class="form-control"  placeholder="country" ng-model="addNewRoom.property.address.state"/>
+
+        <label for="city">City</label>
+        <input type="text" id="city" required name="city" class="form-control"  placeholder="city" ng-model="addNewRoom.property.address.city"/>
+
+        <label for="zip">Zip code</label>
+        <input type="number" id="zip" required name="zip" class="form-control"  placeholder="zip code" ng-model="addNewRoom.property.address.zip" ng-trim="true"/>
+
+        <label for="type">Type</label>
+        <select id="type" class="form-control" ng-model="addNewRoom.property.type" required>
+          <option value="apt">Apartment</option>
+          <option value="sfh">Single family house</option>
+          <option value="townhouse">Townhouse</option>
+        </select>
+
+        <label for="bedrooms">Bedrooms?</label><br/>
+        <input type="number" id="bedrooms" required name="bedrooms" class="form-control"  placeholder="Number of bedrooms" ng-model="addNewRoom.property.bedrooms"/>
+
+        <label for="bathrooms">Bathrooms?</label><br/>
+        <input type="number" id="bathrooms" required name="bathrooms" class="form-control"  placeholder="Number of bathrooms" ng-model="addNewRoom.property.bathrooms"/>
+
+        <br/>
+        <button class="btn btn-primary" ng-disabled="newRoomForm.$invalid && newRoomForm.$dirty">Save new room</button>
+        <button class="btn btn-primary" ui-sref="^">Back to my rooms</button>
+      </div>
+    </form>
   </div>
-  <pre>{{vm.room | json}}</pre>
+  <pre>{{rooms | json}}</pre>
 </div>
