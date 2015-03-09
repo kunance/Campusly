@@ -1,6 +1,7 @@
 var sqldb = require('../../../sqldb');
-// var Room = sqldb.model('roomListing');
 var RoomListing = sqldb.model('roomListing');
+var Property = sqldb.model('property');
+var propertySrv = require('../../../services/property.service');
 
 
 
@@ -30,10 +31,14 @@ function respondWith(res, statusCode) {
 
 
 /**
- *   This creates room in room_listing table
+ *   This creates room in room_listing table and a property in the property table
+ *
+ *   In the future, allow adding a room to an exiting property using exitingPropertyId
  *
  *
- * @param req   { propertyId: 'string',  monthlyPrice: float  [smokingAllowed]: true|false, {//TODO finish documentation }  }
+ * @param req   request body parameters for both a room and property model:
+ *
+ * { room: roomObject, property: propertyObj, exitingPropertyId }
  *
  *
  * @param res
@@ -43,16 +48,27 @@ exports.createRoomListing = function(req, res, next) {
 
   console.log("Creating new room listing: ", req.body);
 
-  res.json({});
+  var propertyDetails = angular.clone(req.body.property);
 
-  //var newRoomListing = RoomListing.build(req.body);
-  //
-  ////TODO rework/research the catching of the error from sequelize and handling of it
-  //newRoomListing.save()
-  //  .then(function(room) {
-  //    res.json({ room: room });
-  //  })
-  //  .catch(validationError(res));
+  propertySrv.createPropertyFromCreateRoom(propertyDetails, function(error, property) {
+
+    if(!error) {
+      var roomDetails = angular.copy(req.body.room);
+      roomDetails.propertyId = property.id;
+
+      var newRoom = RoomListing.build(roomDetails);
+      newRoom.save()
+        .then(function(roomListing) {
+
+          //TODO figure out what to return
+          res.json({});
+
+        }).catch(cb({statusCode: 422}, null));
+    }
+    else {
+      res.json(error.statusCode);
+    }
+  });
 };
 
 
