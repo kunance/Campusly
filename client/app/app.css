@@ -183,6 +183,7 @@ Style for footer
 
 .page-header {
   padding-bottom: 0px;
+  padding-left: 2em;
   margin: 0px;
   border-bottom: none;
 }
@@ -1881,3 +1882,38 @@ a.view-all {
 .rooms .slick-dots {
   left: 45px;
 }
+
+/* Looking */
+
+.lookings .looking .picture {
+  margin-top: 10px;
+}
+
+.lookings .looking .picture img{
+  width: 9em;
+  height: 9em;
+  margin: 0 auto;
+  border: 5px solid #56bfc3;
+}
+
+.lookings .looking h4{
+  font-weight: bold;
+}
+
+.lookings .looking {
+  text-align: center;
+}
+
+.lookings .looking ul.specs{
+  text-align: left; 
+  list-style: none;
+}
+
+.lookings .looking ul.specs li{
+  margin-left: 0px;
+}
+
+.lookings .looking ul.specs li i{
+  width: 20px;
+}
+
