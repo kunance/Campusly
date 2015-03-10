@@ -183,7 +183,6 @@ Style for footer
 
 .page-header {
   padding-bottom: 0px;
-  padding-left: 2em;
   margin: 0px;
   border-bottom: none;
 }
@@ -1917,3 +1916,90 @@ a.view-all {
   width: 20px;
 }
 
+
+
+/* Room Detail */
+
+.room-detail .highlights .picture img {
+  display: block;
+  width: 100%;
+  border-radius: 3px;
+  margin: 0 auto;
+}
+
+.room-detail .highlights .details .value {
+  color: #000000;
+  font-weight: bold;
+  border-bottom: 3px solid #f7953d;
+  width: 120px;
+  margin-bottom: 20px;
+  font-size: 1.2em;
+}
+
+.room-detail .highlights .details {
+  text-align: center;
+}
+.room-detail .highlights .details .address { 
+  display: block;
+  color: #000;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.room-detail .highlights .details .address .distance{
+  display: block;
+  display: #e8e8e8;
+  font-size: 0.8em;
+}
+
+.room-detail .highlights .distances {
+  margin: 20px 0;
+}
+.room-detail .highlights .distances a.distance-bubble {
+  background: #e8e8e8;
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 10px;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.room-detail .highlights .distances a.distance-bubble:first-child {
+  margin-left: 0px;
+}
+
+.room-detail .highlights .distances a.distance-bubble i {
+  display: block;
+}
+
+.room-detail .highlights table.specs {
+  width: 100%;
+  border: 1px solid #e8e8e8;
+  margin-top: 10px;
+}
+.room-detail .highlights table.specs td{
+  border: 1px solid #e8e8e8;
+  padding: 6px 12px;
+  text-align: left;
+}
+
+.room-detail .details h3 {
+  font-weight: bold;
+  color: #000;
+}
+
+.room-detail .details dl.specs{
+  padding: 0.5em;
+}
+.room-detail .details dl.specs dt{
+  float: left;
+  clear: left;
+}
+
+.room-detail .details dl.specs dd{
+  color: #000;
+  font-weight: bold;
+  padding-left: 10px;
+}
