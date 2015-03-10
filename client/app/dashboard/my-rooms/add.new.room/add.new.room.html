@@ -107,7 +107,7 @@
         <input type="number" id="bathrooms" required name="bathrooms" class="form-control"  placeholder="Number of bathrooms" ng-model="vm.property.bathrooms"/>
 
         <br/>
-        <button class="btn btn-primary" ng-disabled="addNewRoomForm.$invalid && addNewRoomForm.$dirty">Save new room</button>
+        <button class="btn btn-primary" ng-disabled="addNewRoomForm.$invalid ">Save new room</button> <!-- && addNewRoomForm.$dirty-->
         <button class="btn btn-primary" ui-sref="^">Back to my rooms</button>
       </div>
     </form>
