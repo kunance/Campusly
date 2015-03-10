@@ -34,27 +34,28 @@ exports.createRoomListing = function(req, res, next) {
     propertyDetails = transPropertyDetails;
   });
 
-  //propertySrv.createPropertyFromCreateRoom(propertyDetails, function(error, property) {
-  //
-  //  if(!error) {
-  //    var viewRoomDetails = angular.copy(req.body.room);
-  //    viewRoomDetails.propertyId = property.id;
-  //
-  //    var roomDetails = transView2ModelRoomDetails(viewRoomDetails);
-  //
-  //    var newRoom = RoomListing.build(roomDetails);
-  //    newRoom.save()
-  //      .then(function(roomListing) {
-  //
-  //        //TODO figure out what to return
-  //        res.json({});
-  //
-  //      }).catch(cb({statusCode: 422}, null));
-  //  }
-  //  else {
-  //    res.json(error.statusCode);
-  //  }
-  //});
+  propertySrv.createPropertyFromCreateRoom(propertyDetails, function(error, property) {
+
+    if(!error) {
+      //var viewRoomDetails = angular.copy(req.body.room);
+      //viewRoomDetails.propertyId = property.id;
+      //
+      //var roomDetails = transView2ModelRoomDetails(viewRoomDetails);
+      //
+      //var newRoom = RoomListing.build(roomDetails);
+      //newRoom.save()
+      //  .then(function(roomListing) {
+      //
+      //    //TODO figure out what to return
+      //    res.json({});
+      //
+      //  }).catch(cb({statusCode: 422}, null));
+      res.json({});
+    }
+    else {
+      res.json(error.statusCode);
+    }
+  });
   res.json({});
 };
 

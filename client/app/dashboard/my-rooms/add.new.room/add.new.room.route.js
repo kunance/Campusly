@@ -12,7 +12,8 @@
         url: '/addNewRooom',
         templateUrl: 'app/dashboard/my-rooms/add.new.room/add.new.room.html',
         controller: 'AddNewRoomCtrl',
-        controllerAs:'addNewRoom',
+        controllerAs:'vm',
+        bindToController: true,
         authenticate: true
       });
   }

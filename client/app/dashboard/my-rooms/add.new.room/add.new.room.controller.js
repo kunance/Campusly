@@ -24,41 +24,22 @@
 
     vm.create = function () {
 
-      if(property.$valid && room.$valid) {
-        //var zip = property.address.zip.toString();
-        //var trimmedZip = zip.replace(/\s+/g, '');
-        //property.address.zip = Number(trimmedZip);
-        property.address.latitude = property.address.location.latitude;
-        property.address.longitude = property.address.location.longitude;
-        room.creatorId = vm.me.id;
+      //console.log('Room from ctrl: ', vm.room);
+      //console.log('Property from ctrl: ', vm.property);
 
-        RoomListing.addRoomListing(vm.me.id, {room: room, property: property}).$promise.then(function () {
-           $state.go('rooms');
+
+   //   if(vm.property.$valid && vm.room.$valid) {
+        vm.room.creatorId = vm.me.id;
+
+        RoomListing.create( { userId: vm.me.id}, {room: vm.room, property: vm.property}).$promise.then(function () {
+          // $state.go('rooms');
         }, function (err) {
           console.log('error while saving property', err);
         });
-      }
+    //  }
 
     }
 
-    //vm.create = function (property, room, picture) {
-    //
-    //  if(property.$valid && room.$valid) {
-    //    var zip = property.address.zip.toString();
-    //    var trimmedZip = zip.replace(/\s+/g, '');
-    //    property.address.zip = Number(trimmedZip);
-    //    property.address.latitude = property.address.location.latitude;
-    //    property.address.longitude = property.address.location.longitude;
-    //    room.creatorId = vm.me.id;
-    //
-    //    RoomListing.addRoomListing(vm.me.id, {room: room, property: property}).$promise.then(function () {
-    //      $state.go('rooms');
-    //    }, function (err) {
-    //      console.log('error while saving property', err);
-    //    });
-    //  }
-    //
-    //}
 
     vm.data = {
       url:'/api/images',
