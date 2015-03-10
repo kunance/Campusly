@@ -21,7 +21,7 @@ exports.createPropertyFromCreateRoom = function(propertyDetails, cb) {
 
   var newProperty = Property.build(propertyDetails);
 
-  console.log('Property after building: ', newProperty);
+//  console.log('Property after building: ', newProperty);
 
   newProperty.save()
     .then(function(property) {

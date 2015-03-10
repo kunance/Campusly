@@ -58,7 +58,7 @@
 
 
         <label for="sharedBath">Shared Bathroom</label>
-        <input type="checkbox" id="sharedBath" required name="sharedBath" class="form-control"  placeholder="shared bath" ng-model="vm.room.sharedBath"/>
+        <input type="checkbox" id="sharedBath" required name="sharedBath" class="form-control"  placeholder="shared bath" ng-model="vm.room.sharedBathroom"/>
 
         <label for="furnished">Furnished</label>
         <input type="checkbox" id="furnished" required name="furnished" class="form-control" ng-model="vm.room.furnished"/>
@@ -113,5 +113,5 @@
       </div>
     </form>
   </div>
-  <pre>{{[vm.room., vm.property] | json}}</pre>
+  <pre>{{[vm.room, vm.property] | json}}</pre>
 </div>

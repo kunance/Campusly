@@ -48,12 +48,13 @@ exports.createRoomListing = function(req, res, next) {
         newRoom.save()
           .then(function(roomListing) {
 
-            //TODO figure out what to return
-            res.json({});
+            res.json(roomListing);
 
           }).catch(function(errors) {
+
             console.log(errors);
             res.json(500);
+
           });
       }
       else {
