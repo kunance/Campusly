@@ -5,9 +5,9 @@
     .module('app.dashboard')
     .controller('AddNewRoomCtrl',AddNewRoomCtrl);
 
-  AddNewRoomCtrl.$inject = ['$scope','FileUploader', 'common', '$state', 'RoomListing'];
+  AddNewRoomCtrl.$inject = ['$scope', 'common', '$state', 'RoomListing'];
 
-  function AddNewRoomCtrl($scope, FileUploader, common, $state, RoomListing) {
+  function AddNewRoomCtrl($scope, common, $state, RoomListing) {
 
     /* jshint validthis: true */
     var vm = this;
@@ -16,46 +16,25 @@
     vm.property = {};
 
     vm.me = common.Auth.getCurrentUser();
-    vm.uploader = new FileUploader();
-    vm.uploader.url = '/api/images';
-    vm.uploader.onSuccessItem = function (itm,res,status,header) {
-      vm.me.profileImage =res.saved;
-    };
 
     vm.create = function () {
 
       //console.log('Room from ctrl: ', vm.room);
       //console.log('Property from ctrl: ', vm.property);
 
-
    //   if(vm.property.$valid && vm.room.$valid) {
         vm.room.creatorId = vm.me.id;
 
-        RoomListing.create( { userId: vm.me.id}, {room: vm.room, property: vm.property}).$promise.then(function () {
-          // $state.go('rooms');
-        }, function (err) {
-          console.log('error while saving property', err);
-        });
+        RoomListing.create( { userId: vm.me.id}, {room: vm.room, property: vm.property}).$promise.then(
+          function (roomListing) {
+            $state.go('editRoom/:' + roomListing.id);
+          }, function (errors) {
+            //TODO need a general error handling banner or scheme to broadcast a message on
+            console.log('error(s) while saving room listing', errors);
+          });
     //  }
 
-    }
-
-
-    vm.data = {
-      url:'/api/images',
-      successCallback: successCallback,
-      errorCallback: errorCallback
     };
-
-    function successCallback(file, resp) {
-      console.log(file);
-      common.logger.success('Image '+file._file.name+' uploaded');
-    }
-
-    function errorCallback() {
-      common.logger.error('Error while uploading '+file._file.name+' image');
-    }
-
   }
 
 }());

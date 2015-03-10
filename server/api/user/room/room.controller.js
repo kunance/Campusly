@@ -51,7 +51,7 @@ exports.createRoomListing = function(req, res, next) {
           }).catch(function(errors) {
 
             console.log(errors);
-            res.json(500);
+            res.status(500).json(errors);
 
           });
       }
@@ -73,6 +73,8 @@ exports.createRoomListing = function(req, res, next) {
  * @param next
  */
 exports.getRoomListing = function(req, res, next) {
+
+  console.log("getRoomListing room listing id: ",  req.params.id);
 
   RoomListing.find({where: { id: req.params.id, creatorId: req.params.userId }})
     .then(function(roomListing) {
