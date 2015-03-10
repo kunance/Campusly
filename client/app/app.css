@@ -367,6 +367,7 @@ Medium Rented button
 .btn-rented-medium {
   font-size: 14px;
   border-radius: 25px;
+  border: none;
   font-weight: 600;
   width: 140px;
   height: 40px;
@@ -394,12 +395,12 @@ Medium Rented button - secondary color
 /* ==========================================================================
 Medium Rented button - hover and active
 ========================================================================== */
-.btn-rented-medium:hover {
+.btn-rented-medium.primary:hover {
   background-color: #e4e4e4;
   color: #000000;
 }
 
-.btn-rented-medium:active {
+.btn-rented-medium.primary:active {
   background-color: #000000;
   color: #FFFFFF;
 }
@@ -761,6 +762,7 @@ footer .logo {
   body .my-listings .list-item {
     width: 100%;
     text-align: center;
+    min-height: 300px;
   }
 
   body .my-listings .list-item .edit span{
@@ -780,7 +782,6 @@ footer .logo {
     text-align: center;
     position: relative;
     right: 0;
-    margin-top: 20px;
   }
 
   body .my-listings .list-item .info {
@@ -1441,13 +1442,14 @@ h2.section-title:nth-child(n+2) {
   transform: rotateY(180deg);
 }
 
-.back h2 {
+.back a {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
   text-decoration: underline;
+  color: #fff;
 }
-.back h2 a {
+.back a h2 {
   color: #fff;
 }
 

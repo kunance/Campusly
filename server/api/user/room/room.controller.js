@@ -1,39 +1,24 @@
 var sqldb = require('../../../sqldb');
-// var Room = sqldb.model('roomListing');
 var RoomListing = sqldb.model('roomListing');
+var Property = sqldb.model('property');
+var propertySrv = require('../../../services/property.service');
+var _ = require('lodash');
 
 
 
-
-
-var validationError = function(res, statusCode) {
-  statusCode = statusCode || 422;
-  return function(err) {
-    console.log(err);
-    res.json(statusCode, err);
-  };
-};
-
-function handleError(res, statusCode) {
-  statusCode = statusCode || 500;
-  return function(err) {
-    res.send(statusCode, err);
-  };
+function transView2ModelRoomDetails(viewRoomDetails) {
+  return _.clone(viewRoomDetails);
 }
-function respondWith(res, statusCode) {
-  statusCode = statusCode || 200;
-  return function() {
-    res.send(statusCode);
-  };
-}
-
-
 
 /**
- *   This creates room in room_listing table
+ *   This creates room in room_listing table and a property in the property table
+ *
+ *   In the future, allow adding a room to an exiting property using exitingPropertyId
  *
  *
- * @param req   { propertyId: 'string',  monthlyPrice: float  [smokingAllowed]: true|false, {//TODO finish documentation }  }
+ * @param req   request body parameters for both a room and property model:
+ *
+ * { room: roomObject, property: propertyObj, exitingPropertyId }
  *
  *
  * @param res
@@ -43,16 +28,34 @@ exports.createRoomListing = function(req, res, next) {
 
   console.log("Creating new room listing: ", req.body);
 
-  res.json({});
+  var propertyDetails = _.clone(req.body.property);
 
-  //var newRoomListing = RoomListing.build(req.body);
+  propertySrv.transView2ModelPropertyDetails(propertyDetails, function(err, transPropertyDetails) {
+    propertyDetails = transPropertyDetails;
+  });
+
+  //propertySrv.createPropertyFromCreateRoom(propertyDetails, function(error, property) {
   //
-  ////TODO rework/research the catching of the error from sequelize and handling of it
-  //newRoomListing.save()
-  //  .then(function(room) {
-  //    res.json({ room: room });
-  //  })
-  //  .catch(validationError(res));
+  //  if(!error) {
+  //    var viewRoomDetails = angular.copy(req.body.room);
+  //    viewRoomDetails.propertyId = property.id;
+  //
+  //    var roomDetails = transView2ModelRoomDetails(viewRoomDetails);
+  //
+  //    var newRoom = RoomListing.build(roomDetails);
+  //    newRoom.save()
+  //      .then(function(roomListing) {
+  //
+  //        //TODO figure out what to return
+  //        res.json({});
+  //
+  //      }).catch(cb({statusCode: 422}, null));
+  //  }
+  //  else {
+  //    res.json(error.statusCode);
+  //  }
+  //});
+  res.json({});
 };
 
 
@@ -122,6 +125,39 @@ exports.deleteRoomListing = function(req, res, next) {
   //});
 
 };
+//
+//Creating new room listing:  { room:
+//{ monthlyPrice: '100',
+//  securityDeposit: '100',
+//  monthlyUtilityCost: '100',
+//  availableMoveIn: '2015-03-02',
+//  leaseEndDate: '03/01/2016',
+//  leaseType: 'month-to-month',
+//  gender: 'no preference',
+//  roomType: 'single',
+//  numRoomates: 3,
+//  sharedBath: true,
+//  furnished: true,
+//  parkingAvailable: true,
+//  smokingAllowed: true,
+//  description: 'cool room',
+//  creatorId: '17' },
+//  property:
+//  { address:
+//  { full: '1290 Parkmoor Ave, San Jose, CA 95126, USA',
+//    streetNumeric: 1290,
+//    streetAddress: 'Parkmoor Ave',
+//    city: 'San Jose',
+//    country: 'United States',
+//    state: 'US',
+//    zip: 95126,
+//    location: [Object],
+//    latitude: 37.3161403,
+//    longitude: -121.91009730000002 },
+//    type: 'apt',
+//      bedrooms: 5,
+//    bathrooms: 2 } }
+
 
 
 

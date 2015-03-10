@@ -61,7 +61,7 @@
     vm.breakpoints = {
       availableRooms: [
       {
-        breakpoint: 1200,
+        breakpoint: 1224,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3

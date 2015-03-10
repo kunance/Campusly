@@ -10,7 +10,7 @@ To modify this model:
 3. Use utility methods to easily access orm properties.
 
 "use strict";
-var orm     = require('models\index.js'),
+var orm     = require('temp_models/index.js'),
     model   = require('./address_history.js'),
     util    = require('./utils.js')(model),
     Seq     = orm.Sequelize();
@@ -28,7 +28,7 @@ module.exports = {
     modelName: "addressHistory",
     options: {
         tableName: "address_history",
-        //schema: "public",
+    //    schema: "public",
         timestamps: false
     },
     attributes: {
@@ -70,17 +70,18 @@ module.exports = {
             allowNull: false
         },
         "latitude": {
-          type: Seq.DECIMAL(10, 8),
-          field: "latitude"
+            type: Seq.DECIMAL(10, 8),
+            field: "latitude",
+            allowNull: false
         },
         "longitude": {
-          type: Seq.DECIMAL(11, 8),
-          field: "longitude"
+            type: Seq.DECIMAL(11, 8),
+            field: "longitude",
+            allowNull: false
         },
         "startDate": {
             type: Seq.DATE,
-            field: "startDate",
-            allowNull: false
+            field: "startDate"
         },
         "endDate": {
             type: Seq.DATE,
