@@ -17,12 +17,12 @@
     vm.tempEducation = getEducations;
 
     if(vm.tempAddress.streetAddress){
-    var AddressStatus = vm.tempAddress.streetAddress;
-    var addressId=AddressStatus.id;
+      var AddressStatus = vm.tempAddress.streetAddress;
+      var addressId=AddressStatus.id;
     }
     if(vm.tempEducation.educationCenterName){
-    var EducationStatus = vm.tempEducation.educationCenterName;
-    var educationId = vm.tempEducation.id;
+      var EducationStatus = vm.tempEducation.educationCenterName;
+      var educationId = vm.tempEducation.id;
     }
     vm.me = common.Auth.getCurrentUser();
     vm.tempMe = Object.create(vm.me);
@@ -44,9 +44,9 @@
       if(userDataForm.$valid) {
         common.Auth.updateUser(vm.tempMe)
         .then(function (user) {
-           common.Auth.setCurrentUser(user);
-          common.logger.success('Personal data successfully changed.');
-        })
+         common.Auth.setCurrentUser(user);
+         common.logger.success('Personal data successfully changed.');
+       })
         .catch(function (err) {
           common.logger.error('Something went wrong. Changes are not saved.');
         });
@@ -74,6 +74,8 @@
     function saveEducation (input) {
       input.universityId = input.educationCenterName.id;
       input.educationCenterName = input.educationCenterName.name;
+      console.log("xx");
+      console.log(input.educationCenterName);
       if(EducationStatus){
         common.dataservice.editEducation(vm.me.id, educationId, input, function () {
           common.logger.success('Education successfully updated');

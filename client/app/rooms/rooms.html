@@ -1,14 +1,15 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
 <div class="main-wrapper">
-  <div class="container available-rooms">
+  <div class="container rooms">
     <div class="row">
       <div class="page-header">
         <h2> Available Rooms   need selection sorted by (newest, price, my rooms)  since sort by newest is default</h2>
       </div>
-      <!--<slick dots="true" class="slider row" init-onload="true" data="rooms.availableRooms" slides-to-show="4" slides-to-scroll="4" responsive="rooms.breakpoints.availableRooms">-->
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 room" ng-repeat="room in rooms.availableRooms">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <slick dots="true" class="slider" init-onload="true" data="rooms.groups" slides-to-show="1" slides-to-scroll="1" >
+        <div ng-repeat="group in rooms.groups" class="row">
+          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 room" ng-repeat="room in group">
             <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
               <div class="flipper">
                 <div class="front white-box">
@@ -34,7 +35,8 @@
             </div>
           </div>
         </div>
-      <!--</slick>-->
+      </slick>
+      </div>
     </div>
   </div>
 </div>
