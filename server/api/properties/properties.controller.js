@@ -13,7 +13,7 @@ var jwt = require('jsonwebtoken');
 var validationError = function(res, statusCode) {
   statusCode = statusCode || 422;
   return function(err) {
-    console.log(err);
+  //  console.log(err);
     res.status(statusCode, err);
   };
 };

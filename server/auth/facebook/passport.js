@@ -1,5 +1,6 @@
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
+var http = require('http');
 
 exports.setup = function(User, config) {
   passport.use(new FacebookStrategy({
@@ -31,7 +32,6 @@ exports.setup = function(User, config) {
             salt:'temporary'
           });
           delete user.dataValues.id;
-          console.log('ovo je user', user);
           user.save()
             .then(function(user) {
               return done(null, user);

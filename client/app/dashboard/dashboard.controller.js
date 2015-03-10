@@ -7,9 +7,9 @@
   .controller('DashboardCtrl',DashboardCtrl);
 
 
-  DashboardCtrl.$inject=['common', '$scope', '$http', 'getUserLookings', 'allLooking', 'universityData', 'RoomListingView', 'distanceCalculator'];
+  DashboardCtrl.$inject=['common', '$scope', '$http', 'getUserLookings', 'allLooking', 'universityData', 'RoomListingView', 'distanceCalculator', 'getAllRooms'];
 
-  function DashboardCtrl(common, $scope, $http, getUserLookings, allLooking, universityData, RoomListingView, distanceCalculator) {
+  function DashboardCtrl(common, $scope, $http, getUserLookings, allLooking, universityData, RoomListingView, distanceCalculator, getAllRooms) {
 
     var vm = this;
     var Auth = common.Auth;
@@ -31,7 +31,7 @@
     });
 
 
-    vm.availableRooms = RoomListingView.query({}, function() {});
+    vm.availableRooms = getAllRooms;
 
     vm.lookingRoom = allLooking;
 

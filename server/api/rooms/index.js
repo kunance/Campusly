@@ -11,7 +11,7 @@ var router = express.Router();
  *  @see documentation in the rooms controller
  *
  */
-router.get('/', controller.getAllRoomListings);
+router.get('/all', controller.getAllRoomListings);
 
 
 /**

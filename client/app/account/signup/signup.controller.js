@@ -15,7 +15,6 @@
     vm.user = {};
     vm.user.confirmPassword = '';
     vm.errors = {};
-
     $scope.$parent.seo = {
       pageTitle:'Rented Sign-up',
       pageDescription:'sign-up for rented for free'

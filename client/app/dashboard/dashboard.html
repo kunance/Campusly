@@ -24,7 +24,7 @@
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
           <h2 class="section-title"> Available Rooms</h2>
           <div class="white-box available-rooms">
-            <slick dots="true" class="slider row" init-onload="true" data="dashboard.availableRooms" slides-to-show="3" slides-to-scroll="3" infinite="true" responsive="dashboard.breakpoints.availableRooms">
+            <slick dots="true" class="slider row" init-onload="true" data="dashboard.availableRooms" slides-to-show="3" slides-to-scroll="3" infinite="true" responsive="dashboard.breakpoints.availableRooms" ng-if="dashboard.availableRooms.length">
               <!-- start room box -->
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 room" ng-repeat="room in dashboard.availableRooms track by $index">
                 <a ui-sref="roomDetail({id: room.roomDetails.id})">
@@ -139,14 +139,14 @@
             <!--</slick>-->
             <!--<hr>-->
           <!--</div>-->
-
 <!--my lookings just to showcase-->
           <h2 class="section-title"> My Posts</h2>
           <div class="white-box my-listings" >
             <h2 ng-if="!dashboard.userLookings.length" >
-              You don't have posted lookings yet.
+              You don't have anything posted yet.
               <small>
                 <a ui-sref="dashboard.myProfile.addNewLooking"><br/>Click here</a> to add looking.
+                <a ui-sref="dashboard.addNewRoom"><br/>Click here</a> to add room.
               </small>
             </h2>
             <slick dots="true" class="slider row" slides-to-show="1" slides-to-scroll="1" ng-if="dashboard.userLookings.length">
