@@ -174,7 +174,7 @@ Style for footer
 }
 
 .footer img {
-  margin-top: -7px;
+  margin-top: -3px;
 }
 
 .footer .link {
@@ -557,6 +557,14 @@ Square box for image with drop shadow
   -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 }
 
+/* ==========================================================================
+Brand text
+========================================================================== */
+
+.brand-text {
+  color: #ffffff;
+  padding-left: 10px;
+}
 
 /* ==========================================================================
 For mailchimp sign-up - not needed in main app
