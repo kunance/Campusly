@@ -7,9 +7,9 @@
       <div class="col-sm-12" id="room-specifics">
         <label for="monthlyPrice">Monthly rent</label>
         <input type="number" id="monthlyPrice" name="monthlyPrice" required class="form-control"  placeholder="monthly price" ng-model="vm.room.monthlyPrice">
-        <!--<div ng-show="addNewRoomForm.monthlyPrice.$dirty && addNewRoomForm.monthlyPrice.$invalid">-->
-          <!--<p class="help-block error" >Enter a the monthly rent</p>-->
-        <!--</div>-->
+        <div ng-show="addNewRoomForm.monthlyPrice.$dirty && addNewRoomForm.monthlyPrice.$invalid">
+          <p class="help-block error" >Enter a the monthly rent</p>
+        </div>
         <!--<div ng-show="addNewRoomForm.$invalid">-->
           <!--Ctrl Monthly Price: {{vm.room.monthlyPrice}}</br>-->
           <!--Form Pristine:  {{addNewRoomForm.$pristine}}</br>-->
@@ -107,8 +107,7 @@
         <input type="number" id="bathrooms" required name="bathrooms" class="form-control"  placeholder="Number of bathrooms" ng-model="vm.property.bathrooms"/>
 
         <br/>
-        <!--<button class="btn btn-primary" ng-disabled="newRoomForm.$invalid && newRoomForm.$dirty">Save new room</button>-->
-        <button class="btn btn-primary">Save new room</button>
+        <button class="btn btn-primary" ng-disabled="addNewRoomForm.$invalid && addNewRoomForm.$dirty">Save new room</button>
         <button class="btn btn-primary" ui-sref="^">Back to my rooms</button>
       </div>
     </form>
