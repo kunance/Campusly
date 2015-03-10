@@ -17,15 +17,19 @@ exports.createPropertyFromCreateRoom = function(propertyDetails, cb) {
   propertyDetails.createdAt = new Date();
 
 
-  console.log('Property details: ', propertyDetails);
+//  console.log('Property details: ', propertyDetails);
 
   var newProperty = Property.build(propertyDetails);
+
+  console.log('Property after building: ', newProperty);
+
+
   newProperty.save()
     .then(function(property) {
       cb(null, property);
-    }).catch( function(err) {
-      console.log(err);
-      cb({statusCode: 422}, null);
+    }).catch( function(errors) {
+      console.log(errors);
+      cb({statusCode: 500}, null);
     });
 };
 

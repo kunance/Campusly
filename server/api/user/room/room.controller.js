@@ -7,7 +7,9 @@ var _ = require('lodash');
 
 
 function transView2ModelRoomDetails(viewRoomDetails) {
-  return _.clone(viewRoomDetails);
+  viewRoomDetails.gender = '"no preference"';
+  return viewRoomDetails;
+  // return _.clone(viewRoomDetails);
 }
 
 /**
@@ -26,35 +28,40 @@ function transView2ModelRoomDetails(viewRoomDetails) {
  */
 exports.createRoomListing = function(req, res, next) {
 
-  console.log("Creating new room listing: ", req.body);
+//  console.log("Creating new room listing: ", req.body);
 
   var propertyDetails = _.clone(req.body.property);
 
   propertySrv.transView2ModelPropertyDetails(propertyDetails, function(err, transPropertyDetails) {
+
     propertyDetails = transPropertyDetails;
-  });
 
-  propertySrv.createPropertyFromCreateRoom(propertyDetails, function(error, property) {
+    propertySrv.createPropertyFromCreateRoom(propertyDetails, function (error, property) {
 
-    if(!error) {
-      //var viewRoomDetails = angular.copy(req.body.room);
-      //viewRoomDetails.propertyId = property.id;
-      //
-      //var roomDetails = transView2ModelRoomDetails(viewRoomDetails);
-      //
-      //var newRoom = RoomListing.build(roomDetails);
-      //newRoom.save()
-      //  .then(function(roomListing) {
-      //
-      //    //TODO figure out what to return
-      //    res.json({});
-      //
-      //  }).catch(cb({statusCode: 422}, null));
-      res.json({});
-    }
-    else {
-      res.json(error.statusCode);
-    }
+      if (!error) {
+
+        var viewRoomDetails = _.clone(req.body.room);
+        viewRoomDetails.propertyId = 2;
+
+        var roomDetails = transView2ModelRoomDetails(viewRoomDetails);
+        roomDetails.createdAt = new Date();
+
+        var newRoom = RoomListing.build(roomDetails);
+        newRoom.save()
+          .then(function(roomListing) {
+
+            //TODO figure out what to return
+            res.json({});
+
+          }).catch(function(errors) {
+            console.log(errors);
+            res.json(500);
+          });
+      }
+      else {
+        res.json(error.statusCode);
+      }
+    });
   });
 };
 
@@ -125,38 +132,7 @@ exports.deleteRoomListing = function(req, res, next) {
   //});
 
 };
-//
-//Creating new room listing:  { room:
-//{ monthlyPrice: '100',
-//  securityDeposit: '100',
-//  monthlyUtilityCost: '100',
-//  availableMoveIn: '2015-03-02',
-//  leaseEndDate: '03/01/2016',
-//  leaseType: 'month-to-month',
-//  gender: 'no preference',
-//  roomType: 'single',
-//  numRoomates: 3,
-//  sharedBath: true,
-//  furnished: true,
-//  parkingAvailable: true,
-//  smokingAllowed: true,
-//  description: 'cool room',
-//  creatorId: '17' },
-//  property:
-//  { address:
-//  { full: '1290 Parkmoor Ave, San Jose, CA 95126, USA',
-//    streetNumeric: 1290,
-//    streetAddress: 'Parkmoor Ave',
-//    city: 'San Jose',
-//    country: 'United States',
-//    state: 'US',
-//    zip: 95126,
-//    location: [Object],
-//    latitude: 37.3161403,
-//    longitude: -121.91009730000002 },
-//    type: 'apt',
-//      bedrooms: 5,
-//    bathrooms: 2 } }
+
 
 
 
