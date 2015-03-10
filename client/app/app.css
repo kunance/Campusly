@@ -832,6 +832,41 @@ footer .logo {
 }
 
 /* ==========================================================================
+From main.css
+========================================================================== */
+
+.thing-form {
+  margin: 20px 0;
+}
+
+#banner {
+  border-bottom: none;
+  margin-top: -20px;
+}
+
+#banner h1 {
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.hero-unit {
+  position: relative;
+  padding: 30px 15px;
+  color: #F5F5F5;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  background: #4393B9;
+}
+
+.footer {
+  text-align: center;
+  padding: 30px 0;
+  border-top: 1px solid #E5E5E5;
+}
+
+
+/* ==========================================================================
 Dashboard styles
 ========================================================================== */
 
@@ -1904,7 +1939,7 @@ a.view-all {
 }
 
 .lookings .looking ul.specs{
-  text-align: left; 
+  text-align: left;
   list-style: none;
 }
 
@@ -1939,7 +1974,7 @@ a.view-all {
 .room-detail .highlights .details {
   text-align: center;
 }
-.room-detail .highlights .details .address { 
+.room-detail .highlights .details .address {
   display: block;
   color: #000;
   font-size: 1em;

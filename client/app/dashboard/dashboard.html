@@ -5,6 +5,9 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 my-profile">
+
+          <!-- Create a post -->
+
           <h2> You </h2>
           <div class="white-box buttons-box">
 
@@ -12,6 +15,8 @@
             <a  class="btn btn-secondary" ui-sref="dashboard.myProfile.addNewLooking">Post Looking</a>
 
           </div>
+
+          <!-- Profile -->
 
           <div class="white-box profile-sidebar">
             <div class="profile">
@@ -21,6 +26,9 @@
             </div>
           </div>
         </div>
+
+        <!-- Available Rooms -->
+
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
           <h2 class="section-title"> Available Rooms</h2>
           <div class="white-box available-rooms">
@@ -48,6 +56,8 @@
             <hr>
             <a class="pull-right btn-rented-event view-all" ui-sref="rooms">View All</a>
           </div>
+
+          <!-- Looking -->
 
           <h2 class="section-title"> Looking </h2>
           <div class="white-box looking-for-room" >
@@ -87,59 +97,8 @@
             <a class="pull-right btn-rented-event view-all" ui-sref="dashboard.looking">View All</a>
           </div>
 
-          <h2 class="section-title"> Around You</h2>
-          <div class="white-box around-you">
-            <slick dots="true" class="slider row" slides-to-show="5" slides-to-scroll="5" responsive="dashboard.breakpoints.aroundYou" init-onload="true" data="dashboard.aroundYou">
-              <!-- start student box -->
-              <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 student" ng-repeat="student in dashboard.aroundYou track by $index">
-                <img ng-src="{{student.profile_picture}}" class="profile-image img-circle">
-                <h3>{{student.name}}</h3>
-                <em>{{student.university}}</em>
-              </div>
-              <!-- end student box -->
-            </slick>
-            <hr>
-            <a class="pull-right btn-rented-event view-all" ui-sref="dashboard.around">View All</a>
-          </div>
+          <!-- My Posts -->
 
-          <!--<h2 class="section-title"> My Posts</h2>-->
-
-          <!--<div class="white-box my-listings">-->
-
-            <!--<slick dots="true" class="slider row" slides-to-show="1" slides-to-scroll="1">-->
-
-              <!--&lt;!&ndash; start list box &ndash;&gt;-->
-              <!--<div class="list-item">-->
-                <!--<div class="row">-->
-                  <!--<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">-->
-                    <!--<div class="picture">-->
-                      <!--<img src="http://lorempixel.com/400/250/city/3">-->
-                    <!--</div>-->
-                  <!--</div>-->
-
-                  <!--<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">-->
-                    <!--<div class="info">-->
-                      <!--<span class='value'> $700 mo</span>-->
-                      <!--<span class='address'> 122 Balboa Ave. Unit C, San Diego</span>-->
-                      <!--<span class="elapsed-time">-->
-                        <!--<i class="fa fa-clock-o"></i> Posted on April 14th - edited 2hs ago-->
-                      <!--</span>-->
-                    <!--</div>-->
-                    <!--<div class="edit">-->
-                      <!--<span class='text'>Edit</span>-->
-                      <!--<a  class="bubble">-->
-                        <!--<i class="fa fa-pencil"></i>-->
-                      <!--</a>-->
-                    <!--</div>-->
-                  <!--</div>-->
-
-                <!--</div>-->
-              <!--</div>-->
-              <!--&lt;!&ndash; end list box &ndash;&gt;-->
-            <!--</slick>-->
-            <!--<hr>-->
-          <!--</div>-->
-<!--my lookings just to showcase-->
           <h2 class="section-title"> My Posts</h2>
           <div class="white-box my-listings" >
             <h2 ng-if="!dashboard.userLookings.length" >
@@ -180,13 +139,9 @@
 
                 </div>
               </div>
-              <!-- end list box -->
             </slick>
             <hr>
           </div>
-
-<!--ond of lookings  showcase-->
-
 
         </div>
       </div>
