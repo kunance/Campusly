@@ -19,6 +19,8 @@
         <input type="password" name="password" id="password" ng-model="user.password" required placeholder="Password">
       </label>
 
+      <p class="help-block">{{ errors.other }}</p>
+
       <div class="options">
         <input type="submit" value="Sign me in!" class="lrg-btn submit">
         <span>Don't have an account? <a class="link" ui-sref="signup">Sign up</a></span>

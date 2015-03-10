@@ -29,8 +29,6 @@
           .catch(function (err) {
             $scope.errors.other = err.message;
           });
-      } else {
-        $scope.errors.other = "password's dont match"
       }
     };
 

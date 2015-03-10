@@ -9,9 +9,16 @@
           'query':  {method:'GET', isArray:true},
           'save':   {method: null},
           'remove': {method: null},
-          'delete': {method: null}
-
+          'delete': {method: null},
+          getAllRoomListings: {
+            method: 'GET',
+            isArray:true,
+            params: {
+              id:'all'
+            }
+          }
         },
+
         // options
         {
           cache: false

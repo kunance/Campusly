@@ -33,7 +33,6 @@ function respondWith(res, statusCode) {
 exports.newOccupation = function(req, res, next) {
   req.body.userId = req.user.id;
   req.body.createdAt = new Date();
-  console.log(req.body);
   var newOccupation = Occupation.build(req.body);
 
   newOccupation.save()

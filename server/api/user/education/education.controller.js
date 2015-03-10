@@ -74,7 +74,6 @@ exports.saveEducation= function(req, res, next) {
   Education.find({where: { id: req.params.id }})
     .then(function (education) {
       var updated = _.merge(education, req.body);
-      console.log(updated);
       updated.save().then(function (upd) {
         res.json(upd);
       })

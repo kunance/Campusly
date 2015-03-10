@@ -21,10 +21,10 @@
     if(roomId) {
       vm.roomDetail = RoomListingView.get({id: roomId}, function () {
         // vm.roomDetail = roomDetail;
-        console.log("roomDetail: ", vm.roomDetail);
       });
+      console.log("roomDetail: ", vm.roomDetail);
 
-      // one service call to get users current address location AND current university name and location
+      //one service call to get users current address location AND current university name and location
       vm.userCurrentAddressAndUnivCoords = UserResource.getCurrentAddressAndUniv({id: vm.me.id}, function () {
         // vm.roomDetail = roomDetail;
         console.log("userUniversity: ", vm.userCurrentAddressAndUnivCoords);

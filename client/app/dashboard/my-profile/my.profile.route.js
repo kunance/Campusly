@@ -21,11 +21,12 @@
           getAllUsers:getAllUsers,
           getAllRoommates:getAllRoommates,
           getPets: getPets,
-          getVehicles:getVehicles
+          getVehicles:getVehicles,
         },
         authenticate: true
       });
   }
+
 
   function getUserInfo(common, $q) {
     var deffered = $q.defer();

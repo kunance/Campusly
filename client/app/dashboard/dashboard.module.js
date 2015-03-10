@@ -14,7 +14,8 @@
           authenticate: true,
           resolve:{
             getUserLookings:getUserLookings,
-            allLooking:allLooking
+            allLooking:allLooking,
+            getAllRooms:getAllRooms
           }
         });
     });
@@ -30,6 +31,11 @@
   function allLooking(common) {
     var dataservice = common.dataservice;
     return dataservice.getEveryLooking();
+  }
+
+  function getAllRooms(common) {
+    var dataservice = common.dataservice;
+    return dataservice.getEveryRoom();
   }
 
 
