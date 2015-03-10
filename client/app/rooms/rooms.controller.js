@@ -5,13 +5,12 @@
   .module('app.rooms')
   .controller('RoomsCtrl', RoomsCtrl);
 
-  RoomsCtrl.$inject = ['$scope', 'common', 'FileUploader', '$http', 'getAllRooms'];
+  RoomsCtrl.$inject = ['$scope', 'common', 'FileUploader', '$http', 'RoomListingView'];
 
-  function RoomsCtrl($scope, common, FileUploader, $http, getAllRooms) {
+  function RoomsCtrl($scope, common, FileUploader, $http, RoomListingView) {
     var vm = this;
     vm.property = {};
     vm.me = common.Auth.getCurrentUser();
-    vm.availableRooms = getAllRooms;
 
 
     vm.availableRooms = RoomListingView.query(function(/*availRooms*/) {
