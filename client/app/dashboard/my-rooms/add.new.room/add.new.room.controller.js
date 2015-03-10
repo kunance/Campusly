@@ -5,15 +5,12 @@
     .module('app.dashboard')
     .controller('AddNewRoomCtrl',AddNewRoomCtrl);
 
-  AddNewRoomCtrl.$inject = ['$scope','FileUploader', 'common', '$state'];
+  AddNewRoomCtrl.$inject = ['$scope','FileUploader', 'common', '$state', 'RoomListing'];
 
-  function AddNewRoomCtrl($scope, FileUploader, common, $state) {
+  function AddNewRoomCtrl($scope, FileUploader, common, $state, RoomListing) {
 
     /* jshint validthis: true */
     var vm = this;
-
-    var dataservice = common.dataservice;
-
 
     vm.room = {};
     vm.property = {};
@@ -25,21 +22,24 @@
       vm.me.profileImage =res.saved;
     };
 
-    vm.create = function (property, room, picture) {
-      var zip = property.address.zip.toString();
-      var trimmedZip = zip.replace(/\s+/g, '');
-      property.address.zip = Number(trimmedZip);
-      property.address.latitude = property.address.location.latitude;
-      property.address.longitude = property.address.location.longitude;
-      room.creatorId = vm.me.id;
+    vm.create = function () {
 
-      dataservice.addRoomListing(vm.me.id, { room : room, property: property}).$promise.then(function () {
-        //$state.go('myProperties')
-      }, function (err) {
-        console.log('error while saving property', err);
-      });
+      //console.log('Room from ctrl: ', vm.room);
+      //console.log('Property from ctrl: ', vm.property);
+
+
+   //   if(vm.property.$valid && vm.room.$valid) {
+        vm.room.creatorId = vm.me.id;
+
+        RoomListing.create( { userId: vm.me.id}, {room: vm.room, property: vm.property}).$promise.then(function () {
+          // $state.go('rooms');
+        }, function (err) {
+          console.log('error while saving property', err);
+        });
+    //  }
 
     }
+
 
     vm.data = {
       url:'/api/images',

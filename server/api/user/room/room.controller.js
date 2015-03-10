@@ -7,7 +7,7 @@ var _ = require('lodash');
 
 
 function transView2ModelRoomDetails(viewRoomDetails) {
-  return _.clone(viewRoomDetails);
+  return viewRoomDetails;
 }
 
 /**
@@ -26,40 +26,49 @@ function transView2ModelRoomDetails(viewRoomDetails) {
  */
 exports.createRoomListing = function(req, res, next) {
 
-  console.log("Creating new room listing: ", req.body);
+//  console.log("Creating new room listing: ", req.body);
 
   var propertyDetails = _.clone(req.body.property);
 
   propertySrv.transView2ModelPropertyDetails(propertyDetails, function(err, transPropertyDetails) {
-    propertyDetails = transPropertyDetails;
-  });
 
-  //propertySrv.createPropertyFromCreateRoom(propertyDetails, function(error, property) {
-  //
-  //  if(!error) {
-  //    var viewRoomDetails = angular.copy(req.body.room);
-  //    viewRoomDetails.propertyId = property.id;
-  //
-  //    var roomDetails = transView2ModelRoomDetails(viewRoomDetails);
-  //
-  //    var newRoom = RoomListing.build(roomDetails);
-  //    newRoom.save()
-  //      .then(function(roomListing) {
-  //
-  //        //TODO figure out what to return
-  //        res.json({});
-  //
-  //      }).catch(cb({statusCode: 422}, null));
-  //  }
-  //  else {
-  //    res.json(error.statusCode);
-  //  }
-  //});
-  res.json({});
+    propertyDetails = transPropertyDetails;
+
+    propertySrv.createPropertyFromCreateRoom(propertyDetails, function (error, property) {
+
+      if (!error) {
+
+        var viewRoomDetails = _.clone(req.body.room);
+        viewRoomDetails.propertyId = property.id;
+
+        var roomDetails = transView2ModelRoomDetails(viewRoomDetails);
+        roomDetails.createdAt = new Date();
+
+        var newRoom = RoomListing.build(roomDetails);
+        newRoom.save()
+          .then(function(roomListing) {
+
+            res.json(roomListing);
+
+          }).catch(function(errors) {
+
+            console.log(errors);
+            res.json(500);
+
+          });
+      }
+      else {
+        res.json(error.statusCode);
+      }
+    });
+  });
 };
 
 
 /**
+ *  Gets a specific room listing that you created fully hydrated by default
+ *
+ *
  *
  * @param req
  * @param res
@@ -67,23 +76,21 @@ exports.createRoomListing = function(req, res, next) {
  */
 exports.getRoomListing = function(req, res, next) {
 
+  RoomListing.find({where: { id: req.params.id, creatorId: req.params.userId }})
+    .then(function(roomListing) {
+      res.json(roomListing);
+    })
+    .catch(function(errors){
+      console.log(errors);
+      res.json(500);
+    });
 };
 
 
 /**
  *
- *  Gets all rooms fully hydrated by default
+ *  Gets all room listings that is you created fully hydrated by default
  *
- *  Use param  min=true for room to return ony
- *  {
- *  image_url:
- *  "value": 818,
-    "distance": this is distance to university (//TODO which university ???)
-    "kind": 'single' | 'double' | 'living room'
-    "num_roomates":
-    "bathroom": "Shared",
-    "availability_date": "2003-09-24"
-    }
  *
  * @param req
  * @param res
@@ -91,11 +98,19 @@ exports.getRoomListing = function(req, res, next) {
  */
 exports.getAllRoomListings = function(req, res, next) {
 
-
+  RoomListing.findAll({where: { creatorId: req.params.userId }})
+    .then(function(roomListings) {
+      res.json(roomListings);
+    })
+    .catch(function(errors){
+      console.log(errors);
+      res.json(500);
+    });
 };
 
 
 /**
+ *  Edit a specific room listing that you created fully hydrated by default
  *
  * @param req
  * @param res
@@ -103,11 +118,34 @@ exports.getAllRoomListings = function(req, res, next) {
  */
 exports.editRoomListing = function(req, res, next) {
 
+  req.body.updatedAt = new Date();
+  RoomListing.find({where: {id: req.params.id, creatorId: req.params.userId}})
+    .then(function (roomListing) {
+
+      var viewRoomDetails = _.clone(req.body.room);
+
+      var roomDetails = transView2ModelRoomDetails(viewRoomDetails);
+
+      var updated = _.merge(roomListing, roomDetails);
+
+      updated.save().then(function (updateRoomListing) {
+        res.json(updateRoomListing);
+      }).catch(function(errors){
+        console.log(errors);
+        res.json(500);
+      });
+    })
+    .catch(function(errors){
+      console.log(errors);
+      res.json(500);
+    });
 
 };
 
 
 /**
+ *  Delete a specific room listing that you created fully hydrated by default
+ *
  *
  * @param req
  * @param res
@@ -115,48 +153,16 @@ exports.editRoomListing = function(req, res, next) {
  */
 exports.deleteRoomListing = function(req, res, next) {
 
-  var room = new Room();
-
-  //var userId = req.params("userId");
-  //var id = req.params("id");
-
-  //Room.find( id = id, creatorId = userId {
-  //
-  //});
-
+  RoomListing.destroy({where: {id: req.params.id, creatorId: req.params.userId}})
+    .then(function() {
+      res.json(200);
+    })
+    .catch(function(errors){
+      console.log(errors);
+      res.json(500);
+    });
 };
-//
-//Creating new room listing:  { room:
-//{ monthlyPrice: '100',
-//  securityDeposit: '100',
-//  monthlyUtilityCost: '100',
-//  availableMoveIn: '2015-03-02',
-//  leaseEndDate: '03/01/2016',
-//  leaseType: 'month-to-month',
-//  gender: 'no preference',
-//  roomType: 'single',
-//  numRoomates: 3,
-//  sharedBath: true,
-//  furnished: true,
-//  parkingAvailable: true,
-//  smokingAllowed: true,
-//  description: 'cool room',
-//  creatorId: '17' },
-//  property:
-//  { address:
-//  { full: '1290 Parkmoor Ave, San Jose, CA 95126, USA',
-//    streetNumeric: 1290,
-//    streetAddress: 'Parkmoor Ave',
-//    city: 'San Jose',
-//    country: 'United States',
-//    state: 'US',
-//    zip: 95126,
-//    location: [Object],
-//    latitude: 37.3161403,
-//    longitude: -121.91009730000002 },
-//    type: 'apt',
-//      bedrooms: 5,
-//    bathrooms: 2 } }
+
 
 
 
