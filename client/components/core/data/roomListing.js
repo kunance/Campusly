@@ -5,7 +5,12 @@
     .factory('RoomListing', function ($resource) {
       return $resource('/api/users/:userId/rooms/:id', {userId: '@userId', id: '@id'},
         {
-          editRoomListing: {
+          'get':    {method:'GET'},
+          'query':  {method:'GET', isArray:true},
+          'create': {method: 'POST'},
+          'remove': {method: 'DELETE'},
+          'delete': {method: 'DELETE'},
+          'edit': {
             method: 'PUT'
           }
         });

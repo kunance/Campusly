@@ -16,21 +16,45 @@ exports.createPropertyFromCreateRoom = function(propertyDetails, cb) {
 
   propertyDetails.createdAt = new Date();
 
+
+//  console.log('Property details: ', propertyDetails);
+
   var newProperty = Property.build(propertyDetails);
+
+//  console.log('Property after building: ', newProperty);
+
   newProperty.save()
     .then(function(property) {
       cb(null, property);
-    }).catch(cb({statusCode: 422}, null));
+    }).catch( function(errors) {
+      console.log(errors);
+      cb({statusCode: 500}, null);
+    });
 };
 
 
 /**
- *   TODO after MVP then to ensure data/service model can be different from view model
+ *  Ensure data/service model can be different from view model by providing this translation layer
  *
  * @param propertyDetails
  * @param cb
  */
 exports.transView2ModelPropertyDetails = function(propertyDetails, cb) {
+
+  propertyDetails.streetNumeric = propertyDetails.address.streetNumeric;
+  propertyDetails.streetAddress = propertyDetails.address.streetAddress;
+  propertyDetails.city = propertyDetails.address.city;
+  propertyDetails.state = propertyDetails.address.state;
+  propertyDetails.zip = propertyDetails.address.zip;
+  propertyDetails.latitude = propertyDetails.address.location.latitude;
+  propertyDetails.longitude = propertyDetails.address.location.longitude;
+
+
+//  propertyDetails.longitude = -117.235024;
+
+//  if(!propertyDetails.bldg) { delete propertyDetails.bldg; }
+
+  delete propertyDetails.address;
 
   cb(null,  propertyDetails);
 };
