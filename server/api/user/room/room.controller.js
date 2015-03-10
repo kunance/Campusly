@@ -67,6 +67,9 @@ exports.createRoomListing = function(req, res, next) {
 
 
 /**
+ *  Gets a specific room listing that you created fully hydrated by default
+ *
+ *
  *
  * @param req
  * @param res
@@ -74,23 +77,21 @@ exports.createRoomListing = function(req, res, next) {
  */
 exports.getRoomListing = function(req, res, next) {
 
+  RoomListing.find({where: { id: req.params.id, creatorId: req.params.userId }})
+    .then(function(roomListing) {
+      res.json(roomListing);
+    })
+    .catch(function(errors){
+      console.log(errors);
+      res.json(500);
+    });
 };
 
 
 /**
  *
- *  Gets all rooms fully hydrated by default
+ *  Gets all room listings that is you created fully hydrated by default
  *
- *  Use param  min=true for room to return ony
- *  {
- *  image_url:
- *  "value": 818,
-    "distance": this is distance to university (//TODO which university ???)
-    "kind": 'single' | 'double' | 'living room'
-    "num_roomates":
-    "bathroom": "Shared",
-    "availability_date": "2003-09-24"
-    }
  *
  * @param req
  * @param res
@@ -98,11 +99,19 @@ exports.getRoomListing = function(req, res, next) {
  */
 exports.getAllRoomListings = function(req, res, next) {
 
-
+  RoomListing.findAll({where: { creatorId: req.params.userId }})
+    .then(function(roomListings) {
+      res.json(roomListings);
+    })
+    .catch(function(errors){
+      console.log(errors);
+      res.json(500);
+    });
 };
 
 
 /**
+ *  Edit a specific room listing that you created fully hydrated by default
  *
  * @param req
  * @param res
@@ -110,11 +119,34 @@ exports.getAllRoomListings = function(req, res, next) {
  */
 exports.editRoomListing = function(req, res, next) {
 
+  req.body.updatedAt = new Date();
+  RoomListing.find({where: {id: req.params.id, creatorId: req.params.userId}})
+    .then(function (roomListing) {
+
+      var viewRoomDetails = _.clone(req.body.room);
+
+      var roomDetails = transView2ModelRoomDetails(viewRoomDetails);
+
+      var updated = _.merge(roomListing, roomDetails);
+
+      updated.save().then(function (updateRoomListing) {
+        res.json(updateRoomListing);
+      }).catch(function(errors){
+        console.log(errors);
+        res.json(500);
+      });
+    })
+    .catch(function(errors){
+      console.log(errors);
+      res.json(500);
+    });
 
 };
 
 
 /**
+ *  Delete a specific room listing that you created fully hydrated by default
+ *
  *
  * @param req
  * @param res
@@ -122,15 +154,14 @@ exports.editRoomListing = function(req, res, next) {
  */
 exports.deleteRoomListing = function(req, res, next) {
 
-  var room = new Room();
-
-  //var userId = req.params("userId");
-  //var id = req.params("id");
-
-  //Room.find( id = id, creatorId = userId {
-  //
-  //});
-
+  RoomListing.destroy({where: {id: req.params.id, creatorId: req.params.userId}})
+    .then(function() {
+      res.json(200);
+    })
+    .catch(function(errors){
+      console.log(errors);
+      res.json(500);
+    });
 };
 
 
