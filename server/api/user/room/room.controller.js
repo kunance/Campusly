@@ -7,9 +7,7 @@ var _ = require('lodash');
 
 
 function transView2ModelRoomDetails(viewRoomDetails) {
-  viewRoomDetails.gender = 'no preference';
   return viewRoomDetails;
-  // return _.clone(viewRoomDetails);
 }
 
 /**
