@@ -143,9 +143,10 @@
           <h2 class="section-title"> My Posts</h2>
           <div class="white-box my-listings" >
             <h2 ng-if="!dashboard.userLookings.length" >
-              You don't have posted lookings yet.
+              You don't have anything posted yet.
               <small>
                 <a ui-sref="dashboard.myProfile.addNewLooking"><br/>Click here</a> to add looking.
+                <a ui-sref="dashboard.addNewRoom"><br/>Click here</a> to add room.
               </small>
             </h2>
             <slick dots="true" class="slider row" slides-to-show="1" slides-to-scroll="1" ng-if="dashboard.userLookings.length">

@@ -12,10 +12,15 @@
     vm.property = {};
     vm.me = common.Auth.getCurrentUser();
 
-    vm.availableRooms = RoomListingView.query(function(/*availRooms*/) {
+    //vm.availableRooms = RoomListingView.query(function(/*availRooms*/) {
      // vm.availableRooms = availRooms;
     //  console.log("availableRooms: ", vm.availableRooms);
-    });
+    //});
+
+    $http.get('api/rooms').success(function (rooms) {
+      console.log('rooms',rooms);
+      vm.availableRooms = rooms;
+    })
 
      console.log("availableRooms: ", vm.availableRooms);
 
