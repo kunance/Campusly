@@ -78,7 +78,7 @@ module.exports = {
             allowNull: false
         },
         "gender": {
-            type: Seq.ENUM('"no preference"', '"male only"', '"female only"'),
+            type: Seq.ENUM('no preference', 'male only', 'female only'),
             field: "gender",
             allowNull: false
         },

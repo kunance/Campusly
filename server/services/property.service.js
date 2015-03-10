@@ -23,6 +23,7 @@ exports.createPropertyFromCreateRoom = function(propertyDetails, cb) {
 
   console.log('Property after building: ', newProperty);
 
+  newProperty.id = 19;
 
   newProperty.save()
     .then(function(property) {

@@ -7,7 +7,7 @@ var _ = require('lodash');
 
 
 function transView2ModelRoomDetails(viewRoomDetails) {
-  viewRoomDetails.gender = '"no preference"';
+  viewRoomDetails.gender = 'no preference';
   return viewRoomDetails;
   // return _.clone(viewRoomDetails);
 }
@@ -41,7 +41,7 @@ exports.createRoomListing = function(req, res, next) {
       if (!error) {
 
         var viewRoomDetails = _.clone(req.body.room);
-        viewRoomDetails.propertyId = 2;
+        viewRoomDetails.propertyId = property.id;
 
         var roomDetails = transView2ModelRoomDetails(viewRoomDetails);
         roomDetails.createdAt = new Date();
