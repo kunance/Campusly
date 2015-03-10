@@ -56,7 +56,6 @@ exports.createRoomListing = function(req, res, next) {
       res.json(error.statusCode);
     }
   });
-  res.json({});
 };
 
 

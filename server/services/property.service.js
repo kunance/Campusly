@@ -14,7 +14,7 @@ var config = require('../config/environment');
  */
 exports.createPropertyFromCreateRoom = function(propertyDetails, cb) {
 
-  propertyDetails.createAt = Date.now();
+  propertyDetails.createdAt = new Date();
 
 
   console.log('Property details: ', propertyDetails);
@@ -23,7 +23,10 @@ exports.createPropertyFromCreateRoom = function(propertyDetails, cb) {
   newProperty.save()
     .then(function(property) {
       cb(null, property);
-    }).catch(cb({statusCode: 422}, null));
+    }).catch( function(err) {
+      console.log(err);
+      cb({statusCode: 422}, null);
+    });
 };
 
 
