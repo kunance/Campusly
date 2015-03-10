@@ -26,7 +26,7 @@ function transView2ModelRoomDetails(viewRoomDetails) {
  */
 exports.createRoomListing = function(req, res, next) {
 
-  console.log("Creating new room listing: ", req.body);
+  //console.log("Creating new room listing: ", req.body);
 
   var propertyDetails = _.clone(req.body.property);
 

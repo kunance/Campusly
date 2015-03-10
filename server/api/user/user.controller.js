@@ -76,22 +76,33 @@ exports.me = function(req, res, next) {
  * Creates a new user
  */
 exports.create = function(req, res, next) {
-  req.body.salt = "temporary";
-  req.body.confirmedEmail = false;
-  req.body.runIdentityCheck= false;
-  req.body.shareCreditReport= false;
-  req.body.createdAt= new Date();
-  var newUser = User.build(req.body);
-  newUser.setDataValue('provider', 'local');
-  newUser.setDataValue('role', 'user');
-  newUser.save()
-    .then(function(user) {
-      var token = jwt.sign({ id: user.id }, config.secrets.session, {
-        expiresInMinutes: 60 * 5
-      });
-      res.json({ token: token });
-    })
-    .catch(validationError(res));
+  console.log(req.body);
+  User.find({
+    where:{
+      email:req.body.email
+    }})
+    .then(function (user) {
+     // if(!user){
+        req.body.salt = "temporary";
+        req.body.confirmedEmail = false;
+        req.body.runIdentityCheck= false;
+        req.body.shareCreditReport= false;
+        req.body.createdAt= new Date();
+        var newUser = User.build(req.body);
+        newUser.setDataValue('provider', 'local');
+        newUser.setDataValue('role', 'user');
+        newUser.save()
+          .then(function(user) {
+            var token = jwt.sign({ id: user.id }, config.secrets.session, {
+              expiresInMinutes: 60 * 5
+            });
+            res.json({ token: token });
+          })
+          .catch(validationError(res));
+      //} else{
+      //  res.send(500);
+      //  }
+    });
 };
 
 

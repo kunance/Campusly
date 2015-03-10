@@ -33,7 +33,6 @@ function respondWith(res, statusCode) {
 exports.newFinance = function(req, res, next) {
   req.body.userId = req.user.id;
   req.body.createdAt = new Date();
-  console.log(req.body);
   var newFinance = Finance.build(req.body);
 
   newFinance.save()

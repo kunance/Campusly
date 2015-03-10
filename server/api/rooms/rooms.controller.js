@@ -17,7 +17,7 @@ var _ = require('lodash');
  */
 exports.getRoomListing = function(req, res, next) {
 
-  console.log('Getting room listing for: ', req.param("id") );
+ // console.log('Getting room listing for: ', req.param("id") );
 
   var roomAttributes = ["monthlyPrice", "securityDeposit", "availableMoveIn", "leaseEndDate", "leaseType", "gender",
     "monthlyUtilityCost", "roomType", "sharedBathroom", "numRoomates", "furnished", "parkingAvailable", "smokingAllowed", "description"];
@@ -46,7 +46,7 @@ exports.getRoomListing = function(req, res, next) {
 
     delete roomListingResponse.roomDetails.relatedPropertyId;
 
-    console.log('Room Listing: ', roomListingResponse);
+   // console.log('Room Listing: ', roomListingResponse);
 
     res.json(roomListingResponse);
   });
@@ -105,7 +105,7 @@ exports.getAllRoomListings = function(req, res, next) {
       roomListingResponse.push(mashed);
     });
 
-    console.log('Room Listings: ', roomListingResponse);
+   // console.log('Room Listings: ', roomListingResponse);
 
     res.json(roomListingResponse);
   });
