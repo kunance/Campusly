@@ -2,8 +2,8 @@
   "use strict";
 
   angular
-    .module('app.rooms')
-    .controller('RoomsCtrl', RoomsCtrl);
+  .module('app.rooms')
+  .controller('RoomsCtrl', RoomsCtrl);
 
   RoomsCtrl.$inject = ['$scope', 'common', 'FileUploader', '$http', 'RoomListingView'];
 
@@ -13,18 +13,31 @@
     vm.me = common.Auth.getCurrentUser();
 
     vm.availableRooms = RoomListingView.query(function(/*availRooms*/) {
-     // vm.availableRooms = availRooms;
-    //  console.log("availableRooms: ", vm.availableRooms);
+      vm.groups = vm.availableRooms.inGroupsOf(8);
+     /* vm.availableRooms = availRooms;
+     console.log("availableRooms: ", vm.availableRooms); */
+   });
+
+    function orderSliderButtons() {
+      setTimeout(function() {
+        $(".slider").each(function(index) {
+          var slider = $(".slider").eq(index)
+          var dotsX = parseInt(slider.find(".slick-dots").css("left"));
+          var dotsSize = parseInt(slider.find(".slick-dots").css("width"));
+          var nextBtnX = dotsX + dotsSize + 10;
+
+          slider.find(".slick-next").css("left", nextBtnX);
+        });
+      }, 1000);
+    }
+
+    $(window).resize(function(){
+      orderSliderButtons();
     });
 
-     console.log("availableRooms: ", vm.availableRooms);
-
-
-    //$http.get("../assets/fake/available_rooms.json")
-    //  .success(function(data){
-    //    vm.availableRooms = data;
-    //  });
-
+    angular.element(document).ready(function () {
+      orderSliderButtons();
+    });
   }
 
 

@@ -1,62 +1,91 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
-<div class="container">
+<div class="main-wrapper room-detail">
+  <div class="container">
+    <div class="row">
+      <div class="page-header">
+        <h2>Highlights</h2>
+      </div>
 
-  <h2>Highlights</h2>
-  <div class="picture">
-    <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.roomDetail.propertyDetails.coords.latitude}},{{room.roomDetail.propertyDetails.coords.longitude}}&zoom=14&size=400x250&markers=color:blue%7C{{room.roomDetail.propertyDetails.coords.latitude}},{{room.roomDetail.propertyDetails.coords.longitude}}">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 highlights white-box">
+
+        <div class="picture">
+          <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.roomDetail.propertyDetails.coords.latitude}},{{room.roomDetail.propertyDetails.coords.longitude}}&zoom=14&size=400x250&markers=color:blue%7C{{room.roomDetail.propertyDetails.coords.latitude}},{{room.roomDetail.propertyDetails.coords.longitude}}">
+        </div>
+
+        <strong class="value">
+          {{room.roomDetail.roomDetails.monthlyPrice | currency}} mo.
+        </strong>
+        {{room.roomDetail.propertyDetails.streetNumeric}} {{room.roomDetail.propertyDetails.streetAddress}} {{room.roomDetail.propertyDetails.apt}}, {{room.roomDetail.propertyDetails.city}}</br>
+
+        <div ng-show="room.userCurrentAddressAndUnivCoords">
+          <!-- call google maps api to get distance from students address to students university of record .. walking, bus, driving -->
+          miles from {{room.userCurrentAddressAndUnivCoords.univName}} </br>
+          <i class="fa fa-car"></i>5</br>
+          <i class="fa fa-bicycle"></i>10</br>
+          <i class="fa fa-child"></i>15</br>
+        </div>
+
+        <div ng-show="!room.userCurrentAddressAndUnivCoords">
+          <a ui-sref="dashboard.myProfile">Update Profile to view distance from your university</a>
+        </div>
+
+        <ul class="specs">
+          <li><i class="fa fa-bed"></i> {{room.roomDetail.roomDetails.roomType}}</li>
+          <li><i class="fa fa-users"></i> {{room.roomDetail.roomDetails.numRoomates}} roommates</li>
+          <li><i class="fa fa-show"></i> {{room.roomDetail.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
+          <li><i class="fa fa-calendar"></i> {{room.roomDetail.roomDetails.availableMoveIn | date }}</li>
+        </ul>
+
+        <a>Share button</a>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="page-header">
+        <h2>Roommates</h2>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 roommates white-box">
+        Add the roommate partial here and ensure it doesn't rely on the dashboard ctrl
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="page-header">
+        <h2>Photos</h2>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 photos white-box">
+        <slick class="slider" dots="true" infite="true">
+          <div>
+            {{room.roomDetail.propertyDetails.photos}}
+          </div>
+        </slick>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="page-header">
+        <h2>Details</h2>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 details white-box">
+        <h3>Property description</h3>
+        <p>
+          {{room.roomDetail.roomDetails.description}}
+        </p>
+        <ul style="list-style: none"> <!-- Add class in CSS -->
+          <li ng-show="room.roomDetail.roomDetails.securityDeposit">Security Deposit: ${{room.roomDetail.roomDetails.securityDeposit}}</li>
+          <li>Lease Terms:  {{room.roomDetail.roomDetails.leaseType}}</li>
+          <li>Unit bedrooms: {{room.roomDetail.propertyDetails.bedrooms}}</li>
+          <li>Unit bathrooms: {{room.roomDetail.propertyDetails.bathrooms}}</li>
+          <li>Parking: {{room.roomDetail.roomDetails.parkingAvailable}}</li>
+          <li>Furnished: {{room.roomDetail.roomDetails.furnished}}</li>
+          <li>Smoking Allowed: {{room.roomDetail.roomDetails.smokingAllowed}}</li>
+          <li>Unit area: {{room.roomDetail.propertyDetails.livingAreaSqFt}} square feet</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
-
-  <strong class="value">
-    {{room.roomDetail.roomDetails.monthlyPrice | currency}} mo.
-  </strong>
-  </br>
-  </br>
-  {{room.roomDetail.propertyDetails.streetNumeric}} {{room.roomDetail.propertyDetails.streetAddress}} {{room.roomDetail.propertyDetails.apt}}, {{room.roomDetail.propertyDetails.city}}</br>
-  </br>
-
-  <div ng-show="room.userCurrentAddressAndUnivCoords">
-    <!-- call google maps api to get distance from students address to students university of record .. walking, bus, driving -->
-    miles from {{room.userCurrentAddressAndUnivCoords.univName}} </br>
-    <i class="fa fa-car"></i>5</br>
-    <i class="fa fa-bicycle"></i>10</br>
-    <i class="fa fa-child"></i>15</br>
-  </div>
-
-  <div ng-show="!room.userCurrentAddressAndUnivCoords">
-    <a ui-sref="dashboard.myProfile">Update Profile to view distance from your university</a>
-  </div>
-
-  <ul class="specs">
-    <li><i class="fa fa-bed"></i> {{room.roomDetail.roomDetails.roomType}}</li>
-    <li><i class="fa fa-users"></i> {{room.roomDetail.roomDetails.numRoomates}} roommates</li>
-    <li><i class="fa fa-show"></i> {{room.roomDetail.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
-    <li><i class="fa fa-calendar"></i> {{room.roomDetail.roomDetails.availableMoveIn | date }}</li>
-  </ul>
-
-  <a>Share button</a>
-  <h2>Roommates</h2>
-  Add the roommate partial here and ensure it doesn't rely on the dashboard ctrl
-
-  <h2>Photos</h2>
-  {{room.roomDetail.propertyDetails.photos}}
-
-
-
-  <h2>Details</h2>
-  <h3>Property description</h3>
-  <p>
-    {{room.roomDetail.roomDetails.description}}
-  </p>
-  <ul style="list-style: none"> <!-- Add class in CSS -->
-    <li ng-show="room.roomDetail.roomDetails.securityDeposit">Security Deposit: ${{room.roomDetail.roomDetails.securityDeposit}}</li>
-    <li>Lease Terms:  {{room.roomDetail.roomDetails.leaseType}}</li>
-    <li>Unit bedrooms: {{room.roomDetail.propertyDetails.bedrooms}}</li>
-    <li>Unit bathrooms: {{room.roomDetail.propertyDetails.bathrooms}}</li>
-    <li>Parking: {{room.roomDetail.roomDetails.parkingAvailable}}</li>
-    <li>Furnished: {{room.roomDetail.roomDetails.furnished}}</li>
-    <li>Smoking Allowed: {{room.roomDetail.roomDetails.smokingAllowed}}</li>
-    <li>Unit area: {{room.roomDetail.propertyDetails.livingAreaSqFt}} square feet</li>
-  </ul>
-
 </div>
