@@ -10,7 +10,7 @@ To modify this model:
 3. Use utility methods to easily access orm properties.
 
 "use strict";
-var orm     = require('models\index.js'),
+var orm     = require('temp_models/index.js'),
     model   = require('./room_listing.js'),
     util    = require('./utils.js')(model),
     Seq     = orm.Sequelize();
@@ -28,7 +28,7 @@ module.exports = {
     modelName: "roomListing",
     options: {
         tableName: "room_listing",
-        //schema: "public",
+    //    schema: "public",
         timestamps: false
     },
     attributes: {
@@ -78,7 +78,7 @@ module.exports = {
             allowNull: false
         },
         "gender": {
-            type: Seq.ENUM('no preference', 'male only', 'female only'),
+            type: Seq.ENUM('"no preference"', '"male only"', '"female only"'),
             field: "gender",
             allowNull: false
         },
@@ -112,6 +112,10 @@ module.exports = {
         "smokingAllowed": {
             type: Seq.BOOLEAN,
             field: "smokingAllowed"
+        },
+        "petsAllowed": {
+            type: Seq.BOOLEAN,
+            field: "petsAllowed"
         },
         "description": {
             type: Seq.TEXT,
