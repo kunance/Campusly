@@ -234,6 +234,11 @@ Posting input text type
   border-radius: 50px;
 }
 
+.input-post textarea{
+  resize: none;
+  margin-top: 30px;
+}
+
 /* ==========================================================================
 Sign-up button class
 ========================================================================== */
@@ -419,6 +424,14 @@ Medium Rented button - secondary color
 }
 
 /* ==========================================================================
+Medium Rented button - delete color
+========================================================================== */
+.btn-rented-medium.delete{
+  background-color: #f34023;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
 Medium Rented button - hover and active
 ========================================================================== */
 .btn-rented-medium.primary:hover {
@@ -427,6 +440,19 @@ Medium Rented button - hover and active
 }
 
 .btn-rented-medium.primary:active {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+Medium Rented button delete - hover and active
+========================================================================== */
+.btn-rented-medium.delete:hover {
+  background-color: #e4e4e4;
+  color: #000000;
+}
+
+.btn-rented-medium.delete:active {
   background-color: #000000;
   color: #FFFFFF;
 }
@@ -728,12 +754,24 @@ For mailchimp sign-up - not needed in main app
     font-size: 1.1em;
   }
 
+  .input-post {
+    margin-left: 10px;
+  }
+
+  .input-post textarea {
+    margin-left: 30px;
+   }
 }
 
 @media (min-width: 992px) {
   .featurette-heading {
     margin-top: 120px;
   }
+
+  .input-post textarea {
+    margin-left: 30px;
+  }
+
 }
 
 @media only screen and (min-width : 992px) {
@@ -1903,6 +1941,46 @@ h2.no-roommate small{
 
 .fa.fa-pet {
   background-image: url("../assets/images/pet.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-smoking {
+  background-image: url("../assets/images/smoking.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-toiletPaper {
+  background-image: url("../assets/images/toiletPaper.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-desk {
+  background-image: url("../assets/images/desk.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-bigBed {
+  background-image: url("../assets/images/bigBed.svg");
   background-size: 1em;
   background-repeat: no-repeat;
   width: 1em;
