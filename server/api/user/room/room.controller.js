@@ -10,6 +10,14 @@ function transView2ModelRoomDetails(viewRoomDetails) {
   return viewRoomDetails;
 }
 
+function transModel2ViewRoomDetails(viewRoomDetails) {
+
+  //viewRoomDetails.availableMoveIn = ;
+  //viewRoomDetails.leaseEndDate
+  return viewRoomDetails;
+}
+
+
 /**
  *   This creates room in room_listing table and a property in the property table
  *
@@ -82,6 +90,7 @@ exports.getRoomListing = function(req, res, next) {
         res.status(roomListing.status).json(roomListing.statusText);
       }
       else {
+        roomListing = transModel2ViewRoomDetails(roomListing);
         res.json(roomListing);
       }
     })
