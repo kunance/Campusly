@@ -14,7 +14,9 @@
           authenticate: true,
           resolve:{
             getUserLookings:getUserLookings,
-            allLooking:allLooking,
+
+            allLooking:allLooking
+
           }
         });
     });

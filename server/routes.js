@@ -32,6 +32,11 @@ module.exports = function(app) {
   // pass in a min parameter for non fully hydrated room listing ... define what min is in the api documentation
   app.use('/api/rooms', require('./api/rooms') );
 
+  app.param('userId', function(req, res, next, userId) {
+    req.userId = userId;
+    next();
+  });
+
   // user managing their own room listing
   app.use('/api/users/:userId/rooms', require('./api/user/room') );
 

@@ -7,9 +7,11 @@
   .controller('DashboardCtrl',DashboardCtrl);
 
 
-  DashboardCtrl.$inject=['common', '$scope', '$http', 'getUserLookings', 'allLooking', 'universityData', 'RoomListingView', 'distanceCalculator'];
+  DashboardCtrl.$inject=['common', '$scope', '$http', 'getUserLookings', 'allLooking', 'universityData',
+    'RoomListingView', 'RoomListing', 'distanceCalculator'];
 
-  function DashboardCtrl(common, $scope, $http, getUserLookings, allLooking, universityData, RoomListingView, distanceCalculator) {
+  function DashboardCtrl(common, $scope, $http, getUserLookings, allLooking, universityData, RoomListingView,
+                         RoomListing, distanceCalculator) {
 
     var vm = this;
     var Auth = common.Auth;
@@ -35,6 +37,12 @@
       vm.groups = vm.availableRooms.inGroupsOf(9);
     });
 
+    vm.myRoomListings = RoomListing.query({userId: vm.me.id}, function(/*availRooms*/) {
+
+      console.log('My room listings: ', vm.myRoomListings);
+
+    });
+
     vm.lookingRoom = allLooking;
 
     vm.userLookings = getUserLookings;
@@ -54,8 +62,8 @@
 
 
     $scope.$parent.seo = {
-      pageTitle:'Rented Dashboard',
-      pageDescription:'secure off-campus housing community'
+      pageTitle:'Campusly Dashboard',
+      pageDescription:'Secure off-campus community'
     };
 
     mixpanel.track("visited dashboard view, with passed object",{title:$scope.$parent.seo.pageTitle});

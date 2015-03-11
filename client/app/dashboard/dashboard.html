@@ -11,7 +11,7 @@
           <h2> You </h2>
           <div class="white-box buttons-box">
 
-            <a class="btn btn-primary" ui-sref="dashboard.addNewRoom">Post Available Room</a>
+            <a class="btn btn-primary" ui-sref="addRoom">Post Available Room</a>
             <a  class="btn btn-secondary" ui-sref="dashboard.myProfile.addNewLooking">Post Looking</a>
 
           </div>
@@ -70,7 +70,7 @@
             <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" data="dashboard.lookingRoom" ng-if="dashboard.lookingRoom.length">
               <!-- start room box -->
               <!--TODO make some hover effect so its more intinuitive for user-->
-              <div ng-if="looking.userId!=dashboard.me.id" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index" ui-sref=".looking.detail({id:looking.id})">
+              <div ng-if="looking.userId!=dashboard.me.id" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index" ui-sref="lookingDetail({id:looking.id})">
                 <div  class="media">
                   <div class="media-left">
                     <a >
@@ -105,7 +105,7 @@
               You don't have anything posted yet.
               <small>
                 <a ui-sref="dashboard.myProfile.addNewLooking"><br/>Click here</a> to add looking.
-                <a ui-sref="dashboard.addNewRoom"><br/>Click here</a> to add room.
+                <a ui-sref="addRoom"><br/>Click here</a> to add room.
               </small>
             </h2>
             <slick dots="true" class="slider row" slides-to-show="1" slides-to-scroll="1" ng-if="dashboard.userLookings.length">

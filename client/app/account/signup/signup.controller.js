@@ -16,8 +16,8 @@
     vm.user.confirmPassword = '';
     vm.errors = {};
     $scope.$parent.seo = {
-      pageTitle:'Rented Sign-up',
-      pageDescription:'sign-up for rented for free'
+      pageTitle:'Campusly Sign-up',
+      pageDescription:'Free Sign-up for Campusly'
     };
     mixpanel.track("sign up");
 
