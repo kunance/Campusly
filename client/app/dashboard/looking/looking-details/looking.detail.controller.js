@@ -3,11 +3,11 @@
 
   angular
     .module('app.dashboard')
-    .controller('LookingDetailCtrl', LookingDetailCtrl);
+    .controller('LookingDetailsCtrl', LookingDetailsCtrl);
 
-  LookingDetailCtrl.$inject = ['getEducations', '$stateParams', 'logger', 'getUserInfo', 'common', 'getLookingById'];
+  LookingDetailsCtrl.$inject = ['getEducations', '$stateParams', 'logger', 'getUserInfo', 'common', 'getLookingById'];
 
-  function LookingDetailCtrl(getEducations, $stateParams, logger, getUserInfo, common, getLookingById) {
+  function LookingDetailsCtrl(getEducations, $stateParams, logger, getUserInfo, common, getLookingById) {
     var vm = this;
     vm.me = getUserInfo;
     vm.tempMe = Object.create(vm.me);
@@ -15,12 +15,14 @@
 
     var lookingId = $stateParams.id;
 
-    if(lookingId) {
+    //if(lookingId) {
       vm.lookingDetail = getLookingById;
-      }
+      //}
 
     console.log('Looking Detail: ', vm.lookingDetail);
 
-  }
-}());
 
+  }
+
+
+}());
