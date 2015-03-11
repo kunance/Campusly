@@ -38,9 +38,9 @@ exports.createRoomListing = function(req, res, next) {
 
   propertySrv.transView2ModelPropertyDetails(propertyDetails, function(err, transPropertyDetails) {
 
-    propertyDetails = transPropertyDetails;
+ //   console.log(propertyDetails === transPropertyDetails);
 
-    propertySrv.createPropertyFromCreateRoom(propertyDetails, function (error, property) {
+    propertySrv.createPropertyFromCreateRoom(transPropertyDetails, function (error, property) {
 
       if (!error) {
 
@@ -64,7 +64,7 @@ exports.createRoomListing = function(req, res, next) {
           });
       }
       else {
-        res.json(error.statusCode);
+        res.status(500).json(error.statusCode);
       }
     });
   });
