@@ -8,7 +8,6 @@
           'get':    {method:'GET'},
           'query':  {method:'GET', isArray:true},
           'create': {method: 'POST'},
-          'remove': {method: 'DELETE'},
           'delete': {method: 'DELETE'},
           'edit': {
             method: 'PUT'

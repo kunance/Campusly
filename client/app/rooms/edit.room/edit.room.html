@@ -1,0 +1,76 @@
+<div ng-include="'components/layout/navbar/navbar.html'"></div>
+<div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Edit room</h1>
+    </div>
+
+    <button class="btn btn-primary" ng-disabled="editRoomForm.$invalid || editRoomForm.$pristine " ng-click="vm.edit()">Save</button>
+    <button class="btn btn-warning" ng-disabled="editRoomForm.$dirty" ng-click="vm.delete()">Delete</button>
+
+    <form name="editRoomForm" ng-submit="vm.edit()" novalidate>
+      <div class="col-sm-12" id="room-specifics">
+        <label for="monthlyPrice">Monthly rent</label>
+        <input type="number" id="monthlyPrice" name="monthlyPrice" required class="form-control"  placeholder="monthly price" ng-model="vm.room.monthlyPrice">
+        <div ng-show="editRoomForm.monthlyPrice.$dirty && editRoomForm.monthlyPrice.$invalid">
+          <p class="help-block error" >Enter a the monthly rent</p>
+        </div>
+
+        <label for="securityDeposit">Security deposit</label>
+        <input type="number" id="securityDeposit" required name="securityDeposit" class="form-control"  placeholder="security deposit" ng-model="vm.room.securityDeposit"/>
+
+        <label for="monthlyUtilityCost">Monthly utility cost</label>
+        <input type="number" id="monthlyUtilityCost" required name="monthlyUtilityCost" class="form-control"  placeholder="monthly utility cost" ng-model="vm.room.monthlyUtilityCost"/>
+
+        <label for="availableMoveIn">Available</label>
+        <input type="date" id="availableMoveIn" required name="availableMoveIn" class="form-control"  placeholder="available move-in" ng-model="vm.room.availableMoveIn"/>
+
+        <label for="leaseEndDate">Lease End Date</label>
+        <input type="date" id="leaseEndDate" required name="monthlyPrice" class="form-control"  placeholder="Lease End Date" ng-model="vm.room.leaseEndDate"/>
+
+        <label for="leaseType">Lease type</label>
+        <select id="leaseType" class="form-control" ng-model="vm.room.leaseType" required>
+          <option value="sub-lease">Sub-lease</option>
+          <option value="month-to-month">Month to month</option>
+          <option value="lease take over">Lease take over</option>
+        </select>
+
+        <label for="gender">Gender preference</label>
+        <select id="gender"class="form-control" ng-model="vm.room.gender" required>
+          <option value="no preference">no preference</option>
+          <option value="male only">male only</option>
+          <option value="female only">female only</option>
+        </select>
+
+        <label for="roomType">Room type</label>
+        <select id="roomType"class="form-control" ng-model="vm.room.roomType" required>
+          <option value="single">single</option>
+          <option value="double">double</option>
+          <option value="loft">loft</option>
+          <option value="living room">living room</option>
+        </select>
+
+        <label for="numRoomates">Current number of roommates</label>
+        <input type="number" id="numRoomates" required name="numRoomates" class="form-control" ng-model="vm.room.numRoomates" min="1" max="10"/>
+
+
+        <label for="sharedBath">Shared Bathroom</label>
+        <input type="checkbox" id="sharedBath" required name="sharedBath" class="form-control"  placeholder="shared bath" ng-model="vm.room.sharedBathroom"/>
+
+        <label for="furnished">Furnished</label>
+        <input type="checkbox" id="furnished" required name="furnished" class="form-control" ng-model="vm.room.furnished"/>
+
+        <label for="parkingAvailable">Parking available</label>
+        <input type="checkbox" id="parkingAvailable" required name="parkingAvailable" class="form-control" ng-model="vm.room.parkingAvailable"/>
+
+        <label for="smokingAllowed">Smoking allowed</label>
+        <input type="checkbox" id="smokingAllowed" required name="smokingAllowed" class="form-control" ng-model="vm.room.smokingAllowed"/>
+
+        <label for="roomDescription">Room description</label>
+        <textarea required name="roomDescription" id="roomDescription" cols="30" rows="5" ng-model="vm.room.description"  class="form-control" ></textarea>
+      </div>
+    </form>
+  </div>
+  <pre>{{[vm.room] | json}}</pre>
+</div>

@@ -14,6 +14,8 @@ angular.module('RentedApp', [
   'app.account',
   'app.landing',
   'app.rooms',
+  'app.addRoom',
+  'app.editRoom',
   'app.roomDetail'
 ])
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {

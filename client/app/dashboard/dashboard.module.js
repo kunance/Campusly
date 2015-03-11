@@ -14,8 +14,7 @@
           authenticate: true,
           resolve:{
             getUserLookings:getUserLookings,
-            allLooking:allLooking,
-            getAllRooms:getAllRooms
+            allLooking:allLooking
           }
         });
     });
