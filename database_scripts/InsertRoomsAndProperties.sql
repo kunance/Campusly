@@ -30,6 +30,14 @@ VALUES (3, 1290, 'Playmor Ave', 'San Jose', 'CA', 95126, '', '', 37.316140, -121
 (14,8720,'Costa Verde Blvd','San Diego','CA',92122,'','',32.870408,-117.216815,'apt','',2,1),
 (15,8880,'Villa La Jolla Dr','La Jolla','CA',92037,'','',32.86953,-117.235024,'apt','',2,2);
 
+--
+-- TOC entry 2673 (class 0 OID 0)
+-- Dependencies: 197
+-- Name: property_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('property_id_seq', 16, true);
+
 
 INSERT INTO room_listing ("propertyId",
   "creatorId",
@@ -61,4 +69,10 @@ VALUES (3, 17, 1000, 100, 'now', '2015-12-31 11:59:59-01', 'month-to-month', 'no
 (14,17,950,0,'2015-03-10','2015-06-30','month-to-month','no preference',50,'single',2,'false','true','false','false','AVAILABLE Available starting March 10th.$950 a month Large single bedroom in a 2Br apartment. The other room is occupied by one Grad student. Your own full bathroom. Full kitchen with stove, fridge, microwave and dishwasher. Private parking spot. Outdoor patio. Next door to laundry room. Right by the mts 41 bus line. Bus stop just outside development and 2 blocks from Nobel/Arriba shuttle. One block from the UTC Westfield mall and Costa Verde Center. Address is 8032 Avenida Navidad 92122'),
 (15,17,660,660,'2015-03-01','2015-07-31','month-to-month','no preference',60,'single',1,'false','false','true','false','Single for $660+utility @ Tower at Costa verde. Available from Mar 1. Shared bathroom with the occupants in another single and in the living room. Floor plan as attached, the room avaliable is the on the top right. Notice that the washing machine is actually placed inside the master bedroom, which might caused minor inconvenience. Message me if interested.');
 
+--
+-- TOC entry 2682 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: room_listing_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
 
+SELECT pg_catalog.setval('room_listing_id_seq', 16, true);
