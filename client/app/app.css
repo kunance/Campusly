@@ -209,6 +209,32 @@ Navbar settings - not sure if these three are required
 }
 
 /* ==========================================================================
+Posting input text type
+========================================================================== */
+.input-post{
+
+}
+
+.input-post input[type="number"] {
+  height: 34px;
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: left;
+  border-radius: 50px;
+}
+
+.input-post select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 34px;
+  background: #e8e8e8;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: left;
+  border-radius: 50px;
+}
+
+/* ==========================================================================
 Sign-up button class
 ========================================================================== */
 .btn-rented-signup {
@@ -1079,6 +1105,30 @@ nav.dashboard-submenu > label {
 
 
 /* Looking for a room */
+
+
+/* ==========================================================================
+Bubble for all posts
+========================================================================== */
+
+.post-bubble {
+  background: #e8e8e8;
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  display: inline-block;
+  margin-top: 10px;
+  text-align: center;
+  padding-top: 11px;
+}
+
+/* ==========================================================================
+Post padding
+========================================================================== */
+
+.post-padding {
+  padding-top: 15px;
+}
 
 .looking-for-room img.profile-image{
   height: 5em;
