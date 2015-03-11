@@ -234,6 +234,7 @@ Posting input text type
   border-radius: 50px;
 }
 
+
 /* ==========================================================================
 Sign-up button class
 ========================================================================== */
@@ -728,6 +729,9 @@ For mailchimp sign-up - not needed in main app
     font-size: 1.1em;
   }
 
+  .input-post {
+    margin-left: 10px;
+  }
 }
 
 @media (min-width: 992px) {
@@ -1903,6 +1907,16 @@ h2.no-roommate small{
 
 .fa.fa-pet {
   background-image: url("../assets/images/pet.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-smoking {
+  background-image: url("../assets/images/smoking.svg");
   background-size: 1em;
   background-repeat: no-repeat;
   width: 1em;
