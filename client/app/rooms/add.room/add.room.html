@@ -344,56 +344,28 @@
 
               <!-- Address autocomplete -->
 
-
+              <label for="streetAddress">Address lookup</label>
+              <input  type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Type your address to autocomplete" address-autocomplete="vm.property.streetAddress"/>
 
               <!-- Address autofill -->
 
-              <!--<label for="streetNumber">Street Number</label>-->
-              <!--<input type="number" id="streetNumber" required name="streetNumber" class="form-control"  placeholder="Street number" address-autocomplete="vm.property.address" ng-model="vm.property.address.streetNumeric"/>-->
+              <label for="streetNumber" class="post-padding">Street Number</label>
+              <input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="vm.property.streetAddress.streetNumeric" readonly/>
 
-              <!--<label for="streetAddress">Street Name</label>-->
-              <!--<input type="text" id="streetName" required name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="vm.property.address" ng-model="vm.property.address.streetAddress"/>-->
+              <label for="streetName" class="post-padding">Street Name</label>
+              <input type="text" id="streetName" name="streetAddress" class="form-control"  placeholder="Street name" ng-model="vm.property.streetAddress.streetAddress" readonly/>
 
-              <!--<label for="apt">Apt Number</label>-->
-              <!--<input type="number" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="vm.property.address.apt"/>-->
+              <label for="apt" class="post-padding">Apt No.</label>
+              <input type="number" id="apt" name="apt" class="form-control"  placeholder="e.x. 2C" ng-model="vm.property.streetAddress.apt"/>
 
-              <!--<label for="state">State</label>-->
-              <!--<input type="text" id="state" required name="state" class="form-control"  placeholder="state" ng-model="vm.property.address.state"/>-->
+              <label for="city" class="post-padding">City</label>
+              <input type="text" id="city" name="city" class="form-control"  placeholder="City" ng-model="vm.property.streetAddress.city" readonly/>
 
-              <!--<label for="city">City</label>-->
-              <!--<input type="text" id="city" required name="city" class="form-control"  placeholder="city" ng-model="vm.property.address.city"/>-->
+              <label for="city" class="post-padding">State</label>
+              <input type="text" id="state" name="state" class="form-control"  placeholder="State" ng-model="vm.property.streetAddress.state" readonly/>
 
-              <!--<label for="zip">Zip code</label>-->
-              <!--<input type="number" id="zip" required name="zip" class="form-control"  placeholder="zip code" ng-model="vm.property.address.zip" ng-trim="true"/>-->
-
-
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <label for="streetAddress">Address lookup</label>
-                <input  type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="vm.property.streetAddress"/>
-
-                <br>
-
-                <label for="streetNumber">Street Number</label>
-                <input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="vm.property.streetAddress.streetNumeric" readonly/>
-
-                <label for="streetName">Street Name</label>
-                <input type="text" id="streetName" name="streetAddress" class="form-control"  placeholder="Street name" ng-model="vm.property.streetAddress.streetAddress" readonly/>
-
-                <label for="apt">Apt No.</label>
-                <input type="number" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="vm.property.streetAddress.apt"/>
-
-                <label for="city">City</label>
-                <input type="text" id="city" name="city" class="form-control"  placeholder="city" ng-model="vm.property.streetAddress.city" readonly/>
-
-                <label for="city">State</label>
-                <input type="text" id="state" name="state" class="form-control"  placeholder="state" ng-model="vvm.property.streetAddress.state" readonly/>
-
-                <label for="zip">Zip Code</label>
-                <input type="number" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="vm.property.streetAddress.zip" readonly/>
-
-                <br>
-              </div>
-
+              <label for="zip" class="post-padding">Zip Code</label>
+              <input type="number" id="zip" name="zip" class="form-control"  placeholder="Zip code" ng-model="vm.property.streetAddress.zip" readonly/>
 
             </div>
           </div>
@@ -414,19 +386,5 @@
 
     </div>
 
-    <pre>{{[vm.room, vm.property] | json}}</pre> <!-- To be removed from production -->
-
   </div>
 </div>
-<!-- end main wrapper class -->
-
-  <!-- Saving commented code for reference -->
-
-  <!--<div ng-show="addNewRoomForm.$invalid">-->
-  <!--Ctrl Monthly Price: {{vm.room.monthlyPrice}}</br>-->
-  <!--Form Pristine:  {{addNewRoomForm.$pristine}}</br>-->
-  <!--Monthly Price Valid:  {{addNewRoomForm.monthlyPrice.$valid}}</br>-->
-  <!--Errors: {{addNewRoomForm.$errors}}</br>-->
-  <!--Form:  {{addNewRoomForm}}</br>-->
-  <!--{{addNewRoomForm.monthlyPrice === vm.room.monthlyPrice}}  addNewRoomForm.monthlyPrice === vm.room.monthlyPrice  </br>-->
-  <!--</div>-->
