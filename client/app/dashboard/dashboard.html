@@ -97,51 +97,106 @@
             <a class="pull-right btn-rented-event view-all" ui-sref="dashboard.looking">View All</a>
           </div>
 
-          <!-- My Posts -->
+          <!-- My Available Rooms Posts - Hides if no Looking posts-->
+          <div ng-show="dashboard.myRoomListings.length" class="posts-dashboard-title">
 
-          <h2 class="section-title"> My Posts</h2>
-          <div class="white-box my-listings" >
-            <h2 ng-if="!dashboard.userLookings.length" >
-              You don't have anything posted yet.
-              <small>
-                <a ui-sref="dashboard.myProfile.addNewLooking"><br/>Click here</a> to add looking.
-                <a ui-sref="addRoom"><br/>Click here</a> to add room.
-              </small>
-            </h2>
-            <slick dots="true" class="slider row" slides-to-show="1" slides-to-scroll="1" ng-if="dashboard.userLookings.length">
+            <h2 class="section-title"> My Posts - Available Rooms</h2>
 
-              <!-- start list box -->
-              <div class="list-item" ng-repeat="look in dashboard.userLookings">
-                <div class="row" >
-                  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="picture">
-                      <img src="http://lorempixel.com/400/250/city/3">
+            <div class="white-box my-listings" >
+              <h2 ng-if="!dashboard.myRoomListings.length" >
+                You don't have anything posted yet.
+                <small>
+                  <a ui-sref="dashboard.myProfile.addNewLooking"><br/>Click here</a> to add looking.
+                  <a ui-sref="addRoom"><br/>Click here</a> to add room.
+                </small>
+              </h2>
+              <slick dots="true" class="slider row" slides-to-show="1" slides-to-scroll="1" ng-if="dashboard.myRoomListings.length">
+
+                <!-- start list box -->
+                <div class="list-item" ng-repeat="room in dashboard.myRoomListings">
+                  <div class="row" >
+
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+                      <div class="info" ui-sref="roomDetail({id:room.id})">
+                        <span class='value'>{{room.monthlyPrice |currency}}</span>
+                        <span class='address'><i class="fa fa-transgender"></i> Gender: {{room.gender}} </span>
+                        <span class='address'><i class="fa fa-users"></i> Max roommates: {{room.numRoommates}} </span>
+                      <span class="elapsed-time">
+                        <small><i class="fa fa-clock-o"></i> Posted on {{room.createdAt | date:'longDate'}}</small>
+                        <small ng-if="room.updatedAt"><i class="fa fa-clock-o"></i> Edited {{room.updatedAt | amCalendar}}</small>
+                      </span>
+                      </div>
                     </div>
-                  </div>
 
-                  <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                    <div class="info">
-                      <span class='value'>{{look.maxMonthlyRent |currency}}</span>
-                      <span class='address'><i class="fa fa-transgender"></i> Gender: {{look.gender}} </span>
-                      <span class='address'><i class="fa fa-users"></i> Max roommates: {{look.numRoommates}} </span>
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                      <div class="picture">
+                        <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.relatedPropertyId.latitude}},{{room.relatedPropertyId.longitude}}&zoom=14&size=400x250&markers=color:blue%7C{{room.relatedPropertyId.latitude}},{{room.relatedPropertyId.longitude}}">
+                      </div>
+                    </div>
+
+                    <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 col-xs-offset-4 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                      <div class="edit">
+                        <a class="bubble pull-left" ui-sref="editRoom({id:room.id})" ui-sref-opts="{reload:true}">
+                          <i class="fa fa-pencil"></i>
+                        </a>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </slick>
+              <hr>
+            </div>
+
+          </div>
+
+          <!-- My Looking Posts - Hides if no Looking posts-->
+          <div ng-show="dashboard.userLookings.length" class="posts-dashboard-title">
+
+            <h2 class="section-title"> My Posts - Looking</h2>
+
+            <div class="white-box my-listings" >
+              <h2 ng-if="!dashboard.userLookings.length" >
+                You don't have anything posted yet.
+                <small>
+                  <a ui-sref="dashboard.myProfile.addNewLooking"><br/>Click here</a> to add looking.
+                  <a ui-sref="addRoom"><br/>Click here</a> to add room.
+                </small>
+              </h2>
+              <slick dots="true" class="slider row" slides-to-show="1" slides-to-scroll="1" ng-if="dashboard.userLookings.length">
+
+                <!-- start list box -->
+                <div class="list-item" ng-repeat="look in dashboard.userLookings">
+                  <div class="row" >
+
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+                      <div class="info" ui-sref="lookingDetail({id:look.id})">
+                        <span class='value'>{{look.maxMonthlyRent |currency}}</span>
+                        <span class='address'><i class="fa fa-transgender"></i> Gender: {{look.gender}} </span>
+                        <span class='address'><i class="fa fa-users"></i> Max roommates: {{look.numRoommates}} </span>
                       <span class="elapsed-time">
                         <small><i class="fa fa-clock-o"></i> Posted on {{look.createdAt | date:'longDate'}}</small>
                         <small ng-if="look.updatedAt"><i class="fa fa-clock-o"></i> Edited {{look.updatedAt | amCalendar}}</small>
                       </span>
+                      </div>
                     </div>
-                    <div class="edit">
-                      <span class='text'>Edit</span>
-                      <a class="bubble" ui-sref="dashboard.myProfile.editLooking({id:look.id})" ui-sref-opts="{reload:true}">
-                        <i class="fa fa-pencil"></i>
-                      </a>
+                    <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 col-xs-offset-4 col-sm-offset-5 col-md-offset-5 col-lg-offset-5">
+                      <div class="edit">
+                        <a class="bubble pull-right" ui-sref="dashboard.myProfile.editLooking({id:look.id})" ui-sref-opts="{reload:true}">
+                          <i class="fa fa-pencil"></i>
+                        </a>
+                      </div>
                     </div>
-                  </div>
 
+                  </div>
                 </div>
-              </div>
-            </slick>
-            <hr>
+              </slick>
+              <hr>
+            </div>
+
           </div>
+
+
 
         </div>
       </div>
