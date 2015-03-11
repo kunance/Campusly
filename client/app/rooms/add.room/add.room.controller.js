@@ -35,6 +35,24 @@
     //  }
 
     };
+
+    $scope.datePickers = {
+      startDate: false,
+      endDate:false
+    };
+    vm.address = {};
+    $scope.format = 'dd.MM.yyyy';
+    $scope.clear = function () {
+      $scope.dt = null;
+    };
+
+    $scope.open = function($event, number) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.datePickers[number]= true;
+    };
+
+
   }
 
 }());
