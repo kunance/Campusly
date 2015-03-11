@@ -289,11 +289,11 @@
                 </div>
               </div>
               <div class="col-xs-9 col-sm-7 input-post">
-                <!--<label for="petsAllowed">Pets allowed?</label>-->
-                <!--<select id="petsAllowed" required name="smokingAllowed" class="form-control" ng-model="">-->
-                <!--<option value="true">Yes</option>-->
-                <!--<option value="false">No</option>-->
-                <!--</select>-->
+                <label for="petsAllowed">Pets allowed?</label>
+                <select id="petsAllowed" required name="petsAllowed" class="form-control" ng-model="vm.room.petsAllowed">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+                </select>
               </div>
             </div>
 
@@ -335,108 +335,69 @@
 
         <div class="row">
 
-          <!-- Roommates code needs to be fixed -->
-
-          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <div class="page-header">
-              <h2> Roommates </h2>
-              <a class="bubble edit-profile" ng-click="myProfile.toggleRoommatesAddon()">
-                <i class="fa fa-plus" ng-hide="myProfile.showRoommatesAddonButtons"></i>
-                <i class="fa fa-minus" ng-show="myProfile.showRoommatesAddonButtons"></i>
-              </a>
-            </div>
-            <div class="white-box roommates">
-
-              <div ng-show='myProfile.showRoommatesAddonButtons' class="text-center">
-                <a class="btn btn-primary btn-half-block" ng-click="myProfile.toggleAddRoommate()">
-                  <i class="fa fa-plus"></i>
-                  Add Roommate
-                </a>
-                <a class="btn btn-secondary btn-half-block" ng-click="myProfile.toggleInviteRoomate()">
-                  <i class="fa fa-envelope"></i>
-                  Invite Roommate
-                </a>
-                <hr>
-              </div>
-
-              <div ng-show="myProfile.showAddRoommate">
-                <a class="bubble cancel" ng-click="myProfile.cancelRoommateAddAddon()"><i class="fa fa-close"></i></a>
-                <h3>Search for your Roommate using by email. </h3>
-
-                <angucomplete-alt id="members"
-                                  placeholder="Search for roommate"
-                                  pause="400"
-                                  selected-object="addNewRoommate"
-                                  local-data="myProfile.users.data"
-                                  search-fields="email"
-                                  title-field="firstname,lastname"
-                                  description-field="email"
-                                  image-field="profileImage"
-                                  input-class="form-control form-control-small"
-                                  match-class="redFont"
-                                  clear-selected="true">
-                  <hr>
-
-
-              </div>
-              <h2 class="no-roommate" ng-hide="myProfile.showAddRoommate || myProfile.roommates.length > 0">
-                You don't have any roommate yet.
-                <small>
-                  <a href="" ng-click="myProfile.toggleAddRoommate()">Click here</a> to find and add your roommates.
-                </small>
-              </h2>
-              <div class="row roommate" ng-repeat="roommate in myProfile.roommates">
-                <div class="col-xs-2">
-                  <div class="picture">
-                    <img ng-if="roommate.relatedRoommateId.profileImage" ng-src="api/images{{roommate.relatedRoommateId.profileImage}}" alt="" class="img-circle">
-                    <i ng-if="!roommate.relatedRoommateId.profileImage" class="fa fa-user" style="font-size:80px"></i>
-                  </div>
-                </div>
-                <div class="col-xs-6 info">
-                  <span class="name"> {{roommate.relatedRoommateId.firstname}} {{roommate.relatedRoommateId.lastname}} </span>
-                  <span class="email">{{roommate.relatedRoommateId.email}}</span>
-                  <span class="university" ng-if="roommate.relatedRoommateId.usereducationUsers[0].educationCenterName">{{roommate.relatedRoommateId.usereducationUsers[0].educationCenterName}}</span>
-                  <span class="university" ng-if="!roommate.relatedRoommateId.usereducationUsers[0].educationCenterName">User didn't provide education data</span>
-                  <span class="city" ng-if="roommate.relatedRoommateId.addresshistoryUsers.length">{{roommate.relatedRoommateId.addresshistoryUsers[0].zip}} {{roommate.relatedRoommateId.addresshistoryUsers[0].city}} / {{roommate.relatedRoommateId.addresshistoryUsers[0].state}}</span>
-                  <span class="city" ng-if="!roommate.relatedRoommateId.addresshistoryUsers.length">User didn't provide address data</span>
-                </div>
-                <div class="actions col-xs-4">
-                  <a class="bubble remove" ng-click="myProfile.removeRoommate(roommate)"><i class="fa fa-trash-o"></i></a>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!--  PET & VEHICLE BOX  -->
-          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+          <!--  Address box  -->
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="page-header">
               <h2> Address </h2>
             </div>
             <div class="white-box pets">
 
-              <!-- Needs address look-up field similar to Ivan's code on My Profile -->
+              <!-- Address autocomplete -->
 
-              <label for="streetNumber">Street Number</label>
-              <input type="number" id="streetNumber" required name="streetNumber" class="form-control"  placeholder="Street number" address-autocomplete="vm.property.address" ng-model="vm.property.address.streetNumeric"/>
 
-              <label for="streetAddress">Street Name</label>
-              <input type="text" id="streetAddress" required name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="vm.property.address" ng-model="vm.property.address.streetAddress"/>
 
-              <label for="apt">Apt Number</label>
-              <input type="number" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="vm.property.address.apt"/>
+              <!-- Address autofill -->
 
-              <label for="state">State</label>
-              <input type="text" id="state" required name="state" class="form-control"  placeholder="state" ng-model="vm.property.address.state"/>
+              <!--<label for="streetNumber">Street Number</label>-->
+              <!--<input type="number" id="streetNumber" required name="streetNumber" class="form-control"  placeholder="Street number" address-autocomplete="vm.property.address" ng-model="vm.property.address.streetNumeric"/>-->
 
-              <label for="city">City</label>
-              <input type="text" id="city" required name="city" class="form-control"  placeholder="city" ng-model="vm.property.address.city"/>
+              <!--<label for="streetAddress">Street Name</label>-->
+              <!--<input type="text" id="streetName" required name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="vm.property.address" ng-model="vm.property.address.streetAddress"/>-->
 
-              <label for="zip">Zip code</label>
-              <input type="number" id="zip" required name="zip" class="form-control"  placeholder="zip code" ng-model="vm.property.address.zip" ng-trim="true"/>
+              <!--<label for="apt">Apt Number</label>-->
+              <!--<input type="number" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="vm.property.address.apt"/>-->
+
+              <!--<label for="state">State</label>-->
+              <!--<input type="text" id="state" required name="state" class="form-control"  placeholder="state" ng-model="vm.property.address.state"/>-->
+
+              <!--<label for="city">City</label>-->
+              <!--<input type="text" id="city" required name="city" class="form-control"  placeholder="city" ng-model="vm.property.address.city"/>-->
+
+              <!--<label for="zip">Zip code</label>-->
+              <!--<input type="number" id="zip" required name="zip" class="form-control"  placeholder="zip code" ng-model="vm.property.address.zip" ng-trim="true"/>-->
+
+
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <label for="streetAddress">Address lookup</label>
+                <input  type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Street name" address-autocomplete="vm.property.streetAddress"/>
+
+                <br>
+
+                <label for="streetNumber">Street Number</label>
+                <input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="vm.property.streetAddress.streetNumeric" readonly/>
+
+                <label for="streetName">Street Name</label>
+                <input type="text" id="streetName" name="streetAddress" class="form-control"  placeholder="Street name" ng-model="vm.property.streetAddress.streetAddress" readonly/>
+
+                <label for="apt">Apt No.</label>
+                <input type="number" id="apt" name="apt" class="form-control"  placeholder="apt" ng-model="vm.property.streetAddress.apt"/>
+
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" class="form-control"  placeholder="city" ng-model="vm.property.streetAddress.city" readonly/>
+
+                <label for="city">State</label>
+                <input type="text" id="state" name="state" class="form-control"  placeholder="state" ng-model="vvm.property.streetAddress.state" readonly/>
+
+                <label for="zip">Zip Code</label>
+                <input type="number" id="zip" name="zip" class="form-control"  placeholder="zip code" ng-model="vm.property.streetAddress.zip" readonly/>
+
+                <br>
+              </div>
+
+
             </div>
           </div>
-          <!-- END PET & VEHICLE BOX  -->
+          <!-- End addres box -->
 
         </div>
 
@@ -444,7 +405,8 @@
 
         <div class="row post-padding">
           <div class="col-xs-12 col-sm-12">
-            <button class="btn-rented-medium primary pull-right" ng-disabled="addNewRoomForm.$invalid ">Save</button> <!-- && addNewRoomForm.$dirty-->
+            <!--<button class="btn-rented-medium primary pull-right" ng-disabled="addNewRoomForm.$invalid ">Save</button> &lt;!&ndash; && addNewRoomForm.$dirty&ndash;&gt;-->
+            <button class="btn-rented-medium primary pull-right" >Save</button> <!-- This is for testing the address save issue-->
           </div>
         </div>
 
