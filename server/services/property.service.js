@@ -17,11 +17,11 @@ exports.createPropertyFromCreateRoom = function(propertyDetails, cb) {
   propertyDetails.createdAt = new Date();
 
 
-//  console.log('Property details: ', propertyDetails);
+ // console.log('Property details: ', propertyDetails);
 
   var newProperty = Property.build(propertyDetails);
 
-//  console.log('Property after building: ', newProperty);
+ // console.log('Property after building: ', newProperty);
 
   newProperty.save()
     .then(function(property) {
@@ -41,23 +41,14 @@ exports.createPropertyFromCreateRoom = function(propertyDetails, cb) {
  */
 exports.transView2ModelPropertyDetails = function(propertyDetails, cb) {
 
-  console.log(propertyDetails);
-  console.log (propertyDetails.streetAddress.location);
 
+  propertyDetails.latitude = propertyDetails.streetAddress.location.latitude;
+  propertyDetails.longitude = propertyDetails.streetAddress.location.longitude;
   propertyDetails.streetNumeric = propertyDetails.streetAddress.streetNumeric;
-  propertyDetails.streetAddress = propertyDetails.streetAddress.streetAddress;
   propertyDetails.city = propertyDetails.streetAddress.city;
   propertyDetails.state = propertyDetails.streetAddress.state;
   propertyDetails.zip = propertyDetails.streetAddress.zip;
-  propertyDetails.latitude = propertyDetails.streetAddress.location.latitude;
-  propertyDetails.longitude = propertyDetails.streetAddress.location.longitude;
-
-
-//  propertyDetails.longitude = -117.235024;
-
-//  if(!propertyDetails.bldg) { delete propertyDetails.bldg; }
-
-//  delete propertyDetails.streetAddress;
+  propertyDetails.streetAddress = propertyDetails.streetAddress.streetAddress;
 
   cb(null,  propertyDetails);
 };

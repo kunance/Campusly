@@ -71,6 +71,8 @@
         <textarea required name="roomDescription" id="roomDescription" cols="30" rows="5" ng-model="vm.room.description"  class="form-control" ></textarea>
       </div>
     </form>
+    <label for="picture">Upload picture</label>
+    <div fileupload data="vm.data"></div>
   </div>
   <pre>{{[vm.room] | json}}</pre>
 </div>
