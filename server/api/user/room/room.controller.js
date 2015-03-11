@@ -82,9 +82,16 @@ exports.createRoomListing = function(req, res, next) {
  */
 exports.getRoomListing = function(req, res, next) {
 
-  console.log("getRoomListing room listing id: ",  req.params);
+  var roomAttributes = ["monthlyPrice", "securityDeposit", "availableMoveIn", "leaseEndDate", "leaseType", "gender",
+    "monthlyUtilityCost", "roomType", "sharedBathroom", "numRoomates", "furnished", "parkingAvailable", "smokingAllowed", "description"];
 
-  RoomListing.find({where: { id: req.params.id, creatorId: req.userId }})
+
+  var propertyAttributes = [ "streetNumeric", "streetAddress", "city", "state", "zip", "apt", "bldg", "latitude", "longitude", "type",
+    "description", "bedrooms","bathrooms", "parkingSpots", "livingAreaSqFt", "hoaFee", "otherFee", "status" ];
+
+
+  RoomListing.find({where: { id: req.params.id, creatorId: req.userId }, attributes: roomAttributes, include:
+    [ {model: Property,  attributes: propertyAttributes, as: 'relatedPropertyId'}]})
     .then(function(roomListing) {
       if(roomListing.status && roomListing.status !== 200) {
         res.status(roomListing.status).json(roomListing.statusText);
@@ -112,9 +119,22 @@ exports.getRoomListing = function(req, res, next) {
  */
 exports.getAllRoomListings = function(req, res, next) {
 
-  RoomListing.findAll({where: { creatorId: req.userId }})
+  var roomAttributes = ["monthlyPrice", "securityDeposit", "availableMoveIn", "leaseEndDate", "leaseType", "gender",
+    "monthlyUtilityCost", "roomType", "sharedBathroom", "numRoomates", "furnished", "parkingAvailable", "smokingAllowed", "description"];
+
+
+  var propertyAttributes = [ "streetNumeric", "streetAddress", "city", "state", "zip", "apt", "bldg", "latitude", "longitude", "type",
+    "description", "bedrooms","bathrooms", "parkingSpots", "livingAreaSqFt", "hoaFee", "otherFee", "status" ];
+
+  RoomListing.findAll({where: { creatorId: req.userId }, attributes: roomAttributes, include:
+    [ {model: Property,  attributes: propertyAttributes, as: 'relatedPropertyId'}]})
     .then(function(roomListings) {
-      res.json(roomListings);
+      if(roomListings.status && roomListings.status !== 200) {
+        res.status(roomListings.status).json(roomListings.statusText);
+      }
+      else {
+        res.json(roomListings);
+      }
     })
     .catch(function(errors){
       console.log(errors);
