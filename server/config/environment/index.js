@@ -34,11 +34,11 @@ var all = {
   mail: {
     sendGridOptions : {
       auth: {
-        api_user: 'RentedMailer',
+        api_user: 'CampuslyMailer',
         api_key: 'ApiKey'
       }
     },
-    from: 'rented@rented.co'
+    from: 'info@campusly.org'
   },
 
   // List of user roles

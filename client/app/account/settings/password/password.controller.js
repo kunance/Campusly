@@ -10,8 +10,8 @@
   function PasswordCtrl($scope, UserResource, common) {
       $scope.errors = {};
       $scope.$parent.seo = {
-      pageTitle:'Set up your account',
-      pageDescription:'Some description'
+      pageTitle:'Set up your Campusly account',
+      pageDescription:'Sign-in securely to Campusly'
     };
 
       $scope.changePassword = function(form) {

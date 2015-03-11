@@ -7,102 +7,236 @@
 
     <!--start of first col 4-->
     <div class="col-md-4">
-        <label for="moveInDate">Move in</label>
-        <p class="input-group">
-          <input type="text" id="moveInDate" class="form-control" datepicker-popup="{{format}}" ng-model="newLooking.tempLooking.moveInDate" is-open="datePickers.startDate" close-text="Close" />
+
+        <div class="row">
+          <div class="col-xs-3 col-sm-3">
+            <div class="post-bubble">
+              <i class="fa fa-arrow-right fa-lg"></i>
+            </div>
+          </div>
+          <div class="col-xs-9 col-sm-9 input-post">
+            <label for="moveInDate">Move-in date</label>
+            <p class="input-group">
+              <input type="text" id="moveInDate" class="form-control" datepicker-popup="{{format}}" ng-model="newLooking.tempLooking.moveInDate" is-open="datePickers.startDate" close-text="Close" />
                       <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                       </span>
-        </p>
+            </p>
+          </div>
+        </div>
 
-        <label for="moveInDate">Move out</label>
-        <p class="input-group">
-          <input type="text" id="moveOutDate" class="form-control" datepicker-popup="{{format}}" ng-model="newLooking.tempLooking.moveOutDate" is-open="datePickers.endDate" close-text="Close" />
+        <div class="row post-padding">
+          <div class="col-xs-3 col-sm-3">
+            <div class="post-bubble">
+              <i class="fa fa-arrow-left fa-lg"></i>
+            </div>
+          </div>
+          <div class="col-xs-9 col-sm-9 input-post">
+            <label for="moveInDate">Move-out date</label>
+            <p class="input-group">
+              <input type="text" id="moveOutDate" class="form-control" datepicker-popup="{{format}}" ng-model="newLooking.tempLooking.moveOutDate" is-open="datePickers.endDate" close-text="Close" />
                           <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="open($event,'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                           </span>
-        </p>
+            </p>
+          </div>
+        </div>
 
       <!--<div class="col-md-4">-->
-        <label for="maxMonthlyRent">Max rent</label>
-        <input type="number" id="maxMonthlyRent" name="maxMonthlyRent" class="form-control"  placeholder="Max monthly rent" ng-model="newLooking.tempLooking.maxMonthlyRent"/>
 
-        <label for="utilitiesIncluded">utilities included</label><br/>
-        <select id="utilitiesIncluded" class="form-control" ng-model="newLooking.tempLooking.utilitiesIncluded">
-          <option value="true">Yes</option>
-          <option value="false">No</option>
-        </select>
+      <div class="row post-padding">
+        <div class="col-xs-3 col-sm-3">
+          <div class="post-bubble">
+            <i class="fa fa-tag fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-9 input-post">
+          <label for="maxMonthlyRent">Max monthly rent ($)</label>
+          <input type="number" id="maxMonthlyRent" name="maxMonthlyRent" class="form-control"  placeholder="e.x. 500" ng-model="newLooking.tempLooking.maxMonthlyRent"/>
+        </div>
 
-        <label for="busRouteRequired">Near bus lines</label><br/>
-        <select id="busRouteRequired" class="form-control" ng-model="newLooking.tempLooking.busRouteRequired">
-          <option value="true">Yes</option>
-          <option value="false">No</option>
-        </select>
+      </div>
+
+      <div class="row post-padding">
+        <div class="col-xs-3 col-sm-3">
+          <div class="post-bubble">
+            <i class="fa fa-bar-chart fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-9 input-post">
+          <label for="utilitiesIncluded">Utilities included?</label><br/>
+          <select id="utilitiesIncluded" class="form-control" ng-model="newLooking.tempLooking.utilitiesIncluded">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="row post-padding">
+        <div class="col-xs-3 col-sm-3">
+          <div class="post-bubble">
+            <i class="fa fa-bus fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-9 input-post">
+          <label for="busRouteRequired">Near bus lines?</label><br/>
+          <select id="busRouteRequired" class="form-control" ng-model="newLooking.tempLooking.busRouteRequired">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+
+      </div>
+
     </div>
     <!--end of first col 4-->
 
     <!--start of second col 4-->
      <div class="col-md-4">
 
-         <label for="numRoommates">Max roommates</label>
-         <input type="number" id="numRoommates" name="numRoommates" class="form-control"  placeholder="num roommates" ng-model="newLooking.tempLooking.numRoommates"/>
+       <div class="row">
+         <div class="col-xs-3 col-sm-3">
+           <div class="post-bubble">
+             <i class="fa fa-user fa-lg"></i>
+           </div>
+         </div>
+         <div class="col-xs-9 col-sm-9 input-post">
+           <label for="numRoommates">Max no. of roommates</label>
+           <input type="number" id="numRoommates" name="numRoommates" class="form-control"  placeholder="e.x. 3" ng-model="newLooking.tempLooking.numRoommates"/>
+         </div>
+       </div>
 
-         <label for="gender">Gender</label>
-         <select id="gender" class="form-control" ng-model="newLooking.tempLooking.gender">
-           <option value="male only">male only</option>
-           <option value="female only">female only</option>
-           <option value="no preference">no preference</option>
-         </select>
+       <div class="row post-padding">
+         <div class="col-xs-3 col-sm-3">
+           <div class="post-bubble">
+             <i class="fa fa-venus-mars fa-lg"></i>
+           </div>
+         </div>
+         <div class="col-xs-9 col-sm-9 input-post">
+           <label for="gender">Gender preference</label>
+           <select id="gender" class="form-control" ng-model="newLooking.tempLooking.gender">
+             <option value="male only">Male only</option>
+             <option value="female only">Female only</option>
+             <option value="no preference">No preference</option>
+           </select>
+         </div>
+       </div>
 
-         <label for="sharedBathroom">Shared Bathroom</label><br/>
-         <select id="sharedBathroom" class="form-control" ng-model="newLooking.tempLooking.sharedBathroom">
-           <option value="true">Yes</option>
-           <option value="false">No</option>
-         </select>
+       <div class="row post-padding">
+         <div class="col-xs-3 col-sm-3">
+           <div class="post-bubble">
+             <i class="fa fa-shower fa-lg"></i>
+           </div>
+         </div>
+         <div class="col-xs-9 col-sm-9 input-post">
+           <label for="sharedBathroom">Shared bathroom?</label><br/>
+           <select id="sharedBathroom" class="form-control" ng-model="newLooking.tempLooking.sharedBathroom">
+             <option value="true">Yes</option>
+             <option value="false">No</option>
+           </select>
+         </div>
+       </div>
 
-          <label for="roomType">Room type</label>
-          <select id="roomType" class="form-control" ng-model="newLooking.tempLooking.roomType">
-            <option value="single">single</option>
-            <option value="double">double</option>
-            <option value="living room">living room</option>
-         </select>
+       <div class="row post-padding">
+         <div class="col-xs-3 col-sm-3">
+           <div class="post-bubble">
+             <i class="fa fa-bed fa-lg"></i>
+           </div>
+         </div>
+         <div class="col-xs-9 col-sm-9 input-post">
+           <label for="roomType">Room type preference</label>
+           <select id="roomType" class="form-control" ng-model="newLooking.tempLooking.roomType">
+             <option value="single">Single</option>
+             <option value="double">Double</option>
+             <option value="living room">Living room</option>
+           </select>
+         </div>
+       </div>
 
-         <label for="furnished">furnished</label><br/>
-         <select id="furnished" class="form-control" ng-model="newLooking.tempLooking.furnished">
-           <option value="true">Yes</option>
-           <option value="false">No</option>
-         </select>
+       <div class="row post-padding">
+         <div class="col-xs-3 col-sm-3">
+           <div class="post-bubble">
+             <i class="fa fa-home fa-lg"></i>
+           </div>
+         </div>
+         <div class="col-xs-9 col-sm-9 input-post">
+           <label for="furnished">Furnished?</label><br/>
+           <select id="furnished" class="form-control" ng-model="newLooking.tempLooking.furnished">
+             <option value="true">Yes</option>
+             <option value="false">No</option>
+           </select>
+         </div>
+       </div>
      </div>
     <!--end of second col 4-->
 
     <!--start of third col 4-->
     <div class="col-md-4">
-      <label for="smokingAllowed">Smoking</label><br/>
-      <select id="smokingAllowed" class="form-control" ng-model="newLooking.tempLooking.smokingAllowed">
-        <option value="true">Yes</option>
-        <option value="false">No</option>
-      </select>
 
-      <label for="petsAllowed">Pets</label><br/>
-      <select id="petsAllowed" class="form-control" ng-model="newLooking.tempLooking.petsAllowed">
-        <option value="true">Yes</option>
-        <option value="false">No</option>
-      </select>
+      <div class="row">
+        <div class="col-xs-3 col-sm-3">
+          <div class="post-bubble">
+            <i class="fa fa-warning fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-9 input-post">
+          <label for="smokingAllowed">Smoking allowed?</label><br/>
+          <select id="smokingAllowed" class="form-control" ng-model="newLooking.tempLooking.smokingAllowed">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
 
-      <label for="parkingNeeded">Parking</label><br/>
-      <select id="parkingNeeded" class="form-control" ng-model="newLooking.tempLooking.parkingNeeded">
-        <option value="true">Yes</option>
-        <option value="false">No</option>
-      </select><br/>
+      <div class="row post-padding">
+        <div class="col-xs-3 col-sm-3">
+          <div class="post-bubble">
+            <i class="fa fa-pet fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-9 input-post">
+          <label for="petsAllowed">Pets allowed?</label><br/>
+          <select id="petsAllowed" class="form-control" ng-model="newLooking.tempLooking.petsAllowed">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
 
-      <input type="checkbox" ng-model="newLooking.tempLooking.openToFullYearLeaseNewRoomates" id="openToFullYearLeaseNewRoomates"/>
-      <label for="openToFullYearLeaseNewRoomates">Open To Full Year Lease New Roomates</label><br/>
+      <div class="row post-padding">
+        <div class="col-xs-3 col-sm-3">
+          <div class="post-bubble">
+            <i class="fa fa-car fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-9 input-post">
+          <label for="parkingNeeded">Parking included?</label><br/>
+          <select id="parkingNeeded" class="form-control" ng-model="newLooking.tempLooking.parkingNeeded">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select><br/>
+        </div>
+      </div>
+
+      <div class="row post-padding">
+        <div class="col-xs-10 col-sm-10 col-xs-offset-2 col-sm-offset-2 input-post">
+          <input type="checkbox" ng-model="newLooking.tempLooking.openToFullYearLeaseNewRoomates" id="openToFullYearLeaseNewRoomates"/>
+          <label for="openToFullYearLeaseNewRoomates">Want to meet new roomates?</label><br/>
+        </div>
+      </div>
+
+      <div class="row post-padding">
+        <div class="col-xs-12 col-sm-12">
+          <button ng-click="newLooking.add(newLooking.tempLooking)" class="btn-rented-medium primary pull-right">Save</button>
+        </div>
+      </div>
+
     </div>
     <!--end of third col 4-->
 
     <!--<button ng-click="" class="btn btn-primary">Delete</button>-->
-    <button ng-click="newLooking.add(newLooking.tempLooking)" class="btn btn-primary">Save</button>
-    <button ui-sref="dashboard" ui-sref-opts="{reload:true}"  class="btn btn-primary">Back</button>
+
     </div>
   </div>
 </div>
