@@ -10,6 +10,14 @@ function transView2ModelRoomDetails(viewRoomDetails) {
   return viewRoomDetails;
 }
 
+function transModel2ViewRoomDetails(viewRoomDetails) {
+
+  //viewRoomDetails.availableMoveIn = ;
+  //viewRoomDetails.leaseEndDate
+  return viewRoomDetails;
+}
+
+
 /**
  *   This creates room in room_listing table and a property in the property table
  *
@@ -30,9 +38,9 @@ exports.createRoomListing = function(req, res, next) {
 
   propertySrv.transView2ModelPropertyDetails(propertyDetails, function(err, transPropertyDetails) {
 
-    propertyDetails = transPropertyDetails;
+ //   console.log(propertyDetails === transPropertyDetails);
 
-    propertySrv.createPropertyFromCreateRoom(propertyDetails, function (error, property) {
+    propertySrv.createPropertyFromCreateRoom(transPropertyDetails, function (error, property) {
 
       if (!error) {
 
@@ -56,7 +64,7 @@ exports.createRoomListing = function(req, res, next) {
           });
       }
       else {
-        res.json(error.statusCode);
+        res.status(500).json(error.statusCode);
       }
     });
   });
@@ -82,6 +90,7 @@ exports.getRoomListing = function(req, res, next) {
         res.status(roomListing.status).json(roomListing.statusText);
       }
       else {
+        roomListing = transModel2ViewRoomDetails(roomListing);
         res.json(roomListing);
       }
     })

@@ -24,6 +24,13 @@
     else {
       RoomListing.get({userId: vm.me.id, id: roomId}).$promise.then(function (roomListing) {
         vm.room = roomListing;
+
+        //console.log( angular.isDate(vm.room.availableMoveIn) );
+        //console.log( angular.isString(vm.room.availableMoveIn) );
+        //console.log(  vm.room.availableMoveIn.split('T', 1) );
+        vm.room.availableMoveIn =  vm.room.availableMoveIn.split('T', 1)[0];
+        vm.room.leaseEndDate =  vm.room.leaseEndDate.split('T', 1)[0];
+
         console.log('Room to edit: ', roomListing);
       }, function (errors) {
 
@@ -84,7 +91,7 @@
       common.logger.success('Image '+file._file.name+' uploaded');
     }
 
-    function errorCallback() {
+    function errorCallback(file) {
       common.logger.error('Error while uploading '+file._file.name+' image');
     }
   }

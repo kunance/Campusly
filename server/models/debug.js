@@ -1395,6 +1395,9 @@ var roomListing = Sequelize.define("roomListing",
   smokingAllowed: 
    { type: { [Function] super_: [Function], key: 'BOOLEAN' },
      field: 'smokingAllowed' },
+  petsAllowed: 
+   { type: { [Function] super_: [Function], key: 'BOOLEAN' },
+     field: 'petsAllowed' },
   description: 
    { type: { [Function] super_: [Function], key: 'TEXT' },
      field: 'description' },
@@ -1832,15 +1835,13 @@ var userEducation = Sequelize.define("userEducation",
   type: { type: { values: [Object] }, field: 'type' },
   startDate: 
    { type: { [Function] super_: [Function], key: 'DATE' },
-     field: 'startDate',
-     allowNull: false },
+     field: 'startDate' },
   endDate: 
    { type: { [Function] super_: [Function], key: 'DATE' },
      field: 'endDate' },
   graduation: 
    { type: { [Function] super_: [Function], key: 'BOOLEAN' },
-     field: 'graduation',
-     allowNull: false },
+     field: 'graduation' },
   graduationDate: 
    { type: { [Function] super_: [Function], key: 'DATE' },
      field: 'graduationDate' },
