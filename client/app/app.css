@@ -901,6 +901,7 @@ footer .logo {
     float: none;
     width: 100%;
   }
+
 }
 
 /* ==========================================================================
@@ -1222,6 +1223,13 @@ p.quote{
   border-right: 1px solid #efefef;
 }
 
+/* ==========================================================================
+Posts dashboard padding
+========================================================================== */
+
+.posts-dashboard-title {
+  margin-top: 50px;
+}
 
 /* Around you */
 
@@ -1436,7 +1444,7 @@ h2.section-title:nth-child(n+2) {
 .my-listings .list-item .edit {
   width: 100px;
   position: absolute;
-  top: 30px;
+  top: 10px;
   right: 15px;
   display: table;
 }
