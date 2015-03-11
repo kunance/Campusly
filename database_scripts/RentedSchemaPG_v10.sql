@@ -2636,7 +2636,7 @@ COPY property_ownership ("startDate", "endDate", "propertyFK", id, "createdAt", 
 -- Name: property_ownership_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('property_ownership_id_seq', 2, true);
+SELECT pg_catalog.setval('property_ownership_id_seq', 1, true);
 
 
 --
@@ -2693,7 +2693,7 @@ COPY rented_user (id, username, email, "confirmedEmail", password, firstname, la
 -- Name: rented_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('rented_user_id_seq', 17, true);
+SELECT pg_catalog.setval('rented_user_id_seq', 1, true);
 
 
 --
