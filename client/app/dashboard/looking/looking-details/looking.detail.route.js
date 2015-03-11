@@ -9,10 +9,10 @@
 
   function config ($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('dashboard.looking.detail', {
-        url: '/detail/:id',
+      .state('lookingDetail', {
+        url: 'lookingDetail/:id',
         templateUrl: 'app/dashboard/looking/looking-details/looking.detail.html',
-        controller: 'LookingDetailCtrl',
+        controller: 'LookingDetailsCtrl',
         controllerAs:'detail',
         authenticate: true,
         resolve:{

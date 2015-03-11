@@ -34,7 +34,7 @@ function respondWith(res, statusCode) {
 
 exports.showAllLookings= function(req, res, next) {
   var userAttributes = ['firstname', 'lastname', 'profileImage', 'aboutMe'];
-  var lookingAttributes = ['maxMonthlyRent', 'gender', 'id'];
+  var lookingAttributes = ['maxMonthlyRent', 'gender', 'id', 'userId'];
   Looking.findAll({
     where:{},
     attributes:lookingAttributes,
@@ -66,6 +66,7 @@ exports.showSingleLooking= function(req, res, next) {
     ]
 
   }).then(function(lookings) {
+    console.log(lookings);
     res.json(lookings)
 
   }).catch(validationError(res));
