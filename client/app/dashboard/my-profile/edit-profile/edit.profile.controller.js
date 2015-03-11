@@ -59,7 +59,7 @@
       input.zip = Number(trimmedZip);
       input.latitude = input.location.latitude;
       input.longitude = input.location.longitude;
-      if(status){
+      if(AddressStatus){
         common.dataservice.editAddress(vm.me.id, addressId, input, function () {
           common.logger.success('Address successfully updated');
         });
@@ -74,8 +74,6 @@
     function saveEducation (input) {
       input.universityId = input.educationCenterName.id;
       input.educationCenterName = input.educationCenterName.name;
-      console.log("xx");
-      console.log(input.educationCenterName);
       if(EducationStatus){
         common.dataservice.editEducation(vm.me.id, educationId, input, function () {
           common.logger.success('Education successfully updated');
