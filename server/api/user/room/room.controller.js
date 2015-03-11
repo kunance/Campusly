@@ -82,7 +82,7 @@ exports.createRoomListing = function(req, res, next) {
  */
 exports.getRoomListing = function(req, res, next) {
 
-  var roomAttributes = ["monthlyPrice", "securityDeposit", "availableMoveIn", "leaseEndDate", "leaseType", "gender",
+  var roomAttributes = ["id", "monthlyPrice", "securityDeposit", "availableMoveIn", "leaseEndDate", "leaseType", "gender",
     "monthlyUtilityCost", "roomType", "sharedBathroom", "numRoomates", "furnished", "parkingAvailable", "smokingAllowed",
     "description", "createdAt", "updatedAt"];
 
@@ -120,7 +120,7 @@ exports.getRoomListing = function(req, res, next) {
  */
 exports.getAllRoomListings = function(req, res, next) {
 
-  var roomAttributes = ["monthlyPrice", "securityDeposit", "availableMoveIn", "leaseEndDate", "leaseType", "gender",
+  var roomAttributes = ["id", "monthlyPrice", "securityDeposit", "availableMoveIn", "leaseEndDate", "leaseType", "gender",
     "monthlyUtilityCost", "roomType", "sharedBathroom", "numRoomates", "furnished", "parkingAvailable", "smokingAllowed",
     "description", "createdAt", "updatedAt"];
 

@@ -19,7 +19,7 @@ exports.getRoomListing = function(req, res, next) {
 
  // console.log('Getting room listing for: ', req.param("id") );
 
-  var roomAttributes = ["monthlyPrice", "securityDeposit", "availableMoveIn", "leaseEndDate", "leaseType", "gender",
+  var roomAttributes = ["id", "monthlyPrice", "securityDeposit", "availableMoveIn", "leaseEndDate", "leaseType", "gender",
     "monthlyUtilityCost", "roomType", "sharedBathroom", "numRoomates", "furnished", "parkingAvailable", "smokingAllowed",
     "description", "createdAt", "updatedAt"];
 
