@@ -14,6 +14,7 @@
     vm.propertyImages = [];
 
     vm.me = common.Auth.getCurrentUser();
+    vm.ddlYesNoSelect = [{value: true, text: 'Yes'}, {value: false, text: 'No'}];
 
     var roomId = $stateParams.id;
     logger.log('Room id: ', roomId);
@@ -94,6 +95,23 @@
     function errorCallback(file) {
       common.logger.error('Error while uploading '+file._file.name+' image');
     }
+
+    $scope.datePickers = {
+      startDate: false,
+      endDate:false
+    };
+    vm.address = {};
+    $scope.format = 'dd.MM.yyyy';
+    $scope.clear = function () {
+      $scope.dt = null;
+    };
+
+    $scope.open = function($event, number) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.datePickers[number]= true;
+    };
+
   }
 }());
 

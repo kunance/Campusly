@@ -149,7 +149,7 @@
               </div>
               <div class="col-xs-9 col-sm-7 input-post">
                 <label for="type">Property type</label>
-                <select id="type" class="form-control" ng-model="vm.property.type" required>
+                <select id="type" class="form-control" ng-model="vm.room.relatedPropertyId.type" required>
                   <option value="apt">Apartment</option>
                   <option value="sfh">Single family house</option>
                   <option value="townhouse">Townhouse</option>
@@ -167,7 +167,7 @@
               </div>
               <div class="col-xs-9 col-sm-7 input-post">
                 <label for="bathrooms">Bathrooms</label><br/>
-                <input type="number" id="bathrooms" required name="bathrooms" class="form-control"  placeholder="Number of bathrooms" ng-model="vm.property.bathrooms"/>
+                <input type="number" id="bathrooms" required name="bathrooms" class="form-control"  placeholder="Number of bathrooms" ng-model="vm.room.relatedPropertyId.bathrooms"/>
               </div>
             </div>
 
@@ -180,10 +180,10 @@
                 </div>
               </div>
               <div class="col-xs-9 col-sm-7 input-post">
-                <label for="sharedBath">Shared Bathroom?</label>
-                <select id="sharedBath" required name="sharedBath" class="form-control" ng-model="vm.room.sharedBathroom">
-                  <option value="true">Yes</option>
-                  <option value="false">No</option>
+                <label for="sharedBath">Shared bathroom?</label><br/>
+                <select
+                  ng-options="option.value as option.text for option in vm.ddlYesNoSelect" required
+                  id="sharedBath" class="form-control" ng-model="vm.room.sharedBathroom">
                 </select>
               </div>
             </div>
@@ -198,7 +198,7 @@
               </div>
               <div class="col-xs-9 col-sm-7 input-post">
                 <label for="bedrooms">Bedrooms</label><br/>
-                <input type="number" id="bedrooms" required name="bedrooms" class="form-control"  placeholder="Number of bedrooms" ng-model="vm.property.bedrooms"/>
+                <input type="number" id="bedrooms" required name="bedrooms" class="form-control"  placeholder="Number of bedrooms" ng-model="vm.room.relatedPropertyId.bedrooms"/>
               </div>
             </div>
 
@@ -229,10 +229,10 @@
                 </div>
               </div>
               <div class="col-xs-9 col-sm-7 input-post">
-                <label for="furnished">Furnished?</label>
-                <select id="furnished" required name="furnished" class="form-control" ng-model="vm.room.furnished">
-                  <option value="true">Yes</option>
-                  <option value="false">No</option>
+                <label for="furnished">Furnished?</label><br/>
+                <select
+                  ng-options="option.value as option.text for option in vm.ddlYesNoSelect" required
+                  id="furnished" class="form-control" ng-model="vm.room.furnished">
                 </select>
               </div>
             </div>
@@ -246,11 +246,13 @@
                 </div>
               </div>
               <div class="col-xs-9 col-sm-7 input-post">
-                <label for="smokingAllowed">Smoking allowed?</label>
-                <select id="smokingAllowed" required name="smokingAllowed" class="form-control" ng-model="vm.room.smokingAllowed">
-                  <option value="true">Yes</option>
-                  <option value="false">No</option>
+                <label for="smokingAllowed">Smoking allowed?</label><br/>
+                <select
+                  ng-options="option.value as option.text for option in vm.ddlYesNoSelect" required
+                  id="smokingAllowed" class="form-control" ng-model="vm.room.smokingAllowed">
                 </select>
+
+
               </div>
             </div>
 
@@ -286,11 +288,13 @@
                 </div>
               </div>
               <div class="col-xs-9 col-sm-7 input-post">
-                <label for="petsAllowed">Pets allowed?</label>
-                <select id="petsAllowed" required name="petsAllowed" class="form-control" ng-model="vm.room.petsAllowed">
-                  <option value="true">Yes</option>
-                  <option value="false">No</option>
+                <label for="petsAllowed">Pets allowed?</label><br/>
+                <select
+                  ng-options="option.value as option.text for option in vm.ddlYesNoSelect" required
+                  id="petsAllowed" class="form-control" ng-model="vm.room.petsAllowed">
                 </select>
+
+
               </div>
             </div>
 
@@ -303,10 +307,10 @@
                 </div>
               </div>
               <div class="col-xs-9 col-sm-7 input-post">
-                <label for="parkingAvailable">Parking available</label>
-                <select id="parkingAvailable" required name="parkingAvailable" class="form-control" ng-model="vm.room.parkingAvailable">
-                  <option value="true">Yes</option>
-                  <option value="false">No</option>
+                <label for="parkingAvailable">Parking available</label><br/>
+                <select
+                  ng-options="option.value as option.text for option in vm.ddlYesNoSelect" required
+                  id="parkingAvailable" class="form-control" ng-model="vm.room.parkingAvailable">
                 </select>
               </div>
             </div>
