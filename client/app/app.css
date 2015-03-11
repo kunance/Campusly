@@ -424,6 +424,14 @@ Medium Rented button - secondary color
 }
 
 /* ==========================================================================
+Medium Rented button - delete color
+========================================================================== */
+.btn-rented-medium.delete{
+  background-color: #f34023;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
 Medium Rented button - hover and active
 ========================================================================== */
 .btn-rented-medium.primary:hover {
@@ -432,6 +440,19 @@ Medium Rented button - hover and active
 }
 
 .btn-rented-medium.primary:active {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+Medium Rented button delete - hover and active
+========================================================================== */
+.btn-rented-medium.delete:hover {
+  background-color: #e4e4e4;
+  color: #000000;
+}
+
+.btn-rented-medium.delete:active {
   background-color: #000000;
   color: #FFFFFF;
 }
