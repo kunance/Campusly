@@ -84,7 +84,7 @@
       common.logger.success('Image '+file._file.name+' uploaded');
     }
 
-    function errorCallback() {
+    function errorCallback(file) {
       common.logger.error('Error while uploading '+file._file.name+' image');
     }
   }
