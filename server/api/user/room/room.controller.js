@@ -74,15 +74,20 @@ exports.createRoomListing = function(req, res, next) {
  */
 exports.getRoomListing = function(req, res, next) {
 
-  console.log("getRoomListing room listing id: ",  req.params.id);
+  console.log("getRoomListing room listing id: ",  req.params);
 
-  RoomListing.find({where: { id: req.params.id, creatorId: req.params.userId }})
+  RoomListing.find({where: { id: req.params.id, creatorId: req.userId }})
     .then(function(roomListing) {
-      res.json(roomListing);
+      if(roomListing.status && roomListing.status !== 200) {
+        res.status(roomListing.status).json(roomListing.statusText);
+      }
+      else {
+        res.json(roomListing);
+      }
     })
     .catch(function(errors){
       console.log(errors);
-      res.json(500);
+      res.status(500).json(errors);
     });
 };
 
@@ -98,13 +103,13 @@ exports.getRoomListing = function(req, res, next) {
  */
 exports.getAllRoomListings = function(req, res, next) {
 
-  RoomListing.findAll({where: { creatorId: req.params.userId }})
+  RoomListing.findAll({where: { creatorId: req.userId }})
     .then(function(roomListings) {
       res.json(roomListings);
     })
     .catch(function(errors){
       console.log(errors);
-      res.json(500);
+      res.status(500).json(errors);
     });
 };
 
@@ -119,8 +124,10 @@ exports.getAllRoomListings = function(req, res, next) {
 exports.editRoomListing = function(req, res, next) {
 
   req.body.updatedAt = new Date();
-  RoomListing.find({where: {id: req.params.id, creatorId: req.params.userId}})
+  RoomListing.find({where: {id: req.params.id, creatorId: req.userId}})
     .then(function (roomListing) {
+
+  //    console.log('original model from db:  ', roomListing);
 
       var viewRoomDetails = _.clone(req.body.room);
 
@@ -128,16 +135,18 @@ exports.editRoomListing = function(req, res, next) {
 
       var updated = _.merge(roomListing, roomDetails);
 
+  //    console.log('Updated model:  ', updated);
+
       updated.save().then(function (updateRoomListing) {
         res.json(updateRoomListing);
       }).catch(function(errors){
         console.log(errors);
-        res.json(500);
+        res.status(500).json(errors);
       });
     })
     .catch(function(errors){
       console.log(errors);
-      res.json(500);
+      res.status(500).json(errors);
     });
 
 };
@@ -153,13 +162,13 @@ exports.editRoomListing = function(req, res, next) {
  */
 exports.deleteRoomListing = function(req, res, next) {
 
-  RoomListing.destroy({where: {id: req.params.id, creatorId: req.params.userId}})
+  RoomListing.destroy({where: {id: req.params.id, creatorId: req.userId}})
     .then(function() {
       res.json(200);
     })
     .catch(function(errors){
       console.log(errors);
-      res.json(500);
+      res.status(500).json(errors);
     });
 };
 

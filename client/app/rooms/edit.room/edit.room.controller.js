@@ -19,18 +19,18 @@
     logger.log('Room id: ', roomId);
 
     if(!roomId) {
-      //TODO show error and return to dashboard
+      //TODO show error and/or  return to dashboard
     }
+    else {
+      RoomListing.get({userId: vm.me.id, id: roomId}).$promise.then(function (roomListing) {
+        vm.room = roomListing;
+        console.log('Room to edit: ', roomListing);
+      }, function (errors) {
 
-
-    RoomListing.get({userId: vm.me.id, id: roomId}).$promise.then( function(roomListing) {
-      vm.room = roomListing;
-      console.log('Room to edit: ', roomListing);
-    }, function (errors) {
-
-      //TODO need a general error handling banner or scheme to broadcast a message on
-      console.log('error(s) while saving room listing', errors);
-    });
+        //TODO need a general error handling banner or scheme to broadcast a message on
+        console.log('error(s) while saving room listing', errors);
+      });
+    }
 
 
 
@@ -42,7 +42,7 @@
       //   if(vm.room.$valid) {
       vm.room.creatorId = vm.me.id;
 
-      RoomListing.edit( { userId: vm.me.id}, {room: vm.room}).$promise.then(function () {
+      RoomListing.edit( { userId: vm.me.id, id: roomId}, {room: vm.room}).$promise.then(function () {
 
         $state.go('dashboard');
       }, function (errors) {
@@ -52,6 +52,18 @@
       });
       //  }
     };
+
+    vm.delete = function () {
+      RoomListing.delete( { userId: vm.me.id, id: roomId}).$promise.then(function () {
+
+        $state.go('dashboard');
+      }, function (errors) {
+
+        //TODO need a general error handling banner or scheme to broadcast a message on
+        console.log('error(s) while saving room listing', errors);
+      });
+    };
+
 
 
     vm.uploader = new FileUploader();

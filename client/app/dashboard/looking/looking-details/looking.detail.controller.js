@@ -19,7 +19,7 @@
       vm.lookingDetail = getLookingById;
       }
 
-    console.log(vm.lookingDetail);
+    console.log('Looking Detail: ', vm.lookingDetail);
 
   }
 }());
