@@ -22,7 +22,7 @@
             <strong class="value">
               {{room.roomDetail.roomDetails.monthlyPrice | currency}} mo.
             </strong>
-            
+
             <p class='address'>
               {{room.roomDetail.propertyDetails.streetNumeric}} {{room.roomDetail.propertyDetails.streetAddress}} {{room.roomDetail.propertyDetails.apt}}, {{room.roomDetail.propertyDetails.city}}
               <span class="distance"> <i class="fa fa-marker"></i> miles from {{room.userCurrentAddressAndUnivCoords.univName}} </span>
@@ -30,7 +30,7 @@
 
             <div ng-show="room.userCurrentAddressAndUnivCoords" class="distances">
               <!-- call google maps api to get distance from students address to students university of record .. walking, bus, driving -->
-              
+
               <a class="distance-bubble">
                 <i class="fa fa-car"></i>
                 <span>5</span>
@@ -62,12 +62,33 @@
                 <td><i class="fa fa-calendar"></i> {{room.roomDetail.roomDetails.availableMoveIn | date }}</td>
               </tr>
             </table>
+
           </div>
         </div>
-        
+
         <hr>
 
-        <a>Share button</a>
+        <div class="row">
+
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+            <a class="contact-bubble-email" href="mailto:someone@example.com?Subject=Interested%20in%20your%20room" target="_top"><i class="fa fa-send fa-lg"></i></a>
+
+          </div>
+
+          <!--<div class="col-sm-1 col-md-2 col-xs-6 col-lg-2 col-sm-offset-8">-->
+            <!--<div class="contact-bubble-email">-->
+              <!--<a href="mailto:someone@example.com?Subject=Interested%20in%20your%20room" target="_top"><i class="fa fa-send fa-lg"></i></a>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <!--<div class="col-sm-1 col-md-2 col-xs-6 col-lg-2">-->
+            <!--<div class="contact-bubble-email">-->
+              <!--<a href="mailto:someone@example.com?Subject=Interested%20in%20your%20room" target="_top"><i class="fa fa-send fa-lg"></i></a>-->
+            <!--</div>-->
+          <!--</div>-->
+
+        </div>
 
       </div>
     </div>
@@ -86,27 +107,31 @@
         <h2>Details</h2>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 details white-box">
-        <h3>Property description</h3>
+        <h3>Room description</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt odit saepe, suscipit laboriosam, obcaecati aspernatur pariatur at magnam unde, officia error cupiditate recusandae, aperiam sequi soluta maxime labore totam nemo!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel esse illo voluptas voluptatum placeat excepturi laboriosam, nesciunt natus accusamus distinctio illum molestiae dolorum qui deleniti exercitationem, cumque eveniet consectetur mollitia!
+          {{room.roomDetail.roomDetails.description}}
         </p>
-        
+
         <h3>Highlights</h3>
 
         <dl class="specs row">
           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            
-            <dt ng-show="room.roomDetail.roomDetails.securityDeposit"> Security Deposit: </dt>
-            <dd ng-show="room.roomDetail.roomDetails.securityDeposit">{{room.roomDetail.roomDetails.securityDeposit | currency}}</dd>
 
-            <dt>Lease Terms:  </dt>
-            <dd>{{room.roomDetail.roomDetails.leaseType}}</dd>
+            <dl>
 
-            <dt>Unit bedrooms: </dt>
-            <dd>{{room.roomDetail.propertyDetails.bedrooms}}</dd>
+              <dt ng-show="room.roomDetail.roomDetails.securityDeposit"> Security Deposit: </dt>
+              <dd ng-show="room.roomDetail.roomDetails.securityDeposit">{{room.roomDetail.roomDetails.securityDeposit | currency}}</dd>
 
-            <dt>Unit bathrooms:</dt>
-            <dd>{{room.roomDetail.propertyDetails.bathrooms}}</dd>
+              <dt>Lease Terms:&nbsp;&nbsp;</dt>
+              <dd>{{room.roomDetail.roomDetails.leaseType}}</dd>
+
+              <dt>Bedrooms:&nbsp;&nbsp;</dt>
+              <dd>{{room.roomDetail.propertyDetails.bedrooms}}</dd>
+
+              <dt>Bathrooms:&nbsp;&nbsp;</dt>
+              <dd>{{room.roomDetail.propertyDetails.bathrooms}}</dd>
+
+            </dl>
 
           </div>
 
