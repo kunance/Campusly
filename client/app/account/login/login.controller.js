@@ -12,8 +12,8 @@
     $scope.errors = {};
 
     $scope.$parent.seo = {
-      pageTitle: 'Rented Sign-in',
-      pageDescription: 'sign-in to Rented'
+      pageTitle: 'Campusly Sign-in',
+      pageDescription: 'Sign-in securely to Campusly'
     };
 
     $scope.login = function (form) {
