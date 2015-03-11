@@ -234,6 +234,10 @@ Posting input text type
   border-radius: 50px;
 }
 
+.input-post textarea{
+  resize: none;
+  margin-top: 30px;
+}
 
 /* ==========================================================================
 Sign-up button class
@@ -732,12 +736,21 @@ For mailchimp sign-up - not needed in main app
   .input-post {
     margin-left: 10px;
   }
+
+  .input-post textarea {
+    margin-left: 30px;
+   }
 }
 
 @media (min-width: 992px) {
   .featurette-heading {
     margin-top: 120px;
   }
+
+  .input-post textarea {
+    margin-left: 30px;
+  }
+
 }
 
 @media only screen and (min-width : 992px) {
@@ -1917,6 +1930,36 @@ h2.no-roommate small{
 
 .fa.fa-smoking {
   background-image: url("../assets/images/smoking.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-toiletPaper {
+  background-image: url("../assets/images/toiletPaper.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-desk {
+  background-image: url("../assets/images/desk.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-bigBed {
+  background-image: url("../assets/images/bigBed.svg");
   background-size: 1em;
   background-repeat: no-repeat;
   width: 1em;
