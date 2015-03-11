@@ -8,10 +8,11 @@
   LookingCtrl.$inject = ['common', 'allLooking'];
 
   function LookingCtrl(common, allLooking) {
-
     var vm = this;
-    vm.lookings = allLooking;
+    vm.me = common.Auth.getCurrentUser();
 
+    vm.lookings = allLooking;
+    console.log(vm.lookings);
   }
 
 }());
