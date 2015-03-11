@@ -41,20 +41,23 @@ exports.createPropertyFromCreateRoom = function(propertyDetails, cb) {
  */
 exports.transView2ModelPropertyDetails = function(propertyDetails, cb) {
 
-  propertyDetails.streetNumeric = propertyDetails.address.streetNumeric;
-  propertyDetails.streetAddress = propertyDetails.address.streetAddress;
-  propertyDetails.city = propertyDetails.address.city;
-  propertyDetails.state = propertyDetails.address.state;
-  propertyDetails.zip = propertyDetails.address.zip;
-  propertyDetails.latitude = propertyDetails.address.location.latitude;
-  propertyDetails.longitude = propertyDetails.address.location.longitude;
+  console.log(propertyDetails);
+  console.log (propertyDetails.streetAddress.location);
+
+  propertyDetails.streetNumeric = propertyDetails.streetAddress.streetNumeric;
+  propertyDetails.streetAddress = propertyDetails.streetAddress.streetAddress;
+  propertyDetails.city = propertyDetails.streetAddress.city;
+  propertyDetails.state = propertyDetails.streetAddress.state;
+  propertyDetails.zip = propertyDetails.streetAddress.zip;
+  propertyDetails.latitude = propertyDetails.streetAddress.location.latitude;
+  propertyDetails.longitude = propertyDetails.streetAddress.location.longitude;
 
 
 //  propertyDetails.longitude = -117.235024;
 
 //  if(!propertyDetails.bldg) { delete propertyDetails.bldg; }
 
-  delete propertyDetails.address;
+//  delete propertyDetails.streetAddress;
 
   cb(null,  propertyDetails);
 };
