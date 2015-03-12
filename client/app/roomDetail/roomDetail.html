@@ -72,7 +72,7 @@
 
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-            <a class="contact-bubble-email pull-right" href="mailto:someone@example.com?Subject=Interested%20in%20your%20room" target="_top"><i class="fa fa-send fa-lg"></i></a>
+            <a class="contact-bubble-email pull-right" ng-href="mailto:{{room.me.email}}?Subject=Interested%20in%20your%20room" target="_top"><i class="fa fa-send fa-lg"></i></a>
 
             <!--<a class="contact-bubble-email" href="" target="_top"><i class="fa fa-facebook fa-lg"></i></a>-->
             <!-- Facebook link commented out for now -->
@@ -89,7 +89,22 @@
         <h2>Roommates</h2>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 roommates white-box">
-        Add the roommate partial here and ensure it doesn't rely on the dashboard ctrl
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" class="row roommate" ng-repeat="roommate in room.creatorRoommates">
+          <div class="col-xs-2">
+            <div class="picture">
+              <img ng-if="roommate.relatedRoommateId.profileImage" ng-src="api/images{{roommate.relatedRoommateId.profileImage}}" alt="" class="img-circle">
+              <i ng-if="!roommate.relatedRoommateId.profileImage" class="fa fa-user" style="font-size:80px"></i>
+            </div>
+          </div>
+          <div class="col-xs-6 info">
+            <span class="name"> {{roommate.relatedRoommateId.firstname}} {{roommate.relatedRoommateId.lastname}} </span>
+            <span class="email">{{roommate.relatedRoommateId.email}}</span>
+            <span class="university" ng-if="roommate.relatedRoommateId.usereducationUsers[0].educationCenterName">{{roommate.relatedRoommateId.usereducationUsers[0].educationCenterName}}</span>
+            <span class="university" ng-if="!roommate.relatedRoommateId.usereducationUsers[0].educationCenterName">User didn't provide education data</span>
+            <span class="city" ng-if="roommate.relatedRoommateId.addresshistoryUsers.length">{{roommate.relatedRoommateId.addresshistoryUsers[0].zip}} {{roommate.relatedRoommateId.addresshistoryUsers[0].city}} / {{roommate.relatedRoommateId.addresshistoryUsers[0].state}}</span>
+            <span class="city" ng-if="!roommate.relatedRoommateId.addresshistoryUsers.length">User didn't provide address data</span>
+          </div>
+        </div>
       </div>
     </div>
 
