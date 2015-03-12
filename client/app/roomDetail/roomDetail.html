@@ -62,12 +62,16 @@
             <table class="specs">
               <br>
               <tr>
-                <td><i class="fa fa-bed"></i>&nbsp;&nbsp;{{room.roomDetail.roomDetails.roomType}}</td>
+                <td><i class="fa fa-bigBed"></i>&nbsp;&nbsp;Room type:&nbsp;&nbsp;{{room.roomDetail.roomDetails.roomType}}</td>
                 <td><i class="fa fa-shower"></i>&nbsp;&nbsp;{{room.roomDetail.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</td>
               </tr>
               <tr>
                 <td><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetail.roomDetails.numRoomates}} roommates</td>
-                <td><i class="fa fa-calendar"></i>&nbsp;&nbsp;{{room.roomDetail.roomDetails.availableMoveIn | date }}</td>
+                <td><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;Move-in:&nbsp;&nbsp;{{room.roomDetail.roomDetails.availableMoveIn | date }}</td>
+              </tr>
+              <tr>
+                <td><i class="fa fa-bar-chart"></i>&nbsp;&nbsp;Utilities:&nbsp;&nbsp;{{room.roomDetail.roomDetails.monthlyUtilityCost | currency}}</td>
+                <td ng-show="room.roomDetail.roomDetails.leaseEndDate"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Move-out:&nbsp;&nbsp;{{room.roomDetail.roomDetails.leaseEndDate | date }}</td>
               </tr>
             </table>
 
@@ -97,28 +101,28 @@
         <h2>Roommates</h2>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 roommates white-box">
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" class="row roommate" ng-repeat="roommate in room.creatorRoommates">
-          <div class="col-xs-2">
-            <div class="picture">
-              <img ng-if="roommate.relatedRoommateId.profileImage" ng-src="api/images{{roommate.relatedRoommateId.profileImage}}" alt="" class="img-circle">
-              <i ng-if="!roommate.relatedRoommateId.profileImage" class="fa fa-user" style="font-size:80px"></i>
+          <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" class="row roomRoommates" ng-repeat="roommate in room.creatorRoommates">
+            <div class="col-xs-2 col-sm-4">
+              <div class="picture text-center">
+                <img ng-if="roommate.relatedRoommateId.profileImage" ng-src="api/images{{roommate.relatedRoommateId.profileImage}}" alt="" class="img-circle">
+                <i ng-if="!roommate.relatedRoommateId.profileImage" class="fa fa-user fa-3x"></i>
+              </div>
             </div>
-          </div>
-          <div class="col-xs-6 info">
-            <span class="name"> {{roommate.relatedRoommateId.firstname}} {{roommate.relatedRoommateId.lastname}} </span>
-            <span class="email">{{roommate.relatedRoommateId.email}}</span>
-            <span class="university" ng-if="roommate.relatedRoommateId.usereducationUsers[0].educationCenterName">{{roommate.relatedRoommateId.usereducationUsers[0].educationCenterName}}</span>
-            <span class="university" ng-if="!roommate.relatedRoommateId.usereducationUsers[0].educationCenterName">User didn't provide education data</span>
-            <span class="city" ng-if="roommate.relatedRoommateId.addresshistoryUsers.length">{{roommate.relatedRoommateId.addresshistoryUsers[0].zip}} {{roommate.relatedRoommateId.addresshistoryUsers[0].city}} / {{roommate.relatedRoommateId.addresshistoryUsers[0].state}}</span>
-            <span class="city" ng-if="!roommate.relatedRoommateId.addresshistoryUsers.length">User didn't provide address data</span>
-          </div>
+            <div class="col-xs-6 col-sm-8 info">
+              <p>
+                <span class="name"> {{roommate.relatedRoommateId.firstname}} {{roommate.relatedRoommateId.lastname}}</span>
+                <br>
+                <span class="university" ng-if="roommate.relatedRoommateId.usereducationUsers[0].educationCenterName">{{roommate.relatedRoommateId.usereducationUsers[0].educationCenterName}}</span>
+                <span class="university" ng-if="!roommate.relatedRoommateId.usereducationUsers[0].educationCenterName">No university </span>
+              </p>
+            </div>
         </div>
       </div>
     </div>
 
     <div class="row">
       <div class="page-header">
-        <h2>Details</h2>
+        <h2>More Info</h2>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 details white-box">
         <h3>Room description</h3>
@@ -126,24 +130,31 @@
           {{room.roomDetail.roomDetails.description}}
         </p>
 
-        <h3>Highlights</h3>
+        <h3>Details</h3>
 
         <dl class="specs row">
           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
             <dl>
 
-              <dt ng-show="room.roomDetail.roomDetails.securityDeposit">Security Deposit:&nbsp;&nbsp;</dt>
-              <dd ng-show="room.roomDetail.roomDetails.securityDeposit">{{room.roomDetail.roomDetails.securityDeposit | currency}}</dd>
+              <dt><i class="fa fa-tags fa-lg"></i>&nbsp;&nbsp;Security Deposit:&nbsp;&nbsp;</dt>
+              <dd>{{room.roomDetail.roomDetails.securityDeposit | currency}}</dd>
+              <br>
 
-              <dt>Lease Terms:&nbsp;&nbsp;</dt>
+              <dt><i class="fa fa-clipboard fa-lg"></i>&nbsp;&nbsp;Lease Type:&nbsp;&nbsp;</dt>
               <dd>{{room.roomDetail.roomDetails.leaseType}}</dd>
+              <br>
 
-              <dt>Bedrooms:&nbsp;&nbsp;</dt>
+              <dt><i class="fa fa-bed fa-lg">&nbsp;&nbsp;</i>Bedrooms:&nbsp;&nbsp;</dt>
               <dd>{{room.roomDetail.propertyDetails.bedrooms}}</dd>
+              <br>
 
-              <dt>Bathrooms:&nbsp;&nbsp;</dt>
+              <dt><i class="fa fa-toiletPaper fa-lg"></i>&nbsp;&nbsp;Bathrooms:&nbsp;&nbsp;</dt>
               <dd>{{room.roomDetail.propertyDetails.bathrooms}}</dd>
+              <br>
+
+              <dt><i class="fa fa-pet fa-lg"></i>&nbsp;&nbsp;Pets Allowed:&nbsp;&nbsp;</dt>
+              <dd>{{room.roomDetail.roomDetails.petsAllowed | boolean}}</dd>
 
             </dl>
 
@@ -152,17 +163,25 @@
           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
             <dl>
-              <dt>Parking Available:&nbsp;&nbsp;</dt>
+              <dt><i class="fa fa-car fa-lg"></i>&nbsp;&nbsp;Parking Available:&nbsp;&nbsp;</dt>
               <dd>{{room.roomDetail.roomDetails.parkingAvailable | boolean}}</dd>
+              <br>
 
-              <dt>Furnished:&nbsp;&nbsp;</dt>
+              <dt><i class="fa fa-desk fa-lg"></i>&nbsp;&nbsp;Furnished:&nbsp;&nbsp;</dt>
               <dd>{{room.roomDetail.roomDetails.furnished | boolean}}</dd>
+              <br>
 
-              <dt>Smoking Allowed:&nbsp;&nbsp;</dt>
+              <dt><i class="fa fa-smoking fa-lg"></i>&nbsp;&nbsp;Smoking Allowed:&nbsp;&nbsp;</dt>
               <dd>{{room.roomDetail.roomDetails.smokingAllowed | boolean}}</dd>
+              <br>
 
-              <dt>Gender preference:&nbsp;&nbsp;</dt>
+              <dt><i class="fa fa-venus-mars fa-lg"></i>&nbsp;&nbsp;Gender preference:&nbsp;&nbsp;</dt>
               <dd>{{room.roomDetail.roomDetails.gender}}</dd>
+              <br>
+
+              <dt ng-show="room.roomDetail.propertyDetails.type"><i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;Property type:&nbsp;&nbsp;</dt>
+              <dd ng-show="room.roomDetail.propertyDetails.type">{{room.roomDetail.propertyDetails.type}}</dd>
+
             </dl>
 
           </div>
