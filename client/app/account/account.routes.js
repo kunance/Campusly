@@ -17,7 +17,7 @@ angular.module('app.account')
       })
       .state('logout', {
         url: '/logout?referrer',
-        referrer: '/', //changed to home from main.. dont think we need main view anymore..
+        referrer: '/',
         template: '',
         controller: function ($state, Auth, $location) {
           var referrer = $state.params.referrer ||

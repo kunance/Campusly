@@ -1142,8 +1142,26 @@ nav.dashboard-submenu > label {
   padding-top: 40px;
 }
 
+.white-box .property-pictures {
+  margin-top: 20px;
+}
+
 
 /* Looking for a room */
+
+/* ==========================================================================
+Contact bubble
+========================================================================== */
+
+.contact-bubble-email {
+  background: #f7953d;
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  padding-top: 11px;
+}
 
 
 /* ==========================================================================
