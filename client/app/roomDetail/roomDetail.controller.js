@@ -22,6 +22,9 @@
         console.log('RoomDetail: ', vm.roomDetail);
         vm.creatorId = vm.roomDetail.roomDetails.creatorId;
         console.log('Creator id: ', vm.creatorId);
+        UserResource.get({id: vm.creatorId}, function (aa) {
+          vm.creatorEmail=aa.email;
+        });
         common.dataservice.getAllRoommates(vm.creatorId, function (data) {
           vm.creatorRoommates=data;
           console.log('Creator roommates: ',  vm.creatorRoommates);

@@ -71,12 +71,12 @@ exports.showRoommates= function(req, res, next) {
       userId:req.user.id
     },
     include: [
-      { model: User, attributes: userAttributes, as: 'relatedRoommateId',
-        include:[
-          { model: Address, as: 'addresshistoryUsers' },
-          { model: Education, as: 'usereducationUsers' }]
-      }
-    ]
+      { model: User, attributes: userAttributes, as: 'relatedUserId'}
+        //include:[
+        //  { model: User, as: 'roommateRommieIds' }
+         /* { model: Education, as: 'usereducationUsers' }*/]
+    //  }
+    //]
   }).then(function(roommates) {
     res.json(roommates);
   })
