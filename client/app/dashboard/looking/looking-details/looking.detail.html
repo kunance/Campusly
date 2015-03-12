@@ -3,7 +3,7 @@
 <div class="main-wrapper">
 <div class="container">
 <div class="row">
-  <h2>Your profile</h2>
+  <h2>{{detail.lookingDetail.relatedUserId.firstname}}'s profile</h2>
 
   <strong class="value">
     <!--Created by: {{detail.lookingDetail.relatedUserId.firstname}} {{detail.lookingDetail.relatedUserId.lastname}}<br>-->
@@ -15,41 +15,45 @@
     <div class="row about-me">
       <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
         <div class="picture">
-          <img ng-if="detail.me.profileImage" ng-src="api/images{{detail.me.profileImage}}" class="img-circle">
-          <i ng-if="!detail.me.profileImage" class="fa fa-user" style="font-size:120px"></i>
+          <img ng-if="detail.lookingDetail.relatedUserId.profileImage" ng-src="api/images{{detail.lookingDetail.relatedUserId.profileImage}}" class="img-circle">
+          <i ng-if="!detail.lookingDetail.relatedUserId.profileImage" class="fa fa-user" style="font-size:120px"></i>
         </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
         <dl>
-          <div class="row" ng-show="detail.tempMe.firstname || detail.tempMe.lastname">
+          <div class="row" ng-show="detail.lookingDetail.relatedUserId.firstname || detail.lookingDetail.relatedUserId.lastname">
             <dd>Name</dd>
-            <dt>{{detail.tempMe.firstname}} {{detail.tempMe.lastname}} </dt>
+            <dt>{{detail.lookingDetail.relatedUserId.firstname}} {{detail.lookingDetail.relatedUserId.lastname}} </dt>
           </div>
 
-          <div class="row" ng-show="detail.education.educationCenterName">
+          <div class="row" ng-show="detail.lookingDetail.relatedUserId.usereducationUsers[0].educationCenterName">
             <dd>School</dd>
-            <dt>{{detail.education.educationCenterName}}</dt>
+            <dt>{{detail.lookingDetail.relatedUserId.usereducationUsers[0].educationCenterName}}</dt>
           </div>
 
           <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" ng-show="detail.education.startDate">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" ng-show="detail.lookingDetail.relatedUserId.usereducationUsers[0].startDate">
               <dd>Year</dd>
-              <dt>{{detail.education.startDate | date:'yyyy'}}</dt>
+              <dt>{{detail.lookingDetail.relatedUserId.usereducationUsers[0].startDate | date:'yyyy'}}</dt>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" ng-show="detail.education.major">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" ng-show="detail.lookingDetail.relatedUserId.usereducationUsers[0].major">
               <dd>Major</dd>
-              <dt>{{detail.education.major}}</dt>
+              <dt>{{detail.lookingDetail.relatedUserId.usereducationUsers[0].major}}</dt>
             </div>
           </div>
 
         </dl>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5" ng-show="detail.me.aboutMe">
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5" ng-show="detail.lookingDetail.relatedUserId.aboutMe">
         <dl>
           <dd>About Me</dd>
-          <dt> <p class="quote"> {{detail.me.aboutMe}}" </p> </dt>
+          <dt> <p class="quote"> {{detail.lookingDetail.relatedUserId.aboutMe}}" </p> </dt>
         </dl>
       </div>
+    </div>
+    <hr/>
+    <div class="row">
+      <a class="contact-bubble-email pull-right" ng-href="mailto:{{detail.lookingDetail.relatedUserId.email}}?Subject=Interested%20in%20your%20looking" target="_top"><i class="fa fa-send fa-lg"></i></a>
     </div>
   </div>
  <p ng-if="detail.lookingDetail.relatedUserId.uservehiclesUsers.length">User have {{detail.lookingDetail.relatedUserId.uservehiclesUsers.length}} vehicles</p>

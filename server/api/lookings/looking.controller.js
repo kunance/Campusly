@@ -53,13 +53,13 @@ exports.showAllLookings= function(req, res, next) {
 
 exports.showSingleLooking= function(req, res, next) {
   var lookingId = req.params.id;
-  var userAttributes = ['firstname', 'lastname', 'profileImage', 'aboutMe'];
+  var userAttributes = ['firstname', 'lastname', 'profileImage', 'aboutMe', 'email'];
   Looking.find({
     where:{id: lookingId},
     include: [
       { model: User, attributes: userAttributes, as: 'relatedUserId',
         include:[
-          {model: Education, as: 'usereducationUsers'},
+          { model: Education, as: 'usereducationUsers'},
           { model: Pets, as: 'petsUsers'},
           { model: Vehicles, as: 'uservehiclesUsers'}
         ]}
