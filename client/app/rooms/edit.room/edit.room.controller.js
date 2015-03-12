@@ -5,9 +5,9 @@
     .module('app.dashboard')
     .controller('EditRoomCtrl',EditRoomCtrl);
 
-  EditRoomCtrl.$inject = ['$scope', '$state', '$stateParams', 'logger', 'FileUploader', 'common','RoomListing'];
+  EditRoomCtrl.$inject = ['$scope', '$state', '$stateParams', 'logger', 'FileUploader', 'common','RoomListing', 'getAllUsers', 'getAllRoommates'];
 
-  function EditRoomCtrl($scope, $state, $stateParams, logger, FileUploader, common, RoomListing) {
+  function EditRoomCtrl($scope, $state, $stateParams, logger, FileUploader, common, RoomListing, getAllUsers, getAllRoommates) {
 
     /* jshint validthis: true */
     var vm = this;
@@ -15,6 +15,8 @@
 
     vm.me = common.Auth.getCurrentUser();
     vm.ddlYesNoSelect = [{value: true, text: 'Yes'}, {value: false, text: 'No'}];
+    vm.users = getAllUsers;
+    vm.roommates = getAllRoommates;
 
     var roomId = $stateParams.id;
     logger.log('Room id: ', roomId);
@@ -110,6 +112,50 @@
       $event.preventDefault();
       $event.stopPropagation();
       $scope.datePickers[number]= true;
+    };
+
+
+    //roommate addon features
+    vm.toggleAddRoommate = function(){
+      vm.showAddRoommate = true;
+      vm.showInviteRoomate = false;
+      vm.showRoommatesAddonButtons = false;
+    };
+
+    vm.toggleRoommatesAddon = function(){
+      vm.showRoommatesAddonButtons = !vm.showRoommatesAddonButtons;
+      vm.showAddRoommate = false;
+      vm.showInviteRoomate = false;
+    };
+
+    vm.cancelRoommateAddAddon = function (){
+      vm.showRoommateAddonButtons = false;
+      vm.showAddRoommate = false;
+      vm.showInviteRoommate = false;
+    };
+
+    $scope.addNewRoommate = function(input){
+      if(!input) { return false; }
+      var roommate = input.originalObject;
+      common.dataservice.addRoommate(vm.me.id, roommate).$promise
+        .then(function (data) {
+          common.logger.success('Roommate successfully added!');
+          vm.roommates.push(data);
+          vm.cancelRoommateAddAddon();
+        })
+        .catch(function (err) {
+          common.logger.error('Something went wrong. Roommate not saved.');
+        });
+    };
+
+    vm.removeRoommate= function (roommate) {
+      var index= vm.roommates.indexOf(roommate);
+      var id = roommate.id;
+      common. dataservice.deleteRoommate(vm.me.id, id, function () {
+        vm.roommates.splice(index, 1);
+        common.logger.success('Successfully removed roommate');
+      })
+
     };
 
   }
