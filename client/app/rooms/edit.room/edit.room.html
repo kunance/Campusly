@@ -410,85 +410,38 @@
         <!--  Address  -->
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
           <div class="page-header">
-            <h2> Address </h2>
+            <h2>Your Current Address</h2>
           </div>
 
-          <div class="white-box pets">
+          <div class="white-box">
 
             <!-- Display current property address -->
 
-            <div class="row">
+            <div class="row address-specs">
 
               <div class="col-xs-12 col-sm-12">
 
-                <!--<h3 class="pull-left">Property Address</h3><br>-->
-                <!--<p class="pull-left">-->
-                  <!--{{vm.room.relatedPropertyId.streetNumeric}} {{vm.room.relatedPropertyId.streetAddress}} {{vm.room.relatedPropertyId.apt}}-->
-                  <!--<br>-->
-                  <!--{{vm.room.relatedPropertyId.city}}, {{vm.room.relatedPropertyId.state}} {{vm.room.relatedPropertyId.zip}}-->
-                  <!--<br><br>-->
-                  <!--Note: address is not editable.-->
-                <!--</p>-->
-               <div class="row">
-                  <div class="col-xs-3 col-sm-3">
-                <dd>Street name:</dd>
-                  </div>
-                 <div class="col-xs-6 col-sm-6">
-                <dt>{{vm.room.relatedPropertyId.streetAddress}}</dt>
-                 </div>
-              </div>
-                <br/>
+                <dl class="specs">
+                  <dt>Street number:&nbsp;&nbsp;</dt>
+                  <dd>{{vm.room.relatedPropertyId.streetNumeric}}</dd>
 
-                <div class="row">
-                  <div class="col-xs-3 col-sm-3">
-                <dd>Street number:</dd>
-                  </div>
-                  <div class="col-xs-6 col-sm-6">
-                <dt>{{vm.room.relatedPropertyId.streetNumeric}}</dt>
-                  </div>
-                </div>
-                <br/>
+                  <dt>Street name:&nbsp;&nbsp;</dt>
+                  <dd>{{vm.room.relatedPropertyId.streetAddress}}</dd>
 
-                <div class="row" ng-if="vm.room.relatedPropertyId.apt">
-                  <div class="col-xs-3 col-sm-3">
-                <dd>Apt:</dd>
-                  </div>
-                  <div class="col-xs-6 col-sm-6">
-                <dt>{{vm.room.relatedPropertyId.apt}}</dt>
-                  </div>
-                </div>
-                <br ng-if="vm.room.relatedPropertyId.apt"/>
+                  <dt ng-if="vm.room.relatedPropertyId.apt">Apt:&nbsp;&nbsp;</dt>
+                  <dd ng-if="vm.room.relatedPropertyId.apt">{{vm.room.relatedPropertyId.apt}}</dd>
 
-                <div class="row">
-                  <div class="col-xs-3 col-sm-3">
-                <dd>City:</dd>
-                  </div>
-                  <div class="col-xs-6 col-sm-6">
-                <dt>{{vm.room.relatedPropertyId.city}}</dt>
-                  </div>
-                </div>
-                <br/>
+                  <dt>City:&nbsp;&nbsp;</dt>
+                  <dd>{{vm.room.relatedPropertyId.city}}</dd>
 
-                <div class="row">
-                  <div class="col-xs-3 col-sm-3">
-                <dd>Zip</dd>
-                  </div>
-                  <div class="col-xs-6 col-sm-6">
-                <dt>{{vm.room.relatedPropertyId.zip}}</dt>
-                  </div>
-                </div>
-                <br/>
+                  <dt>Zip:&nbsp;&nbsp;</dt>
+                  <dd>{{vm.room.relatedPropertyId.zip}}</dd>
 
-                <div class="row">
-                  <div class="col-xs-3 col-sm-3">
-                <dd>State</dd>
-                  </div>
-                  <div class="col-xs-6 col-sm-6">
-                <dt>{{vm.room.relatedPropertyId.state}}</dt>
-                  </div>
-                </div>
-                <br/>
-                Note: address is not editable.
+                  <dt>State:&nbsp;&nbsp;</dt>
+                  <dd>{{vm.room.relatedPropertyId.state}}</dd>
+
+                </dl>
+
               </div>
 
             </div>
@@ -507,6 +460,7 @@
             <!--</div>-->
 
           </div>
+
         </div>
         <!-- End Address  -->
 
@@ -520,8 +474,6 @@
         <button class="btn-rented-medium delete pull-left" ng-disabled="editRoomForm.$dirty" ng-click="vm.delete()">Delete</button>
       </div>
     </div>
-
-    <pre>{{[vm.room] | json}}</pre> <!-- To be removed for production -->
 
   </div>
 </div>
