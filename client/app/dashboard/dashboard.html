@@ -32,7 +32,7 @@
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
           <h2 class="section-title"> Available Rooms</h2>
           <div class="white-box available-rooms">
-            <slick dots="true" class="slider row" init-onload="true" data="dashboard.availableRooms" slides-to-show="3" slides-to-scroll="3" infinite="true" responsive="dashboard.breakpoints.availableRooms" ng-if="dashboard.availableRooms.length">
+            <slick dots="true" class="slider row" init-onload="true" data="dashboard.availableRooms" slides-to-show="3" slides-to-scroll="3" infinite="false" responsive="dashboard.breakpoints.availableRooms" ng-if="dashboard.availableRooms.length">
               <!-- start room box -->
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 room" ng-repeat="room in dashboard.availableRooms track by $index">
                 <a ui-sref="roomDetail({id: room.roomDetails.id})">
@@ -67,7 +67,7 @@
                 <a ui-sref="dashboard.myProfile.addNewLooking"><br/>Click here</a> to add looking.
               </small>
             </h2>
-            <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" data="dashboard.lookingRoom" ng-if="dashboard.lookingRoom.length">
+            <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" infinite="false" data="dashboard.lookingRoom" ng-if="dashboard.lookingRoom.length">
               <!-- start room box -->
               <!--TODO make some hover effect so its more intinuitive for user-->
               <div ng-if="looking.userId!=dashboard.me.id" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index" ui-sref="lookingDetail({id:looking.id})">
