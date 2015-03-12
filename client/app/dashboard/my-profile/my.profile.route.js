@@ -21,7 +21,7 @@
           getAllUsers:getAllUsers,
           getAllRoommates:getAllRoommates,
           getPets: getPets,
-          getVehicles:getVehicles,
+          getVehicles:getVehicles
         },
         authenticate: true
       });

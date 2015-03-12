@@ -2084,6 +2084,12 @@ a.view-all {
 .lookings .looking .picture {
   margin-top: 10px;
 }
+.center-image {
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .lookings .looking .picture img{
   width: 9em;
