@@ -20,16 +20,22 @@
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 details">
 
             <strong class="value">
-              {{room.roomDetail.roomDetails.monthlyPrice | currency}} mo.
+              <br>
+              {{room.roomDetail.roomDetails.monthlyPrice | currency}} / mo.
             </strong>
 
             <p class='address'>
-              {{room.roomDetail.propertyDetails.streetNumeric}} {{room.roomDetail.propertyDetails.streetAddress}} {{room.roomDetail.propertyDetails.apt}}, {{room.roomDetail.propertyDetails.city}}
-              <span class="distance"> <i class="fa fa-marker"></i> miles from {{room.userCurrentAddressAndUnivCoords.univName}} </span>
+              <br>
+              {{room.roomDetail.propertyDetails.streetNumeric}} {{room.roomDetail.propertyDetails.streetAddress}} {{room.roomDetail.propertyDetails.apt}}, {{room.roomDetail.propertyDetails.city}} {{room.roomDetail.propertyDetails.zip}}
             </p>
 
-            <div ng-show="room.userCurrentAddressAndUnivCoords" class="distances">
+            <div ng-show="room.userCurrentAddressAndUnivCoords.length" class="distances">
               <!-- call google maps api to get distance from students address to students university of record .. walking, bus, driving -->
+
+              <p>
+                <span class="distance"> <i class="fa fa-marker"></i>Miles from {{room.userCurrentAddressAndUnivCoords.univName}}</span>
+                <br><br>
+              </p>
 
               <a class="distance-bubble">
                 <i class="fa fa-car"></i>
@@ -48,18 +54,20 @@
 
             </div>
 
-            <div ng-show="!room.userCurrentAddressAndUnivCoords">
-              <a ui-sref="dashboard.myProfile">Update Profile to view distance from your university</a>
+            <div ng-show="!room.userCurrentAddressAndUnivCoords.length">
+              <br>
+              <h3><a ui-sref="dashboard.myProfile">Update Profile</a> & view distance from your university</h3>
             </div>
 
             <table class="specs">
+              <br>
               <tr>
-                <td><i class="fa fa-bed"></i> {{room.roomDetail.roomDetails.roomType}}</td>
-                <td><i class="fa fa-shower"></i> {{room.roomDetail.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</td>
+                <td><i class="fa fa-bed"></i>&nbsp;&nbsp;{{room.roomDetail.roomDetails.roomType}}</td>
+                <td><i class="fa fa-shower"></i>&nbsp;&nbsp;{{room.roomDetail.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</td>
               </tr>
               <tr>
-                <td><i class="fa fa-users"></i> {{room.roomDetail.roomDetails.numRoomates}} roommates</td>
-                <td><i class="fa fa-calendar"></i> {{room.roomDetail.roomDetails.availableMoveIn | date }}</td>
+                <td><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetail.roomDetails.numRoomates}} roommates</td>
+                <td><i class="fa fa-calendar"></i>&nbsp;&nbsp;{{room.roomDetail.roomDetails.availableMoveIn | date }}</td>
               </tr>
             </table>
 

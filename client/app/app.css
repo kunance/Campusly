@@ -2140,7 +2140,7 @@ a.view-all {
 }
 
 .room-detail .highlights .details {
-  text-align: center;
+  text-align: left;
 }
 .room-detail .highlights .details .address {
   display: block;
@@ -2202,6 +2202,25 @@ a.view-all {
 }
 
 .room-detail .details dl.specs dd{
+  color: #000;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+.address-specs{
+
+}
+
+.address-specs dl.specs{
+  padding: 0.5em;
+}
+
+.address-specs dl.specs dt{
+  float: left;
+  clear: left;
+}
+
+.address-specs dl.specs dd{
   color: #000;
   font-weight: bold;
   padding-left: 10px;
