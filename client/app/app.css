@@ -1321,6 +1321,29 @@ h2.section-title:nth-child(n+2) {
   margin-top: 50px;
 }
 
+/* ==========================================================================
+Looking Details
+========================================================================== */
+
+.lookingDetails {
+
+}
+
+.lookingDetails dl.specs{
+  padding: 0.5em;
+}
+.lookingDetails dl.specs dt{
+  float: left;
+  clear: left;
+}
+
+.lookingDetails dl.specs dd{
+  color: #000;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+
 /* Profile column */
 
 .messages {

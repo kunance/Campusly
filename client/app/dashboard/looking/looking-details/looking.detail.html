@@ -1,246 +1,270 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
 <div class="main-wrapper">
-<div class="container">
-<div class="row">
-  <h2>{{detail.lookingDetail.relatedUserId.firstname}}'s profile</h2>
+  <div class="container">
+    <div class="row">
+      <h2>{{detail.lookingDetail.relatedUserId.firstname}}'s profile</h2>
 
-  <strong class="value">
-    <!--Created by: {{detail.lookingDetail.relatedUserId.firstname}} {{detail.lookingDetail.relatedUserId.lastname}}<br>-->
-    <!--University: {{detail.lookingDetail.relatedUserId.usereducationUsers[0].educationCenterName}}<br/>-->
+      <!-- Info about the user -->
 
-  </strong>
+      <div class="white-box">
+        <div class="row about-me lookingDetails">
+          <div class="col-xs-12 col-sm-12">
 
-  <div class="white-box">
-    <div class="row about-me">
-      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-        <div class="picture">
-          <img ng-if="detail.lookingDetail.relatedUserId.profileImage" ng-src="api/images{{detail.lookingDetail.relatedUserId.profileImage}}" class="img-circle">
-          <i ng-if="!detail.lookingDetail.relatedUserId.profileImage" class="fa fa-user" style="font-size:120px"></i>
+            <div class="row">
+
+              <!-- User's profile image -->
+
+              <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+                <div class="picture text-center">
+                  <img ng-if="detail.lookingDetail.relatedUserId.profileImage" ng-src="api/images{{detail.lookingDetail.relatedUserId.profileImage}}" class="img-circle center-block">
+                  <i ng-if="!detail.lookingDetail.relatedUserId.profileImage" class="fa fa-user fa-5x"></i>
+                </div>
+              </div>
+
+              <!-- User's public info -->
+
+              <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+
+                <dl class="specs">
+                  <dt>Name:&nbsp;&nbsp;</dt>
+                  <dd>{{detail.lookingDetail.relatedUserId.firstname}} {{detail.lookingDetail.relatedUserId.lastname}} </dd>
+
+                  <dt>University/College:&nbsp;&nbsp;</dt>
+                  <dd ng-show="detail.lookingDetail.relatedUserId.usereducationUsers[0].educationCenterName">{{detail.lookingDetail.relatedUserId.usereducationUsers[0].educationCenterName}}</dd>
+                  <dd ng-hide="detail.lookingDetail.relatedUserId.usereducationUsers[0].educationCenterName">No university entered</dd>
+
+                  <dt>Graduation Year:&nbsp;&nbsp;</dt>
+                  <dd ng-show="detail.lookingDetail.relatedUserId.usereducationUsers[0].graduationDate">{{detail.lookingDetail.relatedUserId.usereducationUsers[0].graduationDate | date:'yyyy'}}</dd>
+                  <dd ng-hide="detail.lookingDetail.relatedUserId.usereducationUsers[0].graduationDate">N/A</dd>
+
+                  <dt>Major:&nbsp;&nbsp;</dt>
+                  <dd ng-show="detail.lookingDetail.relatedUserId.usereducationUsers[0].major">{{detail.lookingDetail.relatedUserId.usereducationUsers[0].major}}</dd>
+                  <dd ng-hide="detail.lookingDetail.relatedUserId.usereducationUsers[0].major">N/A</dd>
+
+                  <dt>Looking to meet new roommates:&nbsp;&nbsp;</dt>
+                  <dd>{{detail.lookingDetail.openToFullYearLeaseNewRoomates?'Yes':'No'}}</dd>
+
+                </dl>
+
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+                <dl class="specs">
+                  <dt>About Me</dt><br>
+                  <dd ng-show="detail.lookingDetail.relatedUserId.aboutMe"> <h3> "{{detail.lookingDetail.relatedUserId.aboutMe}}" </h3> </dd>
+                  <dd ng-hide="detail.lookingDetail.relatedUserId.aboutMe"> <h3> No description available </h3> </dd>
+                </dl>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <hr/>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <a class="contact-bubble-email pull-right" ng-href="mailto:{{detail.lookingDetail.relatedUserId.email}}?Subject=Interested%20in%20your%20looking" target="_top"><i class="fa fa-send fa-lg"></i></a>
+          </div>
         </div>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
-        <dl>
-          <div class="row" ng-show="detail.lookingDetail.relatedUserId.firstname || detail.lookingDetail.relatedUserId.lastname">
-            <dd>Name</dd>
-            <dt>{{detail.lookingDetail.relatedUserId.firstname}} {{detail.lookingDetail.relatedUserId.lastname}} </dt>
-          </div>
 
-          <div class="row" ng-show="detail.lookingDetail.relatedUserId.usereducationUsers[0].educationCenterName">
-            <dd>School</dd>
-            <dt>{{detail.lookingDetail.relatedUserId.usereducationUsers[0].educationCenterName}}</dt>
-          </div>
+      <!-- Details on the Looking post -->
+
+      <h2>Looking</h2>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 white-box">
+        <!--start of first col 4-->
+        <div class="col-md-4">
 
           <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" ng-show="detail.lookingDetail.relatedUserId.usereducationUsers[0].startDate">
-              <dd>Year</dd>
-              <dt>{{detail.lookingDetail.relatedUserId.usereducationUsers[0].startDate | date:'yyyy'}}</dt>
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-arrow-right fa-lg"></i>
+              </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" ng-show="detail.lookingDetail.relatedUserId.usereducationUsers[0].major">
-              <dd>Major</dd>
-              <dt>{{detail.lookingDetail.relatedUserId.usereducationUsers[0].major}}</dt>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <dl>
+                <dt>Move in</dt>
+                <dd>{{detail.lookingDetail.moveInDate | date:'MM/dd/yyyy'}}</dd>
+              </dl>
             </div>
           </div>
 
-        </dl>
+          <div class="row post-padding">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-arrow-left fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <dl>
+                <dt>Move Out</dt>
+                <dd>{{detail.lookingDetail.moveOutDate | date:'MM/dd/yyyy'}}</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="row post-padding">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-tag fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <dl>
+                <dt>Max rent</dt>
+                <dd>{{detail.lookingDetail.maxMonthlyRent |currency}}</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="row post-padding">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-bar-chart fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <dl>
+                <dt>Utilities included</dt>
+                <dd>{{detail.lookingDetail.utilitiesIncluded?'Yes':'No'}}</dd>
+              </dl>
+            </div>
+          </div>
+
+        </div>
+        <!--end of first col 4-->
+
+        <!--start of second col 4-->
+        <div class="col-md-4">
+
+          <div class="row">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-users fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <dl>
+                <dt>Max roommates</dt>
+                <dd>{{detail.lookingDetail.numRoommates}}</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="row post-padding">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-venus-mars fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <dl>
+                <dt>Gender</dt>
+                <dd>{{detail.lookingDetail.gender}}</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="row post-padding">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-shower fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <dl>
+                <dt>Shared bathroom</dt>
+                <dd>{{detail.lookingDetail.sharedBathroom?'Yes':'No'}}</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="row post-padding">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-bigBed fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <dl>
+                <dt>Room type</dt>
+                <dd>{{detail.lookingDetail.roomType}}</dd>
+              </dl>
+            </div>
+          </div>
+
+        </div>
+
+        <!--end of second col 4-->
+
+        <!--start of third col 4-->
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-smoking fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <dl>
+                <dt>Smoking</dt>
+                <dd>{{detail.lookingDetail.smokingAllowed?'Yes':'No'}}</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="row post-padding">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-pet fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <dl>
+                <dt>Pets</dt>
+                <dd>{{detail.lookingDetail.petsAllowed?'Yes':'No'}}</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="row post-padding">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-car fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <dl>
+                <dt>Parking</dt>
+                <dd>{{detail.lookingDetail.parkingNeeded?'Yes':'No'}}</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="row post-padding">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-desk fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <dl>
+                <dt>Furnished</dt>
+                <dd>{{detail.lookingDetail.furnished?'Yes':'No'}}</dd>
+              </dl>
+            </div>
+          </div>
+
+        </div>
+        <!--end of third col 4-->
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5" ng-show="detail.lookingDetail.relatedUserId.aboutMe">
-        <dl>
-          <dd>About Me</dd>
-          <dt> <p class="quote"> {{detail.lookingDetail.relatedUserId.aboutMe}}" </p> </dt>
-        </dl>
-      </div>
-    </div>
-    <hr/>
-    <div class="row">
-      <a class="contact-bubble-email pull-right" ng-href="mailto:{{detail.lookingDetail.relatedUserId.email}}?Subject=Interested%20in%20your%20looking" target="_top"><i class="fa fa-send fa-lg"></i></a>
+      <small class="pull-right">Created: {{detail.lookingDetail.createdAt | date:'longDate'}} at {{detail.lookingDetail.createdAt | date:'shortTime'}}</small>
+
     </div>
   </div>
- <p ng-if="detail.lookingDetail.relatedUserId.uservehiclesUsers.length">User have {{detail.lookingDetail.relatedUserId.uservehiclesUsers.length}} vehicles</p>
- <p ng-if="detail.lookingDetail.relatedUserId.petsUsers.length">User have {{detail.lookingDetail.relatedUserId.petsUsers.length}} pets</p>
-
-  <h2>Looking</h2>
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 white-box">
-    <!--start of first col 4-->
-    <div class="col-md-4">
-
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-arrow-right fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <dd>Move in</dd>
-          <dt>{{detail.lookingDetail.moveInDate | date:'MM/dd/yyyy'}}</dt>
-        </div>
-      </div>
-
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-arrow-left fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <dd>Move Out</dd>
-          <dt>{{detail.lookingDetail.moveOutDate | date:'MM/dd/yyyy'}}</dt>
-        </div>
-      </div>
-
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-tag fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <dd>Max rent</dd>
-          <dt>{{detail.lookingDetail.maxMonthlyRent |currency}}</dt>
-        </div>
-      </div>
-
-      <!--TODO get utilities icon-->
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-meh-o fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <dd>Utilities included</dd>
-          <dt>{{detail.lookingDetail.utilitiesIncluded?'Yes':'No'}}</dt>
-        </div>
-      </div>
-
-    </div>
-    <!--end of first col 4-->
-
-    <!--start of second col 4-->
-    <div class="col-md-4">
-
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-users fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <dd>Max roommates</dd>
-          <dt>{{detail.lookingDetail.numRoommates}}</dt>
-        </div>
-      </div>
-
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-venus-mars fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <dd>Gender</dd>
-          <dt>{{detail.lookingDetail.gender}}</dt>
-        </div>
-      </div>
-
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-shower fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <dd>Shared bathroom</dd>
-          <dt>{{detail.lookingDetail.sharedBathroom?'Yes':'No'}}</dt>
-        </div>
-      </div>
-
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-bigBed fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <dd>Room type</dd>
-          <dt>{{detail.lookingDetail.roomType}}</dt>
-        </div>
-      </div>
-
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-desk fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <dd>Furnished</dd>
-          <dt>{{detail.lookingDetail.furnished?'Yes':'No'}}</dt>
-        </div>
-      </div>
-
-
-
-    </div>
-
-    <!--end of second col 4-->
-
-    <!--start of third col 4-->
-    <div class="col-md-4">
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-smoking fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <dd>Smoking</dd>
-          <dt>{{detail.lookingDetail.smokingAllowed?'Yes':'No'}}</dt>
-        </div>
-      </div>
-
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-pet fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <dd>Pets</dd>
-          <dt>{{detail.lookingDetail.petsAllowed?'Yes':'No'}}</dt>
-        </div>
-      </div>
-
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-car fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <dd>Parking</dd>
-          <dt>{{detail.lookingDetail.parkingNeeded?'Yes':'No'}}</dt>
-        </div>
-      </div>
-
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-check fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <dd>Open to meet new roommates without room</dd>
-          <dt>{{detail.lookingDetail.openToFullYearLeaseNewRoomates?'Yes':'No'}}</dt>
-        </div>
-      </div>
-
-
-    </div>
-    <!--end of third col 4-->
-  </div>
-  <small class="pull-right">created: {{detail.lookingDetail.createdAt | date:'longDate'}} at {{detail.lookingDetail.createdAt | date:'shortTime'}}</small>
-
-</div>
-</div>
 </div>
