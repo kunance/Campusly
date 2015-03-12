@@ -5,19 +5,43 @@
   .module('app.rooms')
   .controller('RoomsCtrl', RoomsCtrl);
 
-  RoomsCtrl.$inject = ['$scope', 'common', 'FileUploader', '$http', 'RoomListingView'];
+  RoomsCtrl.$inject = ['$scope', 'common', '$http', 'RoomListingView', '$filter'];
 
-  function RoomsCtrl($scope, common, FileUploader, $http, RoomListingView) {
+  function RoomsCtrl($scope, common, $http, RoomListingView, $filter) {
     var vm = this;
     vm.property = {};
     vm.me = common.Auth.getCurrentUser();
+    vm.asc = true;
 
+    vm.sortExpression = 'monthlyPrice';
 
-    vm.availableRooms = RoomListingView.query(function(/*availRooms*/) {
-      vm.groups = vm.availableRooms.inGroupsOf(8);
+    vm.mySortFunction = function(room) {
+      console.log('ulazim');
+      if(isNaN(room.roomDetails[vm.sortExpression]))
+        return room.roomDetails[vm.sortExpression];
+      return parseInt(room.roomDetails[vm.sortExpression]);
+    };
+
+   RoomListingView.query(function(availRooms) {
+     vm.availableRooms = availRooms;
+       vm.groups = vm.availableRooms.inGroupsOf(8);
      /* vm.availableRooms = availRooms;
      console.log("availableRooms: ", vm.availableRooms); */
    });
+    vm.aaa = aaa;
+    function aaa() {
+     $filter('orderBy', vm.availableRooms, vm.mySortFunction(), vm.asc);
+      console.log(vm.availableRooms);
+
+
+
+        vm.groups =  vm.availableRooms.inGroupsOf(8);
+       // vm.groups.splice(0,1)
+        /* vm.availableRooms = availRooms;
+         console.log("availableRooms: ", vm.availableRooms); */
+
+
+    };
 
     function orderSliderButtons() {
       setTimeout(function() {
