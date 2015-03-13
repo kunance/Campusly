@@ -35,21 +35,22 @@
             <slick dots="true" class="slider row" init-onload="true" data="dashboard.availableRooms" slides-to-show="3" slides-to-scroll="3" infinite="false" responsive="dashboard.breakpoints.availableRooms" ng-if="dashboard.availableRooms.length">
               <!-- start room box -->
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 room" ng-repeat="room in dashboard.availableRooms track by $index">
-                <a ui-sref="roomDetail({id: room.roomDetails.id})">
-                <div class="picture">
-                  <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&zoom=14&size=400x250&markers=color:blue%7C{{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}">
-                </div>
-                <div class="info">
-                  <strong class="value">
-                    {{room.roomDetails.monthlyPrice | currency}} mo.
-                  </strong>
-                </div>
-                <ul class="specs">
-                  <li><i class="fa fa-bed"></i> {{room.roomDetails.roomType}}</li>
-                  <li><i class="fa fa-users"></i> {{room.roomDetails.numRoomates}} roommates</li>
-                  <li><i class="fa fa-shower"></i> {{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
-                  <li><i class="fa fa-calendar"></i> {{room.roomDetails.availableMoveIn | date }}</li>
-                </ul>
+                <a style="text-decoration: none" ui-sref="roomDetail({id: room.roomDetails.id})">
+                  <div class="picture">
+                    <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&zoom=14&size=400x250&markers=color:blue%7C{{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}">
+                  </div>
+                  <div class="info">
+                    <strong class="value">
+                      {{room.roomDetails.monthlyPrice | currency}} mo.
+                    </strong>
+                  </div>
+                  <ul class="specs">
+                    <li><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{room.roomDetails.roomType}}</li>
+                    <li><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommates</li>
+                    <li><i class="fa fa-shower"></i>&nbsp;&nbsp;{{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
+                    <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{room.roomDetails.availableMoveIn | date }}</li>
+                  </ul>
+                </a>
               </div>
               <!-- end room box -->
             </slick>
@@ -69,27 +70,28 @@
             </h2>
             <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" infinite="false" data="dashboard.lookingRoom" ng-if="dashboard.lookingRoom.length">
               <!-- start room box -->
-              <!--TODO make some hover effect so its more intinuitive for user-->
-              <div ng-if="looking.userId!==dashboard.me.id" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index" ui-sref="lookingDetail({id:looking.id})">
-                <div  class="media">
-                  <div class="media-left">
-                    <a >
+
+              <div ng-if="looking.userId!=dashboard.me.id" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index" ui-sref="lookingDetail({id:looking.id})">
+                <a style="text-decoration: none" ui-sref="lookingDetail({id:looking.id})">
+                  <div  class="media">
+                    <div class="media-left">
                       <img ng-if="looking.relatedUserId.profileImage" ng-src="api/images{{looking.relatedUserId.profileImage}}" class="img-circle" height="100px" width="100px">
-                      <i ng-if="!looking.relatedUserId.profileImage" class="fa fa-user" style="font-size:100px"></i>
-                    </a>
+                      <i ng-if="!looking.relatedUserId.profileImage" class="fa fa-user fa-5x"></i>
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading user-name">
+                        {{looking.relatedUserId.firstname}} {{looking.relatedUserId.lastname}}
+                      </h4>
+                      <h4 ng-show="looking.relatedUserId.aboutMe">"{{looking.relatedUserId.aboutMe}}"</h4>
+                      <h4 ng-hide="looking.relatedUserId.aboutMe">"No description available"</h4>
+                    </div>
+                    <ul class="profile-info">
+                      <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{looking.moveInDate | date}}</li>
+                      <li><i class="fa fa-tag"></i>&nbsp;&nbsp;{{looking.maxMonthlyRent | currency}}</li>
+                      <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{looking.gender}}</li>
+                    </ul>
                   </div>
-                  <div class="media-body">
-                    <h4 class="media-heading user-name">
-                      {{looking.relatedUserId.firstname}} {{looking.relatedUserId.lastname}}
-                    </h4>
-                    <p class="quote" ng-if="looking.relatedUserId.aboutMe">{{looking.relatedUserId.aboutMe}}</p>
-                  </div>
-                  <ul class="profile-info">
-                    <li>{{looking.maxMonthlyRent | currency}}</li>
-                    <li>{{looking.gender}}</li>
-                    <li>{{looking.distanceToUniv}} miles </li>
-                  </ul>
-                </div>
+                </a>
               </div>
               <!-- end room box -->
             </slick>
@@ -116,23 +118,26 @@
                 <div class="list-item" ng-repeat="room in dashboard.myRoomListings">
                   <div class="row" >
 
-                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
-                      <div class="info" ui-sref="roomDetail({id:room.id})">
-                        <span class='value'>{{room.monthlyPrice |currency}}</span>
-                        <span class='address'><i class="fa fa-transgender"></i> Gender: {{room.gender}} </span>
-                        <span class='address'><i class="fa fa-users"></i> Max roommates: {{room.numRoommates}} </span>
+                    <a style="text-decoration: none" ui-sref="roomDetail({id:room.id})">
+                      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+                        <div class="info" >
+                          <span class='value'>{{room.monthlyPrice |currency}}</span>
+                          <span class='address'><i class="fa fa-transgender"></i> Gender: {{room.gender}} </span>
+                          <span class='address'><i class="fa fa-users"></i> Max roommates: {{room.numRoommates}} </span>
                       <span class="elapsed-time">
                         <small><i class="fa fa-clock-o"></i> Posted: {{room.createdAt | date:'longDate'}}, edited: </small>
                         <small ng-if="room.updatedAt" am-time-ago="room.updatedAt"><i class="fa fa-clock-o"></i></small>
                       </span>
+                        </div>
                       </div>
-                    </div>
 
-                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                      <div class="picture">
-                        <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.relatedPropertyId.latitude}},{{room.relatedPropertyId.longitude}}&zoom=14&size=400x250&markers=color:blue%7C{{room.relatedPropertyId.latitude}},{{room.relatedPropertyId.longitude}}">
+                      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <div class="picture">
+                          <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.relatedPropertyId.latitude}},{{room.relatedPropertyId.longitude}}&zoom=14&size=400x250&markers=color:blue%7C{{room.relatedPropertyId.latitude}},{{room.relatedPropertyId.longitude}}">
+                        </div>
                       </div>
-                    </div>
+
+                    </a>
 
                     <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 col-xs-offset-4 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
                       <div class="edit">
@@ -168,18 +173,20 @@
                 <!-- start list box -->
                 <div class="list-item" ng-repeat="look in dashboard.userLookings">
                   <div class="row" >
-
-                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
-                      <div class="info" ui-sref="lookingDetail({id:look.id})">
-                        <span class='value'>{{look.maxMonthlyRent |currency}}</span>
-                        <span class='address'><i class="fa fa-transgender"></i> Gender: {{look.gender}} </span>
-                        <span class='address'><i class="fa fa-users"></i> Max roommates: {{look.numRoommates}} </span>
+                    <a style="text-decoration: none" ui-sref="lookingDetail({id:look.id})">
+                      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+                        <div class="info">
+                          <span class='value'>{{look.maxMonthlyRent |currency}}</span>
+                          <span class='address'><i class="fa fa-transgender"></i> Gender: {{look.gender}} </span>
+                          <span class='address'><i class="fa fa-users"></i> Max roommates: {{look.numRoommates}} </span>
                       <span class="elapsed-time">
                         <small><i class="fa fa-clock-o"></i> Posted: {{look.createdAt | date:'longDate'}}, edited: </small>
                         <small ng-if="look.updatedAt" am-time-ago="look.updatedAt"><i class="fa fa-clock-o"></i></small>
                       </span>
+                        </div>
                       </div>
-                    </div>
+                    </a>
+
                     <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 col-xs-offset-4 col-sm-offset-5 col-md-offset-5 col-lg-offset-5">
                       <div class="edit">
                         <a class="bubble pull-right" ui-sref="editLooking({id:look.id})" ui-sref-opts="{reload:true}">
@@ -195,8 +202,6 @@
             </div>
 
           </div>
-
-
 
         </div>
       </div>

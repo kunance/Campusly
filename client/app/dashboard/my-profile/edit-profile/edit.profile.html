@@ -65,12 +65,14 @@
         </select>
       </div>
 
+      <!-- TODO Fix graduation date from start date in ng-model -->
+
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
           <div class="form-group">
-            <label for="start">Start date</label>
+            <label for="start">Graduation date</label>
             <p class="input-group">
-              <input type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="editProfile.tempEducation.startDate" is-open="datePickers.EducationStartDate" close-text="Close" />
+              <input type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="editProfile.tempEducation.graduationDate" is-open="datePickers.EducationStartDate" close-text="Close" />
               <span class="input-group-btn">
                 <button type="btn-rented-medium primary" class="btn" ng-click="open($event,'EducationStartDate')"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
@@ -127,5 +129,6 @@
     </div>
   </div>
 </div>
+
 </div>
 </div>
