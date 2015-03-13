@@ -17,6 +17,9 @@
     vm.tempEducation = getEducations;
     vm.me = currentUser;
     vm.tempMe = Object.create(vm.me);
+
+    console.log('vm.universitiesList: ', vm.universitiesList);
+
     /*
      *  defining functions
      */
@@ -79,12 +82,14 @@
       if(EducationStatus){
         common.dataservice.editEducation(vm.me.id, educationId, input, function () {
           common.logger.success('Education successfully updated');
+          common.$state.reload();
         });
       }else {
         common.dataservice.addEducation(vm.me.id, input)
         .$promise
         .then(function () {
           common.logger.success('Education successfully added.');
+          common.$state.reload();
         })
       }
     }

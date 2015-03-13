@@ -43,12 +43,22 @@ exports.newEducation = function(req, res, next) {
     .catch(validationError(res));
 };
 
+function adoptData(input) {
+  var adopted =JSON.parse(JSON.stringify(input));
+  adopted.educationCenterName = {
+    id: input.id,
+    name: input.educationCenterName
+  };
+  return adopted;
+}
+
 exports.showEducations= function(req, res, next) {
   //Education.findAll({where:{userId:req.user.id}})
   Education.findOne({where:{userId:req.userId}})
     .then(function (educations) {
+      console.log(educations);
       if(educations){
-      res.json(educations);
+      res.json(adoptData(educations));
       }else{
         res.json({});
       }

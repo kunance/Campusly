@@ -32,9 +32,14 @@
     });
     return deferred.promise;
   }
-  function getUniversities(common, currentUser) {
+  function getUniversities(common, currentUser, $q) {
     if(currentUser){
-    return common.dataservice.getAllUniversities();}
+      var deferred = $q.defer();
+      common.dataservice.getAllUniversities(function (data) {
+        deferred.resolve(data);
+      });
+      return deferred.promise;
+    }
   }
 
   function getEducations(common, currentUser) {

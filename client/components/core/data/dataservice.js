@@ -480,8 +480,8 @@
         });
     }
 
-    function getAllUniversities() {
-      return University.getAllUniversities(
+    function getAllUniversities(data) {
+      return University.getAllUniversities(data,
         function (res) {
           return res;
         }, function (err) {

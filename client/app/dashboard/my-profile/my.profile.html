@@ -1,7 +1,7 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
 <div class="main-wrapper">
-  <div class="container my-profile" cg-busy="{promise:myProfile.me.$promise, message:'Loading Your Profile', delay:50}">
+  <div class="container my-profile" cg-busy="{promise:myProfile.me.$promise, message:'Loading Your Profile', delay:50">
     <div ui-view="">
       <div class="page-header">
         <h2> Your Profile </h2>
@@ -20,7 +20,7 @@
               <dt>Name</dt>
               <dd>{{myProfile.tempMe.firstname}} {{myProfile.tempMe.lastname}} </dd>
               <dt>University</dt>
-              <dd>{{myProfile.education.educationCenterName}}</dd>
+              <dd>{{myProfile.education.educationCenterName.name}}</dd>
               <dt>Year</dt>
               <dd>{{myProfile.education.graduationDate | date:'yyyy'}}</dd>
               <dt>Major</dt>
