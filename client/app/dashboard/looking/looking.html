@@ -5,30 +5,33 @@
         <h2> Looking </h2>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <slick dots="true" class="slider row" init-onload="true" data="looking.lookings" slides-to-show="4" slides-to-scroll="4" ng-if="looking.lookings.length">
-          <div  ng-if="look.relatedUserId.id!=looking.me.id" class="col-xs-12 col-sm-6 col-md-3 col-lg-3 looking" ng-repeat="look in looking.lookings">
-            <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-              <div class="flipper">
-                <div class="front white-box">
-                  <div class="center-image">
-                    <img ng-if="look.relatedUserId.profileImage" ng-src="api/images{{look.relatedUserId.profileImage}}" class="img-circle">
-                    <i ng-if="!look.relatedUserId.profileImage" class="fa fa-user" style="font-size:100px"></i>
+      <slick dots="true" class="slider" init-onload="true" data="looking.groups" slides-to-show="1" slides-to-scroll="1">
+          <div class="row looking" ng-repeat="group in looking.groups">
+            <div ng-if="look.relatedUserId.id!=looking.me.id" class="col-xs-12 col-sm-6 col-md-3 col-lg-3 " ng-repeat="look in group ">
+              <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                <div class="flipper">
+                  <div class="front white-box">
+                    <div class="center-image text-center">
+                      <img ng-if="look.relatedUserId.profileImage" ng-src="api/images{{look.relatedUserId.profileImage}}" class="img-circle center-block">
+                      <i ng-if="!look.relatedUserId.profileImage" class="fa fa-user fa-5x"></i>
+                    </div>
+                    <h4>{{look.relatedUserId.firstname}} {{look.relatedUserId.lastname}}</h4>
+                    <!-- <p class="quote" ng-if="look.relatedUserId.aboutMe">{{look.relatedUserId.aboutMe}}"</p> -->
+                    <hr>
+                    <ul class="specs">
+                      <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{look.moveInDate | date}}</li>
+                      <li><i class="fa fa-tag"></i>&nbsp;&nbsp;{{look.maxMonthlyRent | currency}}</li>
+                      <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{look.gender}}</li>
+                    </ul>
                   </div>
-                  <h4>{{look.relatedUserId.firstname}} {{look.relatedUserId.lastname}}</h4>
-                  <!-- <p class="quote" ng-if="look.relatedUserId.aboutMe">{{look.relatedUserId.aboutMe}}"</p> -->
-                  <hr>
-                  <ul class="specs">
-                    <li><i class="fa fa-male"></i> {{look.gender}}</li>
-                    <li><i class="fa fa-money"></i> {{look.maxMonthlyRent | currency}}</li>
-                  </ul>
+                  <div class="back">
+                    <a ui-sref="lookingDetail({id:look.id})"> <h2>View</h2> </a>
+                  </div>
                 </div>
-                <div class="back">
-                  <a ui-sref="lookingDetail({id:look.id})"> <h2>View</h2> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </slick>
+              </div> <!-- flip container -->
+            </div> <!-- column -->
+          </div> <!-- row -->
+        </slick> <!-- slider -->
       </div>
     </div>
   </div>
