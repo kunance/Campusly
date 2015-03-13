@@ -158,6 +158,8 @@
 
     };
 
+    mixpanel.track('edit your room');
+
   }
 }());
 

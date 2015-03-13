@@ -41,7 +41,7 @@
      */
     $scope.$parent.seo = {
       pageTitle:'Campusly Dashboard',
-      pageDescription:'Secure off-campus community'
+      pageDescription:'Your personal dashboard'
     };
     /*
      *  breakpoints and slider options
@@ -122,6 +122,7 @@
       orderSliderButtons();
     });
 
+    mixpanel.track("dashboard");
     mixpanel.identify(vm.me.id);
     mixpanel.people.set({
       "$email": vm.me.email,

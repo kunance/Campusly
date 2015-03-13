@@ -52,6 +52,8 @@
       $scope.datePickers[number]= true;
     };
 
+    mixpanel.track('add a room');
+
 
   }
 

@@ -37,6 +37,8 @@
       orderSliderButtons();
     });
 
+    mixpanel.track('looking grid view');
+
   }
 
 }());

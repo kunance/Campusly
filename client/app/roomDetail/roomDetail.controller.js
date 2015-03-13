@@ -37,6 +37,8 @@
         // vm.roomDetail = roomDetail;
         //console.log("vm.userCurrentAddressAndUnivCoords: ", vm.userCurrentAddressAndUnivCoords);
       });
+
+      mixpanel.track('roomDetail view');
     //  common.dataservice.getAllRoommates(vm.roomDetail.creatorId)
 
       // TODO use users current address and university location to ask https://developers.google.com/maps/documentation/directions/ to get distances

@@ -66,6 +66,8 @@
       orderSliderButtons();
     });
 
+    mixpanel.track('room grid view');
+
     //console.log(vm.availableRooms);
 
     //vm.availableRooms = RoomListingView.query(function(/*availRooms*/) {

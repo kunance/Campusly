@@ -19,6 +19,8 @@
 
     //console.log('Looking Detail: ', vm.lookingDetail);
 
+    mixpanel.track('looking detail');
+
 
   }
 
