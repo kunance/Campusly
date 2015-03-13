@@ -1064,6 +1064,75 @@ nav.dashboard-submenu > label {
   -ms-user-select: none;
   user-select: none;
 }
+
+/* ==========================================================================
+Dashboard looking truncate text style
+========================================================================== */
+
+/*.truncate {*/
+  /*width: 250px;*/
+  /*white-space: nowrap;*/
+  /*overflow: hidden;*/
+  /*text-overflow: ellipsis;*/
+/*}*/
+
+.text-container-looking {
+  margin: 30px 0;
+  line-height: 1.5;
+  overflow: hidden;
+  position: relative;
+  max-height: 4.5em; /*display ellipsis after 3 lines*/
+}
+
+.text-container-looking:before  {
+  background: #ffffff;
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  content: '\2026';
+
+}
+
+.text-container-looking:after{
+  content: '';
+  background: #ffffff;
+  position: absolute;
+  height: 50px;
+  width: 100%;
+  z-index: 1;
+}
+
+.text-container-looking-view {
+  margin: 20px 0;
+  line-height: 1.5;
+  overflow: hidden;
+  position: relative;
+  max-height: 1.5em; /*display ellipsis after 1.5 lines*/
+}
+
+.text-container-looking-view:before  {
+  background: #ffffff;
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  content: '\2026';
+
+}
+
+.text-container-looking-view:after{
+  background: #ffffff;
+  content: '';
+  position: absolute;
+  height: 50px;
+  width: 100%;
+  z-index: 1;
+}
+
+/* ==========================================================================
+Media query
+========================================================================== */
+
+
 @media (max-width: 992px) {
   .my-profile .profile-sidebar{
     display: none;
@@ -1196,11 +1265,11 @@ Post padding
   width: 5em;
 }
 p.quote:before, .looking-for-room p.quote:after{
-  content: "\"";
+  /*content: "\"";*/
 }
 
 p.quote{
-  font-size: .8em;
+  font-size: 1em;
   font-family: Georgia;
   text-align: justify;
   line-height: 150%;

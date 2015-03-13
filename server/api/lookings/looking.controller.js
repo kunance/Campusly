@@ -35,7 +35,7 @@ function respondWith(res, statusCode) {
 
 exports.showAllLookings= function(req, res, next) {
   var userAttributes = ['firstname', 'lastname', 'profileImage', 'aboutMe','id'];
-  var lookingAttributes = ['maxMonthlyRent', 'gender', 'id', 'userId', 'moveInDate'];
+  var lookingAttributes = ['maxMonthlyRent', 'gender', 'id', 'userId', 'moveInDate', 'roomType'];
   Looking.findAll({
     where:{},
     attributes:lookingAttributes,
