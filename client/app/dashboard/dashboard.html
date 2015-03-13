@@ -82,8 +82,8 @@
                       <h4 class="media-heading user-name">
                         {{looking.relatedUserId.firstname}} {{looking.relatedUserId.lastname}}
                       </h4>
-                      <h4 ng-show="looking.relatedUserId.aboutMe">"{{looking.relatedUserId.aboutMe}}"</h4>
-                      <h4 ng-hide="looking.relatedUserId.aboutMe">"No description available"</h4>
+                      <p ng-show="looking.relatedUserId.aboutMe" class="quote text-container-looking">{{looking.relatedUserId.aboutMe}}</p>
+                      <p ng-hide="looking.relatedUserId.aboutMe" class="quote text-container-looking">No description available</p>
                     </div>
                     <ul class="profile-info">
                       <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{looking.moveInDate | date}}</li>

@@ -4,16 +4,24 @@
   <div class="container rooms">
     <div class="row">
       <div class="page-header">
-        <label for="sortBy">Sort by:</label>
-        <select id="sortBy" class="form-control" ng-model="rooms.sortBy" ng-init="rooms.sortBy='roomDetails.monthlyPrice'" ng-change="rooms.aaa()">
-          <option value="roomDetails.monthlyPrice">Price</option>
-          <option value="roomDetails.availableMoveIn">Available date</option>
-        </select>
-        <div ng-init="order='false'">
-          <input type="radio" name="order" value="false" ng-model="order" ng-click="rooms.aaa()"/> Ascending order
-          <input type="radio" name="order" value="true" ng-model="order" ng-click="rooms.aaa()"/> Descending order
-        </div>
+        <h2>Available Rooms</h2>
+
+        <!-- Sort view -->
+
+        <!--<label for="sortBy">Sort by:</label>-->
+        <!--<select id="sortBy" class="form-control" ng-model="rooms.sortBy" ng-init="rooms.sortBy='roomDetails.monthlyPrice'" ng-change="rooms.aaa()">-->
+          <!--<option value="roomDetails.monthlyPrice">Price</option>-->
+          <!--<option value="roomDetails.availableMoveIn">Available date</option>-->
+        <!--</select>-->
+        <!--<div ng-init="order='false'">-->
+          <!--<input type="radio" name="order" value="false" ng-model="order" ng-click="rooms.aaa()"/> Ascending order-->
+          <!--<input type="radio" name="order" value="true" ng-model="order" ng-click="rooms.aaa()"/> Descending order-->
+        <!--</div>-->
+
       </div>
+
+      <!-- Main room view -->
+
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <slick dots="true" class="slider" init-onload="true" data="rooms.groups" slides-to-show="1" slides-to-scroll="1" >
         <div ng-repeat="group in rooms.groups" class="row">
