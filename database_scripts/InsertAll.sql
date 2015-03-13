@@ -6,4 +6,5 @@ BEGIN;
 \i InsertEducation.sql
 \i InsertAddressHistory.sql
 \i InsertLooking.sql
+\i InsertRoommate.sql
 COMMIT;
