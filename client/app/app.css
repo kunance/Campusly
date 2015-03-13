@@ -2080,7 +2080,17 @@ a.view-all {
   left: 15px;
 }
 
+.lookings .slider .slick-prev, .lookings .slider .slick-next, .lookings .slider .slick-dots {
+  bottom: -35px;
+}
+
+.lookings .slider .slick-prev {
+  left: 15px;
+}
 .rooms .slick-dots {
+  left: 45px;
+}
+.lookings .slick-dots {
   left: 45px;
 }
 
@@ -2124,6 +2134,9 @@ a.view-all {
   width: 20px;
 }
 
+.lookings .looking {
+  padding-top: 15px;
+}
 
 
 /* Room Detail */

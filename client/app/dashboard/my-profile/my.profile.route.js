@@ -9,13 +9,13 @@
 
   function config ($stateProvider) {
     $stateProvider
-      .state('dashboard.myProfile', {
+      .state('myProfile', {
         url: '/myProfile',
         templateUrl: 'app/dashboard/my-profile/my.profile.html',
         controller: 'MyProfileCtrl',
         controllerAs:'myProfile',
         resolve: {
-          getUserInfo: getUserInfo,
+          currentUser:getCurrentUser,
           getEducations: getEducations,
           getAddresses: getAddresses,
           getAllUsers:getAllUsers,
@@ -27,58 +27,38 @@
       });
   }
 
-
-  function getUserInfo(common, $q) {
-    var deffered = $q.defer();
-    deffered.resolve(common.Auth.getCurrentUser());
-    return deffered.promise;
+  function getCurrentUser(common, $q) {
+    var deferred = $q.defer();
+    common.Auth.getCurrentUser(function(user) {
+      deferred.resolve(user);
+    });
+    return deferred.promise;
   }
 
-  function getEducations(common, $q) {
-    var deffered = $q.defer();
-    var dataservice = common.dataservice;
-    var me = common.Auth.getCurrentUser();
-    deffered.resolve(dataservice.getAllEducations(me));
-    return deffered.promise;
+  function getEducations(common, currentUser) {
+      return common.dataservice.getAllEducations(currentUser.id);
   }
 
-  function getAddresses(common, $q) {
-    var deffered = $q.defer();
-    var dataservice = common.dataservice;
-    var me = common.Auth.getCurrentUser();
-    deffered.resolve(dataservice.getAllAddresses(me));
-    return deffered.promise;
+  function getAddresses(common, currentUser) {
+      return common.dataservice.getAllAddresses(currentUser.id);
   }
 
-  function getAllUsers(common, $q) {
-    var deffered = $q.defer();
-    var me = common.Auth.getCurrentUser();
-    deffered.resolve( common.$http({method:'get', url:'/api/users', data:{"id":me.id}}).success(function (users) {
-      angular.forEach(users, function (user) {
-        user.full = user.firstname + ' ' + user.lastname;
-      });
-    }));
-    return deffered.promise;
+  function getAllUsers(currentUser, UserResource) {
+    if(currentUser){
+    return UserResource.query(function (users) {})};
   }
 
-  function getAllRoommates(common,$q) {
-    var deffered = $q.defer();
-    var dataservice = common.dataservice;
-    var me = common.Auth.getCurrentUser();
-    deffered.resolve(dataservice.getAllRoommates(me));
-    return deffered.promise;
+  function getAllRoommates(common, currentUser) {
+      return common.dataservice.getAllRoommates(currentUser.id);
   }
 
-  function getPets(common) {
-    var dataservice = common.dataservice;
-    var me = common.Auth.getCurrentUser();
-    return dataservice.getAllPets(me)
+  function getPets(common, currentUser) {
+      return common.dataservice.getAllPets(currentUser.id)
   }
 
-  function getVehicles(common) {
-    var dataservice = common.dataservice;
-    var me = common.Auth.getCurrentUser();
-    return dataservice.getAllVehicles(me)
+  function getVehicles(common, currentUser) {
+      return common.dataservice.getAllVehicles(currentUser.id)
   }
+
 
 }());

@@ -13,25 +13,28 @@
           controllerAs:'dashboard',
           authenticate: true,
           resolve:{
-            getUserLookings:getUserLookings,
-
+            currentUser: getCurrentUser,
+            currentUserLookings:getUserLookings,
             allLooking:allLooking
-
           }
         });
     });
 
-  function getUserLookings(common,$q) {
-    var deffered = $q.defer();
-    var dataservice = common.dataservice;
-    var me = common.Auth.getCurrentUser();
-    deffered.resolve(dataservice.getAllLookings(me));
-    return deffered.promise;
+  function getCurrentUser(common, $q) {
+    var deferred = $q.defer();
+    common.Auth.getCurrentUser(function(user) {
+      deferred.resolve(user);
+    });
+    return deferred.promise;
   }
 
-  function allLooking(common) {
-    var dataservice = common.dataservice;
-    return dataservice.getEveryLooking();
+  function getUserLookings(common, currentUser) {
+      return common.dataservice.getAllLookings(currentUser.id);
+  }
+
+  function allLooking(common, currentUser) {
+    if(currentUser){
+    return common.dataservice.getEveryLooking();}
   }
 
 

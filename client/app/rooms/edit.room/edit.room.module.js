@@ -37,7 +37,7 @@
     var deffered = $q.defer();
     var dataservice = common.dataservice;
     var me = common.Auth.getCurrentUser();
-    deffered.resolve(dataservice.getAllRoommates(me));
+    deffered.resolve(dataservice.getAllRoommates(me.id));
     return deffered.promise;
   }
 

@@ -489,8 +489,8 @@
         });
     }
 
-     function getEveryLooking() {
-          return Lookings.getEveryLooking(
+     function getEveryLooking(data) {
+          return Lookings.getEveryLooking(data,
             function (res) {
               return res;
             }, function (err) {

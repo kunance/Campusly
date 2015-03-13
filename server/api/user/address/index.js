@@ -10,6 +10,6 @@ router.post('/', auth.isAuthenticated(), controller.newAddress);
 router.get('/all', auth.isAuthenticated(), controller.showAddresses);
 router.get('/:id', auth.isAuthenticated(), controller.getAddress);
 router.put('/:id', auth.isAuthenticated(), controller.saveAddress);
-router.delete('/:id', auth.isAuthenticated(), controller.deleteAddress);
+router.delete('/:id',/* auth.isCurrentUser(),*/ controller.deleteAddress);
 
 module.exports = router;

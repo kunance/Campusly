@@ -35,7 +35,7 @@
       //one service call to get users current address location AND current university name and location
       vm.userCurrentAddressAndUnivCoords = UserResource.getCurrentAddressAndUniv({id: vm.me.id}, function () {
         // vm.roomDetail = roomDetail;
-        console.log("userUniversity: ", vm.userCurrentAddressAndUnivCoords);
+        console.log("vm.userCurrentAddressAndUnivCoords: ", vm.userCurrentAddressAndUnivCoords);
       });
     //  common.dataservice.getAllRoommates(vm.roomDetail.creatorId)
 

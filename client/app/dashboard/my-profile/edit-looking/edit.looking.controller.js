@@ -5,21 +5,23 @@
     .module('app.dashboard')
     .controller('EditLookingCtrl', EditLookingCtrl);
 
-  EditLookingCtrl.$inject = ['$scope', 'common', 'getLooking', '$stateParams'];
+  EditLookingCtrl.$inject = ['$scope', 'common', 'getLooking', '$stateParams', 'currentUser'];
 
-  function EditLookingCtrl($scope, common, getLooking, $stateParams) {
+  function EditLookingCtrl($scope, common, getLooking, $stateParams, currentUser) {
     var vm = this;
-
-    if($stateParams.id){
-      var dataservice = common.dataservice;
+    /*
+     *  Fetch all required data for controller from route resolve
+     */
+      vm.me = currentUser;
       vm.tempLooking = getLooking;
       var lookingId = $stateParams.id;
-      console.log(vm.tempLooking);
-
-      vm.me = common.Auth.getCurrentUser();
-
+    /*
+     *  enables data binding to yes / no drop down values
+     */
       vm.ddlYesNoSelect = [{value: true, text: 'Yes'}, {value: false, text: 'No'}];
-
+    /*
+     *  date pickers options
+     */
       $scope.datePickers = {
         startDate: false,
         endDate:false
@@ -35,21 +37,22 @@
         $event.stopPropagation();
         $scope.datePickers[number]= true;
       };
-
-      vm.saveChanges= function (input) {
-        dataservice.editLooking(vm.me.id, lookingId, input, function () {
+    /*
+     *  manage with looking
+     */
+      vm.saveChanges = function (input) {
+        common.dataservice.editLooking(vm.me.id, lookingId, input, function () {
           common.logger.success('Looking updated');
           common.$state.go('dashboard', {}, {reload: true});
-        })
-      }
+        });
+      };
 
-      vm.delete= function () {
-        dataservice.deleteLooking(vm.me.id, lookingId, function () {
-          common.logger.success('Looking deleted');
-          common.$state.go('dashboard',{},{reload:true});
-        })
-      }
-    }
+    vm.deleteLooking = function () {
+      common.dataservice.deleteLooking(vm.me.id, lookingId, function () {
+        common.logger.success('Looking deleted');
+        common.$state.go('dashboard', {}, {reload: true});
+      })
+    };
 
 }
 

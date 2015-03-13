@@ -61,10 +61,38 @@ function hasRole(roleRequired) {
       }
       else {
         res.status(403);
-        next();
       }
     });
 }
+
+//function isCurrentUser() {
+//  return compose()
+//    .use(isAuthenticated())
+//    .use(function owner(req, res, next) {
+//      console.log('user.id',req.user.id);
+//      console.log('userId',req.userId);
+//      if(req.user.id===req.userId){
+//        next();
+//      }else{
+//        throw new Error('you are not owner');
+//      }
+//    });
+//}
+//
+//function isOwner() {
+//  return compose()
+//    .use(isAuthenticated())
+//    .use(isCurrentUser())
+//    .use(function owner(req, res, next) {
+//      console.log('user.id',req.user.id);
+//      console.log('userId',req.userId);
+//      if(req.user.id===req.userId){
+//        next();
+//      }else{
+//        throw new Error('u are not owner');
+//      }
+//    });
+//}
 
 /**
  * Returns a jwt token signed by the app secret
@@ -93,3 +121,5 @@ exports.isAuthenticated = isAuthenticated;
 exports.hasRole = hasRole;
 exports.signToken = signToken;
 exports.setTokenCookie = setTokenCookie;
+//exports.isOwner = isOwner;
+//exports.isCurrentUser = isCurrentUser;
