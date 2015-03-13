@@ -45,7 +45,7 @@
 
   function getAllUsers(currentUser, UserResource) {
     if(currentUser){
-    return UserResource.query(function (users) {})};
+    return UserResource.query(function (users) {})}
   }
 
   function getAllRoommates(common, currentUser) {

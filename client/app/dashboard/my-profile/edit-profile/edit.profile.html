@@ -59,9 +59,9 @@
         <div class="form-group">
           <label for="educationCenterName">University name</label>
           <select id="educationCenterName" class="form-control"
-          ng-model="editProfile.tempEducation.educationCenterName"
-          ng-options="university.name for university in editProfile.universitiesList">
-          <option value=""></option>
+          data-ng-model="editProfile.tempEducation.educationCenterName"
+          data-ng-options="university as university.name for university in editProfile.universitiesList"
+          ng-init="editProfile.tempEducation.educationCenterName=editProfile.universitiesList[editProfile.tempEducation.universityId-1]">
         </select>
       </div>
 
