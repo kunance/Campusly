@@ -1276,6 +1276,16 @@ p.quote{
   font-style: italic;
   color: #7b7b7b;
 }
+
+p.quoteLooking{
+  font-size: 0.8em;
+  font-family: Georgia;
+  text-align: justify;
+  line-height: 150%;
+  font-style: italic;
+  color: #7b7b7b;
+}
+
 .looking-for-room h4.user-name{
   color: #000000;
   font-weight: bold;
@@ -1313,6 +1323,12 @@ p.quote{
   border-left: 1px solid #efefef;
   border-right: 1px solid #efefef;
 }
+
+/* ==========================================================================
+Room page roommates style
+========================================================================== */
+
+
 
 /* ==========================================================================
 Posts dashboard padding
@@ -1386,6 +1402,10 @@ Posts dashboard padding
 }
 
 h2.section-title:nth-child(n+2) {
+  margin-top: 50px;
+}
+
+h2.section-title{
   margin-top: 50px;
 }
 
@@ -2006,7 +2026,7 @@ Looking Details
 }
 
 .badge.pet {
-  background-image: url("../assets/images/pet.svg");
+  background-image: url("../assets/images/pet-white.svg");
   background-size: 2.7em;
   background-repeat: no-repeat;
   background-position: 50%;
@@ -2063,6 +2083,16 @@ h2.no-roommate small{
 
 .fa.fa-pet {
   background-image: url("../assets/images/pet.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-pet-white {
+  background-image: url("../assets/images/pet-white.svg");
   background-size: 1em;
   background-repeat: no-repeat;
   width: 1em;
