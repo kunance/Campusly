@@ -16,14 +16,17 @@
                 <div class="front white-box">
                   <div class="center-image">
                     <img ng-if="look.relatedUserId.profileImage" ng-src="api/images{{look.relatedUserId.profileImage}}" class="img-circle">
-                    <i ng-if="!look.relatedUserId.profileImage" class="fa fa-user" style="font-size:100px"></i>
+                    <i ng-if="!look.relatedUserId.profileImage" class="fa fa-user fa-4x"></i>
                   </div>
                   <h4>{{look.relatedUserId.firstname}} {{look.relatedUserId.lastname}}</h4>
-                  <!-- <p class="quote" ng-if="look.relatedUserId.aboutMe">{{look.relatedUserId.aboutMe}}"</p> -->
+                  <p class="quote text-container-looking-view" ng-if="look.relatedUserId.aboutMe">{{look.relatedUserId.aboutMe}}</p>
+                  <p class="quote text-container-looking-view" ng-if="!look.relatedUserId.aboutMe">No description available</p>
                   <hr>
                   <ul class="specs">
-                    <li><i class="fa fa-male"></i> {{look.gender}}</li>
-                    <li><i class="fa fa-money"></i> {{look.maxMonthlyRent | currency}}</li>
+                    <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{look.moveInDate | date}}</li>
+                    <li><i class="fa fa-tag"></i>&nbsp;&nbsp;{{look.maxMonthlyRent | currency}}</li>
+                    <li><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{look.roomType}}</li>
+                    <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{look.gender}}</li>
                   </ul>
                 </div>
                 <div class="back">
