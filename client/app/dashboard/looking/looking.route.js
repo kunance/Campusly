@@ -9,21 +9,33 @@
 
   function config ($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('dashboard.looking', {
+      .state('looking', {
         url: '/looking',
         templateUrl: 'app/dashboard/looking/looking.html',
         controller: 'LookingCtrl',
         controllerAs:'looking',
         authenticate: true,
         resolve:{
-          allLooking:allLooking
+          allLooking:allLooking,
+          currentUser:getCurrentUser
         }
       });
 
-  }
+    function getCurrentUser(common, $q) {
+      var deferred = $q.defer();
+      common.Auth.getCurrentUser(function(user) {
+        deferred.resolve(user);
+      });
+      return deferred.promise;
+    }  }
 
-  function allLooking(common) {
-    var dataservice = common.dataservice;
-    return dataservice.getEveryLooking();
+  function allLooking(common, currentUser, $q) {
+    if(currentUser){
+      var deferred = $q.defer();
+      common.dataservice.getEveryLooking(function (data) {
+         deferred.resolve(data);
+      });
+      return deferred.promise;
+    }
   }
 }());

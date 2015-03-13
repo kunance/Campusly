@@ -82,7 +82,7 @@ exports.getAllRoomListings = function(req, res, next) {
 
   var roomAttributes = ["id", "monthlyPrice", "securityDeposit", "availableMoveIn", "leaseEndDate", "leaseType", "gender",
     "monthlyUtilityCost", "roomType", "sharedBathroom", "numRoomates", "furnished", "parkingAvailable", "smokingAllowed",
-    "description", "createdAt", "updatedAt"];
+    "description", "createdAt", "updatedAt", "creatorId"];
 
 
   var propertyAttributes = [ "id", "streetNumeric", "streetAddress", "city", "state", "zip", "apt", "bldg", "latitude", "longitude", "type",

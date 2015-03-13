@@ -42,7 +42,7 @@ exports.newPet = function(req, res, next) {
 };
 
 exports.showPets= function(req, res, next) {
-  Pet.findAll({where:{userId:req.user.id}})
+  Pet.findAll({where:{userId:req.userId}})
     .then(function (pets) {
       res.json(pets);
     })

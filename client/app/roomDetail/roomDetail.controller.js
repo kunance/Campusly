@@ -22,6 +22,9 @@
         console.log('RoomDetail: ', vm.roomDetail);
         vm.creatorId = vm.roomDetail.roomDetails.creatorId;
         console.log('Creator id: ', vm.creatorId);
+        UserResource.get({id: vm.creatorId}, function (aa) {
+          vm.creatorEmail=aa.email;
+        });
         common.dataservice.getAllRoommates(vm.creatorId, function (data) {
           vm.creatorRoommates=data;
           console.log('Creator roommates: ',  vm.creatorRoommates);
@@ -32,7 +35,7 @@
       //one service call to get users current address location AND current university name and location
       vm.userCurrentAddressAndUnivCoords = UserResource.getCurrentAddressAndUniv({id: vm.me.id}, function () {
         // vm.roomDetail = roomDetail;
-        console.log("userUniversity: ", vm.userCurrentAddressAndUnivCoords);
+        console.log("vm.userCurrentAddressAndUnivCoords: ", vm.userCurrentAddressAndUnivCoords);
       });
     //  common.dataservice.getAllRoommates(vm.roomDetail.creatorId)
 

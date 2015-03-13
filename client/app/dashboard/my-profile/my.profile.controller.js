@@ -5,48 +5,31 @@
   .module('app.dashboard')
   .controller('MyProfileCtrl', MyProfileCtrl);
 
-  MyProfileCtrl.$inject = ['$scope', 'common', '$cookieStore', 'getUserInfo', 'getAddresses', 'getEducations', 'getAllRoommates', 'getAllUsers', 'getPets', 'getVehicles'];
+  MyProfileCtrl.$inject = ['$scope', 'common', 'currentUser', 'getAddresses', 'getEducations', 'getAllRoommates', 'getAllUsers', 'getPets', 'getVehicles'];
 
-  function MyProfileCtrl($scope, common, $cookieStore, getUserInfo, getAddresses, getEducations, getAllRoommates, getAllUsers, getPets, getVehicles) {
-
+  function MyProfileCtrl($scope, common, currentUser, getAddresses, getEducations, getAllRoommates, getAllUsers, getPets, getVehicles) {
     var vm = this;
-    vm.me = getUserInfo;
+    /*
+     *  Fetch all required data for controller from route resolve
+     */
+    vm.me = currentUser;
     vm.tempMe = Object.create(vm.me);
     vm.address = getAddresses;
     vm.education = getEducations;
     vm.users = getAllUsers;
-    vm.roommates = getAllRoommates; //roomate info, his education info, his address info
+    vm.roommates = getAllRoommates; //roommate info, his education info, his address info
     vm.pets = getPets;
     vm.vehicles = getVehicles;
+
+    console.log('current roommates: ',vm.roommates);
+    /*
+     *  showing/hiding partials
+     */
     vm.showNewRoomate = false;
     vm.showPetAddonButtons = false;
     vm.showRoommatesAddonButtons = false;
     vm.showAddPet = false;
     vm.showAddVehicle = false;
-
-    angular.forEach(vm.roommates, function (user) {
-      user.addressInfo = user.relatedRoommateId.addresshistoryUsers;
-    });
-    console.log(vm.roommates);
-    $scope.datePickers = {
-      EducationStartDate: false,
-      EducationEndDate:false,
-      graduationDate:false,
-      AddresStartDate: false,
-      AddressEndDate:false,
-    };
-
-    $scope.format = 'dd.MM.yyyy';
-
-    $scope.clear = function () {
-      $scope.dt = null;
-    };
-
-    $scope.open = function($event, number) {
-      $event.preventDefault();
-      $event.stopPropagation();
-      $scope.datePickers[number]= true;
-    };
 
     vm.toggleAddPet = function(){
       vm.showAddPet = true;
@@ -105,14 +88,18 @@
       vm.showAddPet = false;
       vm.showPetAddonButtons = false;
     };
-
-    $scope.addNewRoommate = function(input){
+    /*
+     *  roommate management
+     */
+    vm.addNewRoommate = function(input){
       if(!input) { return false; }
       var roommate = input.originalObject;
-      common.dataservice.addRoommate(vm.me.id, roommate).$promise
+      common.dataservice.addRoommate(vm.me.id, roommate)
+      .$promise
       .then(function (data) {
         common.logger.success('Roommate successfully added!');
         vm.roommates.push(data);
+        common.$state.reload();
         vm.cancelRoommateAddAddon();
       })
       .catch(function (err) {
@@ -120,91 +107,109 @@
       });
     };
 
-    vm.removeRoommate= function (roommate) {
-      var index= vm.roommates.indexOf(roommate);
-      var id = roommate.id;
-      common. dataservice.deleteRoommate(vm.me.id, id, function () {
+    vm.removeRoommate = function (roommate) {
+      var index = vm.roommates.indexOf(roommate);
+      var roommateId = roommate.id;
+      common.dataservice.deleteRoommate(vm.me.id, roommateId, function () {
         vm.roommates.splice(index, 1);
-        common.logger.success('Successfully removed roommate');
+        common.logger.success('Roommate successfully deleted.');
       })
 
     };
-
+    /*
+     *  pet management
+     */
     vm.addNewPet = function (input) {
-      common.dataservice.addPet(vm.me.id, input).$promise
+      common.dataservice.addPet(vm.me.id, input)
+      .$promise
       .then(function () {
         common.logger.success('Pet successfully created.');
         vm.pets.push(input);
+        common.$state.reload();
         vm.cancelPetAddAddon();
       })
       .catch(function (err) {
         common.logger.error('Error while saving pet.');
       });
-    }
+    };
 
     vm.editPet = function (index) {
       vm.selectedPet = index;
-    }
+    };
 
     vm.deletePet= function (input) {
       var index= vm.pets.indexOf(input);
-      var id = input.id;
-      common.dataservice.deletePet(vm.me.id, id, function () {
+      var petId = input.id;
+      common.dataservice.deletePet(vm.me.id, petId, function () {
         vm.pets.splice(index, 1);
         vm.selectedPet = null;
         common.logger.success('Pet deleted')
       });
-    }
+    };
 
     vm.savePet = function (input) {
-      common.dataservice.editPet(vm.me.id, input.id, input, function () {
+      var petId = input.id;
+      common.dataservice.editPet(vm.me.id, petId, input, function () {
         common.logger.success('Pet updated');
         vm.cancelPetAddAddon();
       })
-    }
-
-    /* Vehicles */
-
+    };
+    /*
+     *  vehicle management
+     */
     vm.addNewVehicle = function (input) {
-      common.dataservice.addVehicle(vm.me.id, input).$promise
+      common.dataservice.addVehicle(vm.me.id, input)
+      .$promise
       .then(function () {
         common.logger.success('Vehicle successfully updated.');
         vm.vehicles.push(input);
+        common.$state.reload();
         vm.cancelPetAddAddon();
       })
       .catch(function (err) {
         common.logger.error('Error while saving vehicle.');
       });
-    }
-
-    vm.deleteVehicle= function (input) {
-      var index= vm.listOfVehicles.indexOf(input);
-      var id = input.id;
-      common.dataservice.deleteVehicle(vm.me.id, id, function () {
-        vm.listOfVehicles.splice(index, 1);
-      });
-    }
+    };
 
     vm.editVehicle = function (index) {
       vm.selectedVehicle = index;
-    }
+    };
 
     vm.deleteVehicle= function (input) {
       var index= vm.vehicles.indexOf(input);
-      var id = input.id;
-      common.dataservice.deleteVehicle(vm.me.id, id, function () {
+      var vehicleId = input.id;
+      common.dataservice.deleteVehicle(vm.me.id, vehicleId, function () {
         vm.vehicles.splice(index, 1);
         vm.selectedVehicle = null;
         common.logger.success('Vehicle deleted')
       });
-    }
+    };
 
     vm.saveVehicle = function (input) {
-      common.dataservice.editVehicle(vm.me.id, input.id, input, function () {
+      var vehicleId = input.id;
+      common.dataservice.editVehicle(vm.me.id, vehicleId, input, function () {
         common.logger.success('Vehicle updated');
         vm.cancelPetAddAddon();
       })
-    }
-
+    };
+    /*
+     *  date picker options
+     */
+    $scope.datePickers = {
+      EducationStartDate: false,
+      EducationEndDate:false,
+      graduationDate:false,
+      AddresStartDate: false,
+      AddressEndDate:false
+    };
+    $scope.format = 'dd.MM.yyyy';
+    $scope.clear = function () {
+      $scope.dt = null;
+    };
+    $scope.open = function($event, number) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.datePickers[number]= true;
+    };
   }
 }());

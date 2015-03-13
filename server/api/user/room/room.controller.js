@@ -154,7 +154,7 @@ exports.getAllRoomListings = function(req, res, next) {
  */
 exports.editRoomListing = function(req, res, next) {
 
-  req.body.updatedAt = new Date();
+
   RoomListing.find({where: {id: req.params.id, creatorId: req.userId}})
     .then(function (roomListing) {
 
@@ -165,7 +165,7 @@ exports.editRoomListing = function(req, res, next) {
       var roomDetails = transView2ModelRoomDetails(viewRoomDetails);
 
       var updated = _.merge(roomListing, roomDetails);
-
+      updated.updatedAt = new Date();
   //    console.log('Updated model:  ', updated);
 
       updated.save().then(function (updateRoomListing) {

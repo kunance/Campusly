@@ -5,19 +5,17 @@
     .module('app.dashboard')
     .controller('LookingDetailsCtrl', LookingDetailsCtrl);
 
-  LookingDetailsCtrl.$inject = ['getEducations', '$stateParams', 'logger', 'getUserInfo', 'common', 'getLookingById'];
+  LookingDetailsCtrl.$inject = ['getEducations', 'common', 'getLookingById', 'currentUser'];
 
-  function LookingDetailsCtrl(getEducations, $stateParams, logger, getUserInfo, common, getLookingById) {
+  function LookingDetailsCtrl(getEducations, common, getLookingById, currentUser) {
     var vm = this;
-    vm.me = getUserInfo;
+    /*
+     *  Fetch all required data for controller from route resolve
+     */
+    vm.me = currentUser;
     vm.tempMe = Object.create(vm.me);
     vm.education = getEducations;
-
-    var lookingId = $stateParams.id;
-
-    //if(lookingId) {
-      vm.lookingDetail = getLookingById;
-      //}
+    vm.lookingDetail = getLookingById;
 
     console.log('Looking Detail: ', vm.lookingDetail);
 

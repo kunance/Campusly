@@ -12,7 +12,7 @@
           <div class="white-box buttons-box">
 
             <a class="btn btn-primary" ui-sref="addRoom">Post Available Room</a>
-            <a  class="btn btn-secondary" ui-sref="dashboard.myProfile.addNewLooking">Post Looking</a>
+            <a  class="btn btn-secondary" ui-sref="addNewLooking" ui-sref-opts="{reload:true}">Post Looking</a>
 
           </div>
 
@@ -21,14 +21,14 @@
           <div class="white-box profile-sidebar">
             <div class="profile">
               <img class="img-circle" ng-if="dashboard.me.profileImage" ng-src="/api/images{{dashboard.me.profileImage}}">
+              <!--TODO default profile image-->
               <h2> {{dashboard.me.firstname}} {{dashboard.me.lastname}} </h2>
-              <a  class="btn btn-secondary btn-block" ui-sref="dashboard.myProfile"> Complete Profile </a>
+              <a  class="btn btn-secondary btn-block" ui-sref="myProfile"> Complete Profile </a>
             </div>
           </div>
         </div>
 
         <!-- Available Rooms -->
-
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
           <h2 class="section-title"> Available Rooms</h2>
           <div class="white-box available-rooms">
@@ -65,13 +65,13 @@
             <h2 ng-if="!dashboard.lookingRoom.length" >
               Currently no one is looking for a room, why dont you be the first?
               <small>
-                <a ui-sref="dashboard.myProfile.addNewLooking"><br/>Click here</a> to add looking.
+                <a ui-sref="addNewLooking"><br/>Click here</a> to add looking.
               </small>
             </h2>
             <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" infinite="false" data="dashboard.lookingRoom" ng-if="dashboard.lookingRoom.length">
               <!-- start room box -->
-              <!--TODO make some hover effect so its more intinuitive for user-->
-              <div ng-if="looking.userId!=dashboard.me.id" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index">
+
+              <div ng-if="looking.userId!=dashboard.me.id" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index" ui-sref="lookingDetail({id:looking.id})">
                 <a style="text-decoration: none" ui-sref="lookingDetail({id:looking.id})">
                   <div  class="media">
                     <div class="media-left">
@@ -96,7 +96,7 @@
               <!-- end room box -->
             </slick>
             <hr>
-            <a class="pull-right btn-rented-event view-all" ui-sref="dashboard.looking">View All</a>
+            <a class="pull-right btn-rented-event view-all" ui-sref="looking">View All</a>
           </div>
 
           <!-- My Available Rooms Posts - Hides if no Looking posts-->
@@ -108,7 +108,7 @@
               <h2 ng-if="!dashboard.myRoomListings.length" >
                 You don't have anything posted yet.
                 <small>
-                  <a ui-sref="dashboard.myProfile.addNewLooking"><br/>Click here</a> to add looking.
+                  <a ui-sref="addNewLooking"><br/>Click here</a> to add looking.
                   <a ui-sref="addRoom"><br/>Click here</a> to add room.
                 </small>
               </h2>
@@ -125,8 +125,8 @@
                           <span class='address'><i class="fa fa-transgender"></i> Gender: {{room.gender}} </span>
                           <span class='address'><i class="fa fa-users"></i> Max roommates: {{room.numRoommates}} </span>
                       <span class="elapsed-time">
-                        <small><i class="fa fa-clock-o"></i> Posted on {{room.createdAt | date:'longDate'}}</small>
-                        <small ng-if="room.updatedAt"><i class="fa fa-clock-o"></i> Edited {{room.updatedAt | amCalendar}}</small>
+                        <small><i class="fa fa-clock-o"></i> Posted: {{room.createdAt | date:'longDate'}}, edited: </small>
+                        <small ng-if="room.updatedAt" am-time-ago="room.updatedAt"><i class="fa fa-clock-o"></i></small>
                       </span>
                         </div>
                       </div>
@@ -164,7 +164,7 @@
               <h2 ng-if="!dashboard.userLookings.length" >
                 You don't have anything posted yet.
                 <small>
-                  <a ui-sref="dashboard.myProfile.addNewLooking"><br/>Click here</a> to add looking.
+                  <a ui-sref="addNewLooking"><br/>Click here</a> to add looking.
                   <a ui-sref="addRoom"><br/>Click here</a> to add room.
                 </small>
               </h2>
@@ -173,7 +173,6 @@
                 <!-- start list box -->
                 <div class="list-item" ng-repeat="look in dashboard.userLookings">
                   <div class="row" >
-
                     <a style="text-decoration: none" ui-sref="lookingDetail({id:look.id})">
                       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
                         <div class="info">
@@ -181,8 +180,8 @@
                           <span class='address'><i class="fa fa-transgender"></i> Gender: {{look.gender}} </span>
                           <span class='address'><i class="fa fa-users"></i> Max roommates: {{look.numRoommates}} </span>
                       <span class="elapsed-time">
-                        <small><i class="fa fa-clock-o"></i> Posted on {{look.createdAt | date:'longDate'}}</small>
-                        <small ng-if="look.updatedAt"><i class="fa fa-clock-o"></i> Edited {{look.updatedAt | amCalendar}}</small>
+                        <small><i class="fa fa-clock-o"></i> Posted: {{look.createdAt | date:'longDate'}}, edited: </small>
+                        <small ng-if="look.updatedAt" am-time-ago="look.updatedAt"><i class="fa fa-clock-o"></i></small>
                       </span>
                         </div>
                       </div>
@@ -190,7 +189,7 @@
 
                     <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 col-xs-offset-4 col-sm-offset-5 col-md-offset-5 col-lg-offset-5">
                       <div class="edit">
-                        <a class="bubble pull-right" ui-sref="dashboard.myProfile.editLooking({id:look.id})" ui-sref-opts="{reload:true}">
+                        <a class="bubble pull-right" ui-sref="editLooking({id:look.id})" ui-sref-opts="{reload:true}">
                           <i class="fa fa-pencil"></i>
                         </a>
                       </div>

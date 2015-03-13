@@ -5,9 +5,9 @@
   .module('app.rooms')
   .controller('RoomsCtrl', RoomsCtrl);
 
-  RoomsCtrl.$inject = ['$scope', 'common', '$http', 'RoomListingView', '$filter'];
+  RoomsCtrl.$inject = ['$scope', 'common', 'RoomListingView', '$filter'];
 
-  function RoomsCtrl($scope, common, $http, RoomListingView, $filter) {
+  function RoomsCtrl($scope, common, RoomListingView, $filter) {
     var vm = this;
     vm.property = {};
     vm.me = common.Auth.getCurrentUser();
@@ -24,7 +24,9 @@
 
    RoomListingView.query(function(availRooms) {
      vm.availableRooms = availRooms;
+     console.log(vm.availableRooms);
        vm.groups = vm.availableRooms.inGroupsOf(8);
+     console.log('grupe', vm.groups);
      /* vm.availableRooms = availRooms;
      console.log("availableRooms: ", vm.availableRooms); */
    });

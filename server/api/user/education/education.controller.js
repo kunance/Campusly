@@ -45,7 +45,7 @@ exports.newEducation = function(req, res, next) {
 
 exports.showEducations= function(req, res, next) {
   //Education.findAll({where:{userId:req.user.id}})
-  Education.findOne({where:{userId:req.user.id}})
+  Education.findOne({where:{userId:req.userId}})
     .then(function (educations) {
       if(educations){
       res.json(educations);

@@ -1,3 +1,6 @@
+<div ng-include="'components/layout/navbar/navbar.html'"></div>
+<div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
+<div class="main-wrapper">
 <div class="container">
   <div class="row">
     <div class="page-header">
@@ -263,8 +266,9 @@
 
   <div class="row post-padding">
     <div class="col-xs-12 col-sm-12">
-      <button ng-click="newLooking.add(newLooking.tempLooking)" class="btn-rented-medium primary pull-right">Save</button>
+      <button ng-click="newLooking.addLooking(newLooking.tempLooking)" class="btn-rented-medium primary pull-right">Save</button>
     </div>
   </div>
 
+</div>
 </div>

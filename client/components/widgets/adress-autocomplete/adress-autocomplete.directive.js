@@ -84,7 +84,9 @@
           address['streetNumeric'] = Number(place.address_components[i]['long_name']);
           break;
         case 'country':
-          address['country'] = place.address_components[i]['long_name'];
+          address['country'] = place.address_components[i]['short_name'];
+          break;
+        case 'administrative_area_level_1':
           address['state'] = place.address_components[i]['short_name'];
           break;
         case 'postal_code':

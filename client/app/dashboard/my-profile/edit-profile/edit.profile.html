@@ -1,3 +1,6 @@
+<div ng-include="'components/layout/navbar/navbar.html'"></div>
+<div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
+<div class="main-wrapper">
 <div class="container edit-profile" cg-busy="{promise:editProfile.initializeData.$promise, message:'Loading Your Profile', delay:50}">
   <div class="page-header">
     <h2> Personal </h2>
@@ -119,10 +122,13 @@
 
       <label for="city">State</label>
       <input type="text" id="state" name="state" class="form-control"  placeholder="state" ng-model="editProfile.tempAddress.streetAddress.state" readonly/>
-
+<pre>{{editProfile.tempAddress|json}}</pre>
       <br>
 
       <button class="btn-rented-medium primary pull-right" ng-click="editProfile.saveAddress(editProfile.tempAddress.streetAddress)">Save</button>
     </div>
   </div>
+</div>
+
+</div>
 </div>

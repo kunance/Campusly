@@ -11,13 +11,13 @@ var router = express.Router();
  *  @see documentation in the rooms controller
  *
  */
-router.get('/', controller.getAllRoomListings);
+router.get('/', auth.isAuthenticated(), controller.getAllRoomListings);
 
 
 /**
  *  @see documentation in the rooms controller
  */
-router.get('/:id', controller.getRoomListing);
+router.get('/:id', auth.isAuthenticated(), controller.getRoomListing);
 
 
 

@@ -13,7 +13,7 @@
     vm.tabs = [
       { title:"Dashboard", sref:"dashboard", active: true },
       { title:"Available rooms", sref:"rooms"},
-      { title:"Looking", sref:"dashboard.looking"}];
+      { title:"Looking", sref:"looking"}];
   }
 
 

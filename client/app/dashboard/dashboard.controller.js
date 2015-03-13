@@ -7,67 +7,45 @@
   .controller('DashboardCtrl',DashboardCtrl);
 
 
-  DashboardCtrl.$inject=['common', '$scope', '$http', 'getUserLookings', 'allLooking', 'universityData',
-    'RoomListingView', 'RoomListing', 'distanceCalculator'];
+  DashboardCtrl.$inject=
+    ['common', '$scope', 'currentUserLookings', 'allLooking', 'RoomListingView', 'RoomListing', 'distanceCalculator', 'currentUser'];
 
-  function DashboardCtrl(common, $scope, $http, getUserLookings, allLooking, universityData, RoomListingView,
-                         RoomListing, distanceCalculator) {
-
+  function DashboardCtrl(
+    common, $scope, currentUserLookings, allLooking, RoomListingView, RoomListing, distanceCalculator, currentUser) {
     var vm = this;
-    var Auth = common.Auth;
-    vm.address = { };
-    vm.me = Auth.getCurrentUser();
-
-    //vm.universityList = universityData.getUniversityList(); //list of all universities from service
-    //vm.lookingRoom = getUserLookings; //get all user lookings
-    //vm.allLookings = allLooking.data; //get all lookings (from all users)
-
-    mixpanel.identify(vm.me.id);
-    mixpanel.people.set({
-      "$email": vm.me.email,
-      "$first_name":vm.me.firstname,
-      "$last_name":vm.me.lastname,
-      "$created": vm.me.createdAt,
-      "$phone": vm.me.phone,
-      "$last_login": new Date()
-    });
-
-
-    vm.availableRooms = RoomListingView.query(function(/*availRooms*/) {
-      vm.groups = vm.availableRooms.inGroupsOf(9);
-    });
-
-    vm.myRoomListings = RoomListing.query({userId: vm.me.id}, function(/*availRooms*/) {
-
-      console.log('My room listings: ', vm.myRoomListings);
-
-    });
-
+    /*
+     *  Fetch all required data for controller from route resolve
+     */
+    vm.me = currentUser;
     vm.lookingRoom = allLooking;
-
-    vm.userLookings = getUserLookings;
-
-    // ================================================
-    // BEGIN Getter for mock data
-    // ================================================
-
-    $http.get("../assets/fake/around_you.json")
+    vm.userLookings = currentUserLookings;
+    console.log('currentUserLookings:', currentUserLookings);
+    /*
+     *  Fetching rooms data, TODO rework to resolve data before view resolve (to be consistent)
+     */
+    vm.availableRooms = RoomListingView.query(function() {
+      console.log('Available rooms: ', vm.availableRooms);
+    });
+    vm.myRoomListings = RoomListing.query({userId: vm.me.id}, function() {
+      console.log('My room listings: ', vm.myRoomListings);
+    });
+    /*
+     *  around you mock data ()
+     *
+    common.$http.get("../assets/fake/around_you.json")
     .success(function(data){
       vm.aroundYou = data;
-    });
-
-    // ================================================
-    // END Getter for mock data
-    // ================================================
-
-
+    });*/
+    /*
+     *  prerender.io
+     */
     $scope.$parent.seo = {
       pageTitle:'Campusly Dashboard',
       pageDescription:'Secure off-campus community'
     };
-
-    mixpanel.track("visited dashboard view, with passed object",{title:$scope.$parent.seo.pageTitle});
-
+    /*
+     *  breakpoints and slider options
+     */
     vm.breakpoints = {
       availableRooms: [
       {
@@ -126,7 +104,7 @@
     function orderSliderButtons() {
       setTimeout(function() {
         $(".slider").each(function(index) {
-          var slider = $(".slider").eq(index)
+          var slider = $(".slider").eq(index);
           var dotsX = parseInt(slider.find(".slick-dots").css("left"));
           var dotsSize = parseInt(slider.find(".slick-dots").css("width"));
           var nextBtnX = dotsX + dotsSize + 10;
@@ -142,6 +120,16 @@
 
     angular.element(document).ready(function () {
       orderSliderButtons();
+    });
+
+    mixpanel.identify(vm.me.id);
+    mixpanel.people.set({
+      "$email": vm.me.email,
+      "$first_name":vm.me.firstname,
+      "$last_name":vm.me.lastname,
+      "$created": vm.me.createdAt,
+      "$phone": vm.me.phone,
+      "$last_login": new Date()
     });
 
     //// ================================================

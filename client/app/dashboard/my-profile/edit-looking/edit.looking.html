@@ -1,5 +1,7 @@
+<div ng-include="'components/layout/navbar/navbar.html'"></div>
+<div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
+<div class="main-wrapper">
 <div class="container" ng-if="editLooking.tempLooking">
-
   <div class="row">
     <div class="page-header">
       <h2>Edit Looking</h2>
@@ -266,11 +268,11 @@
     <div class="row post-padding">
       <div class="col-xs-12 col-sm-12">
         <button ng-click="editLooking.saveChanges(editLooking.tempLooking)" class="btn-rented-medium primary pull-right">Save</button>
-        <button ng-click="editLooking.delete()" class="btn-rented-medium delete pull-left">Delete Post</button>
+        <button ng-click="editLooking.deleteLooking()" class="btn-rented-medium delete pull-left">Delete Post</button>
       </div>
     </div>
 
 
-
+</div>
 </div>
 

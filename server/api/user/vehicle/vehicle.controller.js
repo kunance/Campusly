@@ -43,7 +43,7 @@ exports.newVehicle = function(req, res, next) {
 
 
 exports.showVehicles= function(req, res, next) {
-  Vehicle.findAll({where:{userId:req.user.id}})
+  Vehicle.findAll({where:{userId:req.userId}})
     .then(function (vehicle) {
       res.json(vehicle);
     })

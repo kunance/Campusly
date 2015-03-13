@@ -240,7 +240,6 @@ exports.downloadProfileImage = function(req, res, next) {
 exports.currentAddressAndUniv = function(req, res, next) {
 
   var attributes = ['userId', 'addressLatitude', 'addressLongitude', 'univLatitude', 'univLongitude', 'univName'];
-
   UserCurAddressUnivCoords.find({
     where: {
       userId: req.params.id
@@ -249,9 +248,11 @@ exports.currentAddressAndUniv = function(req, res, next) {
   })
     .then(function(coords) {
       if (!coords) {
+        console.log('nema ih');
         return res.send();
       }
       else{
+        console.log('ima ih');
         res.json(coords);
       }
     })

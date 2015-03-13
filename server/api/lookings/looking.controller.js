@@ -10,6 +10,7 @@ var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var Looking = sqldb.model('looking');
+var excludeService = require('../../services/exclude.own');
 
 var validationError = function(res, statusCode) {
   statusCode = statusCode || 422;
@@ -46,8 +47,8 @@ exports.showAllLookings= function(req, res, next) {
       }
     ]
   }).then(function(lookings) {
-    res.json(lookings)
-
+    res.json(excludeService.excludeOwn(lookings, req.user.id));
+    //res.json(lookings);
   }).catch(validationError(res));
 };
 

@@ -5,13 +5,12 @@
     .module('app.dashboard')
     .controller('NewLookingCtrl', NewLookingCtrl);
 
-  NewLookingCtrl.$inject = ['$scope', 'common'];
+  NewLookingCtrl.$inject = ['$scope', 'common', 'currentUser'];
 
-  function NewLookingCtrl($scope, common) {
+  function NewLookingCtrl($scope, common, currentUser) {
     var vm = this;
-    var dataservice = common.dataservice;
 
-    vm.me = common.Auth.getCurrentUser();
+    vm.me = currentUser;
 
     $scope.datePickers = {
       startDate: false,
@@ -29,17 +28,17 @@
       $scope.datePickers[number]= true;
     };
 
-vm.add= function (input) {
- dataservice.addLooking(vm.me.id, input).$promise
-   .then(function () {
-     common.logger.success('Looking successfully added.');
-     common.$state.go('dashboard', {}, {reload: true});
-   })
-   .catch(function (err) {
-     common.logger.error('Error while saving looking.');
-   });
-}
-
+    vm.addLooking = function (input) {
+      common.dataservice.addLooking(vm.me.id, input)
+        .$promise
+        .then(function () {
+          common.logger.success('Looking successfully added.');
+          common.$state.go('dashboard', {}, {reload: true});
+        })
+        .catch(function (err) {
+          common.logger.error('Error while saving looking.');
+        });
+    };
 
   }
 

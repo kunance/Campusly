@@ -1,12 +1,16 @@
-<div class="main-wrapper">
+<div ng-include="'components/layout/navbar/navbar.html'"></div>
+<div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
+<div class="main-wrapper" ng-if="looking.lookings">
   <div class="container lookings">
     <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="page-header">
         <h2> Looking </h2>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <slick dots="true" class="slider row" init-onload="true" data="looking.lookings" slides-to-show="4" slides-to-scroll="4" ng-if="looking.lookings.length">
-          <div  ng-if="look.relatedUserId.id!=looking.me.id" class="col-xs-12 col-sm-6 col-md-3 col-lg-3 looking" ng-repeat="look in looking.lookings">
+      <slick dots="true" class="slider" init-onload="true" data="looking.groups" slides-to-show="1" slides-to-scroll="1" ng-if="looking.lookings.length">
+        <!--ng-if="look.relatedUserId.id!==looking.me.id" dont use temporary (splicing them on backed)-->
+        <div ng-repeat="group in looking.groups" class="row">
+          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 looking" ng-repeat="look in group">
             <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
               <div class="flipper">
                 <div class="front white-box">
@@ -28,6 +32,7 @@
               </div>
             </div>
           </div>
+        </div>
         </slick>
       </div>
     </div>

@@ -53,7 +53,7 @@ exports.newAddress = function(req, res, next) {
 
 exports.showAddresses= function(req, res, next) {
   //Address.findAll({where:{userId:req.user.id}}) //removed for MVP
-  Address.findOne({where:{userId:req.user.id}})
+  Address.findOne({where:{userId:req.userId}})
     .then(function (addresses) {
       if(addresses) {
         res.json({streetAddress: adoptData(addresses)});

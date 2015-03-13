@@ -68,7 +68,7 @@ exports.showRoommates= function(req, res, next) {
   var userAttributes = ['firstname', 'lastname', 'profileImage', 'email'];
   Roommate.findAll({
     where:{
-      userId:req.user.id
+      userId:req.userId
     },
     include: [
       { model: User, attributes: userAttributes, as: 'relatedRoommateId',
