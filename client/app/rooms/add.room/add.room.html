@@ -6,383 +6,426 @@
 <div class="main-wrapper">
   <div class="container">
     <div class="row">
-      <div class="page-header">
-        <h2>Post Available Room</h2>
-      </div>
 
-      <!-- Form for entire partial -->
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-      <form name="addNewRoomForm" ng-submit="vm.create()" novalidate>
+        <div class="page-header">
+          <h2>Post Available Room</h2>
+        </div>
 
-        <!-- Room listing view -->
+        <!-- Form for entire partial -->
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 white-box" id="room-specifics">
+        <form name="addNewRoomForm" ng-submit="vm.create()" novalidate>
 
-          <!--start of first col 4-->
-          <div class="col-md-4">
+          <!-- Room listing view -->
 
-            <!-- Move-in -->
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 white-box" id="room-specifics">
 
-            <div class="row">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-arrow-right fa-lg"></i>
+            <!--start of first col 4-->
+            <div class="col-md-4">
+
+              <!-- Move-in -->
+
+              <div class="row">
+                <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                  <div class="post-bubble">
+                    <i class="fa fa-arrow-right fa-lg"></i>
+                  </div>
                 </div>
-              </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="availableMoveIn">Move-in date</label>
-                <p class="input-group">
-                  <input type="text" id="availableMoveIn" required name="availableMoveIn" class="form-control" datepicker-popup="{{format}}" ng-model="vm.room.availableMoveIn" is-open="datePickers.startDate" close-text="Close" />
+                <div class="col-xs-9 col-sm-7 input-post">
+                  <label for="availableMoveIn">Move-in date</label>
+                  <p class="input-group">
+                    <input type="text" id="availableMoveIn" required name="availableMoveIn" class="form-control" datepicker-popup="{{format}}" ng-model="vm.room.availableMoveIn" is-open="datePickers.startDate" close-text="Close" />
                       <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                       </span>
-                </p>
-              </div>
-            </div>
-
-            <!-- Move-out -->
-
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-arrow-left fa-lg"></i>
+                  </p>
                 </div>
               </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="leaseEndDate">Move-out date</label>
-                <p class="input-group">
-                  <input type="text" id="leaseEndDate" required name="monthlyPrice" class="form-control" datepicker-popup="{{format}}" ng-model="vm.room.leaseEndDate" is-open="datePickers.endDate" close-text="Close" />
+
+              <!-- Move-out -->
+
+              <div class="row post-padding">
+                <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                  <div class="post-bubble">
+                    <i class="fa fa-arrow-left fa-lg"></i>
+                  </div>
+                </div>
+                <div class="col-xs-9 col-sm-7 input-post">
+                  <label for="leaseEndDate">Move-out date</label>
+                  <p class="input-group">
+                    <input type="text" id="leaseEndDate" required name="monthlyPrice" class="form-control" datepicker-popup="{{format}}" ng-model="vm.room.leaseEndDate" is-open="datePickers.endDate" close-text="Close" />
                           <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="open($event,'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                           </span>
-                </p>
-              </div>
-            </div>
-
-            <!-- Monthly rent -->
-
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-tag  fa-lg"></i>
+                  </p>
                 </div>
               </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="monthlyPrice">Monthly Rent ($)</label>
-                <input type="number" id="monthlyPrice" name="monthlyPrice" required class="form-control"  placeholder="e.x. 750" ng-model="vm.room.monthlyPrice">
-                <div ng-show="addNewRoomForm.monthlyPrice.$dirty && addNewRoomForm.monthlyPrice.$invalid">
-                  <p class="help-block error" >Enter a the monthly rent</p>
+
+              <!-- Monthly rent -->
+
+              <div class="row post-padding">
+                <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                  <div class="post-bubble">
+                    <i class="fa fa-tag  fa-lg"></i>
+                  </div>
+                </div>
+                <div class="col-xs-9 col-sm-7 input-post">
+                  <label for="monthlyPrice">Monthly Rent ($)</label>
+                  <input type="number" id="monthlyPrice" name="monthlyPrice" required class="form-control"  placeholder="e.x. 750" ng-model="vm.room.monthlyPrice">
+                  <div ng-show="addNewRoomForm.monthlyPrice.$dirty && addNewRoomForm.monthlyPrice.$invalid">
+                    <p class="help-block error" >Enter a the monthly rent</p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- Security Deposit -->
+              <!-- Security Deposit -->
 
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-tags fa-lg"></i>
+              <div class="row post-padding">
+                <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                  <div class="post-bubble">
+                    <i class="fa fa-tags fa-lg"></i>
+                  </div>
+                </div>
+                <div class="col-xs-9 col-sm-7 input-post">
+                  <label for="securityDeposit">Security Deposit ($)</label>
+                  <input type="number" id="securityDeposit" required name="securityDeposit" class="form-control"  placeholder="e.x. 750" ng-model="vm.room.securityDeposit"/>
                 </div>
               </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="securityDeposit">Security Deposit ($)</label>
-                <input type="number" id="securityDeposit" required name="securityDeposit" class="form-control"  placeholder="e.x. 750" ng-model="vm.room.securityDeposit"/>
-              </div>
-            </div>
 
-            <!-- Monthly utilities -->
+              <!-- Monthly utilities -->
 
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-bar-chart fa-lg"></i>
+              <div class="row post-padding">
+                <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                  <div class="post-bubble">
+                    <i class="fa fa-bar-chart fa-lg"></i>
+                  </div>
+                </div>
+                <div class="col-xs-9 col-sm-7 input-post">
+                  <label for="monthlyUtilityCost">Monthly utility cost ($)</label>
+                  <input type="number" id="monthlyUtilityCost" required name="monthlyUtilityCost" class="form-control"  placeholder="e.x. 50" ng-model="vm.room.monthlyUtilityCost"/>
                 </div>
               </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="monthlyUtilityCost">Monthly utility cost ($)</label>
-                <input type="number" id="monthlyUtilityCost" required name="monthlyUtilityCost" class="form-control"  placeholder="e.x. 50" ng-model="vm.room.monthlyUtilityCost"/>
-              </div>
-            </div>
 
-            <!-- Lease type -->
+              <!-- Lease type -->
 
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-clipboard fa-lg"></i>
+              <div class="row post-padding">
+                <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                  <div class="post-bubble">
+                    <i class="fa fa-clipboard fa-lg"></i>
+                  </div>
+                </div>
+                <div class="col-xs-9 col-sm-7 input-post">
+                  <label for="leaseType">Lease type</label>
+                  <select id="leaseType" class="form-control" ng-model="vm.room.leaseType" required>
+                    <option value="sub-lease">Sub-lease</option>
+                    <option value="month-to-month">Month to month</option>
+                    <option value="lease take over">Lease take over</option>
+                  </select>
                 </div>
               </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="leaseType">Lease type</label>
-                <select id="leaseType" class="form-control" ng-model="vm.room.leaseType" required>
-                  <option value="sub-lease">Sub-lease</option>
-                  <option value="month-to-month">Month to month</option>
-                  <option value="lease take over">Lease take over</option>
-                </select>
-              </div>
-            </div>
 
-            <!-- Number of roommates -->
+              <!-- Number of roommates -->
 
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-users fa-lg"></i>
+              <div class="row post-padding">
+                <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                  <div class="post-bubble">
+                    <i class="fa fa-users fa-lg"></i>
+                  </div>
+                </div>
+                <div class="col-xs-9 col-sm-7 input-post">
+                  <label for="numRoomates">Current no. of roommates</label>
+                  <input type="number" id="numRoomates" required name="numRoomates" class="form-control" ng-model="vm.room.numRoomates" min="1" max="10"/>
                 </div>
               </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="numRoomates">Current no. of roommates</label>
-                <input type="number" id="numRoomates" required name="numRoomates" class="form-control" ng-model="vm.room.numRoomates" min="1" max="10"/>
-              </div>
+
             </div>
+
+            <!--start of second col 4-->
+            <div class="col-md-4">
+
+              <!-- Property type -->
+
+              <div class="row">
+                <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                  <div class="post-bubble">
+                    <i class="fa fa-building fa-lg"></i>
+                  </div>
+                </div>
+                <div class="col-xs-9 col-sm-7 input-post">
+                  <label for="type">Property type</label>
+                  <select id="type" class="form-control" ng-model="vm.property.type" required>
+                    <option value="apt">Apartment</option>
+                    <option value="sfh">Single family house</option>
+                    <option value="townhouse">Townhouse</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Bathrooms -->
+
+              <div class="row post-padding">
+                <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                  <div class="post-bubble">
+                    <i class="fa fa-toiletPaper fa-lg"></i>
+                  </div>
+                </div>
+                <div class="col-xs-9 col-sm-7 input-post">
+                  <label for="bathrooms">Bathrooms</label><br/>
+                  <input type="number" id="bathrooms" required name="bathrooms" class="form-control"  placeholder="Number of bathrooms" ng-model="vm.property.bathrooms"/>
+                </div>
+              </div>
+
+              <!-- Shared bathroom -->
+
+              <div class="row post-padding">
+                <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                  <div class="post-bubble">
+                    <i class="fa fa-shower fa-lg"></i>
+                  </div>
+                </div>
+                <div class="col-xs-9 col-sm-7 input-post">
+                  <label for="sharedBath">Shared Bathroom?</label>
+                  <select id="sharedBath" required name="sharedBath" class="form-control" ng-model="vm.room.sharedBathroom">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Bedrooms -->
+
+              <div class="row post-padding">
+                <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                  <div class="post-bubble">
+                    <i class="fa fa-bed fa-lg"></i>
+                  </div>
+                </div>
+                <div class="col-xs-9 col-sm-7 input-post">
+                  <label for="bedrooms">Bedrooms</label><br/>
+                  <input type="number" id="bedrooms" required name="bedrooms" class="form-control"  placeholder="Number of bedrooms" ng-model="vm.property.bedrooms"/>
+                </div>
+              </div>
+
+              <!-- Room type -->
+
+              <div class="row post-padding">
+                <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                  <div class="post-bubble">
+                    <i class="fa fa-bigBed fa-lg"></i>
+                  </div>
+                </div>
+                <div class="col-xs-9 col-sm-7 input-post">
+                  <label for="roomType">Room type</label>
+                  <select id="roomType" class="form-control" ng-model="vm.room.roomType" required>
+                    <option value="single">Single</option>
+                    <option value="double">Double</option>
+                    <option value="living room">Living room</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Furnished -->
+
+              <div class="row post-padding">
+                <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                  <div class="post-bubble">
+                    <i class="fa fa-desk fa-lg"></i>
+                  </div>
+                </div>
+                <div class="col-xs-9 col-sm-7 input-post">
+                  <label for="furnished">Furnished?</label>
+                  <select id="furnished" required name="furnished" class="form-control" ng-model="vm.room.furnished">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Smoking -->
+
+              <div class="row post-padding">
+                <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                  <div class="post-bubble">
+                    <i class="fa fa-smoking fa-lg"></i>
+                  </div>
+                </div>
+                <div class="col-xs-9 col-sm-7 input-post">
+                  <label for="smokingAllowed">Smoking allowed?</label>
+                  <select id="smokingAllowed" required name="smokingAllowed" class="form-control" ng-model="vm.room.smokingAllowed">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+
+
+            <!--start of third col 4-->
+            <div class="col-md-4">
+
+              <!-- Gender preference -->
+
+              <div class="row">
+                <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                  <div class="post-bubble">
+                    <i class="fa fa-venus-mars fa-lg"></i>
+                  </div>
+                </div>
+                <div class="col-xs-9 col-sm-7 input-post">
+                  <label for="gender">Gender preference</label>
+                  <select id="gender"class="form-control" ng-model="vm.room.gender" required>
+                    <option value="no preference">No preference</option>
+                    <option value="male only">Male only</option>
+                    <option value="female only">Female only</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Pets Allowed -->
+
+              <div class="row post-padding">
+                <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                  <div class="post-bubble">
+                    <i class="fa fa-pet fa-lg"></i>
+                  </div>
+                </div>
+                <div class="col-xs-9 col-sm-7 input-post">
+                  <label for="petsAllowed">Pets allowed?</label>
+                  <select id="petsAllowed" required name="petsAllowed" class="form-control" ng-model="vm.room.petsAllowed">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Parking Allowed -->
+
+              <div class="row post-padding">
+                <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                  <div class="post-bubble">
+                    <i class="fa fa-car fa-lg"></i>
+                  </div>
+                </div>
+                <div class="col-xs-9 col-sm-7 input-post">
+                  <label for="parkingAvailable">Parking available</label>
+                  <select id="parkingAvailable" required name="parkingAvailable" class="form-control" ng-model="vm.room.parkingAvailable">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Description -->
+
+              <div class="row post-padding">
+                <div class="col-xs-10 col-sm-8 col-xs-offset-2 col-sm-offset-2 input-post">
+                  <textarea required name="roomDescription" id="roomDescription" cols="60" rows="10" ng-model="vm.room.description"  class="form-control" placeholder="Enter room description"></textarea>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- end of 3 columns for room listing -->
 
           </div>
 
-          <!--start of second col 4-->
-          <div class="col-md-4">
+          <!-- end of whitebox for room listing -->
 
-            <!-- Property type -->
 
-            <div class="row">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-building fa-lg"></i>
-                </div>
+          <!-- Roommates and Address -->
+
+          <div class="row">
+
+            <!--  Address box  -->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="page-header">
+                <h2 class="section-title">Your Current Address</h2>
               </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="type">Property type</label>
-                <select id="type" class="form-control" ng-model="vm.property.type" required>
-                  <option value="apt">Apartment</option>
-                  <option value="sfh">Single family house</option>
-                  <option value="townhouse">Townhouse</option>
-                </select>
+              <div class="white-box pets">
+
+                <div class="row">
+
+                  <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+
+                    <!-- Address autocomplete -->
+
+                    <div class="form-group input-post">
+
+                      <label for="streetAddress">Address lookup</label>
+                      <input  type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Type your address to autocomplete" address-autocomplete="vm.property.streetAddress"/>
+
+                    </div>
+
+                    <!-- Address autofill -->
+
+                    <div class="form-group input-post-readonly">
+
+                      <label for="streetNumber" class="post-padding">Street Number</label>
+                      <input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="vm.property.streetAddress.streetNumeric" readonly/>
+
+                    </div>
+
+                    <div class="form-group input-post-readonly">
+
+                      <label for="streetName">Street Name</label>
+                      <input type="text" id="streetName" name="streetAddress" class="form-control"  placeholder="Street name" ng-model="vm.property.streetAddress.streetAddress" readonly/>
+
+                    </div>
+
+                    <div class="form-group input-post">
+
+                      <label for="apt">Apt No.</label>
+                      <input type="number" id="apt" name="apt" class="form-control"  placeholder="e.x. 2C" ng-model="vm.property.streetAddress.apt"/>
+
+                    </div>
+
+                    <div class="form-group input-post-readonly">
+
+                      <label for="city">City</label>
+                      <input type="text" id="city" name="city" class="form-control"  placeholder="City" ng-model="vm.property.streetAddress.city" readonly/>
+
+                    </div>
+
+                    <div class="form-group input-post-readonly">
+
+                      <label for="city">State</label>
+                      <input type="text" id="state" name="state" class="form-control"  placeholder="State" ng-model="vm.property.streetAddress.state" readonly/>
+
+                    </div>
+
+                    <div class="form-group input-post-readonly">
+
+                      <label for="zip">Zip Code</label>
+                      <input type="number" id="zip" name="zip" class="form-control"  placeholder="Zip code" ng-model="vm.property.streetAddress.zip" readonly/>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+
               </div>
             </div>
-
-            <!-- Bathrooms -->
-
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-toiletPaper fa-lg"></i>
-                </div>
-              </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="bathrooms">Bathrooms</label><br/>
-                <input type="number" id="bathrooms" required name="bathrooms" class="form-control"  placeholder="Number of bathrooms" ng-model="vm.property.bathrooms"/>
-              </div>
-            </div>
-
-            <!-- Shared bathroom -->
-
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-shower fa-lg"></i>
-                </div>
-              </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="sharedBath">Shared Bathroom?</label>
-                <select id="sharedBath" required name="sharedBath" class="form-control" ng-model="vm.room.sharedBathroom">
-                  <option value="true">Yes</option>
-                  <option value="false">No</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Bedrooms -->
-
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-bed fa-lg"></i>
-                </div>
-              </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="bedrooms">Bedrooms</label><br/>
-                <input type="number" id="bedrooms" required name="bedrooms" class="form-control"  placeholder="Number of bedrooms" ng-model="vm.property.bedrooms"/>
-              </div>
-            </div>
-
-            <!-- Room type -->
-
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-bigBed fa-lg"></i>
-                </div>
-              </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="roomType">Room type</label>
-                <select id="roomType" class="form-control" ng-model="vm.room.roomType" required>
-                  <option value="single">Single</option>
-                  <option value="double">Double</option>
-                  <option value="living room">Living room</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Furnished -->
-
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-desk fa-lg"></i>
-                </div>
-              </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="furnished">Furnished?</label>
-                <select id="furnished" required name="furnished" class="form-control" ng-model="vm.room.furnished">
-                  <option value="true">Yes</option>
-                  <option value="false">No</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Smoking -->
-
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-smoking fa-lg"></i>
-                </div>
-              </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="smokingAllowed">Smoking allowed?</label>
-                <select id="smokingAllowed" required name="smokingAllowed" class="form-control" ng-model="vm.room.smokingAllowed">
-                  <option value="true">Yes</option>
-                  <option value="false">No</option>
-                </select>
-              </div>
-            </div>
+            <!-- End addres box -->
 
           </div>
 
+          <!-- Save button for looking post -->
 
-          <!--start of third col 4-->
-          <div class="col-md-4">
-
-            <!-- Gender preference -->
-
-            <div class="row">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-venus-mars fa-lg"></i>
-                </div>
-              </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="gender">Gender preference</label>
-                <select id="gender"class="form-control" ng-model="vm.room.gender" required>
-                  <option value="no preference">No preference</option>
-                  <option value="male only">Male only</option>
-                  <option value="female only">Female only</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Pets Allowed -->
-
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-pet fa-lg"></i>
-                </div>
-              </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="petsAllowed">Pets allowed?</label>
-                <select id="petsAllowed" required name="petsAllowed" class="form-control" ng-model="vm.room.petsAllowed">
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Parking Allowed -->
-
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-car fa-lg"></i>
-                </div>
-              </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="parkingAvailable">Parking available</label>
-                <select id="parkingAvailable" required name="parkingAvailable" class="form-control" ng-model="vm.room.parkingAvailable">
-                  <option value="true">Yes</option>
-                  <option value="false">No</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Description -->
-
-            <div class="row post-padding">
-              <div class="col-xs-10 col-sm-8 col-xs-offset-2 col-sm-offset-2 input-post">
-                <textarea required name="roomDescription" id="roomDescription" cols="60" rows="10" ng-model="vm.room.description"  class="form-control" placeholder="Enter room description"></textarea>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- end of 3 columns for room listing -->
-
-        </div>
-
-        <!-- end of whitebox for room listing -->
-
-
-        <!-- Roommates and Address -->
-
-        <div class="row">
-
-          <!--  Address box  -->
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="page-header">
-              <h2>Your Current Address</h2>
-            </div>
-            <div class="white-box pets">
-
-              <!-- Address autocomplete -->
-
-              <label for="streetAddress">Address lookup</label>
-              <input  type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Type your address to autocomplete" address-autocomplete="vm.property.streetAddress"/>
-
-              <!-- Address autofill -->
-
-              <label for="streetNumber" class="post-padding">Street Number</label>
-              <input type="number" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="vm.property.streetAddress.streetNumeric" readonly/>
-
-              <label for="streetName" class="post-padding">Street Name</label>
-              <input type="text" id="streetName" name="streetAddress" class="form-control"  placeholder="Street name" ng-model="vm.property.streetAddress.streetAddress" readonly/>
-
-              <label for="apt" class="post-padding">Apt No.</label>
-              <input type="number" id="apt" name="apt" class="form-control"  placeholder="e.x. 2C" ng-model="vm.property.streetAddress.apt"/>
-
-              <label for="city" class="post-padding">City</label>
-              <input type="text" id="city" name="city" class="form-control"  placeholder="City" ng-model="vm.property.streetAddress.city" readonly/>
-
-              <label for="city" class="post-padding">State</label>
-              <input type="text" id="state" name="state" class="form-control"  placeholder="State" ng-model="vm.property.streetAddress.state" readonly/>
-
-              <label for="zip" class="post-padding">Zip Code</label>
-              <input type="number" id="zip" name="zip" class="form-control"  placeholder="Zip code" ng-model="vm.property.streetAddress.zip" readonly/>
-
+          <div class="row post-padding">
+            <div class="col-xs-12 col-sm-12">
+              <button class="btn-rented-medium primary pull-right" ng-disabled="addNewRoomForm.$invalid ">Save</button>
+              <!--<button class="btn-rented-medium primary pull-right" >Save</button> &lt;!&ndash; This is for testing the address save issue&ndash;&gt;-->
             </div>
           </div>
-          <!-- End addres box -->
 
-        </div>
+        </form>
 
-        <!-- Save button for looking post -->
-
-        <div class="row post-padding">
-          <div class="col-xs-12 col-sm-12">
-            <button class="btn-rented-medium primary pull-right" ng-disabled="addNewRoomForm.$invalid ">Save</button>
-            <!--<button class="btn-rented-medium primary pull-right" >Save</button> &lt;!&ndash; This is for testing the address save issue&ndash;&gt;-->
-          </div>
-        </div>
-
-      </form>
+      </div>
 
     </div>
 

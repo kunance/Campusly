@@ -16,7 +16,7 @@
     vm.sortExpression = 'monthlyPrice';
 
     vm.mySortFunction = function(room) {
-      console.log('ulazim');
+      //console.log('ulazim');
       if(isNaN(room.roomDetails[vm.sortExpression]))
         return room.roomDetails[vm.sortExpression];
       return parseInt(room.roomDetails[vm.sortExpression]);
@@ -24,16 +24,16 @@
 
    RoomListingView.query(function(availRooms) {
      vm.availableRooms = availRooms;
-     console.log(vm.availableRooms);
+     //console.log(vm.availableRooms);
        vm.groups = vm.availableRooms.inGroupsOf(8);
-     console.log('grupe', vm.groups);
+     //console.log('grupe', vm.groups);
      /* vm.availableRooms = availRooms;
      console.log("availableRooms: ", vm.availableRooms); */
    });
     vm.aaa = aaa;
     function aaa() {
      $filter('orderBy', vm.availableRooms, vm.mySortFunction(), vm.asc);
-      console.log(vm.availableRooms);
+      //console.log(vm.availableRooms);
 
 
 
@@ -66,7 +66,7 @@
       orderSliderButtons();
     });
 
-    console.log(vm.availableRooms);
+    //console.log(vm.availableRooms);
 
     //vm.availableRooms = RoomListingView.query(function(/*availRooms*/) {
      // vm.availableRooms = availRooms;

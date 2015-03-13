@@ -12,22 +12,22 @@
     vm.property = {};
     vm.me = Auth.getCurrentUser();
 
-    console.log('me:  ', vm.me);
+    //console.log('me:  ', vm.me);
 
     var roomId = $stateParams.id;
    // logger.log('Room id: ', roomId);
 
     if(roomId) {
       vm.roomDetail = RoomListingView.get({id: roomId}, function () {
-        console.log('RoomDetail: ', vm.roomDetail);
+        //console.log('RoomDetail: ', vm.roomDetail);
         vm.creatorId = vm.roomDetail.roomDetails.creatorId;
-        console.log('Creator id: ', vm.creatorId);
+        //console.log('Creator id: ', vm.creatorId);
         UserResource.get({id: vm.creatorId}, function (aa) {
           vm.creatorEmail=aa.email;
         });
         common.dataservice.getAllRoommates(vm.creatorId, function (data) {
           vm.creatorRoommates=data;
-          console.log('Creator roommates: ',  vm.creatorRoommates);
+          //console.log('Creator roommates: ',  vm.creatorRoommates);
         })
       });
 
@@ -35,7 +35,7 @@
       //one service call to get users current address location AND current university name and location
       vm.userCurrentAddressAndUnivCoords = UserResource.getCurrentAddressAndUniv({id: vm.me.id}, function () {
         // vm.roomDetail = roomDetail;
-        console.log("vm.userCurrentAddressAndUnivCoords: ", vm.userCurrentAddressAndUnivCoords);
+        //console.log("vm.userCurrentAddressAndUnivCoords: ", vm.userCurrentAddressAndUnivCoords);
       });
     //  common.dataservice.getAllRoommates(vm.roomDetail.creatorId)
 

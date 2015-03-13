@@ -17,7 +17,7 @@
     vm.education = getEducations;
     vm.lookingDetail = getLookingById;
 
-    console.log('Looking Detail: ', vm.lookingDetail);
+    //console.log('Looking Detail: ', vm.lookingDetail);
 
 
   }

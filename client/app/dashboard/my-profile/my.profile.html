@@ -1,7 +1,7 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
 <div class="main-wrapper">
-  <div class="container my-profile" cg-busy="{promise:myProfile.me.$promise, message:'Loading Your Profile', delay:50">
+  <div class="container my-profile">
     <div ui-view="">
       <div class="page-header">
         <h2> Your Profile </h2>
@@ -132,7 +132,8 @@
               <hr>
             </div>
             <form ng-show="myProfile.showAddPet">
-              <h3> Add a new pet </h3>
+              <h3>Add a new pet</h3>
+              <p>(All fields required)</p>
               <hr>
               <label for="type">Type</label>
               <select id="type" class="form-control" ng-model="addPet.tempPet.type">
@@ -154,7 +155,8 @@
             </form>
 
             <form ng-show="myProfile.showAddVehicle">
-              <h3> Add a new vehicle </h3>
+              <h3>Add a new vehicle</h3>
+              <p>(All fields required)</p>
               <hr>
               <label for="model">Model</label>
               <input type="text" id="model" name="model" class="form-control" ng-model="newVehicle.tempVehicle.model"/>

@@ -223,6 +223,14 @@ Posting input text type
   border-radius: 50px;
 }
 
+.input-post input[type="text"] {
+  height: 34px;
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: left;
+  border-radius: 50px;
+}
+
 .input-post select{
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -238,6 +246,41 @@ Posting input text type
   resize: none;
   margin-top: 30px;
 }
+
+.input-post-2 {
+  margin-left: 10px;
+}
+
+.input-post-2 textarea{
+  resize: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: left;
+  border-radius: 50px;
+}
+
+.input-post-readonly {
+
+}
+
+.input-post-readonly input[type="number"] {
+  height: 34px;
+  background: #e8e8e8;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: left;
+  border-radius: 50px;
+}
+
+.input-post-readonly input[type="text"] {
+  height: 34px;
+  background: #e8e8e8;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: left;
+  border-radius: 50px;
+}
+
 
 /* ==========================================================================
 Sign-up button class
@@ -767,6 +810,10 @@ For mailchimp sign-up - not needed in main app
   .input-post textarea {
     margin-left: 30px;
    }
+
+  .input-post-readonly {
+    margin-left: 10px;
+  }
 }
 
 @media (min-width: 992px) {
@@ -905,6 +952,10 @@ footer .logo {
   body .edit-profile dl.personal-data {
     float: none;
     width: 100%;
+  }
+
+  .input-post-2 {
+    margin-left: 0px;
   }
 
 }

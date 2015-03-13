@@ -12,9 +12,9 @@
 
     vm.me = currentUser;
     vm.lookings = allLooking;
-    console.log(vm.lookings);
+    //console.log(vm.lookings);
     vm.groups = vm.lookings.inGroupsOf(8);
-    console.log(vm.groups);
+    //console.log(vm.groups);
 
     function orderSliderButtons() {
       setTimeout(function() {
