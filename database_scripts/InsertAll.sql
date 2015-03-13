@@ -5,4 +5,6 @@ BEGIN;
 \i universityData.sql
 \i InsertEducation.sql
 \i InsertAddressHistory.sql
+\i InsertLooking.sql
+\i InsertRoommate.sql
 COMMIT;

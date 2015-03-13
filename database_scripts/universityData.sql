@@ -50,7 +50,7 @@ COPY university (id, name, "academicYearType", "streetNumeric", "streetAddress",
 -- Name: university_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('university_id_seq', 3, true);
+SELECT pg_catalog.setval('university_id_seq', 20, true);
 
 
 -- Completed on 2015-03-04 23:50:54
