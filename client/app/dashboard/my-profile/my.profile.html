@@ -110,9 +110,13 @@
 
                 </div>
 
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <a class="btn btn-primary pull-right" ng-href="mailto:{{myProfile.invite.email}}?Subject=Join%20Campusly%20community&body=Hey%20{{myProfile.invite.firstname}}%20{{myProfile.invite.lastname}},%0D%0A%0D%0AJoin%20me%20in%20the%20Campusly%20community!%20Sign-up%20for%20free%20at%20https://campusly.org/%0D%0A%0D%0A-{{myProfile.me.firstname}}" target="_top"><i class="fa fa-send fa-lg"></i>&nbspSend invitation</a>
+                </div>
+
               </div>
 
-              <a class="btn btn-primary pull-right" ng-href="mailto:{{myProfile.invite.email}}?Subject=Join%20Campusly%20community&body=Hey%20{{myProfile.invite.firstname}}%20{{myProfile.invite.lastname}},%0D%0A%0D%0AJoin%20me%20in%20the%20Campusly%20community!%20Sign-up%20for%20free%20at%20https://campusly.org/%0D%0A%0D%0A-{{myProfile.me.firstname}}" target="_top"><i class="fa fa-send fa-lg"></i>&nbspSend invitation</a>
+
             </div>
 
             <h2 class="no-roommate" ng-show="!myProfile.showAddRoommate && myProfile.roommates.length === 0 && !myProfile.showInviteRoomate">
