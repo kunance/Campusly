@@ -16,7 +16,8 @@ angular.module('RentedApp', [
   'app.rooms',
   'app.addRoom',
   'app.editRoom',
-  'app.roomDetail'
+  'app.roomDetail',
+  'app.footer'
 ])
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
       $urlRouterProvider
@@ -88,7 +89,7 @@ angular.module('RentedApp', [
       //console.log('Current state: ', $state.current.name);
       //console.log('Event: ', event);
       //console.log('Next: ', next);
-      common.logger.info('Navigating to ' + next.url);
+    //  common.logger.info('Navigating to ' + next.url); // Used to help understand where we navigate to
       if (next.authenticate) {
         common.Auth.isLoggedInAsync(function (loggedIn) {
           if (!loggedIn) {
