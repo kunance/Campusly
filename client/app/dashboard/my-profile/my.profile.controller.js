@@ -21,7 +21,7 @@
     vm.pets = getPets;
     vm.vehicles = getVehicles;
 
-    console.log('current roommates: ',vm.roommates);
+    //console.log('current roommates: ',vm.roommates);
     /*
      *  showing/hiding partials
      */

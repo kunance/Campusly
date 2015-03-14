@@ -223,6 +223,14 @@ Posting input text type
   border-radius: 50px;
 }
 
+.input-post input[type="text"] {
+  height: 34px;
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: left;
+  border-radius: 50px;
+}
+
 .input-post select{
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -238,6 +246,41 @@ Posting input text type
   resize: none;
   margin-top: 30px;
 }
+
+.input-post-2 {
+  margin-left: 10px;
+}
+
+.input-post-2 textarea{
+  resize: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: left;
+  border-radius: 50px;
+}
+
+.input-post-readonly {
+
+}
+
+.input-post-readonly input[type="number"] {
+  height: 34px;
+  background: #e8e8e8;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: left;
+  border-radius: 50px;
+}
+
+.input-post-readonly input[type="text"] {
+  height: 34px;
+  background: #e8e8e8;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: left;
+  border-radius: 50px;
+}
+
 
 /* ==========================================================================
 Sign-up button class
@@ -767,6 +810,10 @@ For mailchimp sign-up - not needed in main app
   .input-post textarea {
     margin-left: 30px;
    }
+
+  .input-post-readonly {
+    margin-left: 10px;
+  }
 }
 
 @media (min-width: 992px) {
@@ -905,6 +952,10 @@ footer .logo {
   body .edit-profile dl.personal-data {
     float: none;
     width: 100%;
+  }
+
+  .input-post-2 {
+    margin-left: 0px;
   }
 
 }
@@ -1276,6 +1327,16 @@ p.quote{
   font-style: italic;
   color: #7b7b7b;
 }
+
+p.quoteLooking{
+  font-size: 0.8em;
+  font-family: Georgia;
+  text-align: justify;
+  line-height: 150%;
+  font-style: italic;
+  color: #7b7b7b;
+}
+
 .looking-for-room h4.user-name{
   color: #000000;
   font-weight: bold;
@@ -1313,6 +1374,12 @@ p.quote{
   border-left: 1px solid #efefef;
   border-right: 1px solid #efefef;
 }
+
+/* ==========================================================================
+Room page roommates style
+========================================================================== */
+
+
 
 /* ==========================================================================
 Posts dashboard padding
@@ -1386,6 +1453,10 @@ Posts dashboard padding
 }
 
 h2.section-title:nth-child(n+2) {
+  margin-top: 50px;
+}
+
+h2.section-title{
   margin-top: 50px;
 }
 
@@ -2006,7 +2077,7 @@ Looking Details
 }
 
 .badge.pet {
-  background-image: url("../assets/images/pet.svg");
+  background-image: url("../assets/images/pet-white.svg");
   background-size: 2.7em;
   background-repeat: no-repeat;
   background-position: 50%;
@@ -2063,6 +2134,16 @@ h2.no-roommate small{
 
 .fa.fa-pet {
   background-image: url("../assets/images/pet.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-pet-white {
+  background-image: url("../assets/images/pet-white.svg");
   background-size: 1em;
   background-repeat: no-repeat;
   width: 1em;

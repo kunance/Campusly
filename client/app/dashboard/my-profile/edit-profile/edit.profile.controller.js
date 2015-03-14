@@ -18,7 +18,7 @@
     vm.me = currentUser;
     vm.tempMe = Object.create(vm.me);
 
-    console.log('vm.universitiesList: ', vm.universitiesList);
+    //console.log('vm.universitiesList: ', vm.universitiesList);
 
     /*
      *  defining functions

@@ -15,6 +15,7 @@
       pageTitle: 'Campusly Sign-in',
       pageDescription: 'Sign-in securely to Campusly'
     };
+    mixpanel.track("sign in");
 
     $scope.login = function (form) {
       $scope.submitted = true;

@@ -41,6 +41,8 @@
     vm.resetStateIs = function(state) {
       return pwdResetState===state;
     };
+
+    mixpanel.track('password reset');
   }
 
 })();
