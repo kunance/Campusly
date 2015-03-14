@@ -2,15 +2,17 @@
   "use strict";
 
   angular.module('RentedApp')
-    .config(function($stateProvider) {
+    .config(config);
+
+    config.$inject = ['$stateProvider'];
+    function config($stateProvider) {
       $stateProvider
         .state('admin', {
           url: '/admin',
           templateUrl: 'app/admin/admin.html',
           controller: 'AdminCtrl'
         });
-    });
-
+    };
 
 }());
 

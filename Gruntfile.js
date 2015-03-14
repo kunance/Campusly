@@ -90,8 +90,8 @@ module.exports = function (grunt) {
           '{.tmp,<%= yeoman.client %>}/{app,components}/**/*.js',
           '!{.tmp,<%= yeoman.client %>}{app,components}/**/*.spec.js',
           '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js',
-          '<%= yeoman.client %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
-          '<%= yeoman.client %>/assets/fake/{,*//*}*.{png,jpg,jpeg,gif,webp,svg,json}'
+          '<%= yeoman.client %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
+          //'<%= yeoman.client %>/assets/fake/{,*//*}*.{png,jpg,jpeg,gif,webp,svg,json}'
         ],
         options: {
           livereload: true
@@ -240,8 +240,8 @@ module.exports = function (grunt) {
           src: [
             '<%= yeoman.dist %>/client/{,*/}*.js',
             '<%= yeoman.dist %>/client/{,*/}*.css',
-            '<%= yeoman.dist %>/client/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-            '<%= yeoman.dist %>/client/assets/fake/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            //'<%= yeoman.dist %>/client/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            //'<%= yeoman.dist %>/client/assets/fake/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
             '<%= yeoman.dist %>/client/assets/fonts/*'
           ]
         }
@@ -266,8 +266,8 @@ module.exports = function (grunt) {
       options: {
         assetsDirs: [
           '<%= yeoman.dist %>/client',
-          '<%= yeoman.dist %>/client/assets/images',
-          '<%= yeoman.dist %>/client/assets/fake'
+          '<%= yeoman.dist %>/client/assets/images'
+         // '<%= yeoman.dist %>/client/assets/fake'
         ],
         // This is so we update image references in our ng-templates
         patterns: {
@@ -284,31 +284,35 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.client %>/assets/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
+          src: '{,*/}*.{png,jpg,jpeg,gif,svg}',
           dest: '<%= yeoman.dist %>/client/assets/images'
-        },{
-          expand: true,
-          cwd: '<%= yeoman.client %>/assets/fake',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: '<%= yeoman.dist %>/client/assets/fake'
         }
+        //  {
+        //  expand: true,
+        //  cwd: '<%= yeoman.client %>/assets/fake',
+        //  src: '{,*/}*.{png,jpg,jpeg,gif}',
+        //  dest: '<%= yeoman.dist %>/client/assets/fake'
+        //}
         ]
       }
     },
 
     svgmin: {
       dist: {
-        files: [{
+        files: [
+          {
           expand: true,
           cwd: '<%= yeoman.client %>/assets/images',
           src: '{,*/}*.svg',
           dest: '<%= yeoman.dist %>/client/assets/images'
-        },{
-          expand: true,
-          cwd: '<%= yeoman.client %>/assets/fake',
-          src: '{,*/}*.svg',
-          dest: '<%= yeoman.dist %>/client/assets/fake'
-          }]
+        }
+          //, {
+          //expand: true,
+          //cwd: '<%= yeoman.client %>/assets/fake',
+          //src: '{,*/}*.svg',
+          //dest: '<%= yeoman.dist %>/client/assets/fake'
+          //}
+        ]
       }
     },
 
@@ -372,8 +376,8 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             'bower_components/**/*',
-            'assets/images/{,*/}*.{webp}',
-            'assets/fake/{,*/}*.{webp,json}',
+            'assets/images/{,*/}*.{webp,png,jpg,jpeg,gif,svg}',
+          //  'assets/fake/{,*/}*.{webp,json}',
             'assets/fonts/**/*',
             'index.html'
           ]
@@ -382,12 +386,14 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/client/assets/images',
           src: ['generated/*']
-        },{
-          expand: true,
-          cwd: '.tmp/fake',
-          dest: '<%= yeoman.dist %>/client/assets/fake',
-          src: ['generated/*']
-        }, {
+        }
+        //  ,{
+        //  expand: true,
+        //  cwd: '.tmp/fake',
+        //  dest: '<%= yeoman.dist %>/client/assets/fake',
+        //  src: ['generated/*']
+        //}
+          , {
           expand: true,
           dest: '<%= yeoman.dist %>',
           src: [

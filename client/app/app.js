@@ -19,14 +19,17 @@ angular.module('RentedApp', [
   'app.roomDetail',
   'app.footer'
 ])
-  .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+  .config(config)
+  .run(run)
+  .factory('authInterceptor', authInterceptor);
+
+  config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider'];
+  function config($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
       $urlRouterProvider
         .otherwise('/dashboard');
-
   $locationProvider.html5Mode(true);
   $httpProvider.interceptors.push('authInterceptor');
   $locationProvider.hashPrefix('!');
-
   $httpProvider.interceptors.push(['$q', '$injector', function ($q, $injector) {
     return {
       'request': function(config) {
@@ -55,9 +58,9 @@ angular.module('RentedApp', [
       }
     };
   }]);
-})
-
-  .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $injector) {
+}
+  authInterceptor.$inject = ['$rootScope', '$q', '$cookieStore', '$injector'];
+  function authInterceptor($rootScope, $q, $cookieStore, $injector) {
     var state;
     return {
       // Add authorization token to headers
@@ -82,8 +85,10 @@ angular.module('RentedApp', [
         }
       }
     };
-  })
-  .run(['$rootScope', '$state', 'Auth', '$stateParams', 'common', '$location', function ($rootScope, $state, Auth, $stateParams, common, $location) {
+  }
+
+  run.$inject=['$rootScope', '$state', 'Auth', '$stateParams', 'common', '$location'];
+  function run($rootScope, $state, Auth, $stateParams, common, $location) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
       //console.log('Current state: ', $state.current.name);
@@ -99,4 +104,4 @@ angular.module('RentedApp', [
         });
       }
     });
-  }]);
+  }

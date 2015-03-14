@@ -1,7 +1,14 @@
 // do NOT include braces because we are NOT creating a new module instance 'app.account' , we are just retrieving it
-angular.module('app.account')
-  .config(function ($stateProvider) {
-    'use strict';
+(function () {
+  "use strict";
+
+  angular
+    .module('app.account')
+      .config(config)
+      .run(run);
+
+  config.$inject = ['$stateProvider'];
+  function config($stateProvider) {
 
     $stateProvider
       .state('login', {
@@ -19,11 +26,7 @@ angular.module('app.account')
         url: '/logout?referrer',
         referrer: '/',
         template: '',
-        controller: function ($state, Auth, $location) {
-          var referrer = '/';
-          Auth.logout();
-          $location.path(referrer);
-        }
+        controller: logout
       })
       .state('signup', {
         url: '/signup',
@@ -31,12 +34,22 @@ angular.module('app.account')
         controller: 'SignupCtrl',
         controllerAs: 'signup'
       });
-  })
-  .run(function ($rootScope) {
+  }
+
+  run.$inject = ['$rootScope'];
+  function run($rootScope) {
     $rootScope.$on('$stateChangeStart', function (event, next, nextParams, current) {
       if (next.name === 'logout' && current && current.name && !current.authenticate) {
         next.referrer = current.name;
       }
     });
-  });
+  }
 
+  logout.$inject = ['$state', 'Auth', '$location'];
+  function logout($state, Auth, $location) {
+      var referrer = '/';
+      Auth.logout();
+      $location.path(referrer);
+  }
+
+}());

@@ -21,6 +21,7 @@
         }
       });
 
+    getCurrentUser.$inject = ['common', '$q'];
     function getCurrentUser(common, $q) {
       var deferred = $q.defer();
       common.Auth.getCurrentUser(function(user) {
@@ -29,6 +30,7 @@
       return deferred.promise;
     }  }
 
+  allLooking.$inject = ['common', 'currentUser', '$q'];
   function allLooking(common, currentUser, $q) {
     if(currentUser){
       var deferred = $q.defer();

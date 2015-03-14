@@ -23,6 +23,7 @@
     });
   }
 
+  getCurrentUser.$inject = ['common', '$q'];
   function getCurrentUser(common, $q) {
     var deferred = $q.defer();
     common.Auth.getCurrentUser(function(user) {
@@ -31,10 +32,12 @@
     return deferred.promise;
   }
 
+  getAllUsers.$inject = ['UserResource'];
   function getAllUsers(UserResource) {
       return UserResource.query(function (users) {})
   }
 
+  getAllRoommates.$inject = ['common', 'currentUser'];
   function getAllRoommates(common, currentUser) {
     return common.dataservice.getAllRoommates(currentUser.id);
   }

@@ -3,15 +3,18 @@
 
   angular
     .module('app.account')
-    .config(function($stateProvider) {
+    .config(config);
+
+    config.$inject = ['$stateProvider'];
+    function config($stateProvider) {
       $stateProvider
         .state('settings', {
           url: '/settings',
           templateUrl: 'app/account/settings/settings.html',
           controller: 'SettingsCtrl',
-          authenticate:true,
-          controllerAs:'settings'
+          authenticate: true,
+          controllerAs: 'settings'
         });
-    });
+    }
 
 }());
