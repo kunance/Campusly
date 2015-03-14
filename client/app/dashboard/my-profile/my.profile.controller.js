@@ -20,7 +20,7 @@
     vm.roommates = getAllRoommates; //roommate info, his education info, his address info
     vm.pets = getPets;
     vm.vehicles = getVehicles;
-
+    console.log(vm.roommates.length);
     //console.log('current roommates: ',vm.roommates);
     /*
      *  showing/hiding partials
@@ -40,7 +40,13 @@
     vm.toggleAddRoommate = function(){
       vm.showAddRoommate = true;
       vm.showInviteRoomate = false;
-      vm.showRoommatesAddonButtons = false;
+      vm.showRoommatesAddonButtons = true;
+    };
+
+     vm.toggleInviteRoomate = function(){
+      vm.showAddRoommate = false;
+      vm.showInviteRoomate = true;
+      vm.showRoommatesAddonButtons = true;
     };
 
     vm.toggleRoommatesAddon = function(){
@@ -81,6 +87,12 @@
       vm.showRoommateAddonButtons = false;
       vm.showAddRoommate = false;
       vm.showInviteRoommate = false;
+    };
+
+   vm.cancelRoommateInviteAddon = function (){
+     vm.showRoommateAddonButtons = false;
+     vm.showAddRoommate = false;
+     vm.showInviteRoomate = false;
     };
 
     vm.toggleAddVehicle = function(){

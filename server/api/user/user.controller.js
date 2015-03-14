@@ -238,15 +238,11 @@ exports.downloadProfileImage = function(req, res, next) {
 };
 
 exports.currentAddressAndUniv = function(req, res, next) {
-
+  console.log('ulazim!!!!!!!!!!!!!!!!', req.params.id);
   var attributes = ['userId', 'addressLatitude', 'addressLongitude', 'univLatitude', 'univLongitude', 'univName'];
-  UserCurAddressUnivCoords.find({
-    where: {
-      userId: req.params.id
-    },
-    attributes: attributes
-  })
+  UserCurAddressUnivCoords.findAll({})
     .then(function(coords) {
+      console.log(coords);
       if (!coords) {
         console.log('nema ih');
         return res.send();

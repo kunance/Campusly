@@ -1,7 +1,9 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
 <div class="main-wrapper">
+
   <div class="container my-profile">
+
     <div ui-view="">
       <div class="page-header">
         <h2> Your Profile </h2>
@@ -82,10 +84,39 @@
               match-class="redFont"
               clear-selected="true">
               <hr>
-
-
             </div>
-            <h2 class="no-roommate" ng-hide="myProfile.showAddRoommate || myProfile.roommates.length > 0">
+
+            <div ng-show="myProfile.showInviteRoomate">
+              <a class="bubble cancel" ng-click="myProfile.cancelRoommateInviteAddon()"><i class="fa fa-close"></i></a>
+              <br/>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="email">E-mail:</label>
+                </div>
+                <div class="col-md-8">
+                    <input id="email" name="email" type="email" ng-model="myProfile.invite.email" class="form-control"/>
+               </div>
+            </div>
+              <div class="row">
+                <div class="col-md-4">
+              <label for="firstname">First name:</label>
+                </div>
+                <div class="col-md-8">
+              <input id="firstname" name="firstname" type="text" ng-model="myProfile.invite.firstname" class="form-control"/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+              <label for="lastname">Last name:</label>
+                </div>
+                <div class="col-md-8">
+              <input id="lastname" name="lastname" type="text" ng-model="myProfile.invite.lastname" class="form-control"/>
+                </div>
+              </div>
+              <a class="btn btn-primary pull-right" ng-href="mailto:{{myProfile.invite.email}}?Subject=Join%20Campusly%20community&body=Hello%20{{myProfile.invite.firstname}}%20{{myProfile.invite.lastname}},%20{{myProfile.me.firstname}}%20wants%20you%20to%20join%20Campusly%20community!%20Follow%20link%20https://campusly.org/" target="_top"><i class="fa fa-send fa-lg"></i>&nbspSend invitation</a>
+            </div>
+
+            <h2 class="no-roommate" ng-show="!myProfile.showAddRoommate && myProfile.roommates.length === 0 && !myProfile.showInviteRoomate">
               You don't have any roommate yet.
               <small>
                 <a href="" ng-click="myProfile.toggleAddRoommate()">Click here</a> to find and add your roommates.
