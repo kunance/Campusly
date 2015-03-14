@@ -14,9 +14,9 @@
         <form class="form" name="personalDataForm" ng-submit="editProfile.changePersonalData(personalDataForm)" novalidate>
           <div class="row">
 
-            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
               <div class="picture text-center">
-                <img ng-if="editProfile.me.profileImage" ng-src="api/images{{editProfile.me.profileImage}}" class="img-circle">
+                <img ng-if="editProfile.me.profileImage" ng-src="api/images{{editProfile.me.profileImage}}" class="img-circle looking-profile-img">
                 <i ng-if="!editProfile.me.profileImage" class="fa fa-user fa-5x"></i>
                 <input type="file" nv-file-select uploader="editProfile.uploader" id="fileUpload"/>
                 <ul>
