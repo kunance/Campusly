@@ -381,32 +381,33 @@
               <a class="bubble cancel" ng-click="vm.cancelRoommateInviteAddon()"><i class="fa fa-close"></i></a>
               <br/>
               <div class="row">
-                <div class="col-md-4">
-                  <label for="email">E-mail:</label>
+
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
+                  <div class="form-group input-post">
+                    <label for="email">E-mail:</label>
+                    <input id="email" name="email" type="email" ng-model="vm.invite.email" class="form-control"/>
+                  </div>
+
+                  <div class="form-group input-post">
+                    <label for="firstname">First name:</label>
+                    <input id="firstname" name="firstname" type="text" ng-model="vm.invite.firstname" class="form-control"/>
+                  </div>
+
+                  <div class="form-group input-post">
+                    <label for="lastname">Last name:</label>
+                    <input id="lastname" name="lastname" type="text" ng-model="vm.invite.lastname" class="form-control"/>
+                  </div>
+
                 </div>
-                <div class="col-md-8">
-                  <input id="email" name="email" type="email" ng-model="vm.invite.email" class="form-control"/>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <a class="btn btn-primary pull-right" ng-href="mailto:{{vm.invite.email}}?Subject=Join%20Campusly%20community&body=Hey%20{{vm.invite.firstname}}%20{{vm.invite.lastname}},%0D%0A%0D%0AJoin%20me%20in%20the%20Campusly%20community!%20Sign-up%20for%20free%20at%20https://campusly.org/%0D%0A%0D%0A-{{vm.me.firstname}}" target="_top"><i class="fa fa-send fa-lg"></i>&nbspSend invitation</a>
                 </div>
+
               </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <label for="firstname">First name:</label>
-                </div>
-                <div class="col-md-8">
-                  <input id="firstname" name="firstname" type="text" ng-model="vm.invite.firstname" class="form-control"/>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <label for="lastname">Last name:</label>
-                </div>
-                <div class="col-md-8">
-                  <input id="lastname" name="lastname" type="text" ng-model="vm.invite.lastname" class="form-control"/>
-                </div>
-              </div>
-              <a class="btn btn-primary pull-right" ng-href="mailto:{{vm.invite.email}}?Subject=Join%20Campusly%20community&body=Hello%20
-              {{vm.invite.firstname}}%20{{vm.invite.lastname}},%20{{vm.me.firstname}}%20wants%20you%20to%20join%20Campusly%20community!%20Follow%20
-              link%20https://campusly.org/" target="_top"><i class="fa fa-send fa-lg"></i>&nbspSend invitation</a>
+
+
             </div>
 
             <h2 class="no-roommate"  ng-show="!vm.showAddRoommate && vm.roommates.length === 0 && !vm.showInviteRoomate">
