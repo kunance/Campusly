@@ -20,9 +20,7 @@ angular.module('app.account')
         referrer: '/',
         template: '',
         controller: function ($state, Auth, $location) {
-          var referrer = $state.params.referrer ||
-            $state.current.referrer ||
-            '/';
+          var referrer = '/';
           Auth.logout();
           $location.path(referrer);
         }

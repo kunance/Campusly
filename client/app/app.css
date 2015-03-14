@@ -832,30 +832,30 @@ For mailchimp sign-up - not needed in main app
     font-weight: 600;
   }
 
-/* ==========================================================================
-Custom style h1
-24px semi-bold
-========================================================================== */
-h2{
-  font-size: 2em;
-  font-weight: 600;
-}
+  /* ==========================================================================
+  Custom style h1
+  24px semi-bold
+  ========================================================================== */
+  h2{
+    font-size: 2em;
+    font-weight: 600;
+  }
 
-/* ==========================================================================
-Custom style h1
-18px semi-bold
-========================================================================== */
-h3{
-  font-size: 1.2em;
-}
+  /* ==========================================================================
+  Custom style h1
+  18px semi-bold
+  ========================================================================== */
+  h3{
+    font-size: 1.2em;
+  }
 
-.lead-msg {
-  padding: 50px 100px;
-}
-footer .logo {
-  text-align: left;
-  margin-bottom: 0px;
-}
+  .lead-msg {
+    padding: 50px 100px;
+  }
+  footer .logo {
+    text-align: left;
+    margin-bottom: 0px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -956,6 +956,19 @@ footer .logo {
 
   .input-post-2 {
     margin-left: 0px;
+  }
+
+  .lead-msg h1 {
+    font-size: 2em;
+    margin-bottom: 50px;
+  }
+
+  .btn-rented-large {
+
+  }
+
+  .lead-btn{
+    padding-bottom: 50px;
   }
 
 }
