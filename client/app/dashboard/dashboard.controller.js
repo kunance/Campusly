@@ -19,15 +19,15 @@
     vm.me = currentUser;
     vm.lookingRoom = allLooking;
     vm.userLookings = currentUserLookings;
-    console.log('currentUserLookings:', currentUserLookings);
+    //console.log('currentUserLookings:', currentUserLookings);
     /*
      *  Fetching rooms data, TODO rework to resolve data before view resolve (to be consistent)
      */
     vm.availableRooms = RoomListingView.query(function() {
-      console.log('Available rooms: ', vm.availableRooms);
+      //console.log('Available rooms: ', vm.availableRooms);
     });
     vm.myRoomListings = RoomListing.query({userId: vm.me.id}, function() {
-      console.log('My room listings: ', vm.myRoomListings);
+      //console.log('My room listings: ', vm.myRoomListings);
     });
     /*
      *  around you mock data ()
@@ -41,7 +41,7 @@
      */
     $scope.$parent.seo = {
       pageTitle:'Campusly Dashboard',
-      pageDescription:'Secure off-campus community'
+      pageDescription:'Your personal dashboard'
     };
     /*
      *  breakpoints and slider options
@@ -122,6 +122,7 @@
       orderSliderButtons();
     });
 
+    mixpanel.track("dashboard");
     mixpanel.identify(vm.me.id);
     mixpanel.people.set({
       "$email": vm.me.email,

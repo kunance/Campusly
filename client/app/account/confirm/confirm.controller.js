@@ -36,6 +36,9 @@
     vm.confirmationMailSend = function() {
       return confirmationMailSend;
     };
+
+    mixpanel.track('email confirmation');
+
   }
 
 })();

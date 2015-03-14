@@ -19,8 +19,8 @@
                     <i ng-if="!look.relatedUserId.profileImage" class="fa fa-user fa-4x"></i>
                   </div>
                   <h4>{{look.relatedUserId.firstname}} {{look.relatedUserId.lastname}}</h4>
-                  <p class="quote text-container-looking-view" ng-if="look.relatedUserId.aboutMe">{{look.relatedUserId.aboutMe}}</p>
-                  <p class="quote text-container-looking-view" ng-if="!look.relatedUserId.aboutMe">No description available</p>
+                  <p class="quoteLooking text-container-looking-view" ng-if="look.relatedUserId.aboutMe">{{look.relatedUserId.aboutMe}}</p>
+                  <p class="quoteLooking text-container-looking-view" ng-if="!look.relatedUserId.aboutMe">No description available</p>
                   <hr>
                   <ul class="specs">
                     <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{look.moveInDate | date}}</li>
