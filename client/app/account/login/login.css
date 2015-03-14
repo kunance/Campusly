@@ -114,6 +114,10 @@ label + label {
   text-decoration: underline;
 }
 
+.link a{
+  text-decoration: none;
+}
+
 .main {
   min-height: 100%;
   position: relative;
@@ -198,14 +202,16 @@ label + label {
 }
 
 .login-header {
-  background: #55a5b2;
-  background: -moz-linear-gradient(top,  #55a5b2 0%, #119bad 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#55a5b2), color-stop(100%,#119bad));
-  background: -webkit-linear-gradient(top,  #55a5b2 0%,#119bad 100%);
-  background: -o-linear-gradient(top,  #55a5b2 0%,#119bad 100%);
-  background: -ms-linear-gradient(top,  #55a5b2 0%,#119bad 100%);
-  background: linear-gradient(to bottom,  #55a5b2 0%,#119bad 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#55a5b2', endColorstr='#119bad',GradientType=0 );
+  /*background: #55a5b2;*/
+  /*background: -moz-linear-gradient(top,  #55a5b2 0%, #119bad 100%);*/
+  /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#55a5b2), color-stop(100%,#119bad));*/
+  /*background: -webkit-linear-gradient(top,  #55a5b2 0%,#119bad 100%);*/
+  /*background: -o-linear-gradient(top,  #55a5b2 0%,#119bad 100%);*/
+  /*background: -ms-linear-gradient(top,  #55a5b2 0%,#119bad 100%);*/
+  /*background: linear-gradient(to bottom,  #55a5b2 0%,#119bad 100%);*/
+  /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#55a5b2', endColorstr='#119bad',GradientType=0 );*/
+
+  background-image: url(./../../../assets/images/jumbotron/nav.jpg);
 
   background-position: center;
   background-size: cover;
@@ -219,6 +225,7 @@ label + label {
 .login-header .profile-image {
   height: 3em;
   border: 2px solid #fff;
+  vertical-align: middle;
 }
 
 .login-header.transparent {
