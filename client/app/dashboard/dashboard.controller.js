@@ -26,7 +26,7 @@
     vm.availableRooms = RoomListingView.query(function() {
       //console.log('Available rooms: ', vm.availableRooms);
     });
-    console.log('room view: ', vm.availableRooms);
+    //console.log('room view: ', vm.availableRooms);
     vm.myRoomListings = RoomListing.query({userId: vm.me.id}, function() {
       //console.log('My room listings: ', vm.myRoomListings);
     });

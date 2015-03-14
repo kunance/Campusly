@@ -238,7 +238,7 @@ exports.downloadProfileImage = function(req, res, next) {
 };
 
 exports.currentAddressAndUniv = function(req, res, next) {
-  console.log('ulazim!!!!!!!!!!!!!!!!', req.params.id);
+  console.log('Enter!!!!!!!!!!!!!!!!', req.params.id);
   var attributes = ['userId', 'addressLatitude', 'addressLongitude', 'univLatitude', 'univLongitude', 'univName'];
   UserCurAddressUnivCoords.findAll({})
     .then(function(coords) {

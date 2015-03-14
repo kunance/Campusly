@@ -20,7 +20,7 @@
     vm.roommates = getAllRoommates; //roommate info, his education info, his address info
     vm.pets = getPets;
     vm.vehicles = getVehicles;
-    console.log(vm.roommates.length);
+    //console.log(vm.roommates.length);
     //console.log('current roommates: ',vm.roommates);
     /*
      *  showing/hiding partials
