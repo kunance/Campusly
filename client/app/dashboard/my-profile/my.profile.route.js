@@ -27,6 +27,7 @@
       });
   }
 
+  getCurrentUser.$inject = ['common', '$q'];
   function getCurrentUser(common, $q) {
     var deferred = $q.defer();
     common.Auth.getCurrentUser(function(user) {
@@ -34,30 +35,29 @@
     });
     return deferred.promise;
   }
-
+  getEducations.$inject = ['common', 'currentUser'];
   function getEducations(common, currentUser) {
       return common.dataservice.getAllEducations(currentUser.id);
   }
-
+  getAddresses.$inject = ['common', 'currentUser'];
   function getAddresses(common, currentUser) {
       return common.dataservice.getAllAddresses(currentUser.id);
   }
-
-  function getAllUsers(currentUser, UserResource) {
-    if(currentUser){
-    return UserResource.query(function (users) {})}
+  getAllUsers.$inject = ['UserResource'];
+  function getAllUsers(UserResource) {
+      return UserResource.query();
   }
-
+  getAllRoommates.$inject = ['common', 'currentUser'];
   function getAllRoommates(common, currentUser) {
       return common.dataservice.getAllRoommates(currentUser.id);
   }
-
+  getPets.$inject = ['common', 'currentUser'];
   function getPets(common, currentUser) {
-      return common.dataservice.getAllPets(currentUser.id)
+      return common.dataservice.getAllPets(currentUser.id);
   }
-
+  getVehicles.$inject = ['common', 'currentUser'];
   function getVehicles(common, currentUser) {
-      return common.dataservice.getAllVehicles(currentUser.id)
+      return common.dataservice.getAllVehicles(currentUser.id);
   }
 
 

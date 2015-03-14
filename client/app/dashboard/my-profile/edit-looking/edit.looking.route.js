@@ -3,7 +3,10 @@
 
   angular
     .module('app.dashboard')
-    .config(function($stateProvider) {
+    .config(config);
+
+    config.$inject = ['$stateProvider'];
+    function config($stateProvider) {
       $stateProvider
         .state('editLooking', {
           url: '/editLooking/:id',
@@ -16,8 +19,9 @@
             getLooking:getLooking
           }
         });
-    });
+    };
 
+  getCurrentUser.$inject = ['common', '$q'];
   function getCurrentUser(common, $q) {
     var deferred = $q.defer();
     common.Auth.getCurrentUser(function(user) {
@@ -26,6 +30,7 @@
     return deferred.promise;
   }
 
+  getLooking.$inject = ['common', '$stateParams', 'currentUser'];
   function getLooking(common, $stateParams, currentUser) {
     var lookingId = $stateParams.id;
     return common.dataservice.getLooking(currentUser.id, lookingId);

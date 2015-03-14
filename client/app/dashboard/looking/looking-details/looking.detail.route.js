@@ -23,6 +23,7 @@
       });
   }
 
+  getCurrentUser.$inject = ['common', '$q'];
   function getCurrentUser(common, $q) {
     var deferred = $q.defer();
     common.Auth.getCurrentUser(function(user) {
@@ -30,11 +31,14 @@
     });
     return deferred.promise;
   }
+
+  getLookingById.$inject = ['common', '$stateParams'];
   function getLookingById(common, $stateParams) {
     var lookingId = $stateParams.id;
     return common.dataservice.getSingleLooking(lookingId);
   }
 
+  getEducations.$inject = ['common', 'currentUser'];
   function getEducations(common, currentUser) {
     return common.dataservice.getAllEducations(currentUser.id);
   }

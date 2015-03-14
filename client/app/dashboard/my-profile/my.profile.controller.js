@@ -17,11 +17,12 @@
     vm.address = getAddresses;
     vm.education = getEducations;
     vm.users = getAllUsers;
-    vm.roommates = getAllRoommates; //roommate info, his education info, his address info
+    vm.roommates = getAllRoommates || []; //roommate info, his education info, his address info
+
     vm.pets = getPets;
     vm.vehicles = getVehicles;
     //console.log(vm.roommates.length);
-    //console.log('current roommates: ',vm.roommates);
+    console.log('current roommates: ',vm.roommates);
     /*
      *  showing/hiding partials
      */
