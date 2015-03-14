@@ -19,7 +19,5 @@
     mixpanel.track("landing page");
 
   }
-
-  }
   }());
 

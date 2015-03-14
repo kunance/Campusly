@@ -366,7 +366,7 @@
                                 placeholder="Search for roommate"
                                 pause="400"
                                 selected-object="addNewRoommate"
-                                local-data="vm.users.data"
+                                local-data="vm.users"
                                 search-fields="email"
                                 title-field="firstname,lastname"
                                 description-field="email"
@@ -375,10 +375,41 @@
                                 match-class="redFont"
                                 clear-selected="true">
                 <hr>
-
-
             </div>
-            <h2 class="no-roommate" ng-hide="vm.showAddRoommate || vm.roommates.length > 0">
+
+            <div ng-show="vm.showInviteRoomate">
+              <a class="bubble cancel" ng-click="vm.cancelRoommateInviteAddon()"><i class="fa fa-close"></i></a>
+              <br/>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="email">E-mail:</label>
+                </div>
+                <div class="col-md-8">
+                  <input id="email" name="email" type="email" ng-model="vm.invite.email" class="form-control"/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="firstname">First name:</label>
+                </div>
+                <div class="col-md-8">
+                  <input id="firstname" name="firstname" type="text" ng-model="vm.invite.firstname" class="form-control"/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="lastname">Last name:</label>
+                </div>
+                <div class="col-md-8">
+                  <input id="lastname" name="lastname" type="text" ng-model="vm.invite.lastname" class="form-control"/>
+                </div>
+              </div>
+              <a class="btn btn-primary pull-right" ng-href="mailto:{{vm.invite.email}}?Subject=Join%20Campusly%20community&body=Hello%20
+              {{vm.invite.firstname}}%20{{vm.invite.lastname}},%20{{vm.me.firstname}}%20wants%20you%20to%20join%20Campusly%20community!%20Follow%20
+              link%20https://campusly.org/" target="_top"><i class="fa fa-send fa-lg"></i>&nbspSend invitation</a>
+            </div>
+
+            <h2 class="no-roommate"  ng-show="!vm.showAddRoommate && vm.roommates.length === 0 && !vm.showInviteRoomate">
               You don't have any roommate yet.
               <small>
                 <a href="" ng-click="vm.toggleAddRoommate()">Click here</a> to find and add your roommates.
@@ -471,7 +502,7 @@
     <div class="row post-padding">
       <div class="col-xs-12 col-sm-12">
         <button class="btn-rented-medium primary pull-right" ng-disabled="editRoomForm.$invalid || editRoomForm.$pristine " ng-click="vm.edit()">Save</button>
-        <button class="btn-rented-medium delete pull-left" ng-disabled="editRoomForm.$dirty" ng-click="vm.delete()">Delete</button>
+        <button class="btn-rented-medium delete pull-left" ng-disabled="editRoomForm.$dirty" ng-click="vm.deleteRoom()">Delete</button>
       </div>
     </div>
 
