@@ -22,7 +22,7 @@
       </label>
 
       <label class="lbl" ng-class="{ 'has-success': form.email.$valid && signup.submitted, 'has-error': form.email.$invalid && signup.submitted }">
-        <input type="email" ng-model="signup.user.email"  placeholder="Your email address (.edu required)" required>
+        <input type="email" ng-model="signup.user.email"  placeholder="Your email address (.edu required)" ng-pattern="/\.edu$/" required>
         <p class="help-block" ng-show="form.email.$error.email && signup.submitted">Doesn't look like a valid email.</p>
         <p class="help-block" ng-show="form.email.$error.required && signup.submitted">What's your email address?</p>
         <p class="help-block" ng-show="!form.email.$error.email && !form.email.$error.required && form.email.$invalid && signup.submitted">Your email have to finish with .edu</p>
@@ -30,7 +30,7 @@
       </label>
 
       <label class="lbl" ng-class="{ 'has-success': form.password.$valid && signup.submitted, 'has-error': form.password.$invalid && signup.submitted }">
-        <input type="password" ng-model="signup.user.password" ng-minlength="3" placeholder="Minimum 3 characters required" required>
+        <input type="password" ng-model="signup.user.password" ng-minlength="3" placeholder="Password" required>
       </label>
 
       <!--<label class="lbl" ng-class="{ 'has-success': form.password.$valid && signup.submitted, 'has-error': form.password.$invalid && signup.submitted }">-->

@@ -1,7 +1,10 @@
 <header class="login-header" ng-controller="NavbarCtrl" ng-class="{transparent: !isLoggedIn()}">
   <div class="container">
     <div class="left-content">
-      <a href="/">
+      <a href="/" ng-if="!isLoggedIn()">
+        <img src="../../../assets/images/webname.svg" alt="campusly" >
+      </a>
+      <a ui-sref="dashboard" ng-if="isLoggedIn()">
         <img src="../../../assets/images/webname.svg" alt="campusly" >
       </a>
       <p class="brand-text">secure off-campus community</p>

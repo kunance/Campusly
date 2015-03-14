@@ -8,13 +8,13 @@
   NavbarCtrl.$inject = ['$scope', 'Auth', 'common'];
 
   function NavbarCtrl($scope, Auth, common) {
-    $scope.menu = [{
-      'title': 'Home',
-      'state': 'main'
-    },{
-      'title': 'Dashboard',
-      'state': 'dashboard'
-    }];
+    //$scope.menu = [{
+    //  'title': 'Home',
+    //  'state': '/'
+    //},{
+    //  'title': 'Dashboard',
+    //  'state': 'dashboard'
+    //}];
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
