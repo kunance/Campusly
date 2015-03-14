@@ -89,31 +89,30 @@
             <div ng-show="myProfile.showInviteRoomate">
               <a class="bubble cancel" ng-click="myProfile.cancelRoommateInviteAddon()"><i class="fa fa-close"></i></a>
               <br/>
-            <div class="row">
-                <div class="col-md-4">
+              <div class="row">
+
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
+                  <div class="form-group input-post">
                     <label for="email">E-mail:</label>
-                </div>
-                <div class="col-md-8">
                     <input id="email" name="email" type="email" ng-model="myProfile.invite.email" class="form-control"/>
-               </div>
-            </div>
-              <div class="row">
-                <div class="col-md-4">
-              <label for="firstname">First name:</label>
+                  </div>
+
+                  <div class="form-group input-post">
+                    <label for="firstname">First name:</label>
+                    <input id="firstname" name="firstname" type="text" ng-model="myProfile.invite.firstname" class="form-control"/>
+                  </div>
+
+                  <div class="form-group input-post">
+                    <label for="lastname">Last name:</label>
+                    <input id="lastname" name="lastname" type="text" ng-model="myProfile.invite.lastname" class="form-control"/>
+                  </div>
+
                 </div>
-                <div class="col-md-8">
-              <input id="firstname" name="firstname" type="text" ng-model="myProfile.invite.firstname" class="form-control"/>
-                </div>
+
               </div>
-              <div class="row">
-                <div class="col-md-4">
-              <label for="lastname">Last name:</label>
-                </div>
-                <div class="col-md-8">
-              <input id="lastname" name="lastname" type="text" ng-model="myProfile.invite.lastname" class="form-control"/>
-                </div>
-              </div>
-              <a class="btn btn-primary pull-right" ng-href="mailto:{{myProfile.invite.email}}?Subject=Join%20Campusly%20community&body=Hello%20{{myProfile.invite.firstname}}%20{{myProfile.invite.lastname}},%20{{myProfile.me.firstname}}%20wants%20you%20to%20join%20Campusly%20community!%20Follow%20link%20https://campusly.org/" target="_top"><i class="fa fa-send fa-lg"></i>&nbspSend invitation</a>
+
+              <a class="btn btn-primary pull-right" ng-href="mailto:{{myProfile.invite.email}}?Subject=Join%20Campusly%20community&body=Hey%20{{myProfile.invite.firstname}}%20{{myProfile.invite.lastname}},%0D%0A%0D%0AJoin%20me%20in%20the%20Campusly%20community!%20Sign-up%20for%20free%20at%20https://campusly.org/%0D%0A%0D%0A-{{myProfile.me.firstname}}" target="_top"><i class="fa fa-send fa-lg"></i>&nbspSend invitation</a>
             </div>
 
             <h2 class="no-roommate" ng-show="!myProfile.showAddRoommate && myProfile.roommates.length === 0 && !myProfile.showInviteRoomate">
