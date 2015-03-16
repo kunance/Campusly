@@ -640,6 +640,13 @@ Community header h1 color style
 }
 
 /* ==========================================================================
+Padding for the three marketing icons
+========================================================================== */
+.roommatesPicture {
+  margin-top: 100px;
+}
+
+/* ==========================================================================
 Circular box for image with drop shadow
 ========================================================================== */
 .circular {
@@ -977,6 +984,10 @@ For mailchimp sign-up - not needed in main app
 
   .lead-btn{
     padding-bottom: 50px;
+  }
+
+  .roommatesPicture {
+    margin-top: 30px;
   }
 
 }
