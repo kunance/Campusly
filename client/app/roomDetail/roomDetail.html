@@ -1,6 +1,7 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
-<div class="main-wrapper room-detail">
+<!--<div class="main-wrapper room-detail" ng-if="window.google.maps">-->
+<div class="main-wrapper room-detail" >
   <div class="container">
     <div class="row">
 
@@ -29,32 +30,32 @@
               {{room.roomDetail.propertyDetails.streetNumeric}} {{room.roomDetail.propertyDetails.streetAddress}} {{room.roomDetail.propertyDetails.apt}}, {{room.roomDetail.propertyDetails.city}} {{room.roomDetail.propertyDetails.zip}}
             </p>
 
-            <div ng-show="room.userCurrentAddressAndUnivCoords.length" class="distances">
+            <div ng-if="room.roomDetail.propertyDetails.coords" class="distances">
               <!-- call google maps api to get distance from students address to students university of record .. walking, bus, driving -->
 
               <p>
-                <span class="distance"> <i class="fa fa-marker"></i>Miles from {{room.userCurrentAddressAndUnivCoords.univName}}</span>
+                <span class="distance"> <i class="fa fa-marker"></i>Miles from {{room.education.relatedUniversityId.name}}</span>
                 <br><br>
               </p>
 
               <a class="distance-bubble">
                 <i class="fa fa-car"></i>
-                <span>5</span>
+                <span>{{room.distance.DRIVING}}</span>
               </a>
 
               <a href="" class="distance-bubble">
                 <i class="fa fa-bicycle"></i>
-                <span>10</span>
+                <span>{{room.distance.BICYCLING}}</span>
               </a>
 
               <a class="distance-bubble">
                 <i class="fa fa-child"></i>
-                <span>15</span>
+                <span>{{room.distance.WALKING}}</span>
               </a>
 
             </div>
 
-            <div ng-show="!room.userCurrentAddressAndUnivCoords.length">
+            <div ng-show="!room.roomDetail.propertyDetails.coords">
               <br>
               <h3><a ui-sref="myProfile">Update Profile</a> & view distance from your university</h3>
             </div>
@@ -101,7 +102,7 @@
         <h2 class="section-title">Roommates</h2>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 roommates white-box">
-          <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" class="row roomRoommates" ng-repeat="roommate in room.creatorRoommates">
+          <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 row roomRoommates" ng-repeat="roommate in room.creatorRoommates track by $index">
             <div class="col-xs-2 col-sm-4">
               <div class="picture text-center">
                 <img ng-if="roommate.relatedRoommateId.profileImage" ng-src="api/images{{roommate.relatedRoommateId.profileImage}}" alt="" class="img-circle center-block looking-profile-img">

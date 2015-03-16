@@ -5,21 +5,19 @@
   .module('app.dashboard')
   .controller('EditProfileCtrl', EditProfileCtrl);
 
-  EditProfileCtrl.$inject = ['$scope', '$cookieStore', 'common', 'getUniversities', 'getEducations', 'getAddresses', 'FileUploader', 'currentUser'];
+  EditProfileCtrl.$inject = ['$scope', '$cookieStore', 'common', 'FileUploader', 'currentUser', 'data'];
 
-  function EditProfileCtrl($scope, $cookieStore, common, getUniversities, getEducations, getAddresses, FileUploader, currentUser) {
+  function EditProfileCtrl($scope, $cookieStore, common, FileUploader, currentUser, data) {
     var vm = this;
     /*
      *  Fetch all required data for controller from route resolve
      */
-    vm.universitiesList = getUniversities;
-    vm.tempAddress = getAddresses;
-    vm.tempEducation = getEducations;
     vm.me = currentUser;
     vm.tempMe = Object.create(vm.me);
-
-    //console.log('vm.universitiesList: ', vm.universitiesList);
-
+    vm.busy = data;//one promise witch need to be resolved in order to initialize controller (we use for show busy sign)
+    vm.universitiesList = data[0];
+    vm.tempEducation = data[1];
+    vm.tempAddress = data[2];
     /*
      *  defining functions
      */

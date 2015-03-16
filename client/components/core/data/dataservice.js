@@ -5,9 +5,9 @@
     .module('app.core')
     .factory('dataservice', dataservice);
 
-  dataservice.$inject = ['$http', '$location', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation', 'Roommate', 'Looking', 'RoomListing', 'University', 'Lookings', 'RoomListingView'];
+  dataservice.$inject = ['Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation', 'Roommate', 'Looking', 'RoomListing', 'University', 'Lookings', 'RoomListingView'];
 
-  function dataservice($http, $location, Property, Vehicle, Pet, Address, Education, Finance, Occupation, Roommate, Looking, RoomListing, University, Lookings, RoomListingView) {
+  function dataservice(Property, Vehicle, Pet, Address, Education, Finance, Occupation, Roommate, Looking, RoomListing, University, Lookings, RoomListingView) {
 
     var safeCb = function(cb) {
         return (angular.isFunction(cb)) ? cb : angular.noop;
@@ -233,7 +233,7 @@
           return res;
         }, function (err) {
           //handle exception
-        }).$promise
+        })
     }
 
     function editRoommate(userId, roommateId, data, callback) {
@@ -287,7 +287,7 @@
           return res;
         }, function (err) {
           //handle exception
-        }).$promise;
+        });
     }
 
     function deleteAddress(userId, addressId, data) {

@@ -1,6 +1,9 @@
 var sqldb = require('../../sqldb');
 var RoomListing = sqldb.model('roomListing');
 var Property = sqldb.model('property');
+var User = sqldb.model('rentedUser');
+var Roommate = sqldb.model('roommate');
+var Education = sqldb.model('userEducation');
 var _ = require('lodash');
 
 
@@ -28,10 +31,34 @@ exports.getRoomListing = function(req, res, next) {
     "longitude", "type", "description", "bedrooms","bathrooms", "parkingSpots", "livingAreaSqFt", "hoaFee", "otherFee",
     "status" ];
 
+  var creatorAttributes = ["email"];
+  var roommateAttributes = ["firstname", "lastname","profileImage"];
+  var educationAttributes = ["educationCenterName"];
+
   var roomListingResponse = {};
 
-  RoomListing.find({  where: {id: req.param("id")}, attributes: roomAttributes, include:
-    [ {model: Property,  attributes: propertyAttributes, as: 'relatedPropertyId'}]}).then(function(roomListing) {
+  RoomListing.find({
+    where: {
+      id: req.param("id")
+    },
+    attributes: roomAttributes,
+    include: [
+      {model: Property,  attributes: propertyAttributes, as: 'relatedPropertyId'},
+      {
+        model: User, attributes: creatorAttributes, as: 'relatedCreatorId',
+        include: [
+          {
+            model: Roommate, as: 'roommateRommieIds',
+            include: [
+              {
+                model: User/*, attributes: roommateAttributes*/, as: 'relatedUserId',
+                include: [
+                  {model: Education/*, attributes:educationAttributes*/, as: 'usereducationUsers'}]
+              }]
+          }]
+      }]
+   })
+    .then(function(roomListing) {
 
     var roomDetails = roomListing.dataValues;
     var propertyDetails = roomListing.relatedPropertyId.dataValues;
@@ -40,7 +67,7 @@ exports.getRoomListing = function(req, res, next) {
     propertyDetails.coords.latitude =   roomListing.relatedPropertyId.dataValues.latitude;
     propertyDetails.coords.longitude =   roomListing.relatedPropertyId.dataValues.longitude;
 
-    delete  propertyDetails.latitude;
+    delete propertyDetails.latitude;
     delete propertyDetails.longitude;
 
 

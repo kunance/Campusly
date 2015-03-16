@@ -17,8 +17,7 @@
         authenticate: true,
         resolve:{
           currentUser:getCurrentUser,
-          getLookingById:getLookingById,
-          getEducations: getEducations
+          getLookingById:getLookingById
         }
       });
   }
@@ -37,12 +36,6 @@
     var lookingId = $stateParams.id;
     return common.dataservice.getSingleLooking(lookingId);
   }
-
-  getEducations.$inject = ['common', 'currentUser'];
-  function getEducations(common, currentUser) {
-    return common.dataservice.getAllEducations(currentUser.id);
-  }
-
 
 }());
 
