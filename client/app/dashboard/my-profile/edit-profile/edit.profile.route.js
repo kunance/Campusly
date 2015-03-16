@@ -17,9 +17,7 @@
       controllerAs:'editProfile',
         resolve:{
           currentUser: getCurrentUser,
-          getUniversities:getUniversities,
-          getEducations: getEducations,
-          getAddresses: getAddresses
+          data:getData
         },
       authenticate: true
     });
@@ -34,25 +32,12 @@
     return deferred.promise;
   }
 
-  getUniversities.$inject=['common', 'currentUser', '$q'];
-  function getUniversities(common, currentUser, $q) {
-    if(currentUser){
-      var deferred = $q.defer();
-      common.dataservice.getAllUniversities(function (data) {
-        deferred.resolve(data);
-      });
-      return deferred.promise;
-    }
-  }
-
-  getEducations.$inject=['common', 'currentUser'];
-  function getEducations(common, currentUser) {
-    return common.dataservice.getAllEducations(currentUser.id);
-  }
-
-  getAddresses.$inject=['common', 'currentUser'];
-  function getAddresses(common, currentUser) {
-    return common.dataservice.getAllAddresses(currentUser.id);
+  getData.$inject = ['common', '$q', 'currentUser'];
+  function getData(common, $q, currentUser) {
+    var univ = common.dataservice.getAllUniversities();
+    var edu = common.dataservice.getAllEducations(currentUser.id);
+    var adr = common.dataservice.getAllAddresses(currentUser.id);
+    return $q.all([univ.$promise, edu.$promise, adr.$promise]);
   }
 
 }());

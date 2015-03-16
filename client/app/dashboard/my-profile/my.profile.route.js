@@ -16,12 +16,7 @@
         controllerAs:'myProfile',
         resolve: {
           currentUser:getCurrentUser,
-          getEducations: getEducations,
-          getAddresses: getAddresses,
-          getAllUsers:getAllUsers,
-          getAllRoommates:getAllRoommates,
-          getPets: getPets,
-          getVehicles:getVehicles
+          data:getData
         },
         authenticate: true
       });
@@ -35,30 +30,16 @@
     });
     return deferred.promise;
   }
-  getEducations.$inject = ['common', 'currentUser'];
-  function getEducations(common, currentUser) {
-      return common.dataservice.getAllEducations(currentUser.id);
-  }
-  getAddresses.$inject = ['common', 'currentUser'];
-  function getAddresses(common, currentUser) {
-      return common.dataservice.getAllAddresses(currentUser.id);
-  }
-  getAllUsers.$inject = ['UserResource'];
-  function getAllUsers(UserResource) {
-      return UserResource.query();
-  }
-  getAllRoommates.$inject = ['common', 'currentUser'];
-  function getAllRoommates(common, currentUser) {
-      return common.dataservice.getAllRoommates(currentUser.id);
-  }
-  getPets.$inject = ['common', 'currentUser'];
-  function getPets(common, currentUser) {
-      return common.dataservice.getAllPets(currentUser.id);
-  }
-  getVehicles.$inject = ['common', 'currentUser'];
-  function getVehicles(common, currentUser) {
-      return common.dataservice.getAllVehicles(currentUser.id);
-  }
 
+  getData.$inject = ['common', 'currentUser', 'UserResource', '$q'];
+  function getData(common, currentUser, UserResource, $q) {
+    var edu = common.dataservice.getAllEducations(currentUser.id);
+    var adr = common.dataservice.getAllAddresses(currentUser.id);
+    var users = UserResource.query();
+    var roommates = common.dataservice.getAllRoommates(currentUser.id);
+    var pets = common.dataservice.getAllPets(currentUser.id);
+    var veh = common.dataservice.getAllVehicles(currentUser.id);
+    return $q.all([edu.$promise, adr.$promise, users.$promise, roommates.$promise, pets.$promise, veh.$promise]);
+  }
 
 }());

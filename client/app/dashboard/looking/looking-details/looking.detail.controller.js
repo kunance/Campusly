@@ -5,24 +5,18 @@
     .module('app.dashboard')
     .controller('LookingDetailsCtrl', LookingDetailsCtrl);
 
-  LookingDetailsCtrl.$inject = ['getEducations', 'common', 'getLookingById', 'currentUser'];
+  LookingDetailsCtrl.$inject = ['common', 'getLookingById', 'currentUser'];
 
-  function LookingDetailsCtrl(getEducations, common, getLookingById, currentUser) {
+  function LookingDetailsCtrl(common, getLookingById, currentUser) {
     var vm = this;
     /*
      *  Fetch all required data for controller from route resolve
      */
     vm.me = currentUser;
     vm.tempMe = Object.create(vm.me);
-    vm.education = getEducations;
     vm.lookingDetail = getLookingById;
-
-    //console.log('Looking Detail: ', vm.lookingDetail);
-
     mixpanel.track('looking detail');
 
-
   }
-
 
 }());

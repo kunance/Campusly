@@ -30,20 +30,6 @@
      /* vm.availableRooms = availRooms;
      console.log("availableRooms: ", vm.availableRooms); */
    });
-    vm.aaa = aaa;
-    function aaa() {
-     $filter('orderBy', vm.availableRooms, vm.mySortFunction(), vm.asc);
-      //console.log(vm.availableRooms);
-
-
-
-        vm.groups =  vm.availableRooms.inGroupsOf(8);
-       // vm.groups.splice(0,1)
-        /* vm.availableRooms = availRooms;
-         console.log("availableRooms: ", vm.availableRooms); */
-
-
-    };
 
     function orderSliderButtons() {
       setTimeout(function() {

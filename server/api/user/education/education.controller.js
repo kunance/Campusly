@@ -4,6 +4,7 @@ var _ = require('lodash');
 var sqldb = require('../../../sqldb');
 var User = sqldb.model('rentedUser');
 var Education = sqldb.model('userEducation');
+var University = sqldb.model('university');
 var passport = require('passport');
 var config = require('../../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -53,12 +54,21 @@ function adoptData(input) {
 }
 
 exports.showEducations= function(req, res, next) {
+  var UniversityAtts = ['latitude', 'longitude', 'name'];
   //Education.findAll({where:{userId:req.user.id}})
-  Education.findOne({where:{userId:req.userId}})
+  Education.findOne({
+    where:
+    {
+      userId:req.userId
+    },
+      include: [
+        { model: University, attributes:UniversityAtts, as: 'relatedUniversityId'}
+      ]
+  }
+  )
     .then(function (educations) {
-      console.log(educations);
       if(educations){
-      res.json(adoptData(educations));
+          res.json(adoptData(educations));
       }else{
         res.json({});
       }

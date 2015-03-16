@@ -16,9 +16,8 @@
             controllerAs:'dashboard',
             authenticate: true,
             resolve:{
-              currentUser: getCurrentUser,
-              currentUserLookings:getUserLookings,
-              allLooking:allLooking
+              currentUser:getCurrentUser,
+              data:getData
             }
           });
       }
@@ -32,15 +31,13 @@
     return deferred.promise;
   }
 
-  getUserLookings.$inject = ['common', 'currentUser'];
-  function getUserLookings(common, currentUser) {
-      return common.dataservice.getAllLookings(currentUser.id);
-  }
-
-  allLooking.$inject = ['common', 'currentUser'];
-  function allLooking(common, currentUser) {
-    if(currentUser){
-    return common.dataservice.getEveryLooking();}
+  getData.$inject = ['$q', 'common', 'currentUser', 'RoomListingView', 'RoomListing'];
+  function getData($q, common, currentUser, RoomListingView, RoomListing) {
+    var allLookings = common.dataservice.getEveryLooking();
+    var getUserLookings = common.dataservice.getAllLookings(currentUser.id);
+    var allRoomListing = RoomListingView.query();
+    var userRoomLookings = RoomListing.query({userId: currentUser.id});
+    return $q.all([allLookings.$promise, getUserLookings.$promise, allRoomListing.$promise, userRoomLookings.$promise]);
   }
 
 }());

@@ -7,36 +7,19 @@
   .controller('DashboardCtrl',DashboardCtrl);
 
 
-  DashboardCtrl.$inject=
-    ['common', '$scope', 'currentUserLookings', 'allLooking', 'RoomListingView', 'RoomListing', 'distanceCalculator', 'currentUser'];
+  DashboardCtrl.$inject= ['common', '$scope', 'distanceCalculator', 'currentUser', 'data'];
 
-  function DashboardCtrl(
-    common, $scope, currentUserLookings, allLooking, RoomListingView, RoomListing, distanceCalculator, currentUser) {
+  function DashboardCtrl(common, $scope, distanceCalculator, currentUser, data) {
     var vm = this;
     /*
      *  Fetch all required data for controller from route resolve
      */
+    vm.busy = data; //one promise witch need to be resolved in order to initialize controller (we use for show busy sign)
     vm.me = currentUser;
-    vm.lookingRoom = allLooking;
-    vm.userLookings = currentUserLookings;
-    //console.log('currentUserLookings:', currentUserLookings);
-    /*
-     *  Fetching rooms data, TODO rework to resolve data before view resolve (to be consistent)
-     */
-    vm.availableRooms = RoomListingView.query(function() {
-      //console.log('Available rooms: ', vm.availableRooms);
-    });
-    //console.log('room view: ', vm.availableRooms);
-    vm.myRoomListings = RoomListing.query({userId: vm.me.id}, function() {
-      //console.log('My room listings: ', vm.myRoomListings);
-    });
-    /*
-     *  around you mock data ()
-     *
-    common.$http.get("../assets/fake/around_you.json")
-    .success(function(data){
-      vm.aroundYou = data;
-    });*/
+    vm.lookingRoom = data[0];
+    vm.userLookings = data[1];
+    vm.availableRooms = data[2];
+    vm.myRoomListings = data[3];
     /*
      *  prerender.io
      */

@@ -19,7 +19,7 @@
             getLooking:getLooking
           }
         });
-    };
+    }
 
   getCurrentUser.$inject = ['common', '$q'];
   function getCurrentUser(common, $q) {

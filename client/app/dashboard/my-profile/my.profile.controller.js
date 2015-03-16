@@ -5,24 +5,22 @@
   .module('app.dashboard')
   .controller('MyProfileCtrl', MyProfileCtrl);
 
-  MyProfileCtrl.$inject = ['$scope', 'common', 'currentUser', 'getAddresses', 'getEducations', 'getAllRoommates', 'getAllUsers', 'getPets', 'getVehicles'];
+  MyProfileCtrl.$inject = ['$scope', 'common', 'currentUser', 'data'];
 
-  function MyProfileCtrl($scope, common, currentUser, getAddresses, getEducations, getAllRoommates, getAllUsers, getPets, getVehicles) {
+  function MyProfileCtrl($scope, common, currentUser, data) {
     var vm = this;
     /*
      *  Fetch all required data for controller from route resolve
      */
     vm.me = currentUser;
     vm.tempMe = Object.create(vm.me);
-    vm.address = getAddresses;
-    vm.education = getEducations;
-    vm.users = getAllUsers;
-    vm.roommates = getAllRoommates || []; //roommate info, his education info, his address info
-
-    vm.pets = getPets;
-    vm.vehicles = getVehicles;
-    //console.log(vm.roommates.length);
-    console.log('current roommates: ',vm.roommates);
+    vm.education = data[0];
+    console.log('FRAX:' ,vm.education);
+    vm.address = data[1];
+    vm.users = data[2];
+    vm.roommates = data[3] || []; //roommate info, his education info, his address info
+    vm.pets = data[4];
+    vm.vehicles = data[5];
     /*
      *  showing/hiding partials
      */
