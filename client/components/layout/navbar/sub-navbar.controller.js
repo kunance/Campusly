@@ -11,9 +11,9 @@
     var vm = this;
 
     vm.tabs = [
-      { title:"Dashboard", sref:"dashboard", active: true },
-      { title:"Available rooms", sref:"rooms"},
-      { title:"Looking", sref:"looking"}];
+      { title:"Home", sref:"dashboard", active: true },
+      { title:"Available Rooms", sref:"rooms"},
+      { title:"Looking for Rooms", sref:"looking"}];
   }
 
 
