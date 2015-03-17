@@ -584,10 +584,6 @@ Padding for lead message
 .lead-msg{
 }
 
-.lead-msg.primary {
-  color: #f7953d;
-}
-
 /* ==========================================================================
 Padding for lead image
 ========================================================================== */
@@ -842,9 +838,9 @@ For mailchimp sign-up - not needed in main app
 }
 
 @media only screen and (min-width : 992px) {
-  h1{
-    font-size: 3.5em;
-    font-weight: 600;
+  .lead-msg h1{
+    font-size: 3em;
+    padding: 50px 100px;
   }
 
   /* ==========================================================================
@@ -864,9 +860,6 @@ For mailchimp sign-up - not needed in main app
     font-size: 1.2em;
   }
 
-  .lead-msg {
-    padding: 50px 100px;
-  }
   footer .logo {
     text-align: left;
     margin-bottom: 0px;
@@ -1265,6 +1258,14 @@ Media query
     top: auto;
     left: auto;
   }
+
+  .jumbotron .lead-btn {
+    margin-left: -40px;
+  }
+
+  .jumbotron .lead-img {
+    width: 100%;
+  }
 }
 
 /* White box */
@@ -1311,14 +1312,58 @@ Contact bubble
 
 .contact-bubble-email {
   background: #f7953d;
-  width: 3em;
-  height: 3em;
+  width: 4em;
+  height: 4em;
   border-radius: 50%;
   display: inline-block;
   text-align: center;
   padding-top: 11px;
 }
 
+/* ==========================================================================
+New bubble - to fix Safari issues
+========================================================================== */
+
+.new-bubble {
+  background: #f7953d;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.new-bubble i{
+  color: #ffffff;
+}
+
+.new-bubble.remove {
+  background: rgb(245,27,87);
+}
+
+.new-bubble.cancel {
+  background: #ccc;
+}
+
+/* ==========================================================================
+Profile bubble - to fix Safari issues
+========================================================================== */
+
+.profile-bubble {
+  background: #f7953d;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  padding-top: 5px;
+  margin-top: 25px;
+}
+
+.profile-bubble i{
+  color: #ffffff;
+}
 
 /* ==========================================================================
 Bubble for all posts
@@ -2388,13 +2433,14 @@ a.view-all {
 }
 .room-detail .highlights .distances a.distance-bubble {
   background: #e8e8e8;
-  width: 4em;
-  height: 4em;
+  width: 5.8em;
+  height: 5.8em;
   border-radius: 50%;
   display: inline-block;
   margin: 0 10px;
   text-align: center;
   padding-top: 15px;
+  text-decoration: none;
 }
 
 .room-detail .highlights .distances a.distance-bubble:first-child {
