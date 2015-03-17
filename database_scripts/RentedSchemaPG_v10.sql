@@ -1363,7 +1363,7 @@ CREATE TABLE rented_user (
 );
 
 
-rented_user OWNER TO postgres;
+ALTER TABLE rented_user OWNER TO postgres;
 
 --
 -- TOC entry 214 (class 1259 OID 27626)
