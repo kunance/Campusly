@@ -33,8 +33,13 @@
 
           directionsService.route(request, function (response, status) {
             if (status == google.maps.DirectionsStatus.OK) {
-              //deferred.resolve(response.routes[0].legs[0].distance);
-              deferred.resolve(response.routes[0].legs[0].duration);
+              var calculateBy = ['duration','distance'];
+              var obj = {};
+              for (var i = 0; i < calculateBy.length; i += 1) {
+                var by = calculateBy[i];
+                obj[calculateBy[i]] = response.routes[0].legs[0][by];
+              deferred.resolve(obj.duration);
+              }
             } else {
               deferred.reject('Error occurred while trying to calculate distance');
             }
@@ -57,6 +62,7 @@
         _(results).forEach(function (result) {
           _.merge(response, result);
         });
+        console.log(response);
         deferred.resolve(response);
       }, function (error) {
         logger.error('error while calculating distance');
@@ -67,8 +73,12 @@
    function calculate(source, destination, property, unitSystem) {
       var deferred = $q.defer();
         calculateDistance(source, destination, property, unitSystem).then(function (distance) {
+          var string = distance.text;
+          var minutesTrimm = string.replace(/mins/g,"m");
+          var hoursTrimm = minutesTrimm.replace(/hours/g,"h");
+          var finalString = hoursTrimm.replace(/days/g,"d");
           var obj = {};
-          obj[property] = (distance.text);
+          obj[property] = (finalString);
           deferred.resolve(obj);
         });
       return deferred.promise;
