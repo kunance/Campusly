@@ -67,9 +67,12 @@
       var deferred = $q.defer();
         calculateDistance(source, destination, property, unitSystem, DurDis).then(function (distance) {
           var string = distance.text;
-          var minutesTrimm = string.replace(/mins/g,"m");
-          var hoursTrimm = minutesTrimm.replace(/hours/g,"h");
-          var finalString = hoursTrimm.replace(/days/g,"d");
+          var minutesTrimmed = string.replace("mins","m");
+          var minuteTrimmed = minutesTrimmed.replace("min","m");
+          var hoursTrimmed = minuteTrimmed.replace("hours","h");
+          var hourTrimmed = hoursTrimmed.replace("hour","h");
+          var DayTrimmed = hourTrimmed.replace("days","d");
+          var finalString = DayTrimmed.replace("day","d");
           var obj = {};
           obj[property] = (finalString);
           deferred.resolve(obj);

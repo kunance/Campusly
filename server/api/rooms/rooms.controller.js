@@ -5,8 +5,7 @@ var User = sqldb.model('rentedUser');
 var Roommate = sqldb.model('roommate');
 var Education = sqldb.model('userEducation');
 var _ = require('lodash');
-
-
+var excludeService = require('../../services/exclude.own');
 
 /**
  * Retrieve a specific room listing with both the room listing and property details.  Default behavior is to return
@@ -20,12 +19,9 @@ var _ = require('lodash');
  */
 exports.getRoomListing = function(req, res, next) {
 
- // console.log('Getting room listing for: ', req.param("id") );
-
   var roomAttributes = ["id", "monthlyPrice", "securityDeposit", "availableMoveIn", "leaseEndDate", "leaseType", "gender",
     "monthlyUtilityCost", "roomType", "sharedBathroom", "numRoomates", "furnished", "parkingAvailable", "smokingAllowed", "petsAllowed",
     "description", "createdAt", "updatedAt", "creatorId"];
-
 
   var propertyAttributes = [ "streetNumeric", "streetAddress", "city", "state", "zip", "apt", "bldg", "latitude",
     "longitude", "type", "description", "bedrooms","bathrooms", "parkingSpots", "livingAreaSqFt", "hoaFee", "otherFee",
@@ -39,23 +35,23 @@ exports.getRoomListing = function(req, res, next) {
 
   RoomListing.find({
     where: {
-      id: req.param("id")
+      id: req.param("id"), activeRoom:true
     },
     attributes: roomAttributes,
     include: [
       {model: Property,  attributes: propertyAttributes, as: 'relatedPropertyId'},
       {
-        model: User, attributes: creatorAttributes, as: 'relatedCreatorId',
-        include: [
-          {
-            model: Roommate, as: 'roommateRommieIds',
-            include: [
-              {
-                model: User/*, attributes: roommateAttributes*/, as: 'relatedUserId',
-                include: [
-                  {model: Education/*, attributes:educationAttributes*/, as: 'usereducationUsers'}]
-              }]
-          }]
+        model: User, attributes: creatorAttributes, as: 'relatedCreatorId'
+        //include: [
+        //  {
+        //    model: Roommate, as: 'roommateRommieIds',
+        //    include: [
+        //      {
+        //        model: User/*, attributes: roommateAttributes*/, as: 'relatedUserId',
+        //        include: [
+        //          {model: Education/*, attributes:educationAttributes*/, as: 'usereducationUsers'}]
+        //      }]
+        //  }]
       }]
    })
     .then(function(roomListing) {
@@ -106,7 +102,6 @@ exports.getRoomListing = function(req, res, next) {
  * @param next
  */
 exports.getAllRoomListings = function(req, res, next) {
-
   var roomAttributes = ["id", "monthlyPrice", "securityDeposit", "availableMoveIn", "leaseEndDate", "leaseType", "gender",
     "monthlyUtilityCost", "roomType", "sharedBathroom", "numRoomates", "furnished", "parkingAvailable", "smokingAllowed",
     "description", "createdAt", "updatedAt", "creatorId"];
@@ -117,7 +112,16 @@ exports.getAllRoomListings = function(req, res, next) {
 
   var roomListingResponse = [];
 
-  RoomListing.findAll({  attributes: roomAttributes, include: [ {model: Property,  attributes: propertyAttributes, as: 'relatedPropertyId'}],  limit:100, order: '"monthlyPrice"'}).then(function(roomListings) {
+  RoomListing.findAll({
+    where:{
+      activeRoom:true
+    },
+    attributes: roomAttributes,
+    include:
+      [ {model: Property,  attributes: propertyAttributes, as: 'relatedPropertyId'}],
+          limit:100,
+          order: '"monthlyPrice"'})
+    .then(function(roomListings) {
 
     roomListings.forEach(function(e, i, a) {
       var roomDetails = e.dataValues;
@@ -131,13 +135,12 @@ exports.getAllRoomListings = function(req, res, next) {
 
       var mashed = _.extend({}, { roomDetails: roomDetails }, { propertyDetails: propertyDetails } );
       delete mashed.roomDetails.relatedPropertyId;
-
       roomListingResponse.push(mashed);
     });
 
    // console.log('Room Listings: ', roomListingResponse);
 
-    res.json(roomListingResponse);
+    res.json(excludeService.excludeOwn(roomListingResponse, req.user.id));
   });
 };
 

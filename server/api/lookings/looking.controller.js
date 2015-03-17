@@ -37,7 +37,7 @@ exports.showAllLookings= function(req, res, next) {
   var userAttributes = ['firstname', 'lastname', 'profileImage', 'aboutMe','id'];
   var lookingAttributes = ['maxMonthlyRent', 'gender', 'id', 'userId', 'moveInDate', 'roomType'];
   Looking.findAll({
-    where:{},
+    where:{activeLooking:true},
     attributes:lookingAttributes,
     include: [
       { model: User, attributes: userAttributes, as: 'relatedUserId',
@@ -56,7 +56,7 @@ exports.showSingleLooking= function(req, res, next) {
   var lookingId = req.params.id;
   var userAttributes = ['firstname', 'lastname', 'profileImage', 'aboutMe', 'email'];
   Looking.find({
-    where:{id: lookingId},
+    where:{id: lookingId, activeLooking:true},
     include: [
       { model: User, attributes: userAttributes, as: 'relatedUserId',
         include:[
@@ -67,7 +67,6 @@ exports.showSingleLooking= function(req, res, next) {
     ]
 
   }).then(function(lookings) {
-    console.log(lookings);
     res.json(lookings)
 
   }).catch(validationError(res));

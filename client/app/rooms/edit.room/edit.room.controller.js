@@ -44,6 +44,7 @@
       //   if(vm.room.$valid) {
       vm.room.creatorId = vm.me.id;
       RoomListing.edit( { userId: vm.me.id, id: roomId}, {room: vm.room}).$promise.then(function () {
+        common.logger.success('New Room added.');
         $state.go('dashboard');
       }, function (errors) {
         //TODO need a general error handling banner or scheme to broadcast a message on
@@ -53,7 +54,9 @@
     };
 
     vm.deleteRoom = function () {
-      RoomListing.delete( { userId: vm.me.id, id: roomId}).$promise.then(function () {
+      var input = {activeRoom: false};
+      RoomListing.edit( { userId: vm.me.id, id: roomId}, {room: input}).$promise.then(function () {
+        common.logger.success('Room deleted.');
         $state.go('dashboard');
       }, function (errors) {
         //TODO need a general error handling banner or scheme to broadcast a message on
@@ -86,7 +89,7 @@
       endDate:false
     };
     vm.address = {};
-    $scope.format = 'dd.MM.yyyy';
+    $scope.format = 'MM/dd/yyyy';
     $scope.clear = function () {
       $scope.dt = null;
     };

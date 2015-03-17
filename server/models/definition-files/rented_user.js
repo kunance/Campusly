@@ -72,7 +72,6 @@ module.exports = {
         });
       },
       beforeCreate: function (user, fields, fn) {
-        user.validateEmail(user, fields, fn);
         user.updatePassword(fn);
       },
       beforeUpdate: function (user, fields, fn) {
@@ -224,16 +223,6 @@ module.exports = {
           fn(null);
         }
       },
-
-      validateEmail: function (user, fields, fn) {
-        console.log(this);
-        //this.find({where:{email:user.email}}).then(function (user) {
-        //  console.log(user);
-        //});
-        fn(null);
-      }
-
-
     }
   },
   attributes: {

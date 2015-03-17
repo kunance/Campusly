@@ -3,7 +3,7 @@ var RoomListing = sqldb.model('roomListing');
 var Property = sqldb.model('property');
 var propertySrv = require('../../../services/property.service');
 var _ = require('lodash');
-
+var excludeService = require('../../../services/exclude.own');
 
 
 function transView2ModelRoomDetails(viewRoomDetails) {
@@ -33,7 +33,7 @@ function transModel2ViewRoomDetails(viewRoomDetails) {
  * @param next
  */
 exports.createRoomListing = function(req, res, next) {
-
+  req.body.room.activeRoom = true;
   var propertyDetails = _.clone(req.body.property);
 
   propertySrv.transView2ModelPropertyDetails(propertyDetails, function(err, transPropertyDetails) {
@@ -91,7 +91,7 @@ exports.getRoomListing = function(req, res, next) {
     "description", "bedrooms","bathrooms", "parkingSpots", "livingAreaSqFt", "hoaFee", "otherFee", "status" ];
 
 
-  RoomListing.find({where: { id: req.params.id, creatorId: req.userId }, attributes: roomAttributes, include:
+  RoomListing.find({where: { id: req.params.id, creatorId: req.userId, activeRoom:true }, attributes: roomAttributes, include:
     [ {model: Property,  attributes: propertyAttributes, as: 'relatedPropertyId'}]})
     .then(function(roomListing) {
       if(roomListing.status && roomListing.status !== 200) {
@@ -128,7 +128,7 @@ exports.getAllRoomListings = function(req, res, next) {
   var propertyAttributes = [ "streetNumeric", "streetAddress", "city", "state", "zip", "apt", "bldg", "latitude", "longitude", "type",
     "description", "bedrooms","bathrooms", "parkingSpots", "livingAreaSqFt", "hoaFee", "otherFee", "status" ];
 
-  RoomListing.findAll({where: { creatorId: req.userId }, attributes: roomAttributes, include:
+  RoomListing.findAll({where: { creatorId: req.userId, activeRoom:true }, attributes: roomAttributes, include:
     [ {model: Property,  attributes: propertyAttributes, as: 'relatedPropertyId'}]})
     .then(function(roomListings) {
       if(roomListings.status && roomListings.status !== 200) {
@@ -155,7 +155,7 @@ exports.getAllRoomListings = function(req, res, next) {
 exports.editRoomListing = function(req, res, next) {
 
 
-  RoomListing.find({where: {id: req.params.id, creatorId: req.userId}})
+  RoomListing.find({where: {id: req.params.id, creatorId: req.userId, activeRoom:true}})
     .then(function (roomListing) {
 
   //    console.log('original model from db:  ', roomListing);
