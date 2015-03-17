@@ -131,11 +131,19 @@
                         <div class="info" >
                           <span class='value'>{{room.monthlyPrice |currency}}</span>
                           <span class='address'><i class="fa fa-transgender"></i> Gender: {{room.gender}} </span>
-                          <span class='address'><i class="fa fa-users"></i> Max roommates: {{room.numRoommates}} </span>
+                          <span class='address'><i class="fa fa-users"></i> Max roommates: {{room.numRoomates}} </span>
+
                       <span class="elapsed-time">
-                        <small><i class="fa fa-clock-o"></i> Posted: {{room.createdAt | date:'longDate'}}, edited: </small>
-                        <small ng-if="room.updatedAt" am-time-ago="room.updatedAt"><i class="fa fa-clock-o"></i></small>
+                        <small><i class="fa fa-clock-o"></i>&nbsp{{room.createdAt | date:'longDate'}}</small>
                       </span>
+
+                      <span class="elapsed-time" ng-if="room.updatedAt">
+                           <small><i class="fa fa-pencil"></i></small>
+                           <small am-time-ago="room.updatedAt"></small>
+                      </span>
+
+
+
                         </div>
                       </div>
 
@@ -187,10 +195,16 @@
                           <span class='value'>{{look.maxMonthlyRent |currency}}</span>
                           <span class='address'><i class="fa fa-transgender"></i> Gender: {{look.gender}} </span>
                           <span class='address'><i class="fa fa-users"></i> Max roommates: {{look.numRoommates}} </span>
+
                       <span class="elapsed-time">
-                        <small><i class="fa fa-clock-o"></i> Posted: {{look.createdAt | date:'longDate'}}, edited: </small>
-                        <small ng-if="look.updatedAt" am-time-ago="look.updatedAt"><i class="fa fa-clock-o"></i></small>
+                        <small><i class="fa fa-clock-o"></i>&nbsp{{look.createdAt | date:'longDate'}}</small>
                       </span>
+
+                      <span class="elapsed-time" ng-if="look.updatedAt">
+                         <small><i class="fa fa-pencil"></i></small>
+                         <small am-time-ago="look.updatedAt"></small>
+                      </span>
+
                         </div>
                       </div>
                     </a>

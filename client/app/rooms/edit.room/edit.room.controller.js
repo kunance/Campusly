@@ -89,7 +89,7 @@
       endDate:false
     };
     vm.address = {};
-    $scope.format = 'dd.MM.yyyy';
+    $scope.format = 'MM/dd/yyyy';
     $scope.clear = function () {
       $scope.dt = null;
     };

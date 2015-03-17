@@ -102,7 +102,6 @@ exports.getRoomListing = function(req, res, next) {
  * @param next
  */
 exports.getAllRoomListings = function(req, res, next) {
-  console.log(req.user.id);
   var roomAttributes = ["id", "monthlyPrice", "securityDeposit", "availableMoveIn", "leaseEndDate", "leaseType", "gender",
     "monthlyUtilityCost", "roomType", "sharedBathroom", "numRoomates", "furnished", "parkingAvailable", "smokingAllowed",
     "description", "createdAt", "updatedAt", "creatorId"];
