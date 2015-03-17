@@ -30,36 +30,35 @@
               {{room.roomDetail.propertyDetails.streetNumeric}} {{room.roomDetail.propertyDetails.streetAddress}} {{room.roomDetail.propertyDetails.apt}}, {{room.roomDetail.propertyDetails.city}} {{room.roomDetail.propertyDetails.zip}}
             </p>
 
-            <div ng-if="room.roomDetail.propertyDetails.coords" class="distances">
+            <div ng-if="room.education.id" class="distances">
               <!-- call google maps api to get distance from students address to students university of record .. walking, bus, driving -->
 
               <p>
 
                 <!-- TODO insert real distance from university -->
 
-                <span class="distance"> <i class="fa fa-map-marker"></i>&nbsp;&nbsp;10 miles from {{room.education.relatedUniversityId.name}}</span>
+                <span class="distance" ng-if="room.distance.DRIVING"> <i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{room.distance.DRIVING}}les from {{room.education.relatedUniversityId.name}}</span>
                 <br><br>
               </p>
 
               <a class="distance-bubble">
                 <i class="fa fa-car fa-lg"></i>
-                <!--<span><br>{{room.distance.DRIVING}}</span>-->
-                <span><br>{{room.distance.DRIVING}}</span> <!-- Example TODO remove example -->
+                <span class="top15">{{room.duration.DRIVING}}</span>
               </a>
 
               <a class="distance-bubble">
                 <i class="fa fa-bicycle fa-lg"></i>
-                <span><br>{{room.distance.BICYCLING}}</span>
+                <span class="top15">{{room.duration.BICYCLING}}</span>
               </a>
 
               <a class="distance-bubble">
                 <i class="fa fa-child fa-lg"></i>
-                <span><br>{{room.distance.WALKING}}</span>
+                <span class="top15">{{room.duration.WALKING}}</span>
               </a>
 
             </div>
 
-            <div ng-show="!room.roomDetail.propertyDetails.coords">
+            <div ng-show="!room.education.id">
               <br>
               <h3><a ui-sref="myProfile">Update Profile</a> & view distance from your university</h3>
             </div>

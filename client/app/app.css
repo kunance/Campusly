@@ -2431,6 +2431,11 @@ a.view-all {
 .room-detail .highlights .distances {
   margin: 20px 0;
 }
+
+.top15{
+  margin-top: 15px;
+}
+
 .room-detail .highlights .distances a.distance-bubble {
   background: #e8e8e8;
   width: 5.8em;

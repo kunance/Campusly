@@ -16,11 +16,15 @@
     vm.creatorEmail = data[1].roomDetails.relatedCreatorId.email;
     vm.creatorRoommates = getCreatorRoommates;
     var source = vm.education.relatedUniversityId;
-    var destination =  vm.roomDetail.propertyDetails.coords;
-    distanceCalculator.calculateDistanceForEveryTransport(source,destination).then(function (data) {
-      vm.distance = data;
-    });
-
+    var destination = vm.roomDetail.propertyDetails.coords;
+    if (vm.education.id) {
+      distanceCalculator.calculateDistanceForEveryTransport(source, destination, 'duration').then(function (data) {
+        vm.duration = data;
+      });
+      distanceCalculator.calculateDistanceForEveryTransport(source, destination, 'distance').then(function (data) {
+        vm.distance = data;
+      });
+    }
     mixpanel.track('roomDetail view');
   }
 }());

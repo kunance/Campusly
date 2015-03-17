@@ -17,7 +17,7 @@
     };
 
     return service;
-    function calculateDistance(srcLatLong, destLatLong, mode, Unit, transit) {
+    function calculateDistance(srcLatLong, destLatLong, mode, Unit, DurDis) {
       var deferred = $q.defer();
       maps.then(function(m) {
           var directionsService = new m.DirectionsService();
@@ -33,13 +33,7 @@
 
           directionsService.route(request, function (response, status) {
             if (status == google.maps.DirectionsStatus.OK) {
-              var calculateBy = ['duration','distance'];
-              var obj = {};
-              for (var i = 0; i < calculateBy.length; i += 1) {
-                var by = calculateBy[i];
-                obj[calculateBy[i]] = response.routes[0].legs[0][by];
-              deferred.resolve(obj.duration);
-              }
+              deferred.resolve(response.routes[0].legs[0][DurDis]);
             } else {
               deferred.reject('Error occurred while trying to calculate distance');
             }
@@ -49,20 +43,19 @@
       return deferred.promise;
   }
 
-   function calculateDistanceForEveryTransport(src,dest) {
+   function calculateDistanceForEveryTransport(src,dest,DurDis) {
       var deferred = $q.defer();
       var modes = ['DRIVING', 'WALKING', 'BICYCLING'];
       var unitSystem = 'IMPERIAL';
       var promises = [];
       for (var i = 0; i < modes.length; i += 1) {
-        promises.push(calculate(src, dest, modes[i], unitSystem));
+        promises.push(calculate(src, dest, modes[i], unitSystem, DurDis));
       }
       $q.all(promises).then(function (results) {
         var response = {};
         _(results).forEach(function (result) {
           _.merge(response, result);
         });
-        console.log(response);
         deferred.resolve(response);
       }, function (error) {
         logger.error('error while calculating distance');
@@ -70,9 +63,9 @@
       return deferred.promise;
    }
 
-   function calculate(source, destination, property, unitSystem) {
+   function calculate(source, destination, property, unitSystem, DurDis) {
       var deferred = $q.defer();
-        calculateDistance(source, destination, property, unitSystem).then(function (distance) {
+        calculateDistance(source, destination, property, unitSystem, DurDis).then(function (distance) {
           var string = distance.text;
           var minutesTrimm = string.replace(/mins/g,"m");
           var hoursTrimm = minutesTrimm.replace(/hours/g,"h");
