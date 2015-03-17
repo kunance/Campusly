@@ -12,14 +12,20 @@
     <form class="main-form" name="form" ng-submit="login(form)" novalidate>
 
       <label class="lbl">
-        <input id="email" type="email" name="email" ng-model="user.email" placeholder="Email address (.edu required)" required>
+        <input id="email" type="email" name="email" ng-model="user.email" placeholder="Email address (.edu required)" ng-class="{ 'has-success': form.email.$valid && submitted, 'has-error': form.email.$invalid && submitted || errors.other.mail}" required>
       </label>
 
       <label class="lbl">
-        <input type="password" name="password" id="password" ng-model="user.password" required placeholder="Password">
+        <input type="password" name="password" id="password" ng-model="user.password" placeholder="Password" ng-class="{ 'has-success': form.password.$valid && submitted, 'has-error': form.password.$invalid && submitted || errors.other.password }" required>
       </label>
 
-      <p class="help-block">{{ errors.other }}</p>
+      <p class="help-block" ng-if="errors.other.mail">{{ errors.other.mail }}</p>
+      <p class="help-block" ng-if="errors.other.password">{{ errors.other.password }}</p>
+      <div class="top15">
+        <p class="help-block" ng-show="form.email.$error.required && submitted">What's your email address?</p>
+        <p class="help-block" ng-show="form.email.$error.email && submitted">Doesn't look like a valid email.</p>
+        <p class="help-block" ng-show="form.password.$error.required && submitted">Please enter your password.</p>
+      </div>
 
       <div class="options">
         <input type="submit" value="Sign me in!" class="lrg-btn submit">
