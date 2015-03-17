@@ -73,14 +73,13 @@ module.exports = {
             field: "leaseEndDate"
         },
         "leaseType": {
-            type: Seq.ENUM('sub-lease', 'month-to-month', 'lease take over'),
+            type: Seq.ENUM('sub-lease', 'month-to-month', '"lease take over"'),
             field: "leaseType",
             allowNull: false
         },
         "gender": {
-            type: Seq.ENUM('no preference', 'male only', 'female only'),
-            field: "gender",
-            allowNull: false
+            type: Seq.ENUM('"no preference"', '"male only"', '"female only"'),
+            field: "gender"
         },
         "monthlyUtilityCost": {
             type: Seq.INTEGER,
@@ -88,9 +87,8 @@ module.exports = {
             allowNull: false
         },
         "roomType": {
-            type: Seq.ENUM('single', 'double', 'loft', 'living room'),
-            field: "roomType",
-            allowNull: false
+            type: Seq.ENUM('single', 'double', 'loft', '"living room"'),
+            field: "roomType"
         },
         "sharedBathroom": {
             type: Seq.BOOLEAN,
@@ -116,6 +114,11 @@ module.exports = {
         "petsAllowed": {
             type: Seq.BOOLEAN,
             field: "petsAllowed"
+        },
+        "activeRoom": {
+            type: Seq.BOOLEAN,
+            field: "activeRoom",
+            allowNull: false
         },
         "description": {
             type: Seq.TEXT,
