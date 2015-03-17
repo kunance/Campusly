@@ -48,7 +48,8 @@
       };
 
     vm.deleteLooking = function () {
-      common.dataservice.deleteLooking(vm.me.id, lookingId, function () {
+      var input = {activeLooking:false};
+      common.dataservice.editLooking(vm.me.id, lookingId, input, function () {
         common.logger.success('Looking deleted');
         common.$state.go('dashboard', {}, {reload: true});
       })

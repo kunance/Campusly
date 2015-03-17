@@ -33,6 +33,7 @@ function respondWith(res, statusCode) {
 exports.newLooking = function(req, res, next) {
   req.body.userId = req.user.id;
   req.body.createdAt = new Date();
+  req.body.activeLooking = true;
   var newLooking = Looking.build(req.body);
   newLooking.save()
     .then(function(looking) {
@@ -42,7 +43,7 @@ exports.newLooking = function(req, res, next) {
 };
 
 exports.showLookings = function(req, res, next) {
-  Looking.findAll({where:{userId:req.user.id}})
+  Looking.findAll({where:{userId:req.user.id, activeLooking:true}})
     .then(function (lookigs) {
       res.json(lookigs);
     })
@@ -56,7 +57,7 @@ exports.deleteLooking= function(req, res, next) {
 };
 
 exports.getLooking = function(req, res, next) {
-  Looking.find({where: { id: req.params.id }})
+  Looking.find({where: { id: req.params.id, activeLooking:true }})
     .then(function (looking) {
       res.json(looking);
     })
@@ -65,7 +66,7 @@ exports.getLooking = function(req, res, next) {
 
 exports.saveLooking = function(req, res, next) {
   req.body.updatedAt = new Date();
-  Looking.find({where: { id: req.params.id }})
+  Looking.find({where: { id: req.params.id, activeLooking:true }})
     .then(function (looking) {
       var updated = _.merge(looking, req.body);
       updated.save().then(function (upd) {

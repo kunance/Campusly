@@ -34,7 +34,7 @@
     function orderSliderButtons() {
       setTimeout(function() {
         $(".slider").each(function(index) {
-          var slider = $(".slider").eq(index)
+          var slider = $(".slider").eq(index);
           var dotsX = parseInt(slider.find(".slick-dots").css("left"));
           var dotsSize = parseInt(slider.find(".slick-dots").css("width"));
           var nextBtnX = dotsX + dotsSize + 10;

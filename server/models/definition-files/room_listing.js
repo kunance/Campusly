@@ -116,6 +116,11 @@ module.exports = {
         "petsAllowed": {
             type: Seq.BOOLEAN,
             field: "petsAllowed"
+      },
+        "activeRoom": {
+            type: Seq.BOOLEAN,
+            field: "activeRoom",
+            allowNull: false
         },
         "description": {
             type: Seq.TEXT,

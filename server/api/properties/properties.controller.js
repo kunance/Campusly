@@ -72,21 +72,3 @@ exports.createProperty = function(req, res, next) {
     }).catch(validationError(res));
 
 };
-
-//return sequelize.transaction(function (call) {
-//  return Property.create({
-//    //ode ide property
-//  }, {transaction: t}).then(function (property) {
-//    return Ownership.create({
-//      //ide iskoristiš id od propertia
-//    }, {transaction: t}).then(function (ownership) {
-//      return Owner.create({
-//        //ide iskoristiš id od ownershipa + id od rented_usera
-//      }, {transaction: t});;
-//    });
-//  }).then(function (result) {
-//    //ovaj then se izvrši kad je sve prošlo u redu
-//  }).catch(function (err) {
-//    // ovaj catch se izvrši ako je bilo koji od koraka roknija
-//
-//  });

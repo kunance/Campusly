@@ -108,6 +108,11 @@ module.exports = {
             type: Seq.BOOLEAN,
             field: "smokingAllowed"
         },
+        "activeLooking": {
+            type: Seq.BOOLEAN,
+            field: "activeLooking",
+            allowNull: false
+        },
         "petsAllowed": {
             type: Seq.BOOLEAN,
             field: "petsAllowed"
