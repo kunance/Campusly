@@ -4,11 +4,19 @@
 
   <div class="container my-profile">
 
-    <div ui-view="">
-      <div class="page-header">
-        <h2> Your Profile </h2>
-        <a class="bubble edit-profile" ui-sref="editProfile"> <i class="fa fa-pencil"></i> </a>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+        <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
+          <div class="page-header">
+            <h2> Your Profile </h2>
+          </div>
+        </div>
+          <div class="col-xs-3 col-sm-8 col-md-8 col-lg-8">
+            <a class="profile-bubble edit-profile pull-right" ui-sref="editProfile"> <i class="fa fa-pencil"></i> </a>
+        </div>
       </div>
+
+
       <div class="white-box">
         <div class="row about-me">
           <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
@@ -139,7 +147,7 @@
                 <span class="university" ng-if="!roommate.relatedRoommateId.usereducationUsers[0].educationCenterName">University not added</span>
               </div>
               <div class="actions col-xs-4">
-                <a class="bubble remove" ng-click="myProfile.removeRoommate(roommate)"><i class="fa fa-trash-o"></i></a>
+                <a class="new-bubble remove" ng-click="myProfile.removeRoommate(roommate)"><i class="fa fa-trash-o"></i></a>
               </div>
             </div>
 
@@ -150,7 +158,7 @@
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
           <div class="page-header">
             <h2 class="section-title"> Pets & Vehicles </h2>
-            <a class="bubble edit-profile" ng-click="myProfile.togglePetAddon()">
+            <a class="bubble" ng-click="myProfile.togglePetAddon()">
               <i class="fa fa-plus" ng-hide="myProfile.showPetAddonButtons"></i>
               <i class="fa fa-minus" ng-show="myProfile.showPetAddonButtons"></i>
             </a>
@@ -232,10 +240,10 @@
                 </span>
               </div>
               <div class="actions col-xs-4">
-                <a class="bubble" ng-click="myProfile.editPet($index)" ng-show="myProfile.selectedPet != $index"><i class="fa fa-pencil"></i></a>
-                <a class="bubble cancel" ng-click="myProfile.cancelPetAddAddon()" ng-hide="myProfile.selectedPet != $index"><i class="fa fa-close"></i></a>
-                <a class="bubble" ng-show="myProfile.selectedPet == $index" ng-click="myProfile.savePet(pet)"><i class="fa fa-save"></i></a>
-                <a class="bubble remove" ng-click="myProfile.deletePet(pet)" ng-show="myProfile.selectedPet == $index"><i class="fa fa-trash-o"></i></a>
+                <a class="new-bubble" ng-click="myProfile.editPet($index)" ng-show="myProfile.selectedPet != $index"><i class="fa fa-pencil"></i></a>
+                <a class="new-bubble cancel" ng-click="myProfile.cancelPetAddAddon()" ng-hide="myProfile.selectedPet != $index"><i class="fa fa-close"></i></a>
+                <a class="new-bubble" ng-show="myProfile.selectedPet == $index" ng-click="myProfile.savePet(pet)"><i class="fa fa-save"></i></a>
+                <a class="new-bubble remove" style="color: red" ng-click="myProfile.deletePet(pet)" ng-show="myProfile.selectedPet == $index"><i class="fa fa-trash-o"></i></a>
               </div>
             </div>
 
@@ -255,10 +263,10 @@
                 </span>
               </div>
               <div class="actions col-xs-4">
-                <a class="bubble" ng-click="myProfile.editVehicle($index)" ng-show="myProfile.selectedVehicle != $index"><i class="fa fa-pencil"></i></a>
-                <a class="bubble cancel" ng-click="myProfile.cancelVehicleAddAddon()" ng-hide="myProfile.selectedVehicle != $index"><i class="fa fa-close"></i></a>
-                <a class="bubble" ng-show="myProfile.selectedVehicle == $index" ng-click="myProfile.saveVehicle(vehicle)"><i class="fa fa-save"></i></a>
-                <a class="bubble remove" ng-click="myProfile.deleteVehicle(vehicle)" ng-show="myProfile.selectedVehicle == $index"><i class="fa fa-trash-o"></i></a>
+                <a class="new-bubble" ng-click="myProfile.editVehicle($index)" ng-show="myProfile.selectedVehicle != $index"><i class="fa fa-pencil"></i></a>
+                <a class="new-bubble cancel" ng-click="myProfile.cancelVehicleAddAddon()" ng-hide="myProfile.selectedVehicle != $index"><i class="fa fa-close"></i></a>
+                <a class="new-bubble" ng-show="myProfile.selectedVehicle == $index" ng-click="myProfile.saveVehicle(vehicle)"><i class="fa fa-save"></i></a>
+                <a class="new-bubble remove" ng-click="myProfile.deleteVehicle(vehicle)" ng-show="myProfile.selectedVehicle == $index"><i class="fa fa-trash-o"></i></a>
               </div>
             </div>
           </div>
