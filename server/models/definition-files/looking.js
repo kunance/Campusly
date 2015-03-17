@@ -10,7 +10,7 @@ To modify this model:
 3. Use utility methods to easily access orm properties.
 
 "use strict";
-var orm     = require('models\index.js'),
+var orm     = require('temp_models/index.js'),
     model   = require('./looking.js'),
     util    = require('./utils.js')(model),
     Seq     = orm.Sequelize();
@@ -18,7 +18,7 @@ var orm     = require('models\index.js'),
 module.exports = model;
 
 // Some utility methods:
-
+util.getRelation("relatedUserId").onDelete = 'CASCADE';
 util.getAttribute("id").comment = 'This is the comment';
 
 ------------------------------------------------------------------------------------*/
@@ -28,7 +28,7 @@ module.exports = {
     modelName: "looking",
     options: {
         tableName: "looking",
-        //schema: "public",
+    //    schema: "public",
         timestamps: false
     },
     attributes: {
@@ -76,7 +76,7 @@ module.exports = {
             field: "openToFullYearLeaseNewRoomates"
         },
         "roomType": {
-            type: Seq.ENUM('single', 'double', 'living room'),
+            type: Seq.ENUM('single', 'double', '"living room"'),
             field: "roomType"
         },
         "sharedBathroom": {
@@ -84,9 +84,8 @@ module.exports = {
             field: "sharedBathroom"
         },
         "gender": {
-            type: Seq.ENUM('no preference', 'male only', 'female only'),
-            field: "gender",
-            allowNull: false
+            type: Seq.ENUM('"no preference"', '"male only"', '"female only"'),
+            field: "gender"
         },
         "numRoommates": {
             type: Seq.INTEGER,
@@ -130,25 +129,25 @@ module.exports = {
             type: Seq.DATE,
             field: "deletedAt"
         },
-      "userId": {
-        type: Seq.BIGINT,
-        field: "userId",
-        allowNull: false,
-        references: "rented_user",
-        referencesKey: "userId"
-      }
+        "userId": {
+            type: Seq.BIGINT,
+            field: "userId",
+            allowNull: false,
+            references: "rented_user",
+            referencesKey: "userId"
+        }
     },
-  relations: [{
-    type: "belongsTo",
-    model: "rentedUser",
-    schema: "public",
-    table: "rented_user",
-    source: "generator",
-    details: {
-      as: "relatedUserId",
-      foreignKey: "userId",
-      onDelete: "NO ACTION",
-      onUpdate: "NO ACTION"
-    }
-  }]
+    relations: [{
+        type: "belongsTo",
+        model: "rentedUser",
+        schema: "public",
+        table: "rented_user",
+        source: "generator",
+        details: {
+            as: "relatedUserId",
+            foreignKey: "userId",
+            onDelete: "NO ACTION",
+            onUpdate: "NO ACTION"
+        }
+    }]
 };
