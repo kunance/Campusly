@@ -41,9 +41,16 @@
             vm.errors = {};
           // Update validity of form fields that match the sequelize errors
           if (err.name) {
-            angular.forEach(err.fields, function (field) {
-              form[field].$setValidity('mongoose', false);
-              vm.errors[field] = err.message;
+            angular.forEach(err.errors, function (field) {
+              //form[field.path].$setValidity('mongoose', false);
+              if (field.type == 'unique violation'){
+                field.message = 'That email address is already taken!';
+                vm.errors[field.path] = field.message;
+              }
+              if (field.type == 'Validation error'){
+                field.message = 'Your email have to finish with .edu!';
+                vm.errors[field.path] = field.message;
+              }
             });
           }
           });

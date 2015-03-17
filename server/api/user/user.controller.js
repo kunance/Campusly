@@ -16,14 +16,14 @@ var validationError = function(res, statusCode) {
   statusCode = statusCode || 422;
   return function(err) {
     console.log(err);
-    res.json(statusCode, err);
+    res.status(statusCode).json(err);
   };
 };
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
   return function(err) {
-    res.send(statusCode, err);
+    res.status(statusCode).json(err);
   };
 }
 function respondWith(res, statusCode) {
@@ -76,13 +76,11 @@ exports.me = function(req, res, next) {
  * Creates a new user
  */
 exports.create = function(req, res, next) {
-  console.log(req.body);
   User.find({
     where:{
       email:req.body.email
     }})
     .then(function (user) {
-     // if(!user){
         req.body.salt = "temporary";
         req.body.confirmedEmail = false;
         req.body.runIdentityCheck= false;
@@ -99,9 +97,6 @@ exports.create = function(req, res, next) {
             res.json({ token: token });
           })
           .catch(validationError(res));
-      //} else{
-      //  res.send(500);
-      //  }
     });
 };
 
