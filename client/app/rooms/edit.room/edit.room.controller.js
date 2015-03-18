@@ -5,39 +5,23 @@
     .module('app.dashboard')
     .controller('EditRoomCtrl',EditRoomCtrl);
 
-  EditRoomCtrl.$inject = ['$scope', '$state', '$stateParams', 'logger', 'FileUploader', 'common','RoomListing', 'getAllUsers', 'getAllRoommates', 'currentUser'];
+  EditRoomCtrl.$inject = ['$scope', '$state', '$stateParams', 'logger', 'FileUploader', 'common','RoomListing', 'data', 'currentUser'];
 
-  function EditRoomCtrl($scope, $state, $stateParams, logger, FileUploader, common, RoomListing, getAllUsers, getAllRoommates, currentUser) {
+  function EditRoomCtrl($scope, $state, $stateParams, logger, FileUploader, common, RoomListing, data,  currentUser) {
 
     /* jshint validthis: true */
     var vm = this;
     vm.propertyImages = [];
 
     vm.me = currentUser;
+    vm.users = data[0];
+    vm.roommates = data[1];
+    vm.room = data[2];
     vm.ddlYesNoSelect = [{value: true, text: 'Yes'}, {value: false, text: 'No'}];
-    vm.users = getAllUsers;
-    vm.roommates = getAllRoommates;
 
     var roomId = $stateParams.id;
     logger.log('Room id: ', roomId);
 
-    if(!roomId) {
-      //TODO show error and/or  return to dashboard
-    }
-    else {
-      RoomListing.get({userId: vm.me.id, id: roomId}).$promise.then(function (roomListing) {
-        vm.room = roomListing;
-        //console.log( angular.isDate(vm.room.availableMoveIn) );
-        //console.log( angular.isString(vm.room.availableMoveIn) );
-        //console.log(  vm.room.availableMoveIn.split('T', 1) );
-        //vm.room.availableMoveIn =  vm.room.availableMoveIn.split('T', 1)[0]; //why are we doing this?
-        //vm.room.leaseEndDate =  vm.room.leaseEndDate.split('T', 1)[0]; //why are we doing this?
-        console.log('Room to edit: ', roomListing);
-      }, function (errors) {
-        //TODO need a general error handling banner or scheme to broadcast a message on
-        console.log('error(s) while saving room listing', errors);
-      });
-    }
 
     vm.edit = function () {
       //console.log('Room from ctrl: ', vm.room);
@@ -134,16 +118,17 @@
     };
 
     $scope.addNewRoommate = function(input){
-      if(!input) { return false; }
+      if(!input) {return false}
       var roommate = input.originalObject;
-      common.dataservice.addRoommate(vm.me.id, roommate).$promise
+      common.dataservice.addRoommate(vm.me.id, roommate)
+        .$promise
         .then(function (data) {
           common.logger.success('Roommate successfully added!');
           vm.roommates.push(data);
           vm.cancelRoommateAddAddon();
         })
         .catch(function (err) {
-          common.logger.error('Something went wrong. Roommate not saved.');
+          common.logger.error('Something went wrong. Roommate not saved.'+ err);
         });
     };
 

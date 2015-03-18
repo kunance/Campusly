@@ -7,9 +7,9 @@
   .controller('DashboardCtrl',DashboardCtrl);
 
 
-  DashboardCtrl.$inject= ['common', '$scope', 'distanceCalculator', 'currentUser', 'data'];
+  DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'data'];
 
-  function DashboardCtrl(common, $scope, distanceCalculator, currentUser, data) {
+  function DashboardCtrl(common, $scope, currentUser, data) {
     var vm = this;
     /*
      *  Fetch all required data for controller from route resolve
@@ -18,6 +18,7 @@
     vm.me = currentUser;
     vm.lookingRoom = data[0];
     vm.userLookings = data[1];
+    console.log(vm.lookingRoom);
     vm.availableRooms = data[2];
     vm.myRoomListings = data[3];
     /*
@@ -116,26 +117,6 @@
       "$phone": vm.me.phone,
       "$last_login": new Date()
     });
-
-    //// ================================================
-    ////@ simple distance calculation
-    //var src={
-    //  latitude:'37.87220000',
-    //  longitude:'-122.25869800'
-    //};
-    //var dest={
-    //  latitude:'38.53823200',
-    //  longitude:'-121.76171300'
-    //};
-    //var mode = 'WALKING';// WALKING DRIVING BICYCLING TRANSIT
-    //var unitSystem = 'METRIC'; //IMPERIAL METRIC
-    //common.$timeout(function () {
-    //  distanceCalculator.calculateDistance(src, dest, mode, unitSystem).then(function (distance) {
-    //    console.log(distance.text);
-    //  });
-    //}, 1000); //timeout because maps need some time to load
-    ////@END
-    //// ================================================
 
   }
 }());

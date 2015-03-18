@@ -5,15 +5,15 @@
     .module('app.dashboard')
     .controller('EditLookingCtrl', EditLookingCtrl);
 
-  EditLookingCtrl.$inject = ['$scope', 'common', 'getLooking', '$stateParams', 'currentUser'];
+  EditLookingCtrl.$inject = ['$scope', 'common', 'data', '$stateParams', 'currentUser'];
 
-  function EditLookingCtrl($scope, common, getLooking, $stateParams, currentUser) {
+  function EditLookingCtrl($scope, common, data, $stateParams, currentUser) {
     var vm = this;
     /*
      *  Fetch all required data for controller from route resolve
      */
       vm.me = currentUser;
-      vm.tempLooking = getLooking;
+      vm.tempLooking = data[0];
       var lookingId = $stateParams.id;
     /*
      *  enables data binding to yes / no drop down values

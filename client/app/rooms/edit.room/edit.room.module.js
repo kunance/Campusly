@@ -16,8 +16,7 @@
       bindToController: true,  // need angular 1.3 for bindToController
       resolve:{
         currentUser:getCurrentUser,
-        getAllUsers:getAllUsers,
-        getAllRoommates:getAllRoommates
+        data:getData
       },
       authenticate: true
     });
@@ -32,14 +31,12 @@
     return deferred.promise;
   }
 
-  getAllUsers.$inject = ['UserResource'];
-  function getAllUsers(UserResource) {
-      return UserResource.query(function (users) {})
-  }
-
-  getAllRoommates.$inject = ['common', 'currentUser'];
-  function getAllRoommates(common, currentUser) {
-    return common.dataservice.getAllRoommates(currentUser.id);
+  getData.$inject = ['UserResource', 'common', 'currentUser', '$q', 'RoomListing', '$stateParams'];
+  function getData(UserResource, common, currentUser, $q, RoomListing, $stateParams) {
+      var user = UserResource.query();
+      var roommates= common.dataservice.getAllRoommates(currentUser.id);
+      var room = RoomListing.get({userId: currentUser.id, id: $stateParams.id});
+    return $q.all([user.$promise, roommates.$promise, room.$promise]);
   }
 
 }());
