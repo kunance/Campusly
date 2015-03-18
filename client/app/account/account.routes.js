@@ -14,13 +14,15 @@
       .state('login', {
         url: '/login',
         templateUrl: 'app/account/login/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        authenticate:false
       })
       .state('loginWithToken', {
         url: '/login/:sessionToken',
         templateUrl: 'app/account/login/login.html',
         controller: 'LoginCtrl',
-        controllerAs: 'login'
+        controllerAs: 'login',
+        authenticate:false
       })
       .state('logout', {
         url: '/logout?referrer',
@@ -32,7 +34,8 @@
         url: '/signup',
         templateUrl: 'app/account/signup/signup.html',
         controller: 'SignupCtrl',
-        controllerAs: 'signup'
+        controllerAs: 'signup',
+        authenticate:false
       });
   }
 

@@ -16,7 +16,7 @@
           authenticate: true,
           resolve:{
             currentUser:getCurrentUser,
-            getLooking:getLooking
+            data:getData
           }
         });
     }
@@ -30,10 +30,11 @@
     return deferred.promise;
   }
 
-  getLooking.$inject = ['common', '$stateParams', 'currentUser'];
-  function getLooking(common, $stateParams, currentUser) {
+  getData.$inject = ['common', '$stateParams', 'currentUser', '$q'];
+  function getData(common, $stateParams, currentUser, $q) {
     var lookingId = $stateParams.id;
-    return common.dataservice.getLooking(currentUser.id, lookingId);
+    var looking = common.dataservice.getLooking(currentUser.id, lookingId);
+    return $q.all([looking.$promise]);
   }
 
 }());

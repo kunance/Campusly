@@ -10,15 +10,15 @@
   function config ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('lookingDetail', {
-        url: 'lookingDetail/:id',
+        url: '/lookingDetail/:id',
         templateUrl: 'app/dashboard/looking/looking-details/looking.detail.html',
         controller: 'LookingDetailsCtrl',
         controllerAs:'detail',
-        authenticate: true,
         resolve:{
           currentUser:getCurrentUser,
           getLookingById:getLookingById
-        }
+        },
+        authenticate: true
       });
   }
 
@@ -31,10 +31,11 @@
     return deferred.promise;
   }
 
-  getLookingById.$inject = ['common', '$stateParams'];
-  function getLookingById(common, $stateParams) {
+  getLookingById.$inject = ['common', '$stateParams', '$q'];
+  function getLookingById(common, $stateParams, $q) {
     var lookingId = $stateParams.id;
-    return common.dataservice.getSingleLooking(lookingId);
+    var looking = common.dataservice.getSingleLooking(lookingId);
+    return $q.all([looking.$promise]);
   }
 
 }());

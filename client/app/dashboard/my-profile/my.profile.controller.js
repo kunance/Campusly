@@ -15,7 +15,6 @@
     vm.me = currentUser;
     vm.tempMe = Object.create(vm.me);
     vm.education = data[0];
-    console.log('FRAX:' ,vm.education);
     vm.address = data[1];
     vm.users = data[2];
     vm.roommates = data[3] || []; //roommate info, his education info, his address info

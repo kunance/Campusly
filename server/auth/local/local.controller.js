@@ -13,8 +13,8 @@ var auth = require('../auth.service');
 exports.root = function(req, res, next) {
   passport.authenticate('local', function (err, user, info) {
     var error = err || info;
-    if (error) return res.json(401, error);
-    if (!user) return res.json(404, {message: 'Something went wrong, please try again.'});
+    if (error) return res.status(401).send(error);
+    if (!user) return res.status(404).send({message: 'Something went wrong, please try again.'});
 
     var token = auth.signToken(user.id, user.role);
     res.json({token: token});
@@ -27,14 +27,14 @@ exports.root = function(req, res, next) {
  * Send confirmation mail
  */
 exports.sendMailAddressConfirmationMail = function(req, res, next) {
-  var userId = req.user.id;
-  User.find({where:{id: userId}}, '-salt -hashedPassword')
+  var id = req.params.userId;
+  User.find({where:{email: id}}, '-salt -hashedPassword')
     .then(function (user) {
       var mailConfirmationToken =  jwt.sign({user : user.id, email : user.email}, config.secrets.mailConfirmation, {expiresInMinutes: 1});
       mail.mailConfirmation.sendMail(user, mailConfirmationToken, function(err,resp){
-        if (!user) return res.json(401);
-        if(err) res.send(403);
-        else res.send(200);});
+        if (!user) return res.status(401).end();
+        if(err) res.status(403).end();
+        else res.status(200).end();});
     })
     .catch(function (error) {
       if (error) return next(error);
@@ -51,19 +51,18 @@ exports.confirmMailAddress = function(req, res, next) {
 
   jwt.verify(mailConfirmationToken, config.secrets.mailConfirmation, function(error, data) {
 
-    if (error) return res.send(403);
+    if (error) return res.status(403).end();
 
-    if (data.exp < Date.now()) return res.send(403, {message: "The validation token has expired. You should sign in and ask for a new one."});
+    if (data.exp < Date.now()) return res.status(403).send({message: "The validation token has expired. You should sign in and ask for a new one."});
     User.find({where: {id: data.user}})
       .then(function (user) {
-        if (!user) return res.send(403, {message: "The validation token is invalid. You should sign in and ask for a new one."});
+        if (!user) return res.status(403).send({message: "The validation token is invalid. You should sign in and ask for a new one."});
         user.confirmMail(function () {
           res.json({token: auth.signToken(user.id)});
         })
       })
       .catch(function (error) {
-        if (error) return res.send(403, {message: "The validation token is invalid. You should sign in and ask for a new one."});
-
+        if (error) return res.status(403).send({message: "The validation token is invalid. You should sign in and ask for a new one."});
       });
   })
 };
@@ -76,14 +75,14 @@ exports.resetPassword = function(req, res, next) {
   var newPassword = String(req.query.newPassword);
   User.find({where:{email: email}})
     .then(function (user) {
-      if (!user) return res.send(403, { message: 'This email address is unknown' });
+      if (!user) return res.status(403).send({message: 'This email address is unknown' });
       var passwordResetToken = jwt.sign({userId: user.id, newPassword : newPassword}, config.secrets.passwordReset, {expiresInMinutes: 60 * 24});
-      mail.passwordReset.sendMail(user, passwordResetToken, function(err,resp){if(err) res.send(403); else res.send(200);});
+      mail.passwordReset.sendMail(user, passwordResetToken, function(err,resp){if(err) res.status(403).end(); else res.status(200).end();});
     })
     .catch(function (err) {
       if (err)
         if (err) return next(err);
-      if (!user) return res.send(403, { message: 'This email address is unknown' });
+      if (!user) return res.status(403).send({message: 'This email address is unknown' });
     });
 };
 
@@ -96,18 +95,18 @@ exports.confirmResetedPassword = function(req, res, next) {
 
   jwt.verify(passwordResetToken, config.secrets.passwordReset, function(error, data) {
 
-    if (error) return res.send(403);
+    if (error) return res.status(403).end();
 
     User.find({where: {id:data.userId}})
       .then(function (user) {
         user.password = data.newPassword;
         user.save(function(error) {
-          if (error) return res.send(403);
+          if (error) return res.status(403).end();
           res.json({ token: auth.signToken(user.id) });
         });
       })
       .catch(function (err) {
-        if (err) return res.send(403);
+        if (err) return res.status(403).end();
       })
       });
 };

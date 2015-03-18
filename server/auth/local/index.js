@@ -7,7 +7,7 @@ var controller = require('./local.controller');
 
 var router = express.Router();
 
-router.get('/mailconfirmation', auth.isAuthenticated(), controller.sendMailAddressConfirmationMail);
+router.get('/mailconfirmation/:userId', controller.sendMailAddressConfirmationMail);
 router.post('/mailconfirmation', controller.confirmMailAddress);
 router.get('/passwordreset', controller.resetPassword);
 router.post('/passwordreset', controller.confirmResetedPassword);

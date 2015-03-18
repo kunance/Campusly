@@ -10,7 +10,7 @@
     <!--</article>-->
 
     <form class="main-form" name="form" ng-submit="login(form)" novalidate>
-
+      <a ng-if="showResendPartial && user.email && !errors.other.password" class="pull-right" style="float:right; font-size: 0.8em" ng-click="resend(user.email)">Resend verification e-mail</a>
       <label class="lbl">
         <input id="email" type="email" name="email" ng-model="user.email" placeholder="Email address (.edu required)" ng-class="{ 'has-success': form.email.$valid && submitted, 'has-error': form.email.$invalid && submitted || errors.other.mail}" required>
       </label>
@@ -21,6 +21,7 @@
 
       <p class="help-block" ng-if="errors.other.mail">{{ errors.other.mail }}</p>
       <p class="help-block" ng-if="errors.other.password">{{ errors.other.password }}</p>
+      <p class="help-block" ng-if="errors.other.verifiedEmail">{{ errors.other.verifiedEmail }}</p>
       <div class="top15">
         <p class="help-block" ng-show="form.email.$error.required && submitted">What's your email address?</p>
         <p class="help-block" ng-show="form.email.$error.email && submitted">Doesn't look like a valid email.</p>

@@ -14,7 +14,7 @@
      */
     vm.me = currentUser;
     vm.tempMe = Object.create(vm.me);
-    vm.lookingDetail = getLookingById;
+    vm.lookingDetail = getLookingById[0];
     mixpanel.track('looking detail');
 
   }

@@ -64,7 +64,7 @@
           return UserResource.save(user,
             function(data) {
               $cookieStore.put('token', data.token);
-              currentUser = UserResource.get();
+              //currentUser = UserResource.get();
               return safeCb(callback)(null, user);
             },
             function(err) {
@@ -230,10 +230,10 @@
          * @param  {Function} callback    - optional
          * @return {Promise}
          */
-        sendConfirmationMail: function(callback) {
+        sendConfirmationMail: function(userId, callback) {
           var cb = callback || angular.noop;
 
-          return Local.verifyMail(function(user) {
+          return Local.verifyMail(userId, function(user) {
             return cb(user);
           }, function(err) {
             return cb(err);
