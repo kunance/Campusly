@@ -15,7 +15,7 @@
         <input id="email" type="email" name="email" ng-model="user.email" placeholder="Email address (.edu required)" ng-class="{ 'has-success': form.email.$valid && submitted, 'has-error': form.email.$invalid && submitted || errors.mail}" required>
       </label>
 
-      <a ng-if="errors.password" class="pull-right" style="font-size: 0.8em; position: absolute; right: 10%" ng-click="toogleNewPasswordAddon()">{{reset}}</a>
+      <a class="pull-right" style="font-size: 0.8em; position: absolute; right: 10%" ng-click="toogleNewPasswordAddon()">{{reset}}</a>
       <div ng-if="!newPasswordAddon">
         <label class="lbl">
           <input type="password" name="password" id="password" ng-model="user.password" placeholder="Password" ng-class="{ 'has-success': form.password.$valid && submitted, 'has-error': form.password.$invalid && submitted || errors.password }" required>
