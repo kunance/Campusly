@@ -62,7 +62,7 @@ exports.me = function(req, res, next) {
     attributes: userAttributes
   })
     .then(function(user) { // don't ever give out the password or salt
-      if (!user) { return res.json(401); }
+      if (!user) { return res.status(401).end(); }
       res.json(user);
     })
     .catch(function(err) {
@@ -115,7 +115,7 @@ exports.show = function(req, res, next) {
   })
     .then(function(user) {
       if (!user) {
-        return res.send(401);
+        return res.status(401).end();
       }
       else{
       res.json(user);
@@ -155,7 +155,7 @@ exports.changePassword = function(req, res, next) {
           .then(respondWith(res, 200))
           .catch(validationError(res));
       } else {
-        return res.send(403);
+        return res.status(403).end();
       }
     });
 };

@@ -8,8 +8,8 @@
   Local.$inject = ['$resource'];
 
   function Local ($resource) {
-    return $resource('/auth/local/:controller', {
-        id: '@_id'
+    return $resource('/auth/local/:controller/:userId', {
+        userId: '@userId'
       },
       {
         verifyMail: {

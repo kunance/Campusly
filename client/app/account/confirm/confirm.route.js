@@ -12,13 +12,14 @@
         templateUrl: 'app/account/confirm/confirm.html',
         controller: 'ConfirmCtrl',
         controllerAs:'confirm',
-        authenticate: true
+        authenticate: false
       })
       .state('confirmWithCode', {
-        url: '/confirm/:confirmToken',
+        url: '/loginVerify/:confirmToken',
         templateUrl: 'app/account/confirm/confirm.html',
-        controller: 'ConfirmCtrl',
-        controllerAs: 'confirm'
+        controller: 'LoginCtrl',
+        controllerAs: 'confirm',
+        authenticate: false
      })
   }
 

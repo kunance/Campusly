@@ -5,9 +5,9 @@
       .module('app.account')
       .controller('SignupCtrl', SignupCtrl);
 
-  SignupCtrl.$inject=['$scope', 'common', '$state', '$window'];
+  SignupCtrl.$inject=['$scope', 'common', '$state', '$window', 'Auth', '$location'];
 
-  function SignupCtrl($scope, common, $state, $window) {
+  function SignupCtrl($scope, common, $state, $window, Auth, $location) {
 
     // vm for view model .... https://github.com/johnpapa/angularjs-styleguide#style-y032
     /* jshint validthis: true */
@@ -21,8 +21,6 @@
     };
     mixpanel.track("sign up");
 
-
-
     vm.register = function (form) {
       vm.submitted = true;
       if (form.$valid) {
@@ -32,9 +30,12 @@
           email: vm.user.email,
           password: vm.user.password
         })
-          .then(function () {
-            // Account created, redirect to dashboard
-            $state.go('dashboard');
+          .then(function (user) {
+            // Account created, sending verification email, logging out user
+              common.Auth.sendConfirmationMail({userId: vm.user.email}, function(){
+                vm.errors = { verification: vm.user.firstname+' please verify your Campusly account. Verification mail has been sent to '+ vm.user.email };
+              });
+              Auth.logout();
           })
           .catch(function (err) {
             err = err.data;
@@ -42,7 +43,6 @@
           // Update validity of form fields that match the sequelize errors
           if (err.name) {
             angular.forEach(err.errors, function (field) {
-              //form[field.path].$setValidity('mongoose', false);
               if (field.type == 'unique violation'){
                 field.message = 'That email address is already taken!';
                 vm.errors[field.path] = field.message;

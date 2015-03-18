@@ -43,6 +43,7 @@
   <p class="help-block" ng-show="form.password.$error.required && signup.submitted">Please enter a valid password</p>
   <p class="help-block" ng-show="form.password.$error.minlength && signup.submitted">Password must be at least 8 characters.</p>
   <p class="help-block" ng-show="signup.errors.email">{{ signup.errors.email }}</p>
+  <p class="help-block" style="font-size: 0.8em" ng-show="signup.errors.verification">{{ signup.errors.verification }}</p>
 </div>
       <!--<label class="lbl" ng-class="{ 'has-success': form.password.$valid && signup.submitted, 'has-error': form.password.$invalid && signup.submitted }">-->
         <!--<input type="password" ng-model="signup.user.confirmPassword" match="signup.user.password" placeholder="Repeat password" ng-minlength="3" ui-validate=" '$value==signup.user.password' "-->

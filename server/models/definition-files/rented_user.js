@@ -242,10 +242,10 @@ module.exports = {
       type: Seq.TEXT,
       field: "email",
       unique: true,
-      allowNull: false,
-      validate: {
-        is: (/\.edu$/)
-      }
+      allowNull: false
+      //, validate: {
+      //  is: (/\.edu$/)
+      //}
     },
     "confirmedEmail": {
       type: Seq.BOOLEAN,
