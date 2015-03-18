@@ -19,7 +19,6 @@
         <!--</div>-->
 
       </div>
-
       <!-- Main room view -->
 
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -30,7 +29,7 @@
             <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
               <div class="flipper">
                 <div class="front white-box">
-                  <div class="picture">
+                  <div class="picture safariFix">
                     <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&zoom=14&size=400x250&markers=color:blue%7C{{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}">
                   </div>
                   <div class="info">

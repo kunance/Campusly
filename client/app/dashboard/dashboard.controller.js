@@ -18,7 +18,6 @@
     vm.me = currentUser;
     vm.lookingRoom = data[0];
     vm.userLookings = data[1];
-    console.log(vm.lookingRoom);
     vm.availableRooms = data[2];
     vm.myRoomListings = data[3];
     /*

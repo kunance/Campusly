@@ -1738,6 +1738,8 @@ Looking Details
   top: 50%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
+  -ms-transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
   color: #fff;
 }
 
@@ -1795,10 +1797,14 @@ Looking Details
 
 .flip-container {
   perspective: 1000;
+  -webkit-perspective: 1000;
+  -ms-perspective: 1000;
 }
 /* flip the pane when hovered */
 .flip-container:hover .flipper, .flip-container.hover .flipper {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
 }
 
 .flip-container, .front, .back {
@@ -1808,7 +1814,11 @@ Looking Details
 /* flip speed goes here */
 .flipper {
   transition: 0.6s;
+  -webkit-transition: 0.6s;
+  -ms-transition: 0.6s;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
 
   position: relative;
 }
@@ -1816,10 +1826,14 @@ Looking Details
 /* hide back of pane during swap */
 .front {
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
 }
 
 .back {
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
 
   position: absolute;
   top: 0;
@@ -1830,9 +1844,13 @@ Looking Details
   width: 100%;
   border-radius: 5px;
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
   display: table;
   z-index: 2;
   transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
 }
 
 .front .picture {
@@ -1850,6 +1868,8 @@ Looking Details
   display: table;
   background: #f7953d;
   transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
 
 .back a {
@@ -2082,6 +2102,8 @@ Looking Details
   top: 50%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
+  -ms-transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
   color: #fff;
 
 }
@@ -2116,6 +2138,8 @@ Looking Details
   top: 50%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
+  -ms-transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
   color: #fff;
 }
 
@@ -2187,6 +2211,8 @@ h2.no-roommate{
   top: 43%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
+  -ms-transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
 }
 
 h2.no-roommate small{
@@ -2293,6 +2319,16 @@ a.view-all {
   width: 100%;
   height: 100px;
   overflow: hidden;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  /* Safari and Chrome, if Chrome rule needed */
+  /* Safari 5+ ONLY */
+  ::i-block-chrome, .safariFix {
+
+    /*TODO fix images for safari only */
+
+  }
 }
 
 .rooms .room .picture img {

@@ -9,30 +9,44 @@
       <!--<a class="link google" ng-click="loginOauth('google')"><span>Google+</span></a>-->
     <!--</article>-->
 
-    <form class="main-form" name="form" ng-submit="login(form)" novalidate>
-      <a ng-if="showResendPartial && user.email && !errors.other.password" class="pull-right" style="float:right; font-size: 0.8em" ng-click="resend(user.email)">Resend verification e-mail</a>
+  <form class="main-form" name="form" ng-submit="login(form)" novalidate>
+      <a ng-if="showResendPartial && user.email && !errors.password" class="pull-right" style="font-size: 0.8em; position: absolute; right: 10%" ng-click="resendEmail(user.email)">Resend verification e-mail</a>
       <label class="lbl">
-        <input id="email" type="email" name="email" ng-model="user.email" placeholder="Email address (.edu required)" ng-class="{ 'has-success': form.email.$valid && submitted, 'has-error': form.email.$invalid && submitted || errors.other.mail}" required>
+        <input id="email" type="email" name="email" ng-model="user.email" placeholder="Email address (.edu required)" ng-class="{ 'has-success': form.email.$valid && submitted, 'has-error': form.email.$invalid && submitted || errors.mail}" required>
       </label>
 
-      <label class="lbl">
-        <input type="password" name="password" id="password" ng-model="user.password" placeholder="Password" ng-class="{ 'has-success': form.password.$valid && submitted, 'has-error': form.password.$invalid && submitted || errors.other.password }" required>
-      </label>
-
-      <p class="help-block" ng-if="errors.other.mail">{{ errors.other.mail }}</p>
-      <p class="help-block" ng-if="errors.other.password">{{ errors.other.password }}</p>
-      <p class="help-block" ng-if="errors.other.verifiedEmail">{{ errors.other.verifiedEmail }}</p>
-      <div class="top15">
-        <p class="help-block" ng-show="form.email.$error.required && submitted">What's your email address?</p>
-        <p class="help-block" ng-show="form.email.$error.email && submitted">Doesn't look like a valid email.</p>
-        <p class="help-block" ng-show="form.password.$error.required && submitted">Please enter your password.</p>
+      <a ng-if="errors.password" class="pull-right" style="font-size: 0.8em; position: absolute; right: 10%" ng-click="toogleNewPasswordAddon()">{{reset}}</a>
+      <div ng-if="!newPasswordAddon">
+        <label class="lbl">
+          <input type="password" name="password" id="password" ng-model="user.password" placeholder="Password" ng-class="{ 'has-success': form.password.$valid && submitted, 'has-error': form.password.$invalid && submitted || errors.password }" required>
+        </label>
       </div>
 
+     <div ng-if="newPasswordAddon">
+       <label class="lbl">
+        <input type="password" name="newPassword" id="newPassword" ng-model="user.newPassword" placeholder="Enter new password (minimum 8 characters)" ng-minlength="8" ng-required="true">
+      </label>
+     </div>
+
+      <p class="help-block" ng-if="errors.mail">{{ errors.mail }}</p>
+      <p class="help-block" ng-if="errors.password">{{ errors.password }}</p>
+      <p class="help-block" ng-if="errors.verifiedEmail">{{ errors.verifiedEmail }}</p>
+      <p class="help-block" ng-if="errors.resetPassword">{{ errors.resetPassword }}</p>
+    <div class="top15">
+      <p class="help-block" ng-show="form.email.$error.required && submitted">What's your email address?</p>
+      <p class="help-block" ng-show="form.email.$error.email && submitted">Doesn't look like a valid email.</p>
+      <p class="help-block" ng-show="form.password.$error.required && submitted">Please enter your password.</p>
+      <p class="help-block" ng-show="form.newPassword.$error.required && submitted && !form.password.$error">Please enter new password.</p>
+      <p class="help-block" ng-show="form.newPassword.$error.minlength && submitted && !form.password.$error">New password must be at least 8 characters.</p>
+    </div>
+
       <div class="options">
-        <input type="submit" value="Sign me in!" class="lrg-btn submit">
+        <input ng-show="!newPasswordAddon" type="submit" value="Sign me in!" class="lrg-btn submit" >
+        <input ng-if="newPasswordAddon"  type="button"  class="lrg-btn submit" ng-click="sendPwdResetMail(form)" value="Send reset password e-mail!">
         <span>Don't have an account? <a class="link" ui-sref="signup">Sign up</a></span>
       </div>
 
-    </form>
+  </form>
+
   </section>
 </div>

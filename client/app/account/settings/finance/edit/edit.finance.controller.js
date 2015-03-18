@@ -35,7 +35,6 @@
     vm.saveFinance = function (input) {
       dataservice.editFinance(vm.me.id, financeId, input, function () {
         common.$state.go('^',{},{reload:true});
-        console.log('Finance updated');
       })
 
     }

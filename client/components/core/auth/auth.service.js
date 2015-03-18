@@ -271,10 +271,10 @@
           var cb = callback || angular.noop;
 
           return Local.confirmPassword({
-            passwordResetToken: passwordResetToken,
+            passwordResetToken: passwordResetToken
           }, function(data) {
             $localStorage.token = data.token;
-            currentUser = UserResource.get();
+            //currentUser = UserResource.get();
             return cb(data);
           }, function(err) {
             return cb(err);

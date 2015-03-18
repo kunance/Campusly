@@ -35,7 +35,6 @@
     vm.saveVehicle = function (input) {
       dataservice.editVehicle(vm.me.id, vehicleId, input, function () {
         common.$state.go('^',{},{reload:true});
-        console.log('Vehicle updated');
       })
     }
   }

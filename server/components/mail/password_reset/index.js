@@ -9,7 +9,7 @@ var sendMail = function(user, passwordResetToken, callback){
   var locals = {
     name: user.firstname,
     COMPANY: 'Rented',
-    PWDRESET_URL : 'http://' + (config.ip || 'localhost:9000') + '/pwdreset/' ,
+    PWDRESET_URL : 'http://' + (config.ip || 'localhost:9000') + '/loginPwdReset/' ,
     PWDRESETTOKEN : passwordResetToken
   };
 

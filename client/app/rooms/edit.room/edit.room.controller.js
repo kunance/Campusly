@@ -32,7 +32,6 @@
         $state.go('dashboard');
       }, function (errors) {
         //TODO need a general error handling banner or scheme to broadcast a message on
-        console.log('error(s) while saving room listing', errors);
       });
       //  }
     };
@@ -44,7 +43,6 @@
         $state.go('dashboard');
       }, function (errors) {
         //TODO need a general error handling banner or scheme to broadcast a message on
-        console.log('error(s) while saving room listing', errors);
       });
     };
 
@@ -61,7 +59,6 @@
     };
 
     function successCallback(file, resp) {
-      console.log(file);
       common.logger.success('Image '+file._file.name+' uploaded');
     }
     function errorCallback(file) {
