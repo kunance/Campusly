@@ -35,7 +35,6 @@
     vm.saveOccupation = function (input) {
       dataservice.editOccupation(vm.me.id, occupationId, input, function () {
         common.$state.go('^',{},{reload:true});
-        console.log('Occupation updated');
       })
 
     }

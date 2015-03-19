@@ -22,11 +22,9 @@
       input.profileImage=vm.me.profileImage;
       common.Auth.updateUser(input)
         .then(function () {
-          console.log('User info updated');
           common.$state.go('^',{},{reload:true});
         })
         .catch(function (err) {
-          console.log('error while updating user info', err);
         });
     };
 

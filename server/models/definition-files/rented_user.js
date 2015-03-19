@@ -243,9 +243,9 @@ module.exports = {
       field: "email",
       unique: true,
       allowNull: false
-      //, validate: {
-      //  is: (/\.edu$/)
-      //}
+      , validate: {
+        is: (/\.edu$/)
+      }
     },
     "confirmedEmail": {
       type: Seq.BOOLEAN,

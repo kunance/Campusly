@@ -14,9 +14,9 @@
         controllerAs: 'reset'
       })
       .state('resetPwd', {
-        url: '/pwdreset/:passwordResetToken',
+        url: '/loginPwdReset/:passwordResetToken',
         templateUrl: 'app/account/pwdreset/pwdreset.html',
-        controller: 'PwdResetCtrl',
+        controller: 'LoginCtrl',
         controllerAs: 'reset'
       });
   }

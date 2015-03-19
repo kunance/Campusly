@@ -35,7 +35,6 @@
   vm.saveEducation = function (input) {
     dataservice.editEducation(vm.me.id, educationId, input, function () {
       common.$state.go('^',{},{reload:true});
-      console.log('Education updated');
     })
 
   }
