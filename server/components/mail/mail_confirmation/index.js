@@ -12,7 +12,7 @@ var sendMail = function(user, mailConfirmationToken, callback){
     MAIL_CONFIRMATION_TOKEN : mailConfirmationToken
   };
 
-  mandrill.confirm('mail_confirmation', user, 'Activation', locals, callback);
+  mandrill.confirm('mail_confirmation', user, 'Campusly - Account Activation', locals, callback);
 
 };
 
