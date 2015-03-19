@@ -62,6 +62,8 @@ body{
   font-family: "ProximaNova";
   color: #333333;
   font-size: 1em;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: optimizeLegibility;
   /* background-color: #e8e8e8; */
 }
 
