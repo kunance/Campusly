@@ -2,7 +2,10 @@
   "use strict";
 
   angular.module('app.core')
-    .factory('Vehicle', function ($resource) {
+    .factory('Vehicle', Vehicle);
+
+  Vehicle.$inject = ['$resource'];
+  function Vehicle($resource) {
       return $resource('/api/users/:userId/vehicles/:id', {userId:'@userId', id: '@id'},
         {
           getAllVehicles: {
@@ -17,6 +20,6 @@
           }
         }
       );
-    });
+    }
 
 }());

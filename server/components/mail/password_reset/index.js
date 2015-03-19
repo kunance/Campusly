@@ -8,8 +8,8 @@ var sendMail = function(user, passwordResetToken, callback){
 
   var locals = {
     name: user.firstname,
-    COMPANY: 'Rented',
-    PWDRESET_URL : 'http://' + (config.ip || 'localhost:9000') + '/loginPwdReset/' ,
+    COMPANY: 'Campusly',
+    PWDRESET_URL : 'https://' + (config.ip || 'localhost:9000') + '/loginPwdReset/' ,
     PWDRESETTOKEN : passwordResetToken
   };
 

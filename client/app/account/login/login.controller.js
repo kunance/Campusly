@@ -5,9 +5,12 @@
     .module('app.account')
     .controller('LoginCtrl', LoginCtrl);
 
-  LoginCtrl.$inject = ['$scope', 'Auth', '$state', '$window', '$stateParams', 'common', '$location'];
+  LoginCtrl.$inject = ['$scope', 'Auth', '$state', '$window', '$stateParams', 'common', '$location', '$cookieStore', 'currentUser', '$rootScope'];
 
-  function LoginCtrl($scope, Auth, $state, $window, $stateParams, common, $location) {
+  function LoginCtrl($scope, Auth, $state, $window, $stateParams, common, $location, $cookieStore, currentUser, $rootScope) {
+    if(currentUser.confirmedEmail===false){
+      common.Auth.logout();
+    }
     $scope.user = {};
     $scope.reset = '';
     $scope.errors = {};
@@ -30,6 +33,8 @@
       $scope.reset = $scope.newPasswordAddon ? 'you recalled password?' : 'forgot password?';
       $scope.errors.password = ' ';
     };
+
+    $scope.success = $rootScope.verificationMessage;
 
     if ($scope.confirmToken) {
       common.Auth.confirmMail($scope.confirmToken)
@@ -56,13 +61,12 @@
           password: $scope.user.password
         })
           .then(function () {
-            $scope.me = Auth.getCurrentUser(function (user) {
-              if (user.confirmedEmail === true) {
+            common.Auth.getCurrentUser(function (user) {
+              if (user.confirmedEmail) {
                 $state.go('dashboard');
               } else {
                 $scope.showResendPartial = true;
-                $scope.errors = {verifiedEmail: 'Your email address needs to be verified.'};
-                Auth.logout();
+                $scope.errors = {verifiedEmail: user.firstname+', your e-mail address is not verified. Please verify your Campusly account.'};
               }
             });
           })

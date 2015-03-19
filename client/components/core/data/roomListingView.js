@@ -1,8 +1,12 @@
 (function () {
   "use strict";
 
-  angular.module('app.core')
-    .factory('RoomListingView', function ($resource) {
+  angular
+    .module('app.core')
+    .factory('RoomListingView', RoomListingView);
+
+  RoomListingView.$inject = ['$resource'];
+  function RoomListingView($resource) {
       return $resource('/api/rooms/:id', {id: '@id'},
         {
           'get':    {method:'GET'},
@@ -11,12 +15,10 @@
           'remove': {method: null},
           'delete': {method: null}
         },
-
-        // options
         {
           cache: false
         });
-    });
+    }
 
 
 }());

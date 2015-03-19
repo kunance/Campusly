@@ -1,8 +1,12 @@
 (function () {
   "use strict";
 
-  angular.module('app.core')
-    .factory('Property', function ($resource) {
+  angular
+    .module('app.core')
+    .factory('Property', Property);
+
+  Property.$inject = ['$resource'];
+  function Property($resource) {
       return $resource('/api/properties/:id', {id: '@id'},
         {
           getAllProperties: {
@@ -16,7 +20,7 @@
             method: 'PUT'
           }
         });
-    });
+    }
 
 
 }());

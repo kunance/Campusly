@@ -1,8 +1,12 @@
 (function () {
   "use strict";
 
-  angular.module('app.core')
-    .factory('RoomListing', function ($resource) {
+  angular
+    .module('app.core')
+    .factory('RoomListing', RoomListing);
+
+  RoomListing.$inject = ['$resource'];
+  function RoomListing($resource) {
       return $resource('/api/users/:userId/rooms/:id', {userId: '@userId', id: '@id'},
         {
           'get':    {method:'GET'},
@@ -13,7 +17,7 @@
             method: 'PUT'
           }
         });
-    });
+    }
 
 
 }());

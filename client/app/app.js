@@ -104,4 +104,13 @@ angular.module('RentedApp', [
         });
       }
     });
+    $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
+      if(from.name == 'confirmWithCode'){
+        $rootScope.verificationMessage = 'showEmail';
+      } else if (from.name == 'resetPwd'){
+        $rootScope.verificationMessage = 'showPassword';
+      } else {
+        $rootScope.verificationMessage = '';
+      }
+    });
   }

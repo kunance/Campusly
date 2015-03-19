@@ -11,19 +11,6 @@
   function config($stateProvider) {
 
     $stateProvider
-      .state('login', {
-        url: '/login',
-        templateUrl: 'app/account/login/login.html',
-        controller: 'LoginCtrl',
-        authenticate:false
-      })
-      .state('loginWithToken', {
-        url: '/login/:sessionToken',
-        templateUrl: 'app/account/login/login.html',
-        controller: 'LoginCtrl',
-        controllerAs: 'login',
-        authenticate:false
-      })
       .state('logout', {
         url: '/logout?referrer',
         referrer: '/',
