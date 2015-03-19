@@ -1,90 +1,90 @@
-<div ng-include="'components/layout/navbar/navbar.html'"></div>
+<!--<div ng-include="'components/layout/navbar/navbar.html'"></div>-->
 
-<div class="screens">
-  <div class="container" ng-show="reset.resetStateIs('valid_token')">
-    <div class="bs-callout bs-callout-info" >
-      <h2>Password reset</h2>
-      <p>You changed your password successfully.</p>
-    </div>
-  </div>
+<!--<div class="screens">-->
+  <!--<div class="container" ng-show="reset.resetStateIs('valid_token')">-->
+    <!--<div class="bs-callout bs-callout-info" >-->
+      <!--<h2>Password reset</h2>-->
+      <!--<p>You changed your password successfully.</p>-->
+    <!--</div>-->
+  <!--</div>-->
 
-  <div class="container" ng-show="reset.resetStateIs('invalid_token')">
-    <div class="alert alert-danger" >
-      <h2>Password reset</h2>
-      <p>Somthing went wrong. Your attend to reset your password has failed.</p>
-      <a href="/pwdreset" class="text-right">Try again to change your password</a>
-    </div>
-  </div>
+  <!--<div class="container" ng-show="reset.resetStateIs('invalid_token')">-->
+    <!--<div class="alert alert-danger" >-->
+      <!--<h2>Password reset</h2>-->
+      <!--<p>Somthing went wrong. Your attend to reset your password has failed.</p>-->
+      <!--<a href="/pwdreset" class="text-right">Try again to change your password</a>-->
+    <!--</div>-->
+  <!--</div>-->
 
-  <div class="container" ng-show="reset.resetStateIs('mailsent')">
-    <div class="alert alert-info" >
-      <h2>Almost there</h2>
-      <p>A mail with a rest token and some instructions was sent to <b>{{reset.reset.email}}</b>.</p>
-      <p>Check your inbox.</p>
-    </div>
-  </div>
+  <!--<div class="container" ng-show="reset.resetStateIs('mailsent')">-->
+    <!--<div class="alert alert-info" >-->
+      <!--<h2>Almost there</h2>-->
+      <!--<p>A mail with a rest token and some instructions was sent to <b>{{reset.reset.email}}</b>.</p>-->
+      <!--<p>Check your inbox.</p>-->
+    <!--</div>-->
+  <!--</div>-->
 
-  <div class="container" ng-show="reset.resetStateIs('mailform')">
-    <div class="row" >
-      <div class="col-sm-12">
-        <h2>Password forgotten?</h2>
-        <p>Submit your email address and a new password</p>
-      </div>
-      <div class="col-sm-12">
-        <form class="form" name="resetform" ng-submit="reset.sendPwdResetMail(resetform)" novalidate>
+  <!--<div class="container" ng-show="reset.resetStateIs('mailform')">-->
+    <!--<div class="row" >-->
+      <!--<div class="col-sm-12">-->
+        <!--<h2>Password forgotten?</h2>-->
+        <!--<p>Submit your email address and a new password</p>-->
+      <!--</div>-->
+      <!--<div class="col-sm-12">-->
+        <!--<form class="form" name="resetform" ng-submit="reset.sendPwdResetMail(resetform)" novalidate>-->
 
-          <div class="form-group" ng-class="{'has-error': resetform.email.$invalid && reset.submitted}">
-            <label>Email address</label>
-
-
-            <input type="email" name="email" class="form-control" ng-model="reset.reset.email"
-                   required
-                   mongoose-error/>
-          </div>
+          <!--<div class="form-group" ng-class="{'has-error': resetform.email.$invalid && reset.submitted}">-->
+            <!--<label>Email address</label>-->
 
 
-          <div class="form-group has-error">
-            <p class="help-block" ng-show="resetform.email.$error.email && reset.submitted">
-              Doesn't look like a valid email.
-            </p>
-            <p class="help-block" ng-show="resetform.email.$error.required && reset.submitted">
-              Please enter your email.
-            </p>
-            <p class="help-block">{{ reset.errors.other }}</p>
-          </div>
+            <!--<input type="email" name="email" class="form-control" ng-model="reset.reset.email"-->
+                   <!--required-->
+                   <!--mongoose-error/>-->
+          <!--</div>-->
 
-          <div class="help-block" ng-show="resetform.email.$error.unknownMailAddress">
-            <p>The email address you entered is not known.</p>
-            <p>Check the address and send it again.</p>
-          </div>
 
-          <div class="form-group" ng-class="{ 'has-success': resetform.password.$valid && reset.submitted,
-                                              'has-error': resetform.password.$invalid && reset.submitted }">
-            <label>New password</label>
+          <!--<div class="form-group has-error">-->
+            <!--<p class="help-block" ng-show="resetform.email.$error.email && reset.submitted">-->
+              <!--Doesn't look like a valid email.-->
+            <!--</p>-->
+            <!--<p class="help-block" ng-show="resetform.email.$error.required && reset.submitted">-->
+              <!--Please enter your email.-->
+            <!--</p>-->
+            <!--<p class="help-block">{{ reset.errors.other }}</p>-->
+          <!--</div>-->
 
-            <input type="password" name="password" class="form-control" ng-model="reset.reset.newPassword"
-                   ng-minlength="3"
-                   required
-                   mongoose-error/>
-            <p class="help-block"
-               ng-show="(resetform.password.$error.minlength || resetform.password.$error.required) && reset.submitted">
-              Password must be at least 3 characters.
-            </p>
-            <p class="help-block" ng-show="resetform.password.$error.mongoose">
-              {{ reset.errors.password }}
-            </p>
-          </div>
+          <!--<div class="help-block" ng-show="resetform.email.$error.unknownMailAddress">-->
+            <!--<p>The email address you entered is not known.</p>-->
+            <!--<p>Check the address and send it again.</p>-->
+          <!--</div>-->
 
-          <div class="col-sm-6">
-            <button class="btn btn-inverse btn-lg btn-primary" ng-disabled="reset.pwdResetMailSend" type="submit">
-              Submit email address and new password
-            </button>
-          </div>
+          <!--<div class="form-group" ng-class="{ 'has-success': resetform.password.$valid && reset.submitted,-->
+                                              <!--'has-error': resetform.password.$invalid && reset.submitted }">-->
+            <!--<label>New password</label>-->
 
-        </form>
-      </div>
-    </div>
-    <hr>
-  </div>
+            <!--<input type="password" name="password" class="form-control" ng-model="reset.reset.newPassword"-->
+                   <!--ng-minlength="3"-->
+                   <!--required-->
+                   <!--mongoose-error/>-->
+            <!--<p class="help-block"-->
+               <!--ng-show="(resetform.password.$error.minlength || resetform.password.$error.required) && reset.submitted">-->
+              <!--Password must be at least 3 characters.-->
+            <!--</p>-->
+            <!--<p class="help-block" ng-show="resetform.password.$error.mongoose">-->
+              <!--{{ reset.errors.password }}-->
+            <!--</p>-->
+          <!--</div>-->
 
-</div>
+          <!--<div class="col-sm-6">-->
+            <!--<button class="btn btn-inverse btn-lg btn-primary" ng-disabled="reset.pwdResetMailSend" type="submit">-->
+              <!--Submit email address and new password-->
+            <!--</button>-->
+          <!--</div>-->
+
+        <!--</form>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<hr>-->
+  <!--</div>-->
+
+<!--</div>-->

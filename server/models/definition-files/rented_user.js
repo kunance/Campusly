@@ -242,15 +242,15 @@ module.exports = {
       type: Seq.TEXT,
       field: "email",
       unique: true,
-      allowNull: false
-      , validate: {
-        isValidEmail: function (value) {
-          if(value.match(/\.edu$/) || value.match(/campusly.org$/)){
-            return true;
-          }else{
-            throw new Error('Only .edu or campusly.org e-mails are allowed!')
-          }
-        },
+      allowNull: false,
+      validate: {
+        //isValidEmail: function (value) {
+        //  if(value.match(/\.edu$/) || value.match(/campusly.org$/)){
+        //    return true;
+        //  }else{
+        //    throw new Error('Only .edu or campusly.org e-mails are allowed!')
+        //  }
+        //},
         isEmail: true,
         notEmpty: true
       }
@@ -265,7 +265,13 @@ module.exports = {
       field: "password",
       allowNull: false,
       validate:{
-        len: [8,50]
+        passwordLength: function (value) {
+          if(value.toString().length>=8){
+            return true;
+          } else {
+            throw new Error('password must at least 8 characters long!')
+          }
+        }
       }
     },
     "firstname": {

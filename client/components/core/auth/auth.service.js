@@ -2,7 +2,11 @@
   "use strict";
 
   angular.module('app.core')
-    .factory('Auth', function Auth($http, UserResource, $cookieStore, $q, Local, $localStorage, $state) {
+    .factory('Auth',Auth);
+
+  Auth.$inject = ['$http', 'UserResource', '$cookieStore', '$q', 'Local', '$localStorage', '$state'];
+
+  function Auth($http, UserResource, $cookieStore, $q, Local, $localStorage, $state) {
       /**
        * Return a callback or noop function
        *
@@ -34,11 +38,16 @@
             password: user.password
           })
             .then(function(res) {
+              var that = this;
               $cookieStore.put('token', res.data.token);
-              currentUser = UserResource.get();
+              currentUser = UserResource.get(function (u) {
+                if(u.confirmedEmail==false){
+                  that.logout();
+                }
+              });
               safeCb(callback)();
               return res.data;
-            }, function(err) {
+            }.bind(this), function(err) {
               this.logout();
               safeCb(callback)(err.data);
               return $q.reject(err.data);
@@ -82,6 +91,7 @@
               return safeCb(callback)(err);
             }).$promise;
         },
+
         updateProfileImage: function(user, callback) {
           return UserResource.changeProfileImage({id: currentUser.id}, user,
             function(usr) {
@@ -208,6 +218,7 @@
             mailConfirmationToken: mailConfirmationToken
           }, function(data) {
             $localStorage.token = data.token;
+            $cookieStore.put('message', 'succesfully verified');
             currentUser = UserResource.get();
             return cb(currentUser);
           }, function(err) {
@@ -274,7 +285,7 @@
             passwordResetToken: passwordResetToken
           }, function(data) {
             $localStorage.token = data.token;
-            //currentUser = UserResource.get();
+            currentUser = UserResource.get();
             return cb(data);
           }, function(err) {
             return cb(err);
@@ -311,7 +322,7 @@
         }
 
       };
-    });
+    };
 
 
 }());
