@@ -64,7 +64,7 @@ module.exports.passwordReset = function (templateName, user, subject, locals, ca
   generateMail(templateName, locals, function (html) {
     var params = {
       message: {
-        from_email: 'rented@rented.com',
+        from_email: config.mail.from,
         to: [{email: user.email, name: (user.firstname + ' ' + user.lastname)}],
         subject: subject,
         html: html
