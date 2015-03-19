@@ -31,7 +31,6 @@
       })
       .state('confirmWithCode', {
         url: '/loginVerify/:confirmToken',
-        templateUrl: 'app/account/confirm/confirm.html',
         controller: 'LoginCtrl',
         resolve:{
           currentUser:getCurrentUser
@@ -40,7 +39,6 @@
       })
       .state('resetPwd', {
         url: '/loginPwdReset/:passwordResetToken',
-        templateUrl: 'app/account/pwdreset/pwdreset.html',
         controller: 'LoginCtrl',
         resolve:{
           currentUser:getCurrentUser

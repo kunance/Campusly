@@ -2,7 +2,10 @@
   "use strict";
 
   angular.module('app.core')
-    .factory('UserResource', function ($resource) {
+    .factory('UserResource', UserResource);
+
+  UserResource.$inject = ['$resource'];
+  function UserResource($resource) {
       return $resource('/api/users/:id/:controller', {
           id: '@id'
         },
@@ -38,7 +41,7 @@
             }
           }
         });
-    });
+    }
 
 
 }());

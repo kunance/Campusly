@@ -2,7 +2,10 @@
   "use strict";
 
   angular.module('app.core')
-    .factory('Roommate', function ($resource) {
+    .factory('Roommate', Roommate);
+
+  Roommate.$inject = ['$resource'];
+  function Roommate($resource) {
       return $resource('/api/users/:userId/roommates/:id', {userId:'@userId', id: '@id'},
         {
           getAllRoommates: {
@@ -17,7 +20,7 @@
           }
         }
       );
-    });
+    }
 
 
 }());

@@ -3,7 +3,15 @@
  */
 
 'use strict';
-var http = require('http');
+
+var https = require('https');
+var fs = require('fs');
+
+var options = {
+  key: fs.readFileSync('./server/config/keys/campuslyPrivateKey.pem'),
+  cert: fs.readFileSync('./server/config/keys/campuslyCertificate.pem')
+};
+
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -16,7 +24,7 @@ if (config.seedDB) { require('./config/seed'); }
 
 // Setup server
 var app = express();
-var server = http.createServer(app);
+var server = https.createServer(options, app);
 var socketio = require('socket.io')(server, {
   serveClient: (config.env === 'production') ? false : true,
   path: '/socket.io-client'

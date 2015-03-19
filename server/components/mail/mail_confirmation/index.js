@@ -7,8 +7,8 @@ var sendMail = function(user, mailConfirmationToken, callback){
 
   var locals = {
     name:user.firstname,
-    COMPANY: 'Rented',
-    CONFIRMATION_URL :'http://' + (config.ip || 'localhost:9000') + '/loginVerify/' ,
+    COMPANY: 'Campusly',
+    CONFIRMATION_URL :'https://' + (config.ip || 'localhost:9000') + '/loginVerify/' ,
     MAIL_CONFIRMATION_TOKEN : mailConfirmationToken
   };
 
