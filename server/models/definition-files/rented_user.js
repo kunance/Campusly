@@ -244,7 +244,15 @@ module.exports = {
       unique: true,
       allowNull: false
       , validate: {
-        is: (/\.edu$/)
+        isValidEmail: function (value) {
+          if(value.match(/\.edu$/) || value.match(/campusly.org$/)){
+            return true;
+          }else{
+            throw new Error('Only .edu or campusly.org e-mails are allowed!')
+          }
+        },
+        isEmail: true,
+        notEmpty: true
       }
     },
     "confirmedEmail": {
@@ -255,7 +263,10 @@ module.exports = {
     "password": {
       type: Seq.TEXT,
       field: "password",
-      allowNull: false
+      allowNull: false,
+      validate:{
+        len: [8,50]
+      }
     },
     "firstname": {
       type: Seq.TEXT,
