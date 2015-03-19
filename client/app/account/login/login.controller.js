@@ -20,7 +20,6 @@
     $scope.confirmToken = $stateParams.confirmToken;
     $scope.invalidToken = false;
     var passwordResetToken = $stateParams.passwordResetToken;
-    var pwdResetState = 'mailform';
     $scope.pwdResetMailSend = false;
 
     $scope.$parent.seo = {
@@ -49,7 +48,6 @@
     if (passwordResetToken) {
       $state.go('login');
       Auth.confirmResetedPassword(passwordResetToken, function (data) {
-        pwdResetState = 'valid_token';
       });
     }
 
@@ -89,7 +87,6 @@
         Auth.sendPwdResetMail($scope.user.email, $scope.user.newPassword)
           .then(function () {
             $scope.errors = {resetPassword: 'Reset password mail has been sent to ' + $scope.user.email + '.'};
-            pwdResetState = 'mailsent';
           })
           .catch(function () {
             $scope.pwdResetMailSend = false;

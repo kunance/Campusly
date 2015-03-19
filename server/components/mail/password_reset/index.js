@@ -13,7 +13,6 @@ var sendMail = function(user, passwordResetToken, callback){
     PWDRESETTOKEN : passwordResetToken
   };
 
-  //service.sendmail('password_reset', user, 'Password reset', locals, callback);
   mandrill.passwordReset('password_reset', user, 'Password reset', locals, callback);
 };
 

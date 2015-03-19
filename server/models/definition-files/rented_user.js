@@ -222,7 +222,7 @@ module.exports = {
         } else {
           fn(null);
         }
-      },
+      }
     }
   },
   attributes: {
@@ -242,15 +242,15 @@ module.exports = {
       type: Seq.TEXT,
       field: "email",
       unique: true,
-      allowNull: false,
-      validate: {
-        //isValidEmail: function (value) {
-        //  if(value.match(/\.edu$/) || value.match(/campusly.org$/)){
-        //    return true;
-        //  }else{
-        //    throw new Error('Only .edu or campusly.org e-mails are allowed!')
-        //  }
-        //},
+      allowNull: false
+      , validate: {
+        isValidEmail: function (value) {
+          if(value.match(/\.edu$/) || value.match(/campusly.org$/)){
+            return true;
+          }else{
+            throw new Error('Only .edu or campusly.org e-mails are allowed!')
+          }
+        },
         isEmail: true,
         notEmpty: true
       }
@@ -880,18 +880,18 @@ module.exports = {
       onUpdate: "NO ACTION"
     }
   }, {
-    type: "belongsToMany",
-    model: "rentedUser",
-    schema: "public",
-    table: "rented_user",
-    source: "generator",
-    details: {
-      as: "relatedUserrecommendationsRecommendorRecommendedIds",
-      foreignKey: "recommendorId",
-      otherKey: "recommendedId",
-      through: "user_recommendation",
-      onDelete: "NO ACTION",
-      onUpdate: "NO ACTION"
-    }
+  type: "belongsToMany",
+  model: "rentedUser",
+  schema: "public",
+  table: "rented_user",
+  source: "generator",
+  details: {
+    as: "relatedUserrecommendationsRecommendorRecommendedIds",
+    foreignKey: "recommendorId",
+    otherKey: "recommendedId",
+    through: "user_recommendation",
+    onDelete: "NO ACTION",
+    onUpdate: "NO ACTION"
+  }
   }]
 };
