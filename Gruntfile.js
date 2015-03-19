@@ -55,6 +55,36 @@ module.exports = function (grunt) {
       }
     },
     watch: {
+      dev: {
+        options: {
+          livereload: {
+            port: 35729,
+            key: grunt.file.read('server/config/keys/campuslyPrivateKey.pem').toString(),
+            cert: grunt.file.read('server/config/keys/campuslyCertificate.pem').toString()
+          }
+        },
+        files: [ 'a/*']
+      },
+      connect: {
+        files: [
+          '<%= yeoman.client %>/{app,components}/**/*.js',
+          '!<%= yeoman.client %>/{app,components}/**/*.spec.js',
+          '!<%= yeoman.client %>/{app,components}/**/*.mock.js',
+          '!<%= yeoman.client %>/app/app.js'],
+        dev: {
+          options: {
+            protocol: 'https',
+            port: 9000,
+            key: grunt.file.read('server/config/keys/campuslyPrivateKey.pem').toString(),
+            cert: grunt.file.read('server/config/keys/campuslyCertificate.pem').toString(),
+            ca: grunt.file.read('server/config/keys/campusly-godaddy-cert.pem').toString(),
+            passphrase: 'grunt',
+            base: 'a',
+            livereload: true,
+            keepalive: true
+          }
+        }
+      },
       injectJS: {
         files: [
           '<%= yeoman.client %>/{app,components}/**/*.js',
@@ -94,7 +124,11 @@ module.exports = function (grunt) {
           //'<%= yeoman.client %>/assets/fake/{,*//*}*.{png,jpg,jpeg,gif,webp,svg,json}'
         ],
         options: {
-          livereload: true
+          livereload: true,
+          base: 'test/fixtures/',
+          port: 9000,
+          protocol: 'https',
+          keepalive: true
         }
       },
       express: {
@@ -586,7 +620,7 @@ module.exports = function (grunt) {
           ]
         }
       }
-    },
+    }
   });
 
   // Used for delaying livereload until after server has restarted
@@ -753,4 +787,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+  grunt.registerTask('something',['grunt-contrib-watch']);
+  grunt.registerTask('somethingElse', ['grunt-contrib-connect']);
 };
