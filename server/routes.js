@@ -9,6 +9,15 @@ var path = require('path');
 
 module.exports = function(app) {
 
+  //middleware witch MUST BE declared before any route so it intercept every route request and redirect to https
+  app.use(function (req, res, next) {
+    if (req.headers['x-forwarded-proto'] == 'http') {
+      res.redirect('https://' + req.headers.host + req.path);
+    } else {
+      return next();
+    }
+  });
+
   // Insert routes below
   app.use('/api/users', require('./api/user'));
 
@@ -43,15 +52,6 @@ module.exports = function(app) {
 
   app.use('/auth', require('./auth'));
 
-  app.use(function (req, res, next) {
-    console.log('heder');
-    console.log(req.headers);
-    if (req.headers['x-forwarded-proto'] == 'http') {
-      res.redirect('https://' + req.headers.host + req.path);
-    } else {
-      return next();
-    }
-  })
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
    .get(errors[404]);
@@ -59,17 +59,7 @@ module.exports = function(app) {
   // All other routes should redirect to the index.html
   app.route('/*')
     .get(function(req, res) {
-      console.log('middleware');
       res.sendFile(path.resolve(app.get('appPath') + '/index.html'));
     });
 
-  app.route('/*')
-    .all(function(req, res,next) {
-      console.log('a sta je ovo');
-      if (req.headers['x-forwarded-proto'] == 'http') {
-        res.redirect('https://' + req.headers.host + req.path);
-      } else {
-        return next();
-      }
-    });
 };

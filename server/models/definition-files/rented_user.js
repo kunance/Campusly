@@ -248,7 +248,7 @@ module.exports = {
       //    if(value.match(/\.edu$/) || value.match(/campusly.org$/)){
       //      return true;
       //    }else{
-      //      throw new Error('Only .edu or campusly.org e-mails are allowed!')
+      //      throw new Error('Only .edu e-mails are allowed!')
       //    }
       //  },
       //  isEmail: true,

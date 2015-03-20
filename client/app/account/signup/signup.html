@@ -3,12 +3,6 @@
   <section class="login-box white-box" ng-show="!signup.errors.verification">
     <h2 class="heading">Sign up for free</h2>
 
-    <!--<article class="social">-->
-      <!--<a class="link email"><span>Email</span></a>-->
-      <!--<a class="link fb" ng-click="signup.loginOauth('facebook')"><span>Facebook</span></a>-->
-      <!--<a class="link google" ng-click="signup.loginOauth('google')"><span>Google+</span></a>-->
-    <!--</article>-->
-
     <form class="main-form" name="form" ng-submit="signup.register(form)" novalidate>
 
       <label class="lbl">
@@ -37,12 +31,6 @@
           <p class="help-block" ng-show="form.password.$error.minlength && signup.submitted">Password must be at least 8 characters.</p>
           <p class="help-block" ng-show="signup.errors.email">{{ signup.errors.email }}</p>
         </div>
-      <!--<label class="lbl" ng-class="{ 'has-success': form.password.$valid && signup.submitted, 'has-error': form.password.$invalid && signup.submitted }">-->
-        <!--<input type="password" ng-model="signup.user.confirmPassword" match="signup.user.password" placeholder="Repeat password" ng-minlength="3" ui-validate=" '$value==signup.user.password' "-->
-               <!--ui-validate-watch=" 'signup.user.password' " required>-->
-        <!--<p class="help-block" ng-show="form.password.$error.required && signup.submitted">Please provide valid password</p>-->
-        <!--<p class="help-block" ng-show="form.password.$error && signup.submitted && !form.password.$error.required">Password's dont match</p>-->
-      <!--</label>-->
 
       <p class="help-block" ng-show="form.password.$error.mongoose">{{ signup.errors.password }}</p>
       <p class="help-block">{{ signup.errors.other }}</p>
@@ -53,12 +41,11 @@
 
     </form>
   </section>
-  <!--TODO improve css and wording-->
+
   <section class="login-box white-box " style="text-align: center" ng-show="signup.errors.verification">
     <h2 class="heading">Hello&nbsp{{signup.user.firstname}},</h2>
     <i class="fa fa-envelope-o fa-5x"></i>
-    <h4>Please verify your Campusly account. Verification mail has been sent to {{signup.user.email}}.</h4><br/>
-    <small class="quote">Once you finish with e-mail verification you'll be able to access campusly community</small>
+    <h4>Please verify your university email address to access the campusly community. <br><br>Verification email has been sent to {{signup.user.email}}.</h4>
   </section>
 
 </div>
