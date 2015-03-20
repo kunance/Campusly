@@ -17,7 +17,7 @@ var sendMail = function(user, passwordResetToken, callback){
     var locals = {
       name: user.firstname,
       COMPANY: 'Campusly',
-      PWDRESET_URL: 'https://' + (config.ip || 'localhost:9000') + '/loginPwdReset/',
+      PWDRESET_URL: 'https://' + (config.ip || 'campusly.org') + '/loginPwdReset/',
       PWDRESETTOKEN: passwordResetToken
     };
   }

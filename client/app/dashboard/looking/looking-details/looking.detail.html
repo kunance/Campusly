@@ -67,8 +67,9 @@
         </div>
         <hr/>
         <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <a class="contact-bubble-email pull-right" ng-href="mailto:{{detail.lookingDetail.relatedUserId.email}}?Subject=Interested%20in%20your%20looking" target="_top"><i class="fa fa-send fa-lg"></i><p>Email</p></a>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+            <a style="margin-left:20px" class="contact-bubble-email pull-right" ng-href="mailto:{{detail.lookingDetail.relatedUserId.email}}?Subject=Interested%20in%20your%20looking" target="_top"><i class="fa fa-send fa-lg"></i><p>Email</p></a>
+            <a style="margin-left:20px" ng-if="detail.lookingDetail.relatedUserId.facebook" class="contact-bubble-email pull-right" ng-href="https://www.facebook.com/{{detail.lookingDetail.relatedUserId.facebook}}" target="_blank"><i class="fa fa-facebook-official fa-lg"></i><p>Facebook</p></a>
           </div>
         </div>
       </div>

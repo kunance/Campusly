@@ -10,13 +10,22 @@ var path = require('path');
 module.exports = function(app) {
 
   //middleware witch MUST BE declared before any route so it intercept every route request and redirect to https
-  app.use(function (req, res, next) {
-    if (req.headers['x-forwarded-proto'] == 'http') {
-      res.redirect('https://' + req.headers.host + req.path);
-    } else {
-      return next();
-    }
-  });
+  //app.use(function (req, res, next) {
+  //  if (req.headers['x-forwarded-proto'] == 'http') {
+  //    res.redirect('https://' + req.headers.host + req.path);
+  //  } else {
+  //    return next();
+  //  }
+  //});
+
+  app.route('/*')
+    .all(function(req, res, next) {
+      if (req.headers['x-forwarded-proto'] == 'http') {
+        res.redirect(301,'https://' + req.headers.host + req.path);
+      } else {
+        return next();
+      }
+    });
 
   // Insert routes below
   app.use('/api/users', require('./api/user'));
@@ -48,7 +57,6 @@ module.exports = function(app) {
 
   // user managing their own room listing
   app.use('/api/users/:userId/rooms', require('./api/user/room') );
-
 
   app.use('/auth', require('./auth'));
 

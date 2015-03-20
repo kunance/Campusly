@@ -8,7 +8,7 @@ var sendMail = function(user, mailConfirmationToken, callback){
   var locals = {
     name:user.firstname,
     COMPANY: 'Campusly',
-    CONFIRMATION_URL :'https://' + (config.ip || 'localhost:9000') + '/loginVerify/' ,
+    CONFIRMATION_URL :'https://' + (config.ip || 'campusly.org') + '/loginVerify/' ,
     MAIL_CONFIRMATION_TOKEN : mailConfirmationToken
   };
   }

@@ -86,7 +86,8 @@
 
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-            <a class="contact-bubble-email pull-right" ng-href="mailto:{{room.creatorEmail}}?Subject=Interested%20in%20your%20room" target="_top"><i class="fa fa-send fa-lg"></i><p>Email</p></a>
+            <a style="margin-left:20px" class="contact-bubble-email pull-right" ng-href="mailto:{{room.creatorEmail}}?Subject=Interested%20in%20your%20room" target="_top"><i class="fa fa-send fa-lg"></i><p>Email</p></a>
+            <a style="margin-left:20px" class="contact-bubble-email pull-right" ng-if="room.creatorFacebook" ng-href="https://www.facebook.com/{{room.creatorFacebook}}" target="_blank"><i class="fa fa-send fa-lg"></i><p>Facebook</p></a>
 
             <!--<a class="contact-bubble-email" href="" target="_top"><i class="fa fa-facebook fa-lg"></i></a>-->
             <!-- Facebook link commented out for now -->

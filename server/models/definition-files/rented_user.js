@@ -243,17 +243,17 @@ module.exports = {
       field: "email",
       unique: true,
       allowNull: false
-      //, validate: {
-      //  isValidEmail: function (value) {
-      //    if(value.match(/\.edu$/) || value.match(/campusly.org$/)){
-      //      return true;
-      //    }else{
-      //      throw new Error('Only .edu e-mails are allowed!')
-      //    }
-      //  },
-      //  isEmail: true,
-      //  notEmpty: true
-      //}
+      , validate: {
+        isValidEmail: function (value) {
+          if(value.match(/\.edu$/) || value.match(/campusly.org$/)){
+            return true;
+          }else{
+            throw new Error('Only .edu e-mails are allowed!')
+          }
+        },
+        isEmail: true,
+        notEmpty: true
+      }
     },
     "confirmedEmail": {
       type: Seq.BOOLEAN,

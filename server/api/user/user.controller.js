@@ -106,7 +106,7 @@ exports.create = function(req, res, next) {
  */
 exports.show = function(req, res, next) {
   var userId = req.params.id;
-  var userAttributes = ['id', 'confirmedEmail', 'firstname', 'email', 'phone', 'lastname', 'profileImage'];
+  var userAttributes = ['id', 'confirmedEmail', 'firstname', 'email', 'phone', 'lastname', 'profileImage', 'facebook'];
   User.find({
     where: {
       id: userId
