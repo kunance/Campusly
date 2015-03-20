@@ -129,6 +129,23 @@ Ignore svg warnings
 4. git checkout -b MVPMEAN
 5. git remote add AWS ec2-54-149-92-100.us-west-2.compute.amazonaws.com:/home/ubuntu/repo_rented_do_not_delete
 6. git status
-then classic procdure
+then classic procedure
 1. git add, git commit
 2. git push AWS HEAD:MVPMEAN --force
+
+====
+Installing Amazon AWS CLI
+- Follow instructions at the website below
+http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/set-up-ec2-cli-linux.html#setting_up_ec2_command_linux
+Config file (~/.bash_profile) should look like this once setup is complete
+### Added for Java v1.7
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7.0_75`
+
+### Added for EC2
+export EC2_HOME=/usr/local/ec2/ec2-api-tools-1.7.3.0
+export PATH=$PATH:$EC2_HOME/bin
+export AWS_ACCESS_KEY=<your key>
+export AWS_SECRET_KEY=<your key>
+export EC2_URL=https://ec2.us-west-2.amazonaws.com
+
+====
