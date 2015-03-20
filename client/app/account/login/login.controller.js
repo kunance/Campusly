@@ -16,7 +16,7 @@
     $scope.errors = {};
     $scope.showVerifyPartial = false;
     $scope.newPasswordAddon = false;
-    $scope.reset = $scope.newPasswordAddon ? 'you recalled password?' : 'forgot password?';
+    $scope.reset = $scope.newPasswordAddon ? 'I remember!' : 'Forget password?';
     $scope.confirmToken = $stateParams.confirmToken;
     $scope.invalidToken = false;
     var passwordResetToken = $stateParams.passwordResetToken;
@@ -29,7 +29,7 @@
 
     $scope.toogleNewPasswordAddon= function () {
       $scope.newPasswordAddon = !$scope.newPasswordAddon;
-      $scope.reset = $scope.newPasswordAddon ? 'you recalled password?' : 'forgot password?';
+      $scope.reset = $scope.newPasswordAddon ? 'I remember!' : 'Forget password?';
       $scope.errors.password = ' ';
     };
 

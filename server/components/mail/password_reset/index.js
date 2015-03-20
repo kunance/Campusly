@@ -13,7 +13,7 @@ var sendMail = function(user, passwordResetToken, callback){
     PWDRESETTOKEN : passwordResetToken
   };
 
-  mandrill.passwordReset('password_reset', user, 'Password reset', locals, callback);
+  mandrill.passwordReset('password_reset', user, 'Campusly - Reset Password', locals, callback);
 };
 
 

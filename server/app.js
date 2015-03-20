@@ -9,7 +9,8 @@ var fs = require('fs');
 
 var options = {
   key: fs.readFileSync('./server/config/keys/campuslyPrivateKey.pem'),
-  cert: fs.readFileSync('./server/config/keys/campuslyCertificate.pem')
+  cert: fs.readFileSync('./server/config/keys/campuslyCertificate.pem'),
+  ca: fs.readFileSync('./server/config/keys/campusly-godaddy-cert.pem')
 };
 
 // Set default node environment to development

@@ -44,11 +44,11 @@
           if (err.name) {
             angular.forEach(err.errors, function (field) {
               if (field.type == 'unique violation'){
-                field.message = 'That email address is already taken!';
+                field.message = 'You have already signed-up! Please Sign-in.';
                 vm.errors[field.path] = field.message;
               }
               if (field.type == 'Validation error'){
-                field.message = 'Your email have to finish with .edu!';
+                field.message = 'Your email needs to be a valid .edu address!';
                 vm.errors[field.path] = field.message;
               }
             });

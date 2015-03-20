@@ -44,7 +44,8 @@ module.exports.confirm = function (templateName, user, subject, locals, callback
   generateMail(templateName, locals, function (html) {
     var params = {
       message: {
-        from_email: config.mail.from,
+        from_email: config.mail.from_email,
+        from_name: config.mail.from_name,
         to: [{email: user.email, name: (user.firstname + ' ' + user.lastname)}],
         subject: subject,
         html: html
@@ -64,7 +65,8 @@ module.exports.passwordReset = function (templateName, user, subject, locals, ca
   generateMail(templateName, locals, function (html) {
     var params = {
       message: {
-        from_email: config.mail.from,
+        from_email: config.mail.from_email,
+        from_name: config.mail.from_name,
         to: [{email: user.email, name: (user.firstname + ' ' + user.lastname)}],
         subject: subject,
         html: html
