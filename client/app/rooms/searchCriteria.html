@@ -1,0 +1,217 @@
+<div class="container">
+  <a href="" ng-click="rooms.showSearch=!rooms.showSearch">Search Criteria</a>  <button id="search" name="search" ng-click="rooms.clearSearchAndSearch(false)">Reset</button>
+  <div class="row" ng-show="rooms.showSearch">
+
+    <!--start of first col 4-->
+    <div class="col-md-4">
+
+      <!-- Monthly rent -->
+
+      <div class="row post-padding">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-tag  fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="maxMonthlyPrice">Maximum Monthly Rent ($)</label>
+          <input type="number" id="maxMonthlyPrice" name="maxMonthlyPrice"  class="form-control"
+                 placeholder="e.x. 750" ng-model="rooms.searchCriteria.maxMonthlyPrice">
+        </div>
+      </div>
+
+      <!-- Lease type -->
+
+      <div class="row post-padding">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-clipboard fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="leaseType">Lease type</label>
+          <select id="leaseType" class="form-control" ng-model="rooms.searchCriteria.leaseType" >
+            <option value="sub-lease">Sub-lease</option>
+            <option value="month-to-month">Month to month</option>
+            <option value="lease take over">Lease take over</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Number of roommates -->
+
+      <div class="row post-padding">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-users fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="maxCurrentRoomates">Max current roommates</label>
+          <input type="number" id="maxCurrentRoomates"  name="maxCurrentRoomates" class="form-control"
+                 ng-model="rooms.searchCriteria.maxCurrentRoomates" min="1" max="10"/>
+        </div>
+      </div>
+
+      <!--&lt;!&ndash; Property type &ndash;&gt;-->
+
+      <!--<div class="row">-->
+        <!--<div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">-->
+          <!--<div class="post-bubble">-->
+            <!--<i class="fa fa-building fa-lg"></i>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-xs-9 col-sm-7 input-post">-->
+          <!--<label for="type">Property type</label>-->
+          <!--<select id="type" class="form-control" ng-model="rooms.searchCriteria.propertyType" >-->
+            <!--<option value="apt">Apartment</option>-->
+            <!--<option value="sfh">Single family house</option>-->
+            <!--<option value="townhouse">Townhouse</option>-->
+          <!--</select>-->
+        <!--</div>-->
+      <!--</div>-->
+
+    </div>
+
+    <!--start of second col 4-->
+    <div class="col-md-4">
+
+      <!-- Shared bathroom -->
+
+      <div class="row post-padding">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-shower fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="sharedBath">Shared Bathroom?</label>
+          <select id="sharedBath"  name="sharedBath" class="form-control"
+                  ng-model="rooms.searchCriteria.sharedBathroom">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Room type -->
+
+      <div class="row post-padding">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-bigBed fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="roomType">Room type</label>
+          <select id="roomType" class="form-control" ng-model="rooms.searchCriteria.roomType" >
+            <option value="single">Single</option>
+            <option value="double">Double</option>
+            <option value="living room">Living room</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Furnished -->
+
+      <div class="row post-padding">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-desk fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="furnished">Furnished?</label>
+          <select id="furnished"  name="furnished" class="form-control"
+                  ng-model="rooms.searchCriteria.furnished">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Smoking -->
+
+      <div class="row post-padding">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-smoking fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="smokingAllowed">Smoking allowed?</label>
+          <select id="smokingAllowed"  name="smokingAllowed" class="form-control"
+                  ng-model="rooms.searchCriteria.smokingAllowed">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!--start of third col 4-->
+    <div class="col-md-4">
+
+      <!-- Gender preference -->
+
+      <div class="row">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-venus-mars fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="gender">Gender preference</label>
+          <select id="gender" class="form-control" ng-model="rooms.searchCriteria.gender" >
+            <option value="no preference">No preference</option>
+            <option value="male only">Male only</option>
+            <option value="female only">Female only</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Pets Allowed -->
+
+      <div class="row post-padding">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-pet fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="petsAllowed">Pets allowed?</label>
+          <select id="petsAllowed"  name="petsAllowed" class="form-control"
+                  ng-model="rooms.searchCriteria.petsAllowed">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Parking Allowed -->
+
+      <div class="row post-padding">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-car fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="parkingAvailable">Parking available</label>
+          <select id="parkingAvailable"  name="parkingAvailable" class="form-control"
+                  ng-model="rooms.searchCriteria.parkingAvailable">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- end of 3 columns for room search criteria -->
+
+      <button id="search" name="search" ng-click="rooms.search(false)">Search</button>
+      <button id="search" name="search" ng-click="rooms.clearSearch(true)">Clear search criteria</button>
+    </div>
+  </div>
+</div>
