@@ -13,6 +13,7 @@ var excludeService = require('../../services/exclude.own');
  *
  * Attribute filters coming soon in order to specify only what you want in the return object
  *
+ *
  * @param req
  * @param res
  * @param next
@@ -28,10 +29,9 @@ exports.getRoomListing = function(req, res, next) {
     "status" ];
 
   var creatorAttributes = ["email"];
-  var roommateAttributes = ["firstname", "lastname","profileImage"];
-  var educationAttributes = ["educationCenterName"];
 
-  var roomListingResponse = {};
+  console.log(req.params.sortBy);
+  console.log(req.params.sortOrder);
 
   RoomListing.find({
     where: {
@@ -42,16 +42,6 @@ exports.getRoomListing = function(req, res, next) {
       {model: Property,  attributes: propertyAttributes, as: 'relatedPropertyId'},
       {
         model: User, attributes: creatorAttributes, as: 'relatedCreatorId'
-        //include: [
-        //  {
-        //    model: Roommate, as: 'roommateRommieIds',
-        //    include: [
-        //      {
-        //        model: User/*, attributes: roommateAttributes*/, as: 'relatedUserId',
-        //        include: [
-        //          {model: Education/*, attributes:educationAttributes*/, as: 'usereducationUsers'}]
-        //      }]
-        //  }]
       }]
    })
     .then(function(roomListing) {
@@ -84,6 +74,19 @@ exports.getRoomListing = function(req, res, next) {
  *
  *  Attribute filters coming soon in order to specify only what you want in the return object
  *
+ *  Sort {sortBy: [monthlyPrice | availableMoveIn | distanceToMyUniversity], sortOrder: [ascending | descending] }
+ *
+ *  Search { maxMonthlyPrice: null,
+            leaseType: null,
+            maxCurrentRoomates: null,
+            propertyType: null,
+            sharedBathroom: null,
+            roomType : null,
+            furnished: null,
+            smokingAllowed: null,
+            gender: null,
+            petsAllowed: null,
+            parkingAvailable: null }
  *
  *  Search criteria coming to support searching with a specific distance.  For example, if you use distance,
  *    you MUST pass in latitude and longitude:
@@ -110,12 +113,42 @@ exports.getAllRoomListings = function(req, res, next) {
   var propertyAttributes = [ "id", "streetNumeric", "streetAddress", "city", "state", "zip", "apt", "bldg", "latitude", "longitude", "type",
    "description", "bedrooms","bathrooms", "parkingSpots", "livingAreaSqFt", "hoaFee", "otherFee", "status" ];
 
-  var roomListingResponse = [];
+  var roomListingsResponse = [];
+
+  //console.log(req.param("sortBy"));
+  //console.log(req.param("sortOrder"));
+
+  //console.log(req.query);
+
+  var sortAttrs = [req.param("sortBy")];
+  if(req.param("sortOrder") === "descending") {
+    sortAttrs.push("DESC");
+  }
+
+  var searchQuery  =  JSON.parse(req.query.search);
+  var searchCriteria = { activeRoom: true };
+
+  //console.log(searchQuery);
+  //console.log(Object.keys(searchQuery));
+
+  if(searchQuery.maxMonthlyPrice) { searchCriteria.monthlyPrice = { lte: searchQuery.maxMonthlyPrice }; }
+  if(searchQuery.maxCurrentRoomates) { searchCriteria.numRoomates = { lte: searchQuery.maxCurrentRoomates }; }
+//  if(propertyType !== null) { searchCriteria.property.type = searchQuery.propertyType; }
+  if(searchQuery.leaseType !== null) { searchCriteria.leaseType = searchQuery.leaseType.replace(/"/g, "'"); }
+  if(searchQuery.roomType !== null) { searchCriteria.roomType = searchQuery.roomType.replace(/"/g, "'"); }
+  if(searchQuery.gender !== null) { searchCriteria.gender = searchQuery.gender.replace(/"/g, "'"); }
+  if(searchQuery.sharedBathroom !== null) { searchCriteria.sharedBathroom = (searchQuery.sharedBathroom === "true"); }
+  if(searchQuery.furnished !== null) { searchCriteria.furnished = (searchQuery.furnished === "true"); }
+  if(searchQuery.smokingAllowed !== null) { searchCriteria.smokingAllowed = (searchQuery.smokingAllowed === "true"); }
+//  if(searchQuery.petsAllowed !== null) { searchCriteria.petsAllowed = (searchQuery.petsAllowed === "true"); }
+  if(searchQuery.parkingAvailable !== null) { searchCriteria.parkingAvailable = (searchQuery.parkingAvailable === "true"); }
+
+
+
 
   RoomListing.findAll({
-    where:{
-      activeRoom:true
-    },
+    where: searchCriteria,
+    order: [ sortAttrs ],
     attributes: roomAttributes,
     include:
       [ {model: Property,  attributes: propertyAttributes, as: 'relatedPropertyId'}],
@@ -135,12 +168,12 @@ exports.getAllRoomListings = function(req, res, next) {
 
       var mashed = _.extend({}, { roomDetails: roomDetails }, { propertyDetails: propertyDetails } );
       delete mashed.roomDetails.relatedPropertyId;
-      roomListingResponse.push(mashed);
+      roomListingsResponse.push(mashed);
     });
 
    // console.log('Room Listings: ', roomListingResponse);
 
-    res.json(excludeService.excludeOwn(roomListingResponse, req.user.id));
+    res.json(excludeService.excludeOwn(roomListingsResponse, req.user.id));
   });
 };
 

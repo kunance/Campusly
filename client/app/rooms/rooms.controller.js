@@ -11,25 +11,50 @@
     var vm = this;
     vm.property = {};
     vm.me = common.Auth.getCurrentUser();
-    vm.asc = true;
 
-    vm.sortExpression = 'monthlyPrice';
+    vm.sortOrder = 'ascending';  // default
+    vm.sortBy = 'availableMoveIn';  // default
 
-    vm.mySortFunction = function(room) {
-      //console.log('ulazim');
-      if(isNaN(room.roomDetails[vm.sortExpression]))
-        return room.roomDetails[vm.sortExpression];
-      return parseInt(room.roomDetails[vm.sortExpression]);
+
+    vm.showSearch = false; // default
+    vm.showSort = false; // default
+
+
+    vm.clearSearch = function(showSearch) {
+      vm.searchCriteria = {
+        maxMonthlyPrice: null,
+        leaseType: null,
+        maxCurrentRoomates: null,
+        propertyType: null,
+        sharedBathroom: null,
+        roomType : null,
+        furnished: null,
+        smokingAllowed: null,
+        gender: null,
+        petsAllowed: null,
+        parkingAvailable: null
+      };
     };
 
-   RoomListingView.query(function(availRooms) {
-     vm.availableRooms = availRooms;
-     //console.log(vm.availableRooms);
-       vm.groups = vm.availableRooms.inGroupsOf(8);
-     //console.log('grupe', vm.groups);
-     /* vm.availableRooms = availRooms;
-     console.log("availableRooms: ", vm.availableRooms); */
-   });
+
+    vm.clearSearch(false);
+
+    vm.search = function(showSearch) {
+      RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria}, function(availRooms) {
+        vm.availableRooms = availRooms;
+        //console.log(vm.availableRooms);
+        vm.groups = vm.availableRooms.inGroupsOf(8);
+        //console.log('grupe', vm.groups);
+        /* vm.availableRooms = availRooms;
+         console.log("availableRooms: ", vm.availableRooms); */
+
+        // keep view clean of searcha and sort values so user can focus on available rooms
+        vm.showSearch = showSearch;
+        vm.showSort = showSearch;
+      });
+    };
+
+    vm.search(false);
 
     function orderSliderButtons() {
       setTimeout(function() {
@@ -53,20 +78,6 @@
     });
 
     mixpanel.track('room grid view');
-
-    //console.log(vm.availableRooms);
-
-    //vm.availableRooms = RoomListingView.query(function(/*availRooms*/) {
-     // vm.availableRooms = availRooms;
-    //  console.log("availableRooms: ", vm.availableRooms);
-    //});
-
-    //$http.get("../assets/fake/available_rooms.json")
-    //  .success(function(data){
-    //    vm.availableRooms = data;
-    //  });
-
-
   }
 
 

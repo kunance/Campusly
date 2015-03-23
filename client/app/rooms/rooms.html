@@ -1,24 +1,38 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
 <div class="main-wrapper">
+
+  <div class="container">
+    <a href="" ng-click="rooms.showSort=!rooms.showSort">Sort Criteria</a>
+    <div class="row" ng-show="rooms.showSort">
+      <!-- Sort view -->
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <label for="sortBy">Sort by:</label>
+        <select id="sortBy" class="form-control" ng-model="rooms.sortBy">
+          <option value="monthlyPrice">Price</option>
+          <option value="availableMoveIn">Available date</option>
+          <option value="distanceToMyUniversity">Distance from my university</option>
+        </select>
+
+        <div>
+          <input type="radio" name="sortOrder" value="ascending" ng-model="rooms.sortOrder">Ascending order</input>
+          <input type="radio" name="sortOrder" value="descending" ng-model="rooms.sortOrder">Descending order</input>
+          <button id="sort" name="sort" ng-click="rooms.search(false)">Sort</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Search criteria -->
+  <div ng-include=" 'app/rooms/searchCriteria.html' "></div>
+
   <div class="container rooms">
     <div class="row">
       <div class="page-header">
         <h2>Available Rooms</h2>
-
-        <!-- Sort view -->
-
-        <!--<label for="sortBy">Sort by:</label>-->
-        <!--<select id="sortBy" class="form-control" ng-model="rooms.sortBy" ng-init="rooms.sortBy='roomDetails.monthlyPrice'" ng-change="rooms.aaa()">-->
-          <!--<option value="roomDetails.monthlyPrice">Price</option>-->
-          <!--<option value="roomDetails.availableMoveIn">Available date</option>-->
-        <!--</select>-->
-        <!--<div ng-init="order='false'">-->
-          <!--<input type="radio" name="order" value="false" ng-model="order" ng-click="rooms.aaa()"/> Ascending order-->
-          <!--<input type="radio" name="order" value="true" ng-model="order" ng-click="rooms.aaa()"/> Descending order-->
-        <!--</div>-->
-
       </div>
+
       <!-- Main room view -->
 
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
