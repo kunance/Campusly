@@ -1,4 +1,30 @@
-<div ng-include="'components/layout/navbar/navbar.html'"></div>
+<header class="login-header" ng-controller="NavbarCtrl">
+  <div class="container">
+    <div class="left-content">
+      <a href="/" ng-if="!isLoggedIn()">
+        <img src="../../../assets/images/webname.svg" alt="campusly" >
+      </a>
+      <a ui-sref="dashboard" ng-if="isLoggedIn()">
+        <img src="../../../assets/images/webname.svg" alt="campusly" >
+      </a>
+      <p class="brand-text">secure off-campus community</p>
+    </div>
+
+    <div class="right-content" ng-show="isLoggedIn()">
+      <img class="img-circle profile-image" ng-if="getCurrentUser().profileImage" ng-src="/api/images{{getCurrentUser().profileImage}}">
+      <i ng-if="!getCurrentUser().profileImage" class="fa fa-user fa-2x greetings" style="vertical-align: middle; "></i>
+      <p class="greetings">&nbsp;{{getCurrentUser().firstname}}</p>
+      <a class="new-bubble" ui-sref-active="active" ui-sref="logout"><i class="fa fa-sign-out"></i></a>
+    </div>
+
+    <div class="right-content" ng-show="!isLoggedIn()">
+      <a ui-sref-active="active" ui-sref="login" class="link sign-in">Sign In</a>
+      <a ui-sref-active="active" ui-sref="signup" class="btn sign-up">Sign up for free</a>
+    </div>
+  </div>
+
+</header>
+
 <div ng-include="'components/layout/navbar/sub-navbar.html'" ng-if="isLoggedIn()"></div>
 
 <div class="main-wrapper">
