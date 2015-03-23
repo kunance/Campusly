@@ -4,14 +4,15 @@
 
 'use strict';
 
-var https = require('https');
+//var https = require('https');
+var http = require('http');
 var fs = require('fs');
 
-var options = {
-  key: fs.readFileSync('./server/config/keys/campuslyPrivateKey.pem'),
-  cert: fs.readFileSync('./server/config/keys/campuslyCertificate.pem'),
-  ca: fs.readFileSync('./server/config/keys/campusly-godaddy-cert.pem')
-};
+//var options = {
+//  key: fs.readFileSync('./server/config/keys/campuslyPrivateKey.pem'),
+//  cert: fs.readFileSync('./server/config/keys/campuslyCertificate.pem'),
+//  ca: fs.readFileSync('./server/config/keys/campusly-godaddy-cert.pem')
+//};
 
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -25,7 +26,7 @@ if (config.seedDB) { require('./config/seed'); }
 
 // Setup server
 var app = express();
-var server = https.createServer(options, app);
+var server = http.createServer(app);
 var socketio = require('socket.io')(server, {
   serveClient: (config.env === 'production') ? false : true,
   path: '/socket.io-client'

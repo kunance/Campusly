@@ -54,7 +54,7 @@ exports.showAllLookings= function(req, res, next) {
 
 exports.showSingleLooking= function(req, res, next) {
   var lookingId = req.params.id;
-  var userAttributes = ['firstname', 'lastname', 'profileImage', 'aboutMe', 'email'];
+  var userAttributes = ['firstname', 'lastname', 'profileImage', 'aboutMe', 'email', 'facebook'];
   Looking.find({
     where:{id: lookingId, activeLooking:true},
     include: [

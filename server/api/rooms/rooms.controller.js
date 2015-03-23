@@ -27,7 +27,7 @@ exports.getRoomListing = function(req, res, next) {
     "longitude", "type", "description", "bedrooms","bathrooms", "parkingSpots", "livingAreaSqFt", "hoaFee", "otherFee",
     "status" ];
 
-  var creatorAttributes = ["email"];
+  var creatorAttributes = ["email", "facebook"];
   var roommateAttributes = ["firstname", "lastname","profileImage"];
   var educationAttributes = ["educationCenterName"];
 
