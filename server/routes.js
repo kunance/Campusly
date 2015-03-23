@@ -18,14 +18,14 @@ module.exports = function(app) {
   //  }
   //});
 
-  app.route('/*')
-    .all(function(req, res, next) {
-      if (req.headers['x-forwarded-proto'] == 'http') {
-        res.redirect(301,'https://' + req.headers.host + req.path);
-      } else {
-        return next();
-      }
-    });
+  //app.route('/*')
+  //  .all(function(req, res, next) {
+  //    if (req.headers['x-forwarded-proto'] == 'http') {
+  //      res.redirect(301,'https://' + req.headers.host + req.path);
+  //    } else {
+  //      return next();
+  //    }
+  //  });
 
   // Insert routes below
   app.use('/api/users', require('./api/user'));
