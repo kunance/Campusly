@@ -1,7 +1,6 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
 <div class="main-wrapper">
-
   <div class="container my-profile">
 
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -55,7 +54,7 @@
 
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
           <div class="page-header">
-            <h2 class="section-title"> Roommates </h2>
+            <h2 class="section-title"> Roommates </h2><small ng-if="myProfile.requests">{{myProfile.requests}} new requests</small>
             <a class="bubble edit-profile" ng-click="myProfile.toggleRoommatesAddon()">
               <i class="fa fa-plus" ng-hide="myProfile.showRoommatesAddonButtons"></i>
               <i class="fa fa-minus" ng-show="myProfile.showRoommatesAddonButtons"></i>
@@ -141,16 +140,18 @@
                 </div>
               </div>
               <div class="col-xs-6 info">
-                <span class="name"> {{roommate.relatedRoommateId.firstname}} {{roommate.relatedRoommateId.lastname}} </span>
-                <span class="email">{{roommate.relatedRoommateId.email}}</span>
-                <span class="university" ng-if="roommate.relatedRoommateId.usereducationUsers[0].educationCenterName">{{roommate.relatedRoommateId.usereducationUsers[0].educationCenterName}}</span>
-                <span class="university" ng-if="!roommate.relatedRoommateId.usereducationUsers[0].educationCenterName">University not added</span>
+                <span ng-if="!roommate.confirmed">pending</span>
+                <span class="name"> {{roommate.relatedRoommateId.firstname || roommate.relatedUserId.firstname}} {{roommate.relatedRoommateId.lastname || roommate.relatedUserId.lastname}} </span>
+                <span class="email">{{roommate.relatedRoommateId.email || roommate.relatedUserId.email}}</span>
+                <span class="university" ng-if="roommate.relatedRoommateId.usereducationUsers[0].educationCenterName || roommate.relatedUserId.usereducationUsers[0].educationCenterName">{{roommate.relatedRoommateId.usereducationUsers[0].educationCenterName || roommate.relatedUserId.usereducationUsers[0].educationCenterName}}</span>
+                <span class="university" ng-if="!roommate.relatedRoommateId.usereducationUsers[0].educationCenterName || roommate.relatedUserId.usereducationUsers[0].educationCenterName">University not added</span>
               </div>
               <div class="actions col-xs-4">
+                <a ng-if="roommate.relatedUserId && !roommate.confirmed" class="new-bubble approve" ng-click="myProfile.approveRoommate(roommate)"><i class="fa fa-check"></i></a>
+                <a ng-if="roommate.relatedUserId && !roommate.confirmed" class="new-bubble decline" ng-click="myProfile.removeRoommate(roommate)"><i class="fa fa-times"></i></a>
                 <a class="new-bubble remove" ng-click="myProfile.removeRoommate(roommate)"><i class="fa fa-trash-o"></i></a>
               </div>
             </div>
-
           </div>
         </div>
 

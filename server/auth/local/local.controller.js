@@ -42,6 +42,22 @@ exports.sendMailAddressConfirmationMail = function(req, res, next) {
     })
 };
 
+exports.sendMailRoommateRequest = function(req, res, next) {
+  var roommate = req.body;
+  var id = req.params.userId;
+  User.find({where:{email: id}}, '-salt -hashedPassword')
+    .then(function (sender) {
+      mail.mailConfirmation.sendMail(sender, roommate, function(err,resp){
+        if (!user) return res.status(401).end();
+        if(err) res.status(403).end();
+        else res.status(200).end();});
+    })
+    .catch(function (error) {
+      if (error) return next(error);
+
+    })
+};
+
 
 /**
  * Confirm mail address

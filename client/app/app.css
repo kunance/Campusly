@@ -1358,6 +1358,15 @@ New bubble - to fix Safari issues
   background: rgb(245,27,87);
 }
 
+.new-bubble.approve {
+  background: greenyellow;
+  margin-right: 10px;
+}
+
+.new-bubble.decline {
+  background: rgb(245,27,87);
+}
+
 .new-bubble.cancel {
   background: #ccc;
 }

@@ -34,38 +34,69 @@ function respondWith(res, statusCode) {
 
 exports.newRoommate = function(req, res, next) {
   var userAttributes = ['firstname', 'lastname', 'profileImage', 'email'];
-  if(req.body.id === req.user.id) {res.send(403)}
-  else {
-  req.body.userId = req.user.id;
-  req.body.createdAt = new Date();
-  req.body.fromDate = new Date();
-  req.body.roommateId = req.body.id;
-  req.body.id = null;
-  var newRoommate = Roommate.build(req.body);
-  newRoommate.save()
-    .then(function(room) {
-      Roommate.find({
-        where:{
-          userId:room.userId
-        },
-        include: [
-        { model: User, attributes: userAttributes, as: 'relatedRoommateId',
-        include:[
-        { model: Address, as: 'addresshistoryUsers' },
-        { model: Education, as: 'usereducationUsers' }]
-      }
-      ]
-      }).then(function(roommates) {
-        res.json(roommates);
-      })
-    })
-    .catch(validationError(res));
-  }
+  var creator = req.userId;
+  var roommate = req.body.roommateId;
+  if(creator === roommate) {res.status(403).send('cant add yourself')}
+  //check if roommate exists
+  Roommate.findOne({
+    where: {
+      roommateId:roommate, userId:creator
+    }
+  }).then(function (exists) {
+    if(exists) {
+      res.status(500).send('cant add same roommate twice');
+    }
+  });
+  //check if roommate other roommate added him, if accepts update confirmation
+  Roommate.findOne({
+    where: {
+      roommateId:creator, userId:roommate
+    }
+  }).then(function (exists) {
+    if(exists) {
+      console.log(exists);
+      exists.confirmed = true;
+      exists.save()
+        .then(function (result) {
+          res.json({approved:true});
+        });
+    } else {
+      //else create new roommate
+      req.body.userId = creator;
+      req.body.roommateId = roommate;
+      req.body.confirmed = false;
+      req.body.createdAt = new Date();
+      req.body.fromDate = new Date();
+      req.body.id = null;
+      var newRoommate = Roommate.build(req.body);
+      newRoommate.save()
+        .then(function(room) {
+          Roommate.find({
+            where:{
+              userId:room.userId
+            },
+            include: [
+              { model: User, attributes: userAttributes, as: 'relatedRoommateId',
+                include:[
+                  { model: Address, as: 'addresshistoryUsers' },
+                  { model: Education, as: 'usereducationUsers' }]
+              }
+            ]
+          }).then(function(roommates) {
+            res.json(roommates);
+          })
+        })
+        .catch(validationError(res));
+    }
+  })
+
 };
 
-
+var Sequelize = require('sequelize');
 exports.showRoommates= function(req, res, next) {
   var userAttributes = ['firstname', 'lastname', 'profileImage', 'email'];
+  var own = [];
+  var his = [];
   Roommate.findAll({
     where:{
       userId:req.userId
@@ -73,14 +104,27 @@ exports.showRoommates= function(req, res, next) {
     include: [
       { model: User, attributes: userAttributes, as: 'relatedRoommateId',
         include:[
-          { model: Address, as: 'addresshistoryUsers' },
           { model: Education, as: 'usereducationUsers' }]
       }
     ]
-  }).then(function(roommates) {
-    res.json(roommates);
-  })
-
+  }).then(function(o) {
+    own = o;
+  });
+  Roommate.findAll({
+    where:{
+      roommateId:req.userId
+    },
+    include: [
+      { model: User, attributes: userAttributes, as: 'relatedUserId',
+        include:[
+          { model: Education, as: 'usereducationUsers' }]
+      }
+    ]
+  }).then(function (h) {
+    his = h;
+    var result = own.concat(his);
+    res.json(result);
+  });
 };
 
 exports.deleteRoommate= function(req, res, next) {

@@ -251,6 +251,16 @@
           }).$promise;
         },
 
+        sendRoommateRequest: function(userId, roommate, callback) {
+          var cb = callback || angular.noop;
+
+          return Local.roommateRequest(userId, roommate, function(user) {
+            return cb(user);
+          }, function(err) {
+            return cb(err);
+          }).$promise;
+        },
+
         /**
          * Send Reset password Mail
          *

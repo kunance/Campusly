@@ -17,7 +17,11 @@
     vm.education = data[0];
     vm.address = data[1];
     vm.users = data[2];
-    vm.roommates = data[3] || []; //roommate info, his education info, his address info
+    vm.roommates = data[3]; //roommate info, his education info, his address info
+    vm.requests = 0;
+    angular.forEach(vm.roommates, function (room) {
+      if (!room.confirmed){vm.requests+=1}
+    });
     vm.pets = data[4];
     vm.vehicles = data[5];
     /*
@@ -103,6 +107,7 @@
      */
     vm.addNewRoommate = function(input){
       if(!input) { return false; }
+      input.originalObject.roommateId = input.originalObject.id;
       var roommate = input.originalObject;
       common.dataservice.addRoommate(vm.me.id, roommate)
       .$promise
@@ -115,6 +120,25 @@
       .catch(function (err) {
         common.logger.error('Something went wrong. Roommate not saved.');
       });
+    };
+
+    vm.approveRoommate = function(input){
+      if(!input) { return false; }
+      var temp = input.userId;
+      input.userId = input.roommateId;
+      input.roommateId = temp;
+      console.log(input);
+      common.dataservice.addRoommate(input.userId, input)
+        .$promise
+        .then(function (data) {
+          common.logger.success('Roommate successfully added!');
+         // vm.roommates.push(data);
+          common.$state.reload();
+        //  vm.cancelRoommateAddAddon();
+        })
+        .catch(function (err) {
+          common.logger.error('Something went wrong. Roommate not saved.');
+        });
     };
 
     vm.removeRoommate = function (roommate) {
