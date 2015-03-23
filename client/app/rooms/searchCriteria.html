@@ -1,5 +1,5 @@
 <div class="container">
-  <a href="" ng-click="rooms.showSearch=!rooms.showSearch">Search Criteria</a>
+  <a href="" ng-click="rooms.showSearch=!rooms.showSearch">Search Criteria</a>  <button id="search" name="search" ng-click="rooms.clearSearchAndSearch(false)">Reset</button>
   <div class="row" ng-show="rooms.showSearch">
 
     <!--start of first col 4-->
@@ -212,7 +212,6 @@
 
       <button id="search" name="search" ng-click="rooms.search(false)">Search</button>
       <button id="search" name="search" ng-click="rooms.clearSearch(true)">Clear search criteria</button>
-
     </div>
   </div>
 </div>

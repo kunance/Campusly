@@ -56,6 +56,11 @@
 
     vm.search(false);
 
+    vm.clearSearchAndSearch = function(showSearch) {
+      vm.clearSearch(false);
+      vm.search(showSearch);
+    };
+
     function orderSliderButtons() {
       setTimeout(function() {
         $(".slider").each(function(index) {
