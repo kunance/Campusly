@@ -3,70 +3,79 @@
 <div class="main-wrapper">
 
   <div class="container">
-    <a href="" ng-click="rooms.showSort=!rooms.showSort">Sort Criteria</a>
-    <div class="row" ng-show="rooms.showSort">
-      <!-- Sort view -->
-      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-        <label for="sortBy">Sort by:</label>
-        <select id="sortBy" class="form-control" ng-model="rooms.sortBy">
-          <option value="monthlyPrice">Price</option>
-          <option value="availableMoveIn">Available date</option>
-          <option value="distanceToMyUniversity">Distance from my university</option>
-        </select>
 
-        <div>
-          <input type="radio" name="sortOrder" value="ascending" ng-model="rooms.sortOrder">Ascending order</input>
-          <input type="radio" name="sortOrder" value="descending" ng-model="rooms.sortOrder">Descending order</input>
-          <button id="sort" name="sort" ng-click="rooms.search(false)">Sort</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- Search criteria -->
-  <div ng-include=" 'app/rooms/searchCriteria.html' "></div>
-
-  <div class="container rooms">
     <div class="row">
-      <div class="page-header">
-        <h2>Available Rooms</h2>
+      <!-- Search criteria -->
+      <div ng-include=" 'app/rooms/searchCriteria.html' "></div>
+    </div>
+
+    <div class="rooms">
+
+      <!-- Sort -->
+
+      <div class="row">
+        <div class="page-header col-xs-12 col-sm-4 col-md-4 col-lg-4">
+          <h2>Available Rooms</h2>
+        </div>
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 sortBox">
+          <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
+            <select id="sortBy" class="form-control" ng-model="rooms.sortBy">
+              <option value="" disabled>Sort by</option>
+              <option value="monthlyPrice">Price</option>
+              <option value="availableMoveIn">Available date</option>
+              <option value="distanceToMyUniversity">Dist. to my university</option>
+            </select>
+          </div>
+          <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
+            <input type="radio" name="sortOrder" value="ascending" ng-model="rooms.sortOrder">&nbsp;<i class="fa fa-arrow-up"></i></input>
+            <input type="radio" name="sortOrder" value="descending" ng-model="rooms.sortOrder">&nbsp;<i class="fa fa-arrow-down"></i></input>
+            <button class="btn-rented-small primary" id="sort" name="sort" ng-click="rooms.search(false)">Sort</button>
+          </div>
+        </div>
+
       </div>
 
       <!-- Main room view -->
 
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <slick dots="true" class="slider" init-onload="true" data="rooms.groups" slides-to-show="1" slides-to-scroll="1" >
-        <div ng-repeat="group in rooms.groups" class="row">
-          <!--ng-if="room.roomDetails.creatorId!==rooms.me.id" to not show own user room listings-->
-          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 room" ng-repeat="room in group">
-            <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-              <div class="flipper">
-                <div class="front white-box">
-                  <div class="picture safariFix">
-                    <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&zoom=14&scale=2&size=400x250&markers=color:blue%7C{{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}">
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <slick dots="true" class="slider" init-onload="true" data="rooms.groups" slides-to-show="1" slides-to-scroll="1" >
+            <div ng-repeat="group in rooms.groups" class="row">
+              <!--ng-if="room.roomDetails.creatorId!==rooms.me.id" to not show own user room listings-->
+              <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 room" ng-repeat="room in group">
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                  <div class="flipper">
+                    <div class="front white-box">
+                      <div class="picture safariFix">
+                        <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&zoom=14&scale=2&size=400x250&markers=color:blue%7C{{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}">
+                      </div>
+                      <div class="info">
+                        <strong class="value">
+                          {{room.roomDetails.monthlyPrice | currency}} mo.
+                        </strong>
+                      </div>
+                      <ul class="specs">
+                        <li><i class="fa fa-bed"></i> {{room.roomDetails.roomType}}</li>
+                        <li><i class="fa fa-users"></i> {{room.roomDetails.numRoomates}} roommates</li>
+                        <li><i class="fa fa-shower"></i> {{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
+                        <li><i class="fa fa-arrow-right"></i> {{room.roomDetails.availableMoveIn | date }}</li>
+                      </ul>
+                    </div>
+                    <div class="back">
+                      <a ui-sref="roomDetail({id: room.roomDetails.id})"> <h2>View Detail</h2> </a>
+                    </div>
                   </div>
-                  <div class="info">
-                    <strong class="value">
-                      {{room.roomDetails.monthlyPrice | currency}} mo.
-                    </strong>
-                  </div>
-                  <ul class="specs">
-                    <li><i class="fa fa-bed"></i> {{room.roomDetails.roomType}}</li>
-                    <li><i class="fa fa-users"></i> {{room.roomDetails.numRoomates}} roommates</li>
-                    <li><i class="fa fa-shower"></i> {{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
-                    <li><i class="fa fa-arrow-right"></i> {{room.roomDetails.availableMoveIn | date }}</li>
-                  </ul>
-                </div>
-                <div class="back">
-                  <a ui-sref="roomDetail({id: room.roomDetails.id})"> <h2>View Detail</h2> </a>
                 </div>
               </div>
             </div>
-          </div>
+          </slick>
         </div>
-      </slick>
+
+      </div>
+
+
       </div>
     </div>
-  </div>
-</div>
+  </div> <!-- end container -->
+</div> <!-- end main wrapper -->

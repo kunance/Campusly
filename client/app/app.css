@@ -291,6 +291,16 @@ Posting input text type
   border-radius: 50px;
 }
 
+.rooms .sortBox select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 34px;
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: right;
+  border-radius: 25px;
+}
 
 /* ==========================================================================
 Sign-up button class
@@ -357,11 +367,12 @@ Small Rented button
   font-size: 14px;
   border-radius: 25px;
   font-weight: 600;
-  width: 130px;
+  width: 60px;
   height: 30px;
   text-align: center;
   margin: 0 auto;
   padding: 3px 12px;
+  border: none;
 }
 
 
@@ -666,6 +677,13 @@ Square box for image with drop shadow
 }
 
 /* ==========================================================================
+Sort box
+========================================================================== */
+.sortBox{
+
+}
+
+/* ==========================================================================
 Brand text
 ========================================================================== */
 
@@ -827,6 +845,12 @@ For mailchimp sign-up - not needed in main app
   .input-post-readonly {
     margin-left: 10px;
   }
+
+  .sortBox{
+    margin-top: 20px;
+    margin-left: 80px;
+  }
+
 }
 
 @media (min-width: 992px) {
@@ -983,6 +1007,11 @@ For mailchimp sign-up - not needed in main app
 
   .roommatesPicture {
     margin-top: 30px;
+  }
+
+  .sortBox{
+    margin-top: 15px;
+    margin-left: 0px;
   }
 
 }
