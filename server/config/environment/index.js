@@ -38,7 +38,8 @@ var all = {
         api_key: 'ApiKey'
       }
     },
-    from: 'info@campusly.org'
+    from_email: 'info@campusly.org',
+    from_name: 'Campusly'
   },
 
   // List of user roles

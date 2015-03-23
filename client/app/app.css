@@ -1323,6 +1323,20 @@ Contact bubble
 }
 
 /* ==========================================================================
+Contact bubble Facebook
+========================================================================== */
+
+.contact-bubble-facebook {
+  background: #3B5998;
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  padding-top: 11px;
+}
+
+/* ==========================================================================
 New bubble - to fix Safari issues
 ========================================================================== */
 

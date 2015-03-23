@@ -51,10 +51,40 @@ module.exports = function (grunt) {
     },
     open: {
       server: {
-        url: 'https://localhost:<%= express.options.port %>'
+        url: 'http://localhost:<%= express.options.port %>'
       }
     },
     watch: {
+      //dev: {
+      //  options: {
+      //    livereload: {
+      //      port: 35729,
+      //      key: grunt.file.read('server/config/keys/campuslyPrivateKey.pem').toString(),
+      //      cert: grunt.file.read('server/config/keys/campuslyCertificate.pem').toString()
+      //    }
+      //  },
+      //  files: [ 'a/*']
+      //},
+      //connect: {
+      //  files: [
+      //    '<%= yeoman.client %>/{app,components}/**/*.js',
+      //    '!<%= yeoman.client %>/{app,components}/**/*.spec.js',
+      //    '!<%= yeoman.client %>/{app,components}/**/*.mock.js',
+      //    '!<%= yeoman.client %>/app/app.js'],
+      //  dev: {
+      //    options: {
+      //      protocol: 'http',
+      //      port: 9000,
+      //      key: grunt.file.read('server/config/keys/campuslyPrivateKey.pem').toString(),
+      //      cert: grunt.file.read('server/config/keys/campuslyCertificate.pem').toString(),
+      //      ca: grunt.file.read('server/config/keys/campusly-godaddy-cert.pem').toString(),
+      //      passphrase: 'grunt',
+      //      base: 'a',
+      //      livereload: true,
+      //      keepalive: true
+      //    }
+      //  }
+      //},
       injectJS: {
         files: [
           '<%= yeoman.client %>/{app,components}/**/*.js',
@@ -95,6 +125,10 @@ module.exports = function (grunt) {
         ],
         options: {
           livereload: true
+          //base: 'test/fixtures/',
+          //port: 9000,
+          //protocol: 'http',
+          //keepalive: true
         }
       },
       express: {
@@ -216,7 +250,7 @@ module.exports = function (grunt) {
             // opens browser on initial server start
             nodemon.on('config:update', function () {
               setTimeout(function () {
-                require('open')('https://localhost:8080/debug?port=5858');
+                require('open')('http://localhost:8080/debug?port=5858');
               }, 500);
             });
           }
@@ -586,7 +620,7 @@ module.exports = function (grunt) {
           ]
         }
       }
-    },
+    }
   });
 
   // Used for delaying livereload until after server has restarted
@@ -753,4 +787,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+  //grunt.registerTask('something',['grunt-contrib-watch']);
+  //grunt.registerTask('somethingElse', ['grunt-contrib-connect']);
 };

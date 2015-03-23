@@ -24,12 +24,13 @@ var generateMail = function(templateName, locals, callback){
   });
 };
 
+//wellcome is out of usage
 module.exports.welcome = function (user) {
   mandrill('/messages/send', {
     message: {
       to: [{email: user.email, name: (user.firstname + ' ' + user.lastname)}],
-      from_email: 'rented@rented.com',
-      subject: "Thanks for signing up to rented co",
+      from_email: config.mail.from,
+      subject: "Thanks for signing up to campusly",
       text: "Some text to welcome new users from mandrill..  "
     }
   }, function (error, info) {
@@ -44,7 +45,8 @@ module.exports.confirm = function (templateName, user, subject, locals, callback
   generateMail(templateName, locals, function (html) {
     var params = {
       message: {
-        from_email: config.mail.from,
+        from_email: config.mail.from_email,
+        from_name: config.mail.from_name,
         to: [{email: user.email, name: (user.firstname + ' ' + user.lastname)}],
         subject: subject,
         html: html
@@ -64,7 +66,8 @@ module.exports.passwordReset = function (templateName, user, subject, locals, ca
   generateMail(templateName, locals, function (html) {
     var params = {
       message: {
-        from_email: 'rented@rented.com',
+        from_email: config.mail.from_email,
+        from_name: config.mail.from_name,
         to: [{email: user.email, name: (user.firstname + ' ' + user.lastname)}],
         subject: subject,
         html: html

@@ -14,6 +14,7 @@
     vm.education = data[0];
     vm.roomDetail = data[1];
     vm.creatorEmail = data[1].roomDetails.relatedCreatorId.email;
+    vm.creatorFacebook = data[1].roomDetails.relatedCreatorId.facebook;
     vm.creatorRoommates = getCreatorRoommates;
     var source = vm.education.relatedUniversityId;
     var destination = vm.roomDetail.propertyDetails.coords;
