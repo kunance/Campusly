@@ -74,7 +74,10 @@ exports.getRoomListing = function(req, res, next) {
  *
  *  Attribute filters coming soon in order to specify only what you want in the return object
  *
- *  Sort {sortBy: [monthlyPrice | availableMoveIn | distanceToMyUniversity], sortOrder: [ascending | descending] }
+ *  Sort {sortBy: ['monthlyPrice' | 'availableMoveIn' | 'distanceToMyUniversity'],
+ *        sortOrder: ['ascending' | 'descending'] }
+ *        defaults   'availableMoveIn' , 'ascending'
+ *
  *
  *  Search { maxMonthlyPrice: null,
             leaseType: null,
@@ -120,30 +123,42 @@ exports.getAllRoomListings = function(req, res, next) {
 
   //console.log(req.query);
 
-  var sortAttrs = [req.param("sortBy")];
+  var sortAttrs;
+
+  if(req.param("sortBy")) {
+    sortAttrs = [req.param("sortBy")];
+  }
+  else {
+    // use deafault
+    sortAttrs = ["availableMoveIn"];
+  }
+
   if(req.param("sortOrder") === "descending") {
     sortAttrs.push("DESC");
   }
 
-  var searchQuery  =  JSON.parse(req.query.search);
   var searchCriteria = { activeRoom: true };
+  var searchQuery;
 
-  //console.log(searchQuery);
-  //console.log(Object.keys(searchQuery));
+  if(req.query.search) {
+    searchQuery =  JSON.parse(req.query.search);
 
-  if(searchQuery.maxMonthlyPrice) { searchCriteria.monthlyPrice = { lte: searchQuery.maxMonthlyPrice }; }
-  if(searchQuery.maxCurrentRoomates) { searchCriteria.numRoomates = { lte: searchQuery.maxCurrentRoomates }; }
+    //console.log(searchQuery);
+    //console.log(Object.keys(searchQuery));
+
+    if(searchQuery.maxMonthlyPrice) { searchCriteria.monthlyPrice = { lte: searchQuery.maxMonthlyPrice }; }
+    if(searchQuery.maxCurrentRoomates) { searchCriteria.numRoomates = { lte: searchQuery.maxCurrentRoomates }; }
 //  if(propertyType !== null) { searchCriteria.property.type = searchQuery.propertyType; }
-  if(searchQuery.leaseType !== null) { searchCriteria.leaseType = searchQuery.leaseType.replace(/"/g, "'"); }
-  if(searchQuery.roomType !== null) { searchCriteria.roomType = searchQuery.roomType.replace(/"/g, "'"); }
-  if(searchQuery.gender !== null) { searchCriteria.gender = searchQuery.gender.replace(/"/g, "'"); }
-  if(searchQuery.sharedBathroom !== null) { searchCriteria.sharedBathroom = (searchQuery.sharedBathroom === "true"); }
-  if(searchQuery.furnished !== null) { searchCriteria.furnished = (searchQuery.furnished === "true"); }
-  if(searchQuery.smokingAllowed !== null) { searchCriteria.smokingAllowed = (searchQuery.smokingAllowed === "true"); }
-  if(searchQuery.petsAllowed !== null) { searchCriteria.petsAllowed = (searchQuery.petsAllowed === "true"); }
-  if(searchQuery.parkingAvailable !== null) { searchCriteria.parkingAvailable = (searchQuery.parkingAvailable === "true"); }
+    if(searchQuery.leaseType !== null) { searchCriteria.leaseType = searchQuery.leaseType.replace(/"/g, "'"); }
+    if(searchQuery.roomType !== null) { searchCriteria.roomType = searchQuery.roomType.replace(/"/g, "'"); }
+    if(searchQuery.gender !== null) { searchCriteria.gender = searchQuery.gender.replace(/"/g, "'"); }
+    if(searchQuery.sharedBathroom !== null) { searchCriteria.sharedBathroom = (searchQuery.sharedBathroom === "true"); }
+    if(searchQuery.furnished !== null) { searchCriteria.furnished = (searchQuery.furnished === "true"); }
+    if(searchQuery.smokingAllowed !== null) { searchCriteria.smokingAllowed = (searchQuery.smokingAllowed === "true"); }
+    if(searchQuery.petsAllowed !== null) { searchCriteria.petsAllowed = (searchQuery.petsAllowed === "true"); }
+    if(searchQuery.parkingAvailable !== null) { searchCriteria.parkingAvailable = (searchQuery.parkingAvailable === "true"); }
 
-
+  }
 
 
   RoomListing.findAll({
