@@ -11,16 +11,18 @@ exports.setup = function(User, config) {
     passReqToCallback: true
   },
   function(req, accessToken, refreshToken, profile, done) {
+    console.log('UNUTRA SAN', req);
+  //  console.log('UNUTRA SAN', req.query);
     User.findOne({
       where: {
-        id: process.env.userId
+        id: global.userId
       }
     })
       .then(function (user) {
         if(user){
           user.facebook = profile.profileUrl;
           user.save().then(function (updated) {
-            process.env.userId = user.id;
+            global.userId = user.id;
             return done(null, updated);
           })
             .catch(function(err) {

@@ -31,6 +31,7 @@ module.exports = function(app) {
   app.use(methodOverride());
   app.use(cookieParser());
   app.use(passport.initialize());
+  app.use(passport.session());
   app.use(multer({dest: './uploads/'})); //just uploading files to server at the moment..
 
   // Persist sessions with mongoStore / sequelizeStore

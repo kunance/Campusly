@@ -109,7 +109,9 @@ angular.module('RentedApp', [
         $rootScope.verificationMessage = 'showEmail';
       } else if (from.name == 'resetPwd'){
         $rootScope.verificationMessage = 'showPassword';
-      } else {
+      }  else if (from.name == 'callback'){
+        $rootScope.facebookStatus = 'facebookLinked';
+      }else {
         $rootScope.verificationMessage = '';
       }
     });

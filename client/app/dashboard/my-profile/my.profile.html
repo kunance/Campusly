@@ -36,9 +36,14 @@
               <dd>{{myProfile.education.major}}</dd>
               <dt>About Me</dt>
               <dd> <p class="quote" ng-if="myProfile.me.aboutMe"> {{myProfile.me.aboutMe}}" </p> </dd>
-              <a  class="contact-bubble-facebook pull-right" ng-if="!myProfile.tempMe.facebook" ng-click="loginOauth('facebook')">
-                <i style="color: #ffffff" class="fa fa-facebook fa-lg"></i><p style="color: #ffffff;">Add</p></a>
             </dl>
+
+            <a class="contact-bubble-facebook" ng-click="loginOauth('facebook')">
+              <i style="color: #ffffff" class="fa fa-facebook fa-lg"></i><p style="color: #ffffff;">Add</p></a>
+
+            <a class="contact-bubble-facebook" ng-click="myProfile.unlinkAccount()">
+              <i style="color: #ffffff" class="fa fa-facebook fa-lg"></i><p style="color: #ffffff;">Unlink</p></a>
+
           </div>
           <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
             <dl>
