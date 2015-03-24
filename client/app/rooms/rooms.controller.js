@@ -5,9 +5,9 @@
   .module('app.rooms')
   .controller('RoomsCtrl', RoomsCtrl);
 
-  RoomsCtrl.$inject = ['$scope', 'common', 'RoomListingView', '$filter'];
+  RoomsCtrl.$inject = ['$scope', '$window', 'common', 'RoomListingView', '$filter'];
 
-  function RoomsCtrl($scope, common, RoomListingView, $filter) {
+  function RoomsCtrl($scope, $window, common, RoomListingView, $filter) {
     var vm = this;
     vm.property = {};
     vm.me = common.Auth.getCurrentUser();
@@ -52,6 +52,9 @@
         vm.showSearch = showSearch;
         vm.showSort = showSearch;
       });
+
+      // must call in order to have slider controls rendered correctly
+      orderSliderButtons();
     };
 
     vm.search(false);
@@ -74,13 +77,14 @@
       }, 1000);
     }
 
-    $(window).resize(function(){
+    angular.element($window).bind('resize', function () {
       orderSliderButtons();
     });
 
     angular.element(document).ready(function () {
       orderSliderButtons();
     });
+
 
     mixpanel.track('room grid view');
   }
