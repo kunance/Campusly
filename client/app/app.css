@@ -298,7 +298,7 @@ Posting input text type
   height: 34px;
   background: #ffffff;
   color: rgba(0, 0, 0, 0.55);
-  text-align: right;
+  text-align: left;
   border-radius: 25px;
 }
 
@@ -674,6 +674,14 @@ Square box for image with drop shadow
   box-shadow: 0 0 8px rgba(0, 0, 0, .8);
   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
   -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}
+
+/* ==========================================================================
+Invite Request Class
+========================================================================== */
+.inviteRequest{
+  color: #56bfc3;
+  font-weight: 600;
 }
 
 /* ==========================================================================
