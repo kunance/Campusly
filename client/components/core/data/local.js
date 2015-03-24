@@ -36,12 +36,6 @@
           params: {
             controller:'passwordreset'
           }
-        },
-        roommateRequest: {
-          method: 'POST',
-          params: {
-            controller:'roommaterequest'
-          }
         }
       });
   }

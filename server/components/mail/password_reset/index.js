@@ -2,7 +2,6 @@
 
 var mandrill = require('../../mail/mail.service');
 var config = require('../../../config/environment');
-//var service = require('./../mail.service.js');
 
 var sendMail = function(user, passwordResetToken, callback){
   if(config.env=='development') {
