@@ -47,7 +47,7 @@
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 room" ng-repeat="room in dashboard.availableRooms track by $index">
                 <a style="text-decoration: none" ui-sref="roomDetail({id: room.roomDetails.id})">
                   <div class="picture">
-                    <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&zoom=14&scale=2&size=400x250&markers=color:blue%7C{{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}">
+                    <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&zoom=14&scale=2&size=400x250&markers=color:blue%7C{{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&key=AIzaSyAm7woOFr0TOKG0U7jsBF5K3LSifdDjgfs">
                   </div>
                   <div class="info">
                     <strong class="value">
@@ -151,7 +151,7 @@
 
                       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                         <div class="picture">
-                          <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.relatedPropertyId.latitude}},{{room.relatedPropertyId.longitude}}&zoom=14&scale=2&size=400x250&markers=color:blue%7C{{room.relatedPropertyId.latitude}},{{room.relatedPropertyId.longitude}}">
+                          <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.relatedPropertyId.latitude}},{{room.relatedPropertyId.longitude}}&zoom=14&scale=2&size=400x250&markers=color:blue%7C{{room.relatedPropertyId.latitude}},{{room.relatedPropertyId.longitude}}&key=AIzaSyAm7woOFr0TOKG0U7jsBF5K3LSifdDjgfs">
                         </div>
                       </div>
 
