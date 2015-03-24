@@ -436,24 +436,34 @@ Small Rented button - primary color
 }
 
 /* ==========================================================================
-Small Rented button - secondary color
-========================================================================== */
-.btn-rented-small.secondary{
-  background-color: #56bfc3;
-  color: #FFFFFF;
-}
-
-/* ==========================================================================
 Small Rented button - hover and active
 ========================================================================== */
-.btn-rented-small:hover {
+.btn-rented-small.primary:hover {
   background-color: #e4e4e4;
   color: #000000;
 }
 
-.btn-rented-small:active {
+.btn-rented-small.primary:active {
   background-color: #000000;
   color: #FFFFFF;
+}
+
+/* ==========================================================================
+Small Rented button - reset color
+========================================================================== */
+.btn-rented-small.reset{
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.btn-rented-small.reset:hover {
+  background-color: #e4e4e4;
+  color: #000000;
+}
+
+.btn-rented-small.reset:active {
+  background-color: #ffffff;
+  color: #000000;
 }
 
 /* ==========================================================================
@@ -484,6 +494,16 @@ Medium Rented button - secondary color
 ========================================================================== */
 .btn-rented-medium.secondary{
   background-color: #56bfc3;
+  color: #FFFFFF;
+}
+
+.btn-rented-medium.secondary:hover {
+  background-color: #e4e4e4;
+  color: #000000;
+}
+
+.btn-rented-medium.secondary:active {
+  background-color: #000000;
   color: #FFFFFF;
 }
 
@@ -682,6 +702,13 @@ Invite Request Class
 .inviteRequest{
   color: #56bfc3;
   font-weight: 600;
+}
+
+/* ==========================================================================
+Search box
+========================================================================== */
+.searchBox{
+  margin-top: 20px;
 }
 
 /* ==========================================================================
