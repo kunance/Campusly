@@ -291,6 +291,16 @@ Posting input text type
   border-radius: 50px;
 }
 
+.rooms .sortBox select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 34px;
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: left;
+  border-radius: 25px;
+}
 
 /* ==========================================================================
 Sign-up button class
@@ -357,11 +367,12 @@ Small Rented button
   font-size: 14px;
   border-radius: 25px;
   font-weight: 600;
-  width: 130px;
+  width: 60px;
   height: 30px;
   text-align: center;
   margin: 0 auto;
   padding: 3px 12px;
+  border: none;
 }
 
 
@@ -425,24 +436,34 @@ Small Rented button - primary color
 }
 
 /* ==========================================================================
-Small Rented button - secondary color
-========================================================================== */
-.btn-rented-small.secondary{
-  background-color: #56bfc3;
-  color: #FFFFFF;
-}
-
-/* ==========================================================================
 Small Rented button - hover and active
 ========================================================================== */
-.btn-rented-small:hover {
+.btn-rented-small.primary:hover {
   background-color: #e4e4e4;
   color: #000000;
 }
 
-.btn-rented-small:active {
+.btn-rented-small.primary:active {
   background-color: #000000;
   color: #FFFFFF;
+}
+
+/* ==========================================================================
+Small Rented button - reset color
+========================================================================== */
+.btn-rented-small.reset{
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.btn-rented-small.reset:hover {
+  background-color: #e4e4e4;
+  color: #000000;
+}
+
+.btn-rented-small.reset:active {
+  background-color: #ffffff;
+  color: #000000;
 }
 
 /* ==========================================================================
@@ -473,6 +494,16 @@ Medium Rented button - secondary color
 ========================================================================== */
 .btn-rented-medium.secondary{
   background-color: #56bfc3;
+  color: #FFFFFF;
+}
+
+.btn-rented-medium.secondary:hover {
+  background-color: #e4e4e4;
+  color: #000000;
+}
+
+.btn-rented-medium.secondary:active {
+  background-color: #000000;
   color: #FFFFFF;
 }
 
@@ -666,6 +697,35 @@ Square box for image with drop shadow
 }
 
 /* ==========================================================================
+Invite Request Class
+========================================================================== */
+.inviteRequest{
+  color: #56bfc3;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+Search box
+========================================================================== */
+.searchBox{
+  margin-top: 20px;
+}
+
+/* ==========================================================================
+Sort box
+========================================================================== */
+.sortBox{
+  margin-top: 5px;
+}
+
+/* ==========================================================================
+Search & Sort box
+========================================================================== */
+.searchAndSortBox{
+  margin-top: 10px;
+}
+
+/* ==========================================================================
 Brand text
 ========================================================================== */
 
@@ -827,6 +887,7 @@ For mailchimp sign-up - not needed in main app
   .input-post-readonly {
     margin-left: 10px;
   }
+
 }
 
 @media (min-width: 992px) {
@@ -1355,17 +1416,17 @@ New bubble - to fix Safari issues
 }
 
 .new-bubble.remove {
-  background: rgb(245,27,87);
+  background: #f34023;
   margin-right: 5px;
 }
 
 .new-bubble.approve {
-  background: greenyellow;
+  background: #56bfc3;
   margin-right: 5px;
 }
 
 .new-bubble.decline {
-  background: rgb(245,27,87);
+  background: #f34023;
   margin-right: 5px;
 }
 
