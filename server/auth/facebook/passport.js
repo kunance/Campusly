@@ -10,7 +10,7 @@ exports.setup = function(User, config) {
     callbackURL: config.facebook.callbackURL,
     passReqToCallback: true
   },
-  function(req,accessToken, refreshToken, profile, done) {
+  function(req, accessToken, refreshToken, profile, done) {
     User.findOne({
       where: {
         id: process.env.userId
