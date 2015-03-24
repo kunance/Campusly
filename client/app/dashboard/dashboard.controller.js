@@ -31,12 +31,6 @@
     /*
      *  breakpoints and slider options
      */
-
-    var socket = io.connect('http://localhost:9000');
-    socket.on('message', function (data) {
-        alert(data);
-    });
-
     vm.breakpoints = {
       availableRooms: [
       {
