@@ -24,6 +24,7 @@
               <!--TODO default profile image-->
               <h2> {{dashboard.me.firstname}} {{dashboard.me.lastname}} </h2>
               <a  class="btn btn-secondary btn-block" ui-sref="myProfile"> Complete Profile </a>
+              <a ng-if="dashboard.numberOf.requests" ui-sref="myProfile" style="font-size: 0.8em">You got ({{dashboard.numberOf.requests}}) new requests</a>
             </div>
           </div>
 
