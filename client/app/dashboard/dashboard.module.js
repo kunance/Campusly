@@ -37,7 +37,8 @@
     var getUserLookings = common.dataservice.getAllLookings(currentUser.id);
     var allRoomListing = RoomListingView.query();
     var userRoomLookings = RoomListing.query({userId: currentUser.id});
-    return $q.all([allLookings.$promise, getUserLookings.$promise, allRoomListing.$promise, userRoomLookings.$promise]);
+    var requests = common.dataservice.getRequests(currentUser.id);
+    return $q.all([allLookings.$promise, getUserLookings.$promise, allRoomListing.$promise, userRoomLookings.$promise, requests.$promise]);
   }
 
 }());

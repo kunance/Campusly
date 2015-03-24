@@ -104,7 +104,7 @@
         <h2 class="section-title">Roommates</h2>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 roommates white-box">
-          <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 row roomRoommates" ng-repeat="roommate in room.creatorRoommates track by $index">
+          <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 row roomRoommates" ng-repeat="roommate in room.creatorRoommates track by $index" ng-if="roommate.confirmed">
             <div class="col-xs-2 col-sm-4">
               <div class="picture text-center">
                 <img ng-if="roommate.relatedRoommateId.profileImage" ng-src="api/images{{roommate.relatedRoommateId.profileImage}}" alt="" class="img-circle center-block looking-profile-img">

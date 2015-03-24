@@ -20,6 +20,7 @@
     vm.userLookings = data[1];
     vm.availableRooms = data[2];
     vm.myRoomListings = data[3];
+    vm.numberOf = data[4];
     /*
      *  prerender.io
      */
@@ -30,6 +31,12 @@
     /*
      *  breakpoints and slider options
      */
+
+    var socket = io.connect('http://localhost:9000');
+    socket.on('message', function (data) {
+        alert(data);
+    });
+
     vm.breakpoints = {
       availableRooms: [
       {

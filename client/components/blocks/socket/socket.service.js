@@ -34,6 +34,9 @@ angular.module('RentedApp')
         /**
          * Syncs item creation/updates on 'model:save'
          */
+        socket.on('message', function () {
+          console.log('ivan mornar');
+        })
         socket.on(modelName + ':save', function (item) {
           var oldItem = _.find(array, {id: item.id});
           var index = array.indexOf(oldItem);

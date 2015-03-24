@@ -114,20 +114,20 @@
       vm.showInviteRoomate = false;
     };
 
-    $scope.addNewRoommate = function(input){
-      if(!input) {return false}
-      var roommate = input.originalObject;
-      common.dataservice.addRoommate(vm.me.id, roommate)
-        .$promise
-        .then(function (data) {
-          common.logger.success('Roommate successfully added!');
-          vm.roommates.push(data);
-          vm.cancelRoommateAddAddon();
-        })
-        .catch(function (err) {
-          common.logger.error('Something went wrong. Roommate not saved.'+ err);
-        });
-    };
+    //$scope.addNewRoommate = function(input){
+    //  if(!input) {return false}
+    //  var roommate = input.originalObject;
+    //  common.dataservice.addRoommate(vm.me.id, roommate)
+    //    .$promise
+    //    .then(function (data) {
+    //      common.logger.success('Roommate successfully added!');
+    //      vm.roommates.push(data);
+    //      vm.cancelRoommateAddAddon();
+    //    })
+    //    .catch(function (err) {
+    //      common.logger.error('Something went wrong. Roommate not saved.'+ err);
+    //    });
+    //};
 
     vm.removeRoommate= function (roommate) {
       var index= vm.roommates.indexOf(roommate);
@@ -137,6 +137,40 @@
         common.logger.success('Successfully removed roommate');
       })
     };
+
+   $scope.addNewRoommate = function(input){
+      if(!input) { return false; }
+      input.originalObject.roommateId = input.originalObject.id;
+      var roommate = input.originalObject;
+      common.dataservice.addRoommate(vm.me.id, roommate)
+        .$promise
+        .then(function (data) {
+          common.logger.success('Roommate successfully added!');
+          common.$state.reload();
+          vm.roommates.push(data);
+          //vm.cancelRoommateAddAddon();
+        })
+        .catch(function (err) {
+          common.logger.error('Something went wrong. Roommate not saved.');
+        });
+    };
+
+    //vm.approveRoommate = function(input){
+    //  if(!input) { return false; }
+    //  var temp = input.userId;
+    //  input.userId = input.roommateId;
+    //  input.roommateId = temp;
+    //  console.log(input);
+    //  common.dataservice.addRoommate(input.userId, input)
+    //    .$promise
+    //    .then(function (data) {
+    //      common.logger.success('Roommate approved!');
+    //      common.$state.reload();
+    //    })
+    //    .catch(function (err) {
+    //      common.logger.error('Something went wrong. Roommate not saved.');
+    //    });
+    //};
 
     mixpanel.track('edit your room');
 

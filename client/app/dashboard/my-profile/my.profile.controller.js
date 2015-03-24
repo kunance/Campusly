@@ -9,6 +9,8 @@
 
   function MyProfileCtrl($scope, common, currentUser, data) {
     var vm = this;
+    vm.confirmed = 0;
+    vm.unconfirmed = 0;
     /*
      *  Fetch all required data for controller from route resolve
      */
@@ -18,10 +20,10 @@
     vm.address = data[1];
     vm.users = data[2];
     vm.roommates = data[3]; //roommate info, his education info, his address info
-    vm.requests = 0;
-    angular.forEach(vm.roommates, function (room) {
-      if (!room.confirmed){vm.requests+=1}
+    angular.forEach(vm.roommates, function (roommate) {
+      roommate.confirmed?vm.confirmed++:vm.unconfirmed++;
     });
+    vm.requests = 0;
     vm.pets = data[4];
     vm.vehicles = data[5];
     /*
@@ -113,9 +115,9 @@
       .$promise
       .then(function (data) {
         common.logger.success('Roommate successfully added!');
+       common.$state.transitionTo('myProfile',{},{reload: true, inherit: false, notify: true});
         vm.roommates.push(data);
-        common.$state.reload();
-        vm.cancelRoommateAddAddon();
+        //vm.cancelRoommateAddAddon();
       })
       .catch(function (err) {
         common.logger.error('Something went wrong. Roommate not saved.');
@@ -131,10 +133,8 @@
       common.dataservice.addRoommate(input.userId, input)
         .$promise
         .then(function (data) {
-          common.logger.success('Roommate successfully added!');
-         // vm.roommates.push(data);
+          common.logger.success('Roommate approved!');
           common.$state.reload();
-        //  vm.cancelRoommateAddAddon();
         })
         .catch(function (err) {
           common.logger.error('Something went wrong. Roommate not saved.');
@@ -146,6 +146,7 @@
       var roommateId = roommate.id;
       common.dataservice.deleteRoommate(vm.me.id, roommateId, function () {
         vm.roommates.splice(index, 1);
+        common.$state.reload();
         common.logger.success('Roommate successfully deleted.');
       })
 
