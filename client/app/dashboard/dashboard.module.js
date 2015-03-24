@@ -35,7 +35,7 @@
   function getData($q, common, currentUser, RoomListingView, RoomListing) {
     var allLookings = common.dataservice.getEveryLooking();
     var getUserLookings = common.dataservice.getAllLookings(currentUser.id);
-    var allRoomListing = RoomListingView.query();
+    var allRoomListing = RoomListingView.query({limit: 9});
     var userRoomLookings = RoomListing.query({userId: currentUser.id});
     var requests = common.dataservice.getRequests(currentUser.id);
     return $q.all([allLookings.$promise, getUserLookings.$promise, allRoomListing.$promise, userRoomLookings.$promise, requests.$promise]);
