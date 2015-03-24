@@ -45,12 +45,12 @@
                 <input class="form-control" type="text" id="phone" name="phone" ng-model="editProfile.tempMe.phone" ui-mask="999-999-9999">
               </div>
               <div class="form-group input-post">
-                <label for="facebook">Facebook account</label>
-                  <div class="input-group">
-                    <span class="input-group-addon " style="padding-right: 3px; background-color: white; border-radius: 20px 0 0 20px;">https://www.facebook.com/</span>
-                    <input class="form-control" type="text" id="facebook" name="facebook" ng-model="editProfile.tempMe.facebook" style="padding-left: 3px"/>
-                  </div>
+                  <!--<div class="input-group">-->
+                    <!--<span class="input-group-addon " style="padding-right: 3px; background-color: white; border-radius: 20px 0 0 20px;">https://www.facebook.com/</span>-->
+                    <!--<input class="form-control" type="text" id="facebook" name="facebook" ng-model="editProfile.tempMe.facebook" style="padding-left: 3px"/>-->
+                  <!--</div>-->
               </div>
+
 
             </div>
           </div>
@@ -68,14 +68,13 @@
   <div class="white-box">
     <div class="row">
 
+      <form name="educationForm" novalidate>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
         <div class="row">
-
           <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
             <div class="form-group input-post">
               <label for="educationCenterName">University name</label>
-              <select id="educationCenterName" class="form-control"
+              <select id="educationCenterName" class="form-control" required
                       data-ng-model="editProfile.tempEducation.educationCenterName"
                       data-ng-options="university as university.name for university in editProfile.universitiesList"
                       ng-init="editProfile.tempEducation.educationCenterName=editProfile.universitiesList[editProfile.tempEducation.universityId-1]">
@@ -84,7 +83,7 @@
 
             <div class="form-group input-post">
               <label for="major">Major</label>
-              <input type="text" ng-model="editProfile.tempEducation.major" id="major" class="form-control" name="major"/>
+              <input type="text" ng-model="editProfile.tempEducation.major" id="major" class="form-control" name="major" required/>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
             <div class="form-group input-post">
               <label for="start">Graduation date</label>
               <p class="input-group">
-                <input type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="editProfile.tempEducation.graduationDate" is-open="datePickers.EducationStartDate" close-text="Close" />
+                <input required type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="editProfile.tempEducation.graduationDate" is-open="datePickers.EducationStartDate" close-text="Close" />
               <span class="input-group-btn">
                 <button type="btn-rented-medium primary" class="btn" ng-click="open($event,'EducationStartDate')"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
@@ -103,10 +102,11 @@
           </div>
         </div>
 
-        <button class="btn-rented-medium primary pull-right" ng-click="editProfile.saveEducation(editProfile.tempEducation)">Save</button>
+        <button class="btn-rented-medium primary pull-right" ng-click="editProfile.saveEducation(editProfile.tempEducation)"
+        ng-disabled="educationForm.$invalid || educationForm.$pristine">Save</button>
 
       </div>
-
+      </form>
     </div>
 
   </div>

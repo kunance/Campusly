@@ -5,9 +5,9 @@
   .module('app.dashboard')
   .controller('MyProfileCtrl', MyProfileCtrl);
 
-  MyProfileCtrl.$inject = ['$scope', 'common', 'currentUser', 'data'];
+  MyProfileCtrl.$inject = ['$scope', 'common', 'currentUser', 'data', '$window'];
 
-  function MyProfileCtrl($scope, common, currentUser, data) {
+  function MyProfileCtrl($scope, common, currentUser, data, $window) {
     var vm = this;
     vm.confirmed = 0;
     vm.unconfirmed = 0;
@@ -226,6 +226,12 @@
         common.logger.success('Vehicle updated');
         vm.cancelPetAddAddon();
       })
+    };
+    /*
+     *  fetching user facebook profile from OAuth
+     */
+    $scope.loginOauth = function (provider) {
+      $window.location.href = '/auth/' + provider;
     };
     /*
      *  date picker options

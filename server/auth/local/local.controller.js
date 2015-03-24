@@ -11,11 +11,12 @@ var auth = require('../auth.service');
 // ********************* Mail ***********************
 
 exports.root = function(req, res, next) {
+
   passport.authenticate('local', function (err, user, info) {
     var error = err || info;
     if (error) return res.status(401).send(error);
     if (!user) return res.status(404).send({message: 'Something went wrong, please try again.'});
-
+    process.env.userId = user.id;
     var token = auth.signToken(user.id, user.role);
     res.json({token: token});
 

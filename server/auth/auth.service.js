@@ -112,8 +112,11 @@ function setTokenCookie(req, res) {
       message: 'Something went wrong, please try again.'
     });
   }
+  console.log('ulzim ondeed');
   var token = signToken(req.user.id, req.user.role);
+  var mail = req.user.email;
   res.cookie('token', JSON.stringify(token));
+  res.cookie('email', JSON.stringify(mail));
   res.redirect('/');
 }
 
