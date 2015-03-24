@@ -4,22 +4,35 @@
 
   <div class="container">
 
-    <div class="row">
-      <!-- Search criteria -->
-      <div ng-include=" 'app/rooms/searchCriteria.html' "></div>
-    </div>
-
     <div class="rooms">
 
-      <!-- Sort -->
-
       <div class="row">
-        <div class="page-header col-xs-12 col-sm-4 col-md-4 col-lg-4">
+        <div class="page-header col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <h2>Available Rooms</h2>
         </div>
-        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 sortBox">
+      </div>
+
+      <div class="row searchAndSortBox">
+
+        <!-- Search -->
+
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-show="!rooms.showSearch">
+          <button class="btn-rented-medium secondary" ng-click="rooms.showSearch=!rooms.showSearch" ng-show="!rooms.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Open Search</button>
+          <button class="btn-rented-medium secondary" ng-click="rooms.showSearch=!rooms.showSearch" ng-show="rooms.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Close Search</button>
+          <button style="margin-top: 5px" class="btn-rented-small reset" id="search" name="search" ng-click="rooms.clearSearchAndSearch(false)">Reset</button>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="rooms.showSearch">
+          <button class="btn-rented-medium secondary" ng-click="rooms.showSearch=!rooms.showSearch" ng-show="!rooms.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Open Search</button>
+          <button class="btn-rented-medium secondary" ng-click="rooms.showSearch=!rooms.showSearch" ng-show="rooms.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Close Search</button>
+          <button style="margin-top: 5px" class="btn-rented-small reset" id="search" name="search" ng-click="rooms.clearSearchAndSearch(false)">Reset</button>
+          <div ng-include=" 'app/rooms/searchCriteria.html' "></div>
+        </div>
+
+        <!-- Sort -->
+
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 sortBox" ng-show="!rooms.showSearch">
           <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
-            <select id="sortBy" class="form-control" ng-model="rooms.sortBy">
+            <select style="margin-top: -2px" id="sortBy" class="form-control" ng-model="rooms.sortBy">
               <option value="" disabled>Sort by</option>
               <option value="monthlyPrice">Price</option>
               <option value="availableMoveIn">Available date</option>
@@ -32,8 +45,7 @@
             <button class="btn-rented-small primary" id="sort" name="sort" ng-click="rooms.search(false)">Sort</button>
           </div>
         </div>
-
-      </div>
+      </div> <!-- end search and sort -->
 
       <!-- Main room view -->
 

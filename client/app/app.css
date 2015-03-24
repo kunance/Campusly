@@ -715,7 +715,14 @@ Search box
 Sort box
 ========================================================================== */
 .sortBox{
+  margin-top: 5px;
+}
 
+/* ==========================================================================
+Search & Sort box
+========================================================================== */
+.searchAndSortBox{
+  margin-top: 10px;
 }
 
 /* ==========================================================================
@@ -881,11 +888,6 @@ For mailchimp sign-up - not needed in main app
     margin-left: 10px;
   }
 
-  .sortBox{
-    margin-top: 20px;
-    margin-left: 80px;
-  }
-
 }
 
 @media (min-width: 992px) {
@@ -1042,11 +1044,6 @@ For mailchimp sign-up - not needed in main app
 
   .roommatesPicture {
     margin-top: 30px;
-  }
-
-  .sortBox{
-    margin-top: 15px;
-    margin-left: 0px;
   }
 
 }
