@@ -1416,17 +1416,17 @@ New bubble - to fix Safari issues
 }
 
 .new-bubble.remove {
-  background: rgb(245,27,87);
+  background: #f34023;
   margin-right: 5px;
 }
 
 .new-bubble.approve {
-  background: greenyellow;
+  background: #56bfc3;
   margin-right: 5px;
 }
 
 .new-bubble.decline {
-  background: rgb(245,27,87);
+  background: #f34023;
   margin-right: 5px;
 }
 
