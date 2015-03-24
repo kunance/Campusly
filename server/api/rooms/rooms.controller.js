@@ -74,12 +74,16 @@ exports.getRoomListing = function(req, res, next) {
  *
  *  Attribute filters coming soon in order to specify only what you want in the return object
  *
- *  Sort {sortBy: ['monthlyPrice' | 'availableMoveIn' | 'distanceToMyUniversity'],
+ *  Limit as query parameter  { limit: positive integer }     default value is 100
+ *
+ *  Sort as query parameters
+ *    {sortBy: ['monthlyPrice' | 'availableMoveIn' | 'distanceToMyUniversity'],
  *        sortOrder: ['ascending' | 'descending'] }
  *        defaults   'availableMoveIn' , 'ascending'
  *
  *
- *  Search { maxMonthlyPrice: null,
+ *  Search as query parameters
+ *     { maxMonthlyPrice: null,
             leaseType: null,
             maxCurrentRoomates: null,
             propertyType: null,
@@ -160,18 +164,28 @@ exports.getAllRoomListings = function(req, res, next) {
 
   }
 
+  var limit  = ( req.param("limit") ) ? req.param("limit") : 100;
+
+  console.log("Limit: ", limit);
 
   RoomListing.findAll({
     where: searchCriteria,
     order: [ sortAttrs ],
     attributes: roomAttributes,
+    limit: limit,
+    //offset: 0,
     include:
       [ {model: Property,  attributes: propertyAttributes, as: 'relatedPropertyId'}],
           limit:100,
           order: '"monthlyPrice"'})
     .then(function(roomListings) {
 
-    roomListings.forEach(function(e, i, a) {
+      if(roomListings && roomListings.length > limit) {
+        // to work around bug   https://github.com/sequelize/sequelize/issues/1897
+        roomListings.length = limit;
+      }
+
+      roomListings.forEach(function(e, i, a) {
       var roomDetails = e.dataValues;
       var propertyDetails = e.relatedPropertyId.dataValues;
       propertyDetails.coords = {};
