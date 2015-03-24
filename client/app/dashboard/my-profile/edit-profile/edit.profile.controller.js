@@ -5,9 +5,9 @@
   .module('app.dashboard')
   .controller('EditProfileCtrl', EditProfileCtrl);
 
-  EditProfileCtrl.$inject = ['$scope', '$cookieStore', 'common', 'FileUploader', 'currentUser', 'data'];
+  EditProfileCtrl.$inject = ['$scope', '$cookieStore', 'common', 'FileUploader', 'currentUser', 'data', '$window'];
 
-  function EditProfileCtrl($scope, $cookieStore, common, FileUploader, currentUser, data) {
+  function EditProfileCtrl($scope, $cookieStore, common, FileUploader, currentUser, data, $window) {
     var vm = this;
     /*
      *  Fetch all required data for controller from route resolve
