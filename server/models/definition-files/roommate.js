@@ -54,6 +54,11 @@ module.exports = {
             references: "rented_user",
             referencesKey: "roommateId"
         },
+        "confirmed": {
+            type: Seq.BOOLEAN,
+            field: "confirmed",
+            allowNull: false
+        },
         "fromDate": {
             type: Seq.DATE,
             field: "fromDate",

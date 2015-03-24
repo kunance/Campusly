@@ -42,7 +42,6 @@ exports.sendMailAddressConfirmationMail = function(req, res, next) {
     })
 };
 
-
 /**
  * Confirm mail address
  */

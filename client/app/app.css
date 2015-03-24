@@ -1385,6 +1385,17 @@ New bubble - to fix Safari issues
 
 .new-bubble.remove {
   background: rgb(245,27,87);
+  margin-right: 5px;
+}
+
+.new-bubble.approve {
+  background: greenyellow;
+  margin-right: 5px;
+}
+
+.new-bubble.decline {
+  background: rgb(245,27,87);
+  margin-right: 5px;
 }
 
 .new-bubble.cancel {
@@ -1674,6 +1685,10 @@ Looking Details
   color: #000000;
   text-align: center;
   font-size: 1.5em;
+}
+
+.not-approved{
+  opacity: 0.5;
 }
 
 .my-profile .profile h2 small{
