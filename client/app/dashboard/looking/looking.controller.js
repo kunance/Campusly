@@ -29,7 +29,8 @@
         smokingAllowed: null,
         gender: null,
         petsAllowed: null,
-        parkingNeeded: null
+        parkingNeeded: null,
+        openToFullYearLeaseNewRoomates: null
       };
     };
 

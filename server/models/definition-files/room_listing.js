@@ -162,5 +162,12 @@ module.exports = {
             onDelete: "NO ACTION",
             onUpdate: "NO ACTION"
         }
-    }]
+    }],
+  within: function() {
+    var within = "SELECT p.* FROM property p, university u WHERE u.id = 2 AND ST_DWithin(p.geoloc, u.geoloc, 500)";
+
+    sequelize.query(within).then(function (properties) {
+      console.log(properties)
+    });
+  }
 };
