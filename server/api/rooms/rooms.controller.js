@@ -1,11 +1,13 @@
+var sequelize = require('sequelize');
 var sqldb = require('../../sqldb');
 var RoomListing = sqldb.model('roomListing');
 var Property = sqldb.model('property');
 var User = sqldb.model('rentedUser');
-var Roommate = sqldb.model('roommate');
-var Education = sqldb.model('userEducation');
+var University = sqldb.model('university');
 var _ = require('lodash');
 var excludeService = require('../../services/exclude.own');
+
+var propertiesWithin = require('../../models/propertiesWithin');
 
 /**
  * Retrieve a specific room listing with both the room listing and property details.  Default behavior is to return
@@ -69,6 +71,102 @@ exports.getRoomListing = function(req, res, next) {
 
 
 /**
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @param searchCriteria
+ * @param propertyIds
+ * @private
+ */
+var _getAllRoomListings = function(req, res, searchCriteria, propertyIds) {
+
+  var roomAttributes = ["id", "monthlyPrice", "securityDeposit", "availableMoveIn", "leaseEndDate", "leaseType", "gender",
+    "monthlyUtilityCost", "roomType", "sharedBathroom", "numRoomates", "furnished", "parkingAvailable", "smokingAllowed",
+    "description", "createdAt", "updatedAt", "creatorId"];
+
+
+  var propertyAttributes = [ "id", "streetNumeric", "streetAddress", "city", "state", "zip", "apt", "bldg", "latitude", "longitude", "type",
+    "description", "bedrooms","bathrooms", "parkingSpots", "livingAreaSqFt", "hoaFee", "otherFee", "status" ];
+
+  var universityAttributes = [ "id", "latitude", "longitude"];
+
+  var roomListingsResponse = [];
+
+
+  //console.log(req.param("sortBy"));
+  //console.log(req.param("sortOrder"));
+  //console.log(req.query);
+
+  var sortAttrs;
+  var sortBy = req.param("sortBy");
+
+  if(sortBy) {
+    if(sortBy === "distanceToMyUniversity") {
+      //TODO find university
+      //TODO sort after result set
+      // sortAttrs = "ST_Distance(university id)";
+    }
+    else {
+      sortAttrs = [req.param("sortBy")];
+    }
+  }
+  else {
+    // use default
+    sortAttrs = ["availableMoveIn"];
+  }
+
+  if(req.param("sortOrder") === "descending") {
+    sortAttrs.push("DESC");
+  }
+
+  var limit  = ( req.param("limit") ) ? req.param("limit") : 100;
+
+
+  RoomListing.findAll({
+    where: [searchCriteria],
+    order: [sortAttrs],
+    attributes: roomAttributes,
+    limit: limit,
+    include: [{
+      model: Property,
+      attributes: propertyAttributes,
+      as: 'relatedPropertyId',
+      where: {id: {in: propertyIds}}
+    }]
+  })
+    .then(function (roomListings) {
+
+      // bug  seemed to be fixed https://github.com/sequelize/sequelize/issues/1897
+      //if(roomListings && roomListings.length > limit) {
+      //  console.log("Room listings returned greater than limit");
+      //  // to work around bug   https://github.com/sequelize/sequelize/issues/1897
+      //  roomListings.length = limit;
+      //}
+
+      roomListings.forEach(function (e, i, a) {
+        var roomDetails = e.dataValues;
+        var propertyDetails = e.relatedPropertyId.dataValues;
+        propertyDetails.coords = {};
+        propertyDetails.coords.latitude = e.relatedPropertyId.dataValues.latitude;
+        propertyDetails.coords.longitude = e.relatedPropertyId.dataValues.longitude;
+        delete  propertyDetails.latitude;
+        delete propertyDetails.longitude;
+
+
+        var mashed = _.extend({}, {roomDetails: roomDetails}, {propertyDetails: propertyDetails});
+        delete mashed.roomDetails.relatedPropertyId;
+        roomListingsResponse.push(mashed);
+      });
+
+      // console.log('Room Listings: ', roomListingResponse);
+
+      res.json(excludeService.excludeOwn(roomListingsResponse, req.user.id));
+    });
+};
+
+
+/**
  *  Gets all room listings with room listing and property details.  Default behavior is to return fully hydrated
  *  models unless a filter is used in the query.
  *
@@ -93,17 +191,9 @@ exports.getRoomListing = function(req, res, next) {
             smokingAllowed: null,
             gender: null,
             petsAllowed: null,
-            parkingAvailable: null }
- *
- *  Search criteria coming to support searching with a specific distance.  For example, if you use distance,
- *    you MUST pass in latitude and longitude:
- *
- *     lat=double in 8.3 format
- *     long=double in 8.2 format
- *     distance=whole number in miles
- *
- *     Passing in lat, long to the api supports current location using mobile, your university, your current
- *         home address, your gf/bf address, ...
+            parkingAvailable: null,
+            within: { location: { latitude double in 8.3 format, longitude double in 8.2 format } |
+                                place: { type: 'univ' | 'prop', id: 'id'} },  distance: whole number in meters }
  *
  *
  *
@@ -112,34 +202,6 @@ exports.getRoomListing = function(req, res, next) {
  * @param next
  */
 exports.getAllRoomListings = function(req, res, next) {
-  var roomAttributes = ["id", "monthlyPrice", "securityDeposit", "availableMoveIn", "leaseEndDate", "leaseType", "gender",
-    "monthlyUtilityCost", "roomType", "sharedBathroom", "numRoomates", "furnished", "parkingAvailable", "smokingAllowed",
-    "description", "createdAt", "updatedAt", "creatorId"];
-
-
-  var propertyAttributes = [ "id", "streetNumeric", "streetAddress", "city", "state", "zip", "apt", "bldg", "latitude", "longitude", "type",
-   "description", "bedrooms","bathrooms", "parkingSpots", "livingAreaSqFt", "hoaFee", "otherFee", "status" ];
-
-  var roomListingsResponse = [];
-
-  //console.log(req.param("sortBy"));
-  //console.log(req.param("sortOrder"));
-
-  //console.log(req.query);
-
-  var sortAttrs;
-
-  if(req.param("sortBy")) {
-    sortAttrs = [req.param("sortBy")];
-  }
-  else {
-    // use deafault
-    sortAttrs = ["availableMoveIn"];
-  }
-
-  if(req.param("sortOrder") === "descending") {
-    sortAttrs.push("DESC");
-  }
 
   var searchCriteria = { activeRoom: true };
   var searchQuery;
@@ -152,7 +214,6 @@ exports.getAllRoomListings = function(req, res, next) {
 
     if(searchQuery.maxMonthlyPrice) { searchCriteria.monthlyPrice = { lte: searchQuery.maxMonthlyPrice }; }
     if(searchQuery.maxCurrentRoomates) { searchCriteria.numRoomates = { lte: searchQuery.maxCurrentRoomates }; }
-//  if(propertyType !== null) { searchCriteria.property.type = searchQuery.propertyType; }
     if(searchQuery.leaseType !== null) { searchCriteria.leaseType = searchQuery.leaseType.replace(/"/g, "'"); }
     if(searchQuery.roomType !== null) { searchCriteria.roomType = searchQuery.roomType.replace(/"/g, "'"); }
     if(searchQuery.gender !== null) { searchCriteria.gender = searchQuery.gender.replace(/"/g, "'"); }
@@ -162,48 +223,31 @@ exports.getAllRoomListings = function(req, res, next) {
     if(searchQuery.petsAllowed !== null) { searchCriteria.petsAllowed = (searchQuery.petsAllowed === "true"); }
     if(searchQuery.parkingAvailable !== null) { searchCriteria.parkingAvailable = (searchQuery.parkingAvailable === "true"); }
 
+    //if(searchQuery.within) {
+
+      propertiesWithin.within(function(propertyIds) {
+        console.log("Property ids: ", propertyIds);
+        _getAllRoomListings(req, res, searchCriteria, propertyIds)
+      });
+      //if(searchQuery.within.location) {
+      //
+      //}
+      //else if(searchQuery.within.place) {
+      //  if(searchQuery.within.place.type === 'univ') {
+      //   // searchCriteria = universityId = searchQuery.within.place.id
+      //  }
+      //  else {
+      //   // searchCriteria = propertyId = searchQuery.within.place.id
+      //  }
+      //}
+    //}
+    //else {
+    //  _getAllRoomListings(req, res, searchCriteria);
+    //}
   }
-
-  var limit  = ( req.param("limit") ) ? req.param("limit") : 100;
-
-  console.log("Limit: ", limit);
-
-  RoomListing.findAll({
-    where: searchCriteria,
-    order: [ sortAttrs ],
-    attributes: roomAttributes,
-    limit: limit,
-    //offset: 0,
-    include:
-      [ {model: Property,  attributes: propertyAttributes, as: 'relatedPropertyId'}],
-          limit:100,
-          order: '"monthlyPrice"'})
-    .then(function(roomListings) {
-
-      if(roomListings && roomListings.length > limit) {
-        // to work around bug   https://github.com/sequelize/sequelize/issues/1897
-        roomListings.length = limit;
-      }
-
-      roomListings.forEach(function(e, i, a) {
-      var roomDetails = e.dataValues;
-      var propertyDetails = e.relatedPropertyId.dataValues;
-      propertyDetails.coords = {};
-      propertyDetails.coords.latitude =   e.relatedPropertyId.dataValues.latitude;
-      propertyDetails.coords.longitude =   e.relatedPropertyId.dataValues.longitude;
-      delete  propertyDetails.latitude;
-      delete propertyDetails.longitude;
-
-
-      var mashed = _.extend({}, { roomDetails: roomDetails }, { propertyDetails: propertyDetails } );
-      delete mashed.roomDetails.relatedPropertyId;
-      roomListingsResponse.push(mashed);
-    });
-
-   // console.log('Room Listings: ', roomListingResponse);
-
-    res.json(excludeService.excludeOwn(roomListingsResponse, req.user.id));
-  });
+  else {
+    _getAllRoomListings(req, res, searchCriteria);
+  }
 };
 
 
