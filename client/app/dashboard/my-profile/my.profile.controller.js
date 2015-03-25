@@ -231,11 +231,12 @@
      *  fetching user facebook profile from OAuth
      */
     $scope.loginOauth = function (provider) {
-      $window.location.href = '/auth/' + provider+'?id=7';
+      $window.location.href = '/auth/' + provider;
     };
-    //alert($rootScope.facebookStatus);
+
     vm.unlinkAccount= function () {
-      vm.tempMe.facebook = null;
+      if(vm.tempMe.facebook) {
+        vm.tempMe.facebook = null;
         common.Auth.updateUser(vm.tempMe)
           .then(function (user) {
             common.logger.success('Account unlinked.');
@@ -243,7 +244,11 @@
           .catch(function (err) {
             common.logger.error('Something went wrong. Changes are not saved.');
           });
-    };
+      } else {
+        return false;
+      }
+    }
+    ;
 
     /*
      *  date picker options

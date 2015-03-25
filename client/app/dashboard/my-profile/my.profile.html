@@ -38,11 +38,11 @@
               <dd> <p class="quote" ng-if="myProfile.me.aboutMe"> {{myProfile.me.aboutMe}}" </p> </dd>
             </dl>
 
-            <a class="contact-bubble-facebook" ng-click="loginOauth('facebook')">
-              <i style="color: #ffffff" class="fa fa-facebook fa-lg"></i><p style="color: #ffffff;">Add</p></a>
+            <button class="btn btn-primary" style="background-color: #3B5998;" ng-click="loginOauth('facebook')" ng-disabled="myProfile.tempMe.facebook">
+              <i style="color: #ffffff" class="fa fa-facebook fa-lg"></i>&nbsp&nbspLink with facebook</button>
 
-            <a class="contact-bubble-facebook" ng-click="myProfile.unlinkAccount()">
-              <i style="color: #ffffff" class="fa fa-facebook fa-lg"></i><p style="color: #ffffff;">Unlink</p></a>
+            <button class="btn btn-primary" style="background-color: #3B5998;" ng-click="myProfile.unlinkAccount()" ng-disabled="!myProfile.tempMe.facebook">
+              <i style="color: #ffffff" class="fa fa-facebook fa-lg"></i>&nbsp&nbspUnlink</button>
 
           </div>
           <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">

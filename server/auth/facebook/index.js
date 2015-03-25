@@ -7,28 +7,17 @@ var auth = require('../auth.service');
 var router = express.Router();
 
 router
-//  .use(function(req, res, next) {
-//  req.userId = req.query.id;
-//  next();
-//})
-  .get('/', passport.authorize('facebook', {
-    scope: ['email', 'user_about_me', 'user_education_history'],
+  .get('/', passport.authenticate('facebook', {
+    scope: ['email', 'user_about_me', 'user_education_history', 'user_friends', 'user_birthday', 'user_hometown', 'user_interests', 'user_location'],
     successRedirect: 'myProfile',
     failureRedirect: '/',
-    session: false
+    session: true
   }))
 
-  //.get('/callback', passport.authorize('facebook', {
-  //  failureRedirect: '/',
-  //  successRedirect: '/myProfile',
-  //  session: false
-  //}),/* auth.setTokenCookie*/ function(req,res) {
-  //  console.log('bla', req.query);});
-
-.get('/callback',
-  passport.authorize('facebook', {failureRedirect: '/'}),
-/* auth.setTokenCookie*/ function(req,res) {
-  console.log('bla', req.account);}
-);
+  .get('/callback', passport.authenticate('facebook', {
+    failureRedirect: '/',
+    successRedirect: '/myProfile',
+    session: true
+  }), auth.setTokenCookie);
 
 module.exports = router;
