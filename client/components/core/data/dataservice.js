@@ -47,6 +47,7 @@
        getVehicle:getVehicle,
        editVehicle:editVehicle,
        getAllRoommates:getAllRoommates,
+       getRequests:getRequests,
        editRoommate:editRoommate,
        deleteRoommate:deleteRoommate,
        addRoommate: addRoommate,
@@ -235,6 +236,16 @@
           //handle exception
         })
     }
+
+    function getRequests(userId, data) {
+      return Roommate.getRequests({userId: userId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        })
+    }
+
 
     function editRoommate(userId, roommateId, data, callback) {
       return Roommate.editRoommate({userId: userId, id:roommateId}, data,

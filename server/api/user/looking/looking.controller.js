@@ -7,7 +7,7 @@ var Looking = sqldb.model('looking');
 var passport = require('passport');
 var config = require('../../../config/environment');
 var jwt = require('jsonwebtoken');
-
+var io = require('socket.io')();
 
 var validationError = function(res, statusCode) {
   statusCode = statusCode || 422;
@@ -37,6 +37,7 @@ exports.newLooking = function(req, res, next) {
   var newLooking = Looking.build(req.body);
   newLooking.save()
     .then(function(looking) {
+      io.sockets.emit('AddLooking', {message:'looking Added'});
       res.json(looking);
     })
     .catch(validationError(res));
