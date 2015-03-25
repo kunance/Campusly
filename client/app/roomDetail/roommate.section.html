@@ -1,0 +1,33 @@
+<div class="row" ng-if="room.creatorRoommates.length">
+
+  <div class="page-header">
+    <h2 class="section-title">Roommates</h2>
+  </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 roommates white-box">
+
+      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 row roomRoommates" ng-repeat="roommate in room.creatorRoommates track by $index" ng-if="roommate.confirmed">
+
+          <!--roommate picture-->
+        <div class="col-xs-2 col-sm-4">
+          <div class="picture text-center">
+            <img ng-if="roommate.relatedRoommateId.profileImage" ng-src="api/images{{roommate.relatedRoommateId.profileImage}}" alt="" class="img-circle center-block looking-profile-img">
+            <i ng-if="!roommate.relatedRoommateId.profileImage" class="fa fa-user fa-3x"></i>
+          </div>
+        </div>
+
+        <!--roommate info-->
+        <div class="col-xs-6 col-sm-8 info">
+          <!--firstname lastname-->
+            <span class="name"> {{roommate.relatedRoommateId.firstname || roommate.relatedUserId.firstname}} {{roommate.relatedRoommateId.lastname || roommate.relatedUserId.lastname}}</span>
+          <!--university data-->
+            <span class="university" ng-if="roommate.relatedRoommateId.usereducationUsers[0].educationCenterName || roommate.relatedUserId.usereducationUsers[0].educationCenterName">
+                                          {{roommate.relatedRoommateId.usereducationUsers[0].educationCenterName || roommate.relatedUserId.usereducationUsers[0].educationCenterName}}</span>
+            <span class="university" ng-if="!roommate.relatedRoommateId.usereducationUsers[0].educationCenterName && !roommate.relatedUserId.usereducationUsers[0].educationCenterName">No university</span>
+        </div>
+
+      </div>
+
+    </div>
+
+</div>

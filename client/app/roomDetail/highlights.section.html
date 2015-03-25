@@ -1,0 +1,95 @@
+<div class="row">
+
+  <div class="page-header">
+    <h2>Highlights</h2>
+  </div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 highlights white-box">
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="picture">
+          <img ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{room.roomDetail.propertyDetails.coords.latitude}},{{room.roomDetail.propertyDetails.coords.longitude}}&zoom=14&scale=2&size=400x250&markers=color:blue%7C{{room.roomDetail.propertyDetails.coords.latitude}},{{room.roomDetail.propertyDetails.coords.longitude}}&key=AIzaSyAm7woOFr0TOKG0U7jsBF5K3LSifdDjgfs">
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 details">
+
+        <strong class="value">
+          <br>
+          {{room.roomDetail.roomDetails.monthlyPrice | currency}} / mo.
+        </strong>
+
+        <p class='address'>
+          <br>
+          {{room.roomDetail.propertyDetails.streetNumeric}} {{room.roomDetail.propertyDetails.streetAddress}} {{room.roomDetail.propertyDetails.apt}}, {{room.roomDetail.propertyDetails.city}} {{room.roomDetail.propertyDetails.zip}}
+        </p>
+
+        <div ng-if="room.education.id" class="distances">
+          <!-- call google maps api to get distance from students address to students university of record .. walking, bus, driving -->
+
+          <p>
+
+            <span class="distance" ng-if="room.distance.DRIVING"> <i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{room.distance.DRIVING}}les from {{room.education.relatedUniversityId.name}}</span>
+            <br><br>
+          </p>
+
+          <a class="distance-bubble">
+            <i class="fa fa-car fa-lg"></i>
+            <span class="top15">{{room.duration.DRIVING}}</span>
+          </a>
+
+          <a class="distance-bubble">
+            <i class="fa fa-bicycle fa-lg"></i>
+            <span class="top15">{{room.duration.BICYCLING}}</span>
+          </a>
+
+          <a class="distance-bubble">
+            <i class="fa fa-child fa-lg"></i>
+            <span class="top15">{{room.duration.WALKING}}</span>
+          </a>
+
+        </div>
+
+        <div ng-show="!room.education.id">
+          <br>
+          <h3><a ui-sref="myProfile">Update Profile</a> & view distance from your university</h3>
+        </div>
+
+        <table class="specs">
+          <br>
+          <tr>
+            <td><i class="fa fa-bigBed"></i>&nbsp;&nbsp;Room type:&nbsp;&nbsp;{{room.roomDetail.roomDetails.roomType}}</td>
+            <td><i class="fa fa-shower"></i>&nbsp;&nbsp;{{room.roomDetail.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetail.roomDetails.numRoomates}} roommates</td>
+            <td><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;Move-in:&nbsp;&nbsp;{{room.roomDetail.roomDetails.availableMoveIn | date }}</td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-bar-chart"></i>&nbsp;&nbsp;Utilities:&nbsp;&nbsp;{{room.roomDetail.roomDetails.monthlyUtilityCost | currency}}</td>
+            <td ng-show="room.roomDetail.roomDetails.leaseEndDate"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Move-out:&nbsp;&nbsp;{{room.roomDetail.roomDetails.leaseEndDate | date }}</td>
+          </tr>
+        </table>
+
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <a style="margin-left:20px" class="contact-bubble-email pull-right" ng-href="mailto:{{room.creatorEmail}}?Subject=Interested%20in%20your%20room" target="_top"><i class="fa fa-send fa-lg"></i><p>Email</p></a>
+        <a style="margin-left:20px" class="contact-bubble-facebook pull-right" ng-if="room.creatorFacebook" ng-href="{{room.creatorFacebook}}" target="_blank"><i style="color: #ffffff" class="fa fa-facebook fa-lg"></i><p style="color: #ffffff">PM</p></a>
+
+        <!--<a class="contact-bubble-email" href="" target="_top"><i class="fa fa-facebook fa-lg"></i></a>-->
+        <!-- Facebook link commented out for now -->
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

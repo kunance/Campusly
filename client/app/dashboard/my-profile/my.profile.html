@@ -152,7 +152,7 @@
                 <span class="name"> {{roommate.relatedRoommateId.firstname || roommate.relatedUserId.firstname}} {{roommate.relatedRoommateId.lastname || roommate.relatedUserId.lastname}} </span>
                 <span class="email">{{roommate.relatedRoommateId.email || roommate.relatedUserId.email}}</span>
                 <span class="university" ng-if="roommate.relatedRoommateId.usereducationUsers[0].educationCenterName || roommate.relatedUserId.usereducationUsers[0].educationCenterName">{{roommate.relatedRoommateId.usereducationUsers[0].educationCenterName || roommate.relatedUserId.usereducationUsers[0].educationCenterName}}</span>
-                <span class="university" ng-if="!roommate.relatedRoommateId.usereducationUsers[0].educationCenterName || roommate.relatedUserId.usereducationUsers[0].educationCenterName">University not added</span>
+                <span class="university" ng-if="!roommate.relatedRoommateId.usereducationUsers[0].educationCenterName && !roommate.relatedUserId.usereducationUsers[0].educationCenterName">University not added</span>
               </div>
               <div class="actions col-xs-4">
                 <a ng-if="roommate.relatedUserId && !roommate.confirmed && myProfile.confirmed<=10" class="new-bubble approve" ng-click="myProfile.approveRoommate(roommate)"><i class="fa fa-check"></i></a>
