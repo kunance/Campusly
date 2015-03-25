@@ -11,6 +11,6 @@ router.get('/mailconfirmation/:userId', controller.sendMailAddressConfirmationMa
 router.post('/mailconfirmation', controller.confirmMailAddress);
 router.get('/passwordreset', controller.resetPassword);
 router.post('/passwordreset', controller.confirmResetedPassword);
-router.post('/', controller.root);
+router.post('/', passport.authenticate('local', {session:true}), controller.root);
 
 module.exports = router;

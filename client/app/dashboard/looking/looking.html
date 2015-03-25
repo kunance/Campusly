@@ -2,10 +2,47 @@
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
 <div class="main-wrapper">
   <div class="container lookings">
-    <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="page-header">
+    <div class="row">
+      <div class="page-header col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <h2>Students Looking</h2>
       </div>
+    </div>
+      <div class="row searchAndSortBox">
+
+        <!-- Search -->
+
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-show="!looking.showSearch">
+          <button class="btn-rented-medium secondary" ng-click="looking.showSearch=!looking.showSearch" ng-show="!looking.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Open Search</button>
+          <button class="btn-rented-medium secondary" ng-click="looking.showSearch=!looking.showSearch" ng-show="looking.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Close Search</button>
+          <button style="margin-top: 5px" class="btn-rented-small reset" id="search" name="search" ng-click="looking.clearSearchAndSearch(false)">Reset</button>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="looking.showSearch">
+          <button class="btn-rented-medium secondary" ng-click="looking.showSearch=!looking.showSearch" ng-show="!looking.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Open Search</button>
+          <button class="btn-rented-medium secondary" ng-click="looking.showSearch=!looking.showSearch" ng-show="looking.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Close Search</button>
+          <button style="margin-top: 5px" class="btn-rented-small reset" id="search" name="search" ng-click="looking.clearSearchAndSearch(false)">Reset</button>
+          <div ng-include=" 'app/dashboard/looking/searchCriteria.html' "></div>
+        </div>
+
+        <!-- Sort -->
+
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 sortBox" ng-show="!looking.showSearch">
+          <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 col-sm-offset-2 col-md-offset-3 col-lg-offset-3">
+            <select style="margin-top: -2px" id="sortBy" class="form-control" ng-model="looking.sortBy">
+              <!--<option value="" disabled>Sort by</option>-->
+              <option value="maxMonthlyRent">Maximum rent price</option>
+              <option value="moveInDate">Move in date</option>
+              <!--<option value="distanceToMyUniversity">Dist. to Campus</option>-->
+            </select>
+          </div>
+          <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
+            <input type="radio" name="sortOrder" value="ascending" ng-model="looking.sortOrder">&nbsp;<i class="fa fa-arrow-up"></i></input>
+            <input type="radio" name="sortOrder" value="descending" ng-model="looking.sortOrder">&nbsp;<i class="fa fa-arrow-down"></i></input>
+            <button class="btn-rented-small primary" id="sort" name="sort" ng-click="looking.search(false)">Sort</button>
+          </div>
+        </div>
+      </div> <!-- end search and sort -->
+
+    <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <slick dots="true" class="slider" init-onload="true" data="looking.groups" slides-to-show="1" slides-to-scroll="1" ng-if="looking.lookings.length">
         <!--ng-if="look.relatedUserId.id!==looking.me.id" dont use temporary (splicing them on backed)-->

@@ -35,20 +35,60 @@ function respondWith(res, statusCode) {
 
 exports.showAllLookings= function(req, res, next) {
   var userAttributes = ['firstname', 'lastname', 'profileImage', 'aboutMe','id'];
-  var lookingAttributes = ['maxMonthlyRent', 'gender', 'id', 'userId', 'moveInDate', 'roomType'];
+
+  var sortAttrs;
+
+  if(req.param("sortBy")) {
+    sortAttrs = [req.param("sortBy")];
+  }
+  else {
+    // use deafault
+    sortAttrs = ["moveInDate"];
+  }
+
+  if(req.param("sortOrder") === "descending") {
+    sortAttrs.push("DESC");
+  }
+
+  var searchCriteria = { activeLooking: true };
+  var searchQuery;
+
+  if(req.query.search) {
+    searchQuery =  JSON.parse(req.query.search);
+
+    if(searchQuery.maxMonthlyRent) { searchCriteria.maxMonthlyRent = { lte: searchQuery.maxMonthlyRent }; }
+    if(searchQuery.numRoommates) { searchCriteria.numRoommates = { lte: searchQuery.numRoommates }; }
+    if(searchQuery.utilitiesIncluded !== null) { searchCriteria.utilitiesIncluded = (searchQuery.utilitiesIncluded === "true"); }
+    if(searchQuery.roomType !== null) { searchCriteria.roomType = searchQuery.roomType.replace(/"/g, "'"); }
+    if(searchQuery.gender !== null) { searchCriteria.gender = searchQuery.gender.replace(/"/g, "'"); }
+    if(searchQuery.sharedBathroom !== null) { searchCriteria.sharedBathroom = (searchQuery.sharedBathroom === "true"); }
+    if(searchQuery.furnished !== null) { searchCriteria.furnished = (searchQuery.furnished === "true"); }
+    if(searchQuery.smokingAllowed !== null) { searchCriteria.smokingAllowed = (searchQuery.smokingAllowed === "true"); }
+    if(searchQuery.petsAllowed !== null) { searchCriteria.petsAllowed = (searchQuery.petsAllowed === "true"); }
+    if(searchQuery.parkingNeeded !== null) { searchCriteria.parkingNeeded = (searchQuery.parkingNeeded === "true"); }
+    if(searchQuery.openToFullYearLeaseNewRoomates !== null) { searchCriteria.openToFullYearLeaseNewRoomates = (searchQuery.openToFullYearLeaseNewRoomates === "true"); }
+  }
+
+  var limit  = ( req.param("limit") ) ? req.param("limit") : 100;
+
+  console.log("Limit: ", limit);
+
   Looking.findAll({
-    where:{activeLooking:true},
-    attributes:lookingAttributes,
+    where: searchCriteria,
+    order: [ sortAttrs ],
+    limit: limit,
     include: [
-      { model: User, attributes: userAttributes, as: 'relatedUserId',
-        include: [
-          { model: Pets, as: 'petsUsers'},
-          { model: Vehicles, as: 'uservehiclesUsers'}]
-      }
+      { model: User, attributes: userAttributes, as: 'relatedUserId'}
     ]
   }).then(function(lookings) {
+
+    if(lookings && lookings.length > limit) {
+      // to work around bug   https://github.com/sequelize/sequelize/issues/1897
+      lookings.length = limit;
+    }
+
     res.json(excludeService.excludeOwn(lookings, req.user.id));
-    //res.json(lookings);
+
   }).catch(validationError(res));
 };
 

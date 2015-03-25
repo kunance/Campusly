@@ -5,9 +5,9 @@
   .module('app.dashboard')
   .controller('MyProfileCtrl', MyProfileCtrl);
 
-  MyProfileCtrl.$inject = ['$scope', 'common', 'currentUser', 'data', '$window'];
+  MyProfileCtrl.$inject = ['$scope', 'common', 'currentUser', 'data', '$window', '$rootScope'];
 
-  function MyProfileCtrl($scope, common, currentUser, data, $window) {
+  function MyProfileCtrl($scope, common, currentUser, data, $window, $rootScope) {
     var vm = this;
     vm.confirmed = 0;
     vm.unconfirmed = 0;
@@ -233,6 +233,23 @@
     $scope.loginOauth = function (provider) {
       $window.location.href = '/auth/' + provider;
     };
+
+    vm.unlinkAccount= function () {
+      if(vm.tempMe.facebook) {
+        vm.tempMe.facebook = null;
+        common.Auth.updateUser(vm.tempMe)
+          .then(function (user) {
+            common.logger.success('Account unlinked.');
+          })
+          .catch(function (err) {
+            common.logger.error('Something went wrong. Changes are not saved.');
+          });
+      } else {
+        return false;
+      }
+    }
+    ;
+
     /*
      *  date picker options
      */

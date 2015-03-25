@@ -244,19 +244,30 @@
           <select id="parkingNeeded" class="form-control" ng-model="newLooking.tempLooking.parkingNeeded">
             <option value="true">Yes</option>
             <option value="false">No</option>
-          </select><br/>
+          </select>
         </div>
       </div>
 
       <!-- Meet new roommates -->
 
       <div class="row post-padding">
-        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-2 col-sm-offset-2 input-post">
-          <label for="openToFullYearLeaseNewRoomates">Are you looking for new roommates as well?</label>
-          <input type="checkbox" ng-model="newLooking.tempLooking.openToFullYearLeaseNewRoomates" id="openToFullYearLeaseNewRoomates"/>
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-user-plus fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="parkingNeeded">Meet new roommates?</label><br/>
+          <select id="openToFullYearLeaseNewRoomates" class="form-control" ng-model="newLooking.tempLooking.openToFullYearLeaseNewRoomates">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select><br/>
         </div>
       </div>
+
     </div>
+
+
     <!--end of third col 4-->
 
     <!--<button ng-click="" class="btn btn-primary">Delete</button>-->
