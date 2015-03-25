@@ -35,6 +35,24 @@
         </div>
       </div>
 
+      <!-- Meet New Roommates -->
+
+      <div class="row post-padding">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-user-plus fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="furnished">Meet New Roommates?</label>
+          <select id="furnished"  name="furnished" class="form-control"
+                  ng-model="looking.searchCriteria.openToFullYearLeaseNewRoomates">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
+
       <!-- Gender preference -->
 
       <div class="row post-padding">
@@ -49,24 +67,6 @@
             <option value="no preference">No preference</option>
             <option value="male only">Male only</option>
             <option value="female only">Female only</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Utilities included -->
-
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-bar-chart fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <label for="utilitiesIncluded">Utilities included?</label>
-          <select id="utilitiesIncluded"  name="utilitiesIncluded" class="form-control"
-                  ng-model="looking.searchCriteria.utilitiesIncluded">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
           </select>
         </div>
       </div>
@@ -124,6 +124,24 @@
           <label for="furnished">Furnished?</label>
           <select id="furnished"  name="furnished" class="form-control"
                   ng-model="looking.searchCriteria.furnished">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Utilities included -->
+
+      <div class="row post-padding">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-bar-chart fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="utilitiesIncluded">Utilities included?</label>
+          <select id="utilitiesIncluded"  name="utilitiesIncluded" class="form-control"
+                  ng-model="looking.searchCriteria.utilitiesIncluded">
             <option value="true">Yes</option>
             <option value="false">No</option>
           </select>
