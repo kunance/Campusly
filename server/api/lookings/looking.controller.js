@@ -56,12 +56,8 @@ exports.showAllLookings= function(req, res, next) {
   if(req.query.search) {
     searchQuery =  JSON.parse(req.query.search);
 
-    //console.log(searchQuery);
-    //console.log(Object.keys(searchQuery));
-
     if(searchQuery.maxMonthlyRent) { searchCriteria.maxMonthlyRent = { lte: searchQuery.maxMonthlyRent }; }
     if(searchQuery.numRoommates) { searchCriteria.numRoommates = { lte: searchQuery.numRoommates }; }
-//  if(propertyType !== null) { searchCriteria.property.type = searchQuery.propertyType; }
     if(searchQuery.utilitiesIncluded !== null) { searchCriteria.utilitiesIncluded = (searchQuery.utilitiesIncluded === "true"); }
     if(searchQuery.roomType !== null) { searchCriteria.roomType = searchQuery.roomType.replace(/"/g, "'"); }
     if(searchQuery.gender !== null) { searchCriteria.gender = searchQuery.gender.replace(/"/g, "'"); }
@@ -70,7 +66,6 @@ exports.showAllLookings= function(req, res, next) {
     if(searchQuery.smokingAllowed !== null) { searchCriteria.smokingAllowed = (searchQuery.smokingAllowed === "true"); }
     if(searchQuery.petsAllowed !== null) { searchCriteria.petsAllowed = (searchQuery.petsAllowed === "true"); }
     if(searchQuery.parkingNeeded !== null) { searchCriteria.parkingNeeded = (searchQuery.parkingNeeded === "true"); }
-
   }
 
   var limit  = ( req.param("limit") ) ? req.param("limit") : 100;
@@ -82,12 +77,7 @@ exports.showAllLookings= function(req, res, next) {
     order: [ sortAttrs ],
     limit: limit,
     include: [
-      { model: User, attributes: userAttributes, as: 'relatedUserId'
-        //,
-        //include: [
-        //  { model: Pets, as: 'petsUsers'},
-        //  { model: Vehicles, as: 'uservehiclesUsers'}]
-      }
+      { model: User, attributes: userAttributes, as: 'relatedUserId'}
     ]
   }).then(function(lookings) {
 
@@ -95,23 +85,6 @@ exports.showAllLookings= function(req, res, next) {
       // to work around bug   https://github.com/sequelize/sequelize/issues/1897
       lookings.length = limit;
     }
-
-    //lookings.forEach(function(e, i, a) {
-    //  var roomDetails = e.dataValues;
-    //  var propertyDetails = e.relatedPropertyId.dataValues;
-    //  propertyDetails.coords = {};
-    //  propertyDetails.coords.latitude =   e.relatedPropertyId.dataValues.latitude;
-    //  propertyDetails.coords.longitude =   e.relatedPropertyId.dataValues.longitude;
-    //  delete  propertyDetails.latitude;
-    //  delete propertyDetails.longitude;
-    //
-    //  var mashed = _.extend({}, { roomDetails: roomDetails }, { propertyDetails: propertyDetails } );
-    //  delete mashed.roomDetails.relatedPropertyId;
-    //  roomListingsResponse.push(mashed);
-    //});
-
-    //console.log(lookings);
-
 
     res.json(excludeService.excludeOwn(lookings, req.user.id));
 

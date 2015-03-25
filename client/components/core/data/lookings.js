@@ -12,9 +12,6 @@
           getEveryLooking: {
             method: 'GET',
             isArray:true
-            //params: {
-            //  id:'all'
-            //}
           },
           'query':  {method:'GET', isArray:true}
         }

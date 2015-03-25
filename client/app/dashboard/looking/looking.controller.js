@@ -12,11 +12,8 @@
 
     vm.me = currentUser;
 
-/* BEGIN OF COPY PASTE FROM ROOM CTRL */
-
     vm.sortOrder = 'ascending';  // default
     vm.sortBy = 'moveInDate';  // default
-
 
     vm.showSearch = false; // default
     vm.showSort = false; // default
@@ -26,7 +23,6 @@
         maxMonthlyRent: null,
         utilitiesIncluded: null,
         numRoommates: null,
-       // propertyType: null,
         sharedBathroom: null,
         roomType : null,
         furnished: null,
@@ -60,10 +56,6 @@
     angular.element($window).bind('resize', function () {
       orderSliderButtons();
     });
-
-
-    /* END OF COPY PASTE FROM ROOM CTRL */
-
 
     function orderSliderButtons() {
       setTimeout(function() {
