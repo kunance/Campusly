@@ -16,7 +16,7 @@
         controllerAs:'looking',
         authenticate: true,
         resolve:{
-          allLooking:allLooking,
+          //allLooking:allLooking,
           currentUser:getCurrentUser
         }
       });
@@ -29,15 +29,15 @@
       });
       return deferred.promise;
     }  }
-
-  allLooking.$inject = ['common', 'currentUser', '$q'];
-  function allLooking(common, currentUser, $q) {
-    if(currentUser){
-      var deferred = $q.defer();
-      common.dataservice.getEveryLooking(function (data) {
-         deferred.resolve(data);
-      });
-      return deferred.promise;
-    }
-  }
+  //
+  //allLooking.$inject = ['common', 'currentUser', '$q'];
+  //function allLooking(common, currentUser, $q) {
+  //  if(currentUser){
+  //    var deferred = $q.defer();
+  //    common.dataservice.getEveryLooking(function (data) {
+  //       deferred.resolve(data);
+  //    });
+  //    return deferred.promise;
+  //  }
+  //}
 }());

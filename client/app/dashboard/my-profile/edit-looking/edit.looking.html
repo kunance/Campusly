@@ -251,9 +251,16 @@
         <!-- Meet new roommates -->
 
         <div class="row post-padding">
-          <div class="col-xs-10 col-sm-10 col-xs-offset-2 col-sm-offset-2 input-post">
-            <input type="checkbox" ng-model="editLooking.tempLooking.openToFullYearLeaseNewRoomates" id="openToFullYearLeaseNewRoomates"/>
-            <label for="openToFullYearLeaseNewRoomates">Want to meet new roomates?</label><br/>
+          <div class="row post-padding">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1" style="bottom: 15px">
+              <div class="roundedTwo">
+                <input type="checkbox" ng-model="editLooking.tempLooking.openToFullYearLeaseNewRoomates"  value="None" id="roundedTwo" name="check"/>
+                <label for="roundedTwo"></label>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <label for="roundedTwo">Are you looking for new roommates as well?</label><br/>
+            </div>
           </div>
         </div>
 

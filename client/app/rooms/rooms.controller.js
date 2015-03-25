@@ -5,9 +5,9 @@
   .module('app.rooms')
   .controller('RoomsCtrl', RoomsCtrl);
 
-  RoomsCtrl.$inject = ['$scope', '$window', 'common', 'RoomListingView', '$filter'];
+  RoomsCtrl.$inject = ['$scope', '$window', 'common', 'RoomListingView'];
 
-  function RoomsCtrl($scope, $window, common, RoomListingView, $filter) {
+  function RoomsCtrl($scope, $window, common, RoomListingView) {
     var vm = this;
     vm.property = {};
     vm.me = common.Auth.getCurrentUser();

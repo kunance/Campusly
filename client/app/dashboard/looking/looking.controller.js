@@ -5,14 +5,65 @@
   .module('app.dashboard')
   .controller('LookingCtrl', LookingCtrl);
 
-  LookingCtrl.$inject = ['common', 'allLooking', 'currentUser'];
+  LookingCtrl.$inject = ['common', 'currentUser', '$window', 'Lookings'];
 
-  function LookingCtrl(common, allLooking, currentUser) {
+  function LookingCtrl(common, currentUser, $window, Lookings) {
     var vm = this;
 
     vm.me = currentUser;
-    vm.lookings = allLooking;
-    vm.groups = vm.lookings.inGroupsOf(8);
+
+/* BEGIN OF COPY PASTE FROM ROOM CTRL */
+
+    vm.sortOrder = 'ascending';  // default
+    vm.sortBy = 'moveInDate';  // default
+
+
+    vm.showSearch = false; // default
+    vm.showSort = false; // default
+
+    vm.clearSearch = function(showSearch) {
+      vm.searchCriteria = {
+        maxMonthlyRent: null,
+        utilitiesIncluded: null,
+        numRoommates: null,
+       // propertyType: null,
+        sharedBathroom: null,
+        roomType : null,
+        furnished: null,
+        smokingAllowed: null,
+        gender: null,
+        petsAllowed: null,
+        parkingNeeded: null
+      };
+    };
+
+    vm.clearSearch(false);
+
+    vm.search = function(showSearch) {
+      Lookings.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria}, function (activeLookings) {
+        vm.lookings = activeLookings;
+        vm.groups = vm.lookings.inGroupsOf(8);
+        vm.showSearch = showSearch;
+        vm.showSort = showSearch;
+      });
+      // must call in order to have slider controls rendered correctly
+      orderSliderButtons();
+    };
+
+    vm.search(false);
+
+    vm.clearSearchAndSearch = function(showSearch) {
+      vm.clearSearch(false);
+      vm.search(showSearch);
+    };
+
+    angular.element($window).bind('resize', function () {
+      orderSliderButtons();
+    });
+
+
+    /* END OF COPY PASTE FROM ROOM CTRL */
+
 
     function orderSliderButtons() {
       setTimeout(function() {
