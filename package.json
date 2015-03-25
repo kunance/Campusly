@@ -7,7 +7,6 @@
     "body-parser": "~1.5.0",
     "composable-middleware": "^0.3.0",
     "compression": "~1.0.1",
-    "connect-redis": "^2.2.0",
     "cookie-parser": "~1.0.1",
     "ejs": "^0.8.8",
     "email-templates": "^1.1.2",
@@ -36,14 +35,12 @@
     "pg-hstore": "^2.3.1",
     "prerender-node": "^1.2.1",
     "readline": "0.0.7",
-    "redis": "^0.12.1",
     "sequelize": "*",
     "serve-favicon": "~2.0.1",
     "socket.io": "^1.0.6",
     "socket.io-client": "^1.0.6",
     "socketio-jwt": "^2.0.2",
-    "sqlite3": "~3.0.2",
-    "tiny-lr-fork": "0.0.5"
+    "sqlite3": "~3.0.2"
   },
   "devDependencies": {
     "chai-as-promised": "^4.1.1",

@@ -16,7 +16,7 @@ var config = require('./environment');
 var passport = require('passport');
 var session = require('express-session');
 var multer = require('multer');
-var RedisStore = require('connect-redis')(session);
+//var RedisStore = require('connect-redis')(session);
 //var port = process.env.PORT || 9000;
 //var host = process.env.DOMAIN || '127.0.0.1';
 //var redis = require("redis");
@@ -38,7 +38,7 @@ module.exports = function(app) {
 
   // We need to enable sessions for passport twitter because its an oauth 1.0 strategy
   //this is express session
-  //TODO (optional) use redisStore to keep session presistent non dependent of nodejs process
+  //TODO (optional) use redisStore to keep session presistent non dependent of nodejs process (modules connect-redis, redis)
   app.use(session({
     //store: new RedisStore({
     //  host: host,
