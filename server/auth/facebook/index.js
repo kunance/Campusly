@@ -8,16 +8,16 @@ var router = express.Router();
 
 router
   .get('/', passport.authenticate('facebook', {
-    scope: ['email', 'user_about_me', 'user_education_history'],
+    scope: ['email', 'user_about_me', 'user_education_history', 'user_friends', 'user_birthday', 'user_hometown', 'user_interests', 'user_location'],
     successRedirect: 'myProfile',
     failureRedirect: '/',
-    session: false
+    session: true
   }))
 
   .get('/callback', passport.authenticate('facebook', {
     failureRedirect: '/',
     successRedirect: '/myProfile',
-    session: false
+    session: true
   }), auth.setTokenCookie);
 
 module.exports = router;
