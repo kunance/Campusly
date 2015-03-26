@@ -24,7 +24,7 @@ CREATE OR REPLACE FUNCTION property_geo() RETURNS trigger AS $property_geo$
         IF NEW.latitude IS NULL THEN
             RAISE EXCEPTION 'latitude cannot be null';
         END IF;
-        UPDATE property SET geoloc = ST_Setsrid(ST_Makepoint(NEW.latitude, NEW.longitude), 4326);
+          UPDATE property SET geoloc = ST_Setsrid(ST_Makepoint(latitude, longitude), 4326);
         RETURN NEW;
 
     END;
@@ -46,7 +46,7 @@ CREATE OR REPLACE FUNCTION university_geo() RETURNS trigger AS $university_geo$
         IF NEW.latitude IS NULL THEN
             RAISE EXCEPTION 'latitude cannot be null';
         END IF;
-        UPDATE university SET geoloc = ST_Setsrid(ST_Makepoint(NEW.latitude, NEW.longitude), 4326);
+        UPDATE university SET geoloc = ST_Setsrid(ST_Makepoint(latitude, longitude), 4326);
         RETURN NEW;
 
     END;
@@ -68,7 +68,7 @@ CREATE OR REPLACE FUNCTION address_history_geo() RETURNS trigger AS $address_his
         IF NEW.latitude IS NULL THEN
             RAISE EXCEPTION 'latitude cannot be null';
         END IF;
-        UPDATE address_history SET geoloc = ST_Setsrid(ST_Makepoint(NEW.latitude, NEW.longitude), 4326);
+        UPDATE address_history SET geoloc = ST_Setsrid(ST_Makepoint(latitude, longitude), 4326);
         RETURN NEW;
 
     END;
