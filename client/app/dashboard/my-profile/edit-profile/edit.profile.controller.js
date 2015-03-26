@@ -18,6 +18,8 @@
     vm.universitiesList = data[0];
     vm.tempEducation = data[1];
     vm.tempAddress = data[2];
+    vm.submitted = false;
+    console.log(vm.tempEducation);
     /*
      *  defining functions
      */
@@ -74,7 +76,9 @@
     /*
      *  education data management
      */
-    function saveEducation (input) {
+    function saveEducation (input, form) {
+      vm.submitted = true;
+      if(form.$valid){
       input.universityId = input.educationCenterName.id;
       input.educationCenterName = input.educationCenterName.name;
       if(EducationStatus){
@@ -90,6 +94,7 @@
           common.$state.reload();
         })
       }
+    } else {return false;}
     }
     /*
      *  profile picture upload config
