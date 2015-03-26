@@ -75,8 +75,19 @@ module.exports.sortRoomToUnivDist = function(universityId, roomListings, sortOrd
   // TODO  need to only pass in roomListing ids to query so sorting doesn't choose all propoerties
   // IMPORTANT you should sort when dealing with distance since sorting distance on all properties
   // before pruning the result set via search will become exponentially expensive as the property dataset grows
-  var within = 'SELECT rl.id FROM room_listing as rl, property as prop, university as univ WHERE univ.id = :univId AND rl."propertyId" = prop.id  ORDER BY ST_Distance(univ.geoloc, prop.geoloc)';
-  sequelize.query(within, { replacements: {univId: universityId} }).then(function(roomIds) {
+  var roomListingIds = [];
+
+  //roomListings.forEach(function(rl) {
+  //  roomListingIds.push( rl.roomDetails.id );
+  //});
+  //console.log("Room listing ids to order distance against: ", roomListingIds);
+
+
+//, {univId: universityId, rlids: roomListingIds}  WHERE rl.id = ? { replacements: roomListingIds }
+  var within = 'SELECT rl.id FROM room_listing as rl, property as prop, university as univ WHERE univ.id = :univId AND rl."propertyId" = prop.id ORDER BY ST_Distance(univ.geoloc, prop.geoloc)';
+  sequelize.query(within, { replacements: {univId: universityId } }).then(function(roomIds) {
+
+    console.log("Room listing ids returned from sort in order of distance: ", roomIds);
 
     if(sortOrder === "descending") {
       roomIds[0].reverse();
@@ -85,11 +96,11 @@ module.exports.sortRoomToUnivDist = function(universityId, roomListings, sortOrd
     var sortedRoomListings = [];
 
     roomIds[0].forEach( function(roomId) {
-//      console.log(roomId);
+  //    console.log(roomId);
       for(var rlIndex in roomListings) {
-//        console.log(roomListings[rlIndex].roomDetails.id );
+  //      console.log(roomListings[rlIndex].roomDetails.id );
          if(roomListings[rlIndex].roomDetails.id === roomId.id ) {
-//          console.log("Adding room listing: ", roomListings[rlIndex].roomDetails.id, " to sorted list");
+  //        console.log("Adding room listing: ", roomListings[rlIndex].roomDetails.id, " to sorted list");
            sortedRoomListings.push(roomListings[rlIndex]);
            break;
          }

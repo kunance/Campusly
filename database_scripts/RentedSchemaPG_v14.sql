@@ -13,13 +13,10 @@ SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 
-DROP DATABASE rented;
 --
 -- TOC entry 2626 (class 1262 OID 27225)
 -- Name: rented; Type: DATABASE; Schema: -; Owner: postgres
 --
-
-CREATE DATABASE rented WITH TEMPLATE = template0 ENCODING = 'UTF8';
 
 
 ALTER DATABASE rented OWNER TO postgres;
@@ -37,8 +34,6 @@ SET client_min_messages = warning;
 -- TOC entry 6 (class 2615 OID 2200)
 -- Name: public; Type: SCHEMA; Schema: -; Owner: postgres
 --
-
-CREATE SCHEMA public;
 
 
 ALTER SCHEMA public OWNER TO postgres;
@@ -70,18 +65,6 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 SET search_path = public, pg_catalog;
-
-
--- Enable PostGIS (includes raster)
-CREATE EXTENSION postgis;
--- Enable Topology
-CREATE EXTENSION postgis_topology;
--- fuzzy matching needed for Tiger
-CREATE EXTENSION fuzzystrmatch;
--- Enable US Tiger Geocoder
-CREATE EXTENSION postgis_tiger_geocoder;
-
-
 
 --
 -- TOC entry 594 (class 1247 OID 27227)
@@ -1362,6 +1345,7 @@ CREATE TABLE rented_user (
     "creditCheckToken" text,
     "runIdentityCheck" boolean DEFAULT false NOT NULL,
     "shareCreditReport" boolean DEFAULT false NOT NULL,
+    "shareProfile" boolean DEFAULT false,
     "identityDate" timestamp with time zone,
     "creditReportDate" timestamp with time zone,
     "createdAt" timestamp with time zone DEFAULT now() NOT NULL,
@@ -3999,34 +3983,6 @@ ALTER TABLE ONLY user_reference
 
 ALTER TABLE ONLY user_vehicle
     ADD CONSTRAINT uservehicles_user FOREIGN KEY ("userId") REFERENCES rented_user(id);
-
-
---
---   may want to use 26910 instead of 4326  ... investigate
---
-ALTER TABLE property ADD COLUMN geoloc GEOMETRY(Point, 4326);
-CREATE INDEX property_gix on property USING GIST(geoloc);
-
-ALTER TABLE university ADD COLUMN geoloc GEOMETRY(Point, 4326);
-CREATE INDEX university_gix on university USING GIST(geoloc);
-
-
-CREATE OR REPLACE FUNCTION property_geo() RETURNS trigger AS $property_geo$
-    BEGIN
-        -- Check that empname and salary are given
-        IF NEW.longitude IS NULL THEN
-            RAISE EXCEPTION 'longitude cannot be null';
-        END IF;
-        IF NEW.latitude IS NULL THEN
-            RAISE EXCEPTION 'latitude cannot be null';
-        END IF;
-        NEW.geoloc := ST_Setsrid(ST_Makepoint(NEW.latitude, NEW.longitude), 4326);
-        RETURN NEW;
-    END;
-$property_geo$ LANGUAGE plpgsql;
-
-CREATE OR REPLACE TRIGGER property_geo_trig AFTER INSERT OR UPDATE ON property
-    FOR EACH ROW EXECUTE PROCEDURE property_geo();
 
 
 --
