@@ -60,12 +60,15 @@ exports.me = function(req, res, next) {
   User.find({
     where: {
       id: userId
-    },
-    attributes: userAttributes
+    }
+    , attributes: userAttributes
   })
     .then(function(user) { // don't ever give out the password or salt
-      if (!user) { return res.status(401).end(); }
-      res.json(user);
+      if (!user) {
+        return res.status(401).end();
+      } else {
+        return res.json(user);
+      }
     })
     .catch(function(err) {
       return next(err);
