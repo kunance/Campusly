@@ -13,13 +13,10 @@ SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 
-DROP DATABASE rented;
 --
 -- TOC entry 2626 (class 1262 OID 27225)
 -- Name: rented; Type: DATABASE; Schema: -; Owner: postgres
 --
-
-CREATE DATABASE rented WITH TEMPLATE = template0 ENCODING = 'UTF8';
 
 
 ALTER DATABASE rented OWNER TO postgres;
@@ -37,8 +34,6 @@ SET client_min_messages = warning;
 -- TOC entry 6 (class 2615 OID 2200)
 -- Name: public; Type: SCHEMA; Schema: -; Owner: postgres
 --
-
-CREATE SCHEMA public;
 
 
 ALTER SCHEMA public OWNER TO postgres;
