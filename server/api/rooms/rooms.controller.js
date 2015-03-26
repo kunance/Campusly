@@ -222,13 +222,18 @@ exports.getAllRoomListings = function(req, res, next) {
       }
       else {
         _getAllRoomListings(req, res, searchCriteria, propertyIdsWithinSearchRange, function (roomListings) {
-          if (univId) {
-            propertiesWithin.sortRoomToUnivDist(univId, roomListings, sortOrder, function (sortedRoomListings) {
-              res.json(sortedRoomListings);
-            })
+          if(roomListings.length === 0) {
+            res.json(roomListings);
           }
           else {
-            res.json(roomListings);
+            if (univId) {
+              propertiesWithin.sortRoomToUnivDist(univId, roomListings, sortOrder, function (err, sortedRoomListings) {
+                res.json(sortedRoomListings);
+              })
+            }
+            else {
+              res.json(roomListings);
+            }
           }
         });
       }
@@ -264,7 +269,7 @@ var _parseSearchCriteria = function(req, res, cb) {
   if(req.query.search) {
     searchQuery = JSON.parse(req.query.search);
 
-    console.log("Serach query: ", searchQuery);
+  //  console.log("Serach query: ", searchQuery);
     //console.log(Object.keys(searchQuery));
 
     if (searchQuery.maxMonthlyPrice) {
@@ -307,7 +312,7 @@ var _parseSearchCriteria = function(req, res, cb) {
 
       propertiesWithin.withinUniversity(searchQuery.within.place.id, searchQuery.within.distance * miles2Meters,
         function (propertyIds) {
-        console.log("Property ids: ", propertyIds);
+  //      console.log("Property ids: ", propertyIds);
         cb(null, searchCriteria, propertyIds);
       });
     }
