@@ -1,4 +1,6 @@
 BEGIN;
+\i CreatePostGIS.sql
+\i AlterPostGisTableAndAddTrigger.sql
 \i InsertUser.sql
 \i InsertRoomsAndProperties.sql
 \i InsertAptComplexes.sql
