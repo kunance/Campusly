@@ -341,7 +341,13 @@ var _getMyCurrentUnivId = function(userId, cb) {
     where: [ { userId: userId } ],
     attributes: ["universityId"]
   }).then(function(universityIds) {
-    cb(universityIds[0].dataValues.universityId);
+    if(universityIds && universityIds[0])
+    {
+      cb(universityIds[0].dataValues.universityId);
+    }
+    else {
+      cb(null);
+    }
   });
 };
 

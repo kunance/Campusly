@@ -36,7 +36,7 @@
               <option value="" disabled>Sort by</option>
               <option value="monthlyPrice">Price</option>
               <option value="availableMoveIn">Available date</option>
-              <option value="distanceToMyUniversity">Dist. to Campus</option>
+              <option value="distanceToMyUniversity" ng-if="rooms.education.universityId">Dist. to Campus</option>
             </select>
           </div>
           <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
