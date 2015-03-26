@@ -207,40 +207,51 @@ exports.getAllRoomListings = function(req, res, next) {
   if (sortBy && sortBy === "distanceToMyUniversity") {
     var userId = req.user.id;   // should be provide by my session
     if (!userId) {
-      throw new Error("userId must be part of the query params");
+      return res.status(400).send("user id not in session");
     }
 
 
+    //TODO take this call out after you force client to provide the university id
     _getMyCurrentUnivId(userId, function (univId) {
 
       console.log("My university id: ", univId);
      // univId = 10;  // SD to test since all properties are in SD area
 
       if(!univId) {
-        throw new Error("Can not determine distances from your university since unable to determine your university");
+        return res.status(400).send("can not determine distances from your university since unable to determine your university");
       }
 
       // IMPORTANT you should search than sort when dealing with distance since sorting distance on all properties
       // before pruning the result set via search will become exponentially expensive as the property dataset grows
-      _parseSearchCriteria(req, res, function (searchCriteria, propertyIdsWithinSearchRange) {
-        _getAllRoomListings(req, res, searchCriteria, propertyIdsWithinSearchRange, function(roomListings) {
-          if(univId) {
-            propertiesWithin.sortRoomToUnivDist(univId, roomListings, sortOrder, function(sortedRoomListings) {
-              res.json(sortedRoomListings);
-            })
-          }
-          else {
-            res.json(roomListings);
-          }
-        });
+      _parseSearchCriteria(req, res, function (err, searchCriteria, propertyIdsWithinSearchRange) {
+        if(err) {
+          res.status(err.status).send(err);
+        }
+        else {
+          _getAllRoomListings(req, res, searchCriteria, propertyIdsWithinSearchRange, function (roomListings) {
+            if (univId) {
+              propertiesWithin.sortRoomToUnivDist(univId, roomListings, sortOrder, function (sortedRoomListings) {
+                res.json(sortedRoomListings);
+              })
+            }
+            else {
+              res.json(roomListings);
+            }
+          });
+        }
       });
     });
   }
   else {
-    _parseSearchCriteria(req, res, function (searchCriteria, propertyIdsWithinSearchRange) {
-      _getAllRoomListings(req, res, searchCriteria, propertyIdsWithinSearchRange, function(roomListings) {
-        res.json(roomListings);
-      });
+    _parseSearchCriteria(req, res, function (err, searchCriteria, propertyIdsWithinSearchRange) {
+      if(err) {
+        res.status(err.status).send(err);
+      }
+      else {
+        _getAllRoomListings(req, res, searchCriteria, propertyIdsWithinSearchRange, function (roomListings) {
+          res.json(roomListings);
+        });
+      }
     });
   }
 };
@@ -260,7 +271,7 @@ var _parseSearchCriteria = function(req, res, cb) {
   if(req.query.search) {
     searchQuery = JSON.parse(req.query.search);
 
-    //console.log(searchQuery);
+    console.log("Serach query: ", searchQuery);
     //console.log(Object.keys(searchQuery));
 
     if (searchQuery.maxMonthlyPrice) {
@@ -294,27 +305,25 @@ var _parseSearchCriteria = function(req, res, cb) {
       searchCriteria.parkingAvailable = (searchQuery.parkingAvailable === "true");
     }
 
-    //propertiesWithin.withinUniversity(3, 10 * miles2Meters, function (propertyIds) {
-    //  console.log("Property ids: ", propertyIds);
-    //  cb(searchCriteria, propertyIds);
-    //});
-
     if (searchQuery.within) {
 
       // assumed searchQuery.within = { place: { type: 'univ', id: 'id" }, distance  since API only support that now
+      if(!searchQuery.within.place || !searchQuery.within.place.id || !searchQuery.within.distance) {
+        return cb( {status: 400, errorMsg: "You must provide a place id and distance when you try to search with a specific distance" } );
+      }
 
       propertiesWithin.withinUniversity(searchQuery.within.place.id, searchQuery.within.distance * miles2Meters,
         function (propertyIds) {
         console.log("Property ids: ", propertyIds);
-        cb(searchCriteria, propertyIds);
+        cb(null, searchCriteria, propertyIds);
       });
     }
     else {
-      cb(searchCriteria);
+      cb(null, searchCriteria);
     }
   }
   else {
-    cb(searchCriteria);
+    cb(null, searchCriteria);
   }
 };
 
@@ -327,7 +336,7 @@ var _parseSearchCriteria = function(req, res, cb) {
  */
 var _getMyCurrentUnivId = function(userId, cb) {
 
-  // TODO add an active or most recent attribute to the search once the UserEducaton model has it
+  // TODO add an active or most recent attribute to the search once the UserEducation model has it
   UserEducation.findAll({
     where: [ { userId: userId } ],
     attributes: ["universityId"]

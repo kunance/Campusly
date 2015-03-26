@@ -71,18 +71,6 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
-
--- Enable PostGIS (includes raster)
-CREATE EXTENSION postgis;
--- Enable Topology
-CREATE EXTENSION postgis_topology;
--- fuzzy matching needed for Tiger
-CREATE EXTENSION fuzzystrmatch;
--- Enable US Tiger Geocoder
-CREATE EXTENSION postgis_tiger_geocoder;
-
-
-
 --
 -- TOC entry 594 (class 1247 OID 27227)
 -- Name: lease_paymentInterval; Type: TYPE; Schema: public; Owner: postgres
@@ -3999,34 +3987,6 @@ ALTER TABLE ONLY user_reference
 
 ALTER TABLE ONLY user_vehicle
     ADD CONSTRAINT uservehicles_user FOREIGN KEY ("userId") REFERENCES rented_user(id);
-
-
---
---   may want to use 26910 instead of 4326  ... investigate
---
-ALTER TABLE property ADD COLUMN geoloc GEOMETRY(Point, 4326);
-CREATE INDEX property_gix on property USING GIST(geoloc);
-
-ALTER TABLE university ADD COLUMN geoloc GEOMETRY(Point, 4326);
-CREATE INDEX university_gix on university USING GIST(geoloc);
-
-
-CREATE OR REPLACE FUNCTION property_geo() RETURNS trigger AS $property_geo$
-    BEGIN
-        -- Check that empname and salary are given
-        IF NEW.longitude IS NULL THEN
-            RAISE EXCEPTION 'longitude cannot be null';
-        END IF;
-        IF NEW.latitude IS NULL THEN
-            RAISE EXCEPTION 'latitude cannot be null';
-        END IF;
-        NEW.geoloc := ST_Setsrid(ST_Makepoint(NEW.latitude, NEW.longitude), 4326);
-        RETURN NEW;
-    END;
-$property_geo$ LANGUAGE plpgsql;
-
-CREATE OR REPLACE TRIGGER property_geo_trig AFTER INSERT OR UPDATE ON property
-    FOR EACH ROW EXECUTE PROCEDURE property_geo();
 
 
 --
