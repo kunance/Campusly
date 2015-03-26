@@ -149,3 +149,12 @@ export AWS_SECRET_KEY=<your key>
 export EC2_URL=https://ec2.us-west-2.amazonaws.com
 
 ====
+
+Process for creating a new database:
+1. Run RentedSchemaPGvXX.sql
+2. Run CreatePostGIS.sql
+3. Run AlterPostGisTableAndAddTrigger.sql
+
+Required to be done separately 
+
+=====
