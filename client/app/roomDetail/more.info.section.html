@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="page-header">
+    <h2 class="section-title">More Info</h2>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 details white-box">
+    <h3>Room description</h3>
+    <p>
+      {{room.roomDetail.roomDetails.description}}
+    </p>
+
+    <h3>Details</h3>
+
+    <dl class="specs row">
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+        <dl>
+
+          <dt><i class="fa fa-tags fa-lg"></i>&nbsp;&nbsp;Security Deposit:&nbsp;&nbsp;</dt>
+          <dd>{{room.roomDetail.roomDetails.securityDeposit | currency}}</dd>
+          <br>
+
+          <dt><i class="fa fa-clipboard fa-lg"></i>&nbsp;&nbsp;Lease Type:&nbsp;&nbsp;</dt>
+          <dd>{{room.roomDetail.roomDetails.leaseType}}</dd>
+          <br>
+
+          <dt><i class="fa fa-bed fa-lg">&nbsp;&nbsp;</i>Bedrooms:&nbsp;&nbsp;</dt>
+          <dd>{{room.roomDetail.propertyDetails.bedrooms}}</dd>
+          <br>
+
+          <dt><i class="fa fa-toiletPaper fa-lg"></i>&nbsp;&nbsp;Bathrooms:&nbsp;&nbsp;</dt>
+          <dd>{{room.roomDetail.propertyDetails.bathrooms}}</dd>
+          <br>
+
+          <dt><i class="fa fa-pet fa-lg"></i>&nbsp;&nbsp;Pets Allowed:&nbsp;&nbsp;</dt>
+          <dd>{{room.roomDetail.roomDetails.petsAllowed | boolean}}</dd>
+
+        </dl>
+
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+        <dl>
+          <dt><i class="fa fa-car fa-lg"></i>&nbsp;&nbsp;Parking Available:&nbsp;&nbsp;</dt>
+          <dd>{{room.roomDetail.roomDetails.parkingAvailable | boolean}}</dd>
+          <br>
+
+          <dt><i class="fa fa-desk fa-lg"></i>&nbsp;&nbsp;Furnished:&nbsp;&nbsp;</dt>
+          <dd>{{room.roomDetail.roomDetails.furnished | boolean}}</dd>
+          <br>
+
+          <dt><i class="fa fa-smoking fa-lg"></i>&nbsp;&nbsp;Smoking Allowed:&nbsp;&nbsp;</dt>
+          <dd>{{room.roomDetail.roomDetails.smokingAllowed | boolean}}</dd>
+          <br>
+
+          <dt><i class="fa fa-venus-mars fa-lg"></i>&nbsp;&nbsp;Gender preference:&nbsp;&nbsp;</dt>
+          <dd>{{room.roomDetail.roomDetails.gender}}</dd>
+          <br>
+
+          <dt ng-show="room.roomDetail.propertyDetails.type"><i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;Property type:&nbsp;&nbsp;</dt>
+          <dd ng-show="room.roomDetail.propertyDetails.type">{{room.roomDetail.propertyDetails.type}}</dd>
+
+        </dl>
+
+      </div>
+    </dl>
+
+  </div>
+</div>
