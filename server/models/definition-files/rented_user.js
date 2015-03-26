@@ -336,8 +336,7 @@ module.exports = {
     },
     "shareProfile": {
       type: Seq.BOOLEAN,
-      field: "shareProfile",
-      allowNull: false
+      field: "shareProfile"
     },
     "identityDate": {
       type: Seq.DATE,

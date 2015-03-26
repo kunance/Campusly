@@ -1345,7 +1345,7 @@ CREATE TABLE rented_user (
     "creditCheckToken" text,
     "runIdentityCheck" boolean DEFAULT false NOT NULL,
     "shareCreditReport" boolean DEFAULT false NOT NULL,
-    "shareProfile" boolean DEFAULT false NOT NULL,
+    "shareProfile" boolean DEFAULT false,
     "identityDate" timestamp with time zone,
     "creditReportDate" timestamp with time zone,
     "createdAt" timestamp with time zone DEFAULT now() NOT NULL,
