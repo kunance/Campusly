@@ -22,6 +22,9 @@ exports.root = function(req, res, next) {
       University.findOne({where: { id: educ.universityId }})
         .then(function (univ) {
           req.session.currentUniversityId = univ.dataValues.id;
+        })
+        .catch(function (error) {
+          if (error) return next(error);
         });
     })
     .catch(function (error) {

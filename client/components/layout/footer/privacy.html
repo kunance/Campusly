@@ -1,7 +1,7 @@
 <header class="login-header" ng-controller="NavbarCtrl">
   <div class="container">
     <div class="left-content">
-      <a href="/" ng-if="!isLoggedIn()" name="TopPrivacy">
+      <a href="/" ng-if="!isLoggedIn()">
         <img src="../../../assets/images/webname.svg" alt="campusly" >
       </a>
       <a ui-sref="dashboard" ng-if="isLoggedIn()">
