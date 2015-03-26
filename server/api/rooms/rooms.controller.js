@@ -91,8 +91,6 @@ var _getAllRoomListings = function(req, res, searchCriteria, propertyIdsWithinSe
   var propertyAttributes = [ "id", "streetNumeric", "streetAddress", "city", "state", "zip", "apt", "bldg", "latitude", "longitude", "type",
     "description", "bedrooms","bathrooms", "parkingSpots", "livingAreaSqFt", "hoaFee", "otherFee", "status" ];
 
-  var userUniversityAttributes = [ "userId", "latitude", "longitude"];
-
   var roomListingsResponse = [];
 
 
@@ -203,44 +201,39 @@ exports.getAllRoomListings = function(req, res, next) {
 
   var sortBy = req.param("sortBy");
   var sortOrder = req.param("sortOrder");
+  var univId;
 
   if (sortBy && sortBy === "distanceToMyUniversity") {
-    var userId = req.user.id;   // should be provide by my session
-    if (!userId) {
-      return res.status(400).send("user id not in session");
+    //var userId = req.user.id;   // should be provide by my session
+    //if (!userId) {
+    //  return res.status(400).send("user id not in session");
+    //}
+    univId = req.param("univId");
+
+    if (!univId) {
+      return res.status(400).send("can not determine distances from your university since unable to determine your university");
     }
 
-
-    //TODO take this call out after you force client to provide the university id
-    _getMyCurrentUnivId(userId, function (univId) {
-
-      console.log("My university id: ", univId);
-     // univId = 10;  // SD to test since all properties are in SD area
-
-      if(!univId) {
-        return res.status(400).send("can not determine distances from your university since unable to determine your university");
+    // IMPORTANT you should search than sort when dealing with distance since sorting distance on all properties
+    // before pruning the result set via search will become exponentially expensive as the property dataset grows
+    _parseSearchCriteria(req, res, function (err, searchCriteria, propertyIdsWithinSearchRange) {
+      if (err) {
+        res.status(err.status).send(err);
       }
-
-      // IMPORTANT you should search than sort when dealing with distance since sorting distance on all properties
-      // before pruning the result set via search will become exponentially expensive as the property dataset grows
-      _parseSearchCriteria(req, res, function (err, searchCriteria, propertyIdsWithinSearchRange) {
-        if(err) {
-          res.status(err.status).send(err);
-        }
-        else {
-          _getAllRoomListings(req, res, searchCriteria, propertyIdsWithinSearchRange, function (roomListings) {
-            if (univId) {
-              propertiesWithin.sortRoomToUnivDist(univId, roomListings, sortOrder, function (sortedRoomListings) {
-                res.json(sortedRoomListings);
-              })
-            }
-            else {
-              res.json(roomListings);
-            }
-          });
-        }
-      });
+      else {
+        _getAllRoomListings(req, res, searchCriteria, propertyIdsWithinSearchRange, function (roomListings) {
+          if (univId) {
+            propertiesWithin.sortRoomToUnivDist(univId, roomListings, sortOrder, function (sortedRoomListings) {
+              res.json(sortedRoomListings);
+            })
+          }
+          else {
+            res.json(roomListings);
+          }
+        });
+      }
     });
+    //});
   }
   else {
     _parseSearchCriteria(req, res, function (err, searchCriteria, propertyIdsWithinSearchRange) {
@@ -341,7 +334,13 @@ var _getMyCurrentUnivId = function(userId, cb) {
     where: [ { userId: userId } ],
     attributes: ["universityId"]
   }).then(function(universityIds) {
-    cb(universityIds[0].dataValues.universityId);
+    if(universityIds && universityIds[0])
+    {
+      cb(universityIds[0].dataValues.universityId);
+    }
+    else {
+      cb(null);
+    }
   });
 };
 

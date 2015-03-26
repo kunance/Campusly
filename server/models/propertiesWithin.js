@@ -77,10 +77,10 @@ module.exports.sortRoomToUnivDist = function(universityId, roomListings, sortOrd
   // before pruning the result set via search will become exponentially expensive as the property dataset grows
   var roomListingIds = [];
 
-  //roomListings.forEach(function(rl) {
-  //  roomListingIds.push( rl.roomDetails.id );
-  //});
-  //console.log("Room listing ids to order distance against: ", roomListingIds);
+  roomListings.forEach(function(rl) {
+    roomListingIds.push( rl.roomDetails.id );
+  });
+  console.log("Room listing ids to order distance against: ", roomListingIds);
 
 
 //, {univId: universityId, rlids: roomListingIds}  WHERE rl.id = ? { replacements: roomListingIds }

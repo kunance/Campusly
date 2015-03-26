@@ -43,7 +43,6 @@
 
     vm.search = function(showSearch) {
 
-      console.log("Distance! ", vm.searchCriteria.within);
       if(vm.searchCriteria.within) {
         // have to add info for the server side API  ... add university id if know so server doesn't have to lookup and throw
         // if you do NOT have one ... PLUS you can use this to ng-show/ng-hide the distance on the partial if student
@@ -52,7 +51,7 @@
       }
 
 
-      RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria}, function(availRooms) {
+      RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: currentUniversityId}, function(availRooms) {
         vm.availableRooms = availRooms;
         //console.log(vm.availableRooms);
         vm.groups = vm.availableRooms.inGroupsOf(8);
