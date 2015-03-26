@@ -1,17 +1,17 @@
 INSERT INTO roommate ("id", "userId", "roommateId", "confirmed")
 VALUES
-(2,2,4,'true'),
+(2,2,10,'true'),
 (3,4,2,'true'),
 (4,5,6,'true'),
-(5,5,7,'true'),
-(6,6,5,'true'),
+(5,5,9,'true'),
+(6,2,5,'true'),
 (7,6,7,'true'),
 (8,7,5,'true'),
-(9,7,6,'true'),
+(9,7,3,'true'),
 (10,10,17,'true'),
-(11,17,10,'true'),
+(11,17,12,'true'),
 (12,14,15,'true'),
-(13,15,14,'true');
+(13,15,8,'true');
 
 --
 -- TOC entry 2681 (class 0 OID 0)

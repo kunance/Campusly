@@ -13,20 +13,20 @@ var auth = require('../auth.service');
 // ********************* Mail ***********************
 
 exports.root = function(req, res, next) {
-
   var loggedUserId = req.user.dataValues.id;
-
   Education.findOne({where:
      {userId: loggedUserId}})
     .then(function (educ) {
+      if(educ){
       University.findOne({where: { id: educ.universityId }})
         .then(function (univ) {
+          if(univ)
           req.session.currentUniversityId = univ.dataValues.id;
         })
         .catch(function (error) {
           if (error) return next(error);
         });
-    })
+    }})
     .catch(function (error) {
       if (error) return next(error);
     });
