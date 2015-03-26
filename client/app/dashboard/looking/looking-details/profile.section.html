@@ -1,0 +1,70 @@
+<h2>{{detail.lookingDetail.relatedUserId.firstname}}'s profile</h2>
+
+<!-- Info about the user -->
+
+<div class="white-box">
+  <div class="row about-me lookingDetails">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+      <div class="row">
+
+        <!-- User's profile image -->
+
+        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+          <div class="picture text-center">
+            <img ng-if="detail.lookingDetail.relatedUserId.profileImage" ng-src="api/images{{detail.lookingDetail.relatedUserId.profileImage}}" class="img-circle center-block looking-profile-img">
+            <i ng-if="!detail.lookingDetail.relatedUserId.profileImage" class="fa fa-user fa-5x"></i>
+          </div>
+        </div>
+
+        <!-- User's public info -->
+
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+
+          <dl class="specs">
+            <dt>Name:&nbsp;&nbsp;</dt>
+            <dd>{{detail.lookingDetail.relatedUserId.firstname}} {{detail.lookingDetail.relatedUserId.lastname}} </dd>
+
+            <dt>University/College:&nbsp;&nbsp;</dt>
+            <dd ng-show="detail.lookingDetail.relatedUserId.usereducationUsers[0].educationCenterName">{{detail.lookingDetail.relatedUserId.usereducationUsers[0].educationCenterName}}</dd>
+            <dd ng-hide="detail.lookingDetail.relatedUserId.usereducationUsers[0].educationCenterName">No university entered</dd>
+
+            <dt>Graduation Year:&nbsp;&nbsp;</dt>
+            <dd ng-show="detail.lookingDetail.relatedUserId.usereducationUsers[0].graduationDate">{{detail.lookingDetail.relatedUserId.usereducationUsers[0].graduationDate | date:'yyyy'}}</dd>
+            <dd ng-hide="detail.lookingDetail.relatedUserId.usereducationUsers[0].graduationDate">N/A</dd>
+
+            <dt>Major:&nbsp;&nbsp;</dt>
+            <dd ng-show="detail.lookingDetail.relatedUserId.usereducationUsers[0].major">{{detail.lookingDetail.relatedUserId.usereducationUsers[0].major}}</dd>
+            <dd ng-hide="detail.lookingDetail.relatedUserId.usereducationUsers[0].major">N/A</dd>
+
+            <dt>Looking to meet new roommates:&nbsp;&nbsp;</dt>
+            <dd>{{detail.lookingDetail.openToFullYearLeaseNewRoomates?'Yes':'No'}}</dd>
+
+          </dl>
+
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+          <dl class="specs">
+            <dt>About Me</dt><br>
+            <dd ng-show="detail.lookingDetail.relatedUserId.aboutMe"> <h3> "{{detail.lookingDetail.relatedUserId.aboutMe}}" </h3> </dd>
+            <dd ng-hide="detail.lookingDetail.relatedUserId.aboutMe"> <h3> No description available </h3> </dd>
+          </dl>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <hr/>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+      <a style="margin-left:20px" class="contact-bubble-email pull-right" ng-href="mailto:{{detail.lookingDetail.relatedUserId.email}}?Subject=Interested%20in%20your%20looking" target="_top"><i class="fa fa-send fa-lg"></i><p>Email</p></a>
+      <a style="margin-left:20px" ng-if="detail.lookingDetail.relatedUserId.facebook" class="contact-bubble-facebook pull-right" ng-href="{{detail.lookingDetail.relatedUserId.facebook}}" target="_blank"><i style="color: #ffffff" class="fa fa-facebook fa-lg"></i><p style="color: white">PM</p></a>
+    </div>
+  </div>
+</div>

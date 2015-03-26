@@ -1,0 +1,192 @@
+<h2 class="section-title">Looking</h2>
+
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 white-box">
+
+  <!--start of first col 4-->
+  <div class="col-md-4">
+
+    <div class="row">
+      <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+        <div class="post-bubble">
+          <i class="fa fa-arrow-right fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-9 col-sm-7 input-post">
+        <dl>
+          <dt>Move in</dt>
+          <dd>{{detail.lookingDetail.moveInDate | date:'MM/dd/yyyy'}}</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="row post-padding">
+      <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+        <div class="post-bubble">
+          <i class="fa fa-arrow-left fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-9 col-sm-7 input-post">
+        <dl>
+          <dt>Move Out</dt>
+          <dd>{{detail.lookingDetail.moveOutDate | date:'MM/dd/yyyy'}}</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="row post-padding">
+      <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+        <div class="post-bubble">
+          <i class="fa fa-tag fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-9 col-sm-7 input-post">
+        <dl>
+          <dt>Max rent</dt>
+          <dd>{{detail.lookingDetail.maxMonthlyRent |currency}}</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="row post-padding">
+      <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+        <div class="post-bubble">
+          <i class="fa fa-bar-chart fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-9 col-sm-7 input-post">
+        <dl>
+          <dt>Utilities included</dt>
+          <dd>{{detail.lookingDetail.utilitiesIncluded?'Yes':'No'}}</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div>
+  <!--end of first col 4-->
+
+  <!--start of second col 4-->
+  <div class="col-md-4">
+
+    <div class="row">
+      <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+        <div class="post-bubble">
+          <i class="fa fa-users fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-9 col-sm-7 input-post">
+        <dl>
+          <dt>Max roommates</dt>
+          <dd>{{detail.lookingDetail.numRoommates}}</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="row post-padding">
+      <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+        <div class="post-bubble">
+          <i class="fa fa-venus-mars fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-9 col-sm-7 input-post">
+        <dl>
+          <dt>Gender</dt>
+          <dd>{{detail.lookingDetail.gender}}</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="row post-padding">
+      <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+        <div class="post-bubble">
+          <i class="fa fa-shower fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-9 col-sm-7 input-post">
+        <dl>
+          <dt>Shared bathroom</dt>
+          <dd>{{detail.lookingDetail.sharedBathroom?'Yes':'No'}}</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="row post-padding">
+      <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+        <div class="post-bubble">
+          <i class="fa fa-bigBed fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-9 col-sm-7 input-post">
+        <dl>
+          <dt>Room type</dt>
+          <dd>{{detail.lookingDetail.roomType}}</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div>
+
+  <!--end of second col 4-->
+
+  <!--start of third col 4-->
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+        <div class="post-bubble">
+          <i class="fa fa-smoking fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-9 col-sm-7 input-post">
+        <dl>
+          <dt>Smoking</dt>
+          <dd>{{detail.lookingDetail.smokingAllowed?'Yes':'No'}}</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="row post-padding">
+      <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+        <div class="post-bubble">
+          <i class="fa fa-pet fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-9 col-sm-7 input-post">
+        <dl>
+          <dt>Pets</dt>
+          <dd>{{detail.lookingDetail.petsAllowed?'Yes':'No'}}</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="row post-padding">
+      <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+        <div class="post-bubble">
+          <i class="fa fa-car fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-9 col-sm-7 input-post">
+        <dl>
+          <dt>Parking</dt>
+          <dd>{{detail.lookingDetail.parkingNeeded?'Yes':'No'}}</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="row post-padding">
+      <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+        <div class="post-bubble">
+          <i class="fa fa-desk fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-9 col-sm-7 input-post">
+        <dl>
+          <dt>Furnished</dt>
+          <dd>{{detail.lookingDetail.furnished?'Yes':'No'}}</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div>
+  <!--end of third col 4-->
+</div>
+
+<small class="pull-right">Created: {{detail.lookingDetail.createdAt | date:'longDate'}} at {{detail.lookingDetail.createdAt | date:'shortTime'}}</small>

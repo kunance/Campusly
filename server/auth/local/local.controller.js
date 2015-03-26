@@ -7,10 +7,27 @@ var mail = require('../../components/mail');
 var config = require('../../config/environment');
 var sqldb = require('../../sqldb');
 var User = sqldb.model('rentedUser');
+var Education = sqldb.model('userEducation');
+var University = sqldb.model('university');
 var auth = require('../auth.service');
 // ********************* Mail ***********************
 
 exports.root = function(req, res, next) {
+
+  var loggedUserId = req.user.dataValues.id;
+
+  Education.findOne({where:
+     {userId: loggedUserId}})
+    .then(function (educ) {
+      University.findOne({where: { id: educ.universityId }})
+        .then(function (univ) {
+          req.session.currentUniversityId = univ.dataValues.id;
+        });
+    })
+    .catch(function (error) {
+      if (error) return next(error);
+    });
+
 //user stored in session on sign in.. omitted salt hashed pwd..
   passport.authenticate('local', function (err, user, info) {
     var error = err || info;
