@@ -19,7 +19,6 @@
     vm.tempEducation = data[1];
     vm.tempAddress = data[2];
     vm.submitted = false;
-    console.log(vm.tempEducation);
     /*
      *  defining functions
      */
