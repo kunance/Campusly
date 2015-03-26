@@ -23,6 +23,14 @@
         controllerAs: 'footer',
         authenticate: false
       });
+    $stateProvider
+      .state('about', {
+        url: '/about',
+        templateUrl: 'components/layout/footer/about.html',
+        controller: 'FooterCtrl',
+        controllerAs: 'footer',
+        authenticate: false
+      });
   }
 
 }());
