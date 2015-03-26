@@ -5,12 +5,14 @@
   .module('app.rooms')
   .controller('RoomsCtrl', RoomsCtrl);
 
-  RoomsCtrl.$inject = ['$scope', '$window', 'common', 'RoomListingView'];
+  RoomsCtrl.$inject = ['$scope', '$window', 'common', 'RoomListingView', 'currentUser', 'data'];
 
-  function RoomsCtrl($scope, $window, common, RoomListingView) {
+  function RoomsCtrl($scope, $window, common, RoomListingView, currentUser, data) {
     var vm = this;
     vm.property = {};
-    vm.me = common.Auth.getCurrentUser();
+    vm.me = currentUser;
+    vm.education = data[0];
+    var currentUniversityId = vm.education.universityId;
 
     vm.sortOrder = 'ascending';  // default
     vm.sortBy = 'availableMoveIn';  // default
@@ -18,7 +20,6 @@
 
     vm.showSearch = false; // default
     vm.showSort = false; // default
-
 
     vm.clearSearch = function(showSearch) {
       vm.searchCriteria = {
@@ -47,7 +48,7 @@
         // have to add info for the server side API  ... add university id if know so server doesn't have to lookup and throw
         // if you do NOT have one ... PLUS you can use this to ng-show/ng-hide the distance on the partial if student
         // does NOT have one
-        vm.searchCriteria.within.place = { type: 'univ', id: null }
+        vm.searchCriteria.within.place = { type: 'univ', id: currentUniversityId }
       }
 
 

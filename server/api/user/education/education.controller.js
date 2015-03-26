@@ -54,7 +54,7 @@ function adoptData(input) {
 }
 
 exports.showEducations= function(req, res, next) {
-  var UniversityAtts = ['latitude', 'longitude', 'name'];
+  var UniversityAtts = ['latitude', 'longitude', 'name', 'id'];
   //Education.findAll({where:{userId:req.user.id}})
   Education.findOne({
     where:
