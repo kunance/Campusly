@@ -334,6 +334,11 @@ module.exports = {
       field: "shareCreditReport",
       allowNull: false
     },
+    "shareProfile": {
+      type: Seq.BOOLEAN,
+      field: "shareProfile",
+      allowNull: false
+    },
     "identityDate": {
       type: Seq.DATE,
       field: "identityDate"
