@@ -60,32 +60,33 @@
   <div class="white-box">
     <div class="row">
 
-      <form name="educationForm" novalidate>
+      <form name="educationForm" ng-submit="editProfile.saveEducation(editProfile.tempEducation, educationForm)" novalidate>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row">
           <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
             <div class="form-group input-post">
               <label for="educationCenterName">University name</label>
-              <select id="educationCenterName" class="form-control" required
+              <select id="educationCenterName" class="form-control" required name="universityName"
+                      ng-class="{'educationError': educationForm.universityName.$error.required && editProfile.submitted}"
                       data-ng-model="editProfile.tempEducation.educationCenterName"
                       data-ng-options="university as university.name for university in editProfile.universitiesList"
                       ng-init="editProfile.tempEducation.educationCenterName=editProfile.universitiesList[editProfile.tempEducation.universityId-1]">
               </select>
             </div>
-
             <div class="form-group input-post">
               <label for="major">Major</label>
-              <input type="text" ng-model="editProfile.tempEducation.major" id="major" class="form-control" name="major" required/>
+              <input required type="text" ng-model="editProfile.tempEducation.major" id="major" class="form-control" name="major" ng-class="{'educationError': educationForm.major.$error.required && editProfile.submitted}"/>
             </div>
           </div>
         </div>
-
+        <p class="help-block" ng-show="form.lastname.$error.required && signup.submitted">A last name is required</p>
         <div class="row">
           <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
             <div class="form-group input-post">
               <label for="start">Graduation date</label>
               <p class="input-group">
-                <input required type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="editProfile.tempEducation.graduationDate" is-open="datePickers.EducationStartDate" close-text="Close" />
+                <input required type="text" id="start" class="form-control" datepicker-popup="{{format}}" ng-model="editProfile.tempEducation.graduationDate"
+                       is-open="datePickers.EducationStartDate" name="graduation" close-text="Close" ng-class="{'educationError': educationForm.graduation.$error.required && editProfile.submitted}"/>
               <span class="input-group-btn">
                 <button type="btn-rented-medium primary" class="btn" ng-click="open($event,'EducationStartDate')"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
@@ -93,9 +94,8 @@
             </div>
           </div>
         </div>
-
-        <button class="btn-rented-medium primary pull-right" ng-click="editProfile.saveEducation(editProfile.tempEducation)"
-        ng-disabled="educationForm.$invalid || educationForm.$pristine">Save</button>
+        <input ng-if="editProfile.tempEducation.id" type="submit" value="save" class="btn-rented-medium primary pull-right"  ng-disabled="educationForm.$pristine"/>
+        <input ng-if="!editProfile.tempEducation.id" type="submit" value="save" class="btn-rented-medium primary pull-right"/>
 
       </div>
       </form>
