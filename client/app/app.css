@@ -2399,6 +2399,175 @@ h2.no-roommate small{
   top: 2px;
 }
 
+.fa.fa-edu {
+  background-image: url("../assets/images/mini-icons/edu.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-lock3 {
+  background-image: url("../assets/images/mini-icons/lock3.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-cloudx {
+  background-image: url("../assets/images/mini-icons/cloud.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-busx {
+  background-image: url("../assets/images/mini-icons/bus.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-usersx {
+  background-image: url("../assets/images/mini-icons/users2.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-searchx {
+  background-image: url("../assets/images/mini-icons/search.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-calendarx {
+  background-image: url("../assets/images/mini-icons/calendar5.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-bathroomx {
+  background-image: url("../assets/images/mini-icons/bathroom.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-three {
+  background-image: url("../assets/images/mini-icons/seven-segment-3.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-bedroomx {
+  background-image: url("../assets/images/mini-icons/bedroom.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-bubbles4 {
+  background-image: url("../assets/images/mini-icons/bubbles4.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-bubble-heart {
+  background-image: url("../assets/images/mini-icons/bubble-heart.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-smiley2 {
+  background-image: url("../assets/images/mini-icons/smiley2.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-steps {
+  background-image: url("../assets/images/mini-icons/steps.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-carx {
+  background-image: url("../assets/images/mini-icons/car.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-coins {
+  background-image: url("../assets/images/mini-icons/coins.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
+
+.fa.fa-guitar {
+  background-image: url("../assets/images/mini-icons/guitar.svg");
+  background-size: 1em;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+  position: relative;
+  top: 2px;
+}
 
 a.view-all {
   top: -10px;
