@@ -17,7 +17,7 @@
         resolve:{
           currentUser:getCurrentUser
         },
-        authenticate:false
+        authenticate:true
       })
       .state('loginWithToken', {
         url: '/login/:sessionToken',

@@ -33,12 +33,11 @@
 
   getData.$inject = ['$q', 'common', 'currentUser', 'RoomListingView', 'RoomListing'];
   function getData($q, common, currentUser, RoomListingView, RoomListing) {
-    var allLookings = common.dataservice.getEveryLooking({limit: 6});
-    var getUserLookings = common.dataservice.getAllLookings(currentUser.id);
-    var allRoomListing = RoomListingView.query({limit: 9});
-    var userRoomLookings = RoomListing.query({userId: currentUser.id});
-    var requests = common.dataservice.getRequests(currentUser.id);
-    return $q.all([allLookings.$promise, getUserLookings.$promise, allRoomListing.$promise, userRoomLookings.$promise, requests.$promise]);
+      var allLookings = common.dataservice.getEveryLooking({limit: 6});
+      var getUserLookings = common.dataservice.getAllLookings(currentUser.id);
+      var allRoomListing = RoomListingView.query({limit: 9});
+      var userRoomLookings = RoomListing.query({userId: currentUser.id});
+      var requests = common.dataservice.getRequests(currentUser.id);
+      return $q.all([allLookings.$promise, getUserLookings.$promise, allRoomListing.$promise, userRoomLookings.$promise, requests.$promise]);
   }
-
 }());
