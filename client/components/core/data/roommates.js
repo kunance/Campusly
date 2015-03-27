@@ -17,9 +17,10 @@
           },
           getRequests: {
             method: 'GET',
-            params: {
-              id:'requests'
-            }
+            isArray:true
+            //params: {
+            //  id:'requests'
+            //}
           },
           editRoommate: {
             method: 'PUT'

@@ -8,7 +8,7 @@ var router = express.Router();
 
 router.post('/:id', auth.isAuthenticated(), controller.newRoommate);
 router.get('/all', auth.isAuthenticated(), controller.showRoommates);
-router.get('/requests', auth.isAuthenticated(), controller.showRequests);
+router.get('/', auth.isAuthenticated(), controller.showRequests);
 router.get('/:id', auth.isAuthenticated(), controller.getRoommate);
 router.put('/:id', auth.isAuthenticated(), controller.saveRoommate);
 router.delete('/:id', auth.isAuthenticated(), controller.deleteRoommate);

@@ -25,7 +25,7 @@
               <h2> {{dashboard.me.firstname}} {{dashboard.me.lastname}} </h2>
               <a  class="btn btn-secondary btn-block" ui-sref="myProfile"> Complete Profile </a>
               <p><br></p>
-              <a ng-if="dashboard.numberOf.requests" ui-sref="myProfile" class="inviteRequest">You have {{dashboard.numberOf.requests}} roommate requests</a>
+              <a ng-if="dashboard.numberOf>0" ui-sref="myProfile" class="inviteRequest">You have {{dashboard.numberOf}} roommate requests</a>
             </div>
           </div>
 
