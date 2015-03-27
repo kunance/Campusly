@@ -20,7 +20,7 @@
     vm.userLookings = data[1];
     vm.availableRooms = data[2];
     vm.myRoomListings = data[3];
-    vm.numberOf = data[4];
+    vm.numberOf = data[4].length;
     /*
      *  prerender.io
      */

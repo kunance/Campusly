@@ -133,9 +133,8 @@ exports.showRequests= function(req, res, next) {
     where:{
       roommateId:req.userId, confirmed:false
     }
-  }).then(function(o) {
-    console.log(o.length);
-    res.send({requests:o.length});
+  }).then(function(number) {
+       res.send(number);
   });
 };
 
