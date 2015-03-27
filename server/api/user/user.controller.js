@@ -53,7 +53,6 @@ exports.index = function(req, res) {
  */
 
 exports.me = function(req, res, next) {
-
   var userAttributes = ['id', 'aboutMe', 'username', 'confirmedEmail', 'createdAt',
     'firstname', 'email', 'phone', 'lastname', 'profileImage', 'role', 'facebook'];
   var userId = req.user.id;

@@ -5,9 +5,9 @@
     .module('app.account')
     .controller('LoginCtrl', LoginCtrl);
 
-  LoginCtrl.$inject = ['$scope', 'Auth', '$state', '$window', '$stateParams', 'common', '$location', '$cookieStore', 'currentUser', '$rootScope'];
+  LoginCtrl.$inject = ['$scope', 'Auth', '$state', '$window', '$stateParams', 'common', '$location', '$cookieStore', '$rootScope', 'currentUser'];
 
-  function LoginCtrl($scope, Auth, $state, $window, $stateParams, common, $location, $cookieStore, currentUser, $rootScope) {
+  function LoginCtrl($scope, Auth, $state, $window, $stateParams, common, $location, $cookieStore, $rootScope, currentUser) {
     if(currentUser.confirmedEmail===false){
       common.Auth.logout();
     }
@@ -38,7 +38,7 @@
     if ($scope.confirmToken) {
       common.Auth.confirmMail($scope.confirmToken)
         .then( function() {
-         $location.path('/dashboard');
+          $state.go('login');
         })
         .catch( function() {
           $scope.invalidToken = true;

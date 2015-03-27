@@ -219,7 +219,6 @@
           }, function(data) {
             $localStorage.token = data.token;
             $cookieStore.put('message', 'succesfully verified');
-            currentUser = UserResource.get();
             return cb(currentUser);
           }, function(err) {
             return cb(err);
