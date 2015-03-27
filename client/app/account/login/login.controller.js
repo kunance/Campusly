@@ -7,7 +7,7 @@
 
   LoginCtrl.$inject = ['$scope', 'Auth', '$state', '$window', '$stateParams', 'common', '$location', '$cookieStore', '$rootScope', 'currentUser'];
 
-  function LoginCtrl($scope, Auth, $state, $window, $stateParams, common, $location, $cookieStore, $rootScope, currentUser) {
+  function LoginCtrl( $scope, Auth, $state, $window, $stateParams, common, $location, $cookieStore, $rootScope, currentUser) {
     if(currentUser.confirmedEmail===false){
       common.Auth.logout();
     }
