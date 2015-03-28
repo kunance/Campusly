@@ -9,27 +9,13 @@ var path = require('path');
 
 module.exports = function(app) {
 
-  //middleware witch MUST BE declared before any route so it intercept every route request and redirect to https
-  //app.use(function (req, res, next) {
-  //  if (req.headers['x-forwarded-proto'] == 'http') {
-  //    res.redirect('https://' + req.headers.host + req.path);
-  //  } else {
-  //    return next();
-  //  }
-  //});
-
-  //app.route('/*')
-  //  .all(function(req, res, next) {
-  //    if (req.headers['x-forwarded-proto'] == 'http') {
-  //      res.redirect(301,'https://' + req.headers.host + req.path);
-  //    } else {
-  //      return next();
-  //    }
-  //  });
+  app.param('userId', function(req, res, next, userId) {
+    req.userId = userId;
+    next();
+  });
 
   // Insert routes below
   app.use('/api/users', require('./api/user'));
-
 
   app.use('/api/users/:userId/vehicles', require('./api/user/vehicle'));
   app.use('/api/users/:userId/pets', require('./api/user/pet'));
@@ -46,14 +32,8 @@ module.exports = function(app) {
   //just temporary route
   app.use('/api/images', require('./api/images'));
 
-
   // pass in a min parameter for non fully hydrated room listing ... define what min is in the api documentation
   app.use('/api/rooms', require('./api/rooms') );
-
-  app.param('userId', function(req, res, next, userId) {
-    req.userId = userId;
-    next();
-  });
 
   // user managing their own room listing
   app.use('/api/users/:userId/rooms', require('./api/user/room') );

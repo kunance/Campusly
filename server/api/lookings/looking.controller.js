@@ -86,10 +86,16 @@ exports.showAllLookings= function(req, res, next) {
       // to work around bug   https://github.com/sequelize/sequelize/issues/1897
       lookings.length = limit;
     }
-
-    res.json(excludeService.excludeOwn(lookings, req.user.id));
-
-  }).catch(validationError(res));
+    else if(lookings.status && lookings.status !== 200) {
+      res.status(lookings.status).json(lookings.statusText);
+    }
+    else {
+      res.json(excludeService.excludeOwn(lookings, req.user.id));
+    }
+  }).catch(function(errors){
+    console.log(errors);
+    res.status(500).json(errors);
+  });
 };
 
 exports.showSingleLooking= function(req, res, next) {
