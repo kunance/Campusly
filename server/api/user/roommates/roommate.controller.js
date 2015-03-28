@@ -85,6 +85,9 @@ exports.newRoommate = function(req, res, next) {
             ]
           }).then(function(roommates) {
             return res.json(roommates);
+          }).catch(function(errors){
+            console.log(errors);
+            res.status(500).json(errors);
           })
         })
         .catch(validationError(res));
@@ -123,9 +126,14 @@ exports.showRoommates= function(req, res, next) {
       his = h;
       var result = own.concat(his);
       return res.json(result);
+    }).catch(function(errors){
+      console.log(errors);
+      res.status(500).json(errors);
     });
+  }).catch(function(errors){
+    console.log(errors);
+    res.status(500).json(errors);
   });
-
 };
 
 exports.showRequests= function(req, res, next) {
@@ -134,7 +142,15 @@ exports.showRequests= function(req, res, next) {
       roommateId:req.userId, confirmed:false
     }
   }).then(function(number) {
-       res.send(number);
+    if(number.status && number.status !== 200) {
+      res.status(number.status).json(number.statusText);
+    }
+    else {
+       res.json(number);
+      }
+  }).catch(function(errors){
+    console.log(errors);
+    res.status(500).json(errors);
   });
 };
 
