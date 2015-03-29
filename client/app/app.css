@@ -319,6 +319,7 @@ Sign-up button class
   text-align: center;
   line-height: 0px !important;
   border-radius: 50px;
+  border: none;
 }
 
 /* ==========================================================================
@@ -560,6 +561,7 @@ Large Rented button
   text-align: center;
   margin: 0 auto;
   padding: 8px 12px;
+  border: none;
 }
 
 /* ==========================================================================
@@ -567,6 +569,19 @@ Large Rented button - primary color
 ========================================================================== */
 .btn-rented-large.primary{
   background-color: #f7953d;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+Large Rented button - hover and active
+========================================================================== */
+.btn-rented-large.primary:hover {
+  background-color: #e4e4e4;
+  color: #000000;
+}
+
+.btn-rented-large.primary:active {
+  background-color: #000000;
   color: #FFFFFF;
 }
 
@@ -581,12 +596,12 @@ Large Rented button - secondary color
 /* ==========================================================================
 Large Rented button - hover and active
 ========================================================================== */
-.btn-rented-large:hover {
+.btn-rented-large.secondary:hover {
   background-color: #e4e4e4;
   color: #000000;
 }
 
-.btn-rented-large:active {
+.btn-rented-large.secondary:active {
   background-color: #000000;
   color: #FFFFFF;
 }
@@ -892,6 +907,18 @@ For mailchimp sign-up - not needed in main app
 
   .input-post-readonly {
     margin-left: 10px;
+  }
+
+}
+
+/* iPhone 2G to 4S
+-------------------------------------------------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+
+  .main-form .options .btn-rented-large {
+    width: 200px;
   }
 
 }

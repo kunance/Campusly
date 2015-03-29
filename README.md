@@ -127,7 +127,8 @@ Ignore svg warnings
 2. cd /dist
 3. git init
 4. git checkout -b MVPMEAN
-5. git remote add AWS ec2-54-149-92-100.us-west-2.compute.amazonaws.com:/home/ubuntu/repo_rented_do_not_delete
+5. git remote add AWS ec2-54-191-87-148.us-west-2.compute.amazonaws.com:/home/ubuntu/repo_rented_do_not_delete
+5 (alt). git remote add AWS ec2Micro:/home/ubuntu/repo_rented_do_not_delete
 6. git status
 then classic procedure
 1. git add, git commit
