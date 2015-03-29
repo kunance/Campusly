@@ -911,6 +911,18 @@ For mailchimp sign-up - not needed in main app
 
 }
 
+/* iPhone 2G to 4S
+-------------------------------------------------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+
+  .main-form .options .btn-rented-large {
+    width: 200px;
+  }
+
+}
+
 @media (min-width: 992px) {
   .featurette-heading {
     margin-top: 120px;
