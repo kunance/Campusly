@@ -49,7 +49,7 @@ exports.sendMailAddressConfirmationMail = function(req, res, next) {
   var id = req.params.userId;
   User.find({where:{email: id}}, '-salt -hashedPassword')
     .then(function (user) {
-      var mailConfirmationToken =  jwt.sign({user : user.id, email : user.email}, config.secrets.mailConfirmation, {expiresInMinutes: 30});
+      var mailConfirmationToken =  jwt.sign({user : user.id, email : user.email}, config.secrets.mailConfirmation, {expiresInMinutes: 60});
       mail.mailConfirmation.sendMail(user, mailConfirmationToken, function(err,resp){
         if (!user) return res.status(401).end();
         if(err) res.status(403).end();
