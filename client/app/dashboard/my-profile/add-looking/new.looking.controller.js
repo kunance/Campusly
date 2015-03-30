@@ -31,9 +31,9 @@
     vm.addLooking = function (input) {
       common.dataservice.addLooking(vm.me.id, input)
         .$promise
-        .then(function () {
+        .then(function (looking) {
           common.logger.success('Looking successfully added.');
-          common.$state.go('dashboard', {}, {reload: true});
+          common.$state.go('lookingDetail', { id: looking.id },{reload: true});
         })
         .catch(function (err) {
           common.logger.error('Error while saving looking.');
