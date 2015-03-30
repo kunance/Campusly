@@ -256,6 +256,7 @@ label + label {
 .login-header .sign-up {
   background-color: #fff;
   color: #333333;
+  border: none;
 }
 
 .login-box {
