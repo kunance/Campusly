@@ -24,6 +24,20 @@
       </div>
     </div>
 
+    <!--<div class="row" ng-if="success=='showEmail'">-->
+      <!--<div class="col-xs-1 col-sm-1">-->
+        <!--<div class="post-bubble">-->
+          <!--<i class="fa fa-exclamation-triangle fa-lg"></i>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="col-xs-11 col-sm-11">-->
+        <!--<dl style="margin-top: 10px; margin-left: 20px">-->
+          <!--<dt>Your email confirmation link has expired.</dt>-->
+          <!--<dd>Please re-enter your email and password to resend the confirmation email.</dd>-->
+        <!--</dl>-->
+      <!--</div>-->
+    <!--</div>-->
+
     <div class="row" ng-if="success=='showPassword'">
       <div class="col-xs-1 col-sm-1">
         <div class="post-bubble">
@@ -75,6 +89,7 @@
       <div class="options">
         <input ng-show="!newPasswordAddon" type="submit" value="Sign me in!" class="btn-rented-large primary" >
         <input ng-if="newPasswordAddon"  type="button"  class="btn-rented-large primary" ng-click="sendPwdResetMail(form)" value="Send reset password e-mail!">
+        <!--<input ng-click="resendEmail(user.email)" ng-if="showResendPartial && user.email && !errors.password" ng-show="!newPasswordAddon" type="submit" value="Verify e-mail!" class="btn-rented-large primary">-->
         <span>Don't have an account? <a class="link" ui-sref="signup">Sign up</a></span>
       </div>
 
