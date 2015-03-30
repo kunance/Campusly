@@ -83,7 +83,8 @@
             });
           })
           .catch(function (err) {
-            $scope.errors = err.message;
+            //console.log(err.message);
+            //$scope.errors = err.message;
           });
       }
     };

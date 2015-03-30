@@ -15,6 +15,7 @@
     vm.user = {};
     vm.user.confirmPassword = '';
     vm.errors = {};
+    vm.loading = false;
     $scope.$parent.seo = {
       pageTitle:'Campusly Sign-up',
       pageDescription:'Free Sign-up for Campusly'
@@ -32,7 +33,9 @@
         })
           .then(function (user) {
             // Account created, sending verification email, logging out user
+            vm.loading = true;
               common.Auth.sendConfirmationMail({userId: vm.user.email}, function(){
+                vm.loading = false;
                 vm.errors = { verification: vm.user.firstname+' please verify your Campusly account. Verification mail has been sent to '+ vm.user.email };
               });
               Auth.logout();
