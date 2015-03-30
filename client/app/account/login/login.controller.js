@@ -48,13 +48,17 @@
 
     if ($scope.passwordResetToken) {
       $state.go('login');
-      Auth.confirmResetedPassword($scope.passwordResetToken)
+      common.Auth.confirmResetedPassword($scope.passwordResetToken)
         .then( function() {
           $state.go('login');
         })
         .catch( function() {
-          $scope.$parent.invalidPwdToken = true;
-          $state.go('login');
+          if($scope.$parent){
+          $scope.$parent.invalidPwdToken = true;}
+          else{
+            $scope.invalidPwdToken = true;
+            $state.go('login');
+          }
         });
     }
 
