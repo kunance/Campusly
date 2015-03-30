@@ -18,8 +18,8 @@
     </div>
 
     <div class="right-content" ng-show="!isLoggedIn()">
-      <a ui-sref-active="active" ui-sref="login" class="link sign-in">Sign In</a>
-      <a ui-sref-active="active" ui-sref="signup" class="btn sign-up">Sign up for free</a>
+      <a ui-sref-active="active" ui-sref="login" ui-sref-opts="{reload:true, notify:true}" class="link sign-in">Sign In</a>
+      <a ui-sref-active="active" ui-sref="signup" ui-sref-opts="{reload:true, notify:true}" class="btn sign-up">Sign up for free</a>
     </div>
   </div>
 

@@ -11,6 +11,7 @@
     if(currentUser.confirmedEmail===false){
       common.Auth.logout();
     }
+    $scope.showForm = true;
     $scope.user = {};
     $scope.reset = '';
     $scope.errors = {};
@@ -18,8 +19,7 @@
     $scope.newPasswordAddon = false;
     $scope.reset = $scope.newPasswordAddon ? 'I remember!' : 'Forget password?';
     $scope.confirmToken = $stateParams.confirmToken;
-    $scope.invalidToken = false;
-    var passwordResetToken = $stateParams.passwordResetToken;
+    $scope.passwordResetToken = $stateParams.passwordResetToken;
     $scope.pwdResetMailSend = false;
 
     $scope.$parent.seo = {
@@ -41,14 +41,25 @@
           $state.go('login');
         })
         .catch( function() {
-          $scope.invalidToken = true;
+          $scope.$parent.invalidToken = true;
+          $state.go('login');
         });
     }
 
-    if (passwordResetToken) {
+    if ($scope.passwordResetToken) {
       $state.go('login');
-      Auth.confirmResetedPassword(passwordResetToken, function (data) {
-      });
+      common.Auth.confirmResetedPassword($scope.passwordResetToken)
+        .then( function() {
+          $state.go('login');
+        })
+        .catch( function() {
+          if($scope.$parent){
+          $scope.$parent.invalidPwdToken = true;}
+          else{
+            $scope.invalidPwdToken = true;
+            $state.go('login');
+          }
+        });
     }
 
     $scope.login = function (form) {
@@ -61,7 +72,10 @@
           .then(function () {
             common.Auth.getCurrentUser(function (user) {
               if (user.confirmedEmail) {
-                $state.go('dashboard');
+                  $scope.loading = true;
+                  $scope.success = false;
+                  $scope.showForm = false;
+                  $state.go('dashboard');
               } else {
                 $scope.showResendPartial = true;
                 $scope.errors = {verifiedEmail: user.firstname+', your e-mail address is not verified. Please verify your Campusly account.'};
@@ -99,6 +113,7 @@
     $scope.loginOauth = function (provider) {
       $window.location.href = '/auth/' + provider;
     };
+
   }
 }());
 

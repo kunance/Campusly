@@ -10,7 +10,7 @@
     <!--</article>-->
 
 
-    <div class="row" ng-if="success=='showEmail'">
+    <div class="row" ng-if="success=='showEmail' && !invalidToken">
       <div class="col-xs-1 col-sm-1">
         <div class="post-bubble">
           <i class="fa fa-check fa-lg"></i>
@@ -24,7 +24,34 @@
       </div>
     </div>
 
-    <div class="row" ng-if="success=='showPassword'">
+    <div class="row" ng-if="invalidToken">
+      <div class="col-xs-1 col-sm-1">
+        <div class="post-bubble">
+          <i class="fa fa-ban fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-11 col-sm-11">
+        <dl style="margin-top: 10px; margin-left: 20px">
+          <dt>Error while trying to validate your email address. Your used incorrect or expired validation token.</dt>
+          <dd>Please re-type your e-mail and click <a ng-click="resendEmail(user.email)">resend.</a></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="row" ng-if="invalidPwdToken">
+      <div class="col-xs-1 col-sm-1">
+        <div class="post-bubble">
+          <i class="fa fa-lock fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-11 col-sm-11">
+        <dl style="margin-top: 10px; margin-left: 20px">
+          <dt>Error while trying to change your password. <br/> You used incorrect or expired token.</dt>
+        </dl>
+      </div>
+    </div>
+
+    <div class="row" ng-if="success=='showPassword' && !invalidPwdToken">
       <div class="col-xs-1 col-sm-1">
         <div class="post-bubble">
           <i class="fa fa-check fa-lg"></i>
@@ -38,9 +65,20 @@
       </div>
     </div>
 
+    <div class="row" ng-if="loading">
+      <div class="col-xs-1 col-sm-1">
+        <div class="post-bubble">
+          <i class="fa fa-spinner fa-spin fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-11 col-sm-11">
+        <dl style="margin-top: 20px; margin-left: 20px">
+          <dt>Please wait, signing in...</dt>
+        </dl>
+      </div>
+    </div>
 
-
-  <form class="main-form" name="form" ng-submit="login(form)" novalidate>
+  <form class="main-form" name="form" ng-submit="login(form)" ng-if="showForm" novalidate>
       <a ng-if="showResendPartial && user.email && !errors.password" class="pull-right" style="font-size: 0.8em; position: absolute; right: 10%" ng-click="resendEmail(user.email)">Resend verification e-mail</a>
       <label class="lbl">
         <!--ng-pattern="/\.edu$/"TODO add pattern to email-->
@@ -74,6 +112,7 @@
 
       <div class="options">
         <input ng-show="!newPasswordAddon" type="submit" value="Sign me in!" class="btn-rented-large primary" >
+        <!--TODO send reset password email button looks bad-->
         <input ng-if="newPasswordAddon"  type="button"  class="btn-rented-large primary" ng-click="sendPwdResetMail(form)" value="Send reset password e-mail!">
         <span>Don't have an account? <a class="link" ui-sref="signup">Sign up</a></span>
       </div>

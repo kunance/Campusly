@@ -4,8 +4,9 @@ var mandrill = require('../../mail/mail.service');
 var config = require('../../../config/environment');
 
 var sendMail = function(user, passwordResetToken, callback){
+  var locals = {};
   if(config.env=='development') {
-    var locals = {
+     locals = {
       name: user.firstname,
       COMPANY: 'Campusly',
       PWDRESET_URL: 'http://' + (config.ip || 'localhost:9000') + '/loginPwdReset/',
@@ -13,7 +14,7 @@ var sendMail = function(user, passwordResetToken, callback){
     };
   }
   if(config.env=='production') {
-    var locals = {
+     locals = {
       name: user.firstname,
       COMPANY: 'Campusly',
       PWDRESET_URL: 'https://' + (config.ip || 'campusly.org') + '/loginPwdReset/',

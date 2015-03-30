@@ -12,7 +12,7 @@
   function DashboardCtrl(common, $scope, currentUser, data) {
     var vm = this;
     /*
-     *  Fetch all required data for controller from route resolve
+     *  Fetch all required data for controller from route resolve (testing)
      */
     vm.busy = data; //one promise witch need to be resolved in order to initialize controller (we use for show busy sign)
     vm.me = currentUser;
