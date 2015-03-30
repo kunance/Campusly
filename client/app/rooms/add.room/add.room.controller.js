@@ -27,7 +27,7 @@
 
         RoomListing.create( { userId: vm.me.id}, {room: vm.room, property: vm.property}).$promise.then(
           function (roomListing) {
-            $state.go('editRoom', {id: roomListing.id});
+            common.$state.go('roomDetail', { id: roomListing.id },{reload: true});
           }, function (errors) {
             //TODO need a general error handling banner or scheme to broadcast a message on
             console.log('error(s) while saving room listing', errors);
