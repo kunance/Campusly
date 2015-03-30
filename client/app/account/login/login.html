@@ -38,7 +38,20 @@
       </div>
     </div>
 
-    <div class="row" ng-if="success=='showPassword'">
+    <div class="row" ng-if="invalidPwdToken">
+      <div class="col-xs-1 col-sm-1">
+        <div class="post-bubble">
+          <i class="fa fa-lock fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-11 col-sm-11">
+        <dl style="margin-top: 10px; margin-left: 20px">
+          <dt>Error while trying to change your password. <br/> You used incorrect or expired token.</dt>
+        </dl>
+      </div>
+    </div>
+
+    <div class="row" ng-if="success=='showPassword' && !invalidPwdToken">
       <div class="col-xs-1 col-sm-1">
         <div class="post-bubble">
           <i class="fa fa-check fa-lg"></i>
@@ -99,6 +112,7 @@
 
       <div class="options">
         <input ng-show="!newPasswordAddon" type="submit" value="Sign me in!" class="btn-rented-large primary" >
+        <!--TODO send reset password email button looks bad-->
         <input ng-if="newPasswordAddon"  type="button"  class="btn-rented-large primary" ng-click="sendPwdResetMail(form)" value="Send reset password e-mail!">
         <span>Don't have an account? <a class="link" ui-sref="signup">Sign up</a></span>
       </div>

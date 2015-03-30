@@ -19,7 +19,7 @@
     $scope.newPasswordAddon = false;
     $scope.reset = $scope.newPasswordAddon ? 'I remember!' : 'Forget password?';
     $scope.confirmToken = $stateParams.confirmToken;
-    var passwordResetToken = $stateParams.passwordResetToken;
+    $scope.passwordResetToken = $stateParams.passwordResetToken;
     $scope.pwdResetMailSend = false;
 
     $scope.$parent.seo = {
@@ -46,10 +46,16 @@
         });
     }
 
-    if (passwordResetToken) {
+    if ($scope.passwordResetToken) {
       $state.go('login');
-      Auth.confirmResetedPassword(passwordResetToken, function (data) {
-      });
+      Auth.confirmResetedPassword($scope.passwordResetToken)
+        .then( function() {
+          $state.go('login');
+        })
+        .catch( function() {
+          $scope.$parent.invalidPwdToken = true;
+          $state.go('login');
+        });
     }
 
     $scope.login = function (form) {
