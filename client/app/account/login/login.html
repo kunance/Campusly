@@ -40,7 +40,7 @@
       <div class="col-xs-11 col-sm-11">
         <dl style="margin-top: 10px; margin-left: 20px">
           <dt>Your validation link has expired.</dt>
-          <dd>Please re-type your e-mail and click <a ng-click="resendEmail()">resend.</a></dd>
+          <dd>Please re-type your e-mail and click resend</dd>
         </dl>
       </div>
     </div>
@@ -92,7 +92,8 @@
       <div class="options">
         <input ng-if="!invalidToken" ng-show="!newPasswordAddon" type="submit" value="Sign me in!" class="btn-rented-large primary" >
         <!--TODO send reset password email button looks bad-->
-        <input ng-if="newPasswordAddon"  type="button"  class="btn-rented-large primary" ng-click="sendPwdResetMail(form)" value="Send reset password e-mail!">
+        <input ng-if="newPasswordAddon"  type="button"  class="btn-rented-large primary" ng-click="sendPwdResetMail(form)" value="Reset Password">
+        <input ng-if="invalidToken"  type="button"  class="btn-rented-large primary" ng-click="resendEmail()" value="Resend Verification">
         <span>Don't have an account? <a class="link" ui-sref="signup">Sign up</a></span>
       </div>
 
@@ -108,7 +109,7 @@
 
   <section class="login-box white-box " style="text-align: center" ng-if="verificationMailResend">
     <i class="fa fa-envelope-o fa-5x"></i>
-    <h2 class="heading">You have resend verification mail to {{user.email}}.</h2>
+    <h4 class="heading">Please verify your university email address <br>in the next 30min. <br><br>Verification email has been sent to {{user.email}}.</h4>
   </section>
 
   <div my-spinner title="Please wait, signing in..." ng-if="loading"></div>
