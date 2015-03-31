@@ -42,7 +42,7 @@ exports.sendMailAddressConfirmationMail = function(req, res, next) {
       if(!user){
         return res.status(404).send({message: 'Something went wrong, please try again.'})
       } else {
-        var mailConfirmationToken = jwt.sign({user: user.id, email: user.email}, config.secrets.mailConfirmation, {expiresInMinutes: 30});
+        var mailConfirmationToken = jwt.sign({user: user.id, email: user.email}, config.secrets.mailConfirmation, {expiresInMinutes: 60});
         mail.mailConfirmation.sendMail(user, mailConfirmationToken, function (err, resp) {
           if (!user) return res.status(401).end();
           if (err) res.status(403).end();
