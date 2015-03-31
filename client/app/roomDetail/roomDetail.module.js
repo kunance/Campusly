@@ -39,9 +39,10 @@
       return $q.all([edu.$promise, roomListing.$promise]);
     }
 
-    getCreatorRoommates.$inject = ['common', 'data'];
-    function getCreatorRoommates(common, data) {
-      return common.dataservice.getAllRoommates(data[1].roomDetails.creatorId)
+    getCreatorRoommates.$inject = ['common', 'data', '$q'];
+    function getCreatorRoommates(common, data, $q) {
+      var roommate = common.dataservice.getAllRoommates(data[1].roomDetails.creatorId);
+      return $q.all([roommate.$promise]);
     }
 
 }());

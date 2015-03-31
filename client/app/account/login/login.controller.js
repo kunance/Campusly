@@ -105,8 +105,7 @@
     //  if(form.email.$valid) {
         $scope.sendingEmail = true;
         common.Auth.sendConfirmationMail({userId: $scope.user.email})
-          .then(function (response) {
-            //console.log(response);
+          .then(function () {
             $scope.sendingEmail = false;
             $scope.showForm = false;
             $scope.invalidToken = false;
