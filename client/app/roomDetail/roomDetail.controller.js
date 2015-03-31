@@ -16,6 +16,11 @@
     vm.creatorEmail = data[1].roomDetails.relatedCreatorId.email;
     vm.creatorFacebook = data[1].roomDetails.relatedCreatorId.facebook;
     vm.creatorRoommates = getCreatorRoommates;
+    vm.confirmedRoommates = 0;
+    angular.forEach(vm.creatorRoommates, function (roommate) {
+      if(roommate.confirmed)vm.confirmedRoommates += 1;
+    });
+    console.log(vm.confirmedRoommates = 0);
     var source = vm.education.relatedUniversityId;
     var destination = vm.roomDetail.propertyDetails.coords;
     if (vm.education.id) {
