@@ -1,14 +1,7 @@
 <div class="main">
   <div ng-include="'components/layout/navbar/navbar.html'"></div>
-  <section class="login-box white-box" ng-show="!pwdResetMailSend">
+  <section class="login-box white-box" ng-if="!loading && !sendingEmail && !verificationMailResend && !pwdResetMailSend">
     <h2 class="heading">Sign In</h2>
-
-    <!--<article class="social">-->
-      <!--<a class="link email"><span>Email</span></a>-->
-      <!--<a class="link fb" ng-click="loginOauth('facebook')"><span>Facebook</span></a>-->
-      <!--<a class="link google" ng-click="loginOauth('google')"><span>Google+</span></a>-->
-    <!--</article>-->
-
 
     <div class="row" ng-if="success=='showEmail' && !invalidToken">
       <div class="col-xs-1 col-sm-1">
@@ -20,33 +13,6 @@
         <dl style="margin-top: 10px; margin-left: 20px">
           <dt>Thank you for confirming your email.</dt>
           <dd>Please Sign In to continue.</dd>
-        </dl>
-      </div>
-    </div>
-
-    <div class="row" ng-if="invalidToken">
-      <div class="col-xs-1 col-sm-1">
-        <div class="post-bubble">
-          <i class="fa fa-ban fa-lg"></i>
-        </div>
-      </div>
-      <div class="col-xs-11 col-sm-11">
-        <dl style="margin-top: 10px; margin-left: 20px">
-          <dt>Your validation link has expired.</dt>
-          <dd>Please re-type your e-mail and click <a ng-click="resendEmail(user.email)">resend.</a></dd>
-        </dl>
-      </div>
-    </div>
-
-    <div class="row" ng-if="invalidPwdToken">
-      <div class="col-xs-1 col-sm-1">
-        <div class="post-bubble">
-          <i class="fa fa-lock fa-lg"></i>
-        </div>
-      </div>
-      <div class="col-xs-11 col-sm-11">
-        <dl style="margin-top: 10px; margin-left: 20px">
-          <dt>Error while trying to change your password. <br/> You used incorrect or expired token.</dt>
         </dl>
       </div>
     </div>
@@ -65,28 +31,41 @@
       </div>
     </div>
 
-    <div class="row" ng-if="loading">
+    <div class="row" ng-if="invalidToken">
       <div class="col-xs-1 col-sm-1">
         <div class="post-bubble">
-          <i class="fa fa-spinner fa-spin fa-lg"></i>
+          <i class="fa fa-ban fa-lg"></i>
         </div>
       </div>
       <div class="col-xs-11 col-sm-11">
-        <dl style="margin-top: 20px; margin-left: 20px">
-          <dt>Please wait, signing in...</dt>
+        <dl style="margin-top: 10px; margin-left: 20px">
+          <dt>Your validation link has expired.</dt>
+          <dd>Please re-type your e-mail and click <a ng-click="resendEmail()">resend.</a></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="row" ng-if="invalidPwdToken">
+      <div class="col-xs-1 col-sm-1">
+        <div class="post-bubble">
+          <i class="fa fa-lock fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-11 col-sm-11">
+        <dl style="margin-top: 10px; margin-left: 20px">
+          <dt>Error while trying to change your password. <br/> You used incorrect or expired token.</dt>
         </dl>
       </div>
     </div>
 
   <form class="main-form" name="form" ng-submit="login(form)" ng-if="showForm" novalidate>
-      <a ng-if="showResendPartial && user.email && !errors.password" class="pull-right" style="font-size: 0.8em; position: absolute; right: 10%" ng-click="resendEmail(user.email)">Resend verification e-mail</a>
+      <a ng-if="showResendPartial && user.email && !errors.password" class="pull-right" style="font-size: 0.8em; position: absolute; right: 10%" ng-click="resendEmail(form)">Resend verification e-mail</a>
       <label class="lbl">
-        <!--ng-pattern="/\.edu$/"TODO add pattern to email-->
-        <input id="email" type="email" name="email" ng-model="user.email" placeholder="Email address (.edu required)" ng-class="{ 'has-success': form.email.$valid && submitted, 'has-error': form.email.$invalid && submitted || errors.mail}" required>
+        <input id="email" type="email" name="email" ng-model="user.email" placeholder="Email address (.edu required)" ng-pattern="/\.edu$/ || /\.campusly.org$/ " ng-class="{ 'has-success': form.email.$valid && submitted, 'has-error': form.email.$invalid && submitted || errors.mail}" required>
       </label>
 
-      <a class="pull-right" style="font-size: 0.8em; position: absolute; right: 10%" ng-click="toogleNewPasswordAddon()">{{reset}}</a>
-      <div ng-if="!newPasswordAddon">
+      <a ng-if="!invalidToken" class="pull-right" style="font-size: 0.8em; position: absolute; right: 10%" ng-click="toogleNewPasswordAddon()">{{reset}}</a>
+      <div ng-if="!newPasswordAddon && !invalidToken">
         <label class="lbl">
           <input type="password" name="password" id="password" ng-model="user.password" placeholder="Password" ng-class="{ 'has-success': form.password.$valid && submitted, 'has-error': form.password.$invalid && submitted || errors.password }" required>
         </label>
@@ -111,7 +90,7 @@
     </div>
 
       <div class="options">
-        <input ng-show="!newPasswordAddon" type="submit" value="Sign me in!" class="btn-rented-large primary" >
+        <input ng-if="!invalidToken" ng-show="!newPasswordAddon" type="submit" value="Sign me in!" class="btn-rented-large primary" >
         <!--TODO send reset password email button looks bad-->
         <input ng-if="newPasswordAddon"  type="button"  class="btn-rented-large primary" ng-click="sendPwdResetMail(form)" value="Send reset password e-mail!">
         <span>Don't have an account? <a class="link" ui-sref="signup">Sign up</a></span>
@@ -121,12 +100,19 @@
 
   </section>
 
-  <!--TODO improve css and wording-->
   <section class="login-box white-box " style="text-align: center" ng-show="pwdResetMailSend">
     <h2 class="heading">Password reset in process</h2>
     <i class="fa fa-unlock-alt fa-5x"></i>
     <h4>You have requested to reset your Campusly account password. <br><br>Confirmation link has been sent to {{user.email}}.</h4><br/>
   </section>
 
+  <section class="login-box white-box " style="text-align: center" ng-if="verificationMailResend">
+    <i class="fa fa-envelope-o fa-5x"></i>
+    <h2 class="heading">You have resend verification mail to {{user.email}}.</h2>
+  </section>
+
+  <div my-spinner title="Please wait, signing in..." ng-if="loading"></div>
+
+  <div my-spinner title="Please wait, sending e-mail..." ng-if="sendingEmail"></div>
 
 </div>
