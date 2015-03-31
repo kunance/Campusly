@@ -1745,6 +1745,14 @@ Looking Details
   border: 5px solid #56bfc3;
 }
 
+/* Looking post picture border */
+
+.about-me .picture img {
+  width: 11em;
+  height: 11em;
+  border: 5px solid #56bfc3;
+}
+
 /* My Profile */
 .my-profile .profile h2{
   color: #000000;
