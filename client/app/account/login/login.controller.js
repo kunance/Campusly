@@ -12,15 +12,17 @@
       common.Auth.logout();
     }
     $scope.showForm = true;
+    $scope.sendingEmail = false;
+    $scope.newPasswordAddon = false;
+    $scope.showVerifyPartial = false;
+    $scope.pwdResetMailSend = false;
+    $scope.verificationMailResend = false;
     $scope.user = {};
     $scope.reset = '';
     $scope.errors = {};
-    $scope.showVerifyPartial = false;
-    $scope.newPasswordAddon = false;
     $scope.reset = $scope.newPasswordAddon ? 'I remember!' : 'Forget password?';
     $scope.confirmToken = $stateParams.confirmToken;
     $scope.passwordResetToken = $stateParams.passwordResetToken;
-    $scope.pwdResetMailSend = false;
 
     $scope.$parent.seo = {
       pageTitle: 'Campusly Sign-in',
@@ -65,6 +67,7 @@
     $scope.login = function (form) {
       $scope.submitted = true;
       if(form.$valid) {
+        $scope.loading = true;
         Auth.login({
           email: $scope.user.email,
           password: $scope.user.password
@@ -72,35 +75,62 @@
           .then(function () {
             common.Auth.getCurrentUser(function (user) {
               if (user.confirmedEmail) {
-                  $scope.loading = true;
                   $scope.success = false;
                   $scope.showForm = false;
                   $state.go('dashboard');
               } else {
+                $scope.loading = false;
                 $scope.showResendPartial = true;
                 $scope.errors = {verifiedEmail: user.firstname+', your e-mail address is not verified. Please verify your Campusly account.'};
               }
             });
           })
           .catch(function (err) {
-            //console.log(err.message);
-            //$scope.errors = err.message;
+            $scope.loading = false;
+            $scope.errors = err.message;
           });
       }
     };
 
-    $scope.resendEmail = function(email){
-      common.Auth.sendConfirmationMail({userId: email}, function(){
-        $scope.errors ={verifiedEmail:'Verification mail has been sent to '+ email+'.'};
-      });
+    $scope.close= function () {
+      $scope.showForm = true;
+      $scope.sendingEmail = false;
+      $scope.newPasswordAddon = false;
+      $scope.showVerifyPartial = false;
+      $scope.pwdResetMailSend = false;
+      $scope.verificationMailResend = false;
+    };
+
+    $scope.resendEmail = function(){
+    //  if(form.email.$valid) {
+        $scope.sendingEmail = true;
+        common.Auth.sendConfirmationMail({userId: $scope.user.email})
+          .then(function (response) {
+            console.log(response);
+            $scope.sendingEmail = false;
+            $scope.showForm = false;
+            $scope.invalidToken = false;
+            $scope.success = null;
+            $scope.verificationMailResend = true;
+            //$scope.errors = {verifiedEmail: 'Verification mail has been sent to ' + $scope.user.email + '.'};
+          })
+          .catch(function () {
+            $scope.sendingEmail = false;
+            $scope.success = null;
+            $scope.errors = {verifiedEmail: 'e-mail address ' + $scope.user.email + ' is not registered'};
+          });
+    //  } else {$scope.errors = {verifiedEmail: "doesn't look like valid e-mail address"};}
     };
 
     $scope.sendPwdResetMail = function(form) {
       $scope.submitted = true;
       if(form.$valid) {
-        $scope.pwdResetMailSend = true;
+        $scope.sendingEmail = true;
         Auth.sendPwdResetMail($scope.user.email, $scope.user.newPassword)
           .then(function () {
+            $scope.sendingEmail = false;
+            $scope.pwdResetMailSend = true;
+            $scope.showForm = false;
             $scope.errors = {resetPassword: 'Reset password mail has been sent to ' + $scope.user.email + '.'};
           })
           .catch(function () {
