@@ -92,8 +92,8 @@
       <div class="options">
         <input ng-if="!invalidToken" ng-show="!newPasswordAddon" type="submit" value="Sign me in!" class="btn-rented-large primary" >
         <!--TODO send reset password email button looks bad-->
-        <input ng-if="newPasswordAddon"  type="button"  class="btn-rented-large primary" ng-click="sendPwdResetMail(form)" value="Send reset password e-mail!">
-        <input ng-if="invalidToken"  type="button"  class="btn-rented-large primary" ng-click="resendEmail()" value="Resend verification">
+        <input ng-if="newPasswordAddon"  type="button"  class="btn-rented-large primary" ng-click="sendPwdResetMail(form)" value="Reset Password">
+        <input ng-if="invalidToken"  type="button"  class="btn-rented-large primary" ng-click="resendEmail()" value="Resend Verification">
         <span>Don't have an account? <a class="link" ui-sref="signup">Sign up</a></span>
       </div>
 
