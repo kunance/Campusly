@@ -17,7 +17,7 @@
                 $window.FB.init({
                   appId: 1482591365325802,
                   xfbml: true,
-                  version: 'v2.3',
+                  version: 'v2.0',
                   picture:'http://i61.tinypic.com/2dj1e84.jpg'
                 });
                 renderLikeButton();
