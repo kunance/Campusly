@@ -14,17 +14,6 @@
     /*
      *  Fetch all required data for controller from route resolve (testing)
      */
-
-    common.$http.get('https://graph.facebook.com/me/taggable_friends?access_token=CAAVEaLOtYZBoBALGJZAInAN19D4QDTN1OtVI7fQXZCex40gjG1ztsvoJfP349ZBZA4DzAflVXZAvWosP9zW57AIxHgUJUTZAHGBfHiHBDZArFVBkZAOySpHOxukkASjASnZCXWkcyOIGazgBysOWHPhfL4UPPkTzVxa9jyPZCDbLQqV6xEYZABtKzsPSbTZCsVd2gpt2NbOjrUWEgmoNlZAIS0RFZAZA4rWNfXNGPqQZD').success(function(data) {
-
-      console.log(data);
-
-    }).error(function(data, status, headers, config) {
-      alert(data+status+headers+config);
-    });
-
-
-
     vm.busy = data; //one promise witch need to be resolved in order to initialize controller (we use for show busy sign)
     vm.me = currentUser;
     vm.lookingRoom = data[0];
