@@ -62,21 +62,6 @@ education form's custom styles
 }
 
 /* ==========================================================================
-education form's custom styles
-========================================================================== */
-.FBNavbarLoggedOut{
-  position: absolute;
-  right: 28%;
-  margin-top: 5px;
-}
-
-.FBNavbarLoggedIn{
-  position: absolute;
-  right: 22%;
-  margin-top: 5px;
-}
-
-/* ==========================================================================
 Proxima Nova custom font - to be used for the whole website
 ========================================================================== */
 body{
@@ -2642,7 +2627,7 @@ a.view-all {
   /* Safari and Chrome, if Chrome rule needed */
   /* Safari 5+ ONLY */
   ::i-block-chrome, .safariFix {
-
+  
     /*TODO fix images for safari only */
 
   }
