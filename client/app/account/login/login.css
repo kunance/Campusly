@@ -239,6 +239,8 @@ label + label {
 }
 .login-header .left-content *, .login-header .right-content * {
   display: inline-block;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .login-header .right-content {
   text-align: right;
