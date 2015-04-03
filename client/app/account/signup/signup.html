@@ -1,6 +1,6 @@
 <div class="main">
   <div ng-include="'components/layout/navbar/navbar.html'"></div>
-  <section class="login-box white-box" ng-show="!signup.errors.verification">
+  <section class="login-box white-box" ng-if="!signup.showValidationMessage && !signup.loading">
     <h2 class="heading">Sign up for free</h2>
 
     <form class="main-form" name="form" ng-submit="signup.register(form)" novalidate>
@@ -34,18 +34,22 @@
 
       <p class="help-block" ng-show="form.password.$error.mongoose">{{ signup.errors.password }}</p>
       <p class="help-block">{{ signup.errors.other }}</p>
+
       <div class="options">
         <input type="submit" value="Sign me up!" class="btn-rented-large primary">
         <span>Already have an account? <a class="link" ui-sref="login">Sign in</a></span>
       </div>
 
     </form>
+
   </section>
 
-  <section class="login-box white-box " style="text-align: center" ng-show="signup.errors.verification">
+  <div my-spinner title="Sending verification e-mail. Please wait..." ng-if="signup.loading"></div>
+
+  <section class="login-box white-box " style="text-align: center" ng-show="signup.showValidationMessage">
     <h2 class="heading">Hello&nbsp{{signup.user.firstname}},</h2>
     <i class="fa fa-envelope-o fa-5x"></i>
-    <h4>Please verify your university email address to access the campusly community. <br><br>Verification email has been sent to {{signup.user.email}}.</h4>
+    <h4>Your account has been created. <br>Please verify your university email address <br>in the next 30min. <br><br>Verification email has been sent to {{signup.user.email}}.</h4>
   </section>
 
 </div>

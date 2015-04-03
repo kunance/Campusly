@@ -1745,6 +1745,14 @@ Looking Details
   border: 5px solid #56bfc3;
 }
 
+/* Looking post picture border */
+
+.about-me .picture img {
+  width: 11em;
+  height: 11em;
+  border: 5px solid #56bfc3;
+}
+
 /* My Profile */
 .my-profile .profile h2{
   color: #000000;
@@ -2619,7 +2627,7 @@ a.view-all {
   /* Safari and Chrome, if Chrome rule needed */
   /* Safari 5+ ONLY */
   ::i-block-chrome, .safariFix {
-
+  
     /*TODO fix images for safari only */
 
   }
@@ -2918,4 +2926,28 @@ a.view-all {
 
 input[type="checkbox"] {
 opacity: 0;
+}
+.fa-spin-custom, .glyphicon-spin {
+  -webkit-animation: spin 1000ms infinite linear;
+  animation: spin 1000ms infinite linear;
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
 }

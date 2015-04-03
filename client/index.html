@@ -44,7 +44,14 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=1482591365325802";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
     <!-- Add your site or application content here -->
     <div ui-view=""></div>
     <div ng-include="'components/layout/footer/footer.html'"></div>
@@ -210,10 +217,12 @@
           <script src="components/widgets/adress-autocomplete/adress-autocomplete.directive.js"></script>
           <script src="components/widgets/confirm-password/confirm.password.directive.js"></script>
           <script src="components/widgets/distance-calculator/distance.calculator.service.js"></script>
+          <script src="components/widgets/facebook-share/facebook.share.js"></script>
           <script src="components/widgets/fileupload/fileupload.js"></script>
           <script src="components/widgets/fileupload/ngthumb.js"></script>
           <script src="components/widgets/modal/modal.service.js"></script>
           <script src="components/widgets/mongoose-error/mongoose-error.directive.js"></script>
+          <script src="components/widgets/my-spinner/my.spinner.js"></script>
           <script src="components/widgets/phone-mask/phone.mask.js"></script>
           <script src="components/widgets/slider/slider.js"></script>
           <script src="components/widgets/widget.config.js"></script>

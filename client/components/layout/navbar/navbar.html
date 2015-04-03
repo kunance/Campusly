@@ -11,6 +11,7 @@
     </div>
 
     <div class="right-content" ng-show="isLoggedIn()">
+      <div class="fb-send" data-colorscheme="light" fb-like="'https://campusly.org/'"></div>
       <img class="img-circle profile-image" ng-if="getCurrentUser().profileImage" ng-src="/api/images{{getCurrentUser().profileImage}}">
       <i ng-if="!getCurrentUser().profileImage" class="fa fa-user fa-2x greetings" style="vertical-align: middle; "></i>
       <p class="greetings">&nbsp;{{getCurrentUser().firstname}}</p>
@@ -18,8 +19,9 @@
     </div>
 
     <div class="right-content" ng-show="!isLoggedIn()">
-      <a ui-sref-active="active" ui-sref="login" class="link sign-in">Sign In</a>
-      <a ui-sref-active="active" ui-sref="signup" class="btn sign-up">Sign up for free</a>
+      <div class="fb-send safariFix" data-colorscheme="light" fb-like="'https://campusly.org/'"></div>
+      <a ui-sref-active="active" ui-sref="login" ui-sref-opts="{reload:true, notify:true}" class="link sign-in">Sign In</a>
+      <a ui-sref-active="active" ui-sref="signup" ui-sref-opts="{reload:true, notify:true}" class="btn sign-up">Sign up for free</a>
     </div>
   </div>
 

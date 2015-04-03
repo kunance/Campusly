@@ -12,6 +12,7 @@ exports.setup = function(User, config) {
     passReqToCallback: true
   },
   function(req, accessToken, refreshToken, profile, done) {
+    console.log(accessToken);
     var userId = req.session.passport.user.id;
     User.findOne({
       where: {

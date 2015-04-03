@@ -4,8 +4,9 @@ var mandrill = require('../../mail/mail.service');
 var config = require('../../../config/environment');
 
 var sendMail = function(user, mailConfirmationToken, callback){
+  var locals = {};
   if(config.env=='production') {
-  var locals = {
+   locals = {
     name:user.firstname,
     COMPANY: 'Campusly',
     CONFIRMATION_URL :'https://' + (config.ip || 'campusly.org') + '/loginVerify/' ,
@@ -13,7 +14,7 @@ var sendMail = function(user, mailConfirmationToken, callback){
   };
   }
   if(config.env=='development') {
-    var locals = {
+     locals = {
       name:user.firstname,
       COMPANY: 'Campusly',
       CONFIRMATION_URL :'http://' + (config.ip || 'localhost:9000') + '/loginVerify/' ,
