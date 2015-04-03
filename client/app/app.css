@@ -2627,7 +2627,7 @@ a.view-all {
   /* Safari and Chrome, if Chrome rule needed */
   /* Safari 5+ ONLY */
   ::i-block-chrome, .safariFix {
-  
+
     /*TODO fix images for safari only */
 
   }
