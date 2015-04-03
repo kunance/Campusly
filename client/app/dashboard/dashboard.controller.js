@@ -22,7 +22,7 @@
     vm.myRoomListings = data[3];
     vm.numberOf = data[4].length;
     /*
-     *  prerender.io
+     *
      */
     $scope.$parent.seo = {
       pageTitle:'Campusly Dashboard',
