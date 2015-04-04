@@ -19,6 +19,9 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var express = require('express');
 var sqldb = require('./sqldb');
 var config = require('./config/environment');
+var update = require('./components/mail/user_update');
+
+update.UserEvery24h();
 
 // Populate databases with sample data
 if (config.seedDB) { require('./config/seed'); }

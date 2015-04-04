@@ -8,7 +8,6 @@ var Pets = sqldb.model('pet');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
-var mandrill = require('../../components/mandrill');
 var s3 = require('../../components/aws-s3/index');
 var UserCurAddressUnivCoords = sqldb.model('userCurAddressUnivCoords');
 
