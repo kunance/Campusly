@@ -45,7 +45,8 @@ exports.sendMailAddressConfirmationMail = function(req, res, next) {
         var mailConfirmationToken = jwt.sign({user: user.id, email: user.email}, config.secrets.mailConfirmation, {expiresInMinutes: 60});
         mail.mailConfirmation.sendMail(user, mailConfirmationToken, function (err, resp) {
           if (!user) return res.status(401).end();
-          if (err) res.status(403).end();
+          if (err) {
+            console.log(err); res.status(403).end();}
           else res.status(200).end();
         })
       }
@@ -62,7 +63,6 @@ exports.confirmMailAddress = function(req, res, next) {
   var mailConfirmationToken = req.param('mailConfirmationToken');
 
   jwt.verify(mailConfirmationToken, config.secrets.mailConfirmation, function(error, data) {
-
     if (error) return res.status(403).end();
 
     if (data.exp < Date.now()) return res.status(403).send({message: "The validation token has expired. You should sign in and ask for a new one."});
