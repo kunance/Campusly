@@ -17,7 +17,8 @@
         resolve:{
           currentUser:getCurrentUser
         },
-        authenticate:false
+        authenticate:false,
+        cache: false
       })
       .state('loginWithToken', {
         url: '/login/:sessionToken',
@@ -27,7 +28,8 @@
         resolve:{
           currentUser:getCurrentUser
         },
-        authenticate:false
+        authenticate:false,
+        cache: false
       })
       .state('confirmWithCode', {
         url: '/loginVerify/:confirmToken',
@@ -35,7 +37,8 @@
         resolve:{
           currentUser:getCurrentUser
         },
-        authenticate: false
+        authenticate: false,
+        cache: false
       })
       .state('resetPwd', {
         url: '/loginPwdReset/:passwordResetToken',
@@ -43,7 +46,8 @@
         resolve:{
           currentUser:getCurrentUser
         },
-        authenticate: false
+        authenticate: false,
+        cache: false
       });
   }
 
