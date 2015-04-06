@@ -12,6 +12,10 @@ var University = sqldb.model('university');
 var auth = require('../auth.service');
 // ********************* Mail ***********************
 
+function adoptTimestampForValidation(inputDate) {
+  return Math.floor(inputDate / 1000)
+}
+
 exports.root = function(req, res, next) {
 
   passport.authenticate('local', function (err, user, info) {
@@ -22,7 +26,9 @@ exports.root = function(req, res, next) {
 
     //passing token + passport session used by facebook OAuth
     req.logIn(user, function(err) {
-      if (err) { return next(err); }
+      if (err) {
+        return next(err);
+      }
        res.json({passport:user, token: token});
     });
 
@@ -37,16 +43,27 @@ exports.root = function(req, res, next) {
  */
 exports.sendMailAddressConfirmationMail = function(req, res, next) {
   var id = req.params.userId;
-  User.find({where:{email: id}}, '-salt -hashedPassword')
+  User.find({where:{
+      email: id
+    }
+  },
+    '-salt -hashedPassword'
+  )
     .then(function (user) {
       if(!user){
         return res.status(404).send({message: 'Something went wrong, please try again.'})
       } else {
-        var mailConfirmationToken = jwt.sign({user: user.id, email: user.email}, config.secrets.mailConfirmation, {expiresInMinutes: 60});
+        var mailConfirmationToken = jwt.sign(
+          {user: user.id, email: user.email},
+          config.secrets.mailConfirmation,
+          {expiresInMinutes: 60}
+        );
         mail.mailConfirmation.sendMail(user, mailConfirmationToken, function (err, resp) {
           if (!user) return res.status(401).end();
           if (err) {
-            console.log(err); res.status(403).end();}
+            console.log(err);
+            res.status(403).end();
+          }
           else res.status(200).end();
         })
       }
@@ -61,21 +78,26 @@ exports.sendMailAddressConfirmationMail = function(req, res, next) {
  */
 exports.confirmMailAddress = function(req, res, next) {
   var mailConfirmationToken = req.param('mailConfirmationToken');
-
   jwt.verify(mailConfirmationToken, config.secrets.mailConfirmation, function(error, data) {
-    if (error) return res.status(403).end();
-
-    if (data.exp < Date.now()) return res.status(403).send({message: "The validation token has expired. You should sign in and ask for a new one."});
-    User.find({where: {id: data.user}})
-      .then(function (user) {
-        if (!user) return res.status(403).send({message: "The validation token is invalid. You should sign in and ask for a new one."});
-        user.confirmMail(function () {
-          res.json({token: auth.signToken(user.id)});
+    if (error){
+      console.log('error: ', error);
+      return res.status(403).end();
+    }
+    else if (data.exp < adoptTimestampForValidation(Date.now())) {
+      return res.status(403).send({message: "The validation token has expired. You should sign in and ask for a new one."});
+    }
+    else {
+      User.find({where: {id: data.user}})
+        .then(function (user) {
+          if (!user) return res.status(403).send({message: "The validation token is invalid. You should sign in and ask for a new one."});
+          user.confirmMail(function () {
+            res.json({token: auth.signToken(user.id)});
+          })
         })
-      })
-      .catch(function (error) {
-        if (error) return res.status(403).send({message: "The validation token is invalid. You should sign in and ask for a new one."});
-      });
+        .catch(function (error) {
+          if (error) return res.status(403).send({message: "The validation token is invalid. You should sign in and ask for a new one."});
+        });
+    }
   })
 };
 
