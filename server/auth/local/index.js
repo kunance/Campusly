@@ -9,7 +9,7 @@ var router = express.Router();
 
 router.get('/mailconfirmation/:userId', controller.sendMailAddressConfirmationMail);
 router.post('/mailconfirmation', controller.confirmMailAddress);
-router.get('/passwordreset', controller.resetPassword);
+router.post('/sendingPWDresetMail', controller.resetPassword);
 router.post('/passwordreset', controller.confirmResetedPassword);
 router.post('/', controller.root);
 

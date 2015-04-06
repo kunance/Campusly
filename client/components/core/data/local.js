@@ -26,9 +26,9 @@
           }
         },
         resetPassword: {
-          method: 'GET',
+          method: 'POST',
           params: {
-            controller: 'passwordreset'
+            controller: 'sendingPWDresetMail'
           }
         },
         confirmPassword: {
