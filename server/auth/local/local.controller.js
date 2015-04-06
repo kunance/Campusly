@@ -105,8 +105,9 @@ exports.confirmMailAddress = function(req, res, next) {
  * Send password reset mail
  */
 exports.resetPassword = function(req, res, next) {
-  var email = String(req.query.email);
-  var newPassword = String(req.query.newPassword);
+  var email = String(req.body.email);
+  var newPassword = String(req.body.newPassword);
+
   User.find({where:{email: email}})
     .then(function (user) {
       if (!user) return res.status(403).send({message: 'This email address is unknown' });
