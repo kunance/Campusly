@@ -14,13 +14,11 @@ var Education = sqldb.model('userEducation');
 var updateUsers = function (req, res, next) {
 
   //send every day update at 17:01 hours (US 08:01) morning
-  var j = schedule.scheduleJob('1 17 * * *', function(){
-
+  var j = schedule.scheduleJob('32 18 * * *', function(){
     mail.userUpdate.sendMail(User, RoomListing, Looking, Education, function (err, resp) {
       if (err) {
-        console.log(err);
+        console.log('error: ',err);
         j.cancel();
-        console.log(err);
       }
       else console.log(resp);
     });

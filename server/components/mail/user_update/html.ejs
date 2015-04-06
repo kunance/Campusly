@@ -48,26 +48,25 @@
                 <tr>
                   <td class="wrapper last">
 
+                    <!--begin looking section-->
+                    <ul>
+                    {{ if (lookings.length > 0) { }}
+                      <p>Connect with {{=lookings.length}} new students who are looking for a room or roommate!</p>
                     <table class="twelve columns">
                       <tr>
                         <td>
 
-                          <p>Connect with {{=lookings.length}} new students who are looking for a room or roommate!</p>
-
                           Students looking:
                             {{ for(var i=0; i<lookings.length; i++) {}}
-                              <ul>
                                 <a href="https://campusly.org/lookingDetail/{{=lookings[i].id}}">
-                                <!--name: {{= lookings[i].relatedUserId.firstname }}<br/>-->
-                                <!--university: {{= lookings[i].relatedUserId.usereducationUsers.educationCenterName ? lookings[i].relatedUserId.usereducationUsers.educationCenterName : 'N/A'}}<br/>-->
-                                <!--mayor: {{= lookings[i].relatedUserId.usereducationUsers.mayor ? lookings[i].relatedUserId.usereducationUsers.mayor : 'N/A'}}<br/>-->
+                              <ul>
                                 Move in date: {{= lookings[i].moveInDate.getMonth()+1 }}/{{= lookings[i].moveInDate.getDate() }}/{{= lookings[i].moveInDate.getFullYear() }}<br/>
                                 Max rent: ${{= lookings[i].maxMonthlyRent }}<br/>
                                 Gender: {{= lookings[i].gender }}<br/>
                                 Max roommates: {{= lookings[i].numRoommates }}<br/>
                                 Looking to meet new roommates?: {{= lookings[i].openToFullYearLeaseNewRoomates ? 'Yes' : 'No'}}
-                                </a>
                               </ul>
+                                </a>
                           <hr/>
                             {{ } }}
 
@@ -75,8 +74,39 @@
                         <!--<td class="expander"></td>-->
                       </tr>
                     </table>
+                      {{ } }}
+                    <!--end looking section-->
 
-                    <p> {{=roomListings.length}} new rooms posted (details coming soon)!</p>
+                    <!--begin room listing section-->
+
+
+                      {{ if (roomListings.length > 0) { }}
+                      <p>Check out! {{=roomListings.length}} new rooms available !</p>
+                    <table class="twelve columns">
+                      <tr>
+                        <td>
+
+                         New rooms posted:
+                          {{ for(var i=0; i<roomListings.length; i++) {}}
+                            <a href="https://campusly.org/roomDetail/{{=roomListings[i].id}}">
+                          <ul>
+                              <img src="http://maps.googleapis.com/maps/api/staticmap?center={{=roomListings[i].relatedPropertyId.latitude}},{{=roomListings[i].relatedPropertyId.longitude}}&zoom=13&scale=1.5&size=250x180&markers=color:blue%7C{{=roomListings[i].relatedPropertyId.latitude}},{{=roomListings[i].relatedPropertyId.longitude}}&key=AIzaSyAm7woOFr0TOKG0U7jsBF5K3LSifdDjgfs">
+                              <p style="padding-left: 20px; padding-bottom: 5px;">Address: {{=roomListings[i].relatedPropertyId.streetNumeric}} {{=roomListings[i].relatedPropertyId.streetAddress}} {{=roomListings[i].relatedPropertyId.apt}}, {{=roomListings[i].relatedPropertyId.city}} {{=roomListings[i].relatedPropertyId.zip}}</p>
+                              <p style="padding-left: 20px; padding-bottom: 5px;">Move in date: {{= roomListings[i].availableMoveIn.getMonth()+1 }}/{{= roomListings[i].availableMoveIn.getDate() }}/{{= roomListings[i].availableMoveIn.getFullYear() }}</p>
+                              <p style="padding-left: 20px; padding-bottom: 5px;">Price: ${{= roomListings[i].monthlyPrice }}</p>
+                              <p style="padding-left: 20px; padding-bottom: 5px;">Room type: {{= roomListings[i].roomType }}</p>
+                              <p style="padding-left: 20px; padding-bottom: 5px;">Shared bathroom: {{= roomListings[i].sharedBathroom }}</p>
+                          </ul>
+                            </a>
+                          <hr/>
+                          {{ } }}
+
+                        </td>
+                        <!--<td class="expander"></td>-->
+                      </tr>
+                    </table>
+
+                      {{ } }}
 
                   </td>
                 </tr>
