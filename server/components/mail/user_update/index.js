@@ -1,92 +1,97 @@
-var sqldb = require('../../../sqldb');
-var User = sqldb.model('rentedUser');
-var RoomListing = sqldb.model('roomListing');
+'use strict';
+
 var config = require('../../../config/environment');
-var Looking = sqldb.model('looking');
-var mandrill = require('node-mandrill')(config.mandrill.APIkey);
+var mailService = require('../../mail/mail.service');
+var _ = require('lodash');
+var sqldb = require('../../../sqldb');
+var Property = sqldb.model('property');
 
-module.exports.UserEvery24h = function (req, res, next) {
-  setInterval(function () {
-    var lookingCount = 0;
-    var roomListingCount = 0;
-    var recipients = null;
+var sendMail = function(User, RoomListing, Looking, Education, callback){
+  console.log('ulazim 1');
+  var current = new Date();
+  var minus24hours = new Date(current);
+  minus24hours.setDate(current.getDate()-1);
 
-    recipients = {
-      message: {
-        from_email: config.mail.from_email,
-        from_name: config.mail.from_name,
-        "to":[],
-        subject: 'update'
-      }
-    };
+  var locals = {
+  lookings : 0,
+  roomListings : 0,
+  recipients : [],
+  d : minus24hours
+  };
 
-    var d = new Date(); // today!
-    var x = 1; // go back 5 days!
-    d.setDate(d.getDate() - x);
-
-    User.findAll({})
-      .then(function (users) {
-        for (var i = 0; i < 2; i += 1) {
-          recipients.message.to.push({email: users[i].email, name: users[i].firstname+' '+users[i].lastname, type: 'to'})
+  locals.recipients = {
+    message: {
+      from_email: config.mail.from_email,
+      from_name: config.mail.from_name,
+      "to":[],
+      subject: 'daily update'
+    }
+  };
+  var userAttributes = ['firstname'];
+  User.findAll({})
+    .then(function (users) {
+      if(users) {
+        console.log('ulazim user');
+        for (var i = 0; i < /*users.length*/1; i += 1) {
+          locals.recipients.message.to.push({
+            //email: users[i].email,
+            email: 'ivan@campusly.org',
+            name: users[i].firstname + ' ' + users[i].lastname,
+            type: 'to'
+          })
         }
+      } else {
+        console.log('canceled1');
+      }
       Looking.findAll({where:
       {
-        createdAt: {gte: d}
-      }})
+        activeLooking:true,
+        createdAt: {gte: locals.d}
+      }
+        //,
+        //include: [
+        //  { model: User, attributes: userAttributes, as: 'relatedUserId',
+        //  include:[
+        //{ model: Education, as: 'usereducationUsers'}]}
+        //]
+      })
         .then(function (lookings) {
-          lookingCount = lookings.length;
+          console.log('ulazim look');
+          if(lookings) locals.lookings = lookings;
           RoomListing.findAll({where:
           {
-            createdAt: {gte: d}
-          }})
+            activeRoom:true,
+            createdAt: {gte: locals.d}
+          },
+            include: [
+              {model: Property, as: 'relatedPropertyId'}
+            ]
+        })
             .then(function (roomListings) {
-              roomListingCount = roomListings.length;
-              recipients.message.text = "Hello, today is published " + roomListingCount + " new rooms, and " + lookingCount + " posted looking. More info on http://www.campusly.org";
-              if(roomListingCount>0 || lookingCount>0) {
-                mandrill('/messages/send', recipients, function (error, info) {
-                  if (error) {
-                    console.log(error);
-                  }
-                  else {
-                    console.log(info);
-                  }
-                });
+              console.log('ulazim room');
+              if(roomListings) {
+                locals.roomListings = roomListings;
+              }
+              if(locals.lookings.length>0 || locals.roomListings.length>0) {
+
+                mailService.updateUsers('user_update', null, 'Campusly - daily update', locals, callback);
+
               } else {
-                console.log('nothing new');
+                console.log('canceled2');
               }
             })
             .catch(function (errors) {
               console.log(errors);
-              res.status(500).json(errors);
             });
-          })
-          .catch(function (errors) {
-            console.log(errors);
-            res.status(500).json(errors);
-          });
         })
         .catch(function (errors) {
           console.log(errors);
-          res.status(500).json(errors);
         });
-     }, 20000);
+    })
+    .catch(function (errors) {
+      console.log(errors);
+    });
 
 };
 
-//"to":[
-//  {
-//    "email":"recipient.email@example.com",
-//    "name":"Recipient Name",
-//    "type":"to"
-//  },
-//  {
-//    "email":"bcc.recipient.email.1@example.com",
-//    "name":"BCC Recipient Name 1",
-//    "type":"bcc"
-//  },
-//  {
-//    "email":"bcc.recipient.email.2@example.com",
-//    "name":"BCC Recipient Name 2",
-//    "type":"bcc"
-//  }
-//]
+exports.sendMail = sendMail;

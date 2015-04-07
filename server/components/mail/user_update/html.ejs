@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta https-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width"/>
+  <title>Campusly - Update</title>
+</head>
+<body>
+<table class="body">
+  <tr>
+    <td class="center" align="center" valign="top">
+      <center>
+
+        <table class="container">
+          <tr>
+            <td>
+
+              <!-- content start -->
+              <table class="row">
+                <tr>
+                  <td class="wrapper last">
+
+                    <table class="twelve columns">
+                      <tr>
+                        <td>
+
+                          <img width="76" height="100" src="http://i61.tinypic.com/2dj1e84.jpg" class="center-block" style="margin-top: 30px">
+
+                        </td>
+                        <td class="expander"></td>
+                      </tr>
+                      <tr>
+                        <td>
+
+                          <h1>Daily update for {{=d.getMonth()+1}}/{{=d.getDate()}}/{{=d.getFullYear()}}</h1>
+
+                        </td>
+                        <td class="expander"></td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+              </table>
+
+
+              <table class="row">
+                <tr>
+                  <td class="wrapper last">
+
+                    <!--begin looking section-->
+                    <ul>
+                    {{ if (lookings.length > 0) { }}
+                      <p>Connect with {{=lookings.length}} new students who are looking for a room or roommate!</p>
+                    <table class="twelve columns">
+                      <tr>
+                        <td>
+
+                          Students looking:
+                            {{ for(var i=0; i<lookings.length; i++) {}}
+                                <a href="https://campusly.org/lookingDetail/{{=lookings[i].id}}">
+                              <ul>
+                                Move in date: {{= lookings[i].moveInDate.getMonth()+1 }}/{{= lookings[i].moveInDate.getDate() }}/{{= lookings[i].moveInDate.getFullYear() }}<br/>
+                                Max rent: ${{= lookings[i].maxMonthlyRent }}<br/>
+                                Gender: {{= lookings[i].gender }}<br/>
+                                Max roommates: {{= lookings[i].numRoommates }}<br/>
+                                Looking to meet new roommates?: {{= lookings[i].openToFullYearLeaseNewRoomates ? 'Yes' : 'No'}}
+                              </ul>
+                                </a>
+                          <hr/>
+                            {{ } }}
+
+                        </td>
+                        <!--<td class="expander"></td>-->
+                      </tr>
+                    </table>
+                      {{ } }}
+                    <!--end looking section-->
+
+                    <!--begin room listing section-->
+
+
+                      {{ if (roomListings.length > 0) { }}
+                      <p>Check out! {{=roomListings.length}} new rooms available !</p>
+                    <table class="twelve columns">
+                      <tr>
+                        <td>
+
+                         New rooms posted:
+                          {{ for(var i=0; i<roomListings.length; i++) {}}
+                            <a href="https://campusly.org/roomDetail/{{=roomListings[i].id}}">
+                          <ul>
+                              <img src="http://maps.googleapis.com/maps/api/staticmap?center={{=roomListings[i].relatedPropertyId.latitude}},{{=roomListings[i].relatedPropertyId.longitude}}&zoom=13&scale=1.5&size=250x180&markers=color:blue%7C{{=roomListings[i].relatedPropertyId.latitude}},{{=roomListings[i].relatedPropertyId.longitude}}&key=AIzaSyAm7woOFr0TOKG0U7jsBF5K3LSifdDjgfs">
+                              <p style="padding-left: 20px; padding-bottom: 5px;">Address: {{=roomListings[i].relatedPropertyId.streetNumeric}} {{=roomListings[i].relatedPropertyId.streetAddress}} {{=roomListings[i].relatedPropertyId.apt}}, {{=roomListings[i].relatedPropertyId.city}} {{=roomListings[i].relatedPropertyId.zip}}</p>
+                              <p style="padding-left: 20px; padding-bottom: 5px;">Move in date: {{= roomListings[i].availableMoveIn.getMonth()+1 }}/{{= roomListings[i].availableMoveIn.getDate() }}/{{= roomListings[i].availableMoveIn.getFullYear() }}</p>
+                              <p style="padding-left: 20px; padding-bottom: 5px;">Price: ${{= roomListings[i].monthlyPrice }}</p>
+                              <p style="padding-left: 20px; padding-bottom: 5px;">Room type: {{= roomListings[i].roomType }}</p>
+                              <p style="padding-left: 20px; padding-bottom: 5px;">Shared bathroom: {{= roomListings[i].sharedBathroom }}</p>
+                          </ul>
+                            </a>
+                          <hr/>
+                          {{ } }}
+
+                        </td>
+                        <!--<td class="expander"></td>-->
+                      </tr>
+                    </table>
+
+                      {{ } }}
+
+                  </td>
+                </tr>
+              </table>
+
+
+              <table class="row">
+                <tr>
+                  <td class="wrapper ">
+
+                    <table class="four columns">
+                      <tr>
+
+                      </tr>
+                    </table>
+
+                  </td>
+                  <td class="wrapper ">
+
+                    <table class="four columns">
+                      <tr>
+                        <td class="center">
+                          <center>
+                            <table class="button success round">
+                              <tr>
+                                <td>
+
+                                  <a href="https://campusly.org/login">Sign in & connect</a>
+
+
+
+                                </td>
+                              </tr>
+                            </table>
+                          </center>
+                        </td>
+                        <td class="expander"></td>
+                      </tr>
+                    </table>
+
+                  </td>
+                  <td class="wrapper last">
+
+                    <table class="four columns">
+                      <tr>
+
+
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+              </table>
+
+            <!--some text-->
+
+              <table class="row">
+                <tr>
+                  <td class="wrapper last">
+
+                    <table class="twelve columns">
+                      <tr>
+                        <td>
+
+<!--some text-->
+
+                        </td>
+                        <td class="expander"></td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+              </table>
+
+
+
+
+              <table class="row">
+                <tr>
+                  <td class="wrapper last">
+
+                    <table class="twelve columns">
+                      <tr>
+                        <td align="center">
+                          <center>
+                            <p style="text-align:center;"><a href="https://campusly.org/terms">Terms</a> | <a href="https://campusly.org/privacy">Privacy</a></p>
+                          </center>
+                        </td>
+                        <td class="expander"></td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+              </table>
+
+              <!-- container end below -->
+            </td>
+          </tr>
+        </table>
+
+      </center>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

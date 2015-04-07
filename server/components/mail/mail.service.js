@@ -3,6 +3,7 @@
 var config = require('../../config/environment');
 var mandrill = require('node-mandrill')(config.mandrill.APIkey);
 var _ = require('lodash');
+var mail = require('../../components/mail');
 
 var emailTemplates;
 
@@ -24,21 +25,6 @@ var generateMail = function(templateName, locals, callback){
   });
 };
 
-//wellcome is out of usage
-module.exports.welcome = function (user) {
-  mandrill('/messages/send', {
-    message: {
-      to: [{email: user.email, name: (user.firstname + ' ' + user.lastname)}],
-      from_email: config.mail.from,
-      subject: "Thanks for signing up to campusly",
-      text: "Some text to welcome new users from mandrill..  "
-    }
-  }, function (error, info) {
-    //uh oh, there was an error
-    if (error)  cb(error, null);
-    else cb(null, info.response);
-  });
-};
 
 module.exports.confirm = function (templateName, user, subject, locals, callback) {
   var cb = callback || _.noop;
@@ -59,7 +45,27 @@ module.exports.confirm = function (templateName, user, subject, locals, callback
         cb(null, info.response)}
     });
   })
-}
+};
+
+module.exports.updateUsers = function (templateName, user, subject, locals, callback) {
+  var cb = callback || _.noop;
+
+  generateMail(templateName, locals, function (html) {
+
+    var addHtml = {html: html};
+    _.merge(locals.recipients.message, addHtml);
+
+    mandrill('/messages/send', locals.recipients, function (error, info) {
+      if (error) {cb(error, null)}
+      else {
+        console.log(info);
+        cb(null, info.response)}
+    });
+  })
+
+
+
+};
 
 module.exports.passwordReset = function (templateName, user, subject, locals, callback) {
   var cb = callback || _.noop;
@@ -80,5 +86,5 @@ module.exports.passwordReset = function (templateName, user, subject, locals, ca
         cb(null, info.response)}
     });
   })
-}
+};
 
