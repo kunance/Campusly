@@ -269,5 +269,8 @@
       $event.stopPropagation();
       $scope.datePickers[number]= true;
     };
+
+    mixpanel.track('view profile');
+
   }
 }());

@@ -55,6 +55,8 @@
       })
     };
 
+    mixpanel.track('edit a looking');
+
 }
 
 }());

@@ -129,5 +129,7 @@
         vm.tempMe = JSON.parse(JSON.stringify(newVal));
       }
     }, true);
+
+    mixpanel.track('edit profile');
   }
 }());

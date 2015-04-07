@@ -47,6 +47,8 @@
       }
     };
 
+    mixpanel.track('add a looking');
+
   }
 
 }());
