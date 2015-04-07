@@ -7,7 +7,6 @@ var sqldb = require('../../../sqldb');
 var Property = sqldb.model('property');
 
 var sendMail = function(User, RoomListing, Looking, Education, callback){
-  console.log('ulazim 1');
   var current = new Date();
   var minus24hours = new Date(current);
   minus24hours.setDate(current.getDate()-1);
@@ -31,17 +30,15 @@ var sendMail = function(User, RoomListing, Looking, Education, callback){
   User.findAll({})
     .then(function (users) {
       if(users) {
-        console.log('ulazim user');
-        for (var i = 0; i < /*users.length*/1; i += 1) {
+        for (var i = 0; i < users.length; i += 1) {
           locals.recipients.message.to.push({
-            //email: users[i].email,
-            email: 'ivan@campusly.org',
+            email: users[i].email,
+            //email: 'ivan@campusly.org',
             name: users[i].firstname + ' ' + users[i].lastname,
             type: 'to'
           })
         }
       } else {
-        console.log('canceled1');
       }
       Looking.findAll({where:
       {
@@ -56,7 +53,6 @@ var sendMail = function(User, RoomListing, Looking, Education, callback){
         //]
       })
         .then(function (lookings) {
-          console.log('ulazim look');
           if(lookings) locals.lookings = lookings;
           RoomListing.findAll({where:
           {
@@ -68,7 +64,6 @@ var sendMail = function(User, RoomListing, Looking, Education, callback){
             ]
         })
             .then(function (roomListings) {
-              console.log('ulazim room');
               if(roomListings) {
                 locals.roomListings = roomListings;
               }
@@ -77,7 +72,7 @@ var sendMail = function(User, RoomListing, Looking, Education, callback){
                 mailService.updateUsers('user_update', null, 'Campusly - daily update', locals, callback);
 
               } else {
-                console.log('canceled2');
+                console.log('canceled');
               }
             })
             .catch(function (errors) {
