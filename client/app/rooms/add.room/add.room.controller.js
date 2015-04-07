@@ -11,28 +11,30 @@
 
     /* jshint validthis: true */
     var vm = this;
+    vm.errors = false;
 
     vm.room = {};
     vm.property = {};
 
     vm.me = common.Auth.getCurrentUser();
 
-    vm.create = function () {
+    vm.create = function (form) {
+      vm.submitted = true;
 
-      //console.log('Room from ctrl: ', vm.room);
-      //console.log('Property from ctrl: ', vm.property);
-
-   //   if(vm.property.$valid && vm.room.$valid) {
+      if(form.$valid) {
         vm.room.creatorId = vm.me.id;
-
         RoomListing.create( { userId: vm.me.id}, {room: vm.room, property: vm.property}).$promise.then(
           function (roomListing) {
+            common.logger.success('Room saved');
             common.$state.go('roomDetail', { id: roomListing.id },{reload: true});
           }, function (errors) {
-            //TODO need a general error handling banner or scheme to broadcast a message on
+            common.logger.error('error while saving room listing');
             console.log('error(s) while saving room listing', errors);
           });
-    //  }
+      } else {
+        console.log(form);
+        vm.errors = true;
+      }
 
     };
 

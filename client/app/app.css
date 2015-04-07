@@ -59,6 +59,7 @@ education form's custom styles
 ========================================================================== */
 .educationError{
   border-left: solid red 5px;
+  border-bottom: solid red 1px;
 }
 
 /* ==========================================================================
