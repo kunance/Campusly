@@ -11,6 +11,7 @@
     var vm = this;
 
     vm.me = currentUser;
+    vm.errors = false;
 
     $scope.datePickers = {
       startDate: false,
@@ -28,16 +29,22 @@
       $scope.datePickers[number]= true;
     };
 
-    vm.addLooking = function (input) {
+    vm.addLooking = function (input, form) {
+      vm.submitted = true;
+      if (form.$valid) {
       common.dataservice.addLooking(vm.me.id, input)
         .$promise
         .then(function (looking) {
           common.logger.success('Looking successfully added.');
-          common.$state.go('lookingDetail', { id: looking.id },{reload: true});
+          common.$state.go('lookingDetail', {id: looking.id}, {reload: true});
         })
         .catch(function (err) {
           common.logger.error('Error while saving looking.');
         });
+      } else {
+        console.log(form);
+        vm.errors = true;
+      }
     };
 
   }
