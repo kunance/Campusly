@@ -26,34 +26,27 @@ var sendMail = function(User, RoomListing, Looking, Education, callback){
       subject: 'daily update'
     }
   };
-  var userAttributes = ['firstname'];
   User.findAll({})
     .then(function (users) {
       if(users) {
         for (var i = 0; i < users.length; i += 1) {
           locals.recipients.message.to.push({
             email: users[i].email,
-            //email: 'ivan@campusly.org',
             name: users[i].firstname + ' ' + users[i].lastname,
             type: 'to'
           })
         }
       } else {
+        console.log('no users');
       }
       Looking.findAll({where:
       {
         activeLooking:true,
         createdAt: {gte: locals.d}
-      }
-        //,
-        //include: [
-        //  { model: User, attributes: userAttributes, as: 'relatedUserId',
-        //  include:[
-        //{ model: Education, as: 'usereducationUsers'}]}
-        //]
-      })
+      }})
         .then(function (lookings) {
-          if(lookings) locals.lookings = lookings;
+          if(lookings)
+            locals.lookings = lookings;
           RoomListing.findAll({where:
           {
             activeRoom:true,
@@ -68,9 +61,7 @@ var sendMail = function(User, RoomListing, Looking, Education, callback){
                 locals.roomListings = roomListings;
               }
               if(locals.lookings.length>0 || locals.roomListings.length>0) {
-
                 mailService.updateUsers('user_update', null, 'Campusly - daily update', locals, callback);
-
               } else {
                 console.log('canceled');
               }
@@ -86,7 +77,6 @@ var sendMail = function(User, RoomListing, Looking, Education, callback){
     .catch(function (errors) {
       console.log(errors);
     });
-
 };
 
 exports.sendMail = sendMail;
