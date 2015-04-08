@@ -186,6 +186,20 @@ module.exports = {
 
       confirmMail: function (cb) {
         this.confirmedEmail = true;
+        //clean up user after successful confirmation
+        this.updatedAt = null;
+        this.googleOAuthId = null;
+        this.save()
+          .then(cb());
+      },
+
+      setVerificationData: function (token, cb) {
+        var current = new Date();
+        var plusOnehour = new Date(current);
+        //expiration token set to 60min
+        plusOnehour.setHours(current.getHours()+1);
+        this.updatedAt = plusOnehour;
+        this.googleOAuthId = token;
         this.save()
           .then(cb());
       },

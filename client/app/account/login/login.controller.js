@@ -23,6 +23,11 @@
     $scope.reset = $scope.newPasswordAddon ? 'I remember!' : 'Forget password?';
     $scope.confirmToken = $stateParams.confirmToken;
     $scope.passwordResetToken = $stateParams.passwordResetToken;
+    $rootScope.verificationTitle = $rootScope.verificationTitle || '';
+    $rootScope.verificationContent = $rootScope.verificationContent || '';
+    $rootScope.invalidToken = $rootScope.invalidToken || false;
+    $rootScope.showEmail = $rootScope.showEmail || false;
+    $rootScope.showPassword = $rootScope.showPassword || false;
 
     $scope.$parent.seo = {
       pageTitle: 'Campusly Sign-in',
@@ -35,15 +40,19 @@
       $scope.errors.password = ' ';
     };
 
-    $scope.success = $rootScope.verificationMessage;
-
     if ($scope.confirmToken) {
       common.Auth.confirmMail($scope.confirmToken)
-        .then( function() {
+        .then( function(data) {
+          $rootScope.verificationTitle = data.title;
+          $rootScope.verificationContent = data.content;
+          $rootScope.showEmail = true;
           $state.go('login');
         })
-        .catch( function() {
-          $scope.$parent.invalidToken = true;
+        .catch( function(err) {
+          console.log('error: ', err);
+          $rootScope.verificationTitle = err.data.title;
+          $rootScope.verificationContent = err.data.content;
+          $rootScope.invalidToken = true;
           $state.go('login');
         });
     }
@@ -51,7 +60,8 @@
     if ($scope.passwordResetToken) {
       $state.go('login');
       common.Auth.confirmResetedPassword($scope.passwordResetToken)
-        .then( function() {
+        .then(function() {
+          $rootScope.showPassword = true;
           $state.go('login');
         })
         .catch( function() {

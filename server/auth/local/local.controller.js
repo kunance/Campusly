@@ -53,19 +53,21 @@ exports.sendMailAddressConfirmationMail = function(req, res, next) {
       if(!user){
         return res.status(404).send({message: 'Something went wrong, please try again.'})
       } else {
-        var mailConfirmationToken = jwt.sign(
-          {user: user.id, email: user.email},
-          config.secrets.mailConfirmation,
-          {expiresInMinutes: 60}
-        );
-        mail.mailConfirmation.sendMail(user, mailConfirmationToken, function (err, resp) {
-          if (!user) return res.status(401).end();
-          if (err) {
-            console.log(err);
-            res.status(403).end();
-          }
-          else res.status(200).end();
-        })
+          var mailConfirmationToken = jwt.sign(
+            {user: user.id, email: user.email},
+            config.secrets.mailConfirmation
+         /*   ,{expiresInMinutes: 60} removing expiration, we handle it in db*/
+          );
+        user.setVerificationData(mailConfirmationToken, function () {
+          mail.mailConfirmation.sendMail(user, mailConfirmationToken, function (err, resp) {
+            if (!user) return res.status(401).end();
+            if (err) {
+              console.log(err);
+              res.status(403).end();
+            }
+            else res.status(200).end();
+          })
+        });
       }
     })
     .catch(function (error) {
@@ -80,23 +82,37 @@ exports.confirmMailAddress = function(req, res, next) {
   var mailConfirmationToken = req.param('mailConfirmationToken');
   jwt.verify(mailConfirmationToken, config.secrets.mailConfirmation, function(error, data) {
     if (error){
-      console.log('error: ', error);
-      return res.status(403).end();
-    }
-    else if (data.exp < adoptTimestampForValidation(Date.now())) {
-      return res.status(403).send({message: "The validation token has expired. You should sign in and ask for a new one."});
+      //invalid token case 1 - TODO improve wording
+      return res.status(403).send({reason:'incorrect', title:"The validation token you used is invalid.", content:" Make sure you copy pasted correctly, or resend verification mail."});
     }
     else {
-      User.find({where: {id: data.user}})
+      User.find({where: {
+        id: data.user
+      }})
         .then(function (user) {
-          if (!user) return res.status(403).send({message: "The validation token is invalid. You should sign in and ask for a new one."});
-          user.confirmMail(function () {
-            res.json({token: auth.signToken(user.id)});
-          })
+          if (!user) {
+            //invalid token case 2 - TODO improve wording
+            return res.status(403).send({reason:'incorrect', title: user.firstname + ", the validation token you used is invalid.", content:" Make sure you copy pasted correctly, or resend verification mail."});
+          }
+          if(!user.confirmedEmail) {
+            if( String(mailConfirmationToken)!= String(user.googleOAuthId)) res.status(403).send({reason:'un-match', title: "DB and JWT tokens don't match."});
+            if (Date.now() < user.updatedAt) {
+              user.confirmMail(function () {
+                res.json({token: auth.signToken(user.id), title: user.firstname + ', thank you for confirming your email.', content:'Please sign in to continue'});
+              })
+            } else {
+              //expired token case 1 - TODO improve wording
+              return res.status(403).send({reason: 'expired', title: user.firstname + ", the validation token you used has expired.", content: " Please re-type your e-mail and click resend."});
+            }
+          } else {
+              res.json({token: auth.signToken(user.id), title: user.firstname + ', your account is already confirmed', content: 'Please sign in to continue !'});
+          }
         })
         .catch(function (error) {
-          if (error) return res.status(403).send({message: "The validation token is invalid. You should sign in and ask for a new one."});
+          //general error case (it should trigger in any case, because we handled both possible cases above
+          if (error) return res.status(403).send({message: "something went wrong."});
         });
+
     }
   })
 };
