@@ -3,7 +3,7 @@
   <section class="login-box white-box" ng-if="!loading && !sendingEmail && !verificationMailResend && !pwdResetMailSend">
     <h2 class="heading">Sign In</h2>
 
-    <div class="row" ng-if="success=='showEmail' && !invalidToken">
+    <div class="row" ng-if="showEmail && !invalidToken">
       <div class="col-xs-1 col-sm-1">
         <div class="post-bubble">
           <i class="fa fa-check fa-lg"></i>
@@ -11,13 +11,13 @@
       </div>
       <div class="col-xs-11 col-sm-11">
         <dl style="margin-top: 10px; margin-left: 20px">
-          <dt>Thank you for confirming your email.</dt>
-          <dd>Please Sign In to continue.</dd>
+          <dt>{{verificationTitle}}</dt>
+          <dd>{{verificationContent}}</dd>
         </dl>
       </div>
     </div>
 
-    <div class="row" ng-if="success=='showPassword' && !invalidPwdToken">
+    <div class="row" ng-if="showPassword && !invalidPwdToken">
       <div class="col-xs-1 col-sm-1">
         <div class="post-bubble">
           <i class="fa fa-check fa-lg"></i>
@@ -39,8 +39,8 @@
       </div>
       <div class="col-xs-11 col-sm-11">
         <dl style="margin-top: 10px; margin-left: 20px">
-          <dt>Your validation link has expired.</dt>
-          <dd>Please re-type your e-mail and click resend</dd>
+          <dt>{{verificationTitle}}</dt>
+          <dd>{{verificationContent}}</dd>
         </dl>
       </div>
     </div>

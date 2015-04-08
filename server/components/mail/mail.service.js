@@ -62,9 +62,6 @@ module.exports.updateUsers = function (templateName, user, subject, locals, call
         cb(null, info.response)}
     });
   })
-
-
-
 };
 
 module.exports.passwordReset = function (templateName, user, subject, locals, callback) {
