@@ -1509,6 +1509,10 @@ Post padding
   padding-top: 15px;
 }
 
+.borderRadiusFix {
+  border-radius: 50px;
+}
+
 .looking-for-room img.profile-image{
   height: 5em;
   width: 5em;
@@ -2048,6 +2052,8 @@ Looking Details
 
 .looking-grid-profile-img {
   width: 29%;
+  max-width: 5em;
+  max-height: 4em;
 }
 
 /* My profile - roommates */
