@@ -2052,6 +2052,8 @@ Looking Details
 
 .looking-grid-profile-img {
   width: 29%;
+  max-width: 5em;
+  max-height: 4em;
 }
 
 /* My profile - roommates */

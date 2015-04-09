@@ -12,10 +12,6 @@ var University = sqldb.model('university');
 var auth = require('../auth.service');
 // ********************* Mail ***********************
 
-function adoptTimestampForValidation(inputDate) {
-  return Math.floor(inputDate / 1000)
-}
-
 exports.root = function(req, res, next) {
 
   passport.authenticate('local', function (err, user, info) {
