@@ -82,8 +82,8 @@ exports.confirmMailAddress = function(req, res, next) {
   var mailConfirmationToken = req.param('mailConfirmationToken');
   jwt.verify(mailConfirmationToken, config.secrets.mailConfirmation, function(error, data) {
     if (error){
-      //invalid token case 1 - TODO improve wording
-      return res.status(403).send({reason:'incorrect', title:"The validation token you used is invalid.", content:" Make sure you copy pasted correctly, or resend verification mail."});
+      //invalid token case 1
+      return res.status(403).send({reason:'incorrect', title:"Sorry, the email validation failed! :(", content:" Please re-type your e-mail and click resend."});
     }
     else {
       User.find({where: {
@@ -91,8 +91,8 @@ exports.confirmMailAddress = function(req, res, next) {
       }})
         .then(function (user) {
           if (!user) {
-            //invalid token case 2 - TODO improve wording
-            return res.status(403).send({reason:'incorrect', title: user.firstname + ", the validation token you used is invalid.", content:" Make sure you copy pasted correctly, or resend verification mail."});
+            //invalid token case 2
+            return res.status(403).send({reason:'incorrect', title: user.firstname + ", sorry, the email validation failed! :(", content:" Please re-type your e-mail and click resend."});
           }
           if(!user.confirmedEmail) {
             if( String(mailConfirmationToken)!= String(user.googleOAuthId)) res.status(403).send({reason:'un-match', title: "DB and JWT tokens don't match."});
@@ -101,8 +101,8 @@ exports.confirmMailAddress = function(req, res, next) {
                 res.json({token: auth.signToken(user.id), title: user.firstname + ', thank you for confirming your email.', content:'Please sign in to continue'});
               })
             } else {
-              //expired token case 1 - TODO improve wording
-              return res.status(403).send({reason: 'expired', title: user.firstname + ", the validation token you used has expired.", content: " Please re-type your e-mail and click resend."});
+              //expired token case 1
+              return res.status(403).send({reason: 'expired', title: user.firstname + ", the validation time has expired.", content: " Please re-type your e-mail and click resend."});
             }
           } else {
               res.json({token: auth.signToken(user.id), title: user.firstname + ', your account is already confirmed', content: 'Please sign in to continue !'});
