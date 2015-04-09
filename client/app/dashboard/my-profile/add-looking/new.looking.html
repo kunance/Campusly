@@ -25,7 +25,7 @@
           <div class="col-xs-9 col-sm-7 input-post">
             <label for="moveInDate">Move-in date</label>
             <p class="input-group">
-              <input type="text" id="moveInDate" name="moveInDate" class="form-control" datepicker-popup="{{format}}" ng-model="newLooking.tempLooking.moveInDate" is-open="datePickers.startDate" close-text="Close" required ng-class="{'educationError': newLookingForm.moveInDate.$invalid && newLooking.submitted}"/>
+              <input type="text" id="moveInDate" name="moveInDate" class="form-control borderRadiusFix" datepicker-popup="{{format}}" ng-model="newLooking.tempLooking.moveInDate" is-open="datePickers.startDate" close-text="Close" required ng-class="{'educationError': newLookingForm.moveInDate.$invalid && newLooking.submitted}"/>
                       <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                       </span>
@@ -44,7 +44,7 @@
           <div class="col-xs-9 col-sm-7 input-post">
             <label for="moveInDate">Move-out date</label>
             <p class="input-group">
-              <input type="text" id="moveOutDate" name="moveOutDate" class="form-control" datepicker-popup="{{format}}" ng-model="newLooking.tempLooking.moveOutDate" is-open="datePickers.endDate" close-text="Close" required ng-class="{'educationError': newLookingForm.moveOutDate.$invalid && newLooking.submitted}"/>
+              <input type="text" id="moveOutDate" name="moveOutDate" class="form-control borderRadiusFix" datepicker-popup="{{format}}" ng-model="newLooking.tempLooking.moveOutDate" is-open="datePickers.endDate" close-text="Close" required ng-class="{'educationError': newLookingForm.moveOutDate.$invalid && newLooking.submitted}"/>
                           <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="open($event,'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                           </span>

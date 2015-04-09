@@ -35,7 +35,7 @@
                 <div class="col-xs-9 col-sm-7 input-post">
                   <label for="availableMoveIn">Move-in date</label>
                   <p class="input-group">
-                    <input type="text" id="availableMoveIn" required name="availableMoveIn" class="form-control" datepicker-popup="{{format}}" ng-model="vm.room.availableMoveIn" is-open="datePickers.startDate" close-text="Close"  ng-class="{'educationError': addNewRoomForm.availableMoveIn.$invalid && vm.submitted}"/>
+                    <input type="text" id="availableMoveIn" required name="availableMoveIn" class="form-control borderRadiusFix" datepicker-popup="{{format}}" ng-model="vm.room.availableMoveIn" is-open="datePickers.startDate" close-text="Close"  ng-class="{'educationError': addNewRoomForm.availableMoveIn.$invalid && vm.submitted}"/>
                       <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                       </span>
@@ -54,7 +54,7 @@
                 <div class="col-xs-9 col-sm-7 input-post">
                   <label for="leaseEndDate">Move-out date</label>
                   <p class="input-group">
-                    <input type="text" id="leaseEndDate" required name="moveOut" class="form-control" datepicker-popup="{{format}}" ng-model="vm.room.leaseEndDate" is-open="datePickers.endDate" close-text="Close" ng-class="{'educationError': addNewRoomForm.moveOut.$invalid && vm.submitted}"/>
+                    <input type="text" id="leaseEndDate" required name="moveOut" class="form-control borderRadiusFix" datepicker-popup="{{format}}" ng-model="vm.room.leaseEndDate" is-open="datePickers.endDate" close-text="Close" ng-class="{'educationError': addNewRoomForm.moveOut.$invalid && vm.submitted}"/>
                           <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="open($event,'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                           </span>
@@ -354,7 +354,7 @@
                     <div class="form-group input-post">
 
                       <label for="streetAddress">Address lookup</label>
-                      <input  type="text" id="streetAddress" name="streetAddress" class="form-control"  placeholder="Type your address to autocomplete" address-autocomplete="vm.property.streetAddress"/>
+                      <input  type="text" id="streetAddress" name="streetAddress" class="form-control borderRadiusFix"  placeholder="Type your address to autocomplete" address-autocomplete="vm.property.streetAddress"/>
 
                     </div>
 
@@ -370,7 +370,7 @@
                     <div class="form-group input-post-readonly">
 
                       <label for="streetName">Street Name</label>
-                      <input required type="text" id="streetName" name="streetName" class="form-control"  placeholder="Street name" ng-model="vm.property.streetAddress.streetAddress" readonly ng-class="{'educationError': addNewRoomForm.streetName.$invalid && vm.submitted}"/>
+                      <input required type="text" id="streetName" name="streetName" class="form-control borderRadiusFix"  placeholder="Street name" ng-model="vm.property.streetAddress.streetAddress" readonly ng-class="{'educationError': addNewRoomForm.streetName.$invalid && vm.submitted}"/>
 
                     </div>
 
@@ -384,14 +384,14 @@
                     <div class="form-group input-post-readonly">
 
                       <label for="city">City</label>
-                      <input required type="text" id="city" name="city" class="form-control"  placeholder="City" ng-model="vm.property.streetAddress.city" readonly ng-class="{'educationError': addNewRoomForm.city.$invalid && vm.submitted}"/>
+                      <input required type="text" id="city" name="city" class="form-control borderRadiusFix"  placeholder="City" ng-model="vm.property.streetAddress.city" readonly ng-class="{'educationError': addNewRoomForm.city.$invalid && vm.submitted}"/>
 
                     </div>
 
                     <div class="form-group input-post-readonly">
 
-                      <label for="city">State</label>
-                      <input required type="text" id="state" name="state" class="form-control"  placeholder="State" ng-model="vm.property.streetAddress.state" readonly ng-class="{'educationError': addNewRoomForm.state.$invalid && vm.submitted}"/>
+                      <label for="state">State</label>
+                      <input required type="text" id="state" name="state" class="form-control borderRadiusFix"  placeholder="State" ng-model="vm.property.streetAddress.state" readonly ng-class="{'educationError': addNewRoomForm.state.$invalid && vm.submitted}"/>
 
                     </div>
 
