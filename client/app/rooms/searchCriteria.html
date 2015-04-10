@@ -5,9 +5,37 @@
     <!--start of first col 4-->
     <div class="col-md-4">
 
+      <!-- Distance (user have university) -->
+
+      <div class="row" ng-if="rooms.education.universityId">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-location-arrow fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="distance">Dist. (mi.) from campus</label>
+          <input type="number" id="distance"  name="distance" class="form-control"
+                 ng-model="rooms.searchCriteria.within.distance" min=".1" max="500"/>
+        </div>
+      </div>
+
+      <!-- Distance (user DON'T have university) -->
+
+      <div class="row" ng-if="!rooms.education.relatedUniversityId.id">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-exclamation-triangle fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <a ui-sref="editProfile">Set your university to search by distance</a>
+        </div>
+      </div>
+
       <!-- Monthly rent -->
 
-      <div class="row">
+      <div class="row post-padding">
         <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
           <div class="post-bubble">
             <i class="fa fa-tag  fa-lg"></i>
@@ -38,9 +66,34 @@
         </div>
       </div>
 
-      <!-- Number of roommates -->
+      <!-- Parking Allowed -->
 
       <div class="row post-padding">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-car fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="parkingAvailable">Parking available?</label>
+          <select id="parkingAvailable"  name="parkingAvailable" class="form-control"
+                  ng-model="rooms.searchCriteria.parkingAvailable">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <!--start of second col 4-->
+    <div class="col-md-4">
+
+      <!-- Number of roommates -->
+
+      <div class="row ">
         <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
           <div class="post-bubble">
             <i class="fa fa-users fa-lg"></i>
@@ -50,47 +103,6 @@
           <label for="maxCurrentRoomates">Max current roommates</label>
           <input type="number" id="maxCurrentRoomates"  name="maxCurrentRoomates" class="form-control"
                  ng-model="rooms.searchCriteria.maxCurrentRoomates" min="1" max="10"/>
-        </div>
-      </div>
-
-      <!-- Gender preference -->
-
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-venus-mars fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <label for="gender">Gender preference</label>
-          <select id="gender" class="form-control" ng-model="rooms.searchCriteria.gender" >
-            <option value="no preference">No preference</option>
-            <option value="male only">Male only</option>
-            <option value="female only">Female only</option>
-          </select>
-        </div>
-      </div>
-
-    </div>
-
-    <!--start of second col 4-->
-    <div class="col-md-4">
-
-      <!-- Shared bathroom -->
-
-      <div class="row">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-shower fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <label for="sharedBath">Shared Bathroom?</label>
-          <select id="sharedBath"  name="sharedBath" class="form-control"
-                  ng-model="rooms.searchCriteria.sharedBathroom">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
         </div>
       </div>
 
@@ -112,51 +124,41 @@
         </div>
       </div>
 
-      <!-- Furnished -->
+      <!-- Gender preference -->
 
       <div class="row post-padding">
         <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
           <div class="post-bubble">
-            <i class="fa fa-desk fa-lg"></i>
+            <i class="fa fa-venus-mars fa-lg"></i>
           </div>
         </div>
         <div class="col-xs-9 col-sm-7 input-post">
-          <label for="furnished">Furnished?</label>
-          <select id="furnished"  name="furnished" class="form-control"
-                  ng-model="rooms.searchCriteria.furnished">
+          <label for="gender">Gender preference</label>
+          <select id="gender" class="form-control" ng-model="rooms.searchCriteria.gender" >
+            <option value="no preference">No preference</option>
+            <option value="male only">Male only</option>
+            <option value="female only">Female only</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Shared bathroom -->
+
+      <div class="row post-padding">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-shower fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="sharedBath">Shared Bathroom?</label>
+          <select id="sharedBath"  name="sharedBath" class="form-control"
+                  ng-model="rooms.searchCriteria.sharedBathroom">
             <option value="true">Yes</option>
             <option value="false">No</option>
           </select>
         </div>
       </div>
-
-    <!-- Distance (user have university) -->
-
-    <div class="row post-padding" ng-if="rooms.education.universityId">
-      <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-        <div class="post-bubble">
-          <i class="fa fa-location-arrow fa-lg"></i>
-        </div>
-      </div>
-      <div class="col-xs-9 col-sm-7 input-post">
-        <label for="distance">Distance (miles) from your university?</label>
-        <input type="number" id="distance"  name="distance" class="form-control"
-               ng-model="rooms.searchCriteria.within.distance" min=".1" max="500"/>
-      </div>
-    </div>
-
-      <!-- Distance (user DON'T have university) -->
-
-    <div class="row post-padding" ng-if="!rooms.education.relatedUniversityId.id">
-      <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-        <div class="post-bubble">
-          <i class="fa fa-exclamation-triangle fa-lg"></i>
-        </div>
-      </div>
-      <div class="col-xs-9 col-sm-7 input-post">
-        <a ui-sref="editProfile">Set your university to search by distance</a>
-      </div>
-    </div>
 
   </div>
 
@@ -184,18 +186,18 @@
         </div>
       </div>
 
-      <!-- Parking Allowed -->
+      <!-- Furnished -->
 
       <div class="row post-padding">
         <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
           <div class="post-bubble">
-            <i class="fa fa-car fa-lg"></i>
+            <i class="fa fa-desk fa-lg"></i>
           </div>
         </div>
         <div class="col-xs-9 col-sm-7 input-post">
-          <label for="parkingAvailable">Parking available</label>
-          <select id="parkingAvailable"  name="parkingAvailable" class="form-control"
-                  ng-model="rooms.searchCriteria.parkingAvailable">
+          <label for="furnished">Furnished?</label>
+          <select id="furnished"  name="furnished" class="form-control"
+                  ng-model="rooms.searchCriteria.furnished">
             <option value="true">Yes</option>
             <option value="false">No</option>
           </select>
