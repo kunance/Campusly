@@ -26,16 +26,16 @@
           </div>
           <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
             <dl>
-              <dt>Name</dt>
+              <dt>Name&nbsp;&nbsp;</dt>
               <dd>{{myProfile.tempMe.firstname}} {{myProfile.tempMe.lastname}} </dd>
-              <dt>University</dt>
+              <dt>University&nbsp;&nbsp;</dt>
               <dd>{{myProfile.education.educationCenterName.name}}</dd>
-              <dt>Year</dt>
+              <dt>Year&nbsp;&nbsp;</dt>
               <dd>{{myProfile.education.graduationDate | date:'yyyy'}}</dd>
-              <dt>Major</dt>
+              <dt>Major&nbsp;&nbsp;</dt>
               <dd>{{myProfile.education.major}}</dd>
-              <dt>About Me</dt>
-              <dd> <p class="quote" ng-if="myProfile.me.aboutMe"> {{myProfile.me.aboutMe}} </p> </dd>
+              <dt>About Me&nbsp;&nbsp;</dt>
+              <dd> <p class="quote" ng-if="myProfile.me.aboutMe"><br>{{myProfile.me.aboutMe}} </p> </dd>
             </dl>
 
             <button class="btn btn-primary" style="background-color: #3B5998;" ng-click="loginOauth('facebook')" ng-disabled="myProfile.tempMe.facebook">
@@ -47,11 +47,11 @@
           </div>
           <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
             <dl>
-              <dt>Phone Number</dt>
+              <dt>Phone Number&nbsp;&nbsp;</dt>
               <dd ng-show="myProfile.me.phone">{{myProfile.me.phone}}</dd>
-              <dt>Address</dt>
+              <dt>Address&nbsp;&nbsp;</dt>
               <dd ng-show="myProfile.address.streetAddress">{{myProfile.address.streetAddress.streetNumeric}} {{myProfile.address.streetAddress.streetAddress}}</dd>
-              <dt>City State Zip</dt>
+              <dt>City State Zip&nbsp;&nbsp;</dt>
               <dd ng-show="myProfile.address.streetAddress">{{myProfile.address.streetAddress.city}}, {{myProfile.address.streetAddress.state}} {{myProfile.address.streetAddress.zip}} </dd>
             </dl>
           </div>
@@ -135,10 +135,7 @@
             </div>
 
             <h2 class="no-roommate" ng-show="!myProfile.showAddRoommate && myProfile.roommates.length === 0 && !myProfile.showInviteRoomate">
-              You don't have any roommate yet.
-              <small>
                 <a href="" ng-click="myProfile.toggleAddRoommate()">Click here</a> to find and add your roommates.
-              </small>
             </h2>
             <div class="row roommate" ng-repeat="roommate in myProfile.roommates">
               <div class="col-xs-2" ng-class="{'not-approved' : !roommate.confirmed}">

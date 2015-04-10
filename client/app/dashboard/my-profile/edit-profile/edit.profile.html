@@ -2,6 +2,11 @@
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
 <div class="main-wrapper" cg-busy="{promise:editProfile.busy, message:'Loading your profile... Please wait'}">
 <div class="container edit-profile">
+
+  <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 back-link">
+    <a ui-sref="myProfile"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back</a>
+  </div>
+
   <div class="page-header">
     <h2> Personal </h2>
   </div>
