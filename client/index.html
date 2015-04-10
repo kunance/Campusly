@@ -40,12 +40,12 @@
       <!-- endinjector -->
     <!-- endbuild -->
   </head>
-  <body><div id="fb-root"></div>
+  <body>
+  <div id="fb-root"></div>
     <script>
       window.fbAsyncInit = function() {
         FB.init({
           appId      : '1482591365325802',
-          xfbml      : true,
           version    : 'v2.3',
           cookie     : true
         });
@@ -56,7 +56,9 @@
       js = d.createElement(s); js.id = id;
       js.src = "//connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    }(document, 'script', 'facebook-jssdk'));
+
+    </script>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->

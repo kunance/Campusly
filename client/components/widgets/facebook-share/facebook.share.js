@@ -17,7 +17,6 @@
                     console.log('async call trigger');
                     $window.FB.init({
                       appId      : '1482591365325802',
-                      xfbml      : true,
                       version    : 'v2.3',
                       cookie     : true
                     });

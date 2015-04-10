@@ -26,7 +26,10 @@ var sendMail = function(User, RoomListing, Looking, Education, callback){
       subject: 'daily update'
     }
   };
-  User.findAll({})
+  User.findAll({where:
+  {
+    shareCreditReport:true
+  }})
     .then(function (users) {
       if(users) {
         for (var i = 0; i < users.length; i += 1) {
