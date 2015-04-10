@@ -279,7 +279,7 @@ Posting input text type
 }
 
 .input-post-readonly {
-
+  border-radius: 50px;
 }
 
 .input-post-readonly input[type="number"] {

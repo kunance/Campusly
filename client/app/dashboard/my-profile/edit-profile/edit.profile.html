@@ -1,6 +1,6 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
-<div class="main-wrapper" cg-busy="{promise:editProfile.busy, message:'Loading your profile... Please wait'}">
+<div class="main-wrapper">
 <div class="container edit-profile">
 
   <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 back-link">
@@ -188,8 +188,8 @@
           </div>
 
         </div>
-
-        <input class="btn-rented-medium primary pull-right" type="submit" value="Save"></input>
+        <input ng-if="editProfile.tempAddress.streetAddress.id" type="submit" value="Save" class="btn-rented-medium primary pull-right"  ng-disabled="editAddressForm.$pristine"/>
+        <input ng-if="!editProfile.tempAddress.streetAddress.id" type="submit" class="btn-rented-medium primary pull-right" value="Save" />
 
         </form>
       </div>
@@ -199,8 +199,4 @@
 
 </div>
 
-
-
-
-</div>
 </div>

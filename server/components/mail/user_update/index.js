@@ -28,7 +28,8 @@ var sendMail = function(User, RoomListing, Looking, Education, callback){
   };
   User.findAll({where:
   {
-    shareCreditReport:true
+    shareCreditReport:true,
+    confirmedEmail:true
   }})
     .then(function (users) {
       if(users) {
