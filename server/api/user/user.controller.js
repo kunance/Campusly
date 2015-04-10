@@ -53,7 +53,7 @@ exports.index = function(req, res) {
 
 exports.me = function(req, res, next) {
   var userAttributes = ['id', 'aboutMe', 'username', 'confirmedEmail', 'createdAt',
-    'firstname', 'email', 'phone', 'lastname', 'profileImage', 'role', 'facebook'];
+    'firstname', 'email', 'phone', 'lastname', 'profileImage', 'role', 'facebook', 'shareCreditReport'];
   var userId = req.user.id;
   User.find({
     where: {
@@ -87,7 +87,7 @@ exports.create = function(req, res, next) {
         req.body.salt = "temporary";
         req.body.confirmedEmail = false;
         req.body.runIdentityCheck= false;
-        req.body.shareCreditReport= false;
+        req.body.shareCreditReport= true;
         req.body.createdAt= new Date();
         var newUser = User.build(req.body);
         newUser.setDataValue('provider', 'local');

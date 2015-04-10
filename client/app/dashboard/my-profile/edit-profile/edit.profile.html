@@ -44,6 +44,16 @@
                 <label for="phone">Phone Number</label>
                 <input class="form-control" type="text" id="phone" name="phone" ng-model="editProfile.tempMe.phone" ui-mask="999-999-9999">
               </div>
+
+              <div class="form-group input-post">
+                <label for="dailyUpdate">Receive daily update e-mail?</label>
+                <select
+                  ng-options="option.value as option.text for option in editProfile.ddlYesNoSelect"
+                  id="dailyUpdate" class="form-control" ng-model="editProfile.tempMe.shareCreditReport">
+                </select>
+              </div>
+
+
             </div>
           </div>
           <input type="submit" class="btn-rented-medium primary pull-right" value="Save">
