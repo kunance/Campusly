@@ -253,7 +253,7 @@ Posting input text type
   -moz-appearance: none;
   appearance: none;
   height: 34px;
-  background: #e8e8e8;
+  background: #ffffff;
   color: rgba(0, 0, 0, 0.55);
   text-align: left;
   border-radius: 50px;
@@ -2056,13 +2056,15 @@ Looking Details
 }
 
 .my-profile .about-me dl dt {
-  font-size: .75em;
   margin-bottom: 0px;
-  color: #ccc;
+  color: #333333;
+  float: left;
+  clear: left;
 }
 
 .my-profile .about-me dl dd {
   margin-bottom: 5px;
+  padding-left: 10px;
   color: #000;
 }
 
@@ -2074,6 +2076,22 @@ Looking Details
   width: 29%;
   max-width: 5em;
   max-height: 4em;
+}
+
+/* Code for back-link */
+
+.back-link {
+  margin-bottom: 20px;
+}
+
+.back-link a {
+  color: #f7953d;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.back-link a i {
+  color: #f7953d;
 }
 
 /* My profile - roommates */
