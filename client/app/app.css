@@ -1948,6 +1948,26 @@ Looking Details
   height: 325px;
 }
 
+.flip-container-room .front {
+  height: 350px;
+}
+
+.flip-container-room .back {
+  height: 350px;
+}
+
+.flip-container-room {
+  perspective: 1000;
+  -webkit-perspective: 1000;
+  -ms-perspective: 1000;
+}
+/* flip the pane when hovered */
+.flip-container-room:hover .flipper, .flip-container-room.hover .flipper {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+}
+
 /* flip speed goes here */
 .flipper {
   transition: 0.6s;
