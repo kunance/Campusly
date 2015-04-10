@@ -19,6 +19,7 @@
     vm.tempEducation = data[1];
     vm.tempAddress = data[2];
     vm.submitted = false;
+    vm.submittedAddress = false;
     vm.ddlYesNoSelect = [{value: true, text: 'Yes'}, {value: false, text: 'No'}];
     /*
      *  defining functions
@@ -55,22 +56,27 @@
     /*
      *  address data management
      */
-    function saveAddress (input) {
-      var zip = input.zip.toString();
-      var trimmedZip = zip.replace(/\s+/g, '');
-      input.zip = Number(trimmedZip);
-      input.latitude = input.location.latitude;
-      input.longitude = input.location.longitude;
-      if(AddressStatus){
-        common.dataservice.editAddress(vm.me.id, addressId, input, function () {
-          common.logger.success('Address successfully updated');
-        });
-      }else{
-        common.dataservice.addAddress(vm.me.id, input)
-        .$promise
-        .then(function () {
-          common.logger.success('Address successfully added.');
-        })
+    function saveAddress (addressForm,input) {
+      vm.submittedAddress = true;
+      if(addressForm.$valid){
+        var zip = input.zip.toString();
+        var trimmedZip = zip.replace(/\s+/g, '');
+        input.zip = Number(trimmedZip);
+        input.latitude = input.location.latitude;
+        input.longitude = input.location.longitude;
+        if(AddressStatus){
+          common.dataservice.editAddress(vm.me.id, addressId, input, function () {
+            common.logger.success('Address successfully updated');
+          });
+        }else{
+          common.dataservice.addAddress(vm.me.id, input)
+          .$promise
+          .then(function () {
+            common.logger.success('Address successfully added.');
+          })
+        }
+      } else {
+        common.logger.error('Please input all required fields')
       }
     }
     /*
