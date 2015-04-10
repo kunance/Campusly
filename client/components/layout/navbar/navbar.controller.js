@@ -5,9 +5,10 @@
     .module('RentedApp')
     .controller('NavbarCtrl', NavbarCtrl);
 
-  NavbarCtrl.$inject = ['$scope', 'Auth', 'common'];
+  NavbarCtrl.$inject = ['$scope', 'Auth', 'common', '$window'];
 
-  function NavbarCtrl($scope, Auth, common) {
+  function NavbarCtrl($scope, Auth, common, $window) {
+    $scope.loadFB = FB;
     //$scope.menu = [{
     //  'title': 'Home',
     //  'state': '/'

@@ -12,14 +12,16 @@
           },
           link: function (scope, element, attrs) {
             if (!$window.FB) {
-              // Load Facebook SDK if not already loaded
-              $.getScript('//connect.facebook.net/en_US/sdk.js', function () {
-                $window.FB.init({
-                  appId: 1482591365325802,
-                  xfbml: true,
-                  version: 'v2.3',
-                  picture:'http://i61.tinypic.com/2dj1e84.jpg'
-                });
+                $.getScript('//connect.facebook.net/en_US/sdk.js', function () {
+                  $window.fbAsyncInit = function() {
+                    console.log('async call trigger');
+                    $window.FB.init({
+                      appId      : '1482591365325802',
+                      xfbml      : true,
+                      version    : 'v2.3',
+                      cookie     : true
+                    });
+                  };
                 renderLikeButton();
               });
             } else {
