@@ -32,7 +32,6 @@ function respondWith(res, statusCode) {
 
 function adoptData(input) {
   var adopted =JSON.parse(JSON.stringify(input));
-  adopted.apt = Number(input.apt);
   adopted.location = {
     latitude: input.latitude,
     longitude: input.longitude
