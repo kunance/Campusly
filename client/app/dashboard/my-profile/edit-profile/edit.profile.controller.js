@@ -19,6 +19,7 @@
     vm.tempEducation = data[1];
     vm.tempAddress = data[2];
     vm.submitted = false;
+    vm.ddlYesNoSelect = [{value: true, text: 'Yes'}, {value: false, text: 'No'}];
     /*
      *  defining functions
      */

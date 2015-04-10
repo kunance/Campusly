@@ -8,7 +8,7 @@
   NavbarCtrl.$inject = ['$scope', 'Auth', 'common', '$window'];
 
   function NavbarCtrl($scope, Auth, common, $window) {
-    $scope.loadFB = FB;
+    if($window.FB) $scope.loadFB = $window.FB;
     //$scope.menu = [{
     //  'title': 'Home',
     //  'state': '/'
