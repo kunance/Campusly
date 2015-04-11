@@ -279,7 +279,6 @@ Posting input text type
 }
 
 .input-post-readonly {
-  border-radius: 50px;
 }
 
 .input-post-readonly input[type="number"] {
@@ -2994,4 +2993,41 @@ opacity: 0;
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
   }
+}
+.alert {
+  font-size: 15px;
+  font-size: 13px;
+  line-height: 1.5;
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 16px 18px;
+  padding-left: 48px;
+  color: #FFFFFF;
+  background-color: #195647;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+.alert span {
+  font-size: 20px;
+  line-height: 16px;
+  position: absolute;
+  top: 17px;
+  left: 16px; }
+
+.alert.warning {
+  background-color: #91341F; }
+.alert.success {
+  background-color: #01485E; }
+.light .alert.warning {
+  color: #91341F;
+  background-color: #FAC1B4; }
+.light .alert.success {
+  color: #01485E;
+  background-color: #94D6E8; }
+.light .alert.neutral {
+  color: #3A4351;
+  background-color: #E0E5E8; }
+.input-group-btn .btn-default {
+  height: 35px;
 }
