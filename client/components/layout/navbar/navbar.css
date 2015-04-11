@@ -40,3 +40,7 @@ header.picture{
   font-size: 1.6em;
   cursor: pointer;
 }
+
+.fb-like{
+  bottom: 3px;
+}
