@@ -26,27 +26,43 @@
           </div>
           <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
             <dl>
-              <dt>Name&nbsp;&nbsp;</dt>
-              <dd>{{myProfile.tempMe.firstname}} {{myProfile.tempMe.lastname}} </dd>
-              <dt>University&nbsp;&nbsp;</dt>
-              <dd>{{myProfile.education.educationCenterName.name}}</dd>
-              <dt>Year&nbsp;&nbsp;</dt>
-              <dd>{{myProfile.education.graduationDate | date:'yyyy'}}</dd>
-              <dt>Major&nbsp;&nbsp;</dt>
-              <dd>{{myProfile.education.major}}</dd>
-              <dt>About Me&nbsp;&nbsp;</dt>
-              <dd> <p class="quote" ng-if="myProfile.me.aboutMe"><br>{{myProfile.me.aboutMe}} </p> </dd>
+              <dt>Name</dt>
+              <dd>
+                <p>&nbsp&nbsp{{myProfile.tempMe.firstname}} {{myProfile.tempMe.lastname}}</p>
+              </dd>
+              <dt>University</dt>
+              <dd>
+               <p>&nbsp&nbsp{{myProfile.education.educationCenterName.name}}</p>
+              </dd>
+              <dt>Year</dt>
+              <dd>
+                <p>&nbsp&nbsp{{myProfile.education.graduationDate | date:'yyyy'}}</p>
+              </dd>
+              <dt>Major</dt>
+              <dd>
+                <p>&nbsp&nbsp{{myProfile.education.major}}</p>
+              </dd>
+              <dt>About Me</dt>
+              <dd>
+                <p class="quote" ng-if="myProfile.me.aboutMe"><br/>"{{myProfile.me.aboutMe}}"</p>
+              </dd>
             </dl>
 
           </div>
           <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
             <dl>
-              <dt>Phone Number&nbsp;&nbsp;</dt>
-              <dd ng-show="myProfile.me.phone">{{myProfile.me.phone}}</dd>
-              <dt>Address&nbsp;&nbsp;</dt>
-              <dd ng-show="myProfile.address.streetAddress">{{myProfile.address.streetAddress.streetNumeric}} {{myProfile.address.streetAddress.streetAddress}}</dd>
-              <dt>City State Zip&nbsp;&nbsp;</dt>
-              <dd ng-show="myProfile.address.streetAddress">{{myProfile.address.streetAddress.city}}, {{myProfile.address.streetAddress.state}} {{myProfile.address.streetAddress.zip}} </dd>
+              <dt>Phone Number</dt>
+              <dd>
+                &nbsp&nbsp{{myProfile.me.phone}}
+              </dd>
+              <dt>Address</dt>
+              <dd>
+                &nbsp&nbsp{{myProfile.address.streetAddress.streetNumeric}} {{myProfile.address.streetAddress.streetAddress}}
+              </dd>
+              <dt>City State Zip</dt>
+              <dd ng-show="myProfile.address.streetAddress">
+                &nbsp&nbsp{{myProfile.address.streetAddress.city}}, {{myProfile.address.streetAddress.state}} {{myProfile.address.streetAddress.zip}}
+              </dd>
             </dl>
           </div>
         </div>

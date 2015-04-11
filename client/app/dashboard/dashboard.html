@@ -1,6 +1,6 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
-<div ui-view="">
+<div ui-view="" autoscroll="true">
   <div class="main-wrapper" cg-busy="{promise:dashboard.busy, message:'Loading dashboard... Please wait'}">
     <div class="container">
       <div class="row">
@@ -114,15 +114,15 @@
 
             <h2 class="section-title"> My Posts - Available Room</h2>
 
-            <div class="white-box my-listings" >
-              <h2 ng-if="!dashboard.myRoomListings.length" >
+            <div class="white-box my-listings">
+              <h2 ng-if="!dashboard.myRoomListings.length">
                 You don't have anything posted yet.
                 <small>
                   <a ui-sref="addNewLooking"><br/>Click here</a> to add looking.
                   <a ui-sref="addRoom"><br/>Click here</a> to add room.
                 </small>
               </h2>
-              <slick dots="true" class="slider row" slides-to-show="1" slides-to-scroll="1" ng-if="dashboard.myRoomListings.length">
+              <slick ng-if="dashboard.myRoomListings.length" dots="true" class="slider row" slides-to-show="1" slides-to-scroll="1">
 
                 <!-- start list box -->
                 <div class="list-item" ng-repeat="room in dashboard.myRoomListings">

@@ -42,15 +42,18 @@
      *  personal data management
      */
     function changePersonalData(userDataForm) {
+      vm.submittedData = true;
       if(userDataForm.$valid) {
         common.Auth.updateUser(vm.tempMe)
         .then(function (user) {
          common.Auth.setCurrentUser(user);
          common.logger.success('Personal data successfully changed.');
        })
-        .catch(function (err) {
+        .catch(function () {
           common.logger.error('Something went wrong. Changes are not saved.');
         });
+      } else {
+        common.logger.error('Please input all required fields');
       }
     }
     /*
@@ -76,7 +79,7 @@
           })
         }
       } else {
-        common.logger.error('Please input all required fields')
+        common.logger.error('Please input all required fields');
       }
     }
     /*
@@ -100,7 +103,9 @@
           common.$state.reload();
         })
       }
-    } else {return false;}
+    } else {
+        common.logger.error('Please input all required fields');
+      }
     }
     /*
      *  profile picture upload config

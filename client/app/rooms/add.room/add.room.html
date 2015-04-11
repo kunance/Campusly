@@ -401,8 +401,10 @@
                       <input required type="number" min="0" id="zip" name="zip" class="form-control"  placeholder="Zip code" ng-model="vm.property.streetAddress.zip" readonly ng-class="{'educationError': addNewRoomForm.zip.$invalid && vm.submitted}"/>
 
                     </div>
-<p class="help-block" style="font-size: 0.9em" ng-if="addNewRoomForm.$error.required.length>0 && vm.submitted">{{addNewRoomForm.$error.required.length}} more field(s) are required!</p>
-<p class="help-block" style="font-size: 0.9em" ng-if="addNewRoomForm.$error.max && vm.submitted">Maximum 10 roommates allowed</p>
+                    <br/>
+                    <p class="alert warning" ng-if="addNewRoomForm.$error.required.length>0 && vm.submitted"><i style="color: white" class="fa fa-exclamation-triangle"></i>&nbsp&nbspPlease fill in all required fields. {{addNewRoomForm.$error.required.length}} more required.</p>
+                    <p class="alert warning" ng-if="addNewRoomForm.$error.max && vm.submitted"><i style="color: white" class="fa fa-exclamation-triangle"></i>&nbsp&nbspMaximum 10 roommates allowed</p>
+
                   </div>
 
                 </div>
