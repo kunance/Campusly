@@ -22,7 +22,6 @@
     vm.myRoomListings = data[3];
     vm.numberOf = data[4].length;
     vm.aroundYou = data[5];
-    vm.limit = 20;
     /*
      *  prerender.io
      */
