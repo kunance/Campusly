@@ -52,15 +52,12 @@ module.exports.withinUniversity = function(universityId, distanceMeters, cb) {
   var within = "SELECT p.* FROM property p, university u WHERE u.id = :univId AND ST_DWithin(p.geoloc, u.geoloc, :distMeters, false)";
   sequelize.query(within, { replacements: {univId: universityId, distMeters: distanceMeters}}).then(function(properties) {
 
-//    console.log(properties[0]);
-
     properties[0].forEach( function(property) {
-//      console.log(property.id);
       propertyIds.push(property.id);
     });
     cb(propertyIds);
   });
-}
+};
 
 
 /**
@@ -90,28 +87,20 @@ module.exports.sortRoomToUnivDist = function(universityId, roomListings, sortOrd
       roomListingIds = roomListingIds + ", " + rl.roomDetails.id;
     }
   });
-  roomListingIds = roomListingIds + ')'
- // console.log("Room listing ids to order distance against: ", roomListingIds);
+  roomListingIds = roomListingIds + ')';
 
   var within = 'SELECT rl.id FROM room_listing as rl, property as prop, university as univ WHERE rl.id IN' + roomListingIds + ' AND univ.id = :univId AND rl."propertyId" = prop.id ORDER BY ST_Distance(univ.geoloc, prop.geoloc)';
   sequelize.query(within, { replacements: {univId: universityId}, type: sequelize.QueryTypes.SELECT }).then(function(roomIds) {
 
- //   console.log("Room listing ids returned from sort in order of distance from university: ", roomIds);
-
-
     if(sortOrder === "descending") {
       roomIds.reverse();
- //     console.log("Reversed room listing: ", roomIds);
     }
 
     var sortedRoomListings = [];
 
     roomIds.forEach( function(roomId) {
-    //  console.log(roomId);
       for(var rlIndex in roomListings) {
-      //  console.log(roomListings[rlIndex].roomDetails.id );
          if(roomListings[rlIndex].roomDetails.id === roomId.id ) {
-       //   console.log("Adding room listing: ", roomListings[rlIndex].roomDetails.id, " to sorted list");
            sortedRoomListings.push(roomListings[rlIndex]);
            break;
          }
@@ -120,5 +109,5 @@ module.exports.sortRoomToUnivDist = function(universityId, roomListings, sortOrd
 
     cb(null, sortedRoomListings);
   });
-}
+};
 

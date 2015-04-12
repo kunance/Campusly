@@ -9,6 +9,7 @@ var router = express.Router();
 router.get('/',/* auth.hasRole('admin'),*/ controller.index);
 router.delete('/:id', /*auth.hasRole('admin'),*/ controller.destroy);
 router.get('/me', auth.isAuthenticated(), controller.me);
+router.get('/around', auth.isAuthenticated(), controller.aroundMe);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.put('/:id/info', auth.isAuthenticated(), controller.changeInfo);
 router.post('/:id/profileImages', auth.isAuthenticated(), controller.changeProfileImage);

@@ -5,11 +5,13 @@ var sqldb = require('../../sqldb');
 var User = sqldb.model('rentedUser');
 var Vehicle = sqldb.model('userVehicle');
 var Pets = sqldb.model('pet');
+var Education = sqldb.model('userEducation');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var s3 = require('../../components/aws-s3/index');
 var UserCurAddressUnivCoords = sqldb.model('userCurAddressUnivCoords');
+var usersWithin = require('../../models/usersWithin');
 
 var validationError = function(res, statusCode) {
   statusCode = statusCode || 422;
@@ -50,6 +52,33 @@ exports.index = function(req, res) {
 /**
  * Get my info
  */
+
+exports.aroundMe = function(req, res, next) {
+  var userAttributes = ['id', 'aboutMe', 'firstname', 'email', 'lastname', 'profileImage', 'role', 'facebook'];
+  var educationAttributes = ['educationCenterName', 'graduationDate'];
+  usersWithin.getAroundYou(req.user.id, req.query.distance, function (usersIds) {
+    User.findAll({
+      where: {
+        id: usersIds
+      },
+      limit: req.query.limit,
+      include:[
+        { model: Education, attributes: educationAttributes, as: 'usereducationUsers'}]
+      , attributes: userAttributes
+    })
+      .then(function(user) {
+        if (!user) {
+          return res.status(401).end();
+        } else {
+          return res.json(user);
+        }
+      })
+      .catch(function(err) {
+        return next(err);
+      });
+  });
+
+};
 
 exports.me = function(req, res, next) {
   var userAttributes = ['id', 'aboutMe', 'confirmedEmail', 'createdAt',
@@ -236,17 +265,14 @@ exports.downloadProfileImage = function(req, res, next) {
 };
 
 exports.currentAddressAndUniv = function(req, res, next) {
-  console.log('Enter!!!!!!!!!!!!!!!!', req.params.id);
   var attributes = ['userId', 'addressLatitude', 'addressLongitude', 'univLatitude', 'univLongitude', 'univName'];
   UserCurAddressUnivCoords.findAll({})
     .then(function(coords) {
       console.log(coords);
       if (!coords) {
-        console.log('nema ih');
         return res.send();
       }
       else{
-        console.log('ima ih');
         res.json(coords);
       }
     })

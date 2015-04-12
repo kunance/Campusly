@@ -16,6 +16,13 @@
               controller:'password'
             }
           },
+          aroundMe: {
+            method: 'GET',
+            isArray:true,
+            params: {
+              controller:'around'
+            }
+          },
           get: {
             method: 'GET',
             params: {

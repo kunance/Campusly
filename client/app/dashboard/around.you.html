@@ -1,0 +1,49 @@
+<h2 class="section-title">Students around you</h2>
+<div class="white-box looking-for-room">
+  <h2 ng-if="!dashboard.aroundYou.length">
+    There is no students around you right now
+    <!--<small>-->
+      <!--<a ui-sref="addNewLooking"><br/>Click here</a> to add looking.-->
+    <!--</small>-->
+  </h2>
+  <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.aroundYou" init-onload="true" infinite="false" data="dashboard.aroundYou" ng-if="dashboard.aroundYou.length">
+    <!-- start aroundYou box -->
+
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="around in dashboard.aroundYou track by $index">
+      <!--<a style="text-decoration: none" ui-sref="lookingDetail({id:looking.id})">-->
+        <div  class="media">
+          <div class="media-left">
+            <img ng-if="around.profileImage" ng-src="api/images{{around.profileImage}}" class="img-circle" height="100px" width="100px">
+            <i ng-if="!around.profileImage" class="fa fa-user fa-5x"></i>
+          </div>
+          <div class="media-body" style="height: 0;">
+            <h4 class="media-heading user-name">
+              {{around.firstname}} {{around.lastname[0]}}.
+              <!--{{around.usereducationUsers[0].educationCenterName}}-->
+              <!--{{around.usereducationUsers[0].graduationDate | date:'yyyy'}}-->
+            </h4>
+            <div style="font-size: 0.8em;">
+              <dl>
+                <dt>University/College:&nbsp;&nbsp;</dt>
+                <dd ng-show="around.usereducationUsers[0].educationCenterName">{{around.usereducationUsers[0].educationCenterName}}</dd>
+                <dd ng-hide="around.usereducationUsers[0].educationCenterName">No university entered</dd>
+
+                <dt>Graduation Year:&nbsp;&nbsp;</dt>
+                <dd ng-show="around.usereducationUsers[0].graduationDate">{{around.usereducationUsers[0].graduationDate | date:'yyyy'}}</dd>
+                <dd ng-hide="around.usereducationUsers[0].graduationDate">N/A</dd>
+              </dl>
+            </div>
+          </div>
+          <p ng-show="around.aboutMe" class="quote text-container-aroundYou">{{around.aboutMe}}</p>
+          <p ng-hide="around.aboutMe" class="quote text-container-aroundYou">No description available</p>
+          <hr/>
+          <a ng-href="{{around.facebook}}" ng-if="around.facebook" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
+          <a ng-href="mailto:{{around.email}}?Subject=Hello" target="_top"><i class="fa fa-envelope fa-2x"></i></a>
+        </div>
+      <!--</a>-->
+    </div>
+    <!-- end around box -->
+  </slick>
+  <hr>
+  <!--<a class="pull-right btn-rented-event view-all" ui-sref="looking">View All</a>-->
+</div>

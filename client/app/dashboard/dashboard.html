@@ -109,6 +109,9 @@
             <a class="pull-right btn-rented-event view-all" ui-sref="looking">View All</a>
           </div>
 
+          <!--Around you partial-->
+          <div ng-include="'app/dashboard/around.you.html'"></div>
+
           <!-- My Available Rooms Posts - Hides if no Looking posts-->
           <div ng-show="dashboard.myRoomListings.length" class="posts-dashboard-title">
 
