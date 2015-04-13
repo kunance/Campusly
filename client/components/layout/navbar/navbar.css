@@ -28,3 +28,19 @@ header.navbar-wrapper .navbar {
 header.picture{
   background-image: url(./../../../assets/images/jumbotron/nav.jpg);
 }
+.facebookNavbar {
+  color: #3b5998;
+  font-size: 0.8em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.facebookNavbarIcon {
+  color: #3b5998;
+  font-size: 1.6em;
+  cursor: pointer;
+}
+
+.fb-like{
+  bottom: 3px;
+}

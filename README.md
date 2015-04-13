@@ -159,3 +159,10 @@ Process for creating a new database:
 Required to be done separately 
 
 =====
+
+Process for restarting server after server changes
+
+ps ax | grep node
+find all node proccess running
+sudo kill <pid>
+forever start server/app.js

@@ -23,11 +23,12 @@ angular.module('RentedApp', [
   .run(run)
   .factory('authInterceptor', authInterceptor);
 
-  config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider'];
-  function config($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+  config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$uiViewScrollProvider'];
+  function config($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $uiViewScrollProvider) {
       $urlRouterProvider
         .otherwise('/dashboard');
   $locationProvider.html5Mode(true);
+  $uiViewScrollProvider.useAnchorScroll();
   $httpProvider.interceptors.push('authInterceptor');
   $locationProvider.hashPrefix('!');
   $httpProvider.interceptors.push(['$q', '$injector', function ($q, $injector) {

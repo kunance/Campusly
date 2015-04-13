@@ -273,21 +273,21 @@
       <!-- Looking Details -->
 
       <div class="row post-padding">
-        <div class="col-xs-10 col-sm-10 col-xs-offset-2 col-sm-offset-2 input-post">
+        <div class="col-xs-11 col-sm-11 input-post">
           <textarea name="area" id="area" cols="60" rows="3" ng-model="newLooking.tempLooking.area"  class="form-control" placeholder="Enter looking post details (optional)"></textarea><br/>
         </div>
       </div>
 
-        <p class="help-block" style="font-size: 0.9em" ng-if="newLookingForm.$error.required.length>0 && newLooking.submitted">{{newLookingForm.$error.required.length}} more field(s) are required!</p>
-        <p class="help-block" style="font-size: 0.9em" ng-if="newLookingForm.$error.max && newLooking.submitted">Maximum 10 roommates allowed</p>
-
-        <!--<button ng-click="" class="btn btn-primary">Delete</button>-->
-
         <div class="row post-padding">
-          <div class="col-xs-12 col-sm-12">
-            <button type="submit" class="btn-rented-medium primary pull-right">Save</button>
+          <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-md-offset-1">
+            <p class="light alert warning" ng-if="newLookingForm.$error.required.length>0 && newLooking.submitted"><i style="color: white" class="fa fa-exclamation-triangle"></i>&nbsp&nbspPlease fill in all required fields. {{newLookingForm.$error.required.length}} more required.</p>
+            <p class="light alert warning" ng-if="newLookingForm.$error.max && newLooking.submitted"><i style="color: white" class="fa fa-exclamation-triangle"></i>&nbsp&nbspMaximum 10 roommates allowed</p>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 ">
+            <button type="submit" class="btn-rented-medium primary">Save</button>
           </div>
         </div>
+
 
       </form>
 

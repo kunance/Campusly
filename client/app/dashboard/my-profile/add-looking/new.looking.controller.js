@@ -42,7 +42,6 @@
           common.logger.error('Error while saving looking.');
         });
       } else {
-        console.log(form);
         vm.errors = true;
       }
     };
