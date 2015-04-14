@@ -1256,6 +1256,14 @@ Dashboard looking truncate text style
   max-height: 4.5em; /*display ellipsis after 3 lines*/
 }
 
+.text-container-aroundYou {
+  line-height: 1.5;
+  overflow: hidden;
+  position: relative;
+  max-height: 4.5em; /*display ellipsis after 3 lines*/
+  min-height: 4.5em; /*fixed fb and email*/
+}
+
 .text-container-looking:before  {
   background: #ffffff;
   bottom: 0;
@@ -3030,4 +3038,7 @@ opacity: 0;
   background-color: #E0E5E8; }
 .input-group-btn .btn-default {
   height: 35px;
+}
+.facebookAroundYou{
+  color: #3b5998;
 }

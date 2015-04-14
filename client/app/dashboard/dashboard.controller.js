@@ -21,6 +21,7 @@
     vm.availableRooms = data[2];
     vm.myRoomListings = data[3];
     vm.numberOf = data[4].length;
+    vm.aroundYou = data[5];
     /*
      *  prerender.io
      */
