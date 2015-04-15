@@ -18,7 +18,8 @@
             resolve:{
               currentUser:getCurrentUser,
               data:getData
-            }
+            },
+            cache:false
           });
       }
 
@@ -26,6 +27,7 @@
   function getCurrentUser(common, $q) {
     var deferred = $q.defer();
     common.Auth.getCurrentUser(function(user) {
+      console.log(user);
       deferred.resolve(user);
     });
     return deferred.promise;
@@ -39,6 +41,7 @@
       var userRoomLookings = RoomListing.query({userId: currentUser.id});
       var requests = common.dataservice.getRequests(currentUser.id);
       var aroundYou= UserResource.aroundMe({distance:( 5 * 1609 ), limit: 20});// 5 miles default value limit 6
-      return $q.all([allLookings.$promise, getUserLookings.$promise, allRoomListing.$promise, userRoomLookings.$promise, requests.$promise, aroundYou.$promise]);
+      var edu = common.dataservice.getAllEducations(currentUser.id);
+      return $q.all([allLookings.$promise, getUserLookings.$promise, allRoomListing.$promise, userRoomLookings.$promise, requests.$promise, aroundYou.$promise, edu.$promise]);
   }
 }());

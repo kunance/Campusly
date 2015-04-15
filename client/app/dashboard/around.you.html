@@ -1,9 +1,12 @@
 <h2 class="section-title">Students Around You</h2>
 <!--<input class="pull-right" type="range" name="points" min="1" max="5" step="1" style="position: relative; width: 200px;"/>-->
 <div class="white-box">
-  <h2 ng-if="!dashboard.aroundYou.length">
+  <h3 ng-if="!dashboard.aroundYou.length && dashboard.education.id">
     There is no students around you right now
-  </h2>
+  </h3>
+  <h3 ng-if="!dashboard.education.id">
+    Please <a ui-sref="editProfile">update</a> your university to view students around you.
+  </h3>
   <slick dots="true" class="slider row" slides-to-show="4" slides-to-scroll="4" responsive="dashboard.breakpoints.aroundYou" init-onload="true" infinite="false" data="dashboard.aroundYou" ng-if="dashboard.aroundYou.length">
 
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="around in dashboard.aroundYou track by $index">
@@ -31,5 +34,4 @@
   </slick>
   <hr>
   <a class="pull-right btn-rented-event view-all" ui-sref="aroundYou">View All</a>
-  <hr>
 </div>

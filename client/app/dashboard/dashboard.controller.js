@@ -7,21 +7,23 @@
   .controller('DashboardCtrl',DashboardCtrl);
 
 
-  DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'data'];
+  DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'data', '$state',  '$stateParams'];
 
-  function DashboardCtrl(common, $scope, currentUser, data) {
+  function DashboardCtrl(common, $scope, currentUser, data, $state, $stateParams) {
     var vm = this;
     /*
      *  Fetch all required data for controller from route resolve (testing)
      */
     vm.busy = data; //one promise witch need to be resolved in order to initialize controller (we use for show busy sign)
     vm.me = currentUser;
+    vm.tempMe = Object.create(vm.me);
     vm.lookingRoom = data[0];
     vm.userLookings = data[1];
     vm.availableRooms = data[2];
     vm.myRoomListings = data[3];
     vm.numberOf = data[4].length;
     vm.aroundYou = data[5];
+    vm.education = data[6];
     /*
      *  prerender.io
      */
