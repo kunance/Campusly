@@ -1,10 +1,10 @@
-<h2 class="section-title">Students around you</h2>
+<h2 class="section-title">Students Around You</h2>
 <!--<input class="pull-right" type="range" name="points" min="1" max="5" step="1" style="position: relative; width: 200px;"/>-->
 <div class="white-box">
   <h2 ng-if="!dashboard.aroundYou.length">
     There is no students around you right now
   </h2>
-  <slick dots="true" class="slider row" slides-to-show="5" slides-to-scroll="5" responsive="dashboard.breakpoints.aroundYou" init-onload="true" infinite="false" data="dashboard.aroundYou" ng-if="dashboard.aroundYou.length">
+  <slick dots="true" class="slider row" slides-to-show="4" slides-to-scroll="4" responsive="dashboard.breakpoints.aroundYou" init-onload="true" infinite="false" data="dashboard.aroundYou" ng-if="dashboard.aroundYou.length">
 
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="around in dashboard.aroundYou track by $index">
               <img ng-if="around.profileImage" ng-src="api/images{{around.profileImage}}" class="img-circle center-image" height="80px" width="80px" style="margin-top:0">
@@ -13,7 +13,7 @@
             <h4 class="media-heading user-name" style="text-align: center">
               {{around.firstname}} {{around.lastname[0] | uppercase}}.
             </h4>
-            <div style="font-size: 0.6em; text-align: center">
+            <div style="font-size: 0.8em; text-align: center">
               <dl>
                 <dd ng-show="around.usereducationUsers[0].educationCenterName">{{around.usereducationUsers[0].educationCenterName}}</dd>
                 <dd ng-hide="around.usereducationUsers[0].educationCenterName">No university entered</dd>
@@ -25,7 +25,7 @@
           </div>
       <div style="text-align: center; display: inline-block;width: 100%;">
           <a ng-href="{{around.facebook}}" ng-if="around.facebook" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
-          <a ng-href="mailto:{{around.email}}?Subject=Hello" target="_top"><i class="fa fa-envelope fa-2x"></i></a>
+          <a ng-href="mailto:{{around.email}}?Subject=Hello"><i class="fa fa-envelope fa-2x"></i></a>
       </div>
     </div>
   </slick>
