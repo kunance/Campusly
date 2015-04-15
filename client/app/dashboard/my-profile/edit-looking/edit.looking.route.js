@@ -34,7 +34,9 @@
   function getData(common, $stateParams, currentUser, $q) {
     var lookingId = $stateParams.id;
     var looking = common.dataservice.getLooking(currentUser.id, lookingId);
-    return $q.all([looking.$promise]);
+    var univ = common.dataservice.getAllUniversities();
+    var edu = common.dataservice.getAllEducations(currentUser.id);
+    return $q.all([looking.$promise, univ.$promise, edu.$promise]);
   }
 
 }());

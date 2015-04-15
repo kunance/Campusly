@@ -5,18 +5,19 @@
     .module('app.dashboard')
     .controller('AddNewRoomCtrl',AddNewRoomCtrl);
 
-  AddNewRoomCtrl.$inject = ['$scope', 'common', '$state', 'RoomListing'];
+  AddNewRoomCtrl.$inject = ['$scope', 'common', 'data', 'RoomListing', 'currentUser'];
 
-  function AddNewRoomCtrl($scope, common, $state, RoomListing) {
+  function AddNewRoomCtrl($scope, common, data, RoomListing, currentUser) {
 
     /* jshint validthis: true */
     var vm = this;
+    vm.me = currentUser;
+    vm.universitiesList = data[0];
+    vm.education = data[1];
     vm.errors = false;
 
     vm.room = {};
     vm.property = {};
-
-    vm.me = common.Auth.getCurrentUser();
 
     vm.create = function (form) {
       vm.submitted = true;

@@ -14,6 +14,8 @@
      */
       vm.me = currentUser;
       vm.tempLooking = data[0];
+      vm.universitiesList = data[1];
+      vm.education = data[2];
       var lookingId = $stateParams.id;
     /*
      *  enables data binding to yes / no drop down values

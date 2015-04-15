@@ -19,7 +19,8 @@
           currentUser: getCurrentUser,
           data:getData
         },
-      authenticate: true
+      authenticate: true,
+      cache:false
     });
   }
 

@@ -18,6 +18,8 @@
     vm.roommates = data[1];
     vm.room = data[2];
     vm.ddlYesNoSelect = [{value: true, text: 'Yes'}, {value: false, text: 'No'}];
+    vm.universitiesList = data[3];
+    vm.education = data[4];
 
     var roomId = $stateParams.id;
     logger.log('Room id: ', roomId);

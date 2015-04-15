@@ -1,0 +1,58 @@
+<div ng-include="'components/layout/navbar/navbar.html'"></div>
+<div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
+<div class="main-wrapper">
+
+  <div class="container">
+
+    <div class="rooms">
+
+      <div class="row">
+        <div class="page-header col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h2>Students around you</h2>
+        </div>
+      </div>
+
+      <!-- Main room view -->
+
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <slick dots="true" class="slider" init-onload="true" data="around.groups" slides-to-show="1" slides-to-scroll="1" >
+            <div ng-repeat="group in around.groups" class="row">
+              <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 room" ng-repeat="arYou in group">
+                    <div class="front white-box">
+                      <div class="center-image">
+                        <img ng-if="arYou.profileImage" ng-src="api/images{{arYou.profileImage}}" class="img-circle center-block looking-grid-profile-img">
+                        <i ng-if="!arYou.profileImage" class="fa fa-user fa-4x" style="text-align: center; display: inline-block;width: 100%;"></i>
+                      </div>
+                      <div class="">
+                        <h4 class="media-heading user-name" style="text-align: center; padding: 20px">
+                          {{arYou.firstname}} {{arYou.lastname[0] | uppercase}}.
+                        </h4>
+                        <div style="font-size: 0.9em; text-align: center">
+                          <dl>
+                            <dd ng-show="arYou.usereducationUsers[0].educationCenterName">{{arYou.usereducationUsers[0].educationCenterName}}</dd>
+                            <dd ng-hide="arYou.usereducationUsers[0].educationCenterName">No university entered</dd>
+
+                            <dd ng-show="arYou.usereducationUsers[0].graduationDate">Graduation: {{arYou.usereducationUsers[0].graduationDate | date:'yyyy'}}</dd>
+                            <dd ng-hide="arYou.usereducationUsers[0].graduationDate">Graduation: N/A</dd>
+                          </dl>
+                        </div>
+                        <div style="text-align: center; display: inline-block;width: 100%;">
+                          <a ng-href="{{arYou.facebook}}" ng-if="arYou.facebook" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
+                          <a ng-href="mailto:{{arYou.email}}?Subject=Hello"><i class="fa fa-envelope fa-2x"></i></a>
+                        </div>
+                      </div>
+
+                    </div>
+              </div>
+            </div>
+          </slick>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+</div> <!-- end main wrapper -->
