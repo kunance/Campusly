@@ -5,11 +5,12 @@
     .module('app.dashboard')
     .controller('NewLookingCtrl', NewLookingCtrl);
 
-  NewLookingCtrl.$inject = ['$scope', 'common', 'currentUser'];
+  NewLookingCtrl.$inject = ['$scope', 'common', 'currentUser', 'data'];
 
-  function NewLookingCtrl($scope, common, currentUser) {
+  function NewLookingCtrl($scope, common, currentUser, data) {
     var vm = this;
-
+    vm.education = data[0];
+    vm.universitiesList = data[1];
     vm.me = currentUser;
     vm.errors = false;
 

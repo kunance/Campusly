@@ -20,8 +20,6 @@
           <slick dots="true" class="slider" init-onload="true" data="around.groups" slides-to-show="1" slides-to-scroll="1" >
             <div ng-repeat="group in around.groups" class="row">
               <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 room" ng-repeat="arYou in group">
-                <div class="" ontouchstart="">
-                  <div class="">
                     <div class="front white-box">
                       <div class="center-image">
                         <img ng-if="arYou.profileImage" ng-src="api/images{{arYou.profileImage}}" class="img-circle center-block looking-grid-profile-img">
@@ -46,8 +44,6 @@
                     <div class="back">
                       <a ui-sref="roomDetail({id: room.roomDetails.id})"> <h2>View Detail</h2> </a>
                     </div>
-                  </div>
-                </div>
               </div>
             </div>
           </slick>

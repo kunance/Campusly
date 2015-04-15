@@ -5,13 +5,15 @@
     .module('app.dashboard')
     .controller('AddNewRoomCtrl',AddNewRoomCtrl);
 
-  AddNewRoomCtrl.$inject = ['$scope', 'common', '$state', 'RoomListing'];
+  AddNewRoomCtrl.$inject = ['$scope', 'common', 'data', 'RoomListing'];
 
-  function AddNewRoomCtrl($scope, common, $state, RoomListing) {
+  function AddNewRoomCtrl($scope, common, data, RoomListing) {
 
     /* jshint validthis: true */
     var vm = this;
     vm.errors = false;
+    vm.universitiesList = data[0];
+    vm.education = data[1];
 
     vm.room = {};
     vm.property = {};

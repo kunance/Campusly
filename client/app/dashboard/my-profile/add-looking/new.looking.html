@@ -25,9 +25,11 @@
           <div class="col-xs-9 col-sm-7 input-post">
             <label for="utilitiesIncluded">Your campus</label><br/>
             <!-- TODO bind data to user university -->
-            <select id="utilitiesIncluded" name="utilities" class="form-control" ng-model="newLooking.tempLooking.utilitiesIncluded" required ng-class="{'educationError': newLookingForm.utilities.$invalid && newLooking.submitted}">
-              <option value="true">Yes</option>
-              <option value="false">No</option>
+            <select id="educationCenterName" class="form-control" required name="universityName"
+                    ng-class="{'educationError': newLookingForm.universityName.$error.required && newLooking.submitted}"
+                    data-ng-model="newLooking.education.educationCenterName"
+                    data-ng-options="university as university.name for university in newLooking.universitiesList"
+                    ng-init="newLooking.education.educationCenterName=newLooking.universitiesList[newLooking.education.universityId-1]">
             </select>
           </div>
         </div>

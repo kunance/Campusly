@@ -30,10 +30,11 @@
               <div class="col-xs-9 col-sm-7 input-post">
                 <label for="leaseType">Your campus</label>
                 <!-- TODO bind data to user university -->
-                <select id="leaseType" class="form-control" ng-model="vm.room.leaseType" required>
-                  <option value="sub-lease">Sub-lease</option>
-                  <option value="month-to-month">Month to month</option>
-                  <option value="lease take over">Lease take over</option>
+                <select id="educationCenterName" class="form-control" required name="universityName"
+                        ng-class="{'educationError': editRoomForm.universityName.$error.required && vm.submitted}"
+                        data-ng-model="vm.education.educationCenterName"
+                        data-ng-options="university as university.name for university in vm.universitiesList"
+                        ng-init="vm.education.educationCenterName=vm.universitiesList[vm.education.universityId-1]">
                 </select>
               </div>
             </div>

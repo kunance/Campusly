@@ -15,12 +15,13 @@
           controller: 'NewLookingCtrl',
           controllerAs: 'newLooking',
           resolve: {
-            currentUser: getCurrentUser
+            currentUser: getCurrentUser,
+            data:getData
           },
-          authenticate: true
+          authenticate: true,
+          cache:false
         })
-    };
-
+    }
 
   getCurrentUser.$inject = ['common', '$q'];
   function getCurrentUser(common, $q) {
@@ -29,6 +30,13 @@
       deferred.resolve(user);
     });
     return deferred.promise;
+  }
+
+  getData.$inject = ['common', '$q', 'currentUser'];
+  function getData(common, $q, currentUser) {
+    var edu = common.dataservice.getAllEducations(currentUser.id);
+    var univ = common.dataservice.getAllUniversities();
+    return $q.all([edu.$promise, univ.$promise]);
   }
 
 }());

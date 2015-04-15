@@ -18,6 +18,7 @@
         currentUser:getCurrentUser,
         data:getData
       },
+      cache:false,
       authenticate: true
     });
   }
@@ -36,7 +37,9 @@
       var user = UserResource.query();
       var roommates= common.dataservice.getAllRoommates(currentUser.id);
       var room = RoomListing.get({userId: currentUser.id, id: $stateParams.id});
-    return $q.all([user.$promise, roommates.$promise, room.$promise]);
+      var univ = common.dataservice.getAllUniversities();
+      var edu = common.dataservice.getAllEducations(currentUser.id);
+    return $q.all([user.$promise, roommates.$promise, room.$promise, univ.$promise, edu.$promise]);
   }
 
 }());
