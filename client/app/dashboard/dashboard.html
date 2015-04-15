@@ -10,10 +10,8 @@
 
           <h2>You</h2>
           <div class="white-box buttons-box">
-
             <a class="btn btn-primary" ui-sref="addRoom">Post Available Room</a>
             <a  class="btn btn-secondary" ui-sref="addNewLooking" ui-sref-opts="{reload:true}">Post Looking</a>
-
           </div>
 
           <!-- Profile -->
@@ -21,18 +19,16 @@
           <div class="white-box profile-sidebar">
             <div class="profile">
               <img class="img-circle" ng-if="dashboard.me.profileImage" ng-src="/api/images{{dashboard.me.profileImage}}">
-              <!--TODO default profile image-->
+              <i ng-if="!dashboard.me.profileImage" class="fa fa-user fa-5x img-circle" style="text-align: center; display: inline-block;width: 100%;"></i>
               <h2> {{dashboard.me.firstname}} {{dashboard.me.lastname}} </h2>
-              <a  class="btn btn-secondary btn-block" ui-sref="myProfile"> Complete Profile </a>
+              <a class="btn btn-secondary btn-block" ui-sref="myProfile"> Complete Profile </a>
               <p><br></p>
               <a ng-if="dashboard.numberOf>0" ui-sref="myProfile" class="inviteRequest">You have {{dashboard.numberOf}} roommate requests</a>
             </div>
           </div>
 
           <div class="feedback">
-
             <p>How we improve Campusly for you? <br>Email us at <a href="mailto:feedback@campusly.org?=Website%20Feedback">feedback@campusly.org</a></p>
-
           </div>
 
         </div>
@@ -72,12 +68,12 @@
 
           <h2 class="section-title">Students Looking</h2>
           <div class="white-box looking-for-room" >
-            <h2 ng-if="!dashboard.lookingRoom.length" >
-              Currently no one is looking for a room, why dont you be the first?
+            <h3 ng-if="!dashboard.lookingRoom.length" >
+              Currently no one is looking for a room, why don't you be the first?
               <small>
                 <a ui-sref="addNewLooking"><br/>Click here</a> to add looking.
               </small>
-            </h2>
+            </h3>
             <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" infinite="false" data="dashboard.lookingRoom" ng-if="dashboard.lookingRoom.length">
               <!-- start room box -->
 
@@ -118,13 +114,13 @@
             <h2 class="section-title"> My Posts - Available Room</h2>
 
             <div class="white-box my-listings">
-              <h2 ng-if="!dashboard.myRoomListings.length">
+              <h3 ng-if="!dashboard.myRoomListings.length">
                 You don't have anything posted yet.
                 <small>
                   <a ui-sref="addNewLooking"><br/>Click here</a> to add looking.
                   <a ui-sref="addRoom"><br/>Click here</a> to add room.
                 </small>
-              </h2>
+              </h3>
               <slick ng-if="dashboard.myRoomListings.length" dots="true" class="slider row" slides-to-show="1" slides-to-scroll="1">
 
                 <!-- start list box -->
@@ -147,8 +143,6 @@
                            <small am-time-ago="room.updatedAt"></small>
                       </span>
 
-
-
                         </div>
                       </div>
 
@@ -157,7 +151,6 @@
                           <img border="0" ng-src="//maps.googleapis.com/maps/api/staticmap?center={{room.relatedPropertyId.latitude}},{{room.relatedPropertyId.longitude}}&zoom=14&scale=2&size=400x250&markers=color:blue%7C{{room.relatedPropertyId.latitude}},{{room.relatedPropertyId.longitude}}&key=AIzaSyAm7woOFr0TOKG0U7jsBF5K3LSifdDjgfs">
                         </div>
                       </div>
-
                     </a>
 
                     <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 col-xs-offset-4 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
@@ -173,7 +166,6 @@
               </slick>
               <hr>
             </div>
-
           </div>
 
           <!-- My Looking Posts - Hides if no Looking posts-->
@@ -182,13 +174,13 @@
             <h2 class="section-title"> My Posts - Looking</h2>
 
             <div class="white-box my-listings" >
-              <h2 ng-if="!dashboard.userLookings.length" >
+              <h3 ng-if="!dashboard.userLookings.length" >
                 You don't have anything posted yet.
                 <small>
                   <a ui-sref="addNewLooking"><br/>Click here</a> to add looking.
                   <a ui-sref="addRoom"><br/>Click here</a> to add room.
                 </small>
-              </h2>
+              </h3>
               <slick dots="true" class="slider row" slides-to-show="1" slides-to-scroll="1" ng-if="dashboard.userLookings.length">
 
                 <!-- start list box -->
@@ -221,15 +213,12 @@
                         </a>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </slick>
               <hr>
             </div>
-
           </div>
-
         </div>
       </div>
     </div>
