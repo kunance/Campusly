@@ -18,7 +18,8 @@
           currentUser : getCurrentUser,
           data : getData
         },
-        authenticate: true
+        authenticate: true,
+        cache:false
       });
   }
 
@@ -32,11 +33,10 @@
     return deferred.promise;
   }
 
-  getData.$inject = ['common', 'currentUser', '$q', 'UserResource'];
-  function getData(common, currentUser, $q, UserResource) {
+  getData.$inject = ['common', 'currentUser', '$q'];
+  function getData(common, currentUser, $q) {
     var edu = common.dataservice.getAllEducations(currentUser.id);
-    var aroundYou= UserResource.aroundMe({distance:( 5 * 1609 ), limit: 20});// 5 miles default value limit 6
-    return $q.all([edu.$promise, aroundYou.$promise]);
+    return $q.all([edu.$promise]);
   }
 
 

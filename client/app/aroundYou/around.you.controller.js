@@ -11,17 +11,13 @@
     var vm = this;
     vm.me = currentUser;
     vm.education = data[0];
-    var currentUniversityId = vm.education.universityId;
 
-    UserResource.aroundMe({distance:( 5 * 1609 ), limit: 20}, function (aroundYou) {
+    UserResource.aroundMe({distance:( /*miles * */ 1609 ), limit: 100}, function (aroundYou) {
       vm.aroundYou = aroundYou;
       vm.groups = vm.aroundYou.inGroupsOf(8);
     }, function (err) {
-      common.logger.error('something went wrong!');
+      common.logger.error('something went wrong! ',err);
     });
-
-
-
 
     function orderSliderButtons() {
       setTimeout(function() {
@@ -30,7 +26,6 @@
           var dotsX = parseInt(slider.find(".slick-dots").css("left"));
           var dotsSize = parseInt(slider.find(".slick-dots").css("width"));
           var nextBtnX = dotsX + dotsSize + 10;
-
           slider.find(".slick-next").css("left", nextBtnX);
         });
       }, 1000);
@@ -43,7 +38,6 @@
     angular.element(document).ready(function () {
       orderSliderButtons();
     });
-
 
     mixpanel.track('aroundYou grid view');
   }
