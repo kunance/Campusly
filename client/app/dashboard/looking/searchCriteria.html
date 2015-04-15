@@ -5,36 +5,36 @@
     <!--start of first col 4-->
     <div class="col-md-4">
 
-      <!-- User university -->
+      <!--&lt;!&ndash; User university &ndash;&gt;-->
 
-      <div class="row" ng-if="looking.education.relatedUniversityId.id">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-building  fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <label for="maxMonthlyRent">Your campus</label>
-          <select id="gender" class="form-control" ng-model="looking.searchCriteria.gender" >
-            <option value="no preference">No preference</option>
-            <option value="male only">Male only</option>
-            <option value="female only">Female only</option>
-          </select>
-        </div>
-      </div>
+      <!--<div class="row" ng-if="looking.education.relatedUniversityId.id">-->
+        <!--<div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">-->
+          <!--<div class="post-bubble">-->
+            <!--<i class="fa fa-building  fa-lg"></i>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-xs-9 col-sm-7 input-post">-->
+          <!--<label for="maxMonthlyRent">Your campus</label>-->
+          <!--<select id="gender" class="form-control" ng-model="looking.searchCriteria.gender" >-->
+            <!--<option value="no preference">No preference</option>-->
+            <!--<option value="male only">Male only</option>-->
+            <!--<option value="female only">Female only</option>-->
+          <!--</select>-->
+        <!--</div>-->
+      <!--</div>-->
 
-      <!-- User DON'T have university -->
+      <!--&lt;!&ndash; User DON'T have university &ndash;&gt;-->
 
-      <div class="row" ng-if="!looking.education.relatedUniversityId.id">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-exclamation-triangle fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <a ui-sref="editProfile">Set your campus to search by distance</a>
-        </div>
-      </div>
+      <!--<div class="row" ng-if="!looking.education.relatedUniversityId.id">-->
+        <!--<div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">-->
+          <!--<div class="post-bubble">-->
+            <!--<i class="fa fa-exclamation-triangle fa-lg"></i>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-xs-9 col-sm-7 input-post">-->
+          <!--<a ui-sref="editProfile">Set your campus to search by distance</a>-->
+        <!--</div>-->
+      <!--</div>-->
 
       <!-- Monthly rent -->
 
