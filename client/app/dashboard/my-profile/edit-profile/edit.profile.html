@@ -90,7 +90,7 @@
             </div>
             <div class="form-group input-post">
               <label for="major">Major</label>
-              <input required type="text" ng-model="editProfile.tempEducation.major" id="major" class="form-control borderRadiusFix" name="major" ng-class="{'educationError': educationForm.major.$error.required && editProfile.submitted}"/>
+              <input type="text" ng-model="editProfile.tempEducation.major" id="major" class="form-control borderRadiusFix" name="major" ng-class="{'educationError': educationForm.major.$error.required && editProfile.submitted}"/>
             </div>
           </div>
         </div>
@@ -100,7 +100,7 @@
             <div class="form-group input-post">
               <label for="start">Graduation date</label>
               <p class="input-group">
-                <input required type="text" id="start" class="form-control borderRadiusFix" datepicker-popup="{{format}}" ng-model="editProfile.tempEducation.graduationDate"
+                <input type="text" id="start" class="form-control borderRadiusFix" datepicker-popup="{{format}}" ng-model="editProfile.tempEducation.graduationDate"
                        is-open="datePickers.EducationStartDate" name="graduation" close-text="Close" ng-class="{'educationError': educationForm.graduation.$error.required && editProfile.submitted}"/>
               <span class="input-group-btn">
                 <button type="btn-rented-medium primary" class="btn btn-default" ng-click="open($event,'EducationStartDate')"><i class="glyphicon glyphicon-calendar"></i></button>
