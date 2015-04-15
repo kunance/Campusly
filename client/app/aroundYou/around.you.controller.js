@@ -12,7 +12,7 @@
     vm.me = currentUser;
     vm.education = data[0];
 
-    UserResource.aroundMe({distance:( /*miles * */ 1609 ), limit: 100}, function (aroundYou) {
+    UserResource.aroundMe({distance:(1609), limit: 80}, function (aroundYou) {
       vm.aroundYou = aroundYou;
       vm.groups = vm.aroundYou.inGroupsOf(8);
     }, function (err) {
