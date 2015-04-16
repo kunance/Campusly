@@ -107,6 +107,10 @@ module.exports = {
     "deletedAt": {
       type: Seq.DATE,
       field: "deletedAt"
+    },
+    "shortName": {
+      type: Seq.TEXT,
+      field: "shortName"
     }
   },
   relations: [{
