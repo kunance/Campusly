@@ -35,7 +35,6 @@ function respondWith(res, statusCode) {
 
 exports.showAllLookings= function(req, res, next) {
   var userAttributes = ['firstname', 'lastname', 'profileImage', 'aboutMe','id'];
-
   var sortAttrs;
 
   if(req.param("sortBy")) {
@@ -78,7 +77,10 @@ exports.showAllLookings= function(req, res, next) {
     order: [ sortAttrs ],
     limit: limit,
     include: [
-      { model: User, attributes: userAttributes, as: 'relatedUserId'}
+      { model: User, attributes: userAttributes, as: 'relatedUserId',
+        include:[
+          { model: Education, as: 'usereducationUsers'}
+        ]}
     ]
   }).then(function(lookings) {
 

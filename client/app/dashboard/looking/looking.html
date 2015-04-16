@@ -48,7 +48,7 @@
         <!--ng-if="look.relatedUserId.id!==looking.me.id" dont use temporary (splicing them on backed)-->
         <div ng-repeat="group in looking.groups" class="row">
           <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 looking" ng-repeat="look in group">
-            <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+            <div class="flip-container-room" ontouchstart="this.classList.toggle('hover');">
               <div class="flipper">
                 <div class="front white-box">
                   <div class="center-image">
@@ -60,6 +60,9 @@
                   <p class="quoteLooking text-container-looking-view" ng-if="!look.relatedUserId.aboutMe">No description available</p>
                   <hr>
                   <ul class="specs">
+
+                    <!--<li> <i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;{{look.relatedUserId.usereducationUsers[0].educationCenterName | date}}</li>-->
+                    <li> <i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;UC Santa Cruz</li>
                     <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{look.moveInDate | date}}</li>
                     <li><i class="fa fa-tag"></i>&nbsp;&nbsp;{{look.maxMonthlyRent | currency}}</li>
                     <li><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{look.roomType}}</li>

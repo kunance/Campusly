@@ -39,6 +39,7 @@
     vm.search = function(showSearch) {
       Lookings.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria}, function (activeLookings) {
         vm.lookings = activeLookings;
+        console.log(activeLookings);  
         vm.groups = vm.lookings.inGroupsOf(8);
         vm.showSearch = showSearch;
         vm.showSort = showSearch;
