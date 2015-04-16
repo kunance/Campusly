@@ -19,15 +19,25 @@
     vm.room = {};
     vm.property = {};
 
-    vm.create = function (form) {
+    vm.create = function (form, education) {
       vm.submitted = true;
 
       if(form.$valid) {
         vm.room.creatorId = vm.me.id;
         RoomListing.create( { userId: vm.me.id}, {room: vm.room, property: vm.property}).$promise.then(
           function (roomListing) {
-            common.logger.success('Room saved');
-            common.$state.go('roomDetail', { id: roomListing.id },{reload: true});
+            var educationInput = {};
+            educationInput.universityId = education.educationCenterName.id;
+            educationInput.educationCenterName = education.educationCenterName.name;
+            common.dataservice.addEducation(vm.me.id, educationInput)
+              .$promise
+              .then(function () {
+                common.logger.success('Room saved');
+                common.$state.go('roomDetail', { id: roomListing.id },{reload: true});
+              })
+              .catch(function (err) {
+                common.logger.error('Error while saving education.',err);
+              });
           }, function (errors) {
             common.logger.error('error while saving room listing');
             console.log('error(s) while saving room listing', errors);

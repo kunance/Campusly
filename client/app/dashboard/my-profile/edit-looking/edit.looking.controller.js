@@ -21,6 +21,10 @@
      *  enables data binding to yes / no drop down values
      */
       vm.ddlYesNoSelect = [{value: true, text: 'Yes'}, {value: false, text: 'No'}];
+      if(vm.education.educationCenterName){
+        var EducationStatus = vm.education.educationCenterName;
+        var educationId = vm.education.id;
+      }
     /*
      *  date pickers options
      */
@@ -42,10 +46,27 @@
     /*
      *  manage with looking
      */
-      vm.saveChanges = function (input) {
+      vm.saveChanges = function (input ,education) {
         common.dataservice.editLooking(vm.me.id, lookingId, input, function () {
-          common.logger.success('Looking updated');
-          common.$state.go('dashboard', {}, {reload: true});
+          var educationInput = {};
+          educationInput.universityId = education.educationCenterName.id;
+          educationInput.educationCenterName = education.educationCenterName.name;
+          if(EducationStatus){
+            common.dataservice.editEducation(vm.me.id, educationId, educationInput, function () {
+              common.logger.success('Education successfully updated');
+              common.$state.reload();
+            });
+          } else {
+            common.dataservice.addEducation(vm.me.id, educationInput)
+              .$promise
+              .then(function () {
+                common.logger.success('Education successfully added.');
+                common.$state.reload();
+              })
+          }
+
+        }, function (err) {
+          console.log('error while updating looking', err);
         });
       };
 
