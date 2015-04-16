@@ -1,4 +1,4 @@
-<h2 class="section-title">Students Around You</h2>
+<h2 class="section-title">Students Around You <small>(within 1 mile)</small></h2>
 <!--<input class="pull-right" type="range" name="points" min="1" max="5" step="1" style="position: relative; width: 200px;"/>-->
 <div class="white-box">
   <h3 ng-if="!dashboard.aroundYou.length && dashboard.address.streetAddress.id">
@@ -7,7 +7,10 @@
   <h3 ng-if="!dashboard.address.streetAddress.id">
     Please <a ui-sref="editProfile">update</a> your current address to view students around you.
   </h3>
-  <slick dots="true" class="slider row" slides-to-show="4" slides-to-scroll="4" responsive="dashboard.breakpoints.aroundYou" init-onload="true" infinite="false" data="dashboard.aroundYou" ng-if="dashboard.aroundYou.length">
+  <h3 ng-if="!dashboard.me.shareProfile">
+    Please <a ui-sref="editProfile">update</a> your preferences to connect with students around you.
+  </h3>
+  <slick dots="true" class="slider row" slides-to-show="4" slides-to-scroll="4" responsive="dashboard.breakpoints.aroundYou" init-onload="true" infinite="false" data="dashboard.aroundYou" ng-if="dashboard.aroundYou.length && dashboard.me.shareProfile">
 
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="around in dashboard.aroundYou track by $index">
               <img ng-if="around.profileImage" ng-src="api/images{{around.profileImage}}" class="img-circle center-image" height="80px" width="80px" style="margin-top:0">
@@ -32,6 +35,6 @@
       </div>
     </div>
   </slick>
-  <hr>
-  <a class="pull-right btn-rented-event view-all" ui-sref="aroundYou">View All</a>
+  <hr ng-if="dashboard.address.streetAddress.id && dashboard.me.shareProfile">
+  <a class="pull-right btn-rented-event view-all" ui-sref="aroundYou" ng-if="dashboard.address.streetAddress.id && dashboard.me.shareProfile">View All</a>
 </div>

@@ -82,7 +82,7 @@ exports.aroundMe = function(req, res, next) {
 
 exports.me = function(req, res, next) {
   var userAttributes = ['id', 'aboutMe', 'confirmedEmail', 'createdAt',
-    'firstname', 'email', 'phone', 'lastname', 'profileImage', 'role', 'facebook', 'shareCreditReport'];
+    'firstname', 'email', 'phone', 'lastname', 'profileImage', 'role', 'facebook', 'shareCreditReport', 'shareProfile'];
   var userId = req.user.id;
   User.find({
     where: {
@@ -117,6 +117,7 @@ exports.create = function(req, res, next) {
         req.body.confirmedEmail = false;
         req.body.runIdentityCheck= false;
         req.body.shareCreditReport= true;
+        req.body.shareProfile= true;
         req.body.createdAt= new Date();
         var newUser = User.build(req.body);
         newUser.setDataValue('provider', 'local');

@@ -95,6 +95,7 @@ exports.confirmMailAddress = function(req, res, next) {
             if (Date.now() < user.updatedAt) {
               user.confirmMail(function () {
                 res.json({token: auth.signToken(user.id), title: user.firstname + ', thank you for confirming your email.', content:'Please sign in to continue'});
+                //mixpanel.track('email confirmed',{"User id":user.id,"First name":"user.firstname"});
               })
             } else {
               //expired token case 1
