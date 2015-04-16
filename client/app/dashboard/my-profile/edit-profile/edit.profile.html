@@ -58,6 +58,14 @@
                 </select>
               </div>
 
+              <div class="form-group input-post">
+                <label for="allowAroundMe">Allow students around me to connect?</label>
+                <select
+                  ng-options="option.value as option.text for option in editProfile.ddlYesNoSelect"
+                  id="allowAroundMe" class="form-control" ng-model="editProfile.tempMe.shareProfile">
+                </select>
+              </div>
+
             </div>
           </div>
           <input type="submit" class="btn-rented-medium primary pull-right" value="Save" ng-disabled="personalDataForm.$pristine">
