@@ -16,7 +16,8 @@
         controllerAs:'looking',
         authenticate: true,
         resolve:{
-          currentUser:getCurrentUser
+          currentUser:getCurrentUser,
+          data:getData
         }
       });
 
@@ -28,6 +29,12 @@
       });
       return deferred.promise;
     }
+  }
+
+  getData.$inject = ['common', '$q'];
+  function getData(common, $q) {
+    var univ = common.dataservice.getAllUniversities();
+    return $q.all([univ.$promise]);
   }
 
 }());
