@@ -30,14 +30,24 @@
       $scope.datePickers[number]= true;
     };
 
-    vm.addLooking = function (input, form) {
+    vm.addLooking = function (input, form, education) {
       vm.submitted = true;
       if (form.$valid) {
       common.dataservice.addLooking(vm.me.id, input)
         .$promise
         .then(function (looking) {
-          common.logger.success('Looking successfully added.');
-          common.$state.go('lookingDetail', {id: looking.id}, {reload: true});
+          var educationInput = {};
+          educationInput.universityId = education.educationCenterName.id;
+          educationInput.educationCenterName = education.educationCenterName.name;
+          common.dataservice.addEducation(vm.me.id, educationInput)
+            .$promise
+            .then(function () {
+              common.logger.success('Looking successfully added.');
+              common.$state.go('lookingDetail', {id: looking.id}, {reload: true});
+                })
+            .catch(function (err) {
+              common.logger.error('Error while saving education.',err);
+            });
         })
         .catch(function (err) {
           common.logger.error('Error while saving looking.');

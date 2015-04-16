@@ -24,17 +24,41 @@
     var roomId = $stateParams.id;
     logger.log('Room id: ', roomId);
 
+    if(vm.education.educationCenterName){
+      var EducationStatus = vm.education.educationCenterName;
+      var educationId = vm.education.id;
+    }
 
-    vm.edit = function () {
-      //   if(vm.room.$valid) {
+    vm.edit = function (form, education) {
+      vm.submitted = true;
+      if(form.$valid) {
       vm.room.creatorId = vm.me.id;
       RoomListing.edit( { userId: vm.me.id, id: roomId}, {room: vm.room}).$promise.then(function () {
-        common.logger.success('New Room added.');
-        $state.go('dashboard');
+        var educationInput = {};
+        educationInput.universityId = education.educationCenterName.id;
+        educationInput.educationCenterName = education.educationCenterName.name;
+        if(EducationStatus){
+          common.dataservice.editEducation(vm.me.id, educationId, educationInput, function () {
+            common.logger.success('New Room added.');
+            $state.go('dashboard');
+          });
+        } else {
+          common.dataservice.addEducation(vm.me.id, educationInput)
+            .$promise
+            .then(function () {
+              common.logger.success('New Room added.');
+              $state.go('dashboard');
+            })
+        }
+
+      }, function (err) {
+        console.log('error while updating looking', err);
       }, function (errors) {
         //TODO need a general error handling banner or scheme to broadcast a message on
       });
-      //  }
+      } else {
+        vm.errors = true;
+      }
     };
 
     vm.deleteRoom = function () {
