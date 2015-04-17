@@ -5,12 +5,13 @@
   .module('app.dashboard')
   .controller('LookingCtrl', LookingCtrl);
 
-  LookingCtrl.$inject = ['common', 'currentUser', '$window', 'Lookings'];
+  LookingCtrl.$inject = ['common', 'currentUser', '$window', 'Lookings', 'data'];
 
-  function LookingCtrl(common, currentUser, $window, Lookings) {
+  function LookingCtrl(common, currentUser, $window, Lookings, data) {
     var vm = this;
 
     vm.me = currentUser;
+    vm.universitiesList = data[0];
 
     vm.sortOrder = 'ascending';  // default
     vm.sortBy = 'moveInDate';  // default
@@ -30,7 +31,8 @@
         gender: null,
         petsAllowed: null,
         parkingNeeded: null,
-        openToFullYearLeaseNewRoomates: null
+        openToFullYearLeaseNewRoomates: null,
+        name: null
       };
     };
 
@@ -39,6 +41,7 @@
     vm.search = function(showSearch) {
       Lookings.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria}, function (activeLookings) {
         vm.lookings = activeLookings;
+        console.log(activeLookings);
         vm.groups = vm.lookings.inGroupsOf(8);
         vm.showSearch = showSearch;
         vm.showSort = showSearch;
