@@ -29,7 +29,7 @@ function respondWith(res, statusCode) {
 }
 
 exports.showAllUniversities= function(req, res, next) {
-  var universityAttributes = ['id', 'name'];
+  var universityAttributes = ['id', 'name', 'shortName'];
   University.findAll({
     where:{},
     attributes:universityAttributes
