@@ -42,7 +42,7 @@ exports.showAllLookings= function(req, res, next) {
     sortAttrs = [req.param("sortBy")];
   }
   else {
-    // use deafault
+    // use default
     sortAttrs = ["moveInDate"];
   }
 
@@ -51,14 +51,11 @@ exports.showAllLookings= function(req, res, next) {
   }
 
   var searchCriteria = { activeLooking: true };
-  var univCriteria = {  };
   var searchQuery;
 
   if(req.query.search) {
     searchQuery =  JSON.parse(req.query.search);
 
-
-   // if(searchQuery.name) { univCriteria.name = (univCriteria.name === searchQuery.name.name); }
     if(searchQuery.maxMonthlyRent) { searchCriteria.maxMonthlyRent = { lte: searchQuery.maxMonthlyRent }; }
     if(searchQuery.numRoommates) { searchCriteria.numRoommates = { lte: searchQuery.numRoommates }; }
     if(searchQuery.utilitiesIncluded !== null) { searchCriteria.utilitiesIncluded = (searchQuery.utilitiesIncluded === "true"); }
@@ -74,8 +71,6 @@ exports.showAllLookings= function(req, res, next) {
 
   var limit  = ( req.param("limit") ) ? req.param("limit") : 100;
 
-  console.log("Limit: ", limit);
-
   Looking.findAll({
     where: searchCriteria,
     order: [ sortAttrs ],
@@ -87,11 +82,9 @@ exports.showAllLookings= function(req, res, next) {
             include:[
               { model: University, as: 'relatedUniversityId'}
             ]}
-
         ]}
     ]
   }).then(function(lookings) {
-
     if(lookings && lookings.length > limit) {
       // to work around bug   https://github.com/sequelize/sequelize/issues/1897
       lookings.length = limit;
