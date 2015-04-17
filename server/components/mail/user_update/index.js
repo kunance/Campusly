@@ -23,7 +23,7 @@ var sendMail = function(User, RoomListing, Looking, Education, callback){
       from_email: config.mail.from_email,
       from_name: config.mail.from_name,
       "to":[],
-      subject: 'daily update'
+      subject: 'New Available Rooms & Students Looking For You!'
     }
   };
   User.findAll({where:

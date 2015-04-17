@@ -32,7 +32,7 @@
                       <tr>
                         <td>
 
-                          <h1>Daily update for {{=d.getMonth()+1}}/{{=d.getDate()}}/{{=d.getFullYear()}}</h1>
+                          <h1>New posts from {{=d.getMonth()+1}}/{{=d.getDate()}}/{{=d.getFullYear()}}</h1>
 
                         </td>
                         <td class="expander"></td>
@@ -50,26 +50,26 @@
 
                     <!--begin looking section-->
                     {{ if (lookings.length > 0) { }}
-                      <p>Connect with {{=lookings.length}} new students who are looking for a room or roommate!</p>
+                      <h2>Connect with {{=lookings.length}} new students who are looking for a room or roommate!</h2>
                         <table class="twelve columns">
 
 
 
-                              Students looking:
-                                {{ for(var i=0; i<lookings.length; i++) {}}
-                                  <tr>
-                                      <td>
-                                          <a href="https://campusly.org/lookingDetail/{{=lookings[i].id}}">
-                                          Move in date: {{= lookings[i].moveInDate.getMonth()+1 }}/{{= lookings[i].moveInDate.getDate() }}/{{= lookings[i].moveInDate.getFullYear() }}<br/>
-                                          Max rent: ${{= lookings[i].maxMonthlyRent }}<br/>
-                                          Gender: {{= lookings[i].gender }}<br/>
-                                          Max roommates: {{= lookings[i].numRoommates }}<br/>
-                                          Looking to meet new roommates?: {{= lookings[i].openToFullYearLeaseNewRoomates ? 'Yes' : 'No'}}
-                                          </a>
-                                      </td>
-                                  </tr>
-                                    <hr/>
-                                {{ } }}
+
+                            {{ for(var i=0; i<lookings.length; i++) {}}
+                              <tr>
+                                  <td>
+                                      <a href="https://campusly.org/lookingDetail/{{=lookings[i].id}}">
+                                      Move in date: {{= lookings[i].moveInDate.getMonth()+1 }}/{{= lookings[i].moveInDate.getDate() }}/{{= lookings[i].moveInDate.getFullYear() }}<br/>
+                                      Max rent: ${{= lookings[i].maxMonthlyRent }}<br/>
+                                      Gender: {{= lookings[i].gender }}<br/>
+                                      Max roommates: {{= lookings[i].numRoommates }}<br/>
+                                      Looking to meet new roommates?: {{= lookings[i].openToFullYearLeaseNewRoomates ? 'Yes' : 'No'}}
+                                      </a>
+                                  </td>
+                              </tr>
+                                <hr/>
+                            {{ } }}
 
 
                             <!--<td class="expander"></td>-->
@@ -82,9 +82,9 @@
 
 
                       {{ if (roomListings.length > 0) { }}
-                      <p>Check out! {{=roomListings.length}} new rooms available !</p>
+                      <h2>Check out {{=roomListings.length}} new rooms available!</h2>
                           <table class="twelve columns">
-                               New rooms posted:
+
                                 {{ for(var i=0; i<roomListings.length; i++) {}}
                                 <tr class="spaceUnder">
                                         <td style="width: 50%;"><img src="http://maps.googleapis.com/maps/api/staticmap?center={{=roomListings[i].relatedPropertyId.latitude}},{{=roomListings[i].relatedPropertyId.longitude}}&zoom=13&scale=1.5&size=250x160&markers=color:blue%7C{{=roomListings[i].relatedPropertyId.latitude}},{{=roomListings[i].relatedPropertyId.longitude}}&key=AIzaSyAm7woOFr0TOKG0U7jsBF5K3LSifdDjgfs"></td>
@@ -93,9 +93,10 @@
                                         Price: ${{= roomListings[i].monthlyPrice }}<br/>
                                         Room type: {{= roomListings[i].roomType }}<br/>
                                         Shared bathroom: {{= roomListings[i].sharedBathroom }}<br/></a></td></tr>
-                            <tr><td colspan="2">Room description: {{= roomListings[i].description }}</td></tr>
-                                  <hr/>
+                                <tr><td colspan="2">Room description: {{= roomListings[i].description }}</td></tr>
+                                <hr/>
                                 {{ } }}
+
                           </table>
 
                       {{ } }}
@@ -103,8 +104,6 @@
                   </td>
                 </tr>
               </table>
-
-              <a href="https://campusly.org/editProfile">Unsubscribe from receiving daily update e-mail</a>
 
               <table class="row">
                 <tr>
@@ -129,7 +128,12 @@
 
                                   <a href="https://campusly.org/login">Sign in & connect</a>
 
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
 
+                                  <a href="https://campusly.org/editProfile">Unsubscribe from receiving daily update e-mail</a>
 
                                 </td>
                               </tr>
