@@ -41,7 +41,6 @@
           </div>
         </div>
       </div> <!-- end search and sort -->
-
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <slick dots="true" class="slider" init-onload="true" data="looking.groups" slides-to-show="1" slides-to-scroll="1" ng-if="looking.lookings.length">
@@ -60,8 +59,8 @@
                   <p class="quoteLooking text-container-looking-view" ng-if="!look.relatedUserId.aboutMe">No description available</p>
                   <hr>
                   <ul class="specs">
-
-                    <li> <i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;{{look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName}}</li>
+                    <li ng-if="look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName"> <i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;{{look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName}}</li>
+                    <li ng-if="!look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName"> <i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;N/A</li>
                     <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{look.moveInDate | date}}</li>
                     <li><i class="fa fa-tag"></i>&nbsp;&nbsp;{{look.maxMonthlyRent | currency}}</li>
                     <li><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{look.roomType}}</li>

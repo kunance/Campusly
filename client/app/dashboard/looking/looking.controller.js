@@ -12,10 +12,9 @@
 
     vm.me = currentUser;
     vm.universitiesList = data[0];
-
+    vm.univCriteria = {name:''};
     vm.sortOrder = 'ascending';  // default
     vm.sortBy = 'moveInDate';  // default
-
     vm.showSearch = false; // default
     vm.showSort = false; // default
 
@@ -31,17 +30,26 @@
         gender: null,
         petsAllowed: null,
         parkingNeeded: null,
-        openToFullYearLeaseNewRoomates: null,
-        name: null
+        openToFullYearLeaseNewRoomates: null
       };
+      vm.univCriteria.name = {};
     };
 
     vm.clearSearch(false);
 
     vm.search = function(showSearch) {
       Lookings.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria}, function (activeLookings) {
-        vm.lookings = activeLookings;
-        console.log(activeLookings);
+        if(vm.univCriteria.name.id){
+          var results = [];
+          angular.forEach(activeLookings, function (looking) {
+          if (looking.relatedUserId.usereducationUsers.length && looking.relatedUserId.usereducationUsers[0].relatedUniversityId.id == vm.univCriteria.name.id) {
+            results.push(looking);
+          }
+        });
+          vm.lookings = results;
+        } else {
+          vm.lookings = activeLookings;
+        }
         vm.groups = vm.lookings.inGroupsOf(8);
         vm.showSearch = showSearch;
         vm.showSort = showSearch;
