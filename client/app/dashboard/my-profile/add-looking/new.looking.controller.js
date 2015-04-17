@@ -14,6 +14,11 @@
     vm.me = currentUser;
     vm.errors = false;
 
+    if(vm.education.educationCenterName){
+      var EducationStatus = vm.education.educationCenterName;
+      var educationId = vm.education.id;
+    }
+
     $scope.datePickers = {
       startDate: false,
       endDate:false
@@ -36,18 +41,21 @@
       common.dataservice.addLooking(vm.me.id, input)
         .$promise
         .then(function (looking) {
-          var educationInput = {};
-          educationInput.universityId = education.educationCenterName.id;
-          educationInput.educationCenterName = education.educationCenterName.name;
-          common.dataservice.addEducation(vm.me.id, educationInput)
-            .$promise
-            .then(function () {
-              common.logger.success('Looking successfully added.');
-              common.$state.go('lookingDetail', {id: looking.id}, {reload: true});
-                })
-            .catch(function (err) {
-              common.logger.error('Error while saving education.',err);
-            });
+          common.logger.success('Looking successfully added.');
+          common.$state.go('lookingDetail', {id: looking.id}, {reload: true});
+          if(!educationId) {
+            var educationInput = {};
+            educationInput.universityId = education.educationCenterName.id;
+            educationInput.educationCenterName = education.educationCenterName.name;
+            common.dataservice.addEducation(vm.me.id, educationInput)
+              .$promise
+              .then(function () {
+
+              })
+              .catch(function (err) {
+                common.logger.error('Error while saving education.', err);
+              });
+          }
         })
         .catch(function (err) {
           common.logger.error('Error while saving looking.');

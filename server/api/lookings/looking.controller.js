@@ -6,6 +6,7 @@ var User = sqldb.model('rentedUser');
 var Pets = sqldb.model('pet');
 var Vehicles = sqldb.model('userVehicle');
 var Education = sqldb.model('userEducation');
+var University = sqldb.model('university');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -35,7 +36,6 @@ function respondWith(res, statusCode) {
 
 exports.showAllLookings= function(req, res, next) {
   var userAttributes = ['firstname', 'lastname', 'profileImage', 'aboutMe','id'];
-
   var sortAttrs;
 
   if(req.param("sortBy")) {
@@ -51,11 +51,14 @@ exports.showAllLookings= function(req, res, next) {
   }
 
   var searchCriteria = { activeLooking: true };
+  var univCriteria = {  };
   var searchQuery;
 
   if(req.query.search) {
     searchQuery =  JSON.parse(req.query.search);
 
+
+   // if(searchQuery.name) { univCriteria.name = (univCriteria.name === searchQuery.name.name); }
     if(searchQuery.maxMonthlyRent) { searchCriteria.maxMonthlyRent = { lte: searchQuery.maxMonthlyRent }; }
     if(searchQuery.numRoommates) { searchCriteria.numRoommates = { lte: searchQuery.numRoommates }; }
     if(searchQuery.utilitiesIncluded !== null) { searchCriteria.utilitiesIncluded = (searchQuery.utilitiesIncluded === "true"); }
@@ -78,7 +81,14 @@ exports.showAllLookings= function(req, res, next) {
     order: [ sortAttrs ],
     limit: limit,
     include: [
-      { model: User, attributes: userAttributes, as: 'relatedUserId'}
+      { model: User, attributes: userAttributes, as: 'relatedUserId',
+        include:[
+          { model: Education, as: 'usereducationUsers',
+            include:[
+              { model: University, as: 'relatedUniversityId'}
+            ]}
+
+        ]}
     ]
   }).then(function(lookings) {
 
