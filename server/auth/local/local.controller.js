@@ -10,6 +10,9 @@ var User = sqldb.model('rentedUser');
 var Education = sqldb.model('userEducation');
 var University = sqldb.model('university');
 var auth = require('../auth.service');
+var Mixpanel = require('mixpanel');
+// create an instance of the mixpanel client
+var mixpanel = Mixpanel.init('bd202854d110bac5e72d7e034abdae01');
 // ********************* Mail ***********************
 
 exports.root = function(req, res, next) {
