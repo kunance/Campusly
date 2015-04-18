@@ -166,3 +166,18 @@ ps ax | grep node
 find all node proccess running
 sudo kill <pid>
 forever start server/app.js
+export NODE_ENV='production'
+printenv
+
+
+NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript
+export NODE_PATH
+
+NODE_ENV=production
+export NODE_ENV
+
+sudo netstat -lnptu
+
+====AWS IP Ranges===
+
+https://ip-ranges.amazonaws.com/ip-ranges.json

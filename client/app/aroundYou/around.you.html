@@ -17,7 +17,21 @@
       <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <slick dots="true" class="slider" init-onload="true" data="around.groups" slides-to-show="1" slides-to-scroll="1" >
+
+          <div ng-if="!around.me.shareProfile">
+            <h3>Please <a ui-sref="editProfile">update</a> your preferences to connect with students around you.</h3>
+          </div>
+
+          <!-- TODO Fix controller for around you street address -->
+          <!--<div ng-if="!around.address.streetAddress.id">-->
+          <!--<h3>Please <a ui-sref="editProfile">update</a> your current address to view students around you.</h3>  -->
+          <!--</div>-->
+
+          <div ng-if="!around.aroundYou.length && around.me.shareProfile">
+            <h3>There are no students around you right now.</h3>
+          </div>
+
+          <slick dots="true" class="slider" init-onload="true" data="around.groups" slides-to-show="1" slides-to-scroll="1" ng-if="around.me.shareProfile && around.aroundYou.length">
             <div ng-repeat="group in around.groups" class="row">
               <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 room" ng-repeat="arYou in group">
                     <div class="front white-box">

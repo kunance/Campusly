@@ -23,7 +23,6 @@
     vm.numberOf = data[4].length;
     vm.aroundYou = data[5];
     vm.address = data[6];
-    console.log(vm.address);
     /*
      *  prerender.io
      */
