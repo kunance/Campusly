@@ -92,20 +92,23 @@ exports.confirmMailAddress = function(req, res, next) {
           if (!user) {
             //invalid token case 2
             return res.status(403).send({reason:'incorrect', title: user.firstname + ", sorry, the email validation failed! :(", content:" Please re-type your e-mail and click resend."});
+            //mixpanel.track('email failed',{"User id":auth.signToken(user.id),"First name":"user.firstname"});
           }
           if(!user.confirmedEmail) {
             if( String(mailConfirmationToken)!= String(user.googleOAuthId)) res.status(403).send({reason:'un-match', title: "DB and JWT tokens don't match."});
             if (Date.now() < user.updatedAt) {
               user.confirmMail(function () {
                 res.json({token: auth.signToken(user.id), title: user.firstname + ', thank you for confirming your email.', content:'Please sign in to continue'});
-                //mixpanel.track('email confirmed',{"User id":user.id,"First name":"user.firstname"});
+                //mixpanel.track('email confirmed first time',{"User id":auth.signToken(user.id),"First name":"user.firstname"});
               })
             } else {
               //expired token case 1
               return res.status(403).send({reason: 'expired', title: user.firstname + ", the validation time has expired.", content: " Please re-type your e-mail and click resend."});
+              //mixpanel.track('email token expired',{"User id":auth.signToken(user.id),"First name":"user.firstname"});
             }
           } else {
               res.json({token: auth.signToken(user.id), title: user.firstname + ', your account is already confirmed', content: 'Please sign in to continue !'});
+            //mixpanel.track('email confirmed repeat msg',{"User id":auth.signToken(user.id),"First name":"user.firstname"});
           }
         })
         .catch(function (error) {

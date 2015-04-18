@@ -11,6 +11,8 @@
     var vm = this;
     vm.me = currentUser;
     vm.education = data[0];
+    //TODO add address field in controller
+    //vm.address = data[1];
 
     UserResource.aroundMe({distance:(1609), limit: 80}, function (aroundYou) {
       vm.aroundYou = aroundYou;

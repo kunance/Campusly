@@ -12,7 +12,7 @@
 
     vm.me = currentUser;
     vm.universitiesList = data[0];
-    vm.univCriteria = {name:''};
+    vm.univCriteria = {shortName:''};
     vm.sortOrder = 'ascending';  // default
     vm.sortBy = 'moveInDate';  // default
     vm.showSearch = false; // default
@@ -32,17 +32,17 @@
         parkingNeeded: null,
         openToFullYearLeaseNewRoomates: null
       };
-      vm.univCriteria.name = {};
+      vm.univCriteria.shortName = {};
     };
 
     vm.clearSearch(false);
 
     vm.search = function(showSearch) {
       Lookings.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria}, function (activeLookings) {
-        if(vm.univCriteria.name.id){
+        if(vm.univCriteria.shortName.id){
           var results = [];
           angular.forEach(activeLookings, function (looking) {
-          if (looking.relatedUserId.usereducationUsers.length && looking.relatedUserId.usereducationUsers[0].relatedUniversityId.id == vm.univCriteria.name.id) {
+          if (looking.relatedUserId.usereducationUsers.length && looking.relatedUserId.usereducationUsers[0].relatedUniversityId.id == vm.univCriteria.shortName.id) {
             results.push(looking);
           }
         });
