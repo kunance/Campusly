@@ -7,7 +7,7 @@
     //.constant('moment', moment)
     .filter('boolean', function() {
       return function (input) {
-        return input == "true" ? "Yes" : "No";
+        return input == true ? "Yes" : "No";
       };
     });
   })();
