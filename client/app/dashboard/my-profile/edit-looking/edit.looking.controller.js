@@ -52,19 +52,23 @@
           educationInput.universityId = education.educationCenterName.id;
           educationInput.educationCenterName = education.educationCenterName.name;
           if(EducationStatus){
-            common.dataservice.editEducation(vm.me.id, educationId, educationInput, function () {
-              common.logger.success('Education successfully updated');
-              common.$state.reload();
-            });
+            if(EducationStatus.name != vm.education.educationCenterName.name) {
+              common.dataservice.editEducation(vm.me.id, educationId, educationInput, function () {
+              }, function (err) {
+                console.log('error while updating campus ', err)
+              });
+            }
           } else {
             common.dataservice.addEducation(vm.me.id, educationInput)
               .$promise
               .then(function () {
-                common.logger.success('Education successfully added.');
-                common.$state.reload();
+                console.log('Education successfully added.');
+              }).catch(function (err) {
+                console.log('error while adding campus ', err)
               })
           }
-
+          common.logger.success('looking updated!');
+          common.$state.go('dashboard');
         }, function (err) {
           console.log('error while updating looking', err);
         });

@@ -8,11 +8,8 @@
   EditRoomCtrl.$inject = ['$scope', '$state', '$stateParams', 'logger', 'FileUploader', 'common','RoomListing', 'data', 'currentUser'];
 
   function EditRoomCtrl($scope, $state, $stateParams, logger, FileUploader, common, RoomListing, data,  currentUser) {
-
-    /* jshint validthis: true */
     var vm = this;
     vm.propertyImages = [];
-
     vm.me = currentUser;
     vm.users = data[0];
     vm.roommates = data[1];
@@ -22,7 +19,6 @@
     vm.education = data[4];
 
     var roomId = $stateParams.id;
-    logger.log('Room id: ', roomId);
 
     if(vm.education.educationCenterName){
       var EducationStatus = vm.education.educationCenterName;
@@ -38,24 +34,27 @@
         educationInput.universityId = education.educationCenterName.id;
         educationInput.educationCenterName = education.educationCenterName.name;
         if(EducationStatus){
-          common.dataservice.editEducation(vm.me.id, educationId, educationInput, function () {
-            common.logger.success('New Room added.');
-            $state.go('dashboard');
-          });
+          if(EducationStatus.name != vm.education.educationCenterName.name) {
+            common.dataservice.editEducation(vm.me.id, educationId, educationInput, function () {
+              },
+              function (err) {
+                console.log('error while updating campus ', err);
+              });
+          }
         } else {
           common.dataservice.addEducation(vm.me.id, educationInput)
             .$promise
             .then(function () {
-              common.logger.success('New Room added.');
-              $state.go('dashboard');
+            })
+            .catch(function (err) {
+              console.log('error while adding campus ',err);
             })
         }
-
-      }, function (err) {
-        console.log('error while updating looking', err);
-      }, function (errors) {
-        //TODO need a general error handling banner or scheme to broadcast a message on
-      });
+        common.logger.success('room updated!');
+        common.$state.go('dashboard');
+      }).catch(function (err) {
+        common.logger.error('error while updating room ',err)
+      })
       } else {
         vm.errors = true;
       }

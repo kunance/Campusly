@@ -41,8 +41,6 @@
       common.dataservice.addLooking(vm.me.id, input)
         .$promise
         .then(function (looking) {
-          common.logger.success('Looking successfully added.');
-          common.$state.go('lookingDetail', {id: looking.id}, {reload: true});
           if(!educationId) {
             var educationInput = {};
             educationInput.universityId = education.educationCenterName.id;
@@ -50,15 +48,16 @@
             common.dataservice.addEducation(vm.me.id, educationInput)
               .$promise
               .then(function () {
-
               })
               .catch(function (err) {
                 common.logger.error('Error while saving education.', err);
               });
           }
+          common.logger.success('Looking successfully added.');
+          common.$state.go('lookingDetail', {id: looking.id}, {reload: true});
         })
         .catch(function (err) {
-          common.logger.error('Error while saving looking.');
+          common.logger.error('Error while saving looking! ',err);
         });
       } else {
         vm.errors = true;
