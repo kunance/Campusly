@@ -36,7 +36,8 @@
   getData.$inject = ['common', 'currentUser', '$q'];
   function getData(common, currentUser, $q) {
     var edu = common.dataservice.getAllEducations(currentUser.id);
-    return $q.all([edu.$promise]);
+    var adr = common.dataservice.getAllAddresses(currentUser.id);
+    return $q.all([edu.$promise, adr.$promise]);
   }
 
 

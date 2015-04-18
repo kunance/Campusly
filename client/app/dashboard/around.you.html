@@ -1,7 +1,7 @@
 <h2>Students Around You <small>(within 1 mile)</small></h2>
 <!--<input class="pull-right" type="range" name="points" min="1" max="5" step="1" style="position: relative; width: 200px;"/>-->
 <div class="white-box">
-  <h3 ng-if="!dashboard.aroundYou.length && dashboard.address.streetAddress.id">
+  <h3 ng-if="!dashboard.aroundYou.length && dashboard.address.streetAddress.id && dashboard.me.shareProfile">
     There is no students around you right now
   </h3>
   <h3 ng-if="!dashboard.address.streetAddress.id">

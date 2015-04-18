@@ -22,12 +22,11 @@
             <h3>Please <a ui-sref="editProfile">update</a> your preferences to connect with students around you.</h3>
           </div>
 
-          <!-- TODO Fix controller for around you street address -->
-          <!--<div ng-if="!around.address.streetAddress.id">-->
-          <!--<h3>Please <a ui-sref="editProfile">update</a> your current address to view students around you.</h3>  -->
-          <!--</div>-->
+          <div ng-if="!around.address.streetAddress.id">
+          <h3>Please <a ui-sref="editProfile">update</a> your current address to view students around you.</h3>
+          </div>
 
-          <div ng-if="!around.aroundYou.length && around.me.shareProfile">
+          <div ng-if="!around.aroundYou.length && around.me.shareProfile && around.address.streetAddress.id">
             <h3>There are no students around you right now.</h3>
           </div>
 
