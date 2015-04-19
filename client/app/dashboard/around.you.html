@@ -4,11 +4,14 @@
   <h3 ng-if="!dashboard.aroundYou.length && dashboard.address.streetAddress.id && dashboard.me.shareProfile">
     There is no students around you right now
   </h3>
-  <h3 ng-if="!dashboard.address.streetAddress.id">
-    Please <a ui-sref="editProfile">update</a> your current address to view students around you.
+  <h3 ng-if="!dashboard.address.streetAddress.id && dashboard.me.shareProfile">
+    Please <a ui-sref="editProfile">update</a> your current address to connect with students around you.
   </h3>
-  <h3 ng-if="!dashboard.me.shareProfile">
-    Please <a ui-sref="editProfile">update</a> your preferences to connect with students around you.
+  <h3 ng-if="!dashboard.address.streetAddress.id && !dashboard.me.shareProfile">
+    Please <a ui-sref="editProfile">update</a> your privacy preferences and add your current address to connect with students around you.
+  </h3>
+  <h3 ng-if="!dashboard.me.shareProfile && (dashboard.aroundYou.length || dashboard.address.streetAddress.id)">
+    Please <a ui-sref="editProfile">update</a> your privacy preferences to connect with students around you.
   </h3>
   <slick dots="true" class="slider row" slides-to-show="4" slides-to-scroll="4" responsive="dashboard.breakpoints.aroundYou" init-onload="true" infinite="false" data="dashboard.aroundYou" ng-if="dashboard.aroundYou.length && dashboard.me.shareProfile">
 
@@ -35,6 +38,6 @@
       </div>
     </div>
   </slick>
-  <hr ng-if="dashboard.address.streetAddress.id && dashboard.me.shareProfile">
-  <a class="pull-right btn-rented-event view-all" ui-sref="aroundYou" ng-if="dashboard.address.streetAddress.id && dashboard.me.shareProfile">View All</a>
+  <hr ng-if="dashboard.address.streetAddress.id && dashboard.me.shareProfile && dashboard.aroundYou.length">
+  <a class="pull-right btn-rented-event view-all" ui-sref="aroundYou" ng-if="dashboard.address.streetAddress.id && dashboard.me.shareProfile && dashboard.aroundYou.length">View All</a>
 </div>

@@ -18,12 +18,16 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-          <div ng-if="!around.me.shareProfile">
-            <h3>Please <a ui-sref="editProfile">update</a> your preferences to connect with students around you.</h3>
+          <div ng-if="!around.me.shareProfile && (around.address.streetAddress.id || around.aroundYou.length)">
+            <h3>Please <a ui-sref="editProfile">update</a> your privacy preferences to connect with students around you.</h3>
           </div>
 
-          <div ng-if="!around.address.streetAddress.id">
-          <h3>Please <a ui-sref="editProfile">update</a> your current address to view students around you.</h3>
+          <div ng-if="!around.address.streetAddress.id && around.me.shareProfile">
+          <h3>Please <a ui-sref="editProfile">update</a> your current address to connect with students around you.</h3>
+          </div>
+
+          <div ng-if="!around.address.streetAddress.id && !around.me.shareProfile">
+            <h3>Please <a ui-sref="editProfile">update</a> your privacy preferences and add your current address to connect with students around you.</h3>
           </div>
 
           <div ng-if="!around.aroundYou.length && around.me.shareProfile && around.address.streetAddress.id">
