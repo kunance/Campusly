@@ -17,7 +17,7 @@
       pageDescription: 'Secure off-campus community. Connect with verified students. Find off-campus housing. Meet new students - walk safely, share a ride, attend events.'
     };
     var x = mixpanel.track("landing page");
-    console.log(x);
+    //console.log(x);
 
     // Godaddy seal code - to be revisited
 
