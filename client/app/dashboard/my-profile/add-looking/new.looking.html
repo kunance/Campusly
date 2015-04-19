@@ -74,7 +74,7 @@
             </div>
           </div>
           <div class="col-xs-9 col-sm-7 input-post">
-            <label for="moveInDate">Move-out date</label>
+            <label for="moveOutDate">Move-out date</label>
             <p class="input-group">
               <input type="text" id="moveOutDate" name="moveOutDate" class="form-control borderRadiusFix" datepicker-popup="{{format}}" ng-model="newLooking.tempLooking.moveOutDate" is-open="datePickers.endDate" close-text="Close" required ng-class="{'educationError': newLookingForm.moveOutDate.$invalid && newLooking.submitted}"/>
                           <span class="input-group-btn">
@@ -145,7 +145,7 @@
            </div>
          </div>
          <div class="col-xs-9 col-sm-7 input-post">
-           <label for="parkingNeeded">Meet new roommates?</label><br/>
+           <label for="openToFullYearLeaseNewRoomates">Meet new roommates?</label><br/>
            <select id="openToFullYearLeaseNewRoomates" name="meetNew" class="form-control" ng-model="newLooking.tempLooking.openToFullYearLeaseNewRoomates" required ng-class="{'educationError': newLookingForm.meetNew.$invalid && newLooking.submitted}">
              <option value="true">Yes</option>
              <option value="false">No</option>
