@@ -94,15 +94,12 @@ exports.saveEducation= function(req, res, next) {
   Education.find({where: { id: req.params.id }})
     .then(function (education) {
       var updated = _.merge(education, req.body);
-      updated.save().then(function (upd) {
-        University.findOne({where: { id: updated.universityId }})
-          .then(function (univ) {
-            req.session.currentUniversityId = univ.dataValues.id;
-            return res.json(upd);
-          });
-      })
-    })
-    .catch(handleError(res));
+      updated.save()
+        .then(function (upd) {
+        res.json(upd);
+      }).catch(handleError(res));
+    }).catch(handleError(res));
+
 };
 
 

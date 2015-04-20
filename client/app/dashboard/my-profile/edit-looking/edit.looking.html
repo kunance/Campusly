@@ -24,8 +24,7 @@
             <label for="yourCampusNotPresent">Your campus</label><br/>
             <select id="yourCampusNotPresent" class="form-control" required name="yourCampusNotPresent"
                     data-ng-model="editLooking.education.educationCenterName"
-                    data-ng-options="university as university.name for university in editLooking.universitiesList"
-                    ng-init="editLooking.education.educationCenterName=editLooking.universitiesList[editLooking.education.universityId-1]">
+                    data-ng-options="university as university.name for university in editLooking.universitiesList">
             </select>
           </div>
         </div>
@@ -129,7 +128,7 @@
             </div>
           </div>
           <div class="col-xs-9 col-sm-7 input-post">
-            <label for="parkingNeeded">Meet new roommates?</label><br/>
+            <label for="openToFullYearLeaseNewRoomates">Meet new roommates?</label><br/>
             <select
               ng-options="option.value as option.text for option in editLooking.ddlYesNoSelect"
               id="openToFullYearLeaseNewRoomates" class="form-control" ng-model="editLooking.tempLooking.openToFullYearLeaseNewRoomates">

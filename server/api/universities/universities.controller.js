@@ -34,7 +34,16 @@ exports.showAllUniversities= function(req, res, next) {
     where:{},
     attributes:universityAttributes
   }).then(function(universities) {
-    res.json(universities)
+
+    //force backend to return universities sorted by id
+    var result = universities.sort(function(a, b){
+      var x = +a.id,
+          y = +b.id;
+      // Compare the 2 dates
+      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+
+    res.json(result)
 
   }).catch(validationError(res));
 };

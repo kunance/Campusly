@@ -5,6 +5,7 @@ var mailService = require('../../mail/mail.service');
 var _ = require('lodash');
 var sqldb = require('../../../sqldb');
 var Property = sqldb.model('property');
+var University = sqldb.model('university');
 
 var sendMail = function(User, RoomListing, Looking, Education, callback){
   var current = new Date();
@@ -47,7 +48,17 @@ var sendMail = function(User, RoomListing, Looking, Education, callback){
       {
         activeLooking:true,
         createdAt: {gte: locals.d}
-      }})
+      },
+        include: [
+          { model: User, as: 'relatedUserId',
+            include:[
+              { model: Education, as: 'usereducationUsers',
+                include:[
+                  { model: University, as: 'relatedUniversityId'}
+                ]}
+            ]}
+        ]
+      })
         .then(function (lookings) {
           if(lookings)
             locals.lookings = lookings;

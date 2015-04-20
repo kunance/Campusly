@@ -92,8 +92,7 @@
               <select id="educationCenterName" class="form-control" required name="universityName"
                       ng-class="{'educationError': educationForm.universityName.$error.required && editProfile.submitted}"
                       data-ng-model="editProfile.tempEducation.educationCenterName"
-                      data-ng-options="university as university.name for university in editProfile.universitiesList"
-                      ng-init="editProfile.tempEducation.educationCenterName=editProfile.universitiesList[editProfile.tempEducation.universityId-1]">
+                      data-ng-options="university as university.name for university in editProfile.universitiesList">
               </select>
             </div>
             <div class="form-group input-post">

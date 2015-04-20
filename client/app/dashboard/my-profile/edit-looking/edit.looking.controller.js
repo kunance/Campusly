@@ -17,6 +17,7 @@
       vm.universitiesList = data[1];
       vm.education = data[2];
       var lookingId = $stateParams.id;
+      vm.education.educationCenterName = vm.universitiesList[vm.education.universityId - 1];
     /*
      *  enables data binding to yes / no drop down values
      */

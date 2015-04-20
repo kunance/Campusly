@@ -32,8 +32,7 @@
                 <select id="yourCampusNotPresent" class="form-control" required name="yourCampusNotPresent"
                         ng-class="{'educationError': editRoomForm.yourCampusNotPresent.$error.required && vm.submitted}"
                         data-ng-model="vm.education.educationCenterName"
-                        data-ng-options="university as university.name for university in vm.universitiesList"
-                        ng-init="vm.education.educationCenterName=vm.universitiesList[vm.education.universityId-1]">
+                        data-ng-options="university as university.name for university in vm.universitiesList">
                 </select>
               </div>
             </div>

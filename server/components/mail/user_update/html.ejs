@@ -50,18 +50,14 @@
 
                     <!--begin looking section-->
                     {{ if (lookings.length > 0) { }}
-                      <h2>Connect with {{=lookings.length}} new students who are looking for a room or roommate!</h2>
+                      <h2>Dear *|FNAME|*, connect with {{=lookings.length}} new students who are looking for a room or roommate!</h2>
                         <table class="twelve columns">
-
-
-
 
                             {{ for(var i=0; i<lookings.length; i++) {}}
                               <tr>
                                   <td>
                                       <a href="https://campusly.org/lookingDetail/{{=lookings[i].id}}">
-                                      <!-- TODO correct campus binding -->
-                                      <!--Campus: {{= lookings[i].relatedUserId.usereducationUsers[0].relatedUniversityId.name }}<br/>-->
+                                      Campus: {{= lookings[i].relatedUserId.usereducationUsers[0].relatedUniversityId.name }}<br/>
                                       Move in date: {{= lookings[i].moveInDate.getMonth()+1 }}/{{= lookings[i].moveInDate.getDate() }}/{{= lookings[i].moveInDate.getFullYear() }}<br/>
                                       Max rent: ${{= lookings[i].maxMonthlyRent }}<br/>
                                       Gender: {{= lookings[i].gender }}<br/>
@@ -73,14 +69,11 @@
                                 <hr/>
                             {{ } }}
 
-                            <!--<td class="expander"></td>-->
-
                         </table>
                     {{ } }}
                         <!--end looking section-->
 
                     <!--begin room listing section-->
-
 
                       {{ if (roomListings.length > 0) { }}
                       <h2>Check out {{=roomListings.length}} new rooms available!</h2>
