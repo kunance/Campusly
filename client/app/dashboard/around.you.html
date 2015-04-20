@@ -22,7 +22,7 @@
             <h4 class="media-heading user-name" style="text-align: center">
               {{around.firstname}} {{around.lastname[0] | uppercase}}.
             </h4>
-            <div style="font-size: 0.8em; text-align: center">
+            <div style="font-size: 0.8em; text-align: center; min-height: 60px">
               <dl>
                 <dd ng-show="around.usereducationUsers[0].educationCenterName">{{around.usereducationUsers[0].educationCenterName}}</dd>
                 <dd ng-hide="around.usereducationUsers[0].educationCenterName">No university entered</dd>
@@ -32,7 +32,7 @@
               </dl>
             </div>
           </div>
-      <div style="text-align: center; display: inline-block;width: 100%;">
+      <div style="text-align: center;width: 100%;">
           <a ng-href="{{around.facebook}}" ng-if="around.facebook" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
           <a ng-href="mailto:{{around.email}}?Subject=Hello"><i class="fa fa-envelope fa-2x"></i></a>
       </div>
