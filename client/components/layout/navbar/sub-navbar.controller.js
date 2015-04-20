@@ -15,7 +15,7 @@
       { title:"Around You", sref:"aroundYou"},
       { title:"Available Rooms", sref:"rooms"},
       { title:"Students Looking", sref:"looking"},
-      { title:"My Profile", sref:"myProfile"},];
+      { title:"My Profile", sref:"myProfile"}];
   }
 
 
