@@ -96,12 +96,6 @@ exports.saveEducation= function(req, res, next) {
       var updated = _.merge(education, req.body);
       updated.save()
         .then(function (upd) {
-        console.log('updejta sam');
-        //University.findOne({where: { id: updated.universityId }})
-        //  .then(function (univ) {
-        //    req.session.currentUniversityId = univ.dataValues.id;
-        //
-        //  });
         res.json(upd);
       }).catch(handleError(res));
     }).catch(handleError(res));
