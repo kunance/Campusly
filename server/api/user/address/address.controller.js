@@ -42,6 +42,7 @@ function adoptData(input) {
 exports.newAddress = function(req, res, next) {
   req.body.userId = req.user.id;
   req.body.createdAt = new Date();
+  req.body.present = true;
   var newAddress = Address.build(req.body);
 
   newAddress.save()
@@ -74,6 +75,7 @@ exports.getAddress= function(req, res, next) {
 };
 
 exports.saveAddress= function(req, res, next) {
+  req.body.present = true;
   Address.find({where: { id: req.params.id }})
     .then(function (address) {
       var updated = _.merge(address, req.body);
