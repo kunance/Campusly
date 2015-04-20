@@ -29,14 +29,6 @@
                         </td>
                         <td class="expander"></td>
                       </tr>
-                      <tr>
-                        <td>
-
-                          <h1>New posts from {{=d.getMonth()+1}}/{{=d.getDate()}}/{{=d.getFullYear()}}</h1>
-
-                        </td>
-                        <td class="expander"></td>
-                      </tr>
                     </table>
 
                   </td>
@@ -48,9 +40,13 @@
                 <tr>
                   <td class="wrapper last">
 
+                    <h3>Dear *|FNAME|*,</h3>
+                    <h4>Connect with {{=(lookings.length+roomListings.length)}} new students who are looking for a room or roommate!</h4>
+                    <h4>New posts from {{=d.getMonth()+1}}/{{=d.getDate()}}/{{=d.getFullYear()}}<br></h4>
+
                     <!--begin looking section-->
                     {{ if (lookings.length > 0) { }}
-                      <h2>Dear *|FNAME|*, connect with {{=lookings.length}} new students who are looking for a room or roommate!</h2>
+
                         <table class="twelve columns">
 
                             {{ for(var i=0; i<lookings.length; i++) {}}
@@ -76,7 +72,7 @@
                     <!--begin room listing section-->
 
                       {{ if (roomListings.length > 0) { }}
-                      <h2>Check out {{=roomListings.length}} new rooms available!</h2>
+
                           <table class="twelve columns">
 
                                 {{ for(var i=0; i<roomListings.length; i++) {}}
@@ -120,14 +116,7 @@
                               <tr>
                                 <td>
 
-                                  <a href="https://campusly.org/login">Sign in & connect</a>
-
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-
-                                  <a href="https://campusly.org/editProfile">Unsubscribe from receiving daily update e-mail</a>
+                                  <a href="https://campusly.org/login">Sign-in & Connect</a>
 
                                 </td>
                               </tr>
@@ -174,8 +163,6 @@
               </table>
 
 
-
-
               <table class="row">
                 <tr>
                   <td class="wrapper last">
@@ -184,7 +171,7 @@
                       <tr>
                         <td align="center">
                           <center>
-                            <p style="text-align:center;"><a href="https://campusly.org/terms">Terms</a> | <a href="https://campusly.org/privacy">Privacy</a></p>
+                            <p style="text-align:center;"><a href="https://campusly.org/editProfile">Unsubscribe</a> | <a href="https://campusly.org/terms">Terms</a> | <a href="https://campusly.org/privacy">Privacy</a></p>
                           </center>
                         </td>
                         <td class="expander"></td>
