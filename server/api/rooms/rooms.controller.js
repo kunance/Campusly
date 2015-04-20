@@ -6,8 +6,10 @@ var User = sqldb.model('rentedUser');
 var UserEducation = sqldb.model('userEducation');
 var _ = require('lodash');
 var excludeService = require('../../services/exclude.own');
-
 var propertiesWithin = require('../../models/propertiesWithin');
+var Mixpanel = require('mixpanel');
+// create an instance of the mixpanel client
+var mixpanel = Mixpanel.init('bd202854d110bac5e72d7e034abdae01');
 
 
 var miles2Meters = 1609.34;
@@ -254,7 +256,6 @@ exports.getAllRoomListings = function(req, res, next) {
   }
 };
 
-
 /**
  *
  * @param req
@@ -269,38 +270,45 @@ var _parseSearchCriteria = function(req, res, cb) {
   if(req.query.search) {
     searchQuery = JSON.parse(req.query.search);
 
-  //  console.log("Serach query: ", searchQuery);
-    //console.log(Object.keys(searchQuery));
-
     if (searchQuery.maxMonthlyPrice) {
       searchCriteria.monthlyPrice = {lte: searchQuery.maxMonthlyPrice};
+      mixpanel.track("rooms - search by maxMonthlyPrice");
     }
     if (searchQuery.maxCurrentRoomates) {
       searchCriteria.numRoomates = {lte: searchQuery.maxCurrentRoomates};
+      mixpanel.track("rooms - search by maxCurrentRoomates");
     }
     if (searchQuery.leaseType !== null) {
       searchCriteria.leaseType = searchQuery.leaseType.replace(/"/g, "'");
+      mixpanel.track("rooms - search by leaseType");
     }
     if (searchQuery.roomType !== null) {
       searchCriteria.roomType = searchQuery.roomType.replace(/"/g, "'");
+      mixpanel.track("rooms - search by roomType");
     }
     if (searchQuery.gender !== null) {
       searchCriteria.gender = searchQuery.gender.replace(/"/g, "'");
+      mixpanel.track("rooms - search by gender");
     }
     if (searchQuery.sharedBathroom !== null) {
       searchCriteria.sharedBathroom = (searchQuery.sharedBathroom === "true");
+      mixpanel.track("rooms - search by sharedBathroom");
     }
     if (searchQuery.furnished !== null) {
       searchCriteria.furnished = (searchQuery.furnished === "true");
+      mixpanel.track("rooms - search by furnished");
     }
     if (searchQuery.smokingAllowed !== null) {
       searchCriteria.smokingAllowed = (searchQuery.smokingAllowed === "true");
+      mixpanel.track("rooms - search by smokingAllowed");
     }
     if (searchQuery.petsAllowed !== null) {
       searchCriteria.petsAllowed = (searchQuery.petsAllowed === "true");
+      mixpanel.track("rooms - search by petsAllowed");
     }
     if (searchQuery.parkingAvailable !== null) {
       searchCriteria.parkingAvailable = (searchQuery.parkingAvailable === "true");
+      mixpanel.track("rooms - search by parkingAvailable");
     }
 
     if (searchQuery.within) {
@@ -312,7 +320,6 @@ var _parseSearchCriteria = function(req, res, cb) {
 
       propertiesWithin.withinUniversity(searchQuery.within.place.id, searchQuery.within.distance * miles2Meters,
         function (propertyIds) {
-  //      console.log("Property ids: ", propertyIds);
         cb(null, searchCriteria, propertyIds);
       });
     }
@@ -324,7 +331,6 @@ var _parseSearchCriteria = function(req, res, cb) {
     cb(null, searchCriteria);
   }
 };
-
 
 /**
  *
