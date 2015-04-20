@@ -24,8 +24,7 @@
             <label for="yourCampusNotPresent">Your campus</label><br/>
             <select id="yourCampusNotPresent" class="form-control" required name="yourCampusNotPresent"
                     data-ng-model="editLooking.education.educationCenterName"
-                    data-ng-options="university as university.name for university in editLooking.universitiesList"
-                    ng-init="editLooking.education.educationCenterName=editLooking.universitiesList[editLooking.education.universityId-1]">
+                    data-ng-options="university as university.name for university in editLooking.universitiesList">
             </select>
           </div>
         </div>

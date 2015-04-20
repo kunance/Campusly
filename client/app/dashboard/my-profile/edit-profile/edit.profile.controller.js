@@ -21,6 +21,7 @@
     vm.submitted = false;
     vm.submittedAddress = false;
     vm.ddlYesNoSelect = [{value: true, text: 'Yes'}, {value: false, text: 'No'}];
+    vm.tempEducation.educationCenterName = vm.universitiesList[vm.tempEducation.universityId - 1];
     /*
      *  defining functions
      */
@@ -91,16 +92,21 @@
       input.universityId = input.educationCenterName.id;
       input.educationCenterName = input.educationCenterName.name;
       if(EducationStatus){
-        common.dataservice.editEducation(vm.me.id, educationId, input, function () {
-          common.logger.success('Education successfully updated');
-          common.$state.reload();
-        });
-      }else {
+        common.dataservice.editEducation(vm.me.id, educationId, input)
+          .$promise
+          .then(function (res) {
+            common.logger.success('Education successfully updated');
+            vm.tempEducation.educationCenterName = vm.universitiesList[res.universityId - 1];
+          })
+          .catch(function (err) {
+            console.log('error updating education :', err);
+          })
+      } else {
         common.dataservice.addEducation(vm.me.id, input)
         .$promise
-        .then(function () {
+        .then(function res(res) {
           common.logger.success('Education successfully added.');
-          common.$state.reload();
+          vm.tempEducation.educationCenterName = vm.universitiesList[res.universityId - 1];
         })
       }
     } else {

@@ -210,12 +210,21 @@
         });
     }
 
-    function editEducation(userId, educationId, data, callback) {
+    //function editEducation(userId, educationId, data, callback) {
+    //  return Education.editEducation({userId: userId, id:educationId}, data,
+    //    function (edu) {
+    //      return safeCb(callback)(null, edu);
+    //    }, function (err) {
+    //      return safeCb(callback)(err);
+    //    });
+    //}
+
+    function editEducation(userId, educationId, data) {
       return Education.editEducation({userId: userId, id:educationId}, data,
         function (edu) {
-          return safeCb(callback)(null, edu);
+          return edu
         }, function (err) {
-          return safeCb(callback)(err);
+          //handle exception
         });
     }
 

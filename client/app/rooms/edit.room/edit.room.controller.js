@@ -17,6 +17,7 @@
     vm.ddlYesNoSelect = [{value: true, text: 'Yes'}, {value: false, text: 'No'}];
     vm.universitiesList = data[3];
     vm.education = data[4];
+    vm.education.educationCenterName = vm.universitiesList[vm.education.universityId - 1];
 
     var roomId = $stateParams.id;
 
