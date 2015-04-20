@@ -8,9 +8,6 @@
   SignupCtrl.$inject=['$scope', 'common', '$state', '$window', 'Auth', '$location'];
 
   function SignupCtrl($scope, common, $state, $window, Auth, $location) {
-
-    // vm for view model .... https://github.com/johnpapa/angularjs-styleguide#style-y032
-    /* jshint validthis: true */
     var vm = this;
     vm.user = {};
     vm.user.confirmPassword = '';
@@ -44,7 +41,6 @@
           .catch(function (err) {
             err = err.data;
             vm.errors = {};
-          // Update validity of form fields that match the sequelize errors
           if (err.name) {
             angular.forEach(err.errors, function (field) {
               if (field.type == 'unique violation'){

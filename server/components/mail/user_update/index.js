@@ -34,16 +34,9 @@ var sendMail = function(User, RoomListing, Looking, Education, callback){
   }})
     .then(function (users) {
       if(users) {
-        //for (var i = 0; i < users.length; i += 1) {
-        //  locals.recipients.message.to.push({
-        //    email: users[i].email,
-        //    name: users[i].firstname + ' ' + users[i].lastname,
-        //    type: 'to'
-        //  })
-        //}
-        for (var i = 0; i < 1; i += 1) {
+        for (var i = 0; i < users.length; i += 1) {
           locals.recipients.message.to.push({
-            email: 'ivan@campusly.org',
+            email: users[i].email,
             name: users[i].firstname + ' ' + users[i].lastname,
             type: 'to'
           })

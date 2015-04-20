@@ -8,7 +8,6 @@
   config.$inject=['$stateProvider'];
 
   function config ($stateProvider) {
-    // $urlRouterProvider.when('/dashboard', '/dashboard/summary');
     $stateProvider
     .state('editProfile', {
       url: '/editProfile',
