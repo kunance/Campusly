@@ -63,8 +63,16 @@
   <hr/>
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
-      <a style="margin-left:20px" class="contact-bubble-email pull-right" ng-href="mailto:{{detail.lookingDetail.relatedUserId.email}}?Subject=Interested%20in%20your%20looking" target="_top"><i class="fa fa-send fa-lg"></i><p>Email</p></a>
-      <a style="margin-left:20px" ng-if="detail.lookingDetail.relatedUserId.facebook" class="contact-bubble-facebook pull-right" ng-href="{{detail.lookingDetail.relatedUserId.facebook}}" target="_blank"><i style="color: #ffffff" class="fa fa-facebook fa-lg"></i><p style="color: white">PM</p></a>
+      <a id="email" style="margin-left:20px" class="contact-bubble-email pull-right" ng-href="mailto:{{detail.lookingDetail.relatedUserId.email}}?Subject=Interested%20in%20your%20looking" target="_top">
+        <i class="fa fa-send fa-lg"></i><p>Email</p></a>
+      <script type="text/javascript">
+        mixpanel.track_links("#email", "Email sent - looking");
+      </script>
+      <a id="facebookPM" style="margin-left:20px" ng-if="detail.lookingDetail.relatedUserId.facebook" class="contact-bubble-facebook pull-right" ng-href="{{detail.lookingDetail.relatedUserId.facebook}}" target="_blank">
+        <i style="color: #ffffff" class="fa fa-facebook fa-lg"></i><p style="color: white">PM</p></a>
+      <script type="text/javascript">
+        mixpanel.track_links("#facebookPM", "Facebook PM sent - looking");
+      </script>
     </div>
   </div>
 </div>
