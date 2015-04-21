@@ -1949,7 +1949,7 @@ Looking Details
   -ms-transform: rotateY(180deg);
   -o-transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
-  transform: rotateY(180deg)
+  transform: rotateY(180deg);
 }
 
 .flip-container, .front, .back {
@@ -1974,7 +1974,7 @@ Looking Details
   -ms-transform: rotateY(180deg);
   -o-transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
-  transform: rotateY(180deg)
+  transform: rotateY(180deg);
 }
 
 /* flip speed goes here */
