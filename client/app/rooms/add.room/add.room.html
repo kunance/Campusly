@@ -33,7 +33,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label>Your campus</label><br/>
+                  <label>Your campus</label><sup class="asterisk">*</sup><br/>
                   <p><small>{{vm.education.educationCenterName.name}}</small></p>
                 </div>
               </div>
@@ -47,7 +47,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label for="yourCampusNotPresent">Your campus</label><br/>
+                  <label for="yourCampusNotPresent">Your campus</label><sup class="asterisk">*</sup><br/>
                   <select id="yourCampusNotPresent" class="form-control" required name="yourCampusNotPresent"
                           ng-class="{'educationError': addNewRoomForm.yourCampusNotPresent.$error.required && vm.submitted}"
                           data-ng-model="vm.education.educationCenterName"
@@ -68,7 +68,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label for="availableMoveIn">Move-in date</label>
+                  <label for="availableMoveIn">Move-in date<sup class="asterisk">*</sup></label>
                   <p class="input-group">
                     <input type="text" id="availableMoveIn" required name="availableMoveIn" class="form-control borderRadiusFix" datepicker-popup="{{format}}" ng-model="vm.room.availableMoveIn" is-open="datePickers.startDate" close-text="Close"  ng-class="{'educationError': addNewRoomForm.availableMoveIn.$invalid && vm.submitted}"/>
                       <span class="input-group-btn">
@@ -89,7 +89,7 @@
                 <div class="col-xs-9 col-sm-7 input-post">
                   <label for="leaseEndDate">Move-out date</label>
                   <p class="input-group">
-                    <input type="text" id="leaseEndDate" required name="moveOut" class="form-control borderRadiusFix" datepicker-popup="{{format}}" ng-model="vm.room.leaseEndDate" is-open="datePickers.endDate" close-text="Close" ng-class="{'educationError': addNewRoomForm.moveOut.$invalid && vm.submitted}"/>
+                    <input type="text" id="leaseEndDate" name="moveOut" class="form-control borderRadiusFix" datepicker-popup="{{format}}" ng-model="vm.room.leaseEndDate" is-open="datePickers.endDate" close-text="Close" ng-class="{'educationError': addNewRoomForm.moveOut.$invalid && vm.submitted}"/>
                           <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="open($event,'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                           </span>
@@ -106,7 +106,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label for="monthlyPrice">Monthly Rent ($)</label>
+                  <label for="monthlyPrice">Monthly Rent ($)<sup class="asterisk">*</sup></label>
                   <input type="number" min="0" id="monthlyPrice" name="monthlyPrice" required class="form-control"  placeholder="e.x. 750" ng-model="vm.room.monthlyPrice" ng-class="{'educationError': addNewRoomForm.monthlyPrice.$invalid && vm.submitted}">
                   <div ng-show="addNewRoomForm.monthlyPrice.$dirty && addNewRoomForm.monthlyPrice.$invalid">
                     <p class="help-block error" >Enter a the monthly rent</p>
@@ -124,7 +124,7 @@
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
                   <label for="securityDeposit">Security Deposit ($)</label>
-                  <input type="number" min="0" id="securityDeposit" required name="securityDeposit" class="form-control"  placeholder="e.x. 750" ng-model="vm.room.securityDeposit" ng-class="{'educationError': addNewRoomForm.securityDeposit.$invalid && vm.submitted}"/>
+                  <input type="number" min="0" id="securityDeposit" name="securityDeposit" class="form-control"  placeholder="e.x. 750" ng-model="vm.room.securityDeposit" ng-class="{'educationError': addNewRoomForm.securityDeposit.$invalid && vm.submitted}"/>
                 </div>
               </div>
 
@@ -137,7 +137,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label for="monthlyUtilityCost">Monthly utility cost ($)</label>
+                  <label for="monthlyUtilityCost">Monthly utility cost ($)<sup class="asterisk">*</sup></label>
                   <input type="number" min="0" id="monthlyUtilityCost" required name="monthlyUtilityCost" class="form-control"  placeholder="e.x. 50" ng-model="vm.room.monthlyUtilityCost" ng-class="{'educationError': addNewRoomForm.monthlyUtilityCost.$invalid && vm.submitted}"/>
                 </div>
               </div>
@@ -156,7 +156,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label for="leaseType">Lease type</label>
+                  <label for="leaseType">Lease type<sup class="asterisk">*</sup></label>
                   <select id="leaseType" class="form-control" name="leaseType" ng-model="vm.room.leaseType" ng-class="{'educationError': addNewRoomForm.leaseType.$invalid && vm.submitted}" required>
                     <option value="sub-lease">Sub-lease</option>
                     <option value="month-to-month">Month to month</option>
@@ -174,7 +174,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label for="numRoommates">No. of roommates</label>
+                  <label for="numRoommates">No. of roommates<sup class="asterisk">*</sup></label>
                   <input type="number" min="0" id="numRoommates" required name="numRoommates" class="form-control" ng-model="vm.room.numRoomates" max="10" ng-class="{'educationError': addNewRoomForm.numRoommates.$invalid && vm.submitted}"/>
                 </div>
               </div>
@@ -189,7 +189,7 @@
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
                   <label for="type">Property type</label>
-                  <select id="type" class="form-control" ng-model="vm.property.type" name="propertyType" required ng-class="{'educationError': addNewRoomForm.propertyType.$invalid && vm.submitted}">
+                  <select id="type" class="form-control" ng-model="vm.property.type" name="propertyType" ng-class="{'educationError': addNewRoomForm.propertyType.$invalid && vm.submitted}">
                     <option value="apt">Apartment</option>
                     <option value="sfh">Single family house</option>
                     <option value="townhouse">Townhouse</option>
@@ -206,7 +206,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label for="bathrooms">Bathrooms</label><br/>
+                  <label for="bathrooms">Bathrooms</label><sup class="asterisk">*</sup><br/>
                   <input type="number" min="0" id="bathrooms" required name="bathrooms" class="form-control"  placeholder="Number of bathrooms" ng-model="vm.property.bathrooms" ng-class="{'educationError': addNewRoomForm.bathrooms.$invalid && vm.submitted}"/>
                 </div>
               </div>
@@ -220,7 +220,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label for="sharedBath">Shared Bathroom?</label>
+                  <label for="sharedBath">Shared Bathroom?<sup class="asterisk">*</sup></label>
                   <select id="sharedBath" required name="sharedBath" class="form-control" ng-model="vm.room.sharedBathroom" ng-class="{'educationError': addNewRoomForm.sharedBath.$invalid && vm.submitted}">
                     <option value="true">Yes</option>
                     <option value="false">No</option>
@@ -237,7 +237,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label for="bedrooms">Bedrooms</label><br/>
+                  <label for="bedrooms">Bedrooms</label><sup class="asterisk">*</sup><br/>
                   <input type="number" min="0" id="bedrooms" required name="bedrooms" class="form-control"  placeholder="Number of bedrooms" ng-model="vm.property.bedrooms" ng-class="{'educationError': addNewRoomForm.bedrooms.$invalid && vm.submitted}"/>
                 </div>
               </div>
@@ -257,7 +257,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label for="roomType">Room type</label>
+                  <label for="roomType">Room type</label><sup class="asterisk">*</sup>
                   <select id="roomType" class="form-control" ng-model="vm.room.roomType" required name="roomType" ng-class="{'educationError': addNewRoomForm.roomType.$invalid && vm.submitted}">
                     <option value="single">Single</option>
                     <option value="double">Double</option>
@@ -275,7 +275,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label for="furnished">Furnished?</label>
+                  <label for="furnished">Furnished?<sup class="asterisk">*</sup></label>
                   <select id="furnished" required name="furnished" class="form-control" ng-model="vm.room.furnished" ng-class="{'educationError': addNewRoomForm.furnished.$invalid && vm.submitted}">
                     <option value="true">Yes</option>
                     <option value="false">No</option>
@@ -292,7 +292,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label for="smokingAllowed">Smoking allowed?</label>
+                  <label for="smokingAllowed">Smoking allowed?<sup class="asterisk">*</sup></label>
                   <select id="smokingAllowed" required name="smokingAllowed" class="form-control" ng-model="vm.room.smokingAllowed" ng-class="{'educationError': addNewRoomForm.smokingAllowed.$invalid && vm.submitted}">
                     <option value="true">Yes</option>
                     <option value="false">No</option>
@@ -309,7 +309,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label for="gender">Gender preference</label>
+                  <label for="gender">Gender preference</label><sup class="asterisk">*</sup>
                   <select id="gender"class="form-control" ng-model="vm.room.gender" required name="gender" ng-class="{'educationError': addNewRoomForm.gender.$invalid && vm.submitted}">
                     <option value="no preference">No preference</option>
                     <option value="male only">Male only</option>
@@ -327,7 +327,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label for="petsAllowed">Pets allowed?</label>
+                  <label for="petsAllowed">Pets allowed?</label><sup class="asterisk">*</sup>
                   <select id="petsAllowed" required name="petsAllowed" class="form-control" ng-model="vm.room.petsAllowed" ng-class="{'educationError': addNewRoomForm.petsAllowed.$invalid && vm.submitted}">
                     <option value="true">Yes</option>
                     <option value="false">No</option>
@@ -344,7 +344,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label for="parkingAvailable">Parking available</label>
+                  <label for="parkingAvailable">Parking available</label><sup class="asterisk">*</sup>
                   <select id="parkingAvailable" required name="parkingAvailable" class="form-control" ng-model="vm.room.parkingAvailable" ng-class="{'educationError': addNewRoomForm.parkingAvailable.$invalid && vm.submitted}">
                     <option value="true">Yes</option>
                     <option value="false">No</option>
@@ -361,6 +361,7 @@
             <div class="row post-padding">
               <div class="col-xs-11 col-sm-11 input-post">
                 <textarea name="roomDescription" id="roomDescription" cols="60" rows="3" ng-model="vm.room.description"  class="form-control" placeholder="Enter room description (optional)"></textarea>
+                <p class="col-xs-offset-1 col-sm-offset-1"><br><sup class="asterisk">*</sup>required fields - makes searching your room faster</p>
               </div>
             </div>
 
@@ -376,7 +377,7 @@
             <!--  Address box  -->
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div class="page-header">
-                <h2 class="section-title">Your Current Address</h2>
+                <h2 class="section-title">Property Address</h2>
               </div>
               <div class="white-box pets">
 
@@ -397,14 +398,14 @@
 
                     <div class="form-group input-post-readonly">
 
-                      <label for="streetNumber" class="post-padding">Street Number</label>
+                      <label for="streetNumber" class="post-padding">Street Number</label><sup class="asterisk">*</sup>
                       <input required type="number" min="0" id="streetNumber" name="streetNumber" class="form-control"  placeholder="Street number" ng-model="vm.property.streetAddress.streetNumeric" readonly ng-class="{'educationError': addNewRoomForm.streetNumber.$invalid && vm.submitted}"/>
 
                     </div>
 
                     <div class="form-group input-post-readonly">
 
-                      <label for="streetName">Street Name</label>
+                      <label for="streetName">Street Name</label><sup class="asterisk">*</sup>
                       <input required type="text" id="streetName" name="streetName" class="form-control borderRadiusFix"  placeholder="Street name" ng-model="vm.property.streetAddress.streetAddress" readonly ng-class="{'educationError': addNewRoomForm.streetName.$invalid && vm.submitted}"/>
 
                     </div>
@@ -418,24 +419,25 @@
 
                     <div class="form-group input-post-readonly">
 
-                      <label for="city">City</label>
+                      <label for="city">City</label><sup class="asterisk">*</sup>
                       <input required type="text" id="city" name="city" class="form-control borderRadiusFix"  placeholder="City" ng-model="vm.property.streetAddress.city" readonly ng-class="{'educationError': addNewRoomForm.city.$invalid && vm.submitted}"/>
 
                     </div>
 
                     <div class="form-group input-post-readonly">
 
-                      <label for="state">State</label>
+                      <label for="state">State</label><sup class="asterisk">*</sup>
                       <input required type="text" id="state" name="state" class="form-control borderRadiusFix"  placeholder="State" ng-model="vm.property.streetAddress.state" readonly ng-class="{'educationError': addNewRoomForm.state.$invalid && vm.submitted}"/>
 
                     </div>
 
                     <div class="form-group input-post-readonly">
 
-                      <label for="zip">Zip Code</label>
+                      <label for="zip">Zip Code</label><sup class="asterisk">*</sup>
                       <input required type="number" min="0" id="zip" name="zip" class="form-control"  placeholder="Zip code" ng-model="vm.property.streetAddress.zip" readonly ng-class="{'educationError': addNewRoomForm.zip.$invalid && vm.submitted}"/>
 
                     </div>
+                    <p><br><sup class="asterisk">*</sup>required fields</p>
                     <br/>
                     <p class="alert warning" ng-if="addNewRoomForm.$error.required.length>0 && vm.submitted"><i style="color: white" class="fa fa-exclamation-triangle"></i>&nbsp&nbspPlease fill in all required fields. {{addNewRoomForm.$error.required.length}} more required.</p>
                     <p class="alert warning" ng-if="addNewRoomForm.$error.max && vm.submitted"><i style="color: white" class="fa fa-exclamation-triangle"></i>&nbsp&nbspMaximum 10 roommates allowed</p>
