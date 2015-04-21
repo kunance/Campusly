@@ -964,9 +964,13 @@ and (max-device-width : 480px) {
 
 @media (max-width: 768px) {
 
-  body .jumbotron {
-    margin-top: -120px;
+  .jumbotron {
+    margin-top: -160px;
     padding-top: 120px;
+  }
+
+  .jumbotron .lead-msg {
+    margin-top: 40px;
   }
 
   body nav.dashboard-submenu ul li {
@@ -1949,7 +1953,7 @@ Looking Details
   -ms-transform: rotateY(180deg);
   -o-transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
-  transform: rotateY(180deg)
+  transform: rotateY(180deg);
 }
 
 .flip-container, .front, .back {
@@ -1974,7 +1978,7 @@ Looking Details
   -ms-transform: rotateY(180deg);
   -o-transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
-  transform: rotateY(180deg)
+  transform: rotateY(180deg);
 }
 
 /* flip speed goes here */
@@ -1982,7 +1986,7 @@ Looking Details
   -moz-transition: 0.6s;
   -o-transition: 0.6s;
   -webkit-transition: 0.6s;
-  transition: 0.6s
+  transition: 0.6s;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
 
@@ -2893,6 +2897,10 @@ a.view-all {
   padding-left: 10px;
 }
 
+/* Commenting out roundedTwo - not sure what it is used for.
+Throws error in Safari
+Unexpected CSS token: : line 2906 and 2940
+
 .roundedTwo {
   width: 28px;
   height: 28px;
@@ -2973,6 +2981,7 @@ a.view-all {
   filter: alpha(opacity=100);
   opacity: 1;
 }
+*/
 
 input[type="checkbox"] {
 opacity: 0;
