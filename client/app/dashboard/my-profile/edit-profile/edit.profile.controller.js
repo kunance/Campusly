@@ -104,7 +104,7 @@
       } else {
         common.dataservice.addEducation(vm.me.id, input)
         .$promise
-        .then(function res(res) {
+        .then(function (res) {
           common.logger.success('Education successfully added.');
           vm.tempEducation.educationCenterName = vm.universitiesList[res.universityId - 1];
         })
