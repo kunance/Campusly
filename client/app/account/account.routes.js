@@ -21,7 +21,7 @@
         authenticate:false
       })
       .state('settings', {
-        url: '/settings',
+        url: '/settings/:focus',
         templateUrl: 'app/account/settings/settings.html',
         controller: 'SettingsCtrl',
         controllerAs: 'settings',

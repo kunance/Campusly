@@ -1,17 +1,18 @@
-<h2>Students Around You <small>(within {{dashboard.me.experianIdToken}} mile)</small></h2>
+<h2 style="display: inline"> Students Around You <small>(within {{dashboard.me.experianIdToken}} mile)</small></h2>
+<a ui-sref="settings({focus:'radius'})" >change radius</a>
 <!--<input class="pull-right" type="range" name="points" min="1" max="5" step="1" style="position: relative; width: 200px;"/>-->
 <div class="white-box">
   <h3 ng-if="!dashboard.aroundYou.length && dashboard.address.streetAddress.id && dashboard.me.shareProfile">
     There is no students around you right now
   </h3>
   <h3 ng-if="!dashboard.address.streetAddress.id && dashboard.me.shareProfile">
-    Please <a ui-sref="editProfile">update</a> your current address to connect with students around you.
+    Please <a ui-sref="editProfile({focus:'updateAddress'})">update your current address</a> to connect with students around you.
   </h3>
   <h3 ng-if="!dashboard.address.streetAddress.id && !dashboard.me.shareProfile">
-    Please <a ui-sref="editProfile">update</a> your privacy preferences and add your current address to connect with students around you.
+    Please <a ui-sref="settings({focus:'allowConnect'})">update your privacy</a> preferences and <a ui-sref="editProfile({focus:'updateAddress'})">add your current address</a> to connect with students around you.
   </h3>
   <h3 ng-if="!dashboard.me.shareProfile && (dashboard.aroundYou.length || dashboard.address.streetAddress.id)">
-    Please <a ui-sref="editProfile">update</a> your privacy preferences to connect with students around you.
+    Please <a ui-sref="settings({focus:'allowConnect'})">update your privacy</a> preferences to connect with students around you.
   </h3>
   <slick dots="true" class="slider row" slides-to-show="4" slides-to-scroll="4" responsive="dashboard.breakpoints.aroundYou" init-onload="true" infinite="false" data="dashboard.aroundYou" ng-if="dashboard.aroundYou.length && dashboard.me.shareProfile">
 
