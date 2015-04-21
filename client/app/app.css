@@ -964,9 +964,13 @@ and (max-device-width : 480px) {
 
 @media (max-width: 768px) {
 
-  body .jumbotron {
-    margin-top: -120px;
+  .jumbotron {
+    margin-top: -160px;
     padding-top: 120px;
+  }
+
+  .jumbotron .lead-msg {
+    margin-top: 40px;
   }
 
   body nav.dashboard-submenu ul li {
