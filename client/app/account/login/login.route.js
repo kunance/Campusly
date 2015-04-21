@@ -55,7 +55,11 @@
   function getCurrentUser(common, $q) {
     var deferred = $q.defer();
     common.Auth.getCurrentUser(function(user) {
-      deferred.resolve(user);
+      if(user.confirmedEmail===false){
+        common.Auth.logout();
+      } else {
+        deferred.resolve(user);
+      }
     });
     return deferred.promise;
   }

@@ -5,9 +5,9 @@
     .module('app.addRoom', [])
     .config(config);
 
-  config.$inject=['$stateProvider', '$urlRouterProvider'];
+  config.$inject=['$stateProvider'];
 
-  function config ($stateProvider, $urlRouterProvider) {
+  function config ($stateProvider) {
     $stateProvider.state('addRoom', {
       url: '/addRoom',
       templateUrl: 'app/rooms/add.room/add.room.html',

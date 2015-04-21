@@ -5,9 +5,9 @@
     .module('app.rooms', [])
     .config(config);
 
-  config.$inject=['$stateProvider', '$urlRouterProvider'];
+  config.$inject=['$stateProvider',];
 
-  function config ($stateProvider, $urlRouterProvider) {
+  function config ($stateProvider) {
     $stateProvider
       .state('rooms', {
       url: '/rooms',
@@ -21,7 +21,6 @@
       authenticate: true
     });
   }
-
 
   getCurrentUser.$inject = ['common', '$q'];
   function getCurrentUser(common, $q) {
@@ -37,6 +36,5 @@
     var edu = common.dataservice.getAllEducations(currentUser.id);
     return $q.all([edu.$promise]);
   }
-
 
 }());

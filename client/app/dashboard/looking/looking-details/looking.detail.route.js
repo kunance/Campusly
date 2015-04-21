@@ -5,9 +5,9 @@
     .module('app.dashboard')
     .config(config);
 
-  config.$inject=['$stateProvider', '$urlRouterProvider'];
+  config.$inject=['$stateProvider',];
 
-  function config ($stateProvider, $urlRouterProvider) {
+  function config ($stateProvider) {
     $stateProvider
       .state('lookingDetail', {
         url: '/lookingDetail/:id',

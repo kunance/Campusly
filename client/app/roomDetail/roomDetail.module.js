@@ -5,9 +5,9 @@
     .module('app.roomDetail', [])
     .config(config);
 
-  config.$inject=['$stateProvider', '$urlRouterProvider'];
+  config.$inject=['$stateProvider'];
 
-  function config ($stateProvider, $urlRouterProvider) {
+  function config ($stateProvider) {
     $stateProvider
       .state('roomDetail', {
         url: '/roomDetail/:id',

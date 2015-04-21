@@ -3,8 +3,7 @@
 
   angular
     .module('app.landing', [])
-    .config(config)
-    .run(run);
+    .config(config);
 
     config.$inject = ['$stateProvider'];
     function config($stateProvider) {
@@ -16,25 +15,6 @@
         controllerAs: 'landing',
         authenticate: false
       });
-    //.state('landing.valuedetails', {
-    //  url: '/valuedetails',
-    //  templateUrl: 'app/landing/valuedetails.html',
-    //  controller: 'ValueDetailsCtrl'
-    //}).state('landing.howto', {
-    //  url: '/howto',
-    //  templateUrl: 'app/landing/howto.html',
-    //  controller: 'HowToCtrl'
-    //})
   }
-
-  run.$inject = ['$rootScope'];
-  function run($rootScope) {
-      //$rootScope.$on('$stateChangeStart', function (event, next, nextParams, current) {
-      //  if (next.name === 'logout' && current && current.name && !current.authenticate) {
-      //    next.referrer = current.name;
-      //  }
-      //});
-    }
-
 
 }());

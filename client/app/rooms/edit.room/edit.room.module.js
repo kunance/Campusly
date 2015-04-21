@@ -5,9 +5,9 @@
     .module('app.editRoom', [])
     .config(config);
 
-  config.$inject=['$stateProvider', '$urlRouterProvider'];
+  config.$inject=['$stateProvider'];
 
-  function config ($stateProvider, $urlRouterProvider) {
+  function config ($stateProvider) {
     $stateProvider.state('editRoom', {
       url: '/editRoom/:id',
       templateUrl: 'app/rooms/edit.room/edit.room.html',

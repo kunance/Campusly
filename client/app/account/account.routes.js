@@ -4,17 +4,13 @@
 
   angular
     .module('app.account')
-      .config(config)
-      .run(run);
+      .config(config);
 
   config.$inject = ['$stateProvider'];
   function config($stateProvider) {
 
     $stateProvider
       .state('logout', {
-        url: '/logout?referrer',
-        referrer: '/',
-        template: '',
         controller: logout
       })
       .state('signup', {
@@ -26,20 +22,10 @@
       });
   }
 
-  run.$inject = ['$rootScope'];
-  function run($rootScope) {
-    $rootScope.$on('$stateChangeStart', function (event, next, nextParams, current) {
-      if (next.name === 'logout' && current && current.name && !current.authenticate) {
-        next.referrer = current.name;
-      }
-    });
-  }
-
-  logout.$inject = ['$state', 'Auth', '$location'];
-  function logout($state, Auth, $location) {
-      var referrer = '/';
+  logout.$inject = ['$state', 'Auth'];
+  function logout($state, Auth) {
       Auth.logout();
-      $location.path(referrer);
+      $state.go('landing');
   }
 
 }());
