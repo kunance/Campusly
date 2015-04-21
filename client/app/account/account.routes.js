@@ -19,7 +19,26 @@
         controller: 'SignupCtrl',
         controllerAs: 'signup',
         authenticate:false
+      })
+      .state('settings', {
+        url: '/settings',
+        templateUrl: 'app/account/settings/settings.html',
+        controller: 'SettingsCtrl',
+        controllerAs: 'settings',
+        resolve:{
+          currentUser: getCurrentUser
+        },
+        authenticate:true
       });
+  }
+
+  getCurrentUser.$inject=['common', '$q'];
+  function getCurrentUser(common, $q) {
+    var deferred = $q.defer();
+    common.Auth.getCurrentUser(function(user) {
+      deferred.resolve(user);
+    });
+    return deferred.promise;
   }
 
   logout.$inject = ['$state', 'Auth'];

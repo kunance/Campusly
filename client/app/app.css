@@ -1942,14 +1942,15 @@ Looking Details
 .flip-container {
   perspective: 1000px;
   -webkit-perspective: 1000px;
+  -ms-perspective: 1000;
 }
 /* flip the pane when hovered */
 .flip-container:hover .flipper, .flip-container.hover .flipper {
-  -moz-transform: rotateY(180deg);
-  -ms-transform: rotateY(180deg);
-  -o-transform: rotateY(180deg);
-  -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg)
+  -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  /*-moz-transform: rotateY(180deg);*/
+  /*-o-transform: rotateY(180deg);*/
 }
 
 .flip-container, .front, .back {
@@ -1967,24 +1968,25 @@ Looking Details
 .flip-container-room {
   perspective: 1000px;
   -webkit-perspective: 1000px;
+  -ms-perspective: 1000;
 }
 /* flip the pane when hovered */
 .flip-container-room:hover .flipper, .flip-container-room.hover .flipper {
-  -moz-transform: rotateY(180deg);
-  -ms-transform: rotateY(180deg);
-  -o-transform: rotateY(180deg);
-  -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg)
+  -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  /*-moz-transform: rotateY(180deg);*/
+  /*-o-transform: rotateY(180deg);*/
 }
 
 /* flip speed goes here */
 .flipper {
-  -moz-transition: 0.6s;
-  -o-transition: 0.6s;
-  -webkit-transition: 0.6s;
   transition: 0.6s
+  -webkit-transition: 0.6s;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
+  /*-moz-transition: 0.6s;*/
+  /*-o-transition: 0.6s;*/
 
   position: relative;
 }
@@ -1993,11 +1995,13 @@ Looking Details
 .front {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
 }
 
 .back {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
 
   position: absolute;
   top: 0;
@@ -2007,12 +2011,12 @@ Looking Details
 .front {
   width: 100%;
   border-radius: 5px;
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
   -moz-transform: rotateY(180deg);
   -o-transform: rotateY(180deg);
   display: table;
   z-index: 2;
-  transform: rotateY(0deg);
-  -webkit-transform: rotateY(0deg);
   -ms-transform: rotateY(0deg);
 }
 
@@ -2673,15 +2677,15 @@ a.view-all {
   overflow: hidden;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) {
+/*@media screen and (-webkit-min-device-pixel-ratio:0) {*/
   /* Safari and Chrome, if Chrome rule needed */
   /* Safari 5+ ONLY */
-  ::i-block-chrome, .safariFix {
+  /*::i-block-chrome, .safariFix {*/
 
     /*TODO fix images for safari only */
 
-  }
-}
+  /*}*/
+/*}*/
 
 .rooms .room .picture img {
   width: 100%;

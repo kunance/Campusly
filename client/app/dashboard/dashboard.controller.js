@@ -6,7 +6,6 @@
   .module('app.dashboard')
   .controller('DashboardCtrl',DashboardCtrl);
 
-
   DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'data'];
 
   function DashboardCtrl(common, $scope, currentUser, data) {
@@ -23,6 +22,7 @@
     vm.numberOf = data[4].length;
     vm.aroundYou = data[5];
     vm.address = data[6];
+    vm.me.experianIdToken = vm.me.experianIdToken || 1;
     /*
      *  prerender.io
      */

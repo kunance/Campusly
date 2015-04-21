@@ -1,3 +1,6 @@
+(function() {
+  "use strict";
+
 (function (f, b) {
   if (!b.__SV) {
     var a, e, i, g;
@@ -38,3 +41,5 @@
   }
 })(document, window.mixpanel || []);
 mixpanel.init("bd202854d110bac5e72d7e034abdae01");
+
+}());

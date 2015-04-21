@@ -39,7 +39,7 @@
       var allRoomListing = RoomListingView.query({limit: 9});
       var userRoomLookings = RoomListing.query({userId: currentUser.id});
       var requests = common.dataservice.getRequests(currentUser.id);
-      var aroundYou= UserResource.aroundMe({distance:(1609), limit: 12});// 1 mile default limit 15
+      var aroundYou= UserResource.aroundMe({distance:(1609 * (currentUser.experianIdToken || 1)), limit: 12});
       var adr = common.dataservice.getAllAddresses(currentUser.id);
       return $q.all([allLookings.$promise, getUserLookings.$promise, allRoomListing.$promise, userRoomLookings.$promise, requests.$promise, aroundYou.$promise, adr.$promise]);
   }

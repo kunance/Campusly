@@ -12,8 +12,9 @@
     vm.me = currentUser;
     vm.education = data[0];
     vm.address = data[1];
+    vm.me.experianIdToken = vm.me.experianIdToken || 1;
 
-    UserResource.aroundMe({distance:(1609), limit: 80}, function (aroundYou) {
+    UserResource.aroundMe({distance:(1609 * (vm.me.experianIdToken || 1)), limit: 80}, function (aroundYou) {
       vm.aroundYou = aroundYou;
       vm.groups = vm.aroundYou.inGroupsOf(8);
     }, function (err) {

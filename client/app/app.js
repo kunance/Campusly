@@ -1,76 +1,53 @@
-angular.module('RentedApp', [
-  /*
-   * Order is not important. Angular makes a
-   * pass to register all of the modules listed
-   */
-  'app.core',
-  'app.widgets',
+(function () {
+  "use strict";
 
-  /*
-   * Feature areas
-   */
-  'app.dashboard',
-  'app.layout',
-  'app.account',
-  'app.landing',
-  'app.rooms',
-  'app.addRoom',
-  'app.editRoom',
-  'app.roomDetail',
-  'app.footer'
-])
-  .config(config)
-  .run(run)
-  .factory('authInterceptor', authInterceptor);
+  angular.module('RentedApp', [
+    /*
+     * Order is not important. Angular makes a
+     * pass to register all of the modules listed
+     */
+    'app.core',
+    'app.widgets',
 
-  config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', '$uiViewScrollProvider'];
-  function config($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $uiViewScrollProvider) {
-      $urlRouterProvider
-        .otherwise('/dashboard');
-  $locationProvider.html5Mode(true);
-  $uiViewScrollProvider.useAnchorScroll();
-  $httpProvider.interceptors.push('authInterceptor');
-  $locationProvider.hashPrefix('!');
-  $httpProvider.interceptors.push(['$q', '$injector', function ($q, $injector) {
-    return {
-      'request': function(config) {
-        // do something on success
-        // start with 30 seconds for default timeout value when calling any network dependent service such as db or elastic search
-        config.timeout = 300000;
-        return config;
-      },
+    /*
+     * Feature areas
+     */
+    'app.dashboard',
+    'app.layout',
+    'app.account',
+    'app.landing',
+    'app.rooms',
+    'app.addRoom',
+    'app.editRoom',
+    'app.roomDetail',
+    'app.footer'
+  ])
+    .config(configuration)
+    .run(run)
+    .factory('authInterceptor', authInterceptor);
 
-      'requestError': function(rejection) {
-        // do something on error
-//				if (canRecover(rejection)) {
-//					return responseOrNewPromise
-//				}
-        return $q.reject(rejection);
-      },
+  configuration.$inject = ['$urlRouterProvider', '$locationProvider', '$httpProvider', '$uiViewScrollProvider'];
+  function configuration($urlRouterProvider, $locationProvider, $httpProvider, $uiViewScrollProvider) {
+    $urlRouterProvider
+      .otherwise('/dashboard');
+    $locationProvider.html5Mode(true);
+    $uiViewScrollProvider.useAnchorScroll();
+    $httpProvider.interceptors.push('authInterceptor');
+    $locationProvider.hashPrefix('!');
+    $httpProvider.interceptors.push(requestInterceptor);
+  }
 
-      'response': function(response) {
-        // do something on success
-        return response;
-      },
-
-      'responseError': function (response) {
-        //console.log('RESPONSE ERROR: ', response);
-        return $q.reject(response);
-      }
-    };
-  }]);
-}
   authInterceptor.$inject = ['$rootScope', '$q', '$cookieStore', '$injector'];
   function authInterceptor($rootScope, $q, $cookieStore, $injector) {
     var state;
     return {
       // Add authorization token to headers
-      request: function (config) {
-        config.headers = config.headers || {};
+      request: function (configuration) {
+        configuration.headers = configuration.headers || {};
         if ($cookieStore.get('token')) {
-          config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
+          configuration.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
         }
-        return config;
+        return configuration;
       },
 
       // Intercept 401s and redirect you to login
@@ -88,6 +65,36 @@ angular.module('RentedApp', [
     };
   }
 
+  requestInterceptor.$inject = ['$q'];
+  function requestInterceptor($q) {
+    return {
+      'request': function (configuration) {
+        // do something on success
+        // start with 30 seconds for default timeout value when calling any network dependent service such as db or elastic search
+        configuration.timeout = 300000;
+        return configuration;
+      },
+
+      'requestError': function (rejection) {
+        // do something on error
+//				if (canRecover(rejection)) {
+//					return responseOrNewPromise
+//				}
+        return $q.reject(rejection);
+      },
+
+      'response': function (response) {
+        // do something on success
+        return response;
+      },
+
+      'responseError': function (response) {
+        //console.log('RESPONSE ERROR: ', response);
+        return $q.reject(response);
+      }
+    };
+  }
+
   run.$inject=['$rootScope', '$state', 'Auth', '$stateParams', 'common', '$location'];
   function run($rootScope, $state, Auth, $stateParams, common, $location) {
     // Redirect to login if route requires auth and you're not logged in
@@ -95,7 +102,7 @@ angular.module('RentedApp', [
       //console.log('Current state: ', $state.current.name);
       //console.log('Event: ', event);
       //console.log('Next: ', next);
-    //  common.logger.info('Navigating to ' + next.url); // Used to help understand where we navigate to
+      //  common.logger.info('Navigating to ' + next.url); // Used to help understand where we navigate to
       if (next.authenticate) {
         common.Auth.isLoggedInAsync(function (loggedIn) {
           if (!loggedIn) {
@@ -106,3 +113,6 @@ angular.module('RentedApp', [
       }
     });
   }
+
+}());
+
