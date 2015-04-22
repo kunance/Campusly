@@ -11,7 +11,7 @@
     </div>
     <div class="right-content" ng-show="isLoggedIn()">
       <div class="fb-like facebookNavbar" fb-like><i class="fa fa-facebook-square facebookNavbarIcon"></i>Like / Share</div>
-      <i ui-sref="settings" id="settings" class="fa fa-cog" ng-class="{'fa-spin':hover}" style="cursor:pointer; color: #ffffff; font-size: 25px; padding-left: 5px; padding-right: 5px;vertical-align: middle;" ng-mouseenter="hover = true" ng-mouseleave="hover = false"></i>
+      <i ui-sref="settings" id="settings" class="fa fa-cog" ng-class="{'fa-spin':hover}" ng-mouseenter="hover = true" ng-mouseleave="hover = false"></i>
       <img class="img-circle profile-image" ng-if="getCurrentUser().profileImage" ng-src="/api/images{{getCurrentUser().profileImage}}">
       <i ng-if="!getCurrentUser().profileImage" class="fa fa-user fa-2x greetings" style="vertical-align: middle; "></i>
       <p class="greetings">&nbsp;{{getCurrentUser().firstname}}</p>
