@@ -8,9 +8,9 @@
 
       <div class="row">
         <div class="page-header col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h2 ng-if="around.me.experianIdToken == 1" style="display: inline">Students Around You <small>(within {{around.me.experianIdToken}} mile)</small></h2>
-          <h2 ng-if="around.me.experianIdToken > 1" style="display: inline">Students Around You <small>(within {{around.me.experianIdToken}} miles)</small></h2>
-          <a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a>
+          <h2 ng-if="around.me.experianIdToken == 1 && around.me.shareProfile" style="display: inline">Students Around You <small>(within {{around.me.experianIdToken}} mile)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
+          <h2 ng-if="around.me.experianIdToken > 1 && around.me.shareProfile" style="display: inline">Students Around You <small>(within {{around.me.experianIdToken}} miles)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
+          <h2 ng-if="!around.me.shareProfile" style="display: inline">Students Around You</h2>
         </div>
       </div>
 
