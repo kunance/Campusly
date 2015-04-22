@@ -1,23 +1,25 @@
-<h2 style="display: inline"> Students Around You <small>(within {{dashboard.me.experianIdToken}} mile)</small></h2>
-<a ui-sref="settings({focus:'radius'})" >change radius</a>
-<div class="white-box">
-  <h3 ng-if="!dashboard.aroundYou.length && dashboard.address.streetAddress.id && dashboard.me.shareProfile">
-    There is no students around you right now
-  </h3>
-  <h3 ng-if="!dashboard.address.streetAddress.id && dashboard.me.shareProfile">
-    Please <a ui-sref="editProfile({focus:'updateAddress'})">update your current address</a> to connect with students around you.
-  </h3>
-  <h3 ng-if="!dashboard.address.streetAddress.id && !dashboard.me.shareProfile">
-    Please <a ui-sref="settings({focus:'allowConnect'})">update your privacy</a> preferences and <a ui-sref="editProfile({focus:'updateAddress'})">add your current address</a> to connect with students around you.
-  </h3>
-  <h3 ng-if="!dashboard.me.shareProfile && (dashboard.aroundYou.length || dashboard.address.streetAddress.id)">
-    Please <a ui-sref="settings({focus:'allowConnect'})">update your privacy</a> preferences to connect with students around you.
-  </h3>
-  <slick dots="true" class="slider row" slides-to-show="4" slides-to-scroll="4" responsive="dashboard.breakpoints.aroundYou" init-onload="true" infinite="false" data="dashboard.aroundYou" ng-if="dashboard.aroundYou.length && dashboard.me.shareProfile">
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <h2 ng-if="dashboard.me.experianIdToken == 1"> Students Around You <small>(within {{dashboard.me.experianIdToken}} mile)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
+    <h2 ng-if="dashboard.me.experianIdToken > 1"> Students Around You <small>(within {{dashboard.me.experianIdToken}} miles)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
+    <div class="white-box">
+      <h3 ng-if="!dashboard.aroundYou.length && dashboard.address.streetAddress.id && dashboard.me.shareProfile">
+        There is no students around you right now
+      </h3>
+      <h3 ng-if="!dashboard.address.streetAddress.id && dashboard.me.shareProfile">
+        Please <a ui-sref="editProfile({focus:'updateAddress'})">update your current address</a> to connect with students around you.
+      </h3>
+      <h3 ng-if="!dashboard.address.streetAddress.id && !dashboard.me.shareProfile">
+        Please <a ui-sref="settings({focus:'allowConnect'})">update your privacy</a> preferences and <a ui-sref="editProfile({focus:'updateAddress'})">add your current address</a> to connect with students around you.
+      </h3>
+      <h3 ng-if="!dashboard.me.shareProfile && (dashboard.aroundYou.length || dashboard.address.streetAddress.id)">
+        Please <a ui-sref="settings({focus:'allowConnect'})">update your privacy</a> preferences to connect with students around you.
+      </h3>
+      <slick dots="true" class="slider row" slides-to-show="4" slides-to-scroll="4" responsive="dashboard.breakpoints.aroundYou" init-onload="true" infinite="false" data="dashboard.aroundYou" ng-if="dashboard.aroundYou.length && dashboard.me.shareProfile">
 
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="around in dashboard.aroundYou track by $index">
-              <img ng-if="around.profileImage" ng-src="api/images{{around.profileImage}}" class="img-circle center-image" height="80px" width="80px" style="margin-top:0">
-              <i ng-if="!around.profileImage" class="fa fa-user fa-5x" style="text-align: center; display: inline-block;width: 100%;"></i>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="around in dashboard.aroundYou track by $index">
+          <img ng-if="around.profileImage" ng-src="api/images{{around.profileImage}}" class="img-circle center-image" height="80px" width="80px" style="margin-top:0">
+          <i ng-if="!around.profileImage" class="fa fa-user fa-5x" style="text-align: center; display: inline-block;width: 100%;"></i>
           <div class="">
             <h4 class="media-heading user-name" style="text-align: center">
               {{around.firstname}} {{around.lastname[0] | uppercase}}.
@@ -32,18 +34,20 @@
               </dl>
             </div>
           </div>
-      <div style="text-align: center;width: 100%;">
-          <a id="facebookPM" ng-href="{{around.facebook}}" ng-if="around.facebook" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
-          <script type="text/javascript">
-            mixpanel.track_links("#facebookPM", "Facebook PM sent - around you");
-          </script>
-          <a id="email" ng-href="mailto:{{around.email}}?Subject=Hello"><i class="fa fa-envelope fa-2x"></i></a>
-          <script type="text/javascript">
-            mixpanel.track_links("#email", "Email sent - around you");
-          </script>
-      </div>
+          <div style="text-align: center;width: 100%;">
+            <a id="facebookPM" ng-href="{{around.facebook}}" ng-if="around.facebook" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
+            <script type="text/javascript">
+              mixpanel.track_links("#facebookPM", "Facebook PM sent - around you");
+            </script>
+            <a id="email" ng-href="mailto:{{around.email}}?Subject=Hello"><i class="fa fa-envelope fa-2x"></i></a>
+            <script type="text/javascript">
+              mixpanel.track_links("#email", "Email sent - around you");
+            </script>
+          </div>
+        </div>
+      </slick>
+      <hr ng-if="dashboard.address.streetAddress.id && dashboard.me.shareProfile && dashboard.aroundYou.length">
+      <a class="pull-right btn-rented-event view-all" ui-sref="aroundYou" ng-if="dashboard.address.streetAddress.id && dashboard.me.shareProfile && dashboard.aroundYou.length">View All</a>
     </div>
-  </slick>
-  <hr ng-if="dashboard.address.streetAddress.id && dashboard.me.shareProfile && dashboard.aroundYou.length">
-  <a class="pull-right btn-rented-event view-all" ui-sref="aroundYou" ng-if="dashboard.address.streetAddress.id && dashboard.me.shareProfile && dashboard.aroundYou.length">View All</a>
+  </div>
 </div>
