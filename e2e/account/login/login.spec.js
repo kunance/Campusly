@@ -1,73 +1,89 @@
-'use strict';
+//'use strict';
+//
+//var config = protractor.getInstance().params;
+//var UserModel = require(config.serverConfig.root + '/server/sqldb').User;
+//
+//describe('Login View', function() {
+//  var page;
+//
+//  var loadPage = function() {
+//    browser.get('/login');
+//   page = require('./login.po');
+//  };
+//
+//  var testUser = {
+//    name: 'Test User',
+//    email: 'test@test.com',
+//    password: 'test'
+//  };
+//
+//  before(function() {
+//    return UserModel
+//      .destroy()
+//      .then(function() {
+//        return UserModel.create(testUser);
+//      })
+//      .then(loadPage);
+//  });
+//
+//  after(function() {
+//    return UserModel.destroy();
+//  });
+//
+//  it('should include login form with correct inputs and submit button', function() {
+//    expect(page.form.email.getAttribute('type')).to.eventually.equal('email');
+//    expect(page.form.email.getAttribute('name')).to.eventually.equal('email');
+//    expect(page.form.password.getAttribute('type')).to.eventually.equal('password');
+//    expect(page.form.password.getAttribute('name')).to.eventually.equal('password');
+//    expect(page.form.submit.getAttribute('type')).to.eventually.equal('submit');
+//    expect(page.form.submit.getText()).to.eventually.equal('Login');
+//  });
+//
+//  describe('with local auth', function() {
+//
+//    it('should login a user and redirecting to "/"', function() {
+//      page.login(testUser);
+//
+//      var navbar = require('../../components/layout/navbar/navbar.po');
+//
+//      expect(browser.getLocationAbsUrl()).to.eventually.equal(config.baseUrl + '/');
+//      expect(navbar.navbarAccountGreeting.getText()).to.eventually.equal('Hello ' + testUser.name);
+//    });
+//
+//    describe('and invalid credentials', function() {
+//      before(function() {
+//        return loadPage();
+//      })
+//
+//      it('should indicate login failures', function() {
+//        page.login({
+//          email: testUser.email,
+//          password: 'badPassword'
+//        });
+//
+//        expect(browser.getLocationAbsUrl()).to.eventually.equal(config.baseUrl + '/login');
+//
+//        var helpBlock = page.form.element(by.css('.form-group.has-error .help-block.ng-binding'));
+//        expect(helpBlock.getText()).to.eventually.equal('This password is not correct.');
+//      });
+//
+//    });
+//
+//  });
+//});
 
-var config = protractor.getInstance().params;
-var UserModel = require(config.serverConfig.root + '/server/sqldb').User;
+describe('LoginPage', function() {
+  var loginPage = require('./login.po');
 
-describe('Login View', function() {
-  var page;
-
-  var loadPage = function() {
+  beforeEach(function() {
     browser.get('/login');
-    page = require('./login.po');
-  };
-
-  var testUser = {
-    name: 'Test User',
-    email: 'test@test.com',
-    password: 'test'
-  };
-
-  before(function() {
-    return UserModel
-      .destroy()
-      .then(function() {
-        return UserModel.create(testUser);
-      })
-      .then(loadPage);
   });
 
-  after(function() {
-    return UserModel.destroy();
-  });
-
-  it('should include login form with correct inputs and submit button', function() {
-    expect(page.form.email.getAttribute('type')).to.eventually.equal('email');
-    expect(page.form.email.getAttribute('name')).to.eventually.equal('email');
-    expect(page.form.password.getAttribute('type')).to.eventually.equal('password');
-    expect(page.form.password.getAttribute('name')).to.eventually.equal('password');
-    expect(page.form.submit.getAttribute('type')).to.eventually.equal('submit');
-    expect(page.form.submit.getText()).to.eventually.equal('Login');
-  });
-
-  describe('with local auth', function() {
-
-    it('should login a user and redirecting to "/"', function() {
-      page.login(testUser);
-
-      var navbar = require('../../components/layout/navbar/navbar.po');
-
-      expect(browser.getLocationAbsUrl()).to.eventually.equal(config.baseUrl + '/');
-      expect(navbar.navbarAccountGreeting.getText()).to.eventually.equal('Hello ' + testUser.name);
-    });
-
-    describe('and invalid credentials', function() {
-      before(function() {
-        return loadPage();
-      })
-
-      it('should indicate login failures', function() {
-        page.login({
-          email: testUser.email,
-          password: 'badPassword'
-        });
-
-        expect(browser.getLocationAbsUrl()).to.eventually.equal(config.baseUrl + '/login');
-
-        var helpBlock = page.form.element(by.css('.form-group.has-error .help-block.ng-binding'));
-        expect(helpBlock.getText()).to.eventually.equal('This password is not correct.');
-      });
-
-    });
-
+  it('should be able to log in', function() {
+    loginPage.emailInput.sendKeys('ivan@campusly.org');
+    loginPage.passwordInput.sendKeys('00000000');
+    loginPage.loginButton.click();
+    if (!loginPage.helpBlock.isPresent())
+      expect(element(by.css('.navbar-text')).getText()).toBe('Hello jure');
   });
 });
