@@ -29,8 +29,7 @@
           firstname: vm.user.firstname,
           lastname: vm.user.lastname,
           email: vm.user.email,
-          password: vm.user.password,
-          distinct: distinct_id
+          password: vm.user.password
         })
           .then(function () {
             // Account created, sending verification email, logging out user
@@ -54,7 +53,7 @@
                 vm.errors[field.path] = field.message;
                 mixpanel.track("sign up - unique email violation",{distinct:distinct_id});
               }
-              else if (field.type == 'Validation error'){
+              if (field.type == 'Validation error'){
                 field.message = 'Your email needs to be a valid .edu address!';
                 vm.errors[field.path] = field.message;
                 mixpanel.track("sign up - .edu email violation",{distinct:distinct_id});
