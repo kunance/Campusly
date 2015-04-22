@@ -5,13 +5,14 @@
   .module('app.dashboard')
   .controller('EditProfileCtrl', EditProfileCtrl);
 
-  EditProfileCtrl.$inject = ['$scope', '$cookieStore', 'common', 'FileUploader', 'currentUser', 'data', '$window'];
+  EditProfileCtrl.$inject = ['$scope', '$cookieStore', 'common', 'FileUploader', 'currentUser', 'data', '$anchorScroll', '$stateParams', '$location'];
 
-  function EditProfileCtrl($scope, $cookieStore, common, FileUploader, currentUser, data, $window) {
+  function EditProfileCtrl($scope, $cookieStore, common, FileUploader, currentUser, data, $anchorScroll, $stateParams, $location) {
     var vm = this;
     /*
      *  Fetch all required data for controller from route resolve
      */
+    vm.focus = $stateParams.focus;
     vm.me = currentUser;
     vm.tempMe = Object.create(vm.me);
     vm.busy = data;//one promise witch need to be resolved in order to initialize controller (we use for show busy sign)
@@ -22,6 +23,16 @@
     vm.submittedAddress = false;
     vm.ddlYesNoSelect = [{value: true, text: 'Yes'}, {value: false, text: 'No'}];
     vm.tempEducation.educationCenterName = vm.universitiesList[vm.tempEducation.universityId - 1];
+    if(vm.focus=='updateAddress') {
+      $('#streetAddress').focus();
+      $location.hash('scrollAddress');
+      $anchorScroll();
+    }
+    if(vm.focus=='updateEducation') {
+      $('#educationCenterName').focus();
+      $location.hash('scrollEducation');
+      $anchorScroll();
+    }
     /*
      *  defining functions
      */

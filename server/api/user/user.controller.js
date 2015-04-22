@@ -81,7 +81,7 @@ exports.aroundMe = function(req, res, next) {
 };
 
 exports.me = function(req, res, next) {
-  var userAttributes = ['id', 'aboutMe', 'confirmedEmail', 'createdAt',
+  var userAttributes = ['id', 'aboutMe', 'confirmedEmail', 'createdAt', 'experianIdToken',
     'firstname', 'email', 'phone', 'lastname', 'profileImage', 'role', 'facebook', 'shareCreditReport', 'shareProfile'];
   var userId = req.user.id;
   User.find({

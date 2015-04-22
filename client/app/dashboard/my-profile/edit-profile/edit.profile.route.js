@@ -10,7 +10,7 @@
   function config ($stateProvider) {
     $stateProvider
     .state('editProfile', {
-      url: '/editProfile',
+      url: '/editProfile/:focus',
       templateUrl: 'app/dashboard/my-profile/edit-profile/edit.profile.html',
       controller: 'EditProfileCtrl',
       controllerAs:'editProfile',
