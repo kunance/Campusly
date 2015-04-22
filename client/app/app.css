@@ -66,7 +66,7 @@ education form's custom styles
 Proxima Nova custom font - to be used for the whole website
 ========================================================================== */
 body{
-  font-family: "ProximaNova";
+  font-family: "ProximaNova", sans-serif;
   color: #333333;
   font-size: 1em;
   -webkit-font-smoothing: subpixel-antialiased;
@@ -1235,7 +1235,6 @@ nav.dashboard-submenu > label {
   cursor: pointer;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-  -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -1534,7 +1533,7 @@ p.quote:before, .looking-for-room p.quote:after{
 
 p.quote{
   font-size: 1em;
-  font-family: Georgia;
+  font-family: Georgia, serif;
   text-align: justify;
   line-height: 150%;
   font-style: italic;
@@ -1543,7 +1542,7 @@ p.quote{
 
 p.quoteLooking{
   font-size: 0.8em;
-  font-family: Georgia;
+  font-family: Georgia, serif;
   text-align: justify;
   line-height: 150%;
   font-style: italic;
@@ -1560,7 +1559,7 @@ p.quoteLooking{
 
 .looking-for-room .media-body {
   padding-left: 10px;
-  height: 150px
+  height: 150px;
 }
 
 .looking-for-room .media:first-child {
@@ -2241,7 +2240,7 @@ Looking Details
 }
 
 .my-profile .invitation-box .or span {
-  font-family: "ProximaNovaBold";
+  font-family: "ProximaNovaBold", sans-serif;
   color: #000;
   display: table-cell;
   vertical-align: middle;
@@ -2340,7 +2339,7 @@ Looking Details
 }
 
 .bubble:disabled{
-  display: hidden;
+  display: none;
 }
 
 
@@ -2677,15 +2676,18 @@ a.view-all {
   overflow: hidden;
 }
 
+/* Commenting this code since no Safari specific fixes
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   /* Safari and Chrome, if Chrome rule needed */
-  /* Safari 5+ ONLY */
+  /* Safari 5+ ONLY
   ::i-block-chrome, .safariFix {
 
-    /*TODO fix images for safari only */
+    /*TODO fix images for safari only
 
   }
 }
+*/
 
 .rooms .room .picture img {
   width: 100%;
@@ -2816,7 +2818,6 @@ a.view-all {
 
 .room-detail .highlights .details .address .distance{
   display: block;
-  display: #e8e8e8;
   font-size: 0.8em;
 }
 
