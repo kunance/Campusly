@@ -854,6 +854,10 @@ For mailchimp sign-up - not needed in main app
   letter-spacing: -1px;
 }
 
+.asterisk {
+  color: red;
+}
+
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */

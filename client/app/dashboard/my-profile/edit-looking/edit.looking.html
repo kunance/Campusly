@@ -21,7 +21,7 @@
             </div>
           </div>
           <div class="col-xs-9 col-sm-7 input-post">
-            <label for="yourCampusNotPresent">Your campus</label><br/>
+            <label for="yourCampusNotPresent">Your campus</label><sup class="asterisk">*</sup>
             <select id="yourCampusNotPresent" class="form-control" required name="yourCampusNotPresent"
                     data-ng-model="editLooking.education.educationCenterName"
                     data-ng-options="university as university.name for university in editLooking.universitiesList">
@@ -38,7 +38,7 @@
             </div>
           </div>
           <div class="col-xs-9 col-sm-7 input-post">
-            <label for="moveInDate">Move-in date</label>
+            <label for="moveInDate">Move-in date</label><sup class="asterisk">*</sup>
             <p class="input-group">
               <input type="text" id="moveInDate" class="form-control" datepicker-popup="{{format}}" ng-model="editLooking.tempLooking.moveInDate" is-open="datePickers.startDate" close-text="Close" />
                         <span class="input-group-btn">
@@ -76,7 +76,7 @@
             </div>
           </div>
           <div class="col-xs-9 col-sm-7 input-post">
-            <label for="maxMonthlyRent">Max monthly rent ($)</label>
+            <label for="maxMonthlyRent">Max monthly rent ($)</label><sup class="asterisk">*</sup>
             <input type="number" id="maxMonthlyRent" name="maxMonthlyRent" class="form-control"  placeholder="e.x. 500" ng-model="editLooking.tempLooking.maxMonthlyRent"/>
           </div>
 
@@ -91,7 +91,7 @@
             </div>
           </div>
           <div class="col-xs-9 col-sm-7 input-post">
-            <label for="utilitiesIncluded">Utilities included?</label><br/>
+            <label for="utilitiesIncluded">Utilities included?</label><sup class="asterisk">*</sup>
             <select
               ng-options="option.value as option.text for option in editLooking.ddlYesNoSelect"
               id="utilitiesIncluded" class="form-control" ng-model="editLooking.tempLooking.utilitiesIncluded">
@@ -128,7 +128,7 @@
             </div>
           </div>
           <div class="col-xs-9 col-sm-7 input-post">
-            <label for="openToFullYearLeaseNewRoomates">Meet new roommates?</label><br/>
+            <label for="openToFullYearLeaseNewRoomates">Meet new roommates?</label><sup class="asterisk">*</sup>
             <select
               ng-options="option.value as option.text for option in editLooking.ddlYesNoSelect"
               id="openToFullYearLeaseNewRoomates" class="form-control" ng-model="editLooking.tempLooking.openToFullYearLeaseNewRoomates">
@@ -145,7 +145,7 @@
             </div>
           </div>
           <div class="col-xs-9 col-sm-7 input-post">
-            <label for="gender">Gender preference</label>
+            <label for="gender">Gender preference</label><sup class="asterisk">*</sup>
             <select id="gender" class="form-control" ng-model="editLooking.tempLooking.gender">
               <option value="male only">Male only</option>
               <option value="female only">Female only</option>
@@ -163,7 +163,7 @@
             </div>
           </div>
           <div class="col-xs-9 col-sm-7 input-post">
-            <label for="parkingNeeded">Parking included?</label><br/>
+            <label for="parkingNeeded">Parking included?</label><sup class="asterisk">*</sup>
             <select
               ng-options="option.value as option.text for option in editLooking.ddlYesNoSelect"
               id="parkingNeeded" class="form-control" ng-model="editLooking.tempLooking.parkingNeeded">
@@ -180,7 +180,7 @@
             </div>
           </div>
           <div class="col-xs-9 col-sm-7 input-post">
-            <label for="busRouteRequired">Near bus lines?</label><br/>
+            <label for="busRouteRequired">Near bus lines?</label>
             <select
               ng-options="option.value as option.text for option in editLooking.ddlYesNoSelect"
               id="busRouteRequired" class="form-control" ng-model="editLooking.tempLooking.busRouteRequired">
@@ -203,7 +203,7 @@
             </div>
           </div>
           <div class="col-xs-9 col-sm-7 input-post">
-            <label for="sharedBathroom">Shared bathroom?</label><br/>
+            <label for="sharedBathroom">Shared bathroom?</label><sup class="asterisk">*</sup>
             <select
               ng-options="option.value as option.text for option in editLooking.ddlYesNoSelect"
               id="sharedBathroom" class="form-control" ng-model="editLooking.tempLooking.sharedBathroom">
@@ -220,7 +220,7 @@
             </div>
           </div>
           <div class="col-xs-9 col-sm-7 input-post">
-            <label for="roomType">Room preference</label>
+            <label for="roomType">Room preference</label><sup class="asterisk">*</sup>
             <select id="roomType" class="form-control" ng-model="editLooking.tempLooking.roomType">
               <option value="single">Single</option>
               <option value="double">Double</option>
@@ -238,7 +238,7 @@
             </div>
           </div>
           <div class="col-xs-9 col-sm-7 input-post">
-            <label for="furnished">Furnished?</label><br/>
+            <label for="furnished">Furnished?</label><sup class="asterisk">*</sup>
             <select
               ng-options="option.value as option.text for option in editLooking.ddlYesNoSelect"
               id="furnished" class="form-control" ng-model="editLooking.tempLooking.furnished">
@@ -255,7 +255,7 @@
             </div>
           </div>
           <div class="col-xs-9 col-sm-7 input-post">
-            <label for="smokingAllowed">Smoking allowed?</label><br/>
+            <label for="smokingAllowed">Smoking allowed?</label><sup class="asterisk">*</sup>
             <select
               ng-options="option.value as option.text for option in editLooking.ddlYesNoSelect"
               id="smokingAllowed" class="form-control" ng-model="editLooking.tempLooking.smokingAllowed">
@@ -272,7 +272,7 @@
             </div>
           </div>
           <div class="col-xs-9 col-sm-7 input-post">
-            <label for="petsAllowed">Pets allowed?</label><br/>
+            <label for="petsAllowed">Pets allowed?</label><sup class="asterisk">*</sup>
             <select
               ng-options="option.value as option.text for option in editLooking.ddlYesNoSelect"
               id="petsAllowed" class="form-control" ng-model="editLooking.tempLooking.petsAllowed">
@@ -287,7 +287,8 @@
 
       <div class="row post-padding">
         <div class="col-xs-10 col-sm-10 col-xs-offset-2 col-sm-offset-2 input-post">
-          <textarea required name="area" id="area" cols="60" rows="3" ng-model="editLooking.tempLooking.area"  class="form-control" placeholder="Edit looking post details"></textarea><br/>
+          <textarea required name="area" id="area" cols="60" rows="3" ng-model="editLooking.tempLooking.area"  class="form-control" placeholder="Edit looking post details"></textarea>
+          <p class="col-xs-offset-1 col-sm-offset-1"><br><sup class="asterisk">*</sup>required fields - makes searching your room faster</p>
         </div>
       </div>
 
