@@ -1,6 +1,5 @@
 <h2 style="display: inline"> Students Around You <small>(within {{dashboard.me.experianIdToken}} mile)</small></h2>
-<!--TODO commenting out until we decide to allow user to change distance-->
-<!--<a ui-sref="settings({focus:'radius'})" >change radius</a>-->
+<a ui-sref="settings({focus:'radius'})" >change radius</a>
 <div class="white-box">
   <h3 ng-if="!dashboard.aroundYou.length && dashboard.address.streetAddress.id && dashboard.me.shareProfile">
     There is no students around you right now

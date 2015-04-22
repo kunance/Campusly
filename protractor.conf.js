@@ -10,7 +10,12 @@ var config = {
 
   // A base URL for your application under test. Calls to protractor.get()
   // with relative paths will be prepended with this.
-  baseUrl: 'https://localhost:' + (process.env.PORT || '9000'),
+  baseUrl: 'http://localhost:' + (process.env.PORT || '9000'),
+
+  seleniumAddress: 'http://localhost:4444/wd/hub',
+  isVerbose: true,
+  showColors: true,
+  includeStackTrace: true,
 
   // Credientials for Saucelabs
   sauceUser: process.env.SAUCE_USERNAME,
@@ -31,12 +36,22 @@ var config = {
   // https://code.google.com/p/selenium/wiki/DesiredCapabilities
   // and
   // https://code.google.com/p/selenium/source/browse/javascript/webdriver/capabilities.js
-  capabilities: {
+  multiCapabilities: [{
     'browserName': 'chrome',
+    'chromeOptions': {
+      binary: 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
+      args: [],
+      extensions: []
+    },
     'name': 'Fullstack E2E',
     'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
     'build': process.env.TRAVIS_BUILD_NUMBER
-  },
+  }
+   // ,{
+   // 'browserName': 'firefox'
+   // TODO support firefox or any other browser
+   // }
+  ],
 
   // ----- The test framework -----
   //
@@ -44,7 +59,6 @@ var config = {
   // Mocha has limited beta support. You will need to include your own
   // assertion framework if working with mocha.
   framework: 'mocha',
-
   // ----- Options to be passed to mocha -----
   mochaOpts: {
     reporter: 'spec',

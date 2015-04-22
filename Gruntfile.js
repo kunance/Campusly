@@ -552,10 +552,29 @@ module.exports = function (grunt) {
         }
       }
     },
-
+    protractor_webdriver: {
+      options: {
+        keepAlive : true
+      },
+      e2eStart: {
+        options: {
+          path: './node_modules/.bin/',
+          command: 'webdriver-manager start --standalone'
+        }
+      }
+    },
     protractor: {
       options: {
-        configFile: 'protractor.conf.js'
+        configFile: 'protractor.conf.js',
+        noColor: false
+      },
+      e2e: {
+        options:{
+          keepAlive: true, // If false, the grunt process stops when the test fails.
+          noColor: false, // If true, protractor will not use colors in its output.
+          configFile: "protractor.conf.js", // Target-specific config file
+          args: {} // Target-specific arguments
+        }
       },
       chrome: {
         options: {

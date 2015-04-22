@@ -154,9 +154,11 @@ exports.confirmResetedPassword = function(req, res, next) {
     User.find({where: {id:data.userId}})
       .then(function (user) {
         user.password = data.newPassword;
-        user.save(function(error) {
-          if (error) return res.status(403).end();
-          res.json({ token: auth.signToken(user.id) });
+        user.save()
+          .then(function () {
+             res.json({ token: auth.signToken(user.id) });
+        }).catch(function () {
+             res.status(403).end();
         });
       })
       .catch(function (err) {
