@@ -5,16 +5,19 @@
     .module('app.landing')
     .controller('LandingCtrl', LandingCtrl);
 
-  LandingCtrl.$inject=['$scope'];
+  LandingCtrl.$inject=['$scope', '$cookieStore'];
 
-  function LandingCtrl($scope) {
+  function LandingCtrl($scope, $cookieStore) {
     var vm = this;
 
     $scope.$parent.seo = {
       pageTitle: 'Campusly',
       pageDescription: 'Secure off-campus community. Connect with verified students. Find off-campus housing. Meet new students - walk safely, share a ride, attend events.'
     };
-    mixpanel.track("landing page");
+
+    var mixpanelObject = $cookieStore.get('mp_bd202854d110bac5e72d7e034abdae01_mixpanel');
+    var distinct_id = mixpanelObject.distinct_id;
+    mixpanel.track("landing page",{distinct:distinct_id});
 
     // Godaddy seal code - to be revisited
 
