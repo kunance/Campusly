@@ -36,8 +36,8 @@ var config = {
   // https://code.google.com/p/selenium/wiki/DesiredCapabilities
   // and
   // https://code.google.com/p/selenium/source/browse/javascript/webdriver/capabilities.js
-  multiCapabilities: [{
-    'browserName': 'chrome',
+  multiCapabilities: [
+    {'browserName': 'chrome',
     'chromeOptions': {
       binary: 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
       args: [],
@@ -47,10 +47,39 @@ var config = {
     'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
     'build': process.env.TRAVIS_BUILD_NUMBER
   }
-   // ,{
-   // 'browserName': 'firefox'
-   // TODO support firefox or any other browser
-   // }
+  //,{'browserName': 'firefox',
+  //    'firefoxOptions':{
+  //    binary: 'C:/Program Files (x86)/Mozilla Firefox/firefox.exe',
+  //    args: [],
+  //    extensions: []
+  //    },
+  //    'name': 'Fullstack E2E',
+  //    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+  //    'build': process.env.TRAVIS_BUILD_NUMBER
+  //}
+  //  ,{
+  //'browserName': 'safari',
+  //    'safariOptions':{
+  //    binary: 'C:/Program Files (x86)/Safari/Safari.exe',
+  //    args: [],
+  //    extensions: []
+  //    },
+  //    'name': 'Fullstack E2E',
+  //    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+  //    'build': process.env.TRAVIS_BUILD_NUMBER
+  //}
+    //  ,{
+  //    'browserName': 'internetExplorer',
+  //    'internetExplorerOptions':{
+  //      binary: 'C:/Program Files (x86)/iexplore.exe',
+  //      args: [],
+  //      extensions: [],
+  //      'webdriver.ie.driver': 'C:/Program Files (x86)/iexplore.exe'
+  //    },
+  //    'name': 'Fullstack E2E',
+  //    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+  //    'build': process.env.TRAVIS_BUILD_NUMBER
+  //  }
   ],
 
   // ----- The test framework -----

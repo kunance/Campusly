@@ -5,9 +5,9 @@
     .module('app.account')
     .controller('LoginCtrl', LoginCtrl);
 
-  LoginCtrl.$inject = ['$scope', 'Auth', '$state', '$window', '$stateParams', 'common', '$location', '$cookieStore', '$rootScope', 'currentUser'];
+  LoginCtrl.$inject = ['$scope', 'Auth', '$state', '$window', '$stateParams', 'common', '$cookieStore', '$rootScope'];
 
-  function LoginCtrl( $scope, Auth, $state, $window, $stateParams, common, $location, $cookieStore, $rootScope, currentUser) {
+  function LoginCtrl( $scope, Auth, $state, $window, $stateParams, common, $cookieStore, $rootScope) {
     $scope.showForm = true;
     $scope.sendingEmail = false;
     $scope.newPasswordAddon = false;

@@ -21,6 +21,14 @@ var sendMail = function(user, mailConfirmationToken, callback){
       MAIL_CONFIRMATION_TOKEN : mailConfirmationToken
     };
   }
+  if(config.env=='test') {
+     locals = {
+      name:user.firstname,
+      COMPANY: 'CampuslyTEST',
+      CONFIRMATION_URL :'http://' + (config.ip || 'localhost:9000') + '/loginVerify/' ,
+      MAIL_CONFIRMATION_TOKEN : mailConfirmationToken
+    };
+  }
 
   mandrill.confirm('mail_confirmation', user, 'Campusly - Account Activation', locals, callback);
 

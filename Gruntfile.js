@@ -558,7 +558,7 @@ module.exports = function (grunt) {
       },
       e2eStart: {
         options: {
-          path: './node_modules/.bin/',
+          path: './node_modules/.bin/webdriver-manager',
           command: 'webdriver-manager start --standalone'
         }
       }
@@ -574,13 +574,6 @@ module.exports = function (grunt) {
           noColor: false, // If true, protractor will not use colors in its output.
           configFile: "protractor.conf.js", // Target-specific config file
           args: {} // Target-specific arguments
-        }
-      },
-      chrome: {
-        options: {
-          args: {
-            browser: 'chrome'
-          }
         }
       }
     },

@@ -6,11 +6,15 @@
 'use strict';
 
 var SignupPage = function() {
-  this.form = element(by.css('.form'));
-  this.form.name = this.form.element(by.model('user.name'));
-  this.form.email = this.form.element(by.model('user.email'));
-  this.form.password = this.form.element(by.model('user.password'));
-  this.form.submit = this.form.element(by.css('.btn-register'));
+  this.form = element(by.css('.main-form'));
+  this.form.firstname = this.form.element(by.model('signup.user.firstname'));
+  this.form.lastname = this.form.element(by.model('signup.user.lastname'));
+  this.form.email = this.form.element(by.model('signup.user.email'));
+  this.form.password = this.form.element(by.model('signup.user.password'));
+  this.form.submit = this.form.element(by.css('.btn-rented-large'));
+  this.signupHeading = element(by.css('.heading'));
+  this.mailSent = element(by.css('.fa-envelope-o'));
+  this.error = element(by.binding('{{ signup.errors.email }}'));
 
   this.signup = function(data) {
     for (var prop in data) {

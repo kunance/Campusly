@@ -11,6 +11,7 @@
 
     $stateProvider
       .state('logout', {
+        url: '/logout',
         controller: logout
       })
       .state('signup', {
