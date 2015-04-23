@@ -90,7 +90,8 @@
       orderSliderButtons();
     });
 
-    mixpanel.track('looking grid view');
+    mixpanel.track("looking grid view");
+    mixpanel.people.increment('looking grid view');
 
   }
 

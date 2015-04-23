@@ -70,7 +70,8 @@
       $scope.datePickers[number]= true;
     };
 
-    mixpanel.track('add a room');
+    mixpanel.track("add a room");
+    mixpanel.people.increment('add a room');
 
   }
 

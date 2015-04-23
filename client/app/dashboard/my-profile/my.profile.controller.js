@@ -270,7 +270,8 @@
       $scope.datePickers[number]= true;
     };
 
-    mixpanel.track('view profile');
+    mixpanel.track("view profile");
+    mixpanel.people.increment('view profile');
 
   }
 }());
