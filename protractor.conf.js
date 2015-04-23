@@ -37,17 +37,17 @@ var config = {
   // and
   // https://code.google.com/p/selenium/source/browse/javascript/webdriver/capabilities.js
   multiCapabilities: [
-  //  {'browserName': 'chrome',
-  //  'chromeOptions': {
-  //    binary: 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
-  //    args: [],
-  //    extensions: []
-  //  },
-  //  'name': 'Fullstack E2E',
-  //  'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
-  //  'build': process.env.TRAVIS_BUILD_NUMBER
-  //}
-  // ,{'browserName': 'firefox',
+    {'browserName': 'chrome',
+    'chromeOptions': {
+      binary: 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
+      args: [],
+      extensions: []
+    },
+    'name': 'Fullstack E2E',
+    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+    'build': process.env.TRAVIS_BUILD_NUMBER
+  }
+  //,{'browserName': 'firefox',
   //    'firefoxOptions':{
   //    binary: 'C:/Program Files (x86)/Mozilla Firefox/firefox.exe',
   //    args: [],
@@ -56,19 +56,19 @@ var config = {
   //    'name': 'Fullstack E2E',
   //    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
   //    'build': process.env.TRAVIS_BUILD_NUMBER
-  // }
-    ,{
-  'browserName': 'safari',
-      'safariOptions':{
-      binary: 'C:/Program Files (x86)/Safari/Safari.exe',
-      args: [],
-      extensions: []
-      },
-      'name': 'Fullstack E2E',
-      'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
-      'build': process.env.TRAVIS_BUILD_NUMBER
-  }
+  //}
   //  ,{
+  //'browserName': 'safari',
+  //    'safariOptions':{
+  //    binary: 'C:/Program Files (x86)/Safari/Safari.exe',
+  //    args: [],
+  //    extensions: []
+  //    },
+  //    'name': 'Fullstack E2E',
+  //    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+  //    'build': process.env.TRAVIS_BUILD_NUMBER
+  //}
+    //  ,{
   //    'browserName': 'internetExplorer',
   //    'internetExplorerOptions':{
   //      binary: 'C:/Program Files (x86)/iexplore.exe',

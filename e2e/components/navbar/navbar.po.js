@@ -6,11 +6,12 @@
 'use strict';
 
 var NavbarComponent = function() {
-  this.navbar = element(by.css('.navbar'));
-  this.navbarHeader = this.navbar.element(by.css('.navbar-header'));
-  this.navbarNav = this.navbar.element(by.css('#navbar-main .nav.navbar-nav:not(.navbar-right)'));
-  this.navbarAccount = this.navbar.element(by.css('#navbar-main .nav.navbar-nav.navbar-right'));
-  this.navbarAccountGreeting = this.navbarAccount.element(by.binding('Hello {{ getCurrentUser().name }}'));
+  this.navbar = element(by.css('.login-header'));
+ // this.navbarHeader = this.navbar.element(by.css('.navbar-header'));
+ // this.navbarNav = this.navbar.element(by.css('#navbar-main .nav.navbar-nav:not(.navbar-right)'));
+  this.navbarAccount = this.navbar.element(by.css('.right-content'));
+  this.navbarAccountGreeting = this.navbarAccount.element(by.binding('{{getCurrentUser().firstname}}'));
+  this.logout = this.navbarAccount.element(by.css('.new-bubble'));
 };
 
 module.exports = new NavbarComponent();

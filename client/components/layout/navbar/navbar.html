@@ -9,22 +9,23 @@
       </a>
       <p class="brand-text">secure off-campus community</p>
     </div>
-    <div class="right-content" ng-show="isLoggedIn()">
-      <div class="fb-like facebookNavbar" fb-like><i class="fa fa-facebook-square facebookNavbarIcon"></i>Like / Share</div>
-      <i ui-sref="settings" id="settings" class="fa fa-cog" ng-class="{'fa-spin':hover}" ng-mouseenter="hover = true" ng-mouseleave="hover = false"></i>
-      <img class="img-circle profile-image" ng-if="getCurrentUser().profileImage" ng-src="/api/images{{getCurrentUser().profileImage}}">
-      <i ng-if="!getCurrentUser().profileImage" class="fa fa-user fa-2x greetings" style="vertical-align: middle; "></i>
-      <p class="greetings">&nbsp;{{getCurrentUser().firstname}}</p>
-      <a class="new-bubble" ui-sref-active="active" ui-sref="logout"><i class="fa fa-sign-out" style="cursor: pointer"></i></a>
-    </div>
+    <div class="right-content">
+      <div id="logged" ng-if="isLoggedIn()">
+        <div class="fb-like facebookNavbar" fb-like><i class="fa fa-facebook-square facebookNavbarIcon"></i>Like / Share</div>
+        <i ui-sref="settings" id="settings" class="fa fa-cog" ng-class="{'fa-spin':hover}" ng-mouseenter="hover = true" ng-mouseleave="hover = false"></i>
+        <img class="img-circle profile-image" ng-if="getCurrentUser().profileImage" ng-src="/api/images{{getCurrentUser().profileImage}}">
+        <i ng-if="!getCurrentUser().profileImage" class="fa fa-user fa-2x greetings" style="vertical-align: middle; "></i>
+        <p id="greetings" class="greetings">&nbsp;{{getCurrentUser().firstname}}</p>
+        <a class="new-bubble" ui-sref-active="active" ui-sref="logout"><i class="fa fa-sign-out" style="cursor: pointer"></i></a>
+      </div>
 
-    <div class="right-content" ng-show="!isLoggedIn()">
-      <div class="fb-like facebookNavbar" fb-like><i class="fa fa-facebook-square facebookNavbarIcon"></i>Like / Share</div>
-      <a ui-sref-active="active" ui-sref="login" ui-sref-opts="{reload:true, notify:true}" class="link sign-in">Sign In</a>
-      <a ui-sref-active="active" ui-sref="signup" ui-sref-opts="{reload:true, notify:true}" class="btn sign-up">Sign up for free</a>
-    </div>
+      <div id="notLogged"  ng-if="!isLoggedIn()">
+        <div class="fb-like facebookNavbar" fb-like><i class="fa fa-facebook-square facebookNavbarIcon"></i>Like / Share</div>
+        <a ui-sref-active="active" ui-sref="login" ui-sref-opts="{reload:true, notify:true}" class="link sign-in">Sign In</a>
+        <a ui-sref-active="active" ui-sref="signup" ui-sref-opts="{reload:true, notify:true}" class="btn sign-up">Sign up for free</a>
+      </div>
   </div>
-
+  </div>
 </header>
 
 

@@ -46,7 +46,7 @@
 
   <div my-spinner title="Sending verification e-mail. Please wait..." ng-if="signup.loading"></div>
 
-  <section class="login-box white-box " style="text-align: center" ng-show="signup.showValidationMessage">
+  <section class="login-box white-box " style="text-align: center" ng-if="signup.showValidationMessage">
     <h2 class="heading">Hello&nbsp{{signup.user.firstname}},</h2>
     <i class="fa fa-envelope-o fa-5x"></i>
     <h4>Your account has been created. <br>Please verify your university email address <br>in the next 30min. <br><br>Verification email has been sent to {{signup.user.email}}.</h4>
