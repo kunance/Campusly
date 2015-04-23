@@ -8,9 +8,9 @@
 
       <div class="row">
         <div class="page-header col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h2 ng-if="around.me.experianIdToken == 1" style="display: inline">Students Around You <small>(within {{around.me.experianIdToken}} mile)</small></h2>
-          <h2 ng-if="around.me.experianIdToken > 1" style="display: inline">Students Around You <small>(within {{around.me.experianIdToken}} miles)</small></h2>
-          <a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a>
+          <h2 ng-if="around.me.experianIdToken == 1 && around.me.shareProfile" style="display: inline">Students Around You <small>(within {{around.me.experianIdToken}} mile)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
+          <h2 ng-if="around.me.experianIdToken > 1 && around.me.shareProfile" style="display: inline">Students Around You <small>(within {{around.me.experianIdToken}} miles)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
+          <h2 ng-if="!around.me.shareProfile" style="display: inline">Students Around You</h2>
         </div>
       </div>
 
@@ -59,12 +59,14 @@
                         </div>
                         <div style="text-align: center; display: inline-block;width: 100%;">
                           <a id="facebookPM" ng-href="{{arYou.facebook}}" ng-if="arYou.facebook" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
-                          <script type="text/javascript">
+                          <script type="text/javascript" ng-if="arYou.facebook">
                             mixpanel.track_links("#facebookPM", "Facebook PM sent - around you");
+                            mixpanel.people.increment('Facebook PM sent - around you');
                           </script>
                           <a id="email" ng-href="mailto:{{arYou.email}}?Subject=Hello"><i class="fa fa-envelope fa-2x"></i></a>
                           <script type="text/javascript">
                             mixpanel.track_links("#email", "Email sent - around you");
+                            mixpanel.people.increment('Email sent - around you');
                           </script>
                         </div>
                       </div>

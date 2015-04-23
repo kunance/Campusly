@@ -97,7 +97,9 @@
     });
 
 
-    mixpanel.track('room grid view');
+    mixpanel.track("room grid view");
+    mixpanel.people.increment('room grid view');
+
   }
 
 

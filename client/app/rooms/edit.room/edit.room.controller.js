@@ -164,7 +164,8 @@
         });
     };
 
-    mixpanel.track('edit your room');
+    mixpanel.track("edit your room");
+    mixpanel.people.increment('edit a room');
 
   }
 }());
