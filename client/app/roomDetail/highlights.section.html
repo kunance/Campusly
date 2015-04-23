@@ -89,7 +89,7 @@
           mixpanel.people.increment('Email sent - available room');
         </script>
         <a id="facebookPM" style="margin-left:20px" class="contact-bubble-facebook pull-right" ng-if="room.creatorFacebook" ng-href="{{room.creatorFacebook}}" target="_blank"><i style="color: #ffffff" class="fa fa-facebook fa-lg"></i><p style="color: #ffffff">PM</p></a>
-        <script type="text/javascript">
+        <script type="text/javascript" ng-if="room.creatorFacebook">
           mixpanel.track_links("#facebookPM", "Facebook PM sent - available room");
           mixpanel.people.increment('Facebook PM sent - available room');
         </script>

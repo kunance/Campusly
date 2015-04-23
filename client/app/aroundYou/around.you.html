@@ -59,7 +59,7 @@
                         </div>
                         <div style="text-align: center; display: inline-block;width: 100%;">
                           <a id="facebookPM" ng-href="{{arYou.facebook}}" ng-if="arYou.facebook" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
-                          <script type="text/javascript">
+                          <script type="text/javascript" ng-if="arYou.facebook">
                             mixpanel.track_links("#facebookPM", "Facebook PM sent - around you");
                             mixpanel.people.increment('Facebook PM sent - around you');
                           </script>
