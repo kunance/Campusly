@@ -32,6 +32,9 @@
           });
     }
 
+    mixpanel.track("settings view");
+    mixpanel.people.increment('settings view');
+
   }
 
 }());
