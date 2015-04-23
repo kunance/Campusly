@@ -28,7 +28,7 @@
             </select>
           </div>
 
-          <div class="form-group input-post">
+          <div class="form-group input-post" ng-if="settings.tempMe.shareProfile">
             <label for="userSearchRadius">Set search distance circle around your current location</label>
             <select id="userSearchRadius" name="userSearchRadius" class="form-control" ng-model="settings.tempMe.experianIdToken">
               <option value="1">1 mile</option>

@@ -67,11 +67,13 @@
         <i class="fa fa-send fa-lg"></i><p>Email</p></a>
       <script type="text/javascript">
         mixpanel.track_links("#email", "Email sent - looking");
+        mixpanel.people.increment('Email sent - looking');
       </script>
       <a id="facebookPM" style="margin-left:20px" ng-if="detail.lookingDetail.relatedUserId.facebook" class="contact-bubble-facebook pull-right" ng-href="{{detail.lookingDetail.relatedUserId.facebook}}" target="_blank">
         <i style="color: #ffffff" class="fa fa-facebook fa-lg"></i><p style="color: white">PM</p></a>
-      <script type="text/javascript">
+      <script type="text/javascript" ng-if="detail.lookingDetail.relatedUserId.facebook">
         mixpanel.track_links("#facebookPM", "Facebook PM sent - looking");
+        mixpanel.people.increment('Facebook PM sent - available room');
       </script>
     </div>
   </div>

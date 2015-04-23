@@ -1,330 +1,331 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
 <div class="main-wrapper">
-<div class="container">
-  <div class="row">
-    <div class="page-header">
-      <h2>Post Looking</h2>
-      <p style="padding-bottom: 20px">Tell other students what kind of room you are looking for.</p>
-    </div>
+  <div class="container">
+    <div class="row">
 
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 white-box">
+      <div class="page-header">
+        <h2>Post Looking</h2>
+        <p style="padding-bottom: 20px">Tell other students what kind of room you are looking for.</p>
+      </div>
 
       <form name="newLookingForm" ng-submit="newLooking.addLooking(newLooking.tempLooking, newLookingForm, newLooking.education)" novalidate>
-    <!--start of first col 4-->
-    <div class="col-md-4">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 white-box">
 
-        <!--User University Present-->
+          <!--start of first col 4-->
+          <div class="col-md-4">
 
-        <div class="row" ng-if="newLooking.education.createdAt">
-          <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-            <div class="post-bubble">
-              <i class="fa fa-building fa-lg"></i>
+            <!--User University Present-->
+
+            <div class="row" ng-if="newLooking.education.createdAt">
+              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                <div class="post-bubble">
+                  <i class="fa fa-building fa-lg"></i>
+                </div>
+              </div>
+              <div class="col-xs-9 col-sm-7 input-post">
+                <label>Your campus</label><sup class="asterisk">*</sup>
+                <p><small>{{newLooking.education.educationCenterName.name}}</small></p>
+              </div>
             </div>
-          </div>
-          <div class="col-xs-9 col-sm-7 input-post">
-            <label>Your campus</label><sup class="asterisk">*</sup>
-            <p><small>{{newLooking.education.educationCenterName.name}}</small></p>
-          </div>
-        </div>
 
-        <!--User University Not Present -->
+            <!--User University Not Present -->
 
-        <div class="row" ng-if="!newLooking.education.createdAt">
-          <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-            <div class="post-bubble">
-              <i class="fa fa-building fa-lg"></i>
+            <div class="row" ng-if="!newLooking.education.createdAt">
+              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                <div class="post-bubble">
+                  <i class="fa fa-building fa-lg"></i>
+                </div>
+              </div>
+              <div class="col-xs-9 col-sm-7 input-post">
+                <label for="yourCampusNotPresent">Your campus</label><sup class="asterisk">*</sup>
+                <select id="yourCampusNotPresent" class="form-control" required name="yourCampusNotPresent"
+                        ng-class="{'educationError': newLookingForm.yourCampusNotPresent.$error.required && newLooking.submitted}"
+                        data-ng-model="newLooking.education.educationCenterName"
+                        data-ng-options="university as university.name for university in newLooking.universitiesList"
+                        ng-init="newLooking.education.educationCenterName=newLooking.universitiesList[newLooking.education.universityId-1]">
+                </select>
+              </div>
             </div>
-          </div>
-          <div class="col-xs-9 col-sm-7 input-post">
-            <label for="yourCampusNotPresent">Your campus</label><sup class="asterisk">*</sup>
-            <select id="yourCampusNotPresent" class="form-control" required name="yourCampusNotPresent"
-                    ng-class="{'educationError': newLookingForm.yourCampusNotPresent.$error.required && newLooking.submitted}"
-                    data-ng-model="newLooking.education.educationCenterName"
-                    data-ng-options="university as university.name for university in newLooking.universitiesList"
-                    ng-init="newLooking.education.educationCenterName=newLooking.universitiesList[newLooking.education.universityId-1]">
-            </select>
-          </div>
-        </div>
 
-        <!-- Move-in date -->
-        <div class="row post-padding">
-          <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-            <div class="post-bubble">
-              <i class="fa fa-arrow-right fa-lg"></i>
-            </div>
-          </div>
-          <div class="col-xs-9 col-sm-7 input-post">
-            <label for="moveInDate">Move-in date<sup class="asterisk">*</sup></label>
-            <p class="input-group">
-              <input type="text" id="moveInDate" name="moveInDate" class="form-control borderRadiusFix" datepicker-popup="{{format}}" ng-model="newLooking.tempLooking.moveInDate" is-open="datePickers.startDate" close-text="Close" required ng-class="{'educationError': newLookingForm.moveInDate.$invalid && newLooking.submitted}"/>
-                      <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
-                      </span>
-            </p>
-          </div>
-        </div>
-
-        <!-- Move-out date -->
-
-        <div class="row post-padding">
-          <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-            <div class="post-bubble">
-              <i class="fa fa-arrow-left fa-lg"></i>
-            </div>
-          </div>
-          <div class="col-xs-9 col-sm-7 input-post">
-            <label for="moveOutDate">Move-out date</label>
-            <p class="input-group">
-              <input type="text" id="moveOutDate" name="moveOutDate" class="form-control borderRadiusFix" datepicker-popup="{{format}}" ng-model="newLooking.tempLooking.moveOutDate" is-open="datePickers.endDate" close-text="Close" ng-class="{'educationError': newLookingForm.moveOutDate.$invalid && newLooking.submitted}"/>
+            <!-- Move-in date -->
+            <div class="row post-padding">
+              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                <div class="post-bubble">
+                  <i class="fa fa-arrow-right fa-lg"></i>
+                </div>
+              </div>
+              <div class="col-xs-9 col-sm-7 input-post">
+                <label for="moveInDate">Move-in date<sup class="asterisk">*</sup></label>
+                <p class="input-group">
+                  <input type="text" id="moveInDate" name="moveInDate" class="form-control borderRadiusFix" datepicker-popup="{{format}}" ng-model="newLooking.tempLooking.moveInDate" is-open="datePickers.startDate" close-text="Close" required ng-class="{'educationError': newLookingForm.moveInDate.$invalid && newLooking.submitted}"/>
                           <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="open($event,'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                            <button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                           </span>
-            </p>
+                </p>
+              </div>
+            </div>
+
+            <!-- Move-out date -->
+
+            <div class="row post-padding">
+              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                <div class="post-bubble">
+                  <i class="fa fa-arrow-left fa-lg"></i>
+                </div>
+              </div>
+              <div class="col-xs-9 col-sm-7 input-post">
+                <label for="moveOutDate">Move-out date</label>
+                <p class="input-group">
+                  <input type="text" id="moveOutDate" name="moveOutDate" class="form-control borderRadiusFix" datepicker-popup="{{format}}" ng-model="newLooking.tempLooking.moveOutDate" is-open="datePickers.endDate" close-text="Close" ng-class="{'educationError': newLookingForm.moveOutDate.$invalid && newLooking.submitted}"/>
+                              <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event,'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                              </span>
+                </p>
+              </div>
+            </div>
+
+          <!-- Max monthly rent -->
+
+          <div class="row post-padding">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-tag fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <label for="maxMonthlyRent">Max monthly rent ($)</label><sup class="asterisk">*</sup>
+              <input type="number" min="0" id="maxMonthlyRent" name="maxMonthlyRent" class="form-control"  placeholder="e.x. 500" ng-model="newLooking.tempLooking.maxMonthlyRent" required ng-class="{'educationError': newLookingForm.maxMonthlyRent.$invalid && newLooking.submitted}"/>
+            </div>
+
           </div>
-        </div>
 
-      <!-- Max monthly rent -->
+          <!-- Utilities included -->
 
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-tag fa-lg"></i>
+          <div class="row post-padding">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-bar-chart fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <label for="utilitiesIncluded">Utilities included?</label><sup class="asterisk">*</sup>
+              <select id="utilitiesIncluded" name="utilities" class="form-control" ng-model="newLooking.tempLooking.utilitiesIncluded" required ng-class="{'educationError': newLookingForm.utilities.$invalid && newLooking.submitted}">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+            </div>
           </div>
+
         </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <label for="maxMonthlyRent">Max monthly rent ($)</label><sup class="asterisk">*</sup>
-          <input type="number" min="0" id="maxMonthlyRent" name="maxMonthlyRent" class="form-control"  placeholder="e.x. 500" ng-model="newLooking.tempLooking.maxMonthlyRent" required ng-class="{'educationError': newLookingForm.maxMonthlyRent.$invalid && newLooking.submitted}"/>
-        </div>
+        <!--end of first col 4-->
 
-      </div>
+        <!--start of second col 4-->
+         <div class="col-md-4">
 
-      <!-- Utilities included -->
+           <!-- No. of roommates -->
 
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-bar-chart fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <label for="utilitiesIncluded">Utilities included?</label><sup class="asterisk">*</sup>
-          <select id="utilitiesIncluded" name="utilities" class="form-control" ng-model="newLooking.tempLooking.utilitiesIncluded" required ng-class="{'educationError': newLookingForm.utilities.$invalid && newLooking.submitted}">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
-        </div>
-      </div>
-
-    </div>
-    <!--end of first col 4-->
-
-    <!--start of second col 4-->
-     <div class="col-md-4">
-
-       <!-- No. of roommates -->
-
-       <div class="row">
-         <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-           <div class="post-bubble">
-             <i class="fa fa-users fa-lg"></i>
+           <div class="row">
+             <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+               <div class="post-bubble">
+                 <i class="fa fa-users fa-lg"></i>
+               </div>
+             </div>
+             <div class="col-xs-9 col-sm-7 input-post">
+               <label for="numRoommates">Max no. of roommates</label><sup class="asterisk">*</sup>
+               <input type="number" min="0" max="10" id="numRoommates" name="numRoommates" class="form-control"  placeholder="e.x. 3 (max: 10)" ng-model="newLooking.tempLooking.numRoommates" required ng-class="{'educationError': newLookingForm.numRoommates.$invalid && newLooking.submitted}"/>
+             </div>
            </div>
-         </div>
-         <div class="col-xs-9 col-sm-7 input-post">
-           <label for="numRoommates">Max no. of roommates</label><sup class="asterisk">*</sup>
-           <input type="number" min="0" max="10" id="numRoommates" name="numRoommates" class="form-control"  placeholder="e.x. 3 (max: 10)" ng-model="newLooking.tempLooking.numRoommates" required ng-class="{'educationError': newLookingForm.numRoommates.$invalid && newLooking.submitted}"/>
-         </div>
-       </div>
 
-       <!-- Meet new roommates -->
+           <!-- Meet new roommates -->
 
-       <div class="row post-padding">
-         <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-           <div class="post-bubble">
-             <i class="fa fa-user-plus fa-lg"></i>
+           <div class="row post-padding">
+             <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+               <div class="post-bubble">
+                 <i class="fa fa-user-plus fa-lg"></i>
+               </div>
+             </div>
+             <div class="col-xs-9 col-sm-7 input-post">
+               <label for="openToFullYearLeaseNewRoomates">Meet new roommates?</label><sup class="asterisk">*</sup>
+               <select id="openToFullYearLeaseNewRoomates" name="meetNew" class="form-control" ng-model="newLooking.tempLooking.openToFullYearLeaseNewRoomates" required ng-class="{'educationError': newLookingForm.meetNew.$invalid && newLooking.submitted}">
+                 <option value="true">Yes</option>
+                 <option value="false">No</option>
+               </select>
+             </div>
            </div>
-         </div>
-         <div class="col-xs-9 col-sm-7 input-post">
-           <label for="openToFullYearLeaseNewRoomates">Meet new roommates?</label><sup class="asterisk">*</sup>
-           <select id="openToFullYearLeaseNewRoomates" name="meetNew" class="form-control" ng-model="newLooking.tempLooking.openToFullYearLeaseNewRoomates" required ng-class="{'educationError': newLookingForm.meetNew.$invalid && newLooking.submitted}">
-             <option value="true">Yes</option>
-             <option value="false">No</option>
-           </select>
-         </div>
-       </div>
 
-       <!-- Gender preference -->
+           <!-- Gender preference -->
 
-       <div class="row post-padding">
-         <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-           <div class="post-bubble">
-             <i class="fa fa-venus-mars fa-lg"></i>
+           <div class="row post-padding">
+             <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+               <div class="post-bubble">
+                 <i class="fa fa-venus-mars fa-lg"></i>
+               </div>
+             </div>
+             <div class="col-xs-9 col-sm-7 input-post">
+               <label for="gender">Gender preference</label><sup class="asterisk">*</sup>
+               <select id="gender" name="gender" class="form-control" ng-model="newLooking.tempLooking.gender" required ng-class="{'educationError': newLookingForm.gender.$invalid && newLooking.submitted}">
+                 <option value="male only">Male only</option>
+                 <option value="female only">Female only</option>
+                 <option value="no preference">No preference</option>
+               </select>
+             </div>
            </div>
-         </div>
-         <div class="col-xs-9 col-sm-7 input-post">
-           <label for="gender">Gender preference</label><sup class="asterisk">*</sup>
-           <select id="gender" name="gender" class="form-control" ng-model="newLooking.tempLooking.gender" required ng-class="{'educationError': newLookingForm.gender.$invalid && newLooking.submitted}">
-             <option value="male only">Male only</option>
-             <option value="female only">Female only</option>
-             <option value="no preference">No preference</option>
-           </select>
-         </div>
-       </div>
 
-       <!-- Parking -->
+           <!-- Parking -->
 
-       <div class="row post-padding">
-         <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-           <div class="post-bubble">
-             <i class="fa fa-car fa-lg"></i>
+           <div class="row post-padding">
+             <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+               <div class="post-bubble">
+                 <i class="fa fa-car fa-lg"></i>
+               </div>
+             </div>
+             <div class="col-xs-9 col-sm-7 input-post">
+               <label for="parkingNeeded">Parking included?</label><sup class="asterisk">*</sup>
+               <select id="parkingNeeded" class="form-control" name="parking" ng-model="newLooking.tempLooking.parkingNeeded" required ng-class="{'educationError': newLookingForm.parking.$invalid && newLooking.submitted}">
+                 <option value="true">Yes</option>
+                 <option value="false">No</option>
+               </select>
+             </div>
            </div>
-         </div>
-         <div class="col-xs-9 col-sm-7 input-post">
-           <label for="parkingNeeded">Parking included?</label><sup class="asterisk">*</sup>
-           <select id="parkingNeeded" class="form-control" name="parking" ng-model="newLooking.tempLooking.parkingNeeded" required ng-class="{'educationError': newLookingForm.parking.$invalid && newLooking.submitted}">
-             <option value="true">Yes</option>
-             <option value="false">No</option>
-           </select>
-         </div>
-       </div>
 
-       <!-- Bus lines -->
+           <!-- Bus lines -->
 
-       <div class="row post-padding">
-         <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-           <div class="post-bubble">
-             <i class="fa fa-bus fa-lg"></i>
+           <div class="row post-padding">
+             <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+               <div class="post-bubble">
+                 <i class="fa fa-bus fa-lg"></i>
+               </div>
+             </div>
+             <div class="col-xs-9 col-sm-7 input-post">
+               <label for="busRouteRequired">Near bus lines?</label>
+               <select id="busRouteRequired" class="form-control" name="bus" ng-model="newLooking.tempLooking.busRouteRequired" ng-class="{'educationError': newLookingForm.bus.$invalid && newLooking.submitted}">
+                 <option value="true">Yes</option>
+                 <option value="false">No</option>
+               </select>
+             </div>
            </div>
+
          </div>
-         <div class="col-xs-9 col-sm-7 input-post">
-           <label for="busRouteRequired">Near bus lines?</label>
-           <select id="busRouteRequired" class="form-control" name="bus" ng-model="newLooking.tempLooking.busRouteRequired" ng-class="{'educationError': newLookingForm.bus.$invalid && newLooking.submitted}">
-             <option value="true">Yes</option>
-             <option value="false">No</option>
-           </select>
-         </div>
-       </div>
+        <!--end of second col 4-->
 
-     </div>
-    <!--end of second col 4-->
+        <!--start of third col 4-->
+        <div class="col-md-4">
 
-    <!--start of third col 4-->
-    <div class="col-md-4">
+          <!-- Shared bathroom -->
 
-      <!-- Shared bathroom -->
-
-      <div class="row">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-shower fa-lg"></i>
+          <div class="row">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-shower fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <label for="sharedBathroom">Shared bathroom?</label><sup class="asterisk">*</sup>
+              <select id="sharedBathroom" name="bath" class="form-control" ng-model="newLooking.tempLooking.sharedBathroom" required ng-class="{'educationError': newLookingForm.bath.$invalid && newLooking.submitted}">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <label for="sharedBathroom">Shared bathroom?</label><sup class="asterisk">*</sup>
-          <select id="sharedBathroom" name="bath" class="form-control" ng-model="newLooking.tempLooking.sharedBathroom" required ng-class="{'educationError': newLookingForm.bath.$invalid && newLooking.submitted}">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
-        </div>
-      </div>
 
-      <!-- Room type -->
+          <!-- Room type -->
 
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-bigBed fa-lg"></i>
+          <div class="row post-padding">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-bigBed fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <label for="roomType">Room preference</label><sup class="asterisk">*</sup>
+              <select id="roomType" class="form-control" name="type" ng-model="newLooking.tempLooking.roomType" required ng-class="{'educationError': newLookingForm.type.$invalid && newLooking.submitted}">
+                <option value="single">Single</option>
+                <option value="double">Double</option>
+                <option value="living room">Living room</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <label for="roomType">Room preference</label><sup class="asterisk">*</sup>
-          <select id="roomType" class="form-control" name="type" ng-model="newLooking.tempLooking.roomType" required ng-class="{'educationError': newLookingForm.type.$invalid && newLooking.submitted}">
-            <option value="single">Single</option>
-            <option value="double">Double</option>
-            <option value="living room">Living room</option>
-          </select>
-        </div>
-      </div>
 
-      <!-- Furnished -->
+          <!-- Furnished -->
 
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-desk fa-lg"></i>
+          <div class="row post-padding">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-desk fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <label for="furnished">Furnished?</label><sup class="asterisk">*</sup>
+              <select id="furnished" class="form-control" name="furnished" ng-model="newLooking.tempLooking.furnished" required ng-class="{'educationError': newLookingForm.furnished.$invalid && newLooking.submitted}">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <label for="furnished">Furnished?</label><sup class="asterisk">*</sup>
-          <select id="furnished" class="form-control" name="furnished" ng-model="newLooking.tempLooking.furnished" required ng-class="{'educationError': newLookingForm.furnished.$invalid && newLooking.submitted}">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
-        </div>
-      </div>
 
-      <!-- Smoking -->
+          <!-- Smoking -->
 
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-smoking fa-lg"></i>
+          <div class="row post-padding">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-smoking fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <label for="smokingAllowed">Smoking allowed?</label><sup class="asterisk">*</sup>
+              <select id="smokingAllowed" class="form-control" name="smoking" ng-model="newLooking.tempLooking.smokingAllowed" required ng-class="{'educationError': newLookingForm.smoking.$invalid && newLooking.submitted}">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <label for="smokingAllowed">Smoking allowed?</label><sup class="asterisk">*</sup>
-          <select id="smokingAllowed" class="form-control" name="smoking" ng-model="newLooking.tempLooking.smokingAllowed" required ng-class="{'educationError': newLookingForm.smoking.$invalid && newLooking.submitted}">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
-        </div>
-      </div>
 
-      <!-- Pets -->
+          <!-- Pets -->
 
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-pet fa-lg"></i>
+          <div class="row post-padding">
+            <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+              <div class="post-bubble">
+                <i class="fa fa-pet fa-lg"></i>
+              </div>
+            </div>
+            <div class="col-xs-9 col-sm-7 input-post">
+              <label for="petsAllowed">Pets allowed?</label><sup class="asterisk">*</sup>
+              <select id="petsAllowed" class="form-control" name="pets" ng-model="newLooking.tempLooking.petsAllowed" required ng-class="{'educationError': newLookingForm.pets.$invalid && newLooking.submitted}">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+            </div>
           </div>
+
         </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <label for="petsAllowed">Pets allowed?</label><sup class="asterisk">*</sup>
-          <select id="petsAllowed" class="form-control" name="pets" ng-model="newLooking.tempLooking.petsAllowed" required ng-class="{'educationError': newLookingForm.pets.$invalid && newLooking.submitted}">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
+
+        <!--end of third col 4-->
+
+          <!-- Looking Details -->
+
+          <div class="row post-padding">
+            <div class="col-xs-11 col-sm-11 input-post">
+              <textarea name="area" id="area" cols="60" rows="3" ng-model="newLooking.tempLooking.area"  class="form-control" placeholder="Enter looking post details (optional)"></textarea>
+              <p class="col-sm-offset-1"><br><sup class="asterisk">*</sup>required fields - makes searching your post faster</p>
+              <div class="col-sm-11">
+                <p class="light alert warning col-sm-offset-1" ng-if="newLookingForm.$error.required.length>0 && newLooking.submitted"><i style="color: white" class="fa fa-exclamation-triangle"></i>&nbsp&nbspPlease fill in all required fields. {{newLookingForm.$error.required.length}} more required.</p>
+                <p class="light alert warning col-sm-offset-1" ng-if="newLookingForm.$error.max && newLooking.submitted"><i style="color: white" class="fa fa-exclamation-triangle"></i>&nbsp&nbspMaximum 10 roommates allowed</p>
+              </div>
+            </div>
+          </div>
+
         </div>
-      </div>
-
-    </div>
-
-    <!--end of third col 4-->
-
-      <!-- Looking Details -->
-
-      <div class="row post-padding">
-        <div class="col-xs-11 col-sm-11 input-post">
-          <textarea name="area" id="area" cols="60" rows="3" ng-model="newLooking.tempLooking.area"  class="form-control" placeholder="Enter looking post details (optional)"></textarea>
-          <p class="col-xs-offset-1 col-sm-offset-1"><br><sup class="asterisk">*</sup>required fields - makes searching your post faster</p>
-        </div>
-      </div>
 
         <div class="row post-padding">
-          <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-md-offset-1">
-            <p class="light alert warning" ng-if="newLookingForm.$error.required.length>0 && newLooking.submitted"><i style="color: white" class="fa fa-exclamation-triangle"></i>&nbsp&nbspPlease fill in all required fields. {{newLookingForm.$error.required.length}} more required.</p>
-            <p class="light alert warning" ng-if="newLookingForm.$error.max && newLooking.submitted"><i style="color: white" class="fa fa-exclamation-triangle"></i>&nbsp&nbspMaximum 10 roommates allowed</p>
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 ">
-            <button type="submit" class="btn-rented-medium primary">Save</button>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <br>
+            <p class="pull-left">Any improvements?&nbsp;<i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:feedback@campusly.org?=Website%20Feedback">feedback@campusly.org</a> | <i class="fa fa-facebook-square"></i>&nbsp;&nbsp;<a href="https://www.facebook.com/app_scoped_user_id/837190803015531/" target="_blank">Facebook PM</a></p>
+            <button type="submit" class="btn-rented-medium primary pull-right">Save</button>
           </div>
         </div>
 
-      </form>
-
-    </div>
-
-  </div>
-
-</div>
-</div>
+      </form><!-- end form -->
+    </div><!-- end row -->
+  </div><!-- end container -->
+</div><!-- end wrapper -->

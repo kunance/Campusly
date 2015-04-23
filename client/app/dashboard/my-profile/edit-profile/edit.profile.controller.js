@@ -159,6 +159,7 @@
       }
     }, true);
 
-    mixpanel.track('edit profile');
+    mixpanel.track("edit profile");
+    mixpanel.people.increment('edit profile');
   }
 }());

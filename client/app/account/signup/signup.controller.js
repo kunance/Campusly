@@ -39,7 +39,8 @@
                   vm.loading = false;
                   vm.showValidationMessage = true;
                 }).catch(function () {
-                  mixpanel.track("sign up - send confirm mail failure",{distinct:distinct_id});
+                  mixpanel.track("sign up - send confirm email",{distinct:distinct_id});
+                  mixpanel.alias(vm.user.id);
                 });
               Auth.logout();
           })

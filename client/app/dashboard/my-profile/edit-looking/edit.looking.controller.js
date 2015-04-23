@@ -83,7 +83,8 @@
       })
     };
 
-    mixpanel.track('edit a looking');
+    mixpanel.track("edit a looking");
+    mixpanel.people.increment('edit a looking');
 
 }
 

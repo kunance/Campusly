@@ -41,7 +41,8 @@
       orderSliderButtons();
     });
 
-    mixpanel.track('aroundYou grid view');
+    mixpanel.track("aroundYou grid view");
+    mixpanel.people.increment('aroundYou grid view');
   }
 
 }());

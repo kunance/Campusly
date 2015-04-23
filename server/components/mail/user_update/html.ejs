@@ -40,15 +40,20 @@
                 <tr>
                   <td class="wrapper last">
 
-                    <h4>Dear *|FNAME|*,</h4>
-                    <h4>Connect with {{=(lookings.length+roomListings.length)}} new students who are looking for a room or roommate!</h4>
+                    <h3>Dear *|FNAME|*,</h3>
+                    <br>
+                    <h5>Connect with {{=(lookings.length+roomListings.length)}} new students who are looking for a room or roommate!</h5>
                     <br/>
-                    <h4>New posts from {{=d.getMonth()+1}}/{{=d.getDate()}}/{{=d.getFullYear()}}<br></h4>
+                    <h5>New posts from {{=d.getMonth()+1}}/{{=d.getDate()}}/{{=d.getFullYear()}}<br></h5>
 
                     <!--begin looking section-->
                     {{ if (lookings.length > 0) { }}
 
                         <table class="twelve columns">
+
+                            <tr>
+                              <td><h6>Students Looking</h6></td>
+                            </tr>
 
                             {{ for(var i=0; i<lookings.length; i++) {}}
                               <tr>
@@ -63,7 +68,7 @@
                                       </a>
                                   </td>
                               </tr>
-                                <hr/>
+                              <hr/>
                             {{ } }}
 
                         </table>
@@ -75,6 +80,10 @@
                       {{ if (roomListings.length > 0) { }}
 
                           <table class="twelve columns">
+
+                                <tr>
+                                  <td><h6>Rooms Available</h6></td>
+                                </tr>
 
                                 {{ for(var i=0; i<roomListings.length; i++) {}}
                                 <tr class="spaceUnder">

@@ -32,7 +32,8 @@
         vm.distance = data;
       });
     }
-    mixpanel.track('roomDetail view');
+    mixpanel.track("roomDetail view");
+    mixpanel.people.increment('roomDetail view');
   }
 }());
 
