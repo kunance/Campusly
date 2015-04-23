@@ -86,10 +86,12 @@
         <a id="email" style="margin-left:20px" class="contact-bubble-email pull-right" ng-href="mailto:{{room.creatorEmail}}?Subject=Interested%20in%20your%20room" target="_top"><i class="fa fa-send fa-lg"></i><p>Email</p></a>
         <script type="text/javascript">
           mixpanel.track_links("#email", "Email sent - available room");
+          mixpanel.people.increment('Email sent - available room');
         </script>
         <a id="facebookPM" style="margin-left:20px" class="contact-bubble-facebook pull-right" ng-if="room.creatorFacebook" ng-href="{{room.creatorFacebook}}" target="_blank"><i style="color: #ffffff" class="fa fa-facebook fa-lg"></i><p style="color: #ffffff">PM</p></a>
         <script type="text/javascript">
           mixpanel.track_links("#facebookPM", "Facebook PM sent - available room");
+          mixpanel.people.increment('Facebook PM sent - available room');
         </script>
 
         <!--<a class="contact-bubble-email" href="" target="_top"><i class="fa fa-facebook fa-lg"></i></a>-->
