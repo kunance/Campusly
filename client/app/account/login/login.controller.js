@@ -5,9 +5,9 @@
     .module('app.account')
     .controller('LoginCtrl', LoginCtrl);
 
-  LoginCtrl.$inject = ['$scope', 'Auth', '$state', '$window', '$stateParams', 'common', '$cookieStore', '$rootScope'];
+  LoginCtrl.$inject = ['$scope', 'Auth', '$state', '$window', '$stateParams', 'common', '$rootScope'];
 
-  function LoginCtrl( $scope, Auth, $state, $window, $stateParams, common, $cookieStore, $rootScope) {
+  function LoginCtrl( $scope, Auth, $state, $window, $stateParams, common, $rootScope) {
     $scope.showForm = true;
     $scope.sendingEmail = false;
     $scope.newPasswordAddon = false;
@@ -27,8 +27,7 @@
     $rootScope.showEmail = $rootScope.showEmail || false;
     $rootScope.showPassword = $rootScope.showPassword || false;
 
-    var mixpanelObject = $cookieStore.get('mp_bd202854d110bac5e72d7e034abdae01_mixpanel');
-    var distinct_id = mixpanelObject.distinct_id;
+    var distinct_id = mixpanel.get_distinct_id();
     mixpanel.track("sign in",{distinct:distinct_id});
 
     $scope.$parent.seo = {
