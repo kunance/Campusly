@@ -120,6 +120,25 @@ exports.confirmMailAddress = function(req, res, next) {
   })
 };
 
+exports.unsubscribeUser = function (req, res, next) {
+  var userEmail = req.param('email');
+  User.find({where:
+    {email:userEmail}
+    })
+    .then(function (user) {
+      if (!user) return res.status(403).send({message: 'This email address is unknown' });
+      user.unsubscribeMe(function () {
+        res.json({status: 'success'});
+      })
+    })
+    .catch(function (err) {
+      if (err) return next(err);
+      if (!user) return res.status(403).send({message: 'This email address is unknown' });
+    })
+
+
+};
+
 /**
  * Send password reset mail
  */

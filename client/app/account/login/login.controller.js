@@ -20,12 +20,14 @@
     $scope.reset = $scope.newPasswordAddon ? 'I remember!' : 'Forget password?';
     $scope.confirmToken = $stateParams.confirmToken;
     $scope.passwordResetToken = $stateParams.passwordResetToken;
+    $scope.userEmail = $stateParams.userEmail;
     $rootScope.verificationTitle = $rootScope.verificationTitle || '';
     $rootScope.verificationContent = $rootScope.verificationContent || '';
     $rootScope.invalidToken = $rootScope.invalidToken || false;
     $rootScope.invalidPwdToken = $rootScope.invalidPwdToken || false;
     $rootScope.showEmail = $rootScope.showEmail || false;
     $rootScope.showPassword = $rootScope.showPassword || false;
+    $rootScope.unsubscribeSuccess = $rootScope.unsubscribeSuccess || false;
 
     var distinct_id = mixpanel.get_distinct_id();
     mixpanel.track("sign in",{distinct:distinct_id});
@@ -54,6 +56,25 @@
           $rootScope.verificationTitle = err.data.title;
           $rootScope.verificationContent = err.data.content;
           $rootScope.invalidToken = true;
+          $state.go('login');
+        });
+    }
+
+    if ($scope.userEmail) {
+      common.Auth.unsubscribeUser($scope.userEmail)
+        .then(function(data) {
+          if (data.status == 'success'){
+            $rootScope.verificationTitle = 'Daily update status';
+            $rootScope.verificationContent = 'You successfully unsubscribe from receiving daily update mail';
+            $rootScope.unsubscribeSuccess = true;
+          }
+          $state.go('login');
+        })
+        .catch(function() {
+          mixpanel.track("sign in - Unsubscribe user failure",{distinct:distinct_id});
+          $rootScope.verificationTitle = 'Daily update status';
+          $rootScope.verificationContent = 'Something went wrong';
+          $rootScope.unsubscribeFailure = true;
           $state.go('login');
         });
     }

@@ -204,6 +204,12 @@ module.exports = {
           .then(cb());
       },
 
+      unsubscribeMe: function (cb) {
+        this.shareCreditReport = false;
+        this.save()
+          .then(cb());
+      },
+
       /**
        * Update password field
        *

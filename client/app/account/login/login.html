@@ -17,6 +17,20 @@
       </div>
     </div>
 
+    <div class="row" ng-if="unsubscribeSuccess">
+      <div class="col-xs-1 col-sm-1">
+        <div class="post-bubble">
+          <i class="fa fa-check fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-11 col-sm-11">
+        <dl style="margin-top: 10px; margin-left: 20px">
+          <dt>{{verificationTitle}}</dt>
+          <dd>{{verificationContent}}</dd>
+        </dl>
+      </div>
+    </div>
+
     <div class="row" ng-if="showPassword && !invalidPwdToken">
       <div class="col-xs-1 col-sm-1">
         <div class="post-bubble">
@@ -54,6 +68,20 @@
       <div class="col-xs-11 col-sm-11">
         <dl style="margin-top: 10px; margin-left: 20px">
           <dt>Error while trying to change your password. <br/> You used incorrect or expired token.</dt>
+        </dl>
+      </div>
+    </div>
+
+    <div class="row" ng-if="unsubscribeFailure">
+      <div class="col-xs-1 col-sm-1">
+        <div class="post-bubble">
+          <i class="fa fa-exclamation-triangle fa-lg"></i>
+        </div>
+      </div>
+      <div class="col-xs-11 col-sm-11">
+        <dl style="margin-top: 10px; margin-left: 20px">
+          <dt>{{verificationTitle}}</dt>
+          <dd>{{verificationContent}}</dd>
         </dl>
       </div>
     </div>

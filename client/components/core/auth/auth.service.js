@@ -225,6 +225,17 @@
           }).$promise;
         },
 
+        unsubscribeUser: function(userEmail, callback) {
+          var cb = callback || angular.noop;
+          return Local.unsubscribeUser({
+            email: userEmail
+          }, function(data) {
+            return cb(currentUser);
+          }, function(err) {
+            return cb(err);
+          }).$promise;
+        },
+
         /**
          * Check if a user's mail is confirmed
          *
