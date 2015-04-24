@@ -48,6 +48,7 @@
             <div class="flip-container-room">
               <div class="flipper">
                 <div class="front white-box">
+                  <a ui-sref="lookingDetail({id:look.id})" style="text-decoration: none">
                   <div class="center-image">
                     <img ng-if="look.relatedUserId.profileImage" ng-src="api/images{{look.relatedUserId.profileImage}}" class="img-circle center-block looking-grid-profile-img">
                     <i ng-if="!look.relatedUserId.profileImage" class="fa fa-user fa-4x"></i>
@@ -64,6 +65,7 @@
                     <li><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{look.roomType}}</li>
                     <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{look.gender}}</li>
                   </ul>
+                  </a>
                 </div>
                 <div class="back">
                   <a ui-sref="lookingDetail({id:look.id})"> <h2>View</h2> </a>
