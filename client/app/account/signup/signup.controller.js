@@ -5,9 +5,9 @@
       .module('app.account')
       .controller('SignupCtrl', SignupCtrl);
 
-  SignupCtrl.$inject=['$scope', 'common', '$window', 'Auth', '$cookieStore'];
+  SignupCtrl.$inject=['$scope', 'common', '$window', 'Auth'];
 
-  function SignupCtrl($scope, common, $window, Auth, $cookieStore) {
+  function SignupCtrl($scope, common, $window, Auth) {
     var vm = this;
     vm.user = {};
     vm.user.confirmPassword = '';
@@ -18,8 +18,7 @@
       pageTitle:'Campusly Sign-up',
       pageDescription:'Free Sign-up for Campusly'
     };
-    var mixpanelObject = $cookieStore.get('mp_bd202854d110bac5e72d7e034abdae01_mixpanel');
-    var distinct_id = mixpanelObject.distinct_id;
+    var distinct_id = mixpanel.get_distinct_id();
     mixpanel.track("sign up",{distinct:distinct_id});
 
     vm.register = function (form) {

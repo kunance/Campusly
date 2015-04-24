@@ -30,7 +30,7 @@
           .catch(function () {
             common.logger.error('Something went wrong. Changes are not saved.');
           });
-    }
+    };
 
     mixpanel.track("settings view");
     mixpanel.people.increment('settings view');
