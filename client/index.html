@@ -10,7 +10,8 @@
     for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
     if (typeof String.prototype.startsWith != 'function')
       {String.prototype.startsWith = function (str){return this.indexOf(str) === 0;};}
-    if(window.location.href.startsWith('https://campusly.org' || 'http://campusly.org' || 'https://www.campusly.org' || 'http://www.campusly.org'))
+  if(window.location.href.startsWith('https://campusly.org') || window.location.href.startsWith('http://campusly.org')
+    || window.location.href.startsWith('https://www.campusly.org') || window.location.href.startsWith('http://www.campusly.org'))
       {mixpanel.init("bd202854d110bac5e72d7e034abdae01");console.log('Mixpanel production');}
     else
       {mixpanel.init("41a02b2df2e263307327276d0ed559ec");console.log('Mixpanel test');}</script><!-- end Mixpanel -->
