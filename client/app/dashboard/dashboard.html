@@ -6,15 +6,41 @@
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 my-profile">
 
+          <!-- User selects their current interest -->
+
+          <h2>Interested In</h2>
+
+          <!-- TODO Need to bind data, checkboxes are not showing up -->
+
+          <div class="white-box buttons-box">
+            <form name="connectTo">
+              <h4><i class="fa fa-car"></i>&nbsp;Carpooling</h4>
+              <label class="checkbox"><input type="checkbox" value="">To Campus</label>
+              <label class="checkbox"><input type="checkbox">From Campus</label>
+              <label class="checkbox"><input type="checkbox">For Groceries</label>
+              <label class="checkbox"><input type="checkbox">Roadtrip</label>
+              <h4><i class="fa fa-child"></i>&nbsp;Walking</h4>
+              <label class="checkbox"><input type="checkbox">To Campus</label>
+              <label class="checkbox"><input type="checkbox">From Campus</label>
+              <h4><i class="fa fa-users"></i>&nbsp;Meeting Up</h4>
+              <label class="checkbox"><input type="checkbox">Hangout</label>
+              <label class="checkbox"><input type="checkbox">Study Group</label>
+              <label class="checkbox"><input type="checkbox">Campus Events</label>
+            </form>
+          </div>
+
           <!-- Create a post -->
 
-          <h2>You</h2>
+          <h2>Post</h2>
+
           <div class="white-box buttons-box">
             <a class="btn btn-primary" ui-sref="addRoom">Post Available Room</a>
             <a  class="btn btn-secondary" ui-sref="addNewLooking" ui-sref-opts="{reload:true}">Post Looking</a>
           </div>
 
           <!-- Profile -->
+
+          <h2>You</h2>
 
           <div class="white-box profile-sidebar">
             <div class="profile">
