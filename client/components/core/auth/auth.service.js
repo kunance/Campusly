@@ -152,6 +152,15 @@
             });
         },
 
+        getUserByToken: function (token) {
+          return UserResource.getByToken({token: token},
+            function (res) {
+              return res;
+            }, function (err) {
+              //handle exception
+            }).$promise;
+        },
+
         /**
          * Check if a user is logged in
          *   (synchronous|asynchronous)
@@ -227,9 +236,7 @@
 
         unsubscribeUser: function(userEmail, callback) {
           var cb = callback || angular.noop;
-          return Local.unsubscribeUser({
-            email: userEmail
-          }, function(data) {
+          return Local.unsubscribeUser(userEmail, function(data) {
             return cb(currentUser);
           }, function(err) {
             return cb(err);

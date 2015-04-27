@@ -6,6 +6,7 @@ var _ = require('lodash');
 var sqldb = require('../../../sqldb');
 var Property = sqldb.model('property');
 var University = sqldb.model('university');
+var jwt = require('jsonwebtoken');
 
 var sendMail = function(User, RoomListing, Looking, Education, callback){
   var current = new Date();
@@ -16,8 +17,16 @@ var sendMail = function(User, RoomListing, Looking, Education, callback){
   lookings : 0,
   roomListings : 0,
   recipients : [],
-  d : minus24hours
+  d : minus24hours,
+  UNSUBSCRIBE_URL:''
   };
+
+  if(config.env=='development' || config.env=='test') {
+    locals.UNSUBSCRIBE_URL= 'http://localhost:9000/unsubscribe/';
+  }
+  if(config.env=='production') {
+    locals.UNSUBSCRIBE_URL= 'https://campusly.org/unsubscribe/';
+  }
 
   locals.recipients = {
     message: {
@@ -27,6 +36,7 @@ var sendMail = function(User, RoomListing, Looking, Education, callback){
       subject: 'New Available Rooms & Students Looking For You!'
     }
   };
+  locals.recipients.message.merge_vars = [];
   User.findAll({where:
   {
     shareCreditReport:true,
@@ -35,11 +45,26 @@ var sendMail = function(User, RoomListing, Looking, Education, callback){
     .then(function (users) {
       if(users) {
         for (var i = 0; i < users.length; i += 1) {
+          var unsubscribeToken = jwt.sign({user: users[i].id, email: users[i].email}, config.secrets.mailConfirmation);
+          // keep DB out for now and see how it behaves
+          //users[i].setVerificationData(unsubscribeToken, function () {
+          //});
           locals.recipients.message.to.push({
             email: users[i].email,
             name: users[i].firstname + ' ' + users[i].lastname,
             type: 'to'
-          })
+          });
+          locals.recipients.message.merge_vars.push( {
+                rcpt: users[i].email,
+                vars: [
+                  {
+                    "name": "token",
+                    "content": unsubscribeToken
+                  }
+                ]
+              }
+          )
+
         }
       } else {
         console.log('no users');

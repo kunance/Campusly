@@ -65,12 +65,12 @@
         .then(function(data) {
           if (data.status == 'success'){
             $rootScope.verificationTitle = 'Daily update status';
-            $rootScope.verificationContent = 'You successfully unsubscribe from receiving daily update mail';
+            $rootScope.verificationContent = 'You successfully unsubscribed from recieving daily update mail';
             $rootScope.unsubscribeSuccess = true;
           }
           $state.go('login');
         })
-        .catch(function() {
+        .catch( function(err) {
           mixpanel.track("sign in - Unsubscribe user failure",{distinct:distinct_id});
           $rootScope.verificationTitle = 'Daily update status';
           $rootScope.verificationContent = 'Something went wrong';
@@ -106,7 +106,11 @@
               if (user.confirmedEmail) {
                   $scope.success = false;
                   $scope.showForm = false;
+                if($rootScope.redirectTo){
+                  $state.go($rootScope.redirectTo.state, {param:$rootScope.redirectTo.value});
+                } else {
                   $state.go('dashboard');
+                }
               } else {
                 $scope.loading = false;
                 $scope.showResendPartial = true;

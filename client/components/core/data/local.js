@@ -32,7 +32,7 @@
           }
         },
         unsubscribeUser:{
-          method: 'POST',
+          method: 'PUT',
           params: {
             controller:'unsubscribeUser'
           }

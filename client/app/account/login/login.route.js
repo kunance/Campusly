@@ -48,15 +48,6 @@
         },
         authenticate: false,
         cache: false
-      })
-      .state('unsubscribe', {
-        url: '/unsubscribe/:userEmail',
-        controller: 'LoginCtrl',
-        resolve:{
-          currentUser:getCurrentUser
-        },
-        authenticate: false,
-        cache: false
       });
   }
 
