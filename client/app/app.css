@@ -3060,3 +3060,32 @@ Unsubscribe partial styling
   font-size: 25px;
   vertical-align: middle;
 }
+
+/*
+***********************
+* =Interested in styling
+***********************
+*/
+
+.interested-box {
+  padding-bottom: 7px;
+}
+
+.interested-box h4 i:after {
+  content: "\00a0\00a0";
+}
+
+.interested-box h4 {
+  border-bottom: 1px solid #afafaf;
+  font-weight: bold;
+  padding: 0 0 10px 0;
+  margin: 0 0 0 5px;
+}
+
+.interested-box label {
+  padding-left: 50px;
+}
+
+.interested-box h4:not(:first-child) {
+  padding-top: 8px;
+}
