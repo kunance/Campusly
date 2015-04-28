@@ -85,7 +85,11 @@
               if (user.confirmedEmail) {
                   $scope.success = false;
                   $scope.showForm = false;
+                if($rootScope.redirectTo){
+                  $state.go($rootScope.redirectTo.state, {param:$rootScope.redirectTo.value});
+                } else {
                   $state.go('dashboard');
+                }
               } else {
                 $scope.loading = false;
                 $scope.showResendPartial = true;

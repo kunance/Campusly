@@ -29,6 +29,12 @@
               id:'me'
             }
           },
+          getByToken: {
+            method: 'GET',
+            params: {
+              id:'byToken'
+            }
+          },
           changeProfileImage: {
             method: 'POST',
             params: {

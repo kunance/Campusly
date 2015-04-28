@@ -152,6 +152,15 @@
             });
         },
 
+        getUserByToken: function (token) {
+          return UserResource.getByToken({token: token},
+            function (res) {
+              return res;
+            }, function (err) {
+              //handle exception
+            }).$promise;
+        },
+
         /**
          * Check if a user is logged in
          *   (synchronous|asynchronous)
@@ -219,6 +228,15 @@
           }, function(data) {
             $localStorage.token = data.token;
             $cookieStore.put('message', 'succesfully verified');
+            return cb(currentUser);
+          }, function(err) {
+            return cb(err);
+          }).$promise;
+        },
+
+        unsubscribeUser: function(userEmail, callback) {
+          var cb = callback || angular.noop;
+          return Local.unsubscribeUser(userEmail, function(data) {
             return cb(currentUser);
           }, function(err) {
             return cb(err);

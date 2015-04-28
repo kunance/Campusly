@@ -5,12 +5,12 @@
     .module('app.dashboard')
     .config(config);
 
-  config.$inject=['$stateProvider',];
+  config.$inject=['$stateProvider'];
 
   function config ($stateProvider) {
     $stateProvider
       .state('lookingDetail', {
-        url: '/lookingDetail/:id',
+        url: '/lookingDetail/:param',
         templateUrl: 'app/dashboard/looking/looking-details/looking.detail.html',
         controller: 'LookingDetailsCtrl',
         controllerAs:'detail',
@@ -18,12 +18,15 @@
           currentUser:getCurrentUser,
           getLookingById:getLookingById
         },
-        authenticate: true
+        authenticate: true,
+        cache: false
       });
   }
 
-  getCurrentUser.$inject = ['common', '$q'];
-  function getCurrentUser(common, $q) {
+  getCurrentUser.$inject = ['common', '$q', '$stateParams', '$rootScope'];
+  function getCurrentUser(common, $q, $stateParams, $rootScope) {
+    var lookingId = $stateParams.param;
+    $rootScope.redirectTo = {state: 'lookingDetail', value: lookingId};
     var deferred = $q.defer();
     common.Auth.getCurrentUser(function(user) {
       deferred.resolve(user);
@@ -33,7 +36,7 @@
 
   getLookingById.$inject = ['common', '$stateParams', '$q'];
   function getLookingById(common, $stateParams, $q) {
-    var lookingId = $stateParams.id;
+    var lookingId = $stateParams.param;
     var looking = common.dataservice.getSingleLooking(lookingId);
     return $q.all([looking.$promise]);
   }

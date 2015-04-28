@@ -10,7 +10,7 @@
   function config ($stateProvider) {
     $stateProvider
       .state('roomDetail', {
-        url: '/roomDetail/:id',
+        url: '/roomDetail/:param',
         templateUrl: 'app/roomDetail/roomDetail.html',
         controller: 'RoomDetailCtrl',
         controllerAs: 'room',
@@ -23,8 +23,10 @@
       });
   }
 
-    getCurrentUser.$inject = ['common', '$q'];
-    function getCurrentUser(common, $q) {
+    getCurrentUser.$inject = ['common', '$q', '$stateParams', '$rootScope'];
+    function getCurrentUser(common, $q, $stateParams, $rootScope) {
+      var RoomId = $stateParams.param;
+      $rootScope.redirectTo = {state: 'roomDetail', value: RoomId};
       var deferred = $q.defer();
       common.Auth.getCurrentUser(function(user) {
         deferred.resolve(user);
@@ -35,7 +37,7 @@
     getData.$inject = ['common', 'currentUser', '$q', 'RoomListingView', '$stateParams'];
     function getData(common, currentUser, $q, RoomListingView, $stateParams) {
       var edu = common.dataservice.getAllEducations(currentUser.id);
-      var roomListing = RoomListingView.get({id: $stateParams.id});
+      var roomListing = RoomListingView.get({id: $stateParams.param});
       return $q.all([edu.$promise, roomListing.$promise]);
     }
 

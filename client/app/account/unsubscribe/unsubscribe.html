@@ -1,0 +1,55 @@
+<div class="main">
+  <div ng-include="'components/layout/navbar/navbar.html'"></div>
+   <section class="unsubscribe-box white-box">
+
+      <header>
+        <h2 class="heading">Hello {{vm.me.firstname}} {{vm.me.lastname}} <small>({{vm.me.email}})</small></h2>
+        <small>NOTE: If this is not your email address, please ignore this page since the email associated with this page was most likely forwarded to you.</small>
+      </header><!-- end of header -->
+
+      <p class="emails-type">Uncheck the types of emails you do not want to receive:</p>
+      <div class="well" ng-class="{'subscribed': vm.me.shareCreditReport, 'unsubscribed':!vm.me.shareCreditReport}">
+        <input id="daily" type="checkbox" ng-model="vm.me.shareCreditReport" class="col-md-1" ng-change="vm.submitted=false"/>
+        <label for="daily" class="col-md-11">Campusly daily update e-mail?</label>
+        <!--TODO change wording-->
+        <p ng-if="vm.me.shareCreditReport">By un-checking this option you will stop receiving useful information such as how many new rooms are available around your university and what kind of rooms your possible roommates are looking for</p>
+        <p ng-if="!vm.me.shareCreditReport">By checking this option you will start receiving useful information such as how many new rooms are available around your university and what kind of rooms your possible roommates are looking for</p>
+      </div>
+
+        <!--TODO add more options-->
+         <!--<div class="well" ng-class="{'subscribed': option2, 'unsubscribed':!option2}">-->
+          <!--<input id="option2" type="checkbox" ng-model="option2" class="col-md-1" ng-change="vm.submitted=false"/>-->
+          <!--<label for="option2" class="col-md-11">Receive Campusly option 2 e-mail?</label>-->
+           <!--<p>some info about this email</p>-->
+        <!--</div>-->
+
+         <!--<div class="well" ng-class="{'subscribed': option3, 'unsubscribed':!option3}">-->
+          <!--<input id="option3" type="checkbox" ng-model="option3" class="col-md-1" ng-change="vm.submitted=false"/>-->
+          <!--<label for="option3" class="col-md-11">Receive Campusly option 3 e-mail?</label>-->
+           <!--<p>some info about this email</p>-->
+        <!--</div>-->
+
+        <!--<div class="well" ng-class="{'subscribed': option4, 'unsubscribed':!option4}">-->
+          <!--<input id="option4" type="checkbox" ng-model="option4" class="col-md-1" ng-change="vm.submitted=false"/>-->
+          <!--<label for="option4" class="col-md-11" >Receive Campusly option 4 e-mail?</label>-->
+          <!--<p>some info about this email</p>-->
+        <!--</div>-->
+
+       <hr/>
+       <div class="row">
+         <div class="col-md-8 feedback">
+           <p class="unsubscribe-success" ng-if="vm.showSuccess && vm.submitted"><i class="fa fa-check-circle unsub-icon"></i>Successfully saved subscription options</p>
+           <p class="unsubscribe-fail" ng-if="vm.showFail && vm.submitted"><i class="fa fa-exclamation-circle unsub-icon"></i>Something went wrong</p>
+         </div>
+         <div class="col-md-4">
+         <button ng-click="vm.unsubscribe()" class="btn-rented-medium primary">Update email preferences</button>
+         </div>
+       </div>
+   </section><!-- end of section -->
+
+    <footer class="unsubscribe-footer container">
+      <p>Any improvements?<i class="fa fa-envelope"></i><a href="mailto:feedback@campusly.org?=Website%20Feedback">feedback@campusly.org</a>|<i class="fa fa-facebook-square"></i><a href="https://www.facebook.com/app_scoped_user_id/837190803015531/" target="_blank">Facebook PM</a></p>
+    </footer><!-- end of footer -->
+
+</div><!-- end of main div -->
+

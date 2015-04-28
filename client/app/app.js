@@ -37,8 +37,8 @@
     $httpProvider.interceptors.push(requestInterceptor);
   }
 
-  authInterceptor.$inject = ['$rootScope', '$q', '$cookieStore', '$injector'];
-  function authInterceptor($rootScope, $q, $cookieStore, $injector) {
+  authInterceptor.$inject = ['$rootScope', '$q', '$cookieStore', '$injector', '$location'];
+  function authInterceptor($rootScope, $q, $cookieStore, $injector, $location) {
     var state;
     return {
       // Add authorization token to headers

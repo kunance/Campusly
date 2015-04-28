@@ -102,6 +102,43 @@ exports.me = function(req, res, next) {
     });
 };
 
+exports.getUserByToken = function(req, res, next) {
+
+  var userAttributes = ['id', 'experianIdToken', 'googleOAuthId',
+    'firstname', 'email', 'lastname', 'shareCreditReport', 'updatedAt'];
+
+  var unsubscribeToken = req.param('token');
+
+  jwt.verify(unsubscribeToken, config.secrets.mailConfirmation, function(error, data) {
+    if (error) {
+      return res.status(403).send({reason:'incorrect token'});
+    }
+    else {
+      User.find({
+        where: {
+          id: data.user
+        }
+        , attributes: userAttributes
+      })
+        .then(function (user) { // don't ever give out the password or salt
+          if (!user) {
+            return res.status(401).json({error:'no such user found'});
+          }
+          // keep DB out for now and see how it behaves
+          //if (String(user.googleOAuthId) != String(unsubscribeToken)) {
+          //  return res.status(401).json({error:'tokens dont match'});
+          //}
+          else {
+            return res.json(user);
+          }
+        })
+        .catch(function (err) {
+          return next(err);
+        });
+    }
+  })
+};
+
 
 
 /**

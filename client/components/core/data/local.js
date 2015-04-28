@@ -31,6 +31,12 @@
             controller: 'sendingPWDresetMail'
           }
         },
+        unsubscribeUser:{
+          method: 'PUT',
+          params: {
+            controller:'unsubscribeUser'
+          }
+        },
         confirmPassword: {
           method: 'POST',
           params: {

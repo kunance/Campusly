@@ -11,6 +11,7 @@ router.get('/mailconfirmation/:userId', controller.sendMailAddressConfirmationMa
 router.post('/mailconfirmation', controller.confirmMailAddress);
 router.post('/sendingPWDresetMail', controller.resetPassword);
 router.post('/passwordreset', controller.confirmResetedPassword);
+router.put('/unsubscribeUser', controller.unsubscribeUser);
 router.post('/', controller.root);
 
 module.exports = router;
