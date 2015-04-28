@@ -5,9 +5,9 @@
     .module('app.account')
     .controller('UnsubscribeCtrl', UnsubscribeCtrl);
 
-  UnsubscribeCtrl.$inject = ['common', 'currentUser', '$state'];
+  UnsubscribeCtrl.$inject = ['common', 'currentUser'];
 
-  function UnsubscribeCtrl(common, currentUser, $state) {
+  function UnsubscribeCtrl(common, currentUser) {
     var vm = this;
     vm.me = currentUser;
 
