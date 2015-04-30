@@ -10,10 +10,10 @@
       <p class="emails-type">Uncheck the types of emails you do not want to receive:</p>
       <div class="well" ng-class="{'subscribed': vm.me.shareCreditReport, 'unsubscribed':!vm.me.shareCreditReport}">
         <input id="daily" type="checkbox" ng-model="vm.me.shareCreditReport" class="col-md-1" ng-change="vm.submitted=false"/>
-        <label for="daily" class="col-md-11">Campusly daily update e-mail?</label>
+        <label for="daily" class="col-md-11">Daily update - new rooms and students looking</label>
         <!--TODO change wording-->
-        <p ng-if="vm.me.shareCreditReport">By un-checking this option you will stop receiving useful information such as how many new rooms are available around your university and what kind of rooms your possible roommates are looking for</p>
-        <p ng-if="!vm.me.shareCreditReport">By checking this option you will start receiving useful information such as how many new rooms are available around your university and what kind of rooms your possible roommates are looking for</p>
+        <p ng-if="vm.me.shareCreditReport">Found a place? Uncheck to stop receiving daily emails.</p>
+        <p ng-if="!vm.me.shareCreditReport">Looking for a place? Check the box to start receiving daily emails.</p>
       </div>
 
         <!--TODO add more options-->
