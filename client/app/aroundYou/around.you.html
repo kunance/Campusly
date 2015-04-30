@@ -95,8 +95,8 @@
                     <h4 class="media-heading user-name" style="text-align: center;">
                       {{arYou.firstname}} {{arYou.lastname[0] | uppercase}}.
                     </h4>
-                    <p ng-show="arYou.usereducationUsers[0].educationCenterName" style="text-align: center">{{arYou.usereducationUsers[0].educationCenterName}}</p>
-                    <p ng-hide="arYou.usereducationUsers[0].educationCenterName" style="text-align: center">No university entered</p>
+                    <p ng-show="arYou.usereducationUsers[0].relatedUniversityId.shortName" style="text-align: center">{{arYou.usereducationUsers[0].relatedUniversityId.shortName}}</p>
+                    <p ng-hide="arYou.usereducationUsers[0].relatedUniversityId.shortName" style="text-align: center">No university entered</p>
                     <div class="info">
                       <strong class="value">
                         Interested In:

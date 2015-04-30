@@ -6,6 +6,7 @@ var User = sqldb.model('rentedUser');
 var Vehicle = sqldb.model('userVehicle');
 var Pets = sqldb.model('pet');
 var Education = sqldb.model('userEducation');
+var University = sqldb.model('university');
 var Status = sqldb.model('userStatus');
 var passport = require('passport');
 var config = require('../../config/environment');
@@ -72,7 +73,7 @@ exports.aroundMe = function(req, res, next) {
     }
     if (searchQuery.carpoolingFromCampus) {
       searchCriteria.carpoolingFromCampus = (searchQuery.carpoolingFromCampus === true);
-      mixpanel.track("aroundYou - search by carpoolingToCampus");
+      mixpanel.track("aroundYou - search by carpoolingFromCampus");
     }
     if (searchQuery.carpoolingForGroceries) {
       searchCriteria.carpoolingForGroceries = (searchQuery.carpoolingForGroceries === true);
@@ -115,7 +116,9 @@ exports.aroundMe = function(req, res, next) {
       },
       limit: req.query.limit,
       include:[
-        { model: Education, attributes: educationAttributes, as: 'usereducationUsers'},
+        { model: Education, attributes: educationAttributes, as: 'usereducationUsers',
+          include:[
+            { model: University, attributes:['shortName'], as: 'relatedUniversityId'}]},
         { model: Status, as: 'userstatusesUsers', where:searchCriteria}],
       attributes: userAttributes
     })

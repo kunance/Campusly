@@ -26,6 +26,7 @@
     var action;
     vm.userStatus.id ? action = 'update' : action = 'save';
     vm.me.experianIdToken = vm.me.experianIdToken || 1;
+    console.log(vm.aroundYou);
     /*
      *  prerender.io
      */
