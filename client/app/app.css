@@ -1687,6 +1687,22 @@ Posts dashboard padding
   margin-top: 5px;
 }
 
+.room .arYouView ul.specs {
+  display: block;
+  list-style:none;
+}
+
+.room .arYouView ul.specs li {
+  margin-top: 5px;
+}
+
+.room .arYouView .value {
+  color: #000000;
+  font-weight: bold;
+  float: left;
+  border-bottom: 2px solid #f7953d;
+}
+
 h2.section-title:nth-child(n+2) {
   margin-top: 50px;
 }
