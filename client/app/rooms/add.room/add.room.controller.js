@@ -44,7 +44,7 @@
                 });
             }
             common.logger.success('Room saved');
-            common.$state.go('roomDetail', { id: roomListing.id },{reload: true});
+            common.$state.go('roomDetail', { param: roomListing.id },{reload: true});
           }, function (errors) {
             common.logger.error('error while saving room listing');
             console.log('error(s) while saving room listing', errors);
