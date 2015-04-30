@@ -27,15 +27,15 @@
               <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.meetForHangout">Hangout</label>
               <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.meetForStudy">Study Group</label>
               <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.meetForEvents">Campus Events</label>
-              <button class="btn btn-secondary btn-block" type="submit" ng-disabled="!connectTo.$dirty">Update my status</button>
+              <button class="btn btn-primary btn-block" type="submit">Update My Status</button>
             </form>
           </div>
           <!-- Create a post -->
           <h2>Post</h2>
 
           <div class="white-box buttons-box">
-            <a class="btn btn-primary" ui-sref="addRoom">Post Available Room</a>
-            <a  class="btn btn-secondary" ui-sref="addNewLooking" ui-sref-opts="{reload:true}">Post Looking</a>
+            <a class="btn btn-secondary" ui-sref="addRoom">Post Available Housing</a>
+            <a  class="btn btn-primary" ui-sref="addNewLooking" ui-sref-opts="{reload:true}">Post Looking</a>
           </div>
 
           <!-- Profile -->
@@ -74,7 +74,7 @@
             <slick dots="true" class="slider row" init-onload="true" data="dashboard.availableRooms" slides-to-show="3" slides-to-scroll="3" infinite="false" responsive="dashboard.breakpoints.availableRooms" ng-if="dashboard.availableRooms.length">
               <!-- start room box -->
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 room" ng-repeat="room in dashboard.availableRooms track by $index">
-                <a style="text-decoration: none" ui-sref="roomDetail({id: room.roomDetails.id})">
+                <a style="text-decoration: none" ui-sref="roomDetail({param: room.roomDetails.id})">
                   <div class="picture">
                     <img border="0" ng-src="//maps.googleapis.com/maps/api/staticmap?center={{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&zoom=14&scale=2&size=400x250&markers=color:blue%7C{{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&key=AIzaSyAm7woOFr0TOKG0U7jsBF5K3LSifdDjgfs">
                   </div>
@@ -112,7 +112,7 @@
               <!-- start room box -->
 
               <div ng-if="looking.userId!=dashboard.me.id" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index">
-                <a style="text-decoration: none" ui-sref="lookingDetail({id:looking.id})">
+                <a style="text-decoration: none" ui-sref="lookingDetail({param:looking.id})">
                   <div  class="media">
                     <div class="media-left">
                       <img ng-if="looking.relatedUserId.profileImage" ng-src="api/images{{looking.relatedUserId.profileImage}}" class="img-circle" height="100px" width="100px">
@@ -158,7 +158,7 @@
                 <div class="list-item" ng-repeat="room in dashboard.myRoomListings">
                   <div class="row" >
 
-                    <a style="text-decoration: none" ui-sref="roomDetail({id:room.id})">
+                    <a style="text-decoration: none" ui-sref="roomDetail({param:room.id})">
                       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
                         <div class="info" >
                           <span class='value'>{{room.monthlyPrice |currency}}</span>
@@ -217,7 +217,7 @@
                 <!-- start list box -->
                 <div class="list-item" ng-repeat="look in dashboard.userLookings">
                   <div class="row" >
-                    <a style="text-decoration: none" ui-sref="lookingDetail({id:look.id})">
+                    <a style="text-decoration: none" ui-sref="lookingDetail({param:look.id})">
                       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
                         <div class="info">
                           <span class='value'>{{look.maxMonthlyRent |currency}}</span>
