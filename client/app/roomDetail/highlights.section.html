@@ -65,7 +65,8 @@
             <td><i class="fa fa-shower"></i>&nbsp;&nbsp;{{room.roomDetail.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</td>
           </tr>
           <tr>
-            <td><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetail.roomDetails.numRoomates}} roommates</td>
+            <td ng-show="room.roomDetail.roomDetails.numRoomates > 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetail.roomDetails.numRoomates}} roommates + You</td>
+            <td ng-show="room.roomDetail.roomDetails.numRoomates == 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetail.roomDetails.numRoomates}} roommate + You</td>
             <td><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;Move-in:&nbsp;&nbsp;{{room.roomDetail.roomDetails.availableMoveIn | date }}</td>
           </tr>
           <tr>
