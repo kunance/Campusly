@@ -16,7 +16,7 @@
     vm.me.experianIdToken = vm.me.experianIdToken || 1;
     var query = {};
 
-    vm.clearSearch = function(showSearch) {
+    vm.clearSearch = function() {
       vm.query = {
         carpoolingToCampus: null,
         carpoolingFromCampus: null,
