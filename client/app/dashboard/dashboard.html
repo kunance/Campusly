@@ -8,27 +8,28 @@
 
           <!-- User selects their current interest -->
 
-          <h2>Interested In</h2>
+          <h2>I'm Interested In</h2>
 
           <!-- TODO Need to bind data, checkboxes are not showing up -->
 
           <div class="white-box interested-box">
-            <form name="connectTo">
+            <form name="connectTo" ng-submit="dashboard.updateStatus(connectTo, dashboard.userStatus)" novalidate>
               <h4><i class="fa fa-car"></i>Carpooling</h4>
-              <label class="checkbox"><input type="checkbox">To Campus</label>
-              <label class="checkbox"><input type="checkbox">From Campus</label>
-              <label class="checkbox"><input type="checkbox">For Groceries</label>
-              <label class="checkbox"><input type="checkbox">Roadtrip</label>
+              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.carpoolingToCampus">To Campus</label>
+              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.carpoolingFromCampus">From Campus</label>
+              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.carpoolingForGroceries">For Groceries</label>
+              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.carpoolingForRoadtrip">Roadtrip</label>
+              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.carpoolingSplit">Split a Uber/Lyft</label>
               <h4><i class="fa fa-child"></i>Walking</h4>
-              <label class="checkbox"><input type="checkbox">To Campus</label>
-              <label class="checkbox"><input type="checkbox">From Campus</label>
+              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.walkingToCampus">To Campus</label>
+              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.walkingFromCampus">From Campus</label>
               <h4><i class="fa fa-users"></i>Meeting Up</h4>
-              <label class="checkbox"><input type="checkbox">Hangout</label>
-              <label class="checkbox"><input type="checkbox">Study Group</label>
-              <label class="checkbox"><input type="checkbox">Campus Events</label>
+              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.meetForHangout">Hangout</label>
+              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.meetForStudy">Study Group</label>
+              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.meetForEvents">Campus Events</label>
+              <button class="btn btn-secondary btn-block" type="submit" ng-disabled="!connectTo.$dirty">Update my status</button>
             </form>
           </div>
-
           <!-- Create a post -->
           <h2>Post</h2>
 

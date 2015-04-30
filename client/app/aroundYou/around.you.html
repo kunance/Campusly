@@ -18,7 +18,52 @@
 
       <div class="row">
 
+        <!-- search buttons -->
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-show="!around.showSearch">
+          <button class="btn-rented-medium secondary" ng-click="around.showSearch=!around.showSearch" ng-show="!around.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Open Search</button>
+          <button class="btn-rented-medium secondary" ng-click="around.showSearch=!around.showSearch" ng-show="around.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Close Search</button>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="around.showSearch">
+          <button class="btn-rented-medium secondary" ng-click="around.showSearch=!around.showSearch" ng-show="!around.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Open Search</button>
+          <button class="btn-rented-medium secondary" ng-click="around.showSearch=!around.showSearch" ng-show="around.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Close Search</button>
+        </div>
+        <!-- end of search buttons -->
+
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+          <!-- search partial -->
+          <div class="white-box interested-box-search" ng-if="around.showSearch">
+            <form name="connectToSearch" ng-submit="around.setQueryAndSearch(around.query)" novalidate>
+              <div class="row">
+                <div class="col-sm-4 col-md-4">
+                <h4><i class="fa fa-car"></i>Carpooling</h4>
+                <label class="checkbox"><input type="checkbox" ng-model="around.query.carpoolingToCampus">To Campus</label>
+                <label class="checkbox"><input type="checkbox" ng-model="around.query.carpoolingFromCampus">From Campus</label>
+                <label class="checkbox"><input type="checkbox" ng-model="around.query.carpoolingForGroceries">For Groceries</label>
+                <label class="checkbox"><input type="checkbox" ng-model="around.query.carpoolingForRoadtrip">Roadtrip</label>
+                <label class="checkbox"><input type="checkbox" ng-model="around.query.carpoolingSplit">Split a Uber/Lyft</label>
+              </div>
+              <div class="col-sm-4 col-md-4">
+                <h4><i class="fa fa-child"></i>Walking</h4>
+                <label class="checkbox"><input type="checkbox" ng-model="around.query.walkingToCampus">To Campus</label>
+                <label class="checkbox"><input type="checkbox" ng-model="around.query.walkingFromCampus">From Campus</label>
+              </div>
+              <div class="col-sm-4 col-md-4">
+                <h4><i class="fa fa-users"></i>Meeting Up</h4>
+                <label class="checkbox"><input type="checkbox" ng-model="around.query.meetForHangout">Hangout</label>
+                <label class="checkbox"><input type="checkbox" ng-model="around.query.meetForStudy">Study Group</label>
+                <label class="checkbox"><input type="checkbox" ng-model="around.query.meetForEvents">Campus Events</label>
+              </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><button class="btn btn-secondary btn-block" type="submit" ng-disabled="!connectToSearch.$dirty">Search</button></div>
+                <div class="col-sm-3"><button class="btn btn-secondary btn-block" ng-click="around.clearSearch()">Reset</button></div>
+                </div>
+            </form>
+          </div>
+          <!-- end of search partial -->
+
+
 
           <div ng-if="!around.me.shareProfile && (around.address.streetAddress.id || around.aroundYou.length)">
             <h3>Please <a ui-sref="settings({focus:'allowConnect'})">update your privacy preferences</a> to connect with students around you.</h3>

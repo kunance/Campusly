@@ -12,7 +12,7 @@ module.exports = {
     },
     "output": {
       "log": true,
-      "folder": "./models",
+      "folder": "./TempModels",
       "beautify": true,
       "indent": 4,
       "preserveNewLines": false,
