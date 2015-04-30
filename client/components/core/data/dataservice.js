@@ -5,9 +5,9 @@
     .module('app.core')
     .factory('dataservice', dataservice);
 
-  dataservice.$inject = ['Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation', 'Roommate', 'Looking', 'RoomListing', 'University', 'Lookings', 'RoomListingView'];
+  dataservice.$inject = ['Status', 'Property', 'Vehicle', 'Pet', 'Address', 'Education', 'Finance', 'Occupation', 'Roommate', 'Looking', 'RoomListing', 'University', 'Lookings', 'RoomListingView'];
 
-  function dataservice(Property, Vehicle, Pet, Address, Education, Finance, Occupation, Roommate, Looking, RoomListing, University, Lookings, RoomListingView) {
+  function dataservice(Status, Property, Vehicle, Pet, Address, Education, Finance, Occupation, Roommate, Looking, RoomListing, University, Lookings, RoomListingView) {
 
     var safeCb = function(cb) {
         return (angular.isFunction(cb)) ? cb : angular.noop;
@@ -62,7 +62,10 @@
        getAllUniversities:getAllUniversities,
        getEveryLooking:getEveryLooking,
        getEveryRoom:getEveryRoom,
-       getSingleLooking:getSingleLooking
+       getSingleLooking:getSingleLooking,
+       addStatus:addStatus,
+       editStatus:editStatus,
+       getStatus:getStatus,
     };
     return service;
 
@@ -114,6 +117,19 @@
           //handle this exception
         });
     }
+
+    function addStatus(userId, data) {
+      return Status.save({userId: userId}, data,
+        function(res) {
+          return res;
+        },
+        function(err) {
+          //handle this exception
+        });
+    }
+
+
+
 
     function addPet(userId, data) {
       return Pet.save({userId: userId}, data,
@@ -427,8 +443,26 @@
         });
     }
 
+    function getStatus(userId, data) {
+      return Status.get({userId: userId}, data,
+        function (res) {
+          return res;
+        }, function (err) {
+          //handle exception
+        });
+    }
+
     function editVehicle(userId, vehicleId, data, callback) {
       return Vehicle.editVehicle({userId: userId, id:vehicleId}, data,
+        function (res) {
+          return safeCb(callback)(null, res);
+        }, function (err) {
+          return safeCb(callback)(err);
+        });
+    }
+
+    function editStatus(userId, statusId, data, callback) {
+      return Status.editStatus({userId: userId, id:statusId}, data,
         function (res) {
           return safeCb(callback)(null, res);
         }, function (err) {

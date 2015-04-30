@@ -22,6 +22,9 @@
     vm.numberOf = data[4].length;
     vm.aroundYou = data[5];
     vm.address = data[6];
+    vm.userStatus = data[7];
+    var action;
+    vm.userStatus.id ? action = 'update' : action = 'save';
     vm.me.experianIdToken = vm.me.experianIdToken || 1;
     /*
      *  prerender.io
@@ -33,6 +36,33 @@
     /*
      *  breakpoints and slider options
      */
+
+    vm.updateStatus= function (form, data) {
+      if (action == 'save') {
+        common.dataservice.addStatus(vm.me.id, data)
+          .$promise
+          .then(function (status) {
+            vm.userStatus = status;
+            common.logger.success('Your status is updated');
+          })
+          .catch(function () {
+            common.logger.error('error');
+          })
+      }
+      if (action=='update') {
+        common.dataservice.editStatus(vm.me.id, vm.userStatus.id, data)
+          .$promise
+          .then(function (status) {
+            vm.userStatus = status;
+            common.logger.success('Your status is updated');
+          })
+          .catch(function () {
+            common.logger.error('error');
+          })
+      }
+    };
+
+
     vm.breakpoints = {
       availableRooms: [
       {

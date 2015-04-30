@@ -688,6 +688,18 @@ module.exports = {
       onUpdate: "NO ACTION"
     }
   }, {
+    type: "hasMany",
+    model: "userStatus",
+    schema: "public",
+    table: "user_status",
+    source: "generator",
+    details: {
+      as: "userstatusesUsers",
+      foreignKey: "userId",
+      onDelete: "NO ACTION",
+      onUpdate: "NO ACTION"
+    }
+  }, {
     type: "belongsToMany",
     model: "rentedUser",
     schema: "public",

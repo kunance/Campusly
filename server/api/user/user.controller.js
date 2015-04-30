@@ -6,12 +6,16 @@ var User = sqldb.model('rentedUser');
 var Vehicle = sqldb.model('userVehicle');
 var Pets = sqldb.model('pet');
 var Education = sqldb.model('userEducation');
+var Status = sqldb.model('userStatus');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var s3 = require('../../components/aws-s3/index');
 var UserCurAddressUnivCoords = sqldb.model('userCurAddressUnivCoords');
 var usersWithin = require('../../models/usersWithin');
+var Mixpanel = require('mixpanel');
+// create an instance of the mixpanel client
+var mixpanel = Mixpanel.init('bd202854d110bac5e72d7e034abdae01');
 
 var validationError = function(res, statusCode) {
   statusCode = statusCode || 422;
@@ -52,10 +56,58 @@ exports.index = function(req, res) {
 /**
  * Get my info
  */
-
 exports.aroundMe = function(req, res, next) {
   var userAttributes = ['id', 'aboutMe', 'firstname', 'email', 'lastname', 'profileImage', 'role', 'facebook'];
   var educationAttributes = ['educationCenterName', 'graduationDate'];
+
+  var searchQuery={};
+  var searchCriteria={};
+
+  if(req.query.query) {
+    searchQuery = JSON.parse(req.query.query);
+
+    if (searchQuery.carpoolingToCampus) {
+      searchCriteria.carpoolingToCampus = (searchQuery.carpoolingToCampus === true);
+      mixpanel.track("aroundYou - search by carpoolingToCampus");
+    }
+    if (searchQuery.carpoolingFromCampus) {
+      searchCriteria.carpoolingFromCampus = (searchQuery.carpoolingFromCampus === true);
+      mixpanel.track("aroundYou - search by carpoolingToCampus");
+    }
+    if (searchQuery.carpoolingForGroceries) {
+      searchCriteria.carpoolingForGroceries = (searchQuery.carpoolingForGroceries === true);
+      mixpanel.track("aroundYou - search by carpoolingForGroceries");
+    }
+    if (searchQuery.carpoolingForRoadtrip) {
+      searchCriteria.carpoolingForRoadtrip = (searchQuery.carpoolingForRoadtrip === true);
+      mixpanel.track("aroundYou - search by carpoolingForRoadtrip");
+    }
+    if (searchQuery.carpoolingSplit) {
+      searchCriteria.carpoolingSplit = (searchQuery.carpoolingSplit === true);
+      mixpanel.track("aroundYou - search by carpoolingSplit");
+    }
+    if (searchQuery.walkingToCampus) {
+      searchCriteria.walkingToCampus = (searchQuery.walkingToCampus === true);
+      mixpanel.track("aroundYou - search by walkingToCampus");
+    }
+    if (searchQuery.walkingFromCampus) {
+      searchCriteria.walkingFromCampus = (searchQuery.walkingFromCampus === true);
+      mixpanel.track("aroundYou - search by walkingFromCampus");
+    }
+    if (searchQuery.meetForHangout) {
+      searchCriteria.meetForHangout = (searchQuery.meetForHangout === true);
+      mixpanel.track("aroundYou - search by meetForHangout");
+    }
+    if (searchQuery.meetForStudy) {
+      searchCriteria.meetForStudy = (searchQuery.meetForStudy === true);
+      mixpanel.track("aroundYou - search by meetForStudy");
+    }
+    if (searchQuery.meetForEvents) {
+      searchCriteria.meetForEvents = (searchQuery.meetForEvents === true);
+      mixpanel.track("aroundYou - search by meetForEvents");
+    }
+  }
+
   usersWithin.getAroundYou(req.user.id, req.query.distance, function (usersIds) {
     User.findAll({
       where: {
@@ -63,8 +115,9 @@ exports.aroundMe = function(req, res, next) {
       },
       limit: req.query.limit,
       include:[
-        { model: Education, attributes: educationAttributes, as: 'usereducationUsers'}]
-      , attributes: userAttributes
+        { model: Education, attributes: educationAttributes, as: 'usereducationUsers'},
+        { model: Status, as: 'userstatusesUsers', where:searchCriteria}],
+      attributes: userAttributes
     })
       .then(function(user) {
         if (!user) {
@@ -88,6 +141,8 @@ exports.me = function(req, res, next) {
     where: {
       id: userId
     }
+    //, include:[
+    //  { model: Status, as: 'userstatusesUsers'}]
     , attributes: userAttributes
   })
     .then(function(user) { // don't ever give out the password or salt

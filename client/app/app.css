@@ -3071,11 +3071,11 @@ Unsubscribe partial styling
   padding-bottom: 7px;
 }
 
-.interested-box h4 i:after {
+.interested-box h4 i:after, .interested-box-search h4 i:after {
   content: "\00a0\00a0";
 }
 
-.interested-box h4 {
+.interested-box h4, .interested-box-search h4 {
   border-bottom: 1px solid #afafaf;
   font-weight: bold;
   padding: 0 0 10px 0;
@@ -3086,6 +3086,41 @@ Unsubscribe partial styling
   padding-left: 50px;
 }
 
+.interested-box button[type='submit'] {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  outline:none;
+}
+
 .interested-box h4:not(:first-child) {
   padding-top: 8px;
+}
+
+/*
+***********************
+* =search aroundYou
+***********************
+*/
+
+
+.interested-box-search {
+  overflow: hidden;
+}
+
+.interested-box-search div {
+  padding-top: 10px;
+}
+
+/*.interested-box-search button {*/
+  /*margin: 20px 0;*/
+  /*float: right;*/
+  /*width: 250px;*/
+/*}*/
+
+.interested-box-search h4 {
+  font-weight: bold;
+}
+
+.interested-box-search label {
+  padding-left: 30px;
 }

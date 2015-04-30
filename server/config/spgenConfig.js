@@ -7,8 +7,8 @@ module.exports = {
       "port": 5432,
       "user": "postgres",
       "password": "postgres",
-      "database": "rented",
-      "schema": []
+      "database": "postgres",
+      "schema": "public"
     },
     //"template": {
     //  "engine": "swig",

@@ -18,6 +18,7 @@ module.exports = function(app) {
   app.use('/api/users', require('./api/user'));
 
   app.use('/api/users/:userId/vehicles', require('./api/user/vehicle'));
+  app.use('/api/users/:userId/status', require('./api/user/status'));
   app.use('/api/users/:userId/pets', require('./api/user/pet'));
   app.use('/api/users/:userId/addresses', require('./api/user/address'));
   app.use('/api/users/:userId/educations', require('./api/user/education'));

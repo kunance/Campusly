@@ -12,14 +12,39 @@
     vm.me = currentUser;
     vm.education = data[0];
     vm.address = data[1];
+    vm.showSearch = false;
     vm.me.experianIdToken = vm.me.experianIdToken || 1;
+    var query = {};
 
-    UserResource.aroundMe({distance:(1609 * (vm.me.experianIdToken || 1)), limit: 80}, function (aroundYou) {
-      vm.aroundYou = aroundYou;
-      vm.groups = vm.aroundYou.inGroupsOf(8);
-    }, function (err) {
-      common.logger.error('something went wrong! ',err);
-    });
+    vm.clearSearch = function(showSearch) {
+      vm.query = {
+        carpoolingToCampus: null,
+        carpoolingFromCampus: null,
+        carpoolingForGroceries: null,
+        carpoolingForRoadtrip: null,
+        carpoolingSplit: null,
+        walkingToCampus: null,
+        walkingFromCampus: null,
+        meetForHangout: null,
+        meetForStudy: null,
+        meetForEvents: null
+      };
+    };
+
+    vm.setQueryAndSearch= function (q) {
+      query = q;
+      UserResource.aroundMe({distance:(1609 * (vm.me.experianIdToken || 1)), limit: 80, query:query}, function (aroundYou) {
+        vm.aroundYou = aroundYou;
+        console.log(vm.aroundYou);
+        vm.groups = vm.aroundYou.inGroupsOf(8);
+      }, function (err) {
+        common.logger.error('something went wrong! ',err);
+      });
+      orderSliderButtons()
+   };
+
+    vm.setQueryAndSearch();
+
 
     function orderSliderButtons() {
       setTimeout(function() {
