@@ -25,13 +25,28 @@
             <h4 class="media-heading user-name" style="text-align: center">
               {{around.firstname}} {{around.lastname[0] | uppercase}}.
             </h4>
-            <div style="font-size: 0.8em; text-align: center; min-height: 60px">
+            <div style=" min-height: 60px">
               <dl>
                 <dd ng-show="around.usereducationUsers[0].educationCenterName">{{around.usereducationUsers[0].educationCenterName}}</dd>
                 <dd ng-hide="around.usereducationUsers[0].educationCenterName">No university entered</dd>
 
-                <dd ng-show="around.usereducationUsers[0].graduationDate">Graduation: {{around.usereducationUsers[0].graduationDate | date:'yyyy'}}</dd>
-                <dd ng-hide="around.usereducationUsers[0].graduationDate">Graduation: N/A</dd>
+                Interested In:
+
+                <div ng-show="around.userstatusesUsers[0].carpoolingForGroceries || around.userstatusesUsers[0].carpoolingToCampus
+                  || around.userstatusesUsers[0].carpoolingFromCampus || around.userstatusesUsers[0].carpoolingForRoadtrip
+                  || around.userstatusesUsers[0].carpoolingSplit">
+                    <p><i class="fa fa-car"></i>&nbsp;&nbsp;Carpooling</p>
+                </div>
+
+                <div ng-show="around.userstatusesUsers[0].walkingToCampus || around.userstatusesUsers[0].walkingFromCampus">
+                  <p><i class="fa fa-child"></i>&nbsp;&nbsp;&nbsp;Walking</p>
+                </div>
+
+                <div ng-show="around.userstatusesUsers[0].meetForHangout || around.userstatusesUsers[0].meetForStudy
+                || around.userstatusesUsers[0].meetForEvents">
+                  <p><i class="fa fa-users"></i>&nbsp;&nbsp;Meeting Up</p>
+                </div>
+
               </dl>
             </div>
           </div>
