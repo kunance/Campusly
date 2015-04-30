@@ -83,12 +83,14 @@
 
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-        <a id="email" style="margin-left:20px" class="contact-bubble-email pull-right" ng-href="mailto:{{room.creatorEmail}}?Subject=Interested%20in%20your%20room"><i class="fa fa-send fa-lg"></i><p>Email</p></a>
+        <a id="email" style="margin-left:20px; position: relative;" class="pull-right" ng-href="mailto:{{room.creatorEmail}}?Subject=Interested%20in%20your%20room">
+          <i class="fa fa-send contact-bubble-email"></i><p style="float: right; padding-top: 10px">&nbsp;&nbsp;{{room.creatorEmail}}</p></a>
         <script type="text/javascript">
           mixpanel.track_links("#email", "Email sent - available room");
           mixpanel.people.increment('Email sent - available room');
         </script>
-        <a id="facebookPM" style="margin-left:20px" class="contact-bubble-facebook pull-right" ng-if="room.creatorFacebook" ng-href="{{room.creatorFacebook}}" target="_blank"><i style="color: #ffffff" class="fa fa-facebook fa-lg"></i><p style="color: #ffffff">PM</p></a>
+        <a id="facebookPM" style="margin-left:20px; position: relative;" class="pull-right" ng-if="room.creatorFacebook" ng-href="{{room.creatorFacebook}}" target="_blank">
+          <i style="color: #ffffff" class="fa fa-facebook contact-bubble-facebook"></i><p style="float: right; padding-top: 10px">&nbsp;&nbsp;PM</p></a>
         <script type="text/javascript" ng-if="room.creatorFacebook">
           mixpanel.track_links("#facebookPM", "Facebook PM sent - available room");
           mixpanel.people.increment('Facebook PM sent - available room');
