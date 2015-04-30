@@ -10,7 +10,8 @@
     'angular-progress-arc',
     'angucomplete-alt',
     'angularMoment',
-    'slick'
+    'slick',
+    'ng-optimizely'
   ]);
 
 })();
