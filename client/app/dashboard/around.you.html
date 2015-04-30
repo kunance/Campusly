@@ -20,7 +20,7 @@
 
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 room" ng-repeat="around in dashboard.aroundYou track by $index">
           <img ng-if="around.profileImage" ng-src="api/images{{around.profileImage}}" class="img-circle center-block looking-profile-img">
-          <i ng-if="!around.profileImage" class="fa fa-user fa-5x" style="text-align: center; display: inline-block;width: 100%;"></i>
+          <i ng-if="!around.profileImage" class="fa fa-user fa-4x" style="text-align: center; display: inline-block;width: 100%;"></i>
           <div class="arYouView">
             <h4 class="media-heading user-name" style="text-align: center">
               {{around.firstname}} {{around.lastname[0] | uppercase}}.
@@ -42,7 +42,7 @@
                 || around.userstatusesUsers[0].meetForEvents"><i class="fa fa-users"></i>&nbsp;&nbsp;Meeting Up</li>
             </ul>
           </div>
-          <div style="text-align: center;width: 100%;">
+          <div style="text-align: center;width: 100%; padding-top: 10px">
             <a id="facebookPM" ng-href="{{around.facebook}}" ng-if="around.facebook" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
             <script type="text/javascript">
               mixpanel.track_links("#facebookPM", "Facebook PM sent - around you");

@@ -86,54 +86,45 @@
           <slick dots="true" class="slider" init-onload="true" data="around.groups" slides-to-show="1" slides-to-scroll="1" ng-if="around.me.shareProfile && around.aroundYou.length">
             <div ng-repeat="group in around.groups" class="row">
               <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 room" ng-repeat="arYou in group">
-                    <div class="front white-box">
-                      <div class="center-image">
-                        <img ng-if="arYou.profileImage" ng-src="api/images{{arYou.profileImage}}" class="img-circle center-block looking-grid-profile-img">
-                        <i ng-if="!arYou.profileImage" class="fa fa-user fa-4x" style="text-align: center; display: inline-block;width: 100%;"></i>
-                      </div>
-                      <div class="">
-                        <h4 class="media-heading user-name" style="text-align: center; padding: 20px">
-                          {{arYou.firstname}} {{arYou.lastname[0] | uppercase}}.
-                        </h4>
-                        <div style="text-align: center;min-height: 60px">
-                          <dl>
-                            <dd ng-show="arYou.usereducationUsers[0].educationCenterName">{{arYou.usereducationUsers[0].educationCenterName}}</dd>
-                            <dd ng-hide="arYou.usereducationUsers[0].educationCenterName">No university entered</dd>
-
-                            Interested In:
-
-                            <div ng-show="arYou.userstatusesUsers[0].carpoolingForGroceries || arYou.userstatusesUsers[0].carpoolingToCampus
-                              || arYou.userstatusesUsers[0].carpoolingFromCampus || arYou.userstatusesUsers[0].carpoolingForRoadtrip
-                              || arYou.userstatusesUsers[0].carpoolingSplit">
-                              <p><i class="fa fa-car"></i>&nbsp;&nbsp;Carpooling</p>
-                            </div>
-
-                            <div ng-show="arYou.userstatusesUsers[0].walkingToCampus || arYou.userstatusesUsers[0].walkingFromCampus">
-                              <p><i class="fa fa-child"></i>&nbsp;&nbsp;Walking</p>
-                            </div>
-
-                            <div ng-show="arYou.userstatusesUsers[0].meetForHangout || arYou.userstatusesUsers[0].meetForStudy
-                              || arYou.userstatusesUsers[0].meetForEvents">
-                              <p><i class="fa fa-users"></i>&nbsp;&nbsp;Meeting Up</p>
-                            </div>
-
-                          </dl>
-                        </div>
-                        <div style="text-align: center; display: inline-block;width: 100%;">
-                          <a id="facebookPM" ng-href="{{arYou.facebook}}" ng-if="arYou.facebook" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
-                          <script type="text/javascript" ng-if="arYou.facebook">
-                            mixpanel.track_links("#facebookPM", "Facebook PM sent - around you");
-                            mixpanel.people.increment('Facebook PM sent - around you');
-                          </script>
-                          <a id="email" ng-href="mailto:{{arYou.email}}?Subject=Hello"><i class="fa fa-envelope fa-2x"></i></a>
-                          <script type="text/javascript">
-                            mixpanel.track_links("#email", "Email sent - around you");
-                            mixpanel.people.increment('Email sent - around you');
-                          </script>
-                        </div>
-                      </div>
-
+                <div class="front white-box">
+                  <div class="center-image">
+                    <img ng-if="arYou.profileImage" ng-src="api/images{{arYou.profileImage}}" class="img-circle center-block looking-grid-profile-img">
+                    <i ng-if="!arYou.profileImage" class="fa fa-user fa-4x" style="text-align: center; display: inline-block;width: 100%;"></i>
+                  </div>
+                  <div class="">
+                    <h4 class="media-heading user-name" style="text-align: center;">
+                      {{arYou.firstname}} {{arYou.lastname[0] | uppercase}}.
+                    </h4>
+                    <p ng-show="arYou.usereducationUsers[0].educationCenterName" style="text-align: center">{{arYou.usereducationUsers[0].educationCenterName}}</p>
+                    <p ng-hide="arYou.usereducationUsers[0].educationCenterName" style="text-align: center">No university entered</p>
+                    <div class="info">
+                      <strong class="value">
+                        Interested In:
+                      </strong>
+                      <br>
                     </div>
+                    <ul class="specs">
+                      <li ng-show="arYou.userstatusesUsers[0].carpoolingForGroceries || arYou.userstatusesUsers[0].carpoolingToCampus
+                        || arYou.userstatusesUsers[0].carpoolingFromCampus || arYou.userstatusesUsers[0].carpoolingForRoadtrip
+                        || arYou.userstatusesUsers[0].carpoolingSplit"><i class="fa fa-car"></i>&nbsp;&nbsp;Carpooling</li>
+                      <li ng-show="arYou.userstatusesUsers[0].walkingToCampus || arYou.userstatusesUsers[0].walkingFromCampus"><i class="fa fa-child"></i>&nbsp;&nbsp;&nbsp;Walking</li>
+                      <li ng-show="arYou.userstatusesUsers[0].meetForHangout || arYou.userstatusesUsers[0].meetForStudy
+                        || arYou.userstatusesUsers[0].meetForEvents"><i class="fa fa-users"></i>&nbsp;&nbsp;Meeting Up</li>
+                    </ul>
+                    <div style="text-align: center; display: inline-block;width: 100%; padding-top: 10px">
+                      <a id="facebookPM" ng-href="{{arYou.facebook}}" ng-if="arYou.facebook" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
+                      <script type="text/javascript" ng-if="arYou.facebook">
+                        mixpanel.track_links("#facebookPM", "Facebook PM sent - around you");
+                        mixpanel.people.increment('Facebook PM sent - around you');
+                      </script>
+                      <a id="email" ng-href="mailto:{{arYou.email}}?Subject=Hello"><i class="fa fa-envelope fa-2x"></i></a>
+                      <script type="text/javascript">
+                        mixpanel.track_links("#email", "Email sent - around you");
+                        mixpanel.people.increment('Email sent - around you');
+                      </script>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </slick>
