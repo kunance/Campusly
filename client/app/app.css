@@ -1106,6 +1106,10 @@ and (max-device-width : 480px) {
     margin-top: 30px;
   }
 
+  .topRow{
+    padding-top: 15px;
+  }
+
 }
 
 /* ==========================================================================
@@ -1341,6 +1345,10 @@ Media query
 
 @media (max-width: 992px) {
 
+  .topRow {
+    padding-top: 15px;
+  }
+
 }
 
 @media (max-width: 768px) {
@@ -1441,12 +1449,12 @@ Contact bubble
 
 .contact-bubble-email {
   background: #f7953d;
-  width: 4em;
-  height: 4em;
+  width: 3em;
+  height: 3em;
   border-radius: 50%;
   display: inline-block;
   text-align: center;
-  padding-top: 11px;
+  padding-top: 15px;
 }
 
 /* ==========================================================================
@@ -1455,12 +1463,12 @@ Contact bubble Facebook
 
 .contact-bubble-facebook {
   background: #3B5998;
-  width: 4em;
-  height: 4em;
+  width: 3em;
+  height: 3em;
   border-radius: 50%;
   display: inline-block;
   text-align: center;
-  padding-top: 11px;
+  padding-top: 15px;
 }
 
 /* ==========================================================================
@@ -1537,6 +1545,10 @@ Bubble for all posts
 /* ==========================================================================
 Post padding
 ========================================================================== */
+
+.topRow {
+
+}
 
 .post-padding {
   padding-top: 15px;
@@ -1690,17 +1702,19 @@ Posts dashboard padding
 .room .arYouView ul.specs {
   display: block;
   list-style:none;
+  padding-top: 10px;
 }
 
 .room .arYouView ul.specs li {
   margin-top: 5px;
 }
 
-.room .arYouView .value {
+.room .arYouView .info .value {
   color: #000000;
   font-weight: bold;
   float: left;
   border-bottom: 2px solid #f7953d;
+  padding-top: 5px;
 }
 
 h2.section-title:nth-child(n+2) {
@@ -1999,11 +2013,11 @@ Looking Details
 }
 
 .flip-container-room .front {
-  height: 350px;
+  height: 380px;
 }
 
 .flip-container-room .back {
-  height: 350px;
+  height: 380px;
 }
 
 .flip-container-room {

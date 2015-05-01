@@ -66,13 +66,15 @@
                       </div>
                       <div class="info">
                         <strong class="value">
-                          {{room.roomDetails.monthlyPrice | currency}} mo.
+                          {{room.roomDetails.monthlyPrice | currency}} mo. / Room
                         </strong>
                       </div>
                       <ul class="specs">
                         <li><i class="fa fa-bed"></i>&nbsp;&nbsp;{{room.roomDetails.roomType}}</li>
-                        <li><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommates</li>
                         <li><i class="fa fa-shower"></i>&nbsp;&nbsp;{{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
+                        <li ng-show="room.roomDetails.numRoomates > 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommates + You</li>
+                        <li ng-show="room.roomDetails.numRoomates == 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommate + You</li>
+                        <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{room.roomDetails.gender}}</li>
                         <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{room.roomDetails.availableMoveIn | date }}</li>
                         <li><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{room.propertyDetails.city}}</li>
                       </ul>
