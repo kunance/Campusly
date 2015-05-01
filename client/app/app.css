@@ -2840,8 +2840,22 @@ a.view-all {
   padding-top: 15px;
 }
 
-
 /* Room Detail */
+
+.previousArrow {
+  font-size: 20px;
+  cursor: pointer;
+  color: #f7953d;
+  float:left;
+}
+
+.nextArrow {
+  font-size: 20px;
+  cursor: pointer;
+  color: #f7953d;
+  float: right;
+}
+
 
 .room-detail .highlights .picture img {
   display: block;

@@ -17,7 +17,6 @@
     vm.sortOrder = 'ascending';  // default
     vm.sortBy = 'availableMoveIn';  // default
 
-
     vm.showSearch = false; // default
     vm.showSort = false; // default
 
@@ -38,7 +37,6 @@
       };
     };
 
-
     vm.clearSearch(false);
 
     vm.search = function(showSearch) {
@@ -54,19 +52,15 @@
 
 
       RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: currentUniversityId}, function(availRooms) {
+        vm.allIds = [];
         vm.availableRooms = availRooms;
-        //console.log(vm.availableRooms);
+        angular.forEach(vm.availableRooms, function (room) {
+          vm.allIds.push(room.roomDetails.id)
+        });
         vm.groups = vm.availableRooms.inGroupsOf(8);
-        //console.log('grupe', vm.groups);
-        /* vm.availableRooms = availRooms;
-         console.log("availableRooms: ", vm.availableRooms); */
-
-        // keep view clean of searcha and sort values so user can focus on available rooms
         vm.showSearch = showSearch;
         vm.showSort = showSearch;
       });
-
-      // must call in order to have slider controls rendered correctly
       orderSliderButtons();
     };
 

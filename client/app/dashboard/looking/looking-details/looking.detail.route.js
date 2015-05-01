@@ -10,7 +10,7 @@
   function config ($stateProvider) {
     $stateProvider
       .state('lookingDetail', {
-        url: '/lookingDetail/:param',
+        url: '/lookingDetail/:param/of/:allIds',
         templateUrl: 'app/dashboard/looking/looking-details/looking.detail.html',
         controller: 'LookingDetailsCtrl',
         controllerAs:'detail',

@@ -1,7 +1,10 @@
 <div class="row">
 
+    <span ng-click="room.previous()" ng-hide="currentRoom==0" class="previousArrow"><i class="fa fa-arrow-left previousArrow">&nbsp;&nbsp;Previous</i></span>
+    <span ng-click="room.next()" ng-hide="currentRoom==(room.allIds.length-1)" class="nextArrow">Next&nbsp;&nbsp;<i class="fa fa-arrow-right nextArrow"></i></span>
+
   <div class="page-header">
-    <h2>Highlights</h2>
+    <h2 style="padding-top:20px">Highlights</h2>
   </div>
 
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 highlights white-box">

@@ -59,7 +59,7 @@
                   <div class="flipper">
                     <div class="front white-box">
                       <!--walk around - user need to click on front side because with flipper off there is no back side -->
-                      <a ui-sref="roomDetail({param: room.roomDetails.id})" style="text-decoration: none">
+                      <a ui-sref="roomDetail({param: room.roomDetails.id, allIds:rooms.allIds})" style="text-decoration: none">
                       <div class="picture safariFix">
                         <img border="0" ng-src="//maps.googleapis.com/maps/api/staticmap?center={{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&zoom=14&scale=2&size=400x250&markers=color:blue%7C{{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&key=AIzaSyAm7woOFr0TOKG0U7jsBF5K3LSifdDjgfs">
                       </div>
@@ -80,7 +80,7 @@
                       </a>
                     </div>
                     <div class="back">
-                      <a ui-sref="roomDetail({param: room.roomDetails.id})"> <h2>View Detail</h2> </a>
+                      <a ui-sref="roomDetail({param: room.roomDetails.id, allIds:rooms.allIds})"> <h2>View Detail</h2> </a>
                     </div>
                   </div>
                 </div>

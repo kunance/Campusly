@@ -12,6 +12,7 @@
 
     vm.me = currentUser;
     vm.universitiesList = data[0];
+    vm.education = data[1];
     vm.univCriteria = {shortName:''};
     vm.sortOrder = 'ascending';  // default
     vm.sortBy = 'moveInDate';  // default
@@ -39,16 +40,21 @@
 
     vm.search = function(showSearch) {
       Lookings.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria}, function (activeLookings) {
+        vm.allIds = [];
         if(vm.univCriteria.shortName.id){
           var results = [];
           angular.forEach(activeLookings, function (looking) {
           if (looking.relatedUserId.usereducationUsers.length && looking.relatedUserId.usereducationUsers[0].relatedUniversityId.id == vm.univCriteria.shortName.id) {
             results.push(looking);
+              vm.allIds.push(looking.id)
           }
         });
           vm.lookings = results;
         } else {
           vm.lookings = activeLookings;
+          angular.forEach(activeLookings, function (looking) {
+            vm.allIds.push(looking.id)
+          });
         }
         vm.groups = vm.lookings.inGroupsOf(8);
         vm.showSearch = showSearch;

@@ -40,15 +40,16 @@
         </div>
       </div> <!-- end search and sort -->
     <div class="row">
+      <h3 ng-if="!looking.education.universityId">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see students looking</h3>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <slick dots="true" class="slider" init-onload="true" data="looking.groups" slides-to-show="1" slides-to-scroll="1" ng-if="looking.lookings.length">
+      <slick dots="true" class="slider" init-onload="true" data="looking.groups" slides-to-show="1" slides-to-scroll="1" ng-if="looking.lookings.length && looking.education.universityId">
         <!--ng-if="look.relatedUserId.id!==looking.me.id" dont use temporary (splicing them on backed)-->
         <div ng-repeat="group in looking.groups" class="row">
           <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 looking" ng-repeat="look in group">
             <div class="flip-container-room">
               <div class="flipper">
                 <div class="front white-box">
-                  <a ui-sref="lookingDetail({param:look.id})" style="text-decoration: none">
+                  <a ui-sref="lookingDetail({param:look.id, allIds:looking.allIds})" style="text-decoration: none">
                   <div class="center-image">
                     <img ng-if="look.relatedUserId.profileImage" ng-src="api/images{{look.relatedUserId.profileImage}}" class="img-circle center-block looking-grid-profile-img">
                     <i ng-if="!look.relatedUserId.profileImage" class="fa fa-user fa-4x"></i>
@@ -68,7 +69,7 @@
                   </a>
                 </div>
                 <div class="back">
-                  <a ui-sref="lookingDetail({param:look.id})"> <h2>View</h2> </a>
+                  <a ui-sref="lookingDetail({param:look.id, allIds:looking.allIds})"> <h2>View</h2> </a>
                 </div>
               </div>
             </div>

@@ -5,9 +5,9 @@
     .module('app.roomDetail')
     .controller('RoomDetailCtrl', RoomDetailCtrl);
 
-  RoomDetailCtrl.$inject = ['currentUser', 'data', 'getCreatorRoommates','distanceCalculator'];
+  RoomDetailCtrl.$inject = ['currentUser', 'data', 'getCreatorRoommates','distanceCalculator', '$stateParams', '$state', '$rootScope'];
 
-  function RoomDetailCtrl(currentUser, data, getCreatorRoommates,distanceCalculator) {
+  function RoomDetailCtrl(currentUser, data, getCreatorRoommates,distanceCalculator, $stateParams, $state, $rootScope) {
     var vm = this;
     vm.property = {};
     vm.me = currentUser;
@@ -21,6 +21,19 @@
     angular.forEach(vm.creatorRoommates, function (roommate) {
       roommate.confirmed ? vm.confirmed += 1 : vm.unconfirmed += 1;
     });
+
+    vm.allIds = ($stateParams.allIds).split(",").map(Number);
+    var id = $stateParams.param;
+    $rootScope.currentRoom =  vm.allIds.indexOf(+id);
+    vm.next = function () {
+      $rootScope.currentRoom += 1;
+      $state.go('roomDetail',{param:vm.allIds[$rootScope.currentRoom], allIds:vm.allIds});
+    };
+
+    vm.previous = function () {
+      $rootScope.currentRoom -= 1;
+      $state.go('roomDetail',{param:vm.allIds[$rootScope.currentRoom], allIds:vm.allIds});
+    };
 
     var source = vm.education.relatedUniversityId;
     var destination = vm.roomDetail.propertyDetails.coords;

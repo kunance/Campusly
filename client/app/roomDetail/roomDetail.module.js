@@ -10,7 +10,7 @@
   function config ($stateProvider) {
     $stateProvider
       .state('roomDetail', {
-        url: '/roomDetail/:param',
+        url: '/roomDetail/:param/of/:allIds',
         templateUrl: 'app/roomDetail/roomDetail.html',
         controller: 'RoomDetailCtrl',
         controllerAs: 'room',
