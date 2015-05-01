@@ -27,17 +27,17 @@
             </h4>
             <p ng-show="around.usereducationUsers[0].relatedUniversityId.shortName" style="text-align: center">{{around.usereducationUsers[0].relatedUniversityId.shortName}}</p>
             <p ng-hide="around.usereducationUsers[0].relatedUniversityId.shortName" style="text-align: center">No university entered</p>
-            <div class="info">
+            <div class="info" style="margin-left: 23%">
               <strong class="value">
                 Interested In:
               </strong>
               <br>
             </div>
-            <ul class="specs">
+            <ul class="specs" style="min-height: 100px; margin-left: 13%">
               <li ng-show="around.userstatusesUsers[0].carpoolingForGroceries || around.userstatusesUsers[0].carpoolingToCampus
                   || around.userstatusesUsers[0].carpoolingFromCampus || around.userstatusesUsers[0].carpoolingForRoadtrip
                   || around.userstatusesUsers[0].carpoolingSplit"><i class="fa fa-car"></i>&nbsp;&nbsp;Carpooling</li>
-              <li ng-show="around.userstatusesUsers[0].walkingToCampus || around.userstatusesUsers[0].walkingFromCampus"><i class="fa fa-child"></i>&nbsp;&nbsp;&nbsp;Walking</li>
+              <li ng-show="around.userstatusesUsers[0].walkingToCampus || around.userstatusesUsers[0].walkingFromCampus"><i class="fa fa-child"></i>&nbsp;&nbsp;&nbsp;&nbsp;Walking</li>
               <li ng-show="around.userstatusesUsers[0].meetForHangout || around.userstatusesUsers[0].meetForStudy
                 || around.userstatusesUsers[0].meetForEvents"><i class="fa fa-users"></i>&nbsp;&nbsp;Meeting Up</li>
             </ul>
