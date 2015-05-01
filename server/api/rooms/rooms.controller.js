@@ -263,7 +263,6 @@ exports.getAllRoomListings = function(req, res, next) {
  * @param cb
  */
 var _parseSearchCriteria = function(req, res, cb) {
-
   var searchCriteria = { activeRoom: true };
   var searchQuery;
 
@@ -310,7 +309,6 @@ var _parseSearchCriteria = function(req, res, cb) {
       searchCriteria.parkingAvailable = (searchQuery.parkingAvailable === "true");
       mixpanel.track("rooms - search by parkingAvailable");
     }
-
     if (searchQuery.within) {
 
       // assumed searchQuery.within = { place: { type: 'univ', id: 'id" }, distance  since API only support that now

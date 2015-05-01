@@ -1,7 +1,7 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
 <div ui-view="" autoscroll="true">
-  <div class="main-wrapper" cg-busy="{promise:dashboard.busy, message:'Loading dashboard... Please wait'}">
+  <div class="main-wrapper">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 my-profile">
@@ -71,7 +71,8 @@
 
           <h2 class="section-title"> Available Rooms</h2>
           <div class="white-box available-rooms">
-            <slick dots="true" class="slider row" init-onload="true" data="dashboard.availableRooms" slides-to-show="3" slides-to-scroll="3" infinite="false" responsive="dashboard.breakpoints.availableRooms" ng-if="dashboard.availableRooms.length">
+            <h3 ng-if="!dashboard.education.universityId">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available rooms around</h3>
+            <slick dots="true" class="slider row" init-onload="true" data="dashboard.availableRooms" slides-to-show="3" slides-to-scroll="3" infinite="false" responsive="dashboard.breakpoints.availableRooms" ng-if="dashboard.availableRooms.length && dashboard.education.universityId">
               <!-- start room box -->
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 room" ng-repeat="room in dashboard.availableRooms track by $index">
                 <a style="text-decoration: none" ui-sref="roomDetail({param: room.roomDetails.id})">
@@ -110,7 +111,8 @@
                 <a ui-sref="addNewLooking"><br/>Click here</a> to add looking.
               </small>
             </h3>
-            <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="3" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" infinite="false" data="dashboard.lookingRoom" ng-if="dashboard.lookingRoom.length">
+            <h3 ng-if="!dashboard.education.universityId">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see students looking</h3>
+            <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="3" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" infinite="false" data="dashboard.lookingRoom" ng-if="dashboard.lookingRoom.length && dashboard.education.universityId">
               <!-- start room box -->
 
               <div ng-if="looking.userId!=dashboard.me.id" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index">

@@ -31,10 +31,11 @@
     }
   }
 
-  getData.$inject = ['common', '$q'];
-  function getData(common, $q) {
+  getData.$inject = ['common', '$q', 'currentUser'];
+  function getData(common, $q, currentUser) {
     var univ = common.dataservice.getAllUniversities();
-    return $q.all([univ.$promise]);
+    var edu = common.dataservice.getAllEducations(currentUser.id);
+    return $q.all([univ.$promise, edu.$promise]);
   }
 
 }());

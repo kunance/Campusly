@@ -110,28 +110,58 @@ exports.aroundMe = function(req, res, next) {
   }
 
   usersWithin.getAroundYou(req.user.id, req.query.distance, function (usersIds) {
-    User.findAll({
-      where: {
-        id: usersIds
-      },
-      limit: req.query.limit,
-      include:[
-        { model: Education, attributes: educationAttributes, as: 'usereducationUsers',
-          include:[
-            { model: University, attributes:['shortName'], as: 'relatedUniversityId'}]},
-        { model: Status, as: 'userstatusesUsers', where:searchCriteria}],
-      attributes: userAttributes
-    })
-      .then(function(user) {
-        if (!user) {
-          return res.status(401).end();
-        } else {
-          return res.json(user);
-        }
+    if(Object.keys(searchCriteria).length) {
+      User.findAll({
+        where: {
+          id: usersIds
+        },
+        limit: req.query.limit,
+        include: [
+          {
+            model: Education, attributes: educationAttributes, as: 'usereducationUsers',
+            include: [
+              {model: University, attributes: ['shortName'], as: 'relatedUniversityId'}]
+          },
+          {model: Status, as: 'userstatusesUsers', where: searchCriteria}],
+        attributes: userAttributes
       })
-      .catch(function(err) {
-        return next(err);
-      });
+        .then(function (user) {
+          if (!user) {
+            return res.status(401).end();
+          } else {
+            return res.json(user);
+          }
+        })
+        .catch(function (err) {
+          return next(err);
+        });
+    } else {
+      User.findAll({
+        where: {
+          id: usersIds
+        },
+        limit: req.query.limit,
+        include: [
+          {
+            model: Education, attributes: educationAttributes, as: 'usereducationUsers',
+            include: [
+              {model: University, attributes: ['shortName'], as: 'relatedUniversityId'}]
+          },
+          {model: Status, as: 'userstatusesUsers'}],
+        attributes: userAttributes
+      })
+        .then(function (user) {
+          if (!user) {
+            return res.status(401).end();
+          } else {
+            return res.json(user);
+          }
+        })
+        .catch(function (err) {
+          return next(err);
+        });
+    }
+
   });
 
 };
