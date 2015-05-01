@@ -80,13 +80,15 @@
                   </div>
                   <div class="info">
                     <strong class="value">
-                      {{room.roomDetails.monthlyPrice | currency}} mo.
+                      {{room.roomDetails.monthlyPrice | currency}} mo. / Room
                     </strong>
                   </div>
                   <ul class="specs">
                     <li><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{room.roomDetails.roomType}}</li>
-                    <li><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommates</li>
                     <li><i class="fa fa-shower"></i>&nbsp;&nbsp;{{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
+                    <li ng-show="room.roomDetails.numRoomates > 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommates + You</li>
+                    <li ng-show="room.roomDetails.numRoomates == 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommate + You</li>
+                    <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{room.roomDetails.gender}}</li>
                     <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{room.roomDetails.availableMoveIn | date }}</li>
                     <li><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{room.propertyDetails.city }}</li>
                   </ul>
@@ -108,7 +110,7 @@
                 <a ui-sref="addNewLooking"><br/>Click here</a> to add looking.
               </small>
             </h3>
-            <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" infinite="false" data="dashboard.lookingRoom" ng-if="dashboard.lookingRoom.length">
+            <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="3" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" infinite="false" data="dashboard.lookingRoom" ng-if="dashboard.lookingRoom.length">
               <!-- start room box -->
 
               <div ng-if="looking.userId!=dashboard.me.id" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index">

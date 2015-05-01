@@ -137,7 +137,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label for="monthlyUtilityCost">Monthly utility cost ($)<sup class="asterisk">*</sup></label>
+                  <label for="monthlyUtilityCost">Monthly utilities ($)<sup class="asterisk">*</sup></label>
                   <input type="number" min="0" id="monthlyUtilityCost" required name="monthlyUtilityCost" class="form-control"  placeholder="e.x. 50" ng-model="vm.room.monthlyUtilityCost" ng-class="{'educationError': addNewRoomForm.monthlyUtilityCost.$invalid && vm.submitted}"/>
                 </div>
               </div>
@@ -149,7 +149,7 @@
 
               <!-- Lease type -->
 
-              <div class="row">
+              <div class="row topRow">
                 <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
                   <div class="post-bubble">
                     <i class="fa fa-clipboard fa-lg"></i>
@@ -174,7 +174,7 @@
                   </div>
                 </div>
                 <div class="col-xs-9 col-sm-7 input-post">
-                  <label for="numRoommates">No. of roommates<sup class="asterisk">*</sup></label>
+                  <label for="numRoommates">Current # of roommates<sup class="asterisk">*</sup></label>
                   <input type="number" min="0" id="numRoommates" required name="numRoommates" class="form-control" ng-model="vm.room.numRoomates" max="10" ng-class="{'educationError': addNewRoomForm.numRoommates.$invalid && vm.submitted}"/>
                 </div>
               </div>
@@ -250,7 +250,7 @@
 
               <!-- Room type -->
 
-              <div class="row">
+              <div class="row topRow">
                 <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
                   <div class="post-bubble">
                     <i class="fa fa-bigBed fa-lg"></i>
