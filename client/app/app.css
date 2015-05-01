@@ -1434,7 +1434,7 @@ Media query
 }
 
 .white-box.looking-for-room {
-  padding-top: 40px;
+  padding-top: 20px;
 }
 
 .white-box .property-pictures {
@@ -3149,6 +3149,7 @@ Unsubscribe partial styling
 
 .interested-box-search {
   overflow: hidden;
+  margin-top: 20px;
 }
 
 .interested-box-search div {

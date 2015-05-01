@@ -71,7 +71,7 @@
 
           <h2 class="section-title"> Available Rooms</h2>
           <div class="white-box available-rooms">
-            <h3 ng-if="!dashboard.education.universityId">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available rooms around</h3>
+            <h3 ng-if="!dashboard.education.universityId">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available rooms</h3>
             <slick dots="true" class="slider row" init-onload="true" data="dashboard.availableRooms" slides-to-show="3" slides-to-scroll="3" infinite="false" responsive="dashboard.breakpoints.availableRooms" ng-if="dashboard.availableRooms.length && dashboard.education.universityId">
               <!-- start room box -->
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 room" ng-repeat="room in dashboard.availableRooms track by $index">
@@ -97,15 +97,15 @@
               </div>
               <!-- end room box -->
             </slick>
-            <hr>
-            <a class="pull-right btn-rented-event view-all" ui-sref="rooms">View All</a>
+            <hr ng-if="dashboard.education.universityId">
+            <a class="pull-right btn-rented-event view-all" ui-sref="rooms" ng-if="dashboard.education.universityId">View All</a>
           </div>
 
           <!-- Looking -->
 
           <h2 class="section-title">Students Looking</h2>
           <div class="white-box looking-for-room" >
-            <h3 ng-if="!dashboard.lookingRoom.length" >
+            <h3 ng-if="!dashboard.lookingRoom.length && dashboard.education.universityId" >
               Currently no one is looking for a room, why don't you be the first?
               <small>
                 <a ui-sref="addNewLooking"><br/>Click here</a> to add looking.
@@ -139,8 +139,8 @@
               </div>
               <!-- end room box -->
             </slick>
-            <hr>
-            <a class="pull-right btn-rented-event view-all" ui-sref="looking">View All</a>
+            <hr ng-if="dashboard.education.universityId">
+            <a class="pull-right btn-rented-event view-all" ui-sref="looking" ng-if="dashboard.education.universityId">View All</a>
           </div>
 
           <!-- My Available Rooms Posts - Hides if no Looking posts-->
