@@ -71,7 +71,8 @@
 
           <h2 class="section-title"> Available Rooms</h2>
           <div class="white-box available-rooms">
-            <slick dots="true" class="slider row" init-onload="true" data="dashboard.availableRooms" slides-to-show="3" slides-to-scroll="3" infinite="false" responsive="dashboard.breakpoints.availableRooms" ng-if="dashboard.availableRooms.length">
+            <h3 ng-if="!dashboard.education.universityId">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available rooms around</h3>
+            <slick dots="true" class="slider row" init-onload="true" data="dashboard.availableRooms" slides-to-show="3" slides-to-scroll="3" infinite="false" responsive="dashboard.breakpoints.availableRooms" ng-if="dashboard.availableRooms.length && dashboard.education.universityId">
               <!-- start room box -->
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 room" ng-repeat="room in dashboard.availableRooms track by $index">
                 <a style="text-decoration: none" ui-sref="roomDetail({param: room.roomDetails.id})">

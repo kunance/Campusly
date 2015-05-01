@@ -3154,3 +3154,14 @@ Unsubscribe partial styling
 .interested-box-search label {
   padding-left: 30px;
 }
+
+.interested {
+  font-weight: bold;
+  opacity: 1;
+  color: #000000;
+}
+
+.not-interested {
+  opacity: .4;
+  color: #000000;
+}

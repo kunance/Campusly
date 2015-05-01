@@ -6,9 +6,9 @@
   .module('app.dashboard')
   .controller('DashboardCtrl',DashboardCtrl);
 
-  DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'data'];
+  DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'data', 'RoomListingView'];
 
-  function DashboardCtrl(common, $scope, currentUser, data) {
+  function DashboardCtrl(common, $scope, currentUser, data, RoomListingView) {
     var vm = this;
     /*
      *  Fetch all required data for controller from route resolve (testing)
@@ -17,16 +17,39 @@
     vm.me = currentUser;
     vm.lookingRoom = data[0];
     vm.userLookings = data[1];
-    vm.availableRooms = data[2];
-    vm.myRoomListings = data[3];
-    vm.numberOf = data[4].length;
-    vm.aroundYou = data[5];
-    vm.address = data[6];
-    vm.userStatus = data[7];
+    vm.myRoomListings = data[2];
+    vm.numberOf = data[3].length;
+    vm.aroundYou = data[4];
+    vm.address = data[5];
+    vm.userStatus = data[6];
+    vm.education = data[7];
     var action;
     vm.userStatus.id ? action = 'update' : action = 'save';
     vm.me.experianIdToken = vm.me.experianIdToken || 1;
-    console.log(vm.aroundYou);
+
+    vm.searchCriteria = {
+      maxMonthlyPrice: null,
+      leaseType: null,
+      maxCurrentRoomates: null,
+      propertyType: null,
+      sharedBathroom: null,
+      roomType : null,
+      furnished: null,
+      smokingAllowed: null,
+      gender: null,
+      petsAllowed: null,
+      parkingAvailable: null,
+      within: {
+        distance:100,
+        place:{ type: 'univ', id: vm.education.universityId }
+      }
+    };
+    vm.sortOrder = 'ascending';  // default
+    vm.sortBy = 'availableMoveIn';  // default
+    RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: vm.education.universityId, limit:9}, function(availRooms) {
+      vm.availableRooms = availRooms;
+    });
+
     /*
      *  prerender.io
      */

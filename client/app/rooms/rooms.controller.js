@@ -44,10 +44,12 @@
     vm.search = function(showSearch) {
 
       if(vm.searchCriteria.within) {
-        // have to add info for the server side API  ... add university id if know so server doesn't have to lookup and throw
-        // if you do NOT have one ... PLUS you can use this to ng-show/ng-hide the distance on the partial if student
-        // does NOT have one
-        vm.searchCriteria.within.place = { type: 'univ', id: currentUniversityId }
+        vm.searchCriteria.within.place = { type: 'univ', id: currentUniversityId };
+      } else {
+        vm.searchCriteria["within"]={
+          place:{type: 'univ', id: currentUniversityId},
+          distance:100
+        }
       }
 
 
