@@ -73,7 +73,6 @@ exports.showAllLookings= function(req, res, next) {
   }
 
   var limit  = ( req.param("limit") ) ? req.param("limit") : 100;
-
   Looking.findAll({
     where: searchCriteria,
     order: [ sortAttrs ],

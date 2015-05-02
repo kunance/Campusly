@@ -19,7 +19,8 @@
     return service;
     function calculateDistance(srcLatLong, destLatLong, mode, Unit, DurDis) {
       var deferred = $q.defer();
-      maps.then(function(m) {
+      maps
+        .then(function(m) {
           var directionsService = new m.DirectionsService();
           var a = new m.LatLng(srcLatLong.latitude, srcLatLong.longitude);
           var b = new m.LatLng(destLatLong.latitude, destLatLong.longitude);
@@ -35,11 +36,13 @@
             if (status == google.maps.DirectionsStatus.OK) {
               deferred.resolve(response.routes[0].legs[0][DurDis]);
             } else {
-              deferred.reject('Error occurred while trying to calculate distance');
+              deferred.reject('Error occurred while trying to calculate distance'+status);
             }
           });
-        //}
-      });
+      })
+        .catch(function (err) {
+          console.log('error: ', err);
+        });
       return deferred.promise;
   }
 
@@ -57,15 +60,17 @@
           _.merge(response, result);
         });
         deferred.resolve(response);
-      }, function (error) {
-        logger.error('error while calculating distance');
+      }).catch(function (error) {
+        console.log('error in calculation', error);
       });
+
       return deferred.promise;
    }
 
    function calculate(source, destination, property, unitSystem, DurDis) {
       var deferred = $q.defer();
-        calculateDistance(source, destination, property, unitSystem, DurDis).then(function (distance) {
+        calculateDistance(source, destination, property, unitSystem, DurDis)
+          .then(function (distance) {
           var string = distance.text;
           var minutesTrimmed = string.replace("mins","m");
           var minuteTrimmed = minutesTrimmed.replace("min","m");
@@ -76,7 +81,10 @@
           var obj = {};
           obj[property] = (finalString);
           deferred.resolve(obj);
-        });
+        })
+          .catch(function (err) {
+            console.log('error calculating', err);
+          });
       return deferred.promise;
    }
 

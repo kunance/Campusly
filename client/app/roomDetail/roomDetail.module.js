@@ -19,7 +19,8 @@
           data: getData,
           getCreatorRoommates:getCreatorRoommates
         },
-        authenticate: true
+        authenticate: true,
+        cache:false
       });
   }
 

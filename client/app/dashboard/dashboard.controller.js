@@ -15,7 +15,7 @@
      */
     vm.busy = data; //one promise witch need to be resolved in order to initialize controller (we use for show busy sign)
     vm.me = currentUser;
-    vm.lookingRoom = data[0];
+    //vm.lookingRoom = data[0];
     vm.userLookings = data[1];
     vm.myRoomListings = data[2];
     vm.numberOf = data[3].length;
@@ -47,8 +47,25 @@
     vm.sortOrder = 'ascending';  // default
     vm.sortBy = 'availableMoveIn';  // default
     RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: vm.education.universityId, limit:9}, function(availRooms) {
+      vm.allIds = [];
       vm.availableRooms = availRooms;
+      angular.forEach(vm.availableRooms, function (room) {
+        vm.allIds.push(room.roomDetails.id)
+      });
     });
+    common.dataservice.getEveryLooking({limit: 6})
+      .$promise
+      .then(function (lookings) {
+        vm.allLookingIds = [];
+        vm.lookingRoom = lookings;
+        angular.forEach(vm.lookingRoom, function (looking) {
+          vm.allLookingIds.push(looking.id);
+        });
+      })
+      .catch(function (err) {
+      console.log(err);
+    });
+
 
     /*
      *  prerender.io
@@ -115,7 +132,7 @@
         breakpoint: 1200,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2
+          slidesToScroll: 3
         }
       }, {
         breakpoint: 992,
@@ -123,8 +140,7 @@
           slidesToShow: 1,
           slidesToScroll: 1
         }
-      }
-      ],
+      }],
       aroundYou: [
       {
         breakpoint: 1200,

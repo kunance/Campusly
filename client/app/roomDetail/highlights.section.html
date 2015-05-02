@@ -29,16 +29,12 @@
         </p>
 
         <div ng-if="room.education.id" class="distances">
-          <!-- call google maps api to get distance from students address to students university of record .. walking, bus, driving -->
-
           <p>
-
-            <span class="distance" ng-if="room.distance.DRIVING"> <i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{room.distance.DRIVING}}les from {{room.education.relatedUniversityId.name}}</span>
+            <span class="distance" ng-if="room.distance.DRIVING && room.education.relatedUniversityId.name"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{room.distance.DRIVING}}les from {{room.education.relatedUniversityId.name}}</span>
             <br><br>
           </p>
 
           <p class="address">Travel time<br><br></p>
-
           <a class="distance-bubble">
             <i class="fa fa-car fa-lg"></i>
             <span class="top15">{{room.duration.DRIVING}}</span>

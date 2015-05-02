@@ -75,7 +75,7 @@
             <slick dots="true" class="slider row" init-onload="true" data="dashboard.availableRooms" slides-to-show="3" slides-to-scroll="3" infinite="false" responsive="dashboard.breakpoints.availableRooms" ng-if="dashboard.availableRooms.length && dashboard.education.universityId">
               <!-- start room box -->
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 room" ng-repeat="room in dashboard.availableRooms track by $index">
-                <a style="text-decoration: none" ui-sref="roomDetail({param: room.roomDetails.id})">
+                <a style="text-decoration: none" ui-sref="roomDetail({param: room.roomDetails.id, allIds:dashboard.allIds})">
                   <div class="picture">
                     <img border="0" ng-src="//maps.googleapis.com/maps/api/staticmap?center={{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&zoom=14&scale=2&size=400x250&markers=color:blue%7C{{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&key=AIzaSyAm7woOFr0TOKG0U7jsBF5K3LSifdDjgfs">
                   </div>
@@ -112,11 +112,10 @@
               </small>
             </h3>
             <h3 ng-if="!dashboard.education.universityId">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see students looking</h3>
-            <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="3" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" infinite="false" data="dashboard.lookingRoom" ng-if="dashboard.lookingRoom.length && dashboard.education.universityId">
+            <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" infinite="false" data="dashboard.lookingRoom" ng-if="dashboard.lookingRoom.length && dashboard.education.universityId">
               <!-- start room box -->
-
               <div ng-if="looking.userId!=dashboard.me.id" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index">
-                <a style="text-decoration: none" ui-sref="lookingDetail({param:looking.id})">
+                <a style="text-decoration: none" ui-sref="lookingDetail({param:looking.id, allIds:dashboard.allLookingIds})">
                   <div  class="media">
                     <div class="media-left">
                       <img ng-if="looking.relatedUserId.profileImage" ng-src="api/images{{looking.relatedUserId.profileImage}}" class="img-circle" height="100px" width="100px">

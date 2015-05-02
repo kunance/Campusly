@@ -38,12 +38,20 @@
     var source = vm.education.relatedUniversityId;
     var destination = vm.roomDetail.propertyDetails.coords;
     if (vm.education.id) {
-      distanceCalculator.calculateDistanceForEveryTransport(source, destination, 'duration').then(function (data) {
+      distanceCalculator.calculateDistanceForEveryTransport(source, destination, 'duration')
+        .then(function (data) {
         vm.duration = data;
-      });
-      distanceCalculator.calculateDistanceForEveryTransport(source, destination, 'distance').then(function (data) {
+      })
+        .catch(function (err) {
+          console.log(err);
+        });
+      distanceCalculator.calculateDistanceForEveryTransport(source, destination, 'distance')
+        .then(function (data) {
         vm.distance = data;
-      });
+      })
+        .catch(function (err) {
+          console.log(err);
+        });
     }
     mixpanel.track("roomDetail view");
     mixpanel.people.increment('roomDetail view');
