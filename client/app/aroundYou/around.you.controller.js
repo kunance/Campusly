@@ -35,7 +35,6 @@
       query = q;
       UserResource.aroundMe({distance:(1609 * (vm.me.experianIdToken || 1)), limit: 80, query:query}, function (aroundYou) {
         vm.aroundYou = aroundYou;
-        console.log(vm.aroundYou);
         vm.groups = vm.aroundYou.inGroupsOf(8);
       }, function (err) {
         common.logger.error('something went wrong! ',err);

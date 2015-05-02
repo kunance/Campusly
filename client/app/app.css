@@ -1167,8 +1167,8 @@ Dashboard styles
 .slider .slick-prev:before, .slider .slick-next:before {
   content: "";
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   background-image: url("../assets/images/icons/arrow.svg");
   background-position: center;
   background-size: cover;
@@ -1176,6 +1176,7 @@ Dashboard styles
 }
 .slider .slick-prev {
   left: 20px;
+  bottom: 10px;
   transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
@@ -1195,7 +1196,54 @@ Dashboard styles
   color: #f7953d;
 }
 .slider .slick-dots li button:before {
-  font-size: 10px;
+  font-size: 25px;
+  color: #666666;
+}
+
+/* Slider - Available Room*/
+.slider-rooms {
+  position: static;
+  margin: 0;
+  padding-bottom: 5px;
+}
+.slider-rooms .slick-prev, .slider-rooms .slick-next, .slider-rooms .slick-dots {
+  bottom: 15px;
+}
+.slider-rooms .slick-prev, .slider-rooms .slick-next {
+  top: auto;
+}
+.slider-rooms .slick-prev:before, .slider-rooms .slick-next:before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-image: url("../assets/images/icons/arrow.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.slider-rooms .slick-prev {
+  left: 20px;
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+}
+.slider-rooms .slick-dots {
+  width: auto;
+  left: 50px;
+}
+.slider-rooms .slick-dots li {
+  margin: 0;
+}
+.slider-rooms .slick-dots li.slick-active button:before {
+  color: #f7953d;
+  opacity: 1;
+}
+.slider-rooms .slick-dots li button:hover:before {
+  color: #f7953d;
+}
+.slider-rooms .slick-dots li button:before {
+  font-size: 25px;
   color: #666666;
 }
 
