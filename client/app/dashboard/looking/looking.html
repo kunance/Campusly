@@ -12,13 +12,13 @@
         <!-- Search -->
 
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-show="!looking.showSearch">
-          <button class="btn-rented-medium secondary" ng-click="looking.showSearch=!looking.showSearch" ng-show="!looking.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Open Search</button>
-          <button class="btn-rented-medium secondary" ng-click="looking.showSearch=!looking.showSearch" ng-show="looking.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Close Search</button>
+          <button class="btn-rented-medium secondary" ng-click="looking.showSearch=!looking.showSearch" ng-show="!looking.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Search</button>
+          <button class="btn-rented-medium secondary" ng-click="looking.showSearch=!looking.showSearch" ng-show="looking.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Close</button>
           <button style="margin-top: 5px" class="btn-rented-small reset" id="search" name="search" ng-click="looking.clearSearchAndSearch(false)">Reset</button>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="looking.showSearch">
-          <button class="btn-rented-medium secondary" ng-click="looking.showSearch=!looking.showSearch" ng-show="!looking.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Open Search</button>
-          <button class="btn-rented-medium secondary" ng-click="looking.showSearch=!looking.showSearch" ng-show="looking.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Close Search</button>
+          <button class="btn-rented-medium secondary" ng-click="looking.showSearch=!looking.showSearch" ng-show="!looking.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Search</button>
+          <button class="btn-rented-medium secondary" ng-click="looking.showSearch=!looking.showSearch" ng-show="looking.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Close</button>
           <button style="margin-top: 5px" class="btn-rented-small reset" id="search" name="search" ng-click="looking.clearSearchAndSearch(false)">Reset</button>
           <div ng-include=" 'app/dashboard/looking/searchCriteria.html' "></div>
         </div>
