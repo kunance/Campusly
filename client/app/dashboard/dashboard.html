@@ -15,18 +15,68 @@
           <div class="white-box interested-box">
             <form name="connectTo" ng-submit="dashboard.updateStatus(connectTo, dashboard.userStatus)" novalidate>
               <h4><i class="fa fa-car"></i>Carpooling</h4>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.carpoolingToCampus">To Campus</label>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.carpoolingFromCampus">From Campus</label>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.carpoolingForGroceries">For Groceries</label>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.carpoolingForRoadtrip">Roadtrip</label>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.carpoolingSplit">Split a Uber/Lyft</label>
+              <label class="checkbox"><input id="c2c" type="checkbox" ng-model="dashboard.userStatus.carpoolingToCampus">To Campus</label>
+              <script type="text/javascript">
+                mixpanel.track("#c2c", "Carpooling to Campus");
+                mixpanel.people.increment('Carpooling to Campus');
+              </script>
+
+              <label class="checkbox"><input id="cfc" type="checkbox" ng-model="dashboard.userStatus.carpoolingFromCampus">From Campus</label>
+              <script type="text/javascript">
+                mixpanel.track("#cfc", "Carpooling from Campus");
+                mixpanel.people.increment('Carpooling from Campus');
+              </script>
+
+              <label class="checkbox"><input id="cfg" type="checkbox" ng-model="dashboard.userStatus.carpoolingForGroceries">For Groceries</label>
+              <script type="text/javascript">
+                mixpanel.track("#cfg", "Carpooling for Groceries");
+                mixpanel.people.increment('Carpooling for Groceries');
+              </script>
+
+              <label class="checkbox"><input id="cfrt" type="checkbox" ng-model="dashboard.userStatus.carpoolingForRoadtrip">Roadtrip</label>
+              <script type="text/javascript">
+                mixpanel.track("#cfrt", "Carpooling for Roadtrip");
+                mixpanel.people.increment('Carpooling for Roadtrip');
+              </script>
+
+              <label class="checkbox"><input id="csplit" type="checkbox" ng-model="dashboard.userStatus.carpoolingSplit">Split a Uber/Lyft</label>
+              <script type="text/javascript">
+                mixpanel.track("#csplit", "Carpooling Split Rideshare");
+                mixpanel.people.increment('Carpooling Split Rideshare');
+              </script>
+
               <h4><i class="fa fa-child"></i>Walking</h4>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.walkingToCampus">To Campus</label>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.walkingFromCampus">From Campus</label>
+              <label class="checkbox"><input id="w2c" type="checkbox" ng-model="dashboard.userStatus.walkingToCampus">To Campus</label>
+              <script type="text/javascript">
+                mixpanel.track("#w2c", "Walking to Campus");
+                mixpanel.people.increment('Walking to Campus');
+              </script>
+
+              <label class="checkbox"><input id="wfc" type="checkbox" ng-model="dashboard.userStatus.walkingFromCampus">From Campus</label>
+              <script type="text/javascript">
+                mixpanel.track("#wfc", "Walking from Campus");
+                mixpanel.people.increment('Walking from Campus');
+              </script>
+
               <h4><i class="fa fa-users"></i>Meeting Up</h4>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.meetForHangout">Hangout</label>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.meetForStudy">Study Group</label>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.meetForEvents">Campus Events</label>
+              <label class="checkbox"><input id="hout" type="checkbox" ng-model="dashboard.userStatus.meetForHangout">Hangout</label>
+              <script type="text/javascript">
+                mixpanel.track("#hout", "Hangout");
+                mixpanel.people.increment('Hangout');
+              </script>
+
+              <label class="checkbox"><input id="sg" type="checkbox" ng-model="dashboard.userStatus.meetForStudy">Study Group</label>
+              <script type="text/javascript">
+                mixpanel.track("#sg", "Study Group");
+                mixpanel.people.increment('Study Group');
+              </script>
+
+              <label class="checkbox"><input id="ce" type="checkbox" ng-model="dashboard.userStatus.meetForEvents">Campus Events</label>
+              <script type="text/javascript">
+                mixpanel.track("#ce", "Campus Events");
+                mixpanel.people.increment('Campus Events');
+              </script>
+
               <button class="btn btn-primary btn-block" type="submit">Update My Status</button>
             </form>
           </div>
@@ -71,7 +121,7 @@
 
           <h2 class="section-title"> Available Rooms</h2>
           <div class="white-box available-rooms">
-            <h3 ng-if="!dashboard.education.universityId">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available rooms around</h3>
+            <h3 ng-if="!dashboard.education.universityId">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available rooms</h3>
             <slick dots="true" class="slider row" init-onload="true" data="dashboard.availableRooms" slides-to-show="3" slides-to-scroll="3" infinite="false" responsive="dashboard.breakpoints.availableRooms" ng-if="dashboard.availableRooms.length && dashboard.education.universityId">
               <!-- start room box -->
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 room" ng-repeat="room in dashboard.availableRooms track by $index">
@@ -97,15 +147,15 @@
               </div>
               <!-- end room box -->
             </slick>
-            <hr>
-            <a class="pull-right btn-rented-event view-all" ui-sref="rooms">View All</a>
+            <hr ng-if="dashboard.education.universityId">
+            <a class="pull-right btn-rented-event view-all" ui-sref="rooms" ng-if="dashboard.education.universityId">View All</a>
           </div>
 
           <!-- Looking -->
 
           <h2 class="section-title">Students Looking</h2>
           <div class="white-box looking-for-room" >
-            <h3 ng-if="!dashboard.lookingRoom.length" >
+            <h3 ng-if="!dashboard.lookingRoom.length && dashboard.education.universityId" >
               Currently no one is looking for a room, why don't you be the first?
               <small>
                 <a ui-sref="addNewLooking"><br/>Click here</a> to add looking.
@@ -139,8 +189,8 @@
               </div>
               <!-- end room box -->
             </slick>
-            <hr>
-            <a class="pull-right btn-rented-event view-all" ui-sref="looking">View All</a>
+            <hr ng-if="dashboard.education.universityId">
+            <a class="pull-right btn-rented-event view-all" ui-sref="looking" ng-if="dashboard.education.universityId">View All</a>
           </div>
 
           <!-- My Available Rooms Posts - Hides if no Looking posts-->
