@@ -15,11 +15,10 @@
         controller: 'RoomDetailCtrl',
         controllerAs: 'room',
         resolve: {
-          currentUser: getCurrentUser,
-          data: getData,
-          getCreatorRoommates:getCreatorRoommates
+          currentUser: getCurrentUser
         },
-        authenticate: true
+        authenticate: true,
+        cache:false
       });
   }
 
@@ -32,19 +31,6 @@
         deferred.resolve(user);
       });
       return deferred.promise;
-    }
-
-    getData.$inject = ['common', 'currentUser', '$q', 'RoomListingView', '$stateParams'];
-    function getData(common, currentUser, $q, RoomListingView, $stateParams) {
-      var edu = common.dataservice.getAllEducations(currentUser.id);
-      var roomListing = RoomListingView.get({id: $stateParams.param});
-      return $q.all([edu.$promise, roomListing.$promise]);
-    }
-
-    getCreatorRoommates.$inject = ['common', 'data', '$q'];
-    function getCreatorRoommates(common, data, $q) {
-      var roommate = common.dataservice.getAllRoommates(data[1].roomDetails.creatorId);
-      return $q.all([roommate.$promise]);
     }
 
 }());

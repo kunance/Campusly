@@ -5,31 +5,38 @@
     .module('app.dashboard')
     .controller('aroundYouCtrl', aroundYouCtrl);
 
-  aroundYouCtrl.$inject = ['common', 'currentUser', 'data', 'UserResource', '$window'];
+  aroundYouCtrl.$inject = ['common', 'currentUser', 'UserResource', '$window', '$q'];
 
-  function aroundYouCtrl(common, currentUser, data, UserResource, $window) {
+  function aroundYouCtrl(common, currentUser, UserResource, $window, $q) {
     var vm = this;
     vm.me = currentUser;
-    vm.education = data[0];
-    vm.address = data[1];
-    vm.showSearch = false;
-    vm.me.experianIdToken = vm.me.experianIdToken || 1;
-    var query = {};
+    vm.education = common.dataservice.getAllEducations(currentUser.id);
+    vm.address = common.dataservice.getAllAddresses(currentUser.id);
+    var promises = [vm.address.$promise, vm.education.$promise];
+    $q.all(promises).then(function () {
+      initializearoundYouController()
+    });
 
-    vm.clearSearch = function() {
-      vm.query = {
-        carpoolingToCampus: null,
-        carpoolingFromCampus: null,
-        carpoolingForGroceries: null,
-        carpoolingForRoadtrip: null,
-        carpoolingSplit: null,
-        walkingToCampus: null,
-        walkingFromCampus: null,
-        meetForHangout: null,
-        meetForStudy: null,
-        meetForEvents: null
+    function initializearoundYouController() {
+        vm.initialized = true;
+        vm.showSearch = false;
+        vm.me.experianIdToken = vm.me.experianIdToken || 1;
+        var query = {};
+
+        vm.clearSearch = function() {
+        vm.query = {
+          carpoolingToCampus: null,
+          carpoolingFromCampus: null,
+          carpoolingForGroceries: null,
+          carpoolingForRoadtrip: null,
+          carpoolingSplit: null,
+          walkingToCampus: null,
+          walkingFromCampus: null,
+          meetForHangout: null,
+          meetForStudy: null,
+          meetForEvents: null
+        };
       };
-    };
 
     vm.setQueryAndSearch= function (q) {
       query = q;
@@ -43,7 +50,6 @@
    };
 
     vm.setQueryAndSearch();
-
 
     function orderSliderButtons() {
       setTimeout(function() {
@@ -67,6 +73,6 @@
 
     mixpanel.track("aroundYou grid view");
     mixpanel.people.increment('aroundYou grid view');
+    }
   }
-
 }());

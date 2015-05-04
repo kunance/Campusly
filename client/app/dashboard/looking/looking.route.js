@@ -16,8 +16,7 @@
         controllerAs:'looking',
         authenticate: true,
         resolve:{
-          currentUser:getCurrentUser,
-          data:getData
+          currentUser:getCurrentUser
         }
       });
 
@@ -30,12 +29,4 @@
       return deferred.promise;
     }
   }
-
-  getData.$inject = ['common', '$q', 'currentUser'];
-  function getData(common, $q, currentUser) {
-    var univ = common.dataservice.getAllUniversities();
-    var edu = common.dataservice.getAllEducations(currentUser.id);
-    return $q.all([univ.$promise, edu.$promise]);
-  }
-
 }());

@@ -4,16 +4,16 @@
     <h2 ng-if="dashboard.me.experianIdToken > 1 && dashboard.me.shareProfile"> Students Around You <small>(within {{dashboard.me.experianIdToken}} miles)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
     <h2 ng-if="!dashboard.me.shareProfile"> Students Around You</h2>
     <div class="white-box">
-      <h3 ng-if="!dashboard.aroundYou.length && dashboard.address.streetAddress.id && dashboard.me.shareProfile">
+      <h3 ng-if="!dashboard.aroundYou.length && dashboard.address.streetAddress.id && dashboard.me.shareProfile && dashboard.initialized">
         There is no students around you right now
       </h3>
-      <h3 ng-if="!dashboard.address.streetAddress.id && dashboard.me.shareProfile">
+      <h3 ng-if="!dashboard.address.streetAddress.id && dashboard.me.shareProfile && dashboard.initialized">
         Please <a ui-sref="editProfile({focus:'updateAddress'})">update your current address</a> to connect with students around you.
       </h3>
-      <h3 ng-if="!dashboard.address.streetAddress.id && !dashboard.me.shareProfile">
+      <h3 ng-if="!dashboard.address.streetAddress.id && !dashboard.me.shareProfile && dashboard.initialized">
         Please <a ui-sref="settings({focus:'allowConnect'})">update your privacy</a> preferences and <a ui-sref="editProfile({focus:'updateAddress'})">add your current address</a> to connect with students around you.
       </h3>
-      <h3 ng-if="!dashboard.me.shareProfile && (dashboard.aroundYou.length || dashboard.address.streetAddress.id)">
+      <h3 ng-if="!dashboard.me.shareProfile && dashboard.initialized && (dashboard.aroundYou.length || dashboard.address.streetAddress.id)">
         Please <a ui-sref="settings({focus:'allowConnect'})">update your privacy</a> preferences to connect with students around you.
       </h3>
       <slick dots="true" class="slider row" slides-to-show="4" slides-to-scroll="4" responsive="dashboard.breakpoints.availableRooms" init-onload="true" infinite="false" data="dashboard.aroundYou" ng-if="dashboard.aroundYou.length && dashboard.me.shareProfile">
@@ -46,7 +46,7 @@
             </ul>
           </div>
           <div style="text-align: center;width: 100%; padding-top: 10px">
-            <a id="facebookPM" ng-href="{{around.facebook}}" ng-if="around.facebook" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
+            <a id="facebookPM" ng-href="{{around.facebook}}" ng-class="{'interested': around.facebook, 'not-interested':!around.facebook}" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
             <script type="text/javascript">
               mixpanel.track_links("#facebookPM", "Facebook PM sent - around you");
             </script>

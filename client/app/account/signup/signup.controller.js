@@ -18,8 +18,10 @@
       pageTitle:'Campusly Sign-up',
       pageDescription:'Free Sign-up for Campusly'
     };
-    var distinct_id = mixpanel.get_distinct_id();
-    mixpanel.track("sign up");
+
+    if(window.Gdistinct_id) {
+      mixpanel.track("sign up");
+    }
 
     vm.register = function (form) {
       vm.submitted = true;
@@ -38,7 +40,7 @@
                   vm.loading = false;
                   vm.showValidationMessage = true;
                 }).catch(function () {
-                  mixpanel.track("sign up - send confirm email",{distinct:distinct_id});
+                  mixpanel.track("sign up - send confirm email",{distinct:Gdistinct_id});
                   mixpanel.alias(vm.user.id);
                 });
               Auth.logout();
@@ -51,18 +53,18 @@
               if (field.type == 'unique violation'){
                 field.message = 'You have already signed-up! Please Sign-in.';
                 vm.errors[field.path] = field.message;
-                mixpanel.track("sign up - unique email violation",{distinct:distinct_id});
+                mixpanel.track("sign up - unique email violation",{distinct:Gdistinct_id});
               }
               if (field.type == 'Validation error'){
                 field.message = 'Your email needs to be a valid .edu address!';
                 vm.errors[field.path] = field.message;
-                mixpanel.track("sign up - .edu email violation",{distinct:distinct_id});
+                mixpanel.track("sign up - .edu email violation",{distinct:Gdistinct_id});
               }
             });
           }
           });
         } else {
-        mixpanel.track("sign up - invalid form",{distinct:distinct_id});
+        mixpanel.track("sign up - invalid form",{distinct:Gdistinct_id});
       }
     };
 

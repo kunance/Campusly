@@ -27,8 +27,9 @@
     $rootScope.showEmail = $rootScope.showEmail || false;
     $rootScope.showPassword = $rootScope.showPassword || false;
 
-    var distinct_id = mixpanel.get_distinct_id();
-    mixpanel.track("sign in");
+    if(window.Gdistinct_id) {
+      mixpanel.track("sign in");
+    }
 
     $scope.$parent.seo = {
       pageTitle: 'Campusly Sign-in',
@@ -50,7 +51,7 @@
           $state.go('login');
         })
         .catch( function(err) {
-          mixpanel.track("sign in - mail confirmation failure",{distinct:distinct_id});
+          mixpanel.track("sign in - mail confirmation failure",{distinct:Gdistinct_id});
           $rootScope.verificationTitle = err.data.title;
           $rootScope.verificationContent = err.data.content;
           $rootScope.invalidToken = true;
@@ -66,7 +67,7 @@
           $state.go('login');
         })
         .catch(function() {
-          mixpanel.track("sign in - password reset failure",{distinct:distinct_id});
+          mixpanel.track("sign in - password reset failure",{distinct:Gdistinct_id});
           $rootScope.invalidPwdToken = true;
           $state.go('login');
         });
@@ -75,7 +76,7 @@
     $scope.login = function (form) {
       $scope.submitted = true;
       if(form.$valid) {
-        $scope.loading = true;
+        //$scope.loading = true;
         Auth.login({
           email: $scope.user.email,
           password: $scope.user.password
@@ -86,7 +87,7 @@
                   $scope.success = false;
                   $scope.showForm = false;
                 if($rootScope.redirectTo){
-                  $state.go($rootScope.redirectTo.state, {param:$rootScope.redirectTo.value});
+                  $state.go($rootScope.redirectTo.state, {param:$rootScope.redirectTo.value, allIds:$rootScope.redirectTo.value});
                 } else {
                   $state.go('dashboard');
                 }
@@ -94,17 +95,17 @@
                 $scope.loading = false;
                 $scope.showResendPartial = true;
                 $scope.errors = {verifiedEmail: user.firstname+', your e-mail address is not verified. Please verify your Campusly account.'};
-                mixpanel.track("sign in - reject because of unconfirmed mail",{distinct:distinct_id});
+                mixpanel.track("sign in - reject because of unconfirmed mail",{distinct:Gdistinct_id});
               }
             });
           })
           .catch(function (err) {
             $scope.loading = false;
             $scope.errors = err.message;
-            mixpanel.track("sign in - wrong username or password",{distinct:distinct_id});
+            mixpanel.track("sign in - wrong username or password",{distinct:Gdistinct_id});
           });
       } else {
-        mixpanel.track("sign in - invalid form",{distinct:distinct_id});
+        mixpanel.track("sign in - invalid form",{distinct:Gdistinct_id});
       }
     };
 
@@ -131,7 +132,7 @@
             $scope.sendingEmail = false;
             $scope.success = null;
             $scope.errors = {verifiedEmail: 'e-mail address ' + $scope.user.email + ' is not registered'};
-            mixpanel.track("sign in - resend confirmation e-mail failure",{distinct:distinct_id});
+            mixpanel.track("sign in - resend confirmation e-mail failure",{distinct:Gdistinct_id});
           });
     };
 
@@ -148,7 +149,7 @@
           })
           .catch(function () {
             $scope.pwdResetMailSend = false;
-            mixpanel.track("sign in - send reset e-mail failure",{distinct:distinct_id});
+            mixpanel.track("sign in - send reset e-mail failure",{distinct:Gdistinct_id});
           });
       }
     };

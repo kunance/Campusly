@@ -15,8 +15,7 @@
       controller: 'EditProfileCtrl',
       controllerAs:'editProfile',
         resolve:{
-          currentUser: getCurrentUser,
-          data:getData
+          currentUser: getCurrentUser
         },
       authenticate: true,
       cache:false
@@ -30,14 +29,6 @@
       deferred.resolve(user);
     });
     return deferred.promise;
-  }
-
-  getData.$inject = ['common', '$q', 'currentUser'];
-  function getData(common, $q, currentUser) {
-    var univ = common.dataservice.getAllUniversities();
-    var edu = common.dataservice.getAllEducations(currentUser.id);
-    var adr = common.dataservice.getAllAddresses(currentUser.id);
-    return $q.all([univ.$promise, edu.$promise, adr.$promise]);
   }
 
 }());

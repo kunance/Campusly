@@ -6,9 +6,9 @@
     .module('app.widgets')
     .service('distanceCalculator', distanceCalculator);
 
-  distanceCalculator.$inject = ['uiGmapGoogleMapApi', '$q'];
+  distanceCalculator.$inject = ['uiGmapGoogleMapApi', '$q', '$timeout', '$interval'];
 
-  function distanceCalculator (uiGmapGoogleMapApi, $q) {
+  function distanceCalculator (uiGmapGoogleMapApi, $q, $timeout, $interval) {
     var maps = initializeMaps();
 
     var service = {
@@ -19,7 +19,8 @@
     return service;
     function calculateDistance(srcLatLong, destLatLong, mode, Unit, DurDis) {
       var deferred = $q.defer();
-      maps.then(function(m) {
+      maps
+        .then(function(m) {
           var directionsService = new m.DirectionsService();
           var a = new m.LatLng(srcLatLong.latitude, srcLatLong.longitude);
           var b = new m.LatLng(destLatLong.latitude, destLatLong.longitude);
@@ -35,11 +36,20 @@
             if (status == google.maps.DirectionsStatus.OK) {
               deferred.resolve(response.routes[0].legs[0][DurDis]);
             } else {
-              deferred.reject('Error occurred while trying to calculate distance');
-            }
+              var repeat = $interval(function () {
+                directionsService.route(request, function (response, status) {
+                  if (status == google.maps.DirectionsStatus.OK) {
+                    deferred.resolve(response.routes[0].legs[0][DurDis]);
+                    $interval.cancel(repeat);
+                  }
+                })
+              },1000);
+              }
           });
-        //}
-      });
+      })
+        .catch(function (err) {
+          console.log('error: ', err);
+        });
       return deferred.promise;
   }
 
@@ -47,25 +57,29 @@
       var deferred = $q.defer();
       var modes = ['DRIVING', 'WALKING', 'BICYCLING'];
       var unitSystem = 'IMPERIAL';
-      var promises = [];
-      for (var i = 0; i < modes.length; i += 1) {
-        promises.push(calculate(src, dest, modes[i], unitSystem, DurDis));
-      }
+
+     var driving = calculate(src, dest, 'DRIVING', unitSystem, DurDis);
+     var walking = calculate(src, dest, 'WALKING', unitSystem, DurDis);
+     var bicycling = calculate(src, dest, 'BICYCLING', unitSystem, DurDis);
+
+     var promises = [driving, walking, bicycling];
+
       $q.all(promises).then(function (results) {
         var response = {};
         _(results).forEach(function (result) {
           _.merge(response, result);
         });
         deferred.resolve(response);
-      }, function (error) {
-        logger.error('error while calculating distance');
+      }).catch(function (error) {
+        console.log('error in calculation', error);
       });
       return deferred.promise;
    }
 
    function calculate(source, destination, property, unitSystem, DurDis) {
       var deferred = $q.defer();
-        calculateDistance(source, destination, property, unitSystem, DurDis).then(function (distance) {
+        calculateDistance(source, destination, property, unitSystem, DurDis)
+          .then(function (distance) {
           var string = distance.text;
           var minutesTrimmed = string.replace("mins","m");
           var minuteTrimmed = minutesTrimmed.replace("min","m");
@@ -76,7 +90,10 @@
           var obj = {};
           obj[property] = (finalString);
           deferred.resolve(obj);
-        });
+        })
+          .catch(function (err) {
+            console.log(err);
+          });
       return deferred.promise;
    }
 
