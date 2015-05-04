@@ -12,8 +12,8 @@
       pageTitle: 'Campusly',
       pageDescription: 'Secure off-campus community. Connect with verified students. Find off-campus housing. Meet new students - walk safely, share a ride, attend events.'
     };
-    var distinct_id = mixpanel.get_distinct_id();
-    mixpanel.track("landing page",{distinct:distinct_id});
+
+    mixpanel.track("landing page");
 
     // Godaddy seal code - to be revisited
 

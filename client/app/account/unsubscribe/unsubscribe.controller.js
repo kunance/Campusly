@@ -11,8 +11,10 @@
     var vm = this;
     vm.me = currentUser;
 
-    var distinct_id = mixpanel.get_distinct_id();
-    mixpanel.track("unsubscribe view",{distinct:distinct_id});
+    mixpanel.init("bd202854d110bac5e72d7e034abdae01", {'loaded':function(){
+      var distinct_id = mixpanel.get_distinct_id();}
+    });
+    mixpanel.track("unsubscribe view");
 
     vm.unsubscribe= function () {
       vm.submitted = true;

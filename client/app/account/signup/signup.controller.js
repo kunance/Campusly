@@ -19,7 +19,7 @@
       pageDescription:'Free Sign-up for Campusly'
     };
     var distinct_id = mixpanel.get_distinct_id();
-    mixpanel.track("sign up",{distinct:distinct_id});
+    mixpanel.track("sign up");
 
     vm.register = function (form) {
       vm.submitted = true;

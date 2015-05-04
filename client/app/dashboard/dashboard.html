@@ -16,68 +16,26 @@
             <form name="connectTo" ng-submit="dashboard.updateStatus(connectTo, dashboard.userStatus)" novalidate>
               <h4><i class="fa fa-car"></i>Carpooling</h4>
               <label class="checkbox"><input id="c2c" type="checkbox" ng-model="dashboard.userStatus.carpoolingToCampus">To Campus</label>
-              <script type="text/javascript">
-                mixpanel.track("#c2c", "Carpooling to Campus");
-                mixpanel.people.increment('Carpooling to Campus');
-              </script>
-
               <label class="checkbox"><input id="cfc" type="checkbox" ng-model="dashboard.userStatus.carpoolingFromCampus">From Campus</label>
-              <script type="text/javascript">
-                mixpanel.track("#cfc", "Carpooling from Campus");
-                mixpanel.people.increment('Carpooling from Campus');
-              </script>
-
               <label class="checkbox"><input id="cfg" type="checkbox" ng-model="dashboard.userStatus.carpoolingForGroceries">For Groceries</label>
-              <script type="text/javascript">
-                mixpanel.track("#cfg", "Carpooling for Groceries");
-                mixpanel.people.increment('Carpooling for Groceries');
-              </script>
-
               <label class="checkbox"><input id="cfrt" type="checkbox" ng-model="dashboard.userStatus.carpoolingForRoadtrip">Roadtrip</label>
-              <script type="text/javascript">
-                mixpanel.track("#cfrt", "Carpooling for Roadtrip");
-                mixpanel.people.increment('Carpooling for Roadtrip');
-              </script>
-
               <label class="checkbox"><input id="csplit" type="checkbox" ng-model="dashboard.userStatus.carpoolingSplit">Split a Uber/Lyft</label>
-              <script type="text/javascript">
-                mixpanel.track("#csplit", "Carpooling Split Rideshare");
-                mixpanel.people.increment('Carpooling Split Rideshare');
-              </script>
 
               <h4><i class="fa fa-child"></i>Walking</h4>
               <label class="checkbox"><input id="w2c" type="checkbox" ng-model="dashboard.userStatus.walkingToCampus">To Campus</label>
-              <script type="text/javascript">
-                mixpanel.track("#w2c", "Walking to Campus");
-                mixpanel.people.increment('Walking to Campus');
-              </script>
-
               <label class="checkbox"><input id="wfc" type="checkbox" ng-model="dashboard.userStatus.walkingFromCampus">From Campus</label>
-              <script type="text/javascript">
-                mixpanel.track("#wfc", "Walking from Campus");
-                mixpanel.people.increment('Walking from Campus');
-              </script>
 
               <h4><i class="fa fa-users"></i>Meeting Up</h4>
               <label class="checkbox"><input id="hout" type="checkbox" ng-model="dashboard.userStatus.meetForHangout">Hangout</label>
-              <script type="text/javascript">
-                mixpanel.track("#hout", "Hangout");
-                mixpanel.people.increment('Hangout');
-              </script>
-
               <label class="checkbox"><input id="sg" type="checkbox" ng-model="dashboard.userStatus.meetForStudy">Study Group</label>
-              <script type="text/javascript">
-                mixpanel.track("#sg", "Study Group");
-                mixpanel.people.increment('Study Group');
-              </script>
-
               <label class="checkbox"><input id="ce" type="checkbox" ng-model="dashboard.userStatus.meetForEvents">Campus Events</label>
+
+              <button id="UpdateMyStatus" class="btn btn-primary btn-block" type="submit">Update My Status</button>
               <script type="text/javascript">
-                mixpanel.track("#ce", "Campus Events");
-                mixpanel.people.increment('Campus Events');
+                mixpanel.track_forms("#UpdateMyStatus", "Update My Status");
+                mixpanel.people.increment('Update My Status');
               </script>
 
-              <button class="btn btn-primary btn-block" type="submit">Update My Status</button>
             </form>
           </div>
           <!-- Create a post -->
