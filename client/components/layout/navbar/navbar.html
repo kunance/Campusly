@@ -7,7 +7,6 @@
       <a ui-sref="dashboard" ng-if="isLoggedIn()">
         <img src="../../../assets/images/webname.svg" alt="campusly" >
       </a>
-      <p class="brand-text">secure off-campus community</p>
     </div>
     <div class="right-content">
       <div id="logged" ng-if="isLoggedIn()">
@@ -21,8 +20,8 @@
 
       <div id="notLogged"  ng-if="!isLoggedIn()">
         <div class="fb-like facebookNavbar" fb-like><i class="fa fa-facebook-square facebookNavbarIcon"></i>Like / Share</div>
-        <a ui-sref-active="active" ui-sref="login" ui-sref-opts="{reload:true, notify:true}" class="link sign-in">Sign In</a>
-        <a ui-sref-active="active" ui-sref="signup" ui-sref-opts="{reload:true, notify:true}" class="btn sign-up">Sign up for free</a>
+        <a ui-sref-active="active" ui-sref="login" ui-sref-opts="{reload:true, notify:true}" class="btn sign-up">Sign In</a>
+        <!--<a ui-sref-active="active" ui-sref="signup" ui-sref-opts="{reload:true, notify:true}" class="btn sign-up">Sign up for free</a>-->
       </div>
   </div>
   </div>
