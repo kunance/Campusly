@@ -54,18 +54,16 @@ function adoptData(input) {
 }
 
 exports.showEducations= function(req, res, next) {
-  var UniversityAtts = ['latitude', 'longitude', 'name', 'id'];
-  //Education.findAll({where:{userId:req.user.id}})
+  var UniversityAtts = ['latitude', 'longitude', 'name', 'id', 'shortName'];
   Education.findOne({
     where:
     {
       userId:req.userId
     },
       include: [
-        { model: University, attributes:UniversityAtts, as: 'relatedUniversityId'}
-      ]
-  }
-  )
+        { model: University, attributes:UniversityAtts, as: 'relatedUniversityId'}]
+      }
+   )
     .then(function (educations) {
       if(educations){
           res.json(adoptData(educations));

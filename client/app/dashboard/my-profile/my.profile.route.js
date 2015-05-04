@@ -15,8 +15,7 @@
         controller: 'MyProfileCtrl',
         controllerAs:'myProfile',
         resolve: {
-          currentUser:getCurrentUser,
-          data:getData
+          currentUser:getCurrentUser
         },
         authenticate: true,
         cache:false
@@ -30,17 +29,6 @@
       deferred.resolve(user);
     });
     return deferred.promise;
-  }
-
-  getData.$inject = ['common', 'currentUser', 'UserResource', '$q'];
-  function getData(common, currentUser, UserResource, $q) {
-    var edu = common.dataservice.getAllEducations(currentUser.id);
-    var adr = common.dataservice.getAllAddresses(currentUser.id);
-    var users = UserResource.query();
-    var roommates = common.dataservice.getAllRoommates(currentUser.id);
-    var pets = common.dataservice.getAllPets(currentUser.id);
-    var veh = common.dataservice.getAllVehicles(currentUser.id);
-    return $q.all([edu.$promise, adr.$promise, users.$promise, roommates.$promise, pets.$promise, veh.$promise]);
   }
 
 }());

@@ -5,71 +5,72 @@
   .module('app.rooms')
   .controller('RoomsCtrl', RoomsCtrl);
 
-  RoomsCtrl.$inject = ['$scope', '$window', 'common', 'RoomListingView', 'currentUser', 'data'];
+  RoomsCtrl.$inject = ['$q', '$window', 'common', 'RoomListingView', 'currentUser'];
 
-  function RoomsCtrl($scope, $window, common, RoomListingView, currentUser, data) {
+  function RoomsCtrl($q, $window, common, RoomListingView, currentUser) {
     var vm = this;
     vm.property = {};
     vm.me = currentUser;
-    vm.education = data[0];
-    var currentUniversityId = vm.education.universityId;
+    vm.education = common.dataservice.getAllEducations(currentUser.id);
+    var promises = [vm.education.$promise];
+    $q.all(promises).then(function () {
+      initializeRoomsController()
+    });
 
-    vm.sortOrder = 'ascending';  // default
-    vm.sortBy = 'availableMoveIn';  // default
-
-    vm.showSearch = false; // default
-    vm.showSort = false; // default
-
-    vm.clearSearch = function(showSearch) {
-      vm.searchCriteria = {
-        maxMonthlyPrice: null,
-        leaseType: null,
-        maxCurrentRoomates: null,
-        propertyType: null,
-        sharedBathroom: null,
-        roomType : null,
-        furnished: null,
-        smokingAllowed: null,
-        gender: null,
-        petsAllowed: null,
-        parkingAvailable: null,
-        within: null
+    function initializeRoomsController(){
+      vm.initialized = true;
+      var currentUniversityId = vm.education.universityId;
+      vm.sortOrder = 'ascending';  // default
+      vm.sortBy = 'availableMoveIn';  // default
+      vm.showSearch = false; // default
+      vm.showSort = false; // default
+      vm.clearSearch = function(showSearch) {
+        vm.searchCriteria = {
+          maxMonthlyPrice: null,
+          leaseType: null,
+          maxCurrentRoomates: null,
+          propertyType: null,
+          sharedBathroom: null,
+          roomType : null,
+          furnished: null,
+          smokingAllowed: null,
+          gender: null,
+          petsAllowed: null,
+          parkingAvailable: null,
+          within: null
+        };
       };
-    };
 
-    vm.clearSearch(false);
-
-    vm.search = function(showSearch) {
-
-      if(vm.searchCriteria.within) {
-        vm.searchCriteria.within.place = { type: 'univ', id: currentUniversityId };
-      } else {
-        vm.searchCriteria["within"]={
-          place:{type: 'univ', id: currentUniversityId},
-          distance:100
-        }
-      }
-
-
-      RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: currentUniversityId}, function(availRooms) {
-        vm.allIds = [];
-        vm.availableRooms = availRooms;
-        angular.forEach(vm.availableRooms, function (room) {
-          vm.allIds.push(room.roomDetails.id)
-        });
-        vm.groups = vm.availableRooms.inGroupsOf(8);
-        vm.showSearch = showSearch;
-        vm.showSort = showSearch;
-      });
-      orderSliderButtons();
-    };
-
-    vm.search(false);
-
-    vm.clearSearchAndSearch = function(showSearch) {
       vm.clearSearch(false);
-      vm.search(showSearch);
-    };
+
+      vm.search = function(showSearch) {
+        if(vm.searchCriteria.within) {
+          vm.searchCriteria.within.place = { type: 'univ', id: currentUniversityId };
+        } else {
+          vm.searchCriteria["within"]={
+            place:{type: 'univ', id: currentUniversityId},
+            distance:100
+          }
+        }
+
+        RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: currentUniversityId}, function(availRooms) {
+          vm.allIds = [];
+          vm.availableRooms = availRooms;
+          angular.forEach(vm.availableRooms, function (room) {
+            vm.allIds.push(room.roomDetails.id)
+          });
+          vm.groups = vm.availableRooms.inGroupsOf(8);
+          vm.showSearch = showSearch;
+          vm.showSort = showSearch;
+        });
+        orderSliderButtons();
+      };
+      vm.search(false);
+      vm.clearSearchAndSearch = function(showSearch) {
+        vm.clearSearch(false);
+        vm.search(showSearch);
+      };
+    }
 
     function orderSliderButtons() {
       setTimeout(function() {

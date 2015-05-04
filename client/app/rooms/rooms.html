@@ -49,7 +49,7 @@
       <!-- Main room view -->
 
       <div class="row">
-        <h3 ng-if="!rooms.education.universityId">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available rooms around</h3>
+        <h3 ng-if="!rooms.education.universityId && rooms.initialized">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available rooms around</h3>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-if="rooms.education.universityId">
           <slick dots="true" class="slider" init-onload="true" data="rooms.groups" slides-to-show="1" slides-to-scroll="1" >
             <div ng-repeat="group in rooms.groups" class="row">

@@ -1,10 +1,21 @@
 <div class="row">
 
-    <span ng-click="room.previous()" ng-hide="currentRoom==0" class="previousArrow"><i class="fa fa-arrow-left previousArrow">&nbsp;&nbsp;Previous</i></span>
-    <span ng-click="room.next()" ng-hide="currentRoom==(room.allIds.length-1)" class="nextArrow">Next&nbsp;&nbsp;<i class="fa fa-arrow-right nextArrow"></i></span>
+    <!--<span ng-click="room.previous()" ng-hide="currentRoom==0" class="previousArrow"><i class="fa fa-arrow-left previousArrow">&nbsp;&nbsp;Previous</i></span>-->
+    <!--<span ng-click="room.next()" ng-hide="currentRoom==(room.allIds.length-1)" class="nextArrow">Next&nbsp;&nbsp;<i class="fa fa-arrow-right nextArrow"></i></span>-->
+
+ <div class="row" style="padding: 0;">
+   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 back-link" style="cursor: pointer">
+      <a ng-click="room.previous()" ng-hide="currentRoom==0"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Previous</a>
+   </div>
+
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 back-link pull-right" style="text-align: right;cursor: pointer;">
+      <a ng-click="room.next()" ng-hide="currentRoom==(room.allIds.length-1)">Next&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></a>
+    </div>
+ </div>
+
 
   <div class="page-header">
-    <h2 style="padding-top:20px">Highlights</h2>
+    <h2>Highlights</h2>
   </div>
 
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 highlights white-box">
@@ -31,23 +42,27 @@
         <div ng-if="room.education.id" class="distances">
           <p>
             <span class="distance" ng-if="room.distance.DRIVING && room.education.relatedUniversityId.name"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{room.distance.DRIVING}}les from {{room.education.relatedUniversityId.name}}</span>
+            <span class="distance" ng-if="!room.distance.DRIVING && room.education.relatedUniversityId.name"><i class="fa fa-circle-o-notch fa-spin"></i>&nbsp;&nbsp;calculating distance from your university</span>
             <br><br>
           </p>
 
           <p class="address">Travel time<br><br></p>
           <a class="distance-bubble">
             <i class="fa fa-car fa-lg"></i>
-            <span class="top15">{{room.duration.DRIVING}}</span>
+            <span class="top15" ng-if="room.duration.DRIVING">{{room.duration.DRIVING}}</span>
+            <span class="top15" ng-if="!room.duration.DRIVING"><i class="fa fa-circle-o-notch fa-spin"></i></span>
           </a>
 
           <a class="distance-bubble">
             <i class="fa fa-bicycle fa-lg"></i>
-            <span class="top15">{{room.duration.BICYCLING}}</span>
+            <span class="top15" ng-if="room.duration.BICYCLING">{{room.duration.BICYCLING}}</span>
+            <span class="top15" ng-if="!room.duration.BICYCLING"><i class="fa fa-circle-o-notch fa-spin"></i></span>
           </a>
 
           <a class="distance-bubble">
             <i class="fa fa-child fa-lg"></i>
-            <span class="top15">{{room.duration.WALKING}}</span>
+            <span class="top15" ng-if="room.duration.WALKING">{{room.duration.WALKING}}</span>
+            <span class="top15" ng-if="!room.duration.WALKING"><i class="fa fa-circle-o-notch fa-spin"></i></span>
           </a>
 
         </div>

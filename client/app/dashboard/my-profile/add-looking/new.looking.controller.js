@@ -54,7 +54,7 @@
               });
           }
           common.logger.success('Looking successfully added.');
-          common.$state.go('lookingDetail', {param: looking.id}, {reload: true});
+          common.$state.go('lookingDetail', {param: looking.id, allIds:[looking.id]}, {reload: true});
         })
         .catch(function (err) {
           common.logger.error('Error while saving looking! ',err);

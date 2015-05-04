@@ -10,8 +10,6 @@
 
           <h2>I'm Interested In</h2>
 
-          <!-- TODO Need to bind data, checkboxes are not showing up -->
-
           <div class="white-box interested-box">
             <form name="connectTo" ng-submit="dashboard.updateStatus(connectTo, dashboard.userStatus)" novalidate>
               <h4><i class="fa fa-car"></i>Carpooling</h4>
@@ -71,7 +69,12 @@
 
           <h2 class="section-title"> Available Rooms</h2>
           <div class="white-box available-rooms">
-            <h3 ng-if="!dashboard.education.universityId">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available rooms around</h3>
+            <h3 ng-if="!dashboard.education.universityId && dashboard.initialized && dashboard.noUniversity">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available rooms around</h3>
+            <h4 ng-if="!dashboard.availableRooms.length && dashboard.education.universityId && dashboard.initialized">There is no available rooms in 100 miles radius around your campus
+              <small>
+                <a ui-sref="addRoom"><br/>Click here</a> to add room.
+              </small>
+            </h4>
             <slick dots="true" class="slider row" init-onload="true" data="dashboard.availableRooms" slides-to-show="3" slides-to-scroll="3" infinite="false" responsive="dashboard.breakpoints.availableRooms" ng-if="dashboard.availableRooms.length && dashboard.education.universityId">
               <!-- start room box -->
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 room" ng-repeat="room in dashboard.availableRooms track by $index">
@@ -105,13 +108,13 @@
 
           <h2 class="section-title">Students Looking</h2>
           <div class="white-box looking-for-room" >
-            <h3 ng-if="!dashboard.lookingRoom.length" >
+            <h3 ng-if="!dashboard.lookingRoom.length && dashboard.initialized && dashboard.education.universityId" >
               Currently no one is looking for a room, why don't you be the first?
               <small>
                 <a ui-sref="addNewLooking"><br/>Click here</a> to add looking.
               </small>
             </h3>
-            <h3 ng-if="!dashboard.education.universityId">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see students looking</h3>
+            <h3 ng-if="!dashboard.education.universityId && dashboard.initialized">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see students looking</h3>
             <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" infinite="false" data="dashboard.lookingRoom" ng-if="dashboard.lookingRoom.length && dashboard.education.universityId">
               <!-- start room box -->
               <div ng-if="looking.userId!=dashboard.me.id" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index">
@@ -148,7 +151,7 @@
             <h2 class="section-title"> My Posts - Available Room</h2>
 
             <div class="white-box my-listings">
-              <h3 ng-if="!dashboard.myRoomListings.length">
+              <h3 ng-if="!dashboard.myRoomListings.length && dashboard.initialized">
                 You don't have anything posted yet.
                 <small>
                   <a ui-sref="addNewLooking"><br/>Click here</a> to add looking.
@@ -208,7 +211,7 @@
             <h2 class="section-title"> My Posts - Looking</h2>
 
             <div class="white-box my-listings" >
-              <h3 ng-if="!dashboard.userLookings.length" >
+              <h3 ng-if="!dashboard.userLookings.length && dashboard.initialized" >
                 You don't have anything posted yet.
                 <small>
                   <a ui-sref="addNewLooking"><br/>Click here</a> to add looking.

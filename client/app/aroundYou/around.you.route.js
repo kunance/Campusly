@@ -15,14 +15,13 @@
         controller: 'aroundYouCtrl',
         controllerAs:'around',
         resolve:{
-          currentUser : getCurrentUser,
-          data : getData
+          currentUser : getCurrentUser
+          //,data : getData
         },
         authenticate: true,
         cache:false
       });
   }
-
 
   getCurrentUser.$inject = ['common', '$q'];
   function getCurrentUser(common, $q) {
@@ -33,12 +32,12 @@
     return deferred.promise;
   }
 
-  getData.$inject = ['common', 'currentUser', '$q'];
-  function getData(common, currentUser, $q) {
-    var edu = common.dataservice.getAllEducations(currentUser.id);
-    var adr = common.dataservice.getAllAddresses(currentUser.id);
-    return $q.all([edu.$promise, adr.$promise]);
-  }
+  //getData.$inject = ['common', 'currentUser', '$q'];
+  //function getData(common, currentUser, $q) {
+  //  var edu = common.dataservice.getAllEducations(currentUser.id);
+  //  var adr = common.dataservice.getAllAddresses(currentUser.id);
+  //  return $q.all([edu.$promise, adr.$promise]);
+  //}
 
 
 }());

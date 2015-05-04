@@ -24,7 +24,10 @@
   ])
     .config(configuration)
     .run(run)
-    .factory('authInterceptor', authInterceptor);
+    .factory('requestNotificationChannel', requestNotificationChannel)
+    .factory('authInterceptor', authInterceptor)
+    .factory('busyInterceptor', busyInterceptor)
+    .factory('requestInterceptor', requestInterceptor);
 
   configuration.$inject = ['$urlRouterProvider', '$locationProvider', '$httpProvider', '$uiViewScrollProvider'];
   function configuration($urlRouterProvider, $locationProvider, $httpProvider, $uiViewScrollProvider) {
@@ -33,15 +36,15 @@
     $locationProvider.html5Mode(true);
     $uiViewScrollProvider.useAnchorScroll();
     $httpProvider.interceptors.push('authInterceptor');
+    $httpProvider.interceptors.push('requestInterceptor');
+    $httpProvider.interceptors.push('busyInterceptor');
     $locationProvider.hashPrefix('!');
-    $httpProvider.interceptors.push(requestInterceptor);
   }
 
-  authInterceptor.$inject = ['$rootScope', '$q', '$cookieStore', '$injector', '$location'];
-  function authInterceptor($rootScope, $q, $cookieStore, $injector, $location) {
+  authInterceptor.$inject = ['$q', '$cookieStore', '$injector'];
+  function authInterceptor($q, $cookieStore, $injector) {
     var state;
     return {
-      // Add authorization token to headers
       request: function (configuration) {
         configuration.headers = configuration.headers || {};
         if ($cookieStore.get('token')) {
@@ -50,11 +53,9 @@
         return configuration;
       },
 
-      // Intercept 401s and redirect you to login
       responseError: function (response) {
         if (response.status === 401) {
           (state || (state = $injector.get('$state'))).go('login');
-          // remove any stale tokens
           $cookieStore.remove('token');
           return $q.reject(response);
         }
@@ -65,49 +66,93 @@
     };
   }
 
-  requestInterceptor.$inject = ['$q'];
-  function requestInterceptor($q) {
+  requestNotificationChannel.$inject = ['$rootScope'];
+  function requestNotificationChannel ($rootScope) {
+    var _START_REQUEST_ = '_START_REQUEST_';
+    var _END_REQUEST_ = '_END_REQUEST_';
+
+    var requestStarted = function() {
+      $rootScope.$broadcast(_START_REQUEST_);
+    };
+    var requestEnded = function() {
+      $rootScope.$broadcast(_END_REQUEST_);
+    };
+    var onRequestStarted = function($scope, handler){
+      $scope.$on(_START_REQUEST_, function(event){
+        handler();
+      });
+    };
+    var onRequestEnded = function($scope, handler){
+      $scope.$on(_END_REQUEST_, function(event){
+        handler();
+      });
+    };
+
     return {
-      'request': function (configuration) {
-        // do something on success
-        // start with 30 seconds for default timeout value when calling any network dependent service such as db or elastic search
-        configuration.timeout = 300000;
-        return configuration;
+      requestStarted:  requestStarted,
+      requestEnded: requestEnded,
+      onRequestStarted: onRequestStarted,
+      onRequestEnded: onRequestEnded
+    };
+  }
+
+  busyInterceptor.$inject = ['$q', 'requestNotificationChannel', '$injector'];
+  function busyInterceptor ($q, requestNotificationChannel, $injector) {
+    var $http;
+
+    return {
+      request: function (config) {
+        requestNotificationChannel.requestStarted();
+        return config;
       },
 
-      'requestError': function (rejection) {
-        // do something on error
-//				if (canRecover(rejection)) {
-//					return responseOrNewPromise
-//				}
-        return $q.reject(rejection);
-      },
-
-      'response': function (response) {
-        // do something on success
+      response: function (response) {
+        $http = $http || $injector.get('$http');
+        if ($http.pendingRequests.length < 1) {
+          requestNotificationChannel.requestEnded();
+        }
         return response;
       },
 
-      'responseError': function (response) {
-        //console.log('RESPONSE ERROR: ', response);
+      responseError: function(response) {
+        $http = $http || $injector.get('$http');
+        if ($http.pendingRequests.length < 1) {
+          requestNotificationChannel.requestEnded();
+        }
         return $q.reject(response);
       }
     };
   }
 
-  run.$inject=['$rootScope', '$state', 'Auth', '$stateParams', 'common', '$location'];
-  function run($rootScope, $state, Auth, $stateParams, common, $location) {
-    // Redirect to login if route requires auth and you're not logged in
+  requestInterceptor.$inject = ['$q'];
+  function requestInterceptor($q) {
+    return {
+      'request': function (configuration) {
+        configuration.timeout = 300000;
+        return configuration;
+      },
+
+      'requestError': function (rejection) {
+        return $q.reject(rejection);
+      },
+
+      'response': function (response) {
+        return response;
+      },
+
+      'responseError': function (response) {
+        return $q.reject(response);
+      }
+    };
+  }
+
+  run.$inject=['$rootScope', 'common', '$location'];
+  function run($rootScope, common, $location) {
     $rootScope.$on('$stateChangeStart', function (event, next) {
-      //console.log('Current state: ', $state.current.name);
-      //console.log('Event: ', event);
-      //console.log('Next: ', next);
-      //  common.logger.info('Navigating to ' + next.url); // Used to help understand where we navigate to
       if (next.authenticate) {
         common.Auth.isLoggedInAsync(function (loggedIn) {
           if (!loggedIn) {
-            $location.path('/');
-            // $state.go('/');
+            $location.path('/login');
           }
         });
       }

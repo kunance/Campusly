@@ -67,19 +67,19 @@
 
 
 
-          <div ng-if="!around.me.shareProfile && (around.address.streetAddress.id || around.aroundYou.length)">
+          <div ng-if="around.initialized && !around.me.shareProfile && (around.address.streetAddress.id || around.aroundYou.length)">
             <h3>Please <a ui-sref="settings({focus:'allowConnect'})">update your privacy preferences</a> to connect with students around you.</h3>
           </div>
 
-          <div ng-if="!around.address.streetAddress.id && around.me.shareProfile">
+          <div ng-if="around.initialized && !around.address.streetAddress.id && around.me.shareProfile">
           <h3>Please <a ui-sref="editProfile({focus:'updateAddress'})">update your current address</a> to connect with students around you.</h3>
           </div>
 
-          <div ng-if="!around.address.streetAddress.id && !around.me.shareProfile">
+          <div ng-if="around.initialized && !around.address.streetAddress.id && !around.me.shareProfile">
             <h3>Please <a ui-sref="settings({focus:'allowConnect'})">update your privacy</a> preferences and <a ui-sref="editProfile({focus:'updateAddress'})">add your current address</a> to connect with students around you.</h3>
           </div>
 
-          <div ng-if="!around.aroundYou.length && around.me.shareProfile && around.address.streetAddress.id">
+          <div ng-if="around.initialized && !around.aroundYou.length && around.me.shareProfile && around.address.streetAddress.id">
             <h3>There are no students around you right now.</h3>
           </div>
 
@@ -119,7 +119,7 @@
                   </div>
 
                     <div style="text-align: center; display: inline-block;width: 100%; padding-top: 10px">
-                      <a id="facebookPM" ng-href="{{arYou.facebook}}" ng-if="arYou.facebook" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
+                      <a id="facebookPM" ng-href="{{arYou.facebook}}" ng-class="{'interested': arYou.facebook, 'not-interested':!arYou.facebook}" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
                       <script type="text/javascript" ng-if="arYou.facebook">
                         mixpanel.track_links("#facebookPM", "Facebook PM sent - around you");
                         mixpanel.people.increment('Facebook PM sent - around you');

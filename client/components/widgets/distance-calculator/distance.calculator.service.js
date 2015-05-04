@@ -6,9 +6,9 @@
     .module('app.widgets')
     .service('distanceCalculator', distanceCalculator);
 
-  distanceCalculator.$inject = ['uiGmapGoogleMapApi', '$q'];
+  distanceCalculator.$inject = ['uiGmapGoogleMapApi', '$q', '$timeout', '$interval'];
 
-  function distanceCalculator (uiGmapGoogleMapApi, $q) {
+  function distanceCalculator (uiGmapGoogleMapApi, $q, $timeout, $interval) {
     var maps = initializeMaps();
 
     var service = {
@@ -36,8 +36,15 @@
             if (status == google.maps.DirectionsStatus.OK) {
               deferred.resolve(response.routes[0].legs[0][DurDis]);
             } else {
-              deferred.reject('Error occurred while trying to calculate distance'+status);
-            }
+              var repeat = $interval(function () {
+                directionsService.route(request, function (response, status) {
+                  if (status == google.maps.DirectionsStatus.OK) {
+                    deferred.resolve(response.routes[0].legs[0][DurDis]);
+                    $interval.cancel(repeat);
+                  }
+                })
+              },1000);
+              }
           });
       })
         .catch(function (err) {
@@ -50,10 +57,13 @@
       var deferred = $q.defer();
       var modes = ['DRIVING', 'WALKING', 'BICYCLING'];
       var unitSystem = 'IMPERIAL';
-      var promises = [];
-      for (var i = 0; i < modes.length; i += 1) {
-        promises.push(calculate(src, dest, modes[i], unitSystem, DurDis));
-      }
+
+     var driving = calculate(src, dest, 'DRIVING', unitSystem, DurDis);
+     var walking = calculate(src, dest, 'WALKING', unitSystem, DurDis);
+     var bicycling = calculate(src, dest, 'BICYCLING', unitSystem, DurDis);
+
+     var promises = [driving, walking, bicycling];
+
       $q.all(promises).then(function (results) {
         var response = {};
         _(results).forEach(function (result) {
@@ -63,7 +73,6 @@
       }).catch(function (error) {
         console.log('error in calculation', error);
       });
-
       return deferred.promise;
    }
 
@@ -83,7 +92,7 @@
           deferred.resolve(obj);
         })
           .catch(function (err) {
-            console.log('error calculating', err);
+            console.log(err);
           });
       return deferred.promise;
    }
