@@ -176,7 +176,7 @@
                 <div class="list-item" ng-repeat="room in dashboard.myRoomListings">
                   <div class="row" >
 
-                    <a style="text-decoration: none" ui-sref="roomDetail({param:room.id})">
+                    <a style="text-decoration: none" ui-sref="roomDetail({param:room.id, allIds:dashboard.myRoomListingsIds})">
                       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
                         <div class="info" >
                           <span class='value'>{{room.monthlyPrice |currency}}</span>
@@ -235,7 +235,7 @@
                 <!-- start list box -->
                 <div class="list-item" ng-repeat="look in dashboard.userLookings">
                   <div class="row" >
-                    <a style="text-decoration: none" ui-sref="lookingDetail({param:look.id})">
+                    <a style="text-decoration: none" ui-sref="lookingDetail({param:look.id, allIds:dashboard.myLookingsIds})">
                       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
                         <div class="info">
                           <span class='value'>{{look.maxMonthlyRent |currency}}</span>

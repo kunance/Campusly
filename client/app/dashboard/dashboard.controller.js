@@ -37,6 +37,14 @@
           distance: 100, place: {type: 'univ', id: vm.education.universityId}
         }
       };
+      vm.myRoomListingsIds = [];
+      angular.forEach(vm.myRoomListings, function (myRoom) {
+        vm.myRoomListingsIds.push(myRoom.id);
+      });
+      vm.myLookingsIds = [];
+      angular.forEach(vm.userLookings, function (myLookings) {
+        vm.myLookingsIds.push(myLookings.id);
+      });
       vm.sortOrder = 'ascending';
       vm.sortBy = 'availableMoveIn';
       RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: vm.education.universityId, limit: 9})
