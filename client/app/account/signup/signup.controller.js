@@ -18,9 +18,11 @@
       pageTitle:'Campusly Sign-up',
       pageDescription:'Free Sign-up for Campusly'
     };
+
     if(window.Gdistinct_id) {
       mixpanel.track("sign up");
     }
+
     vm.register = function (form) {
       vm.submitted = true;
       if (form.$valid) {

@@ -14,7 +14,7 @@
     };
 
     if(window.Gdistinct_id) {
-      mixpanel.track("landing page", {distinct: Gdistinct_id});
+      mixpanel.track("landing page");
     }
 
   }

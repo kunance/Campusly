@@ -12,18 +12,18 @@
         </div>
       </div>
 
-      <div class="row searchAndSortBox">
+      <div class="row searchAndSortBox" ng-if="rooms.education.universityId">
 
         <!-- Search -->
 
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-show="!rooms.showSearch">
-          <button class="btn-rented-medium secondary" ng-click="rooms.showSearch=!rooms.showSearch" ng-show="!rooms.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Open Search</button>
-          <button class="btn-rented-medium secondary" ng-click="rooms.showSearch=!rooms.showSearch" ng-show="rooms.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Close Search</button>
+          <button class="btn-rented-medium secondary" ng-click="rooms.showSearch=!rooms.showSearch" ng-show="!rooms.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Search</button>
+          <button class="btn-rented-medium secondary" ng-click="rooms.showSearch=!rooms.showSearch" ng-show="rooms.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Close</button>
           <button style="margin-top: 5px" class="btn-rented-small reset" id="search" name="search" ng-click="rooms.clearSearchAndSearch(false)">Reset</button>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="rooms.showSearch">
-          <button class="btn-rented-medium secondary" ng-click="rooms.showSearch=!rooms.showSearch" ng-show="!rooms.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Open Search</button>
-          <button class="btn-rented-medium secondary" ng-click="rooms.showSearch=!rooms.showSearch" ng-show="rooms.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Close Search</button>
+          <button class="btn-rented-medium secondary" ng-click="rooms.showSearch=!rooms.showSearch" ng-show="!rooms.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Search</button>
+          <button class="btn-rented-medium secondary" ng-click="rooms.showSearch=!rooms.showSearch" ng-show="rooms.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Close</button>
           <button style="margin-top: 5px" class="btn-rented-small reset" id="search" name="search" ng-click="rooms.clearSearchAndSearch(false)">Reset</button>
           <div ng-include=" 'app/rooms/searchCriteria.html' "></div>
         </div>
@@ -49,7 +49,9 @@
       <!-- Main room view -->
 
       <div class="row">
-        <h3 ng-if="!rooms.education.universityId && rooms.initialized">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available rooms around</h3>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-if="!rooms.education.universityId && rooms.initialized">
+        <h3>Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available rooms</h3>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-if="rooms.education.universityId">
           <slick dots="true" class="slider" init-onload="true" data="rooms.groups" slides-to-show="1" slides-to-scroll="1" >
             <div ng-repeat="group in rooms.groups" class="row">

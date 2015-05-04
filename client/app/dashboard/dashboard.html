@@ -13,19 +13,27 @@
           <div class="white-box interested-box">
             <form name="connectTo" ng-submit="dashboard.updateStatus(connectTo, dashboard.userStatus)" novalidate>
               <h4><i class="fa fa-car"></i>Carpooling</h4>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.carpoolingToCampus">To Campus</label>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.carpoolingFromCampus">From Campus</label>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.carpoolingForGroceries">For Groceries</label>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.carpoolingForRoadtrip">Roadtrip</label>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.carpoolingSplit">Split a Uber/Lyft</label>
+              <label class="checkbox"><input id="c2c" type="checkbox" ng-model="dashboard.userStatus.carpoolingToCampus">To Campus</label>
+              <label class="checkbox"><input id="cfc" type="checkbox" ng-model="dashboard.userStatus.carpoolingFromCampus">From Campus</label>
+              <label class="checkbox"><input id="cfg" type="checkbox" ng-model="dashboard.userStatus.carpoolingForGroceries">For Groceries</label>
+              <label class="checkbox"><input id="cfrt" type="checkbox" ng-model="dashboard.userStatus.carpoolingForRoadtrip">Roadtrip</label>
+              <label class="checkbox"><input id="csplit" type="checkbox" ng-model="dashboard.userStatus.carpoolingSplit">Split a Uber/Lyft</label>
+
               <h4><i class="fa fa-child"></i>Walking</h4>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.walkingToCampus">To Campus</label>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.walkingFromCampus">From Campus</label>
+              <label class="checkbox"><input id="w2c" type="checkbox" ng-model="dashboard.userStatus.walkingToCampus">To Campus</label>
+              <label class="checkbox"><input id="wfc" type="checkbox" ng-model="dashboard.userStatus.walkingFromCampus">From Campus</label>
+
               <h4><i class="fa fa-users"></i>Meeting Up</h4>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.meetForHangout">Hangout</label>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.meetForStudy">Study Group</label>
-              <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.meetForEvents">Campus Events</label>
-              <button class="btn btn-primary btn-block" type="submit">Update My Status</button>
+              <label class="checkbox"><input id="hout" type="checkbox" ng-model="dashboard.userStatus.meetForHangout">Hangout</label>
+              <label class="checkbox"><input id="sg" type="checkbox" ng-model="dashboard.userStatus.meetForStudy">Study Group</label>
+              <label class="checkbox"><input id="ce" type="checkbox" ng-model="dashboard.userStatus.meetForEvents">Campus Events</label>
+
+              <button id="UpdateMyStatus" class="btn btn-primary btn-block" type="submit">Update My Status</button>
+              <script type="text/javascript">
+                mixpanel.track_forms("#UpdateMyStatus", "Update My Status");
+                mixpanel.people.increment('Update My Status');
+              </script>
+
             </form>
           </div>
           <!-- Create a post -->
@@ -69,12 +77,14 @@
 
           <h2 class="section-title"> Available Rooms</h2>
           <div class="white-box available-rooms">
-            <h3 ng-if="!dashboard.education.universityId && dashboard.initialized && dashboard.noUniversity">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available rooms around</h3>
+
+            <h3 ng-if="!dashboard.education.universityId && dashboard.initialized && dashboard.noUniversity">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available rooms</h3>
             <h4 ng-if="!dashboard.availableRooms.length && dashboard.education.universityId && dashboard.initialized">There is no available rooms in 100 miles radius around your campus
               <small>
                 <a ui-sref="addRoom"><br/>Click here</a> to add room.
               </small>
             </h4>
+
             <slick dots="true" class="slider row" init-onload="true" data="dashboard.availableRooms" slides-to-show="3" slides-to-scroll="3" infinite="false" responsive="dashboard.breakpoints.availableRooms" ng-if="dashboard.availableRooms.length && dashboard.education.universityId">
               <!-- start room box -->
               <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 room" ng-repeat="room in dashboard.availableRooms track by $index">
@@ -100,15 +110,17 @@
               </div>
               <!-- end room box -->
             </slick>
-            <hr>
-            <a class="pull-right btn-rented-event view-all" ui-sref="rooms">View All</a>
+            <hr ng-if="dashboard.education.universityId">
+            <a class="pull-right btn-rented-event view-all" ui-sref="rooms" ng-if="dashboard.education.universityId">View All</a>
           </div>
 
           <!-- Looking -->
 
           <h2 class="section-title">Students Looking</h2>
           <div class="white-box looking-for-room" >
+
             <h3 ng-if="!dashboard.lookingRoom.length && dashboard.initialized && dashboard.education.universityId" >
+
               Currently no one is looking for a room, why don't you be the first?
               <small>
                 <a ui-sref="addNewLooking"><br/>Click here</a> to add looking.
@@ -141,8 +153,8 @@
               </div>
               <!-- end room box -->
             </slick>
-            <hr>
-            <a class="pull-right btn-rented-event view-all" ui-sref="looking">View All</a>
+            <hr ng-if="dashboard.education.universityId">
+            <a class="pull-right btn-rented-event view-all" ui-sref="looking" ng-if="dashboard.education.universityId">View All</a>
           </div>
 
           <!-- My Available Rooms Posts - Hides if no Looking posts-->

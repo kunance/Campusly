@@ -38,19 +38,18 @@
         };
       };
 
-      vm.setQueryAndSearch= function (q) {
-        query = q;
-        UserResource.aroundMe({distance:(1609 * (vm.me.experianIdToken || 1)), limit: 80, query:query}, function (aroundYou) {
-          vm.aroundYou = aroundYou;
-          vm.groups = vm.aroundYou.inGroupsOf(8);
-        }, function (err) {
-          common.logger.error('something went wrong! ',err);
-        });
-        orderSliderButtons()
-     };
+    vm.setQueryAndSearch= function (q) {
+      query = q;
+      UserResource.aroundMe({distance:(1609 * (vm.me.experianIdToken || 1)), limit: 80, query:query}, function (aroundYou) {
+        vm.aroundYou = aroundYou;
+        vm.groups = vm.aroundYou.inGroupsOf(8);
+      }, function (err) {
+        common.logger.error('something went wrong! ',err);
+      });
+      orderSliderButtons()
+   };
 
-      vm.setQueryAndSearch();
-  }
+    vm.setQueryAndSearch();
 
     function orderSliderButtons() {
       setTimeout(function() {
@@ -74,6 +73,6 @@
 
     mixpanel.track("aroundYou grid view");
     mixpanel.people.increment('aroundYou grid view');
+    }
   }
-
 }());
