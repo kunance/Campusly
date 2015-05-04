@@ -28,7 +28,7 @@
     $rootScope.showPassword = $rootScope.showPassword || false;
 
     var distinct_id = mixpanel.get_distinct_id();
-    mixpanel.track("sign in",{distinct:distinct_id});
+    mixpanel.track("sign in");
 
     $scope.$parent.seo = {
       pageTitle: 'Campusly Sign-in',

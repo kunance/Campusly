@@ -12,9 +12,13 @@
       {String.prototype.startsWith = function (str){return this.indexOf(str) === 0;};}
   if(window.location.href.startsWith('https://campusly.org') || window.location.href.startsWith('http://campusly.org')
     || window.location.href.startsWith('https://www.campusly.org') || window.location.href.startsWith('http://www.campusly.org'))
-      {mixpanel.init("bd202854d110bac5e72d7e034abdae01");}
+      {mixpanel.init("bd202854d110bac5e72d7e034abdae01", {'loaded':function(){
+          var distinct_id = mixpanel.get_distinct_id();}
+      });}
     else
-      {mixpanel.init("41a02b2df2e263307327276d0ed559ec");}</script><!-- end Mixpanel -->
+      {mixpanel.init("41a02b2df2e263307327276d0ed559ec", {'loaded':function(){
+        var distinct_id = mixpanel.get_distinct_id();}
+      });}</script><!-- end Mixpanel -->
     <script src="//cdn.optimizely.com/js/2780703231.js"></script> <!-- Optimizely code snippet -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
