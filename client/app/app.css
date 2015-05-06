@@ -154,10 +154,10 @@ Main image and style for above the fold on the home-page
 Style for How It Works section
 ========================================================================== */
 .howitworks {
-  background: url(../assets/images/howitworks/bg-ucslb.jpg);
+  background: url(../assets/images/howitworks/moving.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 600px;
+  min-height: 800px;
 }
 
 /* ==========================================================================
@@ -548,12 +548,12 @@ Medium Rented button delete - hover and active
 Large Rented button
 ========================================================================== */
 .btn-rented-large {
-  font-size: 18px;
+  font-size: 1.1em;
   text-transform: uppercase;
   border-radius: 25px;
   font-weight: bold;
   width: 100%;
-  height: 50px;
+  height: 2.5em;
   text-align: center;
   margin: 0 auto;
   padding: 8px 12px;
@@ -660,7 +660,15 @@ Padding for lead button
 Padding for the three marketing icons
 ========================================================================== */
 .mkt-icons {
-  padding-bottom: 70px;
+  padding-bottom: 30px;
+}
+
+.mkt-icons i {
+  color: #333333;
+}
+
+.mkt-icons h2 {
+  color: #333333;
 }
 
 /* ==========================================================================
