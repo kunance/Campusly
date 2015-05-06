@@ -13,25 +13,28 @@
           <div class="white-box interested-box">
             <form name="connectTo" ng-submit="dashboard.updateStatus(connectTo, dashboard.userStatus)" novalidate>
               <h4><i class="fa fa-car"></i>Carpooling</h4>
-              <label class="checkbox"><input id="c2c" type="checkbox" ng-model="dashboard.userStatus.carpoolingToCampus">To Campus</label>
-              <label class="checkbox"><input id="cfc" type="checkbox" ng-model="dashboard.userStatus.carpoolingFromCampus">From Campus</label>
-              <label class="checkbox"><input id="cfg" type="checkbox" ng-model="dashboard.userStatus.carpoolingForGroceries">For Groceries</label>
-              <label class="checkbox"><input id="cfrt" type="checkbox" ng-model="dashboard.userStatus.carpoolingForRoadtrip">Roadtrip</label>
-              <label class="checkbox"><input id="csplit" type="checkbox" ng-model="dashboard.userStatus.carpoolingSplit">Split a Uber/Lyft</label>
+              <label class="checkbox"><input id="c2c" type="checkbox" ng-model="dashboard.userStatus.carpoolingToCampus" value="Carpool From Campus">To Campus</label>
+              <label class="checkbox"><input id="cfc" type="checkbox" ng-model="dashboard.userStatus.carpoolingFromCampus" value="Carpool To Campus">From Campus</label>
+              <label class="checkbox"><input id="cfg" type="checkbox" ng-model="dashboard.userStatus.carpoolingForGroceries" value="Carpool For Groceries">For Groceries</label>
+              <label class="checkbox"><input id="cfrt" type="checkbox" ng-model="dashboard.userStatus.carpoolingForRoadtrip" value="Roadtrip">Roadtrip</label>
+              <label class="checkbox"><input id="csplit" type="checkbox" ng-model="dashboard.userStatus.carpoolingSplit" value="Split a Ride">Split a Uber/Lyft</label>
 
               <h4><i class="fa fa-child"></i>Walking</h4>
-              <label class="checkbox"><input id="w2c" type="checkbox" ng-model="dashboard.userStatus.walkingToCampus">To Campus</label>
-              <label class="checkbox"><input id="wfc" type="checkbox" ng-model="dashboard.userStatus.walkingFromCampus">From Campus</label>
+              <label class="checkbox"><input id="w2c" type="checkbox" ng-model="dashboard.userStatus.walkingToCampus" value="Walk To Campus">To Campus</label>
+              <label class="checkbox"><input id="wfc" type="checkbox" ng-model="dashboard.userStatus.walkingFromCampus" value="Walk From Campus">From Campus</label>
 
               <h4><i class="fa fa-users"></i>Meeting Up</h4>
-              <label class="checkbox"><input id="hout" type="checkbox" ng-model="dashboard.userStatus.meetForHangout">Hangout</label>
-              <label class="checkbox"><input id="sg" type="checkbox" ng-model="dashboard.userStatus.meetForStudy">Study Group</label>
-              <label class="checkbox"><input id="ce" type="checkbox" ng-model="dashboard.userStatus.meetForEvents">Campus Events</label>
+              <label class="checkbox"><input id="hout" type="checkbox" ng-model="dashboard.userStatus.meetForHangout" value="Hangout">Hangout</label>
+              <label class="checkbox"><input id="sg" type="checkbox" ng-model="dashboard.userStatus.meetForStudy" value="Study Groups">Study Group</label>
+              <label class="checkbox"><input id="ce" type="checkbox" ng-model="dashboard.userStatus.meetForEvents" value="Campus Events">Campus Events</label>
 
               <button id="UpdateMyStatus" class="btn btn-primary btn-block" type="submit">Update My Status</button>
               <script type="text/javascript">
-                mixpanel.track_forms("#UpdateMyStatus", "Update My Status");
-                mixpanel.people.increment('Update My Status');
+                $("#target").submit(function( event ) {
+                  var value = $( "input:checkbox:checked" ).val();
+                  mixpanel.track("Update My Status", {"Status Change":value});
+                  mixpanel.people.increment('Update My Status');
+                });
               </script>
 
             </form>

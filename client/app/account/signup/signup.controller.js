@@ -39,7 +39,6 @@
                 .then(function () {
                   vm.loading = false;
                   vm.showValidationMessage = true;
-                }).catch(function () {
                   mixpanel.track("sign up - send confirm email",{distinct:Gdistinct_id});
                   mixpanel.alias(vm.user.id);
                 });
