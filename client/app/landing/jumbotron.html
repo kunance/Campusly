@@ -3,7 +3,7 @@
 <div class="jumbotron">
   <div class="container">
 
-    <div class="row">
+    <div class="row" ng-if="!landing.showValidationMessage && !landing.loading">
 
       <section class="text-box-landing">
 
@@ -11,7 +11,7 @@
 
       </section>
 
-      <section class="white-box-signup" ng-if="!landing.showValidationMessage && !landing.loading">
+      <section class="white-box-signup">
 
         <form class="main-form-signup" name="form" ng-submit="landing.register(form)" novalidate>
 
@@ -44,7 +44,7 @@
 
     <div my-spinner title="Sending verification e-mail. Please wait..." ng-if="landing.loading"></div>
 
-    <section class="login-box white-box " style="text-align: center" ng-if="landing.showValidationMessage">
+    <section class="login-box white-box-noshadow" style="text-align: center" ng-if="landing.showValidationMessage">
       <h2 class="heading">Hello&nbsp{{landing.user.firstname}},</h2>
       <i class="fa fa-envelope-o fa-5x"></i>
       <h4>Your account has been created. <br>Please verify your university email address <br>in the next 30min. <br><br>Verification email has been sent to {{landing.user.email}}.</h4>
