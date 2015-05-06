@@ -121,9 +121,13 @@ label + label {
 .main {
   min-height: 100%;
   position: relative;
-  background: url(../../../assets/images/jumbotron/bg-ucsdC.jpg);
+  background:linear-gradient(
+    rgba(0, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.35)
+  ), url(../../../assets/images/jumbotron/students.jpg);
   background-size: cover;
   padding-bottom: 50px;
+  height: 800px;
 }
 
 .main-form {
@@ -163,6 +167,46 @@ label + label {
   margin-top: 25px;
 }
 .main-form .options .link {
+  color: #333333;
+}
+
+.main-form-signup {
+
+}
+.main-form-signup .lbl {
+  display: block;
+}
+.main-form-signup .lbl input {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: solid 2px #e4e4e4;
+  padding: 10px 0;
+  font-family: "Proxima Nova", sans-serif;
+}
+.main-form-signup .lbl input:focus {
+  border-color: #f7953d;
+}
+.main-form-signup .lbl input.has-error {
+  border-bottom: solid 2px #f64343;
+}
+
+.main-form-signup .lbl:nth-of-type(n+2) {
+  margin-top: 15px;
+}
+.main-form-signup .options {
+  margin-top: 2em;
+  text-align: center;
+}
+.main-form-signup .options .submit {
+  width: 100%;
+}
+.main-form-signup .options span, .main-form-signup .options .link {
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 25px;
+}
+.main-form-signup .options .link {
   color: #333333;
 }
 
@@ -211,7 +255,10 @@ label + label {
   /*background: linear-gradient(to bottom,  #55a5b2 0%,#119bad 100%);*/
   /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#55a5b2', endColorstr='#119bad',GradientType=0 );*/
 
-  background-image: url(./../../../assets/images/jumbotron/nav.jpg);
+  background-image:linear-gradient(
+    rgba(0, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.35)
+  ), url(./../../../assets/images/jumbotron/nav.jpg);
 
   background-position: center;
   background-size: cover;
@@ -264,15 +311,88 @@ label + label {
 .login-box {
   max-width: 550px;
   width: 100%;
-  margin: 50px auto 0px auto;
+  margin: 100px auto 0px auto;
   padding: 30px 50px !important;
 }
 
-.landing-signUp-box {
-  max-width: 550px;
+.white-box-login {
+  border-radius: 5px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: none;
+  position: relative;
+}
+
+.white-box-signup {
+  margin-top: 15%;
+  border-radius: 5px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: none;
+  position: relative;
+  float: right;
+  width: 35%;
+}
+
+.text-box-landing {
+  margin-top: 20%;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: none;
+  position: relative;
+  float: left;
+  width: 50%;
+  text-align: center;
+  color: white;
+}
+
+.jumbotron .text-box-landing h1 {
+  font-size: 3.4em;
+}
+
+.value-landing {
+  margin-top: 20%;
+  border-radius: 5px;
+  padding: 20px;
+  position: relative;
+  float: left;
+  width: 50%;
+  text-align: center;
+  color: #333333;
+}
+
+.value-landing-desktop {
+  padding: 20px;
+  position: relative;
+  float: right;
+  width: 50%;
+  height: 800px;
+}
+
+.value-landing-desktop img {
+  height: 800px;
+}
+
+.value-landing-housing {
+  margin-top: 3%;
+  border-radius: 5px;
+  padding: 20px;
+  position: relative;
   width: 100%;
-  margin: 140px auto 0px auto;
-  padding: 0px 50px 30px !important;
+  text-align: center;
+  margin-left: 3%;
+  color: #333333;
+}
+
+.value-landing-laptop {
+  padding: 20px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.value-landing-laptop img {
+  height: 700px;
 }
 
 .login-box .social {
@@ -343,3 +463,291 @@ label + label {
   color: #f64343;
 }
 
+/* iPhone 2G to 4S
+-------------------------------------------------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+
+  .main-form .options .btn-rented-large {
+    width: 200px;
+  }
+
+  .white-box-signup {
+    float: none;
+    width: 100%;
+  }
+
+  .jumbotron .text-box-landing {
+    width: 100%;
+  }
+
+  .jumbotron .text-box-landing h1 {
+    font-size: 2em;
+  }
+
+  .value-landing {
+    float: none;
+    width: 100%;
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  .value-landing-desktop {
+    float: none;
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: -300px;
+  }
+
+  .value-landing-desktop img {
+    height: 30%;
+  }
+
+  .value-landing-housing {
+    margin-left: 0px;
+  }
+
+  .value-landing-laptop {
+    padding: 20px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+
+  .value-landing-laptop img {
+    height: 160px;
+  }
+
+}
+
+/* iPhone 5/5S
+-------------------------------------------------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px) {
+
+  .white-box-signup {
+    margin-top: 250px;
+    float: none;
+    width: 100%;
+  }
+
+  .jumbotron .text-box-landing {
+    width: 100%;
+  }
+
+  .jumbotron .text-box-landing h1 {
+    font-size: 2em;
+  }
+
+  .value-landing {
+    float: none;
+    width: 100%;
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  .value-landing-desktop {
+    float: none;
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: -400px;
+    text-align: center;
+  }
+
+  .value-landing-desktop img {
+    height: 30%;
+  }
+
+  .value-landing-housing {
+    margin-left: 0px;
+  }
+
+  .value-landing-laptop {
+    padding: 20px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+
+  .value-landing-laptop img {
+    height: 160px;
+  }
+
+}
+
+/* iPhone 6
+-------------------------------------------------- */
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px) {
+
+  .white-box-signup {
+    margin-top: 250px;
+    float: none;
+    width: 100%;
+  }
+
+  .jumbotron .text-box-landing {
+    width: 100%;
+    margin-top: 50px;
+  }
+
+  .jumbotron .text-box-landing h1 {
+    font-size: 2.2em;
+  }
+
+  .value-landing {
+    float: none;
+    width: 100%;
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  .value-landing-desktop {
+    float: none;
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: -400px;
+    text-align: center;
+  }
+
+  .value-landing-desktop img {
+    height: 30%;
+  }
+
+  .value-landing-housing {
+    margin-left: 0px;
+  }
+
+  .value-landing-laptop {
+    padding: 20px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+
+  .value-landing-laptop img {
+    height: 185px;
+  }
+
+}
+
+/* iPhone 6 Plus
+-------------------------------------------------- */
+@media only screen
+and (min-device-width : 414px)
+and (max-device-width : 736px) {
+
+  .white-box-signup {
+    margin-top: 250px;
+    float: none;
+    width: 100%;
+  }
+
+  .jumbotron .text-box-landing {
+    width: 100%;
+    margin-top: 50px;
+  }
+
+  .jumbotron .text-box-landing h1 {
+    font-size: 2.2em;
+  }
+
+  .value-landing {
+    float: none;
+    width: 100%;
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  .value-landing-desktop {
+    float: none;
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: -400px;
+    text-align: center;
+  }
+
+  .value-landing-desktop img {
+    height: 40%;
+  }
+
+  .value-landing-housing {
+    margin-left: 0px;
+  }
+
+  .value-landing-laptop {
+    padding: 20px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+
+  .value-landing-laptop img {
+    height: 207px;
+  }
+
+}
+
+/* iPad and iPad-Mini (all gen)
+-------------------------------------------------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+
+  .white-box-signup {
+    margin-top: 150px;
+    width: 45%;
+  }
+
+  .jumbotron .text-box-landing h1 {
+    margin-top: 35%;
+  }
+
+  .jumbotron .text-box-landing h1 {
+    font-size: 2.5em;
+  }
+
+  .value-landing {
+    margin-top: 20%;
+    text-align: center;
+  }
+
+  .value-landing-desktop {
+    margin-top: 0px;
+    margin-bottom: -400px;
+    text-align: center;
+  }
+
+  .value-landing-desktop img {
+    height: 70%;
+  }
+
+  .value-landing-housing {
+    margin-left: 0px;
+  }
+
+  .value-landing-laptop {
+    padding: 20px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+
+  .value-landing-laptop img {
+    height: 384px;
+  }
+
+}
+
+/* Large desktop monitors
+-------------------------------------------------- */
+@media (min-device-width: 1500px) {
+
+  .value-landing-desktop {
+    margin-right: -10%;
+  }
+
+}
