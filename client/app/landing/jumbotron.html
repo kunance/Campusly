@@ -3,53 +3,43 @@
 <div class="jumbotron">
   <div class="container">
 
-    <!--<div class="row  text-center lead-msg">-->
-      <!--<div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">-->
-        <!--<h1>The easiest way for students<br> to live and connect off-campus</h1>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="row text-center lead-img">-->
-      <!--<div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">-->
-        <!--<img class="img-responsive center-block" src="./assets/images/jumbotron/rented-HomepageGraph.png" />-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="row  text-center lead-btn">-->
-      <!--<div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">-->
-        <!--<a class="btn btn-rented-large primary" ui-sref="signup" role="button">Sign Up for Free</a>-->
-      <!--</div>-->
-    <!--</div>-->
-
     <div class="row">
-      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-sm-offset-8 col-md-offset-8 col-lg-offset-8">
-        <section class="landing-signUp-box white-box" ng-if="!landing.showValidationMessage && !landing.loading" style="float: right">
 
-          <form class="main-form" name="form" ng-submit="landing.register(form)" novalidate>
+      <section class="text-box-landing">
 
-            <label class="lbl">
-              <input type="text" name="firstname" ng-model="landing.user.firstname" placeholder="First name" ng-class="{'has-success': form.firstname.$valid && landing.submitted, 'has-error': form.firstname.$invalid && landing.submitted}" required/>
-            </label>
+        <h1>The easiest way for you to live and connect off-campus</h1>
 
-            <label class="lbl">
-              <input type="text" name="lastname" ng-model="landing.user.lastname" placeholder="Last name" ng-class="{'has-success': form.lastname.$valid && landing.submitted, 'has-error': form.lastname.$invalid && landing.submitted}" required/>
-            </label>
+      </section>
 
-            <label class="lbl">
-              <input type="email" name="email" ng-model="landing.user.email" ng-pattern="/\.edu$/"  placeholder="Your email address (.edu required)" ng-class="{ 'has-success': form.email.$valid && landing.submitted, 'has-error': form.email.$invalid && landing.submitted }" required>
-            </label>
+      <section class="white-box-signup" ng-if="!landing.showValidationMessage && !landing.loading">
 
-            <label class="lbl">
-              <input type="password" name="password" ng-model="landing.user.password" ng-minlength="8" placeholder="Password (minimum 8 characters)" ng-class="{ 'has-success': form.password.$valid && landing.submitted, 'has-error': form.password.$invalid && landing.submitted }" required>
-            </label>
+        <form class="main-form-signup" name="form" ng-submit="landing.register(form)" novalidate>
 
-            <div class="options">
-              <input type="submit" value="Sign me up!" class="btn-rented-large primary">
-              <span>Already have an account? <a class="link" ui-sref="login">Sign in</a></span>
-            </div>
+          <label class="lbl">
+            <input type="text" name="firstname" ng-model="landing.user.firstname" placeholder="First name" ng-class="{'has-success': form.firstname.$valid && landing.submitted, 'has-error': form.firstname.$invalid && landing.submitted}" required/>
+          </label>
 
-          </form>
+          <label class="lbl">
+            <input type="text" name="lastname" ng-model="landing.user.lastname" placeholder="Last name" ng-class="{'has-success': form.lastname.$valid && landing.submitted, 'has-error': form.lastname.$invalid && landing.submitted}" required/>
+          </label>
 
-        </section>
-      </div>
+          <label class="lbl">
+            <input type="email" name="email" ng-model="landing.user.email" ng-pattern="/\.edu$/"  placeholder="Your email address (.edu required)" ng-class="{ 'has-success': form.email.$valid && landing.submitted, 'has-error': form.email.$invalid && landing.submitted }" required>
+          </label>
+
+          <label class="lbl">
+            <input type="password" name="password" ng-model="landing.user.password" ng-minlength="8" placeholder="Password (minimum 8 characters)" ng-class="{ 'has-success': form.password.$valid && landing.submitted, 'has-error': form.password.$invalid && landing.submitted }" required>
+          </label>
+
+          <div class="options">
+            <input type="submit" value="Sign me up!" class="btn-rented-large primary">
+            <span>Already have an account? <a class="link" ui-sref="login">Sign in</a></span>
+          </div>
+
+        </form>
+
+      </section>
+
     </div>
 
     <div my-spinner title="Sending verification e-mail. Please wait..." ng-if="landing.loading"></div>

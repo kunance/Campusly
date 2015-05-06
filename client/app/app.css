@@ -140,18 +140,14 @@ img.center {
 Main image and style for above the fold on the home-page
 ========================================================================== */
 .jumbotron {
-  background: url(../assets/images/jumbotron/students.jpg);
+  background:linear-gradient(
+    rgba(0, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.35)
+  ), url(../assets/images/jumbotron/students.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   height: 800px;
   margin-top: -70px;
-}
-
-/* ==========================================================================
-Jumbotron header color as white
-========================================================================== */
-.jumbotron h1 {
-  color: #FFFFFF;
 }
 
 /* ==========================================================================
@@ -915,18 +911,6 @@ ul > li {
 
 }
 
-/* iPhone 2G to 4S
--------------------------------------------------- */
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 480px) {
-
-  .main-form .options .btn-rented-large {
-    width: 200px;
-  }
-
-}
-
 @media (min-width: 992px) {
   .featurette-heading {
     margin-top: 120px;
@@ -993,7 +977,8 @@ and (max-device-width : 480px) {
   }
 
   .jumbotron .lead-msg {
-    margin-top: 40px;
+    margin-top: 100px;
+    text-align: center;
   }
 
   body nav.dashboard-submenu ul li {
@@ -1250,7 +1235,7 @@ Dashboard styles
 div.main-wrapper {
   padding-top: 50px;
   padding-bottom: 50px;
-  background: #e8e8e8;
+  background: #f5f5f5;
   display: block;
   width: 100%;
   min-height: 1000px;
