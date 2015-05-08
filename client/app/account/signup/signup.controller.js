@@ -40,7 +40,7 @@
                   vm.loading = false;
                   vm.showValidationMessage = true;
                   mixpanel.track("sign up - send confirm email",{distinct:Gdistinct_id});
-                  mixpanel.alias(vm.user.id);
+                  mixpanel.alias(vm.user.email);
                 });
               Auth.logout();
           })

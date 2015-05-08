@@ -34,7 +34,7 @@
         common.Auth.createUser({
           firstname: vm.user.firstname,
           lastname: vm.user.lastname,
-          email: vm.user.email,
+          email: vm.user.email.toLowerCase(),
           password: vm.user.password
         })
           .then(function () {
@@ -45,7 +45,7 @@
                 vm.loading = false;
                 vm.showValidationMessage = true;
                 mixpanel.track("sign up - send confirm email",{distinct:Gdistinct_id});
-                mixpanel.alias(vm.user.id);
+                mixpanel.alias(vm.user.email);
               });
             Auth.logout();
           })
