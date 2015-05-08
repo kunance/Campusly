@@ -199,9 +199,9 @@ exports.getAllRoomListings = function(req, res, next) {
 
     univId = req.param("univId");
 
-    if (!univId) {
-      return res.status(400).send("can not determine distances from your university since unable to determine your university");
-    }
+    //if (!univId) {
+    //  return res.status(400).send("can not determine distances from your university since unable to determine your university");
+    //}
 
     // IMPORTANT you should search than sort when dealing with distance since sorting distance on all properties
     // before pruning the result set via search will become exponentially expensive as the property dataset grows
@@ -299,9 +299,9 @@ var _parseSearchCriteria = function(req, res, cb) {
     if (searchQuery.within) {
 
       // assumed searchQuery.within = { place: { type: 'univ', id: 'id" }, distance  since API only support that now
-      if(!searchQuery.within.place || !searchQuery.within.place.id || !searchQuery.within.distance) {
-        return cb( {status: 400, errorMsg: "You must provide a place id and distance when you try to search with a specific distance" } );
-      }
+      //if(!searchQuery.within.place || !searchQuery.within.place.id || !searchQuery.within.distance) {
+      //  return cb( {status: 400, errorMsg: "You must provide a place id and distance when you try to search with a specific distance" } );
+      //}
 
       propertiesWithin.withinUniversity(searchQuery.within.place.id, searchQuery.within.distance * miles2Meters,
         function (propertyIds) {
