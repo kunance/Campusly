@@ -78,7 +78,7 @@
       if(form.$valid) {
         //$scope.loading = true;
         Auth.login({
-          email: $scope.user.email,
+          email: $scope.user.email.toLowerCase(),
           password: $scope.user.password
         })
           .then(function () {

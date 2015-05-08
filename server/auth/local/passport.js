@@ -2,9 +2,10 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 function localAuthenticate(User, email, password, done) {
+  var finalEmail = email.toLowerCase();
   User.find({
     where: {
-      email: email.toLowerCase()
+      email: finalEmail
     }
   })
     .then(function(user) {

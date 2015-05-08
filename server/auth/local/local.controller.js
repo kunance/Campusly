@@ -17,11 +17,14 @@ var mixpanel = Mixpanel.init('bd202854d110bac5e72d7e034abdae01');
 // ********************* Mail ***********************
 
 exports.root = function(req, res, next) {
-
-  passport.authenticate('local', function (err, user, info) {
+  passport.authenticate('local', function (err, user, info){
     var error = err || info;
-    if (error) return res.status(401).send(error);
-    if (!user) return res.status(404).send({message: 'Something went wrong, please try again.'});
+    if (error) {
+      return res.status(401).send(error);
+    }
+    if (!user) {
+      return res.status(404).send({message: 'Something went wrong, please try again.'});
+    }
     var token = auth.signToken(user.id, user.role);
 
     //passing token + passport session used by facebook OAuth
@@ -31,8 +34,6 @@ exports.root = function(req, res, next) {
       }
        res.json({passport:user, token: token});
     });
-
-    //res.json({token: token});
 
   })(req, res, next)
 };

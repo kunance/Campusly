@@ -29,7 +29,7 @@
         common.Auth.createUser({
           firstname: vm.user.firstname,
           lastname: vm.user.lastname,
-          email: vm.user.email,
+          email: vm.user.email.toLowerCase(),
           password: vm.user.password
         })
           .then(function () {
