@@ -259,7 +259,7 @@ module.exports = {
       allowNull: false
       , validate: {
         isValidEmail: function (value) {
-          if(value.match(/\.edu$/) || value.match(/campusly.org$/)){
+          if((/\.edu$/.test(value.toLowerCase()) || (/campusly.org$/.test(value.toLowerCase())))){
             return true;
           }else{
             throw new Error('Only .edu e-mails are allowed!')

@@ -30,11 +30,14 @@
 
     vm.register = function (form) {
       vm.submitted = true;
+      if(form.email.$valid){
+        form.email.$setValidity('required',(/\.edu$/.test(vm.user.email.toLowerCase()) || (/campusly.org$/.test(vm.user.email.toLowerCase()))));
+      }
       if (form.$valid) {
         common.Auth.createUser({
           firstname: vm.user.firstname,
           lastname: vm.user.lastname,
-          email: vm.user.email,
+          email: vm.user.email.toLowerCase(),
           password: vm.user.password
         })
           .then(function () {

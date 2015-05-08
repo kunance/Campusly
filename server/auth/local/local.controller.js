@@ -45,7 +45,7 @@ exports.root = function(req, res, next) {
 exports.sendMailAddressConfirmationMail = function(req, res, next) {
   var id = req.params.userId;
   User.find({where:{
-      email: id
+      email: id.toLowerCase()
     }
   },
     '-salt -hashedPassword'
@@ -151,7 +151,7 @@ exports.resetPassword = function(req, res, next) {
   var email = String(req.body.email);
   var newPassword = String(req.body.newPassword);
 
-  User.find({where:{email: email}})
+  User.find({where:{email: email.toLowerCase()}})
     .then(function (user) {
       if (!user) {
         return res.status(403).send({ message: 'E-mail address ' + email + ' is not registered.' });
