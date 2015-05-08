@@ -36,9 +36,6 @@ exports.getRoomListing = function(req, res, next) {
 
   var creatorAttributes = ["email", "facebook"];
 
-  //console.log(req.params.sortBy);
-  //console.log(req.params.sortOrder);
-
   RoomListing.find({
     where: {
       id: req.param("id"), activeRoom:true
@@ -133,13 +130,6 @@ var _getAllRoomListings = function(req, res, searchCriteria, propertyIdsWithinSe
   })
     .then(function (roomListings) {
 
-      // bug  seemed to be fixed https://github.com/sequelize/sequelize/issues/1897
-      //if(roomListings && roomListings.length > limit) {
-      //  console.log("Room listings returned greater than limit");
-      //  // to work around bug   https://github.com/sequelize/sequelize/issues/1897
-      //  roomListings.length = limit;
-      //}
-
       roomListings.forEach(function (e, i, a) {
         var roomDetails = e.dataValues;
         var propertyDetails = e.relatedPropertyId.dataValues;
@@ -206,10 +196,7 @@ exports.getAllRoomListings = function(req, res, next) {
   var univId;
 
   if (sortBy && sortBy === "distanceToMyUniversity") {
-    //var userId = req.user.id;   // should be provide by my session
-    //if (!userId) {
-    //  return res.status(400).send("user id not in session");
-    //}
+
     univId = req.param("univId");
 
     if (!univId) {
