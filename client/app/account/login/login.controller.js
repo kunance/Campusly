@@ -86,6 +86,20 @@
               if (user.confirmedEmail) {
                   $scope.success = false;
                   $scope.showForm = false;
+                mixpanel.track("sign in success");
+                mixpanel.people.increment('sign in success');
+                mixpanel.identify(vm.me.id);
+                mixpanel.people.set_once({
+                  "$email": vm.me.email,
+                  "$first_name": vm.me.firstname,
+                  "$last_name": vm.me.lastname,
+                  "$created": vm.me.createdAt,
+                  "$phone": vm.me.phone,
+                  "$first_login": new Date()
+                });
+                mixpanel.people.set({
+                  "$last_login": new Date()
+                });
                 if($rootScope.redirectTo){
                   $state.go($rootScope.redirectTo.state, {param:$rootScope.redirectTo.value, allIds:$rootScope.redirectTo.value});
                 } else {
@@ -148,7 +162,6 @@
             $scope.errors = {resetPassword: 'Reset password mail has been sent to ' + $scope.user.email + '.'};
           })
           .catch(function (err) {
-            console.log(err);
             $scope.sendingEmail = false;
             $scope.pwdResetMailSend = false;
             $scope.errors = {verifiedEmail: err.data.message};
