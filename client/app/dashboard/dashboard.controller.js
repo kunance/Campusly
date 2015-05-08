@@ -58,7 +58,7 @@
           orderSliderButtons();
         })
         .catch(function () {
-          vm.noUniversity = true;
+          //vm.noUniversity = true;
         });
 
       Lookings.query({univId: vm.education.universityId, limit: 6})

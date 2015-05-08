@@ -81,7 +81,7 @@
           <h2 class="section-title"> Available Rooms</h2>
           <div class="white-box available-rooms">
 
-            <h3 ng-if="!dashboard.education.universityId && dashboard.initialized && dashboard.noUniversity">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available rooms</h3>
+            <h3 ng-if="!dashboard.education.universityId && dashboard.initialized">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available rooms</h3>
             <h4 ng-if="!dashboard.availableRooms.length && dashboard.education.universityId && dashboard.initialized">There is no available rooms in 100 miles radius around your campus
               <small>
                 <a ui-sref="addRoom"><br/>Click here</a> to add room.
