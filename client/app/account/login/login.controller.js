@@ -147,8 +147,11 @@
             $scope.showForm = false;
             $scope.errors = {resetPassword: 'Reset password mail has been sent to ' + $scope.user.email + '.'};
           })
-          .catch(function () {
+          .catch(function (err) {
+            console.log(err);
+            $scope.sendingEmail = false;
             $scope.pwdResetMailSend = false;
+            $scope.errors = {verifiedEmail: err.data.message};
             mixpanel.track("sign in - send reset e-mail failure",{distinct:Gdistinct_id});
           });
       }

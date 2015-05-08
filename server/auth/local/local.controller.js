@@ -59,7 +59,7 @@ exports.sendMailAddressConfirmationMail = function(req, res, next) {
          /*   ,{expiresInMinutes: 60} removing expiration, we handle it in db*/
           );
         user.setVerificationData(mailConfirmationToken, function () {
-          mail.mailConfirmation.sendMail(user, mailConfirmationToken, function (err, resp) {
+          return mail.mailConfirmation.sendMail(user, mailConfirmationToken, function (err, resp) {
             if (!user) return res.status(401).end();
             if (err) {
               console.log(err);
@@ -152,14 +152,21 @@ exports.resetPassword = function(req, res, next) {
 
   User.find({where:{email: email}})
     .then(function (user) {
-      if (!user) return res.status(403).send({message: 'This email address is unknown' });
+      if (!user) {
+        return res.status(403).send({ message: 'E-mail address ' + email + ' is not registered.' });
+      }
       var passwordResetToken = jwt.sign({userId: user.id, newPassword : newPassword}, config.secrets.passwordReset, {expiresInMinutes: 60 * 24});
-      mail.passwordReset.sendMail(user, passwordResetToken, function(err,resp){if(err) res.status(403).end(); else res.status(200).end();});
+      mail.passwordReset.sendMail(user, passwordResetToken, function(err,resp) {
+        if(err) {
+          res.status(403).end();
+        }else{
+          res.status(200).end();
+        }
+      });
     })
     .catch(function (err) {
       if (err)
         if (err) return next(err);
-      if (!user) return res.status(403).send({message: 'This email address is unknown' });
     });
 };
 
