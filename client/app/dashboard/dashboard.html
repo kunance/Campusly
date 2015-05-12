@@ -163,7 +163,7 @@
           <!-- My Available Rooms Posts - Hides if no Looking posts-->
           <div ng-show="dashboard.myRoomListings.length" class="posts-dashboard-title">
 
-            <h2 class="section-title"> My Posts - Available Room</h2>
+            <h2 class="section-title"> My Posts - Available Housing</h2>
 
             <div class="white-box my-listings">
               <h3 ng-if="!dashboard.myRoomListings.length && dashboard.initialized">
@@ -182,9 +182,11 @@
                     <a style="text-decoration: none" ui-sref="roomDetail({param:room.id, allIds:dashboard.myRoomListingsIds})">
                       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
                         <div class="info" >
-                          <span class='value'>{{room.monthlyPrice |currency}}</span>
-                          <span class='address'><i class="fa fa-transgender"></i> Gender: {{room.gender}} </span>
-                          <span class='address'><i class="fa fa-users"></i> Max roommates: {{room.numRoomates}} </span>
+                          <span class='value'>Rent: {{room.monthlyPrice |currency}} / mo.</span>
+                          <span class='address'><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{room.roomType}}</span>
+                          <span class='address'><i class="fa fa-transgender"></i>&nbsp;&nbsp;Gender: {{room.gender}}</span>
+                          <span class='address'><i class="fa fa-users"></i>&nbsp;&nbsp;Current roommates: {{room.numRoomates}}</span>
+                          <span class='address'><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{room.availableMoveIn | date }}</span>
 
                       <span class="elapsed-time">
                         <small><i class="fa fa-clock-o"></i>&nbsp{{room.createdAt | date:'longDate'}}</small>
@@ -241,18 +243,20 @@
                     <a style="text-decoration: none" ui-sref="lookingDetail({param:look.id, allIds:dashboard.myLookingsIds})">
                       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
                         <div class="info">
-                          <span class='value'>{{look.maxMonthlyRent |currency}}</span>
-                          <span class='address'><i class="fa fa-transgender"></i> Gender: {{look.gender}} </span>
-                          <span class='address'><i class="fa fa-users"></i> Max roommates: {{look.numRoommates}} </span>
+                          <span class='value'>Max Rent: {{look.maxMonthlyRent | currency}}</span>
+                          <span class='address'><i class="fa fa-transgender"></i>&nbsp;&nbsp;Gender: {{look.gender}}</span>
+                          <span class='address'><i class="fa fa-bigBed"></i>&nbsp;&nbsp;Room preference: {{look.roomType}}</span>
+                          <span class='address'><i class="fa fa-users"></i>&nbsp;&nbsp;Maximum Roommates: {{look.numRoommates}}</span>
+                          <span class='address'><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{look.moveInDate | date}}</span>
 
-                      <span class="elapsed-time">
-                        <small><i class="fa fa-clock-o"></i>&nbsp{{look.createdAt | date:'longDate'}}</small>
-                      </span>
+                          <span class="elapsed-time">
+                            <small><i class="fa fa-clock-o"></i>&nbsp{{look.createdAt | date:'longDate'}}</small>
+                          </span>
 
-                      <span class="elapsed-time" ng-if="look.updatedAt">
-                         <small><i class="fa fa-pencil"></i></small>
-                         <small am-time-ago="look.updatedAt"></small>
-                      </span>
+                          <span class="elapsed-time" ng-if="look.updatedAt">
+                             <small><i class="fa fa-pencil"></i></small>
+                             <small am-time-ago="look.updatedAt"></small>
+                          </span>
 
                         </div>
                       </div>
