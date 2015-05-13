@@ -256,6 +256,10 @@ var _parseSearchCriteria = function(req, res, cb) {
   if(req.query.search) {
     searchQuery = JSON.parse(req.query.search);
 
+    if (searchQuery.availableMoveIn) {
+      searchCriteria.availableMoveIn = {gte: searchQuery.availableMoveIn};
+      mixpanel.track("rooms - search by availableMoveIn");
+    }
     if (searchQuery.maxMonthlyPrice) {
       searchCriteria.monthlyPrice = {lte: searchQuery.maxMonthlyPrice};
       mixpanel.track("rooms - search by maxMonthlyPrice");
@@ -273,7 +277,10 @@ var _parseSearchCriteria = function(req, res, cb) {
       mixpanel.track("rooms - search by roomType");
     }
     if (searchQuery.gender !== null) {
-      searchCriteria.gender = searchQuery.gender.replace(/"/g, "'");
+      searchCriteria.gender = [];
+      searchCriteria.gender.push(searchQuery.gender.replace(/"/g, "'"));
+      searchCriteria.gender.push('no preference');
+      searchCriteria.gender  = _.uniq(searchCriteria.gender);
       mixpanel.track("rooms - search by gender");
     }
     if (searchQuery.sharedBathroom !== null) {

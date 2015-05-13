@@ -5,12 +5,14 @@
   .module('app.dashboard')
   .controller('MyProfileCtrl', MyProfileCtrl);
 
-  MyProfileCtrl.$inject = ['$scope', 'common', 'currentUser', '$q', '$window', 'UserResource'];
+  MyProfileCtrl.$inject = ['$scope', 'common', 'currentUser', '$q', '$window', 'UserResource', 'RoomListing'];
 
-  function MyProfileCtrl($scope, common, currentUser, $q, $window, UserResource) {
+  function MyProfileCtrl($scope, common, currentUser, $q, $window, UserResource, RoomListing) {
     var vm = this;
     vm.me = currentUser;
     vm.tempMe = Object.create(vm.me);
+    vm.userLookings = common.dataservice.getAllLookings(currentUser.id);
+    vm.myRoomListings = RoomListing.query({userId: currentUser.id});
     vm.education  = common.dataservice.getAllEducations(currentUser.id);
     vm.address    = common.dataservice.getAllAddresses(currentUser.id);
     vm.users      = UserResource.query();
@@ -29,6 +31,23 @@
         roommate.confirmed?vm.confirmed++:vm.unconfirmed++;
       });
       vm.requests = 0;
+
+      /*
+       *  lookings
+       */
+      vm.myLookingsIds = [];
+      angular.forEach(vm.userLookings, function (myLookings) {
+        vm.myLookingsIds.push(myLookings.id);
+      });
+
+      /*
+       *  available housing
+       */
+      vm.myRoomListingsIds = [];
+      angular.forEach(vm.myRoomListings, function (myRoom) {
+        vm.myRoomListingsIds.push(myRoom.id);
+      });
+
       /*
        *  showing/hiding partials
        */
@@ -269,6 +288,26 @@
         $event.stopPropagation();
         $scope.datePickers[number]= true;
       };
+
+      function orderSliderButtons() {
+        setTimeout(function () {
+          $(".slider").each(function (index) {
+            var slider = $(".slider").eq(index);
+            var dotsX = parseInt(slider.find(".slick-dots").css("left"));
+            var dotsSize = parseInt(slider.find(".slick-dots").css("width"));
+            var nextBtnX = dotsX + dotsSize + 10;
+            slider.find(".slick-next").css("left", nextBtnX);
+          });
+        }, 1000);
+      }
+
+      $(window).resize(function () {
+        orderSliderButtons();
+      });
+
+      angular.element(document).ready(function () {
+        orderSliderButtons();
+      });
 
       mixpanel.track("view profile");
       mixpanel.people.increment('view profile');
