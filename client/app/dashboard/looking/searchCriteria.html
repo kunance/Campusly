@@ -31,7 +31,7 @@
           </div>
         </div>
         <div class="col-xs-9 col-sm-7 input-post">
-          <label for="moveInDate">Move In Date</label>
+          <label for="moveInDate">Earliest Move In Date</label>
           <p class="input-group">
             <input type="text" id="moveInDate" name="moveInDate" class="form-control borderRadiusFix" datepicker-popup="{{format}}" ng-model="looking.searchCriteria.moveInDate" is-open="datePickers.startDate" close-text="Close"/>
               <span class="input-group-btn">
@@ -112,24 +112,6 @@
         </div>
       </div>
 
-      <!-- Shared bathroom -->
-
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-shower fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <label for="sharedBathroom">Shared Bathroom?</label>
-          <select id="sharedBathroom"  name="sharedBathroom" class="form-control"
-                  ng-model="looking.searchCriteria.sharedBathroom">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
-        </div>
-      </div>
-
       <!-- Room type -->
 
       <div class="row post-padding">
@@ -144,6 +126,24 @@
             <option value="single">Single</option>
             <option value="double">Double</option>
             <option value="living room">Living room</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Shared bathroom -->
+
+      <div class="row post-padding">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-shower fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="sharedBathroom">Shared Bathroom?</label>
+          <select id="sharedBathroom"  name="sharedBathroom" class="form-control"
+                  ng-model="looking.searchCriteria.sharedBathroom">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
           </select>
         </div>
       </div>

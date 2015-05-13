@@ -5,9 +5,9 @@
   .module('app.rooms')
   .controller('RoomsCtrl', RoomsCtrl);
 
-  RoomsCtrl.$inject = ['$q', '$window', 'common', 'RoomListingView', 'currentUser'];
+  RoomsCtrl.$inject = ['$scope', '$q', '$window', 'common', 'RoomListingView', 'currentUser'];
 
-  function RoomsCtrl($q, $window, common, RoomListingView, currentUser) {
+  function RoomsCtrl($scope, $q, $window, common, RoomListingView, currentUser) {
     var vm = this;
     vm.property = {};
     vm.me = currentUser;
@@ -39,6 +39,21 @@
           parkingAvailable: null,
           within: null
         };
+      };
+
+      $scope.datePickers = {
+        startDate: false,
+        endDate:false
+      };
+      $scope.format = 'MM/dd/yyyy';
+      $scope.clear = function () {
+        $scope.dt = null;
+      };
+
+      $scope.open = function($event, number) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.datePickers[number]= true;
       };
 
       vm.clearSearch(false);

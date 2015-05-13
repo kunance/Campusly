@@ -63,12 +63,18 @@ exports.showAllLookings= function(req, res, next) {
   if(req.query.search) {
     searchQuery =  JSON.parse(req.query.search);
 
-    if(searchQuery.moveInDate) { searchCriteria.moveInDate = { lte: searchQuery.moveInDate }; mixpanel.track("looking - search by moveInDate");}
+    if(searchQuery.moveInDate) { searchCriteria.moveInDate = { gte: searchQuery.moveInDate }; mixpanel.track("looking - search by moveInDate");}
     if(searchQuery.maxMonthlyRent) { searchCriteria.maxMonthlyRent = { lte: searchQuery.maxMonthlyRent }; mixpanel.track("looking - search by maxMonthlyRent");}
     if(searchQuery.numRoommates) { searchCriteria.numRoommates = { lte: searchQuery.numRoommates }; mixpanel.track("looking - search by numRoommates");}
     if(searchQuery.utilitiesIncluded !== null) { searchCriteria.utilitiesIncluded = (searchQuery.utilitiesIncluded === "true"); mixpanel.track("looking - search by utilitiesIncluded");}
     if(searchQuery.roomType !== null) { searchCriteria.roomType = searchQuery.roomType.replace(/"/g, "'"); mixpanel.track("looking - search by roomType");}
-    if(searchQuery.gender !== null) { searchCriteria.gender = searchQuery.gender.replace(/"/g, "'"); mixpanel.track("looking - search by gender");}
+    if (searchQuery.gender !== null) {
+      searchCriteria.gender = [];
+      searchCriteria.gender.push(searchQuery.gender.replace(/"/g, "'"));
+      searchCriteria.gender.push('no preference');
+      searchCriteria.gender  = _.uniq(searchCriteria.gender);
+      mixpanel.track("looking - search by gender");
+    }
     if(searchQuery.sharedBathroom !== null) { searchCriteria.sharedBathroom = (searchQuery.sharedBathroom === "true"); mixpanel.track("looking - search by sharedBathroom");}
     if(searchQuery.furnished !== null) { searchCriteria.furnished = (searchQuery.furnished === "true"); mixpanel.track("looking - search by furnished");}
     if(searchQuery.smokingAllowed !== null) { searchCriteria.smokingAllowed = (searchQuery.smokingAllowed === "true"); mixpanel.track("looking - search by smokingAllowed");}

@@ -299,6 +299,138 @@
         <!-- END PET & VEHICLE BOX  -->
 
       </div>
+
+      <!-- My Available Housing Posts - Hides if no Looking posts-->
+      <div class="row" ng-if="myProfile.myRoomListings.length">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="posts-dashboard-title">
+
+            <h2 class="section-title"> My Posts - Available Housing</h2>
+
+            <div class="white-box my-listings">
+              <h3 ng-if="!myProfile.myRoomListings.length && myProfile.initialized">
+                You don't have anything posted yet.
+                <small>
+                  <a ui-sref="addNewLooking"><br/>Click here</a> to add looking.
+                  <a ui-sref="addRoom"><br/>Click here</a> to add room.
+                </small>
+              </h3>
+              <slick ng-if="myProfile.myRoomListings.length" dots="true" class="slider row" slides-to-show="1" slides-to-scroll="1">
+
+                <!-- start list box -->
+                <div class="list-item" ng-repeat="room in myProfile.myRoomListings">
+                  <div class="row" >
+
+                    <a style="text-decoration: none" ui-sref="roomDetail({param:room.id, allIds:myProfile.myRoomListingsIds})">
+                      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+                        <div class="infoP" >
+                          <span class='value'>Rent: {{room.monthlyPrice |currency}} / mo.</span>
+                          <span class='address'><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{room.roomType}}</span>
+                          <span class='address'><i class="fa fa-transgender"></i>&nbsp;&nbsp;Gender: {{room.gender}}</span>
+                          <span class='address'><i class="fa fa-users"></i>&nbsp;&nbsp;Current roommates: {{room.numRoomates}}</span>
+                          <span class='address'><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{room.availableMoveIn | date }}</span>
+
+                      <span class="elapsed-time">
+                        <small><i class="fa fa-clock-o"></i>&nbsp{{room.createdAt | date:'longDate'}}</small>
+                      </span>
+
+                      <span class="elapsed-time" ng-if="room.updatedAt">
+                           <small><i class="fa fa-pencil"></i></small>
+                           <small am-time-ago="room.updatedAt"></small>
+                      </span>
+
+                        </div>
+                      </div>
+
+                      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <div class="picture">
+                          <img border="0" ng-src="//maps.googleapis.com/maps/api/staticmap?center={{room.relatedPropertyId.latitude}},{{room.relatedPropertyId.longitude}}&zoom=14&scale=2&size=400x250&markers=color:blue%7C{{room.relatedPropertyId.latitude}},{{room.relatedPropertyId.longitude}}&key=AIzaSyAm7woOFr0TOKG0U7jsBF5K3LSifdDjgfs">
+                        </div>
+                      </div>
+                    </a>
+
+                    <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 col-xs-offset-4 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                      <div class="edit">
+                        <a class="new-bubble pull-left" ui-sref="editRoom({id:room.id})" ui-sref-opts="{reload:true}">
+                          <i class="fa fa-pencil"></i>
+                        </a>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </slick>
+              <hr ng-if="myProfile.myRoomListings.length > 1">
+            </div>
+          </div>
+
+        </div>
+
+      </div> <!-- end my available housing -->
+
+      <!-- My Looking Posts - Hides if no Looking posts-->
+      <div class="row" ng-if="myProfile.userLookings.length">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="posts-myProfile-title">
+
+            <h2 class="section-title"> My Posts - Looking</h2>
+
+            <div class="white-box my-listings" >
+              <h3 ng-if="!myProfile.userLookings.length && myProfile.initialized" >
+                You don't have anything posted yet.
+                <small>
+                  <a ui-sref="addNewLooking"><br/>Click here</a> to add looking.
+                  <a ui-sref="addRoom"><br/>Click here</a> to add room.
+                </small>
+              </h3>
+              <slick dots="true" class="slider row" slides-to-show="1" slides-to-scroll="1" ng-if="myProfile.userLookings.length">
+
+                <!-- start list box -->
+                <div class="list-item" ng-repeat="look in myProfile.userLookings">
+                  <div class="row" >
+                    <a style="text-decoration: none" ui-sref="lookingDetail({param:look.id, allIds:myProfile.myLookingsIds})">
+                      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+                        <div class="infoP">
+                          <span class='value'>Max Rent: {{look.maxMonthlyRent | currency}}</span>
+                          <span class='address'><i class="fa fa-transgender"></i>&nbsp;&nbsp;Gender: {{look.gender}}</span>
+                          <span class='address'><i class="fa fa-bigBed"></i>&nbsp;&nbsp;Room preference: {{look.roomType}}</span>
+                          <span class='address'><i class="fa fa-users"></i>&nbsp;&nbsp;Maximum Roommates: {{look.numRoommates}}</span>
+                          <span class='address'><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{look.moveInDate | date}}</span>
+
+                          <span class="elapsed-time">
+                            <small><i class="fa fa-clock-o"></i>&nbsp{{look.createdAt | date:'longDate'}}</small>
+                          </span>
+
+                          <span class="elapsed-time" ng-if="look.updatedAt">
+                             <small><i class="fa fa-pencil"></i></small>
+                             <small am-time-ago="look.updatedAt"></small>
+                          </span>
+
+                        </div>
+                      </div>
+                    </a>
+
+                    <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 col-xs-offset-4 col-sm-offset-5 col-md-offset-5 col-lg-offset-5">
+                      <div class="edit">
+                        <a class="new-bubble pull-right" ui-sref="editLooking({id:look.id})" ui-sref-opts="{reload:true}">
+                          <i class="fa fa-pencil"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </slick>
+              <hr ng-if="myProfile.userLookings.length > 1">
+            </div>
+          </div>
+        </div>
+
+      </div> <!-- end my looking -->
+
     </div>
   </div>
 

@@ -72,17 +72,17 @@
 
         </div>
 
-        <!-- Available Rooms -->
+        <!-- Available Housing -->
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
 
           <!--Around you partial-->
           <div ng-include="'app/dashboard/around.you.html'"></div>
 
-          <h2 class="section-title"> Available Rooms</h2>
+          <h2 class="section-title"> Available Housing</h2>
           <div class="white-box available-rooms">
 
-            <h3 ng-if="!dashboard.education.universityId && dashboard.initialized">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available rooms</h3>
-            <h4 ng-if="!dashboard.availableRooms.length && dashboard.education.universityId && dashboard.initialized">There is no available rooms in 100 miles radius around your campus
+            <h3 ng-if="!dashboard.education.universityId && dashboard.initialized">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available housing</h3>
+            <h4 ng-if="!dashboard.availableRooms.length && dashboard.education.universityId && dashboard.initialized">There is no available housing in 100 miles radius around your campus
               <small>
                 <a ui-sref="addRoom"><br/>Click here</a> to add room.
               </small>
@@ -160,8 +160,8 @@
             <a class="pull-right btn-rented-event view-all" ui-sref="looking" ng-if="dashboard.education.universityId">View All</a>
           </div>
 
-          <!-- My Available Rooms Posts - Hides if no Looking posts-->
-          <div ng-show="dashboard.myRoomListings.length" class="posts-dashboard-title">
+          <!-- My Available Housing Posts - Hides if no Looking posts-->
+          <div ng-if="dashboard.myRoomListings.length" class="posts-dashboard-title">
 
             <h2 class="section-title"> My Posts - Available Housing</h2>
 
@@ -218,12 +218,12 @@
                   </div>
                 </div>
               </slick>
-              <hr>
+              <hr ng-if="dashboard.myRoomListings.length > 1">
             </div>
           </div>
 
           <!-- My Looking Posts - Hides if no Looking posts-->
-          <div ng-show="dashboard.userLookings.length" class="posts-dashboard-title">
+          <div ng-if="dashboard.userLookings.length" class="posts-dashboard-title">
 
             <h2 class="section-title"> My Posts - Looking</h2>
 
@@ -272,7 +272,7 @@
                   </div>
                 </div>
               </slick>
-              <hr>
+              <hr ng-if="dashboard.userLookings.length > 1">
             </div>
           </div>
         </div>
