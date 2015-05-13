@@ -5,9 +5,9 @@
   .module('app.dashboard')
   .controller('LookingCtrl', LookingCtrl);
 
-  LookingCtrl.$inject = ['common', '$window', 'Lookings', 'currentUser', '$q'];
+  LookingCtrl.$inject = ['$scope','common', '$window', 'Lookings', 'currentUser', '$q'];
 
-  function LookingCtrl(common, $window, Lookings, currentUser, $q) {
+  function LookingCtrl($scope, common, $window, Lookings, currentUser, $q) {
     var vm = this;
     vm.me = currentUser;
     vm.universitiesList = common.dataservice.getAllUniversities();
@@ -25,8 +25,24 @@
       vm.showSearch = false;
       vm.showSort = false;
 
+      $scope.datePickers = {
+        startDate: false,
+        endDate:false
+      };
+      $scope.format = 'MM/dd/yyyy';
+      $scope.clear = function () {
+        $scope.dt = null;
+      };
+
+      $scope.open = function($event, number) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.datePickers[number]= true;
+      };
+
       vm.clearSearch = function(showSearch) {
         vm.searchCriteria = {
+          moveInDate: null,
           maxMonthlyRent: null,
           utilitiesIncluded: null,
           numRoommates: null,

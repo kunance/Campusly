@@ -63,6 +63,7 @@ exports.showAllLookings= function(req, res, next) {
   if(req.query.search) {
     searchQuery =  JSON.parse(req.query.search);
 
+    if(searchQuery.moveInDate) { searchCriteria.moveInDate = { lte: searchQuery.moveInDate }; mixpanel.track("looking - search by moveInDate");}
     if(searchQuery.maxMonthlyRent) { searchCriteria.maxMonthlyRent = { lte: searchQuery.maxMonthlyRent }; mixpanel.track("looking - search by maxMonthlyRent");}
     if(searchQuery.numRoommates) { searchCriteria.numRoommates = { lte: searchQuery.numRoommates }; mixpanel.track("looking - search by numRoommates");}
     if(searchQuery.utilitiesIncluded !== null) { searchCriteria.utilitiesIncluded = (searchQuery.utilitiesIncluded === "true"); mixpanel.track("looking - search by utilitiesIncluded");}
