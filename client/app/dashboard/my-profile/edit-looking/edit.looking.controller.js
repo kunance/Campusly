@@ -21,7 +21,7 @@
     /*
      *  enables data binding to yes / no drop down values
      */
-      vm.ddlYesNoSelect = [{value: true, text: 'Yes'}, {value: false, text: 'No'}];
+      vm.ddlYesNoSelect = [{value: true, text: 'Yes'}, {value: false, text: 'No'}, {value: null, text: 'No preference'}];
       if(vm.education.educationCenterName){
         var EducationStatus = vm.education.educationCenterName;
         var educationId = vm.education.id;

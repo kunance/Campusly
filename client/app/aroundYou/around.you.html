@@ -121,19 +121,11 @@
                     <div style="text-align: center; display: inline-block;width: 100%; padding-top: 10px">
                       <a id="facebookPM" ng-href="{{arYou.facebook}}" ng-class="{'interested': arYou.facebook, 'not-interested':!arYou.facebook}" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
                       <script type="text/javascript" ng-if="arYou.facebook">
-                        document.getElementById("facebookPM").addEventListener("click",track);
-                        function track() {
-                          mixpanel.track("Facebook PM sent - around you");
-                          mixpanel.people.increment("Facebook PM sent - around you");
-                        }
+                        mixpanel.track_links("#facebookPM", "Facebook PM sent - around you");
                       </script>
                       <a id="email" ng-href="mailto:{{arYou.email}}?Subject=Hello"><i class="fa fa-envelope fa-2x"></i></a>
                       <script type="text/javascript">
-                        document.getElementById("email").addEventListener("click",track);
-                        function track() {
-                          mixpanel.track("Email sent - around you");
-                          mixpanel.people.increment("Email sent - around you");
-                        }
+                        mixpanel.track_links("#email", "Email sent - around you");
                       </script>
                     </div>
                   </div>

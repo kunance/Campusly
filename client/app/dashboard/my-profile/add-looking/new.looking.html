@@ -132,7 +132,7 @@
                </div>
              </div>
              <div class="col-xs-9 col-sm-7 input-post">
-               <label for="numRoommates">Max no. of roommates</label><sup class="asterisk">*</sup>
+               <label for="numRoommates">Your group size</label><sup class="asterisk">*</sup>
                <input type="number" min="0" max="10" id="numRoommates" name="numRoommates" class="form-control"  placeholder="e.x. 3 (max: 10)" ng-model="newLooking.tempLooking.numRoommates" required ng-class="{'educationError': newLookingForm.numRoommates.$invalid && newLooking.submitted}"/>
              </div>
            </div>
@@ -181,10 +181,11 @@
                </div>
              </div>
              <div class="col-xs-9 col-sm-7 input-post">
-               <label for="parkingNeeded">Parking included?</label><sup class="asterisk">*</sup>
-               <select id="parkingNeeded" class="form-control" name="parking" ng-model="newLooking.tempLooking.parkingNeeded" required ng-class="{'educationError': newLookingForm.parking.$invalid && newLooking.submitted}">
+               <label for="parkingNeeded">Parking included?</label>
+               <select id="parkingNeeded" class="form-control" name="parking" ng-model="newLooking.tempLooking.parkingNeeded" ng-class="{'educationError': newLookingForm.parking.$invalid && newLooking.submitted}">
                  <option value="true">Yes</option>
                  <option value="false">No</option>
+                 <option value="">No preference</option>
                </select>
              </div>
            </div>

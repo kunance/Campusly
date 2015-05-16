@@ -4,7 +4,7 @@
   <div class="container lookings">
     <div class="row">
       <div class="page-header col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h2>Students Looking</h2>
+        <h2>Students Looking<a  class="btn btn-primary pull-right" ui-sref="addNewLooking" ui-sref-opts="{reload:true}">Post Looking</a></h2>
       </div>
     </div>
       <div class="row searchAndSortBox" ng-if="looking.education.universityId">
@@ -35,7 +35,7 @@
           <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
             <input type="radio" name="sortOrder" value="ascending" ng-model="looking.sortOrder"/>&nbsp;<i class="fa fa-arrow-up"></i>
             <input type="radio" name="sortOrder" value="descending" ng-model="looking.sortOrder"/>&nbsp;<i class="fa fa-arrow-down"></i>
-            <button class="btn-rented-small primary" id="sort" name="sort" ng-click="looking.search(false)">Sort</button>
+            <button class="btn-rented-small secondary" id="sort" name="sort" ng-click="looking.search(false)">Sort</button>
           </div>
         </div>
       </div> <!-- end search and sort -->

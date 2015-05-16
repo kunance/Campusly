@@ -242,11 +242,12 @@
                 </div>
               </div>
               <div class="col-xs-9 col-sm-7 input-post">
-                <label for="roomType">Room type</label><sup class="asterisk">*</sup>
+                <label for="roomType">Rental type</label><sup class="asterisk">*</sup>
                 <select id="roomType" class="form-control" ng-model="vm.room.roomType" name="roomType" required ng-class="{'educationError': editRoomForm.roomType.$error.required && vm.submitted}">
-                  <option value="single">Single</option>
-                  <option value="double">Double</option>
+                  <option value="single">Single room</option>
+                  <option value="double">Double room</option>
                   <option value="living room">Living room</option>
+                  <option value="loft">Entire Apt.</option>
                 </select>
               </div>
             </div>

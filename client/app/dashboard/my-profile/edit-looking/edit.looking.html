@@ -114,7 +114,7 @@
             </div>
           </div>
           <div class="col-xs-9 col-sm-7 input-post">
-            <label for="numRoommates">Max no. of roommates</label>
+            <label for="numRoommates">Your group size</label>
             <input type="number" id="numRoommates" name="numRoommates" class="form-control"  placeholder="e.x. 3" ng-model="editLooking.tempLooking.numRoommates"/>
           </div>
         </div>
@@ -163,7 +163,7 @@
             </div>
           </div>
           <div class="col-xs-9 col-sm-7 input-post">
-            <label for="parkingNeeded">Parking included?</label><sup class="asterisk">*</sup>
+            <label for="parkingNeeded">Parking included?</label>
             <select
               ng-options="option.value as option.text for option in editLooking.ddlYesNoSelect"
               id="parkingNeeded" class="form-control" ng-model="editLooking.tempLooking.parkingNeeded">
