@@ -81,6 +81,7 @@
           </tr>
           <tr>
             <td><i class="fa fa-bar-chart"></i>&nbsp;&nbsp;Utilities:&nbsp;&nbsp;{{room.roomDetail.roomDetails.monthlyUtilityCost | currency}}</td>
+            <!-- TODO change the move-out date field to lease length -->
             <td ng-show="room.roomDetail.roomDetails.leaseEndDate"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Move-out:&nbsp;&nbsp;{{room.roomDetail.roomDetails.leaseEndDate | date }}</td>
           </tr>
         </table>
