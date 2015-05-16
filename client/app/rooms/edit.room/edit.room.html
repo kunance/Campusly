@@ -162,24 +162,6 @@
               </div>
             </div>
 
-            <!-- Property type -->
-
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-building fa-lg"></i>
-                </div>
-              </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="type">Property type</label>
-                <select id="type" class="form-control" name="type" ng-model="vm.room.relatedPropertyId.type" ng-class="{'educationError': editRoomForm.type.$error.required && vm.submitted}">
-                  <option value="apt">Apartment</option>
-                  <option value="sfh">Single family house</option>
-                  <option value="townhouse">Townhouse</option>
-                </select>
-              </div>
-            </div>
-
             <!-- Bathrooms -->
 
             <div class="row post-padding">
@@ -244,10 +226,11 @@
               <div class="col-xs-9 col-sm-7 input-post">
                 <label for="roomType">Rental type</label><sup class="asterisk">*</sup>
                 <select id="roomType" class="form-control" ng-model="vm.room.roomType" name="roomType" required ng-class="{'educationError': editRoomForm.roomType.$error.required && vm.submitted}">
-                  <option value="single">Single room</option>
-                  <option value="double">Double room</option>
-                  <option value="living room">Living room</option>
-                  <option value="loft">Entire Apt.</option>
+                  <option value="Single Room">Single room</option>
+                  <option value="Double Room">Double room</option>
+                  <option value="Living Room">Living room</option>
+                  <option value="Entire Apt">Entire Apartment</option>
+                  <option value="Entire House">Entire House</option>
                 </select>
               </div>
             </div>

@@ -67,12 +67,11 @@
                       </div>
                       <div class="info">
                         <strong class="value">
-                          {{room.roomDetails.monthlyPrice | currency}} mo. / Room
+                          {{room.roomDetails.monthlyPrice | currency}} / mo.
                         </strong>
                       </div>
                       <ul class="specs">
-                        <li ng-if="room.roomDetails.roomType !== 'loft'"><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{room.roomDetails.roomType}}</li>
-                        <li ng-if="room.roomDetails.roomType === 'loft'"><i class="fa fa-bigBed"></i>&nbsp;&nbsp;Entire Apt</li>
+                        <li><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{room.roomDetails.roomType}}</li>
                         <li><i class="fa fa-shower"></i>&nbsp;&nbsp;{{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
                         <li ng-show="room.roomDetails.numRoomates > 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommates + You</li>
                         <li ng-show="room.roomDetails.numRoomates == 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommate + You</li>

@@ -71,8 +71,7 @@
         <table class="specs">
           <br>
           <tr>
-            <td ng-if="room.roomDetail.roomDetails.roomType !== 'loft'"><i class="fa fa-bigBed"></i>&nbsp;&nbsp;Rental type:&nbsp;&nbsp;{{room.roomDetail.roomDetails.roomType}}</td>
-            <td ng-if="room.roomDetail.roomDetails.roomType === 'loft'"><i class="fa fa-bigBed"></i>&nbsp;&nbsp;Rental type:&nbsp;&nbsp;Entire Apt</td>
+            <td><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{room.roomDetail.roomDetails.roomType}}</td>
             <td><i class="fa fa-shower"></i>&nbsp;&nbsp;{{room.roomDetail.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</td>
           </tr>
           <tr>

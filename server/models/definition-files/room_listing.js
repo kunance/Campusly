@@ -87,7 +87,7 @@ module.exports = {
             allowNull: false
         },
         "roomType": {
-            type: Seq.ENUM('single', 'double', 'loft', 'living room'),
+            type: Seq.ENUM('Single Room', 'Double Room', 'Living Room', 'Entire Apt', 'Entire House'),
             field: "roomType"
         },
         "sharedBathroom": {
