@@ -14,3 +14,11 @@
 --ALTER TYPE "looking_roomType" ADD VALUE 'Entire Apartment' AFTER 'Double Room';
 --ALTER TYPE "looking_roomType" ADD VALUE 'Living Room' AFTER 'Entire Apartment';
 --ALTER TYPE "looking_roomType" ADD VALUE 'Entire House' AFTER 'Living Room';
+
+--change type for room leaseType
+--ALTER TYPE "room_listing_leaseType" ADD VALUE '1-3 months' AFTER 'lease take over';
+--ALTER TYPE "room_listing_leaseType" ADD VALUE '4-6 months' AFTER '1-3 months';
+--ALTER TYPE "room_listing_leaseType" ADD VALUE '7-9 months' AFTER '4-6 months';
+--ALTER TYPE "room_listing_leaseType" ADD VALUE '10-11 months' AFTER '7-9 months';
+--ALTER TYPE "room_listing_leaseType" ADD VALUE '1-year' AFTER '10-11 months';
+--ALTER TYPE "room_listing_leaseType" ADD VALUE '2-years' AFTER '1-year';

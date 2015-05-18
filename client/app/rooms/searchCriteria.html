@@ -2,6 +2,8 @@
 
   <div class="row white-box searchBox" ng-show="rooms.showSearch">
 
+    <p style="margin-bottom: 2%">You can select multiple fields based on what you want.</p>
+
     <!--start of first col 4-->
     <div class="col-md-4">
 
@@ -52,6 +54,28 @@
         </div>
       </div>
 
+      <!-- Rental length -->
+
+      <div class="row post-padding">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-clock-o fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="leaseType">Rental length</label>
+          <select id="leaseType" class="form-control" ng-model="rooms.searchCriteria.leaseType" >
+            <option value="month-to-month">Month to month</option>
+            <option value="1-3 months">1-3 months</option>
+            <option value="4-6 months">4-6 months</option>
+            <option value="7-9 months">7-9 months</option>
+            <option value="10-11 months">10-11 months</option>
+            <option value="1-year">1 year</option>
+            <option value="2-years">2+ years</option>
+          </select>
+        </div>
+      </div>
+
       <!-- Monthly rent -->
 
       <div class="row post-padding">
@@ -64,21 +88,6 @@
           <label for="maxMonthlyPrice">Max Monthly Rent ($)</label>
           <input type="number" id="maxMonthlyPrice" name="maxMonthlyPrice"  class="form-control"
                  placeholder="e.x. 750" ng-model="rooms.searchCriteria.maxMonthlyPrice">
-        </div>
-      </div>
-
-      <!-- Number of roommates -->
-
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-users fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <label for="maxCurrentRoomates">Max current roommates</label>
-          <input type="number" id="maxCurrentRoomates"  name="maxCurrentRoomates" class="form-control"
-                 ng-model="rooms.searchCriteria.maxCurrentRoomates" min="1" max="10"/>
         </div>
       </div>
 
@@ -105,7 +114,22 @@
         </div>
       </div>
 
-      <!-- Room type -->
+      <!-- Number of roommates -->
+
+      <div class="row post-padding">
+        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+          <div class="post-bubble">
+            <i class="fa fa-users fa-lg"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 col-sm-7 input-post">
+          <label for="maxCurrentRoomates">Max current roommates</label>
+          <input type="number" id="maxCurrentRoomates"  name="maxCurrentRoomates" class="form-control"
+                 ng-model="rooms.searchCriteria.maxCurrentRoomates" min="1" max="10"/>
+        </div>
+      </div>
+
+      <!-- Rental type -->
 
       <div class="row post-padding">
         <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
@@ -121,24 +145,6 @@
             <option value="Living Room">Living room</option>
             <option value="Entire Apt">Entire Apartment</option>
             <option value="Entire House">Entire House</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Lease type -->
-
-      <div class="row post-padding">
-        <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-          <div class="post-bubble">
-            <i class="fa fa-clipboard fa-lg"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 col-sm-7 input-post">
-          <label for="leaseType">Lease type</label>
-          <select id="leaseType" class="form-control" ng-model="rooms.searchCriteria.leaseType" >
-            <option value="sub-lease">Sub-lease</option>
-            <option value="month-to-month">Month to month</option>
-            <option value="lease take over">Lease take over</option>
           </select>
         </div>
       </div>
