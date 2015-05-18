@@ -195,6 +195,10 @@ Style for footer
 .page-header a{
   margin-top: -0.3%;
 }
+
+.page-header p{
+  padding-top: 2%;
+}
 /* ==========================================================================
 Transparent class for transparent nav-bar
 ========================================================================== */
@@ -1131,6 +1135,11 @@ ul > li {
 
   .page-header a{
     margin-top: -4%;
+  }
+
+  .page-header p{
+    padding-top: 6%;
+    padding-right: 5%;
   }
 }
 

@@ -1,17 +1,18 @@
 <div class="row">
 
  <div class="row" style="padding: 0;">
-   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 back-link" style="cursor: pointer">
+   <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 back-link" style="cursor: pointer">
       <a ng-click="room.previous()" ng-hide="currentRoom==0"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Previous</a>
    </div>
 
-    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 back-link pull-right" style="text-align: right;cursor: pointer;">
+    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2 back-link pull-right" style="text-align: right;cursor: pointer;">
       <a ng-click="room.next()" ng-hide="currentRoom==(room.allIds.length-1)">Next&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></a>
     </div>
  </div>
 
   <div class="page-header">
-    <h2>Highlights</h2>
+    <h2 class="pull-left">Highlights</h2>
+    <p><small class="pull-right">Posted&nbsp;{{room.roomDetail.roomDetails.createdAt | date:'longDate'}}</small></p>
   </div>
 
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 highlights white-box">
@@ -81,8 +82,7 @@
           </tr>
           <tr>
             <td><i class="fa fa-bar-chart"></i>&nbsp;&nbsp;Utilities:&nbsp;&nbsp;{{room.roomDetail.roomDetails.monthlyUtilityCost | currency}}</td>
-            <!-- TODO change the move-out date field to lease length -->
-            <td ng-show="room.roomDetail.roomDetails.leaseEndDate"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Move-out:&nbsp;&nbsp;{{room.roomDetail.roomDetails.leaseEndDate | date }}</td>
+            <td><i class="fa fa-clock-o"></i>&nbsp;&nbsp;Rental length:&nbsp;&nbsp;{{room.roomDetail.roomDetails.leaseType}}</td>
           </tr>
         </table>
 
@@ -99,17 +99,12 @@
           <i class="fa fa-send contact-bubble-email"></i><p style="float: right; padding-top: 10px">&nbsp;&nbsp;{{room.creatorEmail}}</p></a>
         <script type="text/javascript">
           mixpanel.track_links("#email", "Email sent - available room");
-          mixpanel.people.increment('Email sent - available room');
         </script>
         <a id="facebookPM" style="margin-left:20px; position: relative;" class="pull-right" ng-if="room.creatorFacebook" ng-href="{{room.creatorFacebook}}" target="_blank">
           <i style="color: #ffffff" class="fa fa-facebook contact-bubble-facebook"></i><p style="float: right; padding-top: 10px">&nbsp;&nbsp;PM</p></a>
         <script type="text/javascript" ng-if="room.creatorFacebook">
           mixpanel.track_links("#facebookPM", "Facebook PM sent - available room");
-          mixpanel.people.increment('Facebook PM sent - available room');
         </script>
-
-        <!--<a class="contact-bubble-email" href="" target="_top"><i class="fa fa-facebook fa-lg"></i></a>-->
-        <!-- Facebook link commented out for now -->
 
       </div>
 
