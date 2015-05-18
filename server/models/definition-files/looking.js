@@ -76,7 +76,7 @@ module.exports = {
             field: "openToFullYearLeaseNewRoomates"
         },
         "roomType": {
-            type: Seq.ENUM('single', 'double', 'living room'),
+            type: Seq.ENUM('Single Room', 'Double Room', 'Living Room', 'Entire Apartment', 'Entire House'),
             field: "roomType"
         },
         "sharedBathroom": {

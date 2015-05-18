@@ -210,7 +210,7 @@
             </div>
           </div>
 
-          <!-- Room type -->
+          <!-- Rental type -->
 
           <div class="row post-padding">
             <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
@@ -219,11 +219,13 @@
               </div>
             </div>
             <div class="col-xs-9 col-sm-7 input-post">
-              <label for="roomType">Room preference</label><sup class="asterisk">*</sup>
+              <label for="roomType">Rental preference</label><sup class="asterisk">*</sup>
               <select id="roomType" class="form-control" name="type" ng-model="newLooking.tempLooking.roomType" required ng-class="{'educationError': newLookingForm.type.$invalid && newLooking.submitted}">
-                <option value="single">Single</option>
-                <option value="double">Double</option>
-                <option value="living room">Living room</option>
+                <option value="Single Room">Single Room</option>
+                <option value="Double Room">Double Room</option>
+                <option value="Living Room">Living Room</option>
+                <option value="Entire Apartment">Entire Apartment</option>
+                <option value="Entire House">Entire House</option>
               </select>
             </div>
           </div>
