@@ -14,7 +14,7 @@
     vm.users = data[0];
     vm.roommates = data[1];
     vm.room = data[2];
-    vm.ddlYesNoSelect = [{value: true, text: 'Yes'}, {value: false, text: 'No'}, {value: null, text: 'No preference'}];
+    vm.ddlYesNoSelect = [{value: true, text: 'Yes'}, {value: false, text: 'No'}];
     vm.universitiesList = data[3];
     vm.education = data[4];
     vm.education.educationCenterName = vm.universitiesList[vm.education.universityId - 1];
