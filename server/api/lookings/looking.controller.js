@@ -79,7 +79,7 @@ exports.showAllLookings= function(req, res, next) {
     if(searchQuery.furnished !== null) { searchCriteria.furnished = (searchQuery.furnished === "true"); mixpanel.track("looking - search by furnished");}
     if(searchQuery.smokingAllowed !== null) { searchCriteria.smokingAllowed = (searchQuery.smokingAllowed === "true"); mixpanel.track("looking - search by smokingAllowed");}
     if(searchQuery.petsAllowed !== null) { searchCriteria.petsAllowed = (searchQuery.petsAllowed === "true"); mixpanel.track("looking - search by petsAllowed");}
-    if(searchQuery.parkingNeeded !== null) {searchCriteria.parkingNeeded = (searchQuery.parkingNeeded === "true");mixpanel.track("looking - search by parkingNeeded");}
+    if(searchQuery.parkingNeeded !== null) { searchCriteria.parkingNeeded = (searchQuery.parkingNeeded === "true"); mixpanel.track("looking - search by parkingNeeded");}
     if(searchQuery.openToFullYearLeaseNewRoomates !== null) { searchCriteria.openToFullYearLeaseNewRoomates = (searchQuery.openToFullYearLeaseNewRoomates === "true"); mixpanel.track("looking - search by openToFullYearLeaseNewRoomates");}
   }
 
