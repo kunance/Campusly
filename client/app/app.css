@@ -1055,6 +1055,7 @@ ul > li {
     text-align: center;
     position: relative;
     right: 0;
+    margin-bottom: 10px;
   }
 
   body .my-listings .list-item .info {
