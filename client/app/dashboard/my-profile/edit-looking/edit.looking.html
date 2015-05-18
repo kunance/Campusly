@@ -80,15 +80,53 @@
           </div>
         </div>
 
+        <!-- Rental type -->
+
+        <div class="row post-padding">
+          <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+            <div class="post-bubble">
+              <i class="fa fa-bigBed fa-lg"></i>
+            </div>
+          </div>
+          <div class="col-xs-9 col-sm-7 input-post">
+            <label for="roomType">Rental preference</label><sup class="asterisk">*</sup>
+            <select id="roomType" class="form-control" ng-model="editLooking.tempLooking.roomType">
+              <option value="Single Room">Single Room</option>
+              <option value="Double Room">Double Room</option>
+              <option value="Living Room">Living Room</option>
+              <option value="Entire Apartment">Entire Apartment</option>
+              <option value="Entire House">Entire House</option>
+            </select>
+          </div>
+        </div>
+
       </div>
       <!--end of first col 4-->
 
       <!--start of second col 4-->
       <div class="col-md-4">
 
-        <!-- No. of roommates -->
+        <!-- Gender preference -->
 
         <div class="row topRow">
+          <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+            <div class="post-bubble">
+              <i class="fa fa-venus-mars fa-lg"></i>
+            </div>
+          </div>
+          <div class="col-xs-9 col-sm-7 input-post">
+            <label for="gender">Gender preference</label><sup class="asterisk">*</sup>
+            <select id="gender" class="form-control" ng-model="editLooking.tempLooking.gender">
+              <option value="male only">Male only</option>
+              <option value="female only">Female only</option>
+              <option value="no preference">No preference</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- No. of roommates -->
+
+        <div class="row post-padding">
           <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
             <div class="post-bubble">
               <i class="fa fa-users fa-lg"></i>
@@ -113,24 +151,6 @@
             <select
               ng-options="option.value as option.text for option in editLooking.ddlYesNoSelect"
               id="openToFullYearLeaseNewRoomates" class="form-control" ng-model="editLooking.tempLooking.openToFullYearLeaseNewRoomates">
-            </select>
-          </div>
-        </div>
-
-        <!-- Gender preference -->
-
-        <div class="row post-padding">
-          <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-            <div class="post-bubble">
-              <i class="fa fa-venus-mars fa-lg"></i>
-            </div>
-          </div>
-          <div class="col-xs-9 col-sm-7 input-post">
-            <label for="gender">Gender preference</label><sup class="asterisk">*</sup>
-            <select id="gender" class="form-control" ng-model="editLooking.tempLooking.gender">
-              <option value="male only">Male only</option>
-              <option value="female only">Female only</option>
-              <option value="no preference">No preference</option>
             </select>
           </div>
         </div>
@@ -188,26 +208,6 @@
             <select
               ng-options="option.value as option.text for option in editLooking.ddlYesNoSelect"
               id="sharedBathroom" class="form-control" ng-model="editLooking.tempLooking.sharedBathroom">
-            </select>
-          </div>
-        </div>
-
-        <!-- Rental type -->
-
-        <div class="row post-padding">
-          <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-            <div class="post-bubble">
-              <i class="fa fa-bigBed fa-lg"></i>
-            </div>
-          </div>
-          <div class="col-xs-9 col-sm-7 input-post">
-            <label for="roomType">Rental preference</label><sup class="asterisk">*</sup>
-            <select id="roomType" class="form-control" ng-model="editLooking.tempLooking.roomType">
-              <option value="Single Room">Single Room</option>
-              <option value="Double Room">Double Room</option>
-              <option value="Living Room">Living Room</option>
-              <option value="Entire Apartment">Entire Apartment</option>
-              <option value="Entire House">Entire House</option>
             </select>
           </div>
         </div>

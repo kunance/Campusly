@@ -48,7 +48,7 @@
         <!--ng-if="look.relatedUserId.id!==looking.me.id" dont use temporary (splicing them on backed)-->
         <div ng-repeat="group in looking.groups" class="row">
           <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 looking" ng-repeat="look in group">
-            <div class="flip-container-room">
+            <div class="flip-container">
               <div class="flipper">
                 <div class="front white-box">
                   <a ui-sref="lookingDetail({param:look.id, allIds:looking.allIds})" style="text-decoration: none">
