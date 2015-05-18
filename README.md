@@ -181,3 +181,6 @@ sudo netstat -lnptu
 ====AWS IP Ranges===
 
 https://ip-ranges.amazonaws.com/ip-ranges.json
+
+====SSH into Live DB ===
+psql --host rentedpg.cyngrnmslnob.us-west-2.rds.amazonaws.com --port 5432 --username ivan --dbname rented

@@ -8,7 +8,7 @@
 
       <div class="row">
         <div class="page-header col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h2>Available Housing</h2>
+          <h2>Available Housing<a class="btn btn-primary pull-right" ui-sref="addRoom">Post Housing</a></h2>
         </div>
       </div>
 
@@ -41,7 +41,7 @@
           <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
             <input type="radio" name="sortOrder" value="ascending" ng-model="rooms.sortOrder">&nbsp;<i class="fa fa-arrow-up"></i></input>
             <input type="radio" name="sortOrder" value="descending" ng-model="rooms.sortOrder">&nbsp;<i class="fa fa-arrow-down"></i></input>
-            <button class="btn-rented-small primary" id="sort" name="sort" ng-click="rooms.search(false)">Sort</button>
+            <button class="btn-rented-small secondary" id="sort" name="sort" ng-click="rooms.search(false)">Sort</button>
           </div>
         </div>
       </div> <!-- end search and sort -->
@@ -67,16 +67,17 @@
                       </div>
                       <div class="info">
                         <strong class="value">
-                          {{room.roomDetails.monthlyPrice | currency}} mo. / Room
+                          {{room.roomDetails.monthlyPrice | currency}} / mo.
                         </strong>
                       </div>
                       <ul class="specs">
-                        <li><i class="fa fa-bed"></i>&nbsp;&nbsp;{{room.roomDetails.roomType}}</li>
+                        <li><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{room.roomDetails.roomType}}</li>
                         <li><i class="fa fa-shower"></i>&nbsp;&nbsp;{{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
                         <li ng-show="room.roomDetails.numRoomates > 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommates + You</li>
                         <li ng-show="room.roomDetails.numRoomates == 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommate + You</li>
                         <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{room.roomDetails.gender}}</li>
                         <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{room.roomDetails.availableMoveIn | date }}</li>
+                        <li><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{room.roomDetails.leaseType}}</li>
                         <li><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{room.propertyDetails.city}}</li>
                       </ul>
                       </a>

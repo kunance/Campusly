@@ -191,6 +191,10 @@ Style for footer
   margin: 0px;
   border-bottom: none;
 }
+
+.page-header a{
+  margin-top: -0.3%;
+}
 /* ==========================================================================
 Transparent class for transparent nav-bar
 ========================================================================== */
@@ -447,6 +451,27 @@ Small Rented button - hover and active
 }
 
 .btn-rented-small.primary:active {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+Small Rented button - primary color
+========================================================================== */
+.btn-rented-small.secondary{
+  background-color: #56bfc3;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+Small Rented button - hover and active
+========================================================================== */
+.btn-rented-small.secondary:hover {
+  background-color: #e4e4e4;
+  color: #000000;
+}
+
+.btn-rented-small.secondary:active {
   background-color: #000000;
   color: #FFFFFF;
 }
@@ -1103,6 +1128,9 @@ ul > li {
     padding-top: 15px;
   }
 
+  .page-header a{
+    margin-top: -4%;
+  }
 }
 
 /* ==========================================================================
@@ -2134,15 +2162,15 @@ Looking Details
 }
 
 .flip-container, .front, .back {
-  height: 325px;
+  height: 345px;
 }
 
 .flip-container-room .front {
-  height: 380px;
+  height: 410px;
 }
 
 .flip-container-room .back {
-  height: 380px;
+  height: 410px;
 }
 
 .flip-container-room {
@@ -3163,7 +3191,6 @@ Unsubscribe partial styling
   max-width: 700px;
   width: 100%;
   min-height: 250px;
-  height: 100%;
   margin: 50px auto 0 auto;
   padding: 30px 50px;
 }

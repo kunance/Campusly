@@ -4,7 +4,7 @@
   <div class="container lookings">
     <div class="row">
       <div class="page-header col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h2>Students Looking</h2>
+        <h2>Students Looking<a  class="btn btn-primary pull-right" ui-sref="addNewLooking" ui-sref-opts="{reload:true}">Post Looking</a></h2>
       </div>
     </div>
       <div class="row searchAndSortBox" ng-if="looking.education.universityId">
@@ -35,7 +35,7 @@
           <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
             <input type="radio" name="sortOrder" value="ascending" ng-model="looking.sortOrder"/>&nbsp;<i class="fa fa-arrow-up"></i>
             <input type="radio" name="sortOrder" value="descending" ng-model="looking.sortOrder"/>&nbsp;<i class="fa fa-arrow-down"></i>
-            <button class="btn-rented-small primary" id="sort" name="sort" ng-click="looking.search(false)">Sort</button>
+            <button class="btn-rented-small secondary" id="sort" name="sort" ng-click="looking.search(false)">Sort</button>
           </div>
         </div>
       </div> <!-- end search and sort -->
@@ -48,7 +48,7 @@
         <!--ng-if="look.relatedUserId.id!==looking.me.id" dont use temporary (splicing them on backed)-->
         <div ng-repeat="group in looking.groups" class="row">
           <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 looking" ng-repeat="look in group">
-            <div class="flip-container-room">
+            <div class="flip-container">
               <div class="flipper">
                 <div class="front white-box">
                   <a ui-sref="lookingDetail({param:look.id, allIds:looking.allIds})" style="text-decoration: none">
@@ -64,7 +64,7 @@
                     <li ng-if="look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName"> <i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;{{look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName}}</li>
                     <li ng-if="!look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName"> <i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;N/A</li>
                     <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{look.moveInDate | date}}</li>
-                    <li><i class="fa fa-tag"></i>&nbsp;&nbsp;{{look.maxMonthlyRent | currency}} / Room</li>
+                    <li><i class="fa fa-tag"></i>&nbsp;&nbsp;{{look.maxMonthlyRent | currency}} / mo.</li>
                     <li><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{look.roomType}}</li>
                     <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{look.gender}}</li>
                   </ul>

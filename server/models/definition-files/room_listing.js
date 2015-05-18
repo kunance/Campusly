@@ -73,7 +73,7 @@ module.exports = {
             field: "leaseEndDate"
         },
         "leaseType": {
-            type: Seq.ENUM('sub-lease', 'month-to-month', 'lease take over'),
+            type: Seq.ENUM('month-to-month', '1-3 months', '4-6 months', '7-9 months', '10-11 months', '1-year', '2-years'),
             field: "leaseType",
             allowNull: false
         },
@@ -87,7 +87,7 @@ module.exports = {
             allowNull: false
         },
         "roomType": {
-            type: Seq.ENUM('single', 'double', 'loft', 'living room'),
+            type: Seq.ENUM('Single Room', 'Double Room', 'Living Room', 'Entire Apt', 'Entire House'),
             field: "roomType"
         },
         "sharedBathroom": {

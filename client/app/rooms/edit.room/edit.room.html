@@ -7,7 +7,7 @@
   <div class="container my-profile">
     <div class="row">
       <div class="page-header">
-        <h2>Edit Room</h2>
+        <h2>Edit My Housing Post</h2>
       </div>
 
       <form name="editRoomForm" novalidate>
@@ -53,25 +53,6 @@
                       <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="open($event,'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                       </span>
-                </p>
-              </div>
-            </div>
-
-            <!-- Move-out -->
-
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-arrow-left fa-lg"></i>
-                </div>
-              </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="leaseEndDate">Move-out date</label>
-                <p class="input-group">
-                  <input type="text" id="leaseEndDate" name="monthlyPrice" class="form-control" datepicker-popup="{{format}}" ng-model="vm.room.leaseEndDate" is-open="datePickers.endDate" close-text="Close" />
-                          <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="open($event,'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
-                          </span>
                 </p>
               </div>
             </div>
@@ -124,25 +105,67 @@
               </div>
             </div>
 
+            <!-- Rental type -->
+
+            <div class="row post-padding">
+              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                <div class="post-bubble">
+                  <i class="fa fa-bigBed fa-lg"></i>
+                </div>
+              </div>
+              <div class="col-xs-9 col-sm-7 input-post">
+                <label for="roomType">Rental type</label><sup class="asterisk">*</sup>
+                <select id="roomType" class="form-control" ng-model="vm.room.roomType" name="roomType" required ng-class="{'educationError': editRoomForm.roomType.$error.required && vm.submitted}">
+                  <option value="Single Room">Single room</option>
+                  <option value="Double Room">Double room</option>
+                  <option value="Living Room">Living room</option>
+                  <option value="Entire Apt">Entire Apartment</option>
+                  <option value="Entire House">Entire House</option>
+                </select>
+              </div>
+            </div>
+
           </div>
 
           <!--start of second col 4-->
           <div class="col-md-4">
 
-            <!-- Lease type -->
+            <!-- Rental length -->
 
             <div class="row topRow">
               <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
                 <div class="post-bubble">
-                  <i class="fa fa-clipboard fa-lg"></i>
+                  <i class="fa fa-clock-o fa-lg"></i>
                 </div>
               </div>
               <div class="col-xs-9 col-sm-7 input-post">
-                <label for="leaseType">Lease type</label><sup class="asterisk">*</sup>
+                <label for="leaseType">Rental length</label><sup class="asterisk">*</sup>
                 <select id="leaseType" name="leaseType" class="form-control" ng-model="vm.room.leaseType" required ng-class="{'educationError': editRoomForm.leaseType.$error.required && vm.submitted}">
-                  <option value="sub-lease">Sub-lease</option>
                   <option value="month-to-month">Month to month</option>
-                  <option value="lease take over">Lease take over</option>
+                  <option value="1-3 months">1-3 months</option>
+                  <option value="4-6 months">4-6 months</option>
+                  <option value="7-9 months">7-9 months</option>
+                  <option value="10-11 months">10-11 months</option>
+                  <option value="1-year">1 year</option>
+                  <option value="2-years">2+ years</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Gender preference -->
+
+            <div class="row post-padding">
+              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
+                <div class="post-bubble">
+                  <i class="fa fa-venus-mars fa-lg"></i>
+                </div>
+              </div>
+              <div class="col-xs-9 col-sm-7 input-post">
+                <label for="gender">Gender preference</label><sup class="asterisk">*</sup>
+                <select id="gender" class="form-control" ng-model="vm.room.gender" name="gender" required ng-class="{'educationError': editRoomForm.gender.$error.required && vm.submitted}">
+                  <option value="no preference">No preference</option>
+                  <option value="male only">Male only</option>
+                  <option value="female only">Female only</option>
                 </select>
               </div>
             </div>
@@ -159,24 +182,6 @@
                 <label for="numRoomates">Current # of roommates</label><sup class="asterisk">*</sup>
                 <input type="number" id="numRoomates" required name="numRoomates" class="form-control" ng-model="vm.room.numRoomates" min="1" max="10"
                        ng-class="{'educationError': editRoomForm.numRoomates.$error.required && vm.submitted}"/>
-              </div>
-            </div>
-
-            <!-- Property type -->
-
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-building fa-lg"></i>
-                </div>
-              </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="type">Property type</label>
-                <select id="type" class="form-control" name="type" ng-model="vm.room.relatedPropertyId.type" ng-class="{'educationError': editRoomForm.type.$error.required && vm.submitted}">
-                  <option value="apt">Apartment</option>
-                  <option value="sfh">Single family house</option>
-                  <option value="townhouse">Townhouse</option>
-                </select>
               </div>
             </div>
 
@@ -233,24 +238,6 @@
           <!--start of third col 4-->
           <div class="col-md-4">
 
-            <!-- Room type -->
-
-            <div class="row topRow">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-bigBed fa-lg"></i>
-                </div>
-              </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="roomType">Room type</label><sup class="asterisk">*</sup>
-                <select id="roomType" class="form-control" ng-model="vm.room.roomType" name="roomType" required ng-class="{'educationError': editRoomForm.roomType.$error.required && vm.submitted}">
-                  <option value="single">Single</option>
-                  <option value="double">Double</option>
-                  <option value="living room">Living room</option>
-                </select>
-              </div>
-            </div>
-
             <!-- Furnished -->
 
             <div class="row post-padding">
@@ -283,24 +270,6 @@
                   ng-class="{'educationError': editRoomForm.smokingAllowed.$error.required && vm.submitted}"
                   ng-options="option.value as option.text for option in vm.ddlYesNoSelect" required
                   id="smokingAllowed" class="form-control" ng-model="vm.room.smokingAllowed">
-                </select>
-              </div>
-            </div>
-
-            <!-- Gender preference -->
-
-            <div class="row post-padding">
-              <div class="col-xs-2 col-sm-2 col-xs-offset-1 col-sm-offset-1">
-                <div class="post-bubble">
-                  <i class="fa fa-venus-mars fa-lg"></i>
-                </div>
-              </div>
-              <div class="col-xs-9 col-sm-7 input-post">
-                <label for="gender">Gender preference</label><sup class="asterisk">*</sup>
-                <select id="gender" class="form-control" ng-model="vm.room.gender" name="gender" required ng-class="{'educationError': editRoomForm.gender.$error.required && vm.submitted}">
-                  <option value="no preference">No preference</option>
-                  <option value="male only">Male only</option>
-                  <option value="female only">Female only</option>
                 </select>
               </div>
             </div>
