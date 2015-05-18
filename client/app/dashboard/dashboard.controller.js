@@ -45,8 +45,8 @@
       angular.forEach(vm.userLookings, function (myLookings) {
         vm.myLookingsIds.push(myLookings.id);
       });
-      vm.sortOrder = 'ascending';
-      vm.sortBy = 'availableMoveIn';
+      vm.sortOrder = 'descending';
+      vm.sortBy = 'createdAt';
       RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: vm.education.universityId, limit: 9})
         .$promise
         .then(function (availRooms) {
@@ -61,7 +61,7 @@
           //vm.noUniversity = true;
         });
 
-      Lookings.query({univId: vm.education.universityId, limit: 6})
+      Lookings.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, univId: vm.education.universityId, limit: 6})
         .$promise
         .then(function (lookings) {
           vm.allLookingIds = [];
