@@ -20,8 +20,8 @@
     function initializeRoomsController(){
       vm.initialized = true;
       var currentUniversityId = vm.education.universityId;
-      vm.sortOrder = 'ascending';  // default
-      vm.sortBy = 'availableMoveIn';  // default
+      vm.sortOrder = 'descending';  // default
+      vm.sortBy = 'createdAt';  // default
       vm.showSearch = false; // default
       vm.showSort = false; // default
       vm.clearSearch = function(showSearch) {

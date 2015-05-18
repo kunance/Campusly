@@ -20,6 +20,8 @@
     function initializearoundYouController() {
         vm.initialized = true;
         vm.showSearch = false;
+        vm.sortOrder = 'descending';  // default
+        vm.sortBy = 'createdAt';  // default
         vm.me.experianIdToken = vm.me.experianIdToken || 1;
         var query = {};
 

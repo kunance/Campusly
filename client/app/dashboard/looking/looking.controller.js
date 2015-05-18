@@ -20,8 +20,8 @@
     function initializeLookingController() {
       vm.initialized = true;
       vm.univCriteria = {shortName:''};
-      vm.sortOrder = 'ascending';
-      vm.sortBy = 'moveInDate';
+      vm.sortOrder = 'descending';
+      vm.sortBy = 'createdAt';
       vm.showSearch = false;
       vm.showSort = false;
 
