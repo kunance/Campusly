@@ -61,9 +61,9 @@
                                       <a href="https://campusly.org/lookingDetail/{{=lookings[i].id}}/of/{{=lookings[i].id}}">
                                       Campus: {{= lookings[i].relatedUserId.usereducationUsers[0].relatedUniversityId.name }}<br/>
                                       Move in date: {{= lookings[i].moveInDate.getMonth()+1 }}/{{= lookings[i].moveInDate.getDate() }}/{{= lookings[i].moveInDate.getFullYear() }}<br/>
-                                      Max rent: ${{= lookings[i].maxMonthlyRent }}<br/>
-                                      Gender: {{= lookings[i].gender }}<br/>
-                                      Max roommates: {{= lookings[i].numRoommates }}<br/>
+                                      Max rent: ${{= lookings[i].maxMonthlyRent }} / mo.<br/>
+                                      Gender preference: {{= lookings[i].gender }}<br/>
+                                      Group size: {{= lookings[i].numRoommates }}<br/>
                                       Looking to meet new roommates?: {{= lookings[i].openToFullYearLeaseNewRoomates ? 'Yes' : 'No'}}
                                       </a>
                                   </td>
@@ -87,13 +87,15 @@
 
                                 {{ for(var i=0; i<roomListings.length; i++) {}}
                                 <tr class="spaceUnder">
-                                        <td style="width: 50%;"><img src="http://maps.googleapis.com/maps/api/staticmap?center={{=roomListings[i].relatedPropertyId.latitude}},{{=roomListings[i].relatedPropertyId.longitude}}&zoom=13&scale=1.5&size=250x160&markers=color:blue%7C{{=roomListings[i].relatedPropertyId.latitude}},{{=roomListings[i].relatedPropertyId.longitude}}&key=AIzaSyAm7woOFr0TOKG0U7jsBF5K3LSifdDjgfs"></td>
+                                        <td style="width: 50%;"><img alt="Rental Address Map" src="http://maps.googleapis.com/maps/api/staticmap?center={{=roomListings[i].relatedPropertyId.latitude}},{{=roomListings[i].relatedPropertyId.longitude}}&zoom=13&scale=1.5&size=250x160&markers=color:blue%7C{{=roomListings[i].relatedPropertyId.latitude}},{{=roomListings[i].relatedPropertyId.longitude}}&key=AIzaSyAm7woOFr0TOKG0U7jsBF5K3LSifdDjgfs"></td>
                                         <td style="width: 50%;"> <a href="https://campusly.org/roomDetail/{{=roomListings[i].id}}/of/{{=roomListings[i].id}}">Address: {{=roomListings[i].relatedPropertyId.streetNumeric}} {{=roomListings[i].relatedPropertyId.streetAddress}} {{=roomListings[i].relatedPropertyId.apt?roomListings[i].relatedPropertyId.apt:''}}, {{=roomListings[i].relatedPropertyId.city}} {{=roomListings[i].relatedPropertyId.zip}}<br/>
                                         Move in date: {{= roomListings[i].availableMoveIn.getMonth()+1 }}/{{= roomListings[i].availableMoveIn.getDate() }}/{{= roomListings[i].availableMoveIn.getFullYear() }}<br/>
-                                        Price: ${{= roomListings[i].monthlyPrice }}<br/>
-                                        Room type: {{= roomListings[i].roomType }}<br/>
-                                        Shared bathroom: {{= roomListings[i].sharedBathroom }}<br/></a></td></tr>
-                                <tr><td colspan="2">Room description: {{= roomListings[i].description }}</td></tr>
+                                        Rent: ${{= roomListings[i].monthlyPrice }} / mo.<br/>
+                                        Rental Length: ${{= roomListings[i].leaseType }}<br/>
+                                        Gender preference: {{= roomListings[i].gender }}<br/>
+                                        Rental type: {{= roomListings[i].roomType }}<br/>
+                                        Shared bathroom: {{= roomListings[i].sharedBathroom ? 'Yes' : 'No'}}<br/></a></td></tr>
+                                <tr ng-if="roomListings[i].description"><td colspan="2">Room description: {{= roomListings[i].description }}</td></tr>
                                 <hr/>
                                 {{ } }}
 

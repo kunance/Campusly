@@ -312,6 +312,17 @@ Posting input text type
   border-radius: 25px;
 }
 
+.lookings .sortBox select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 34px;
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: left;
+  border-radius: 25px;
+}
+
 /* ==========================================================================
 Sign-up button class
 ========================================================================== */
@@ -2437,8 +2448,12 @@ Looking Details
   font-size: 1em;
 }
 
-.my-profile .pets, .my-profile .roommates {
-  min-height: 300px;
+.my-profile .pets {
+  /*min-height: 240px;*/
+}
+
+.my-profile .roommates {
+  min-height: 240px;
 }
 
 .my-profile .info {
@@ -2610,7 +2625,7 @@ h2.no-roommate{
   text-align: center;
   position: absolute;
   width: 100%;
-  top: 43%;
+  top: 60%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
   -ms-transform: translateY(-50%) translateX(-50%);

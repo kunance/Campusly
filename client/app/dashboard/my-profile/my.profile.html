@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
           <div class="page-header">
-            <h2> Your Profile </h2>
+            <h2> My Profile </h2>
           </div>
         </div>
           <div class="col-xs-3 col-sm-8 col-md-8 col-lg-8">
@@ -77,48 +77,45 @@
 
         </div>
       </div>
+
+      <!--  ROOMMATE BOX  -->
       <div class="row">
 
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="page-header">
-            <h2 class="section-title"> Roommates <small ng-if="myProfile.confirmed">({{myProfile.confirmed}}/10)</small> </h2>
-
-            <a class="bubble edit-profile" ng-click="myProfile.toggleRoommatesAddon()">
-              <i class="fa fa-plus" ng-hide="myProfile.showRoommatesAddonButtons"></i>
-              <i class="fa fa-minus" ng-show="myProfile.showRoommatesAddonButtons"></i>
-            </a>
+            <h2 class="section-title"> My Roommates / Group of Friends <small ng-if="myProfile.confirmed">({{myProfile.confirmed}}/10)</small> </h2>
           </div>
           <div class="white-box roommates">
             <h4 ng-if="myProfile.unconfirmed">{{myProfile.unconfirmed}} request(s) pending </h4>
-            <div ng-show='myProfile.showRoommatesAddonButtons' class="text-center">
+            <div class="text-center">
               <a class="btn btn-primary btn-half-block" ng-click="myProfile.toggleAddRoommate()" ng-disabled="myProfile.confirmed>10">
                 <i class="fa fa-plus"></i>
-                Add Roommate
+                Find and Add
               </a>
               <a class="btn btn-secondary btn-half-block" ng-click="myProfile.toggleInviteRoomate()">
                 <i class="fa fa-envelope"></i>
-                Invite Roommate
+                Invite
               </a>
               <hr>
             </div>
 
             <div ng-show="myProfile.showAddRoommate">
               <a class="bubble cancel" ng-click="myProfile.cancelRoommateAddAddon()"><i class="fa fa-close"></i></a>
-              <h3>Search for your roommate by email address</h3>
+              <h3>Search for your roommate or group of friends by their email address</h3>
 
               <angucomplete-alt id="members"
-              placeholder="Search for roommate"
-              pause="400"
-              selected-object="myProfile.addNewRoommate"
-              local-data="myProfile.users"
-              search-fields="email"
-              title-field="firstname,lastname"
-              description-field="email"
-              image-field="profileImage"
-              input-class="form-control form-control-small"
-              match-class="redFont"
-              clear-selected="true">
-              <hr>
+                                placeholder="jane@university.edu"
+                                pause="400"
+                                selected-object="myProfile.addNewRoommate"
+                                local-data="myProfile.users"
+                                search-fields="email"
+                                title-field="firstname,lastname"
+                                description-field="email"
+                                image-field="profileImage"
+                                input-class="form-control form-control-small"
+                                match-class="redFont"
+                                clear-selected="true">
+                <hr>
             </div>
 
             <div ng-show="myProfile.showInviteRoomate">
@@ -151,11 +148,10 @@
 
               </div>
 
-
             </div>
 
             <h2 class="no-roommate" ng-show="!myProfile.showAddRoommate && myProfile.roommates.length === 0 && !myProfile.showInviteRoomate">
-                <a href="" ng-click="myProfile.toggleAddRoommate()">Click here</a> to find and add your roommates.
+              <a href="" ng-click="myProfile.toggleAddRoommate()">Click here</a> to find and add your roommates or group of friends.
             </h2>
             <div class="row roommate" ng-repeat="roommate in myProfile.roommates">
               <div class="col-xs-2" ng-class="{'not-approved' : !roommate.confirmed}">
@@ -179,31 +175,30 @@
           </div>
         </div>
 
-        <!--  PET & VEHICLE BOX  -->
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      </div>
+
+      <div class="row" ng-if="TRUE">
+        <!--  PET & VEHICLE BOX hidden until we want to implement this functionality  -->
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="page-header">
             <h2 class="section-title"> Pets & Vehicles </h2>
-            <a class="bubble" ng-click="myProfile.togglePetAddon()">
-              <i class="fa fa-plus" ng-hide="myProfile.showPetAddonButtons"></i>
-              <i class="fa fa-minus" ng-show="myProfile.showPetAddonButtons"></i>
-            </a>
           </div>
           <div class="white-box pets">
-            <div ng-show='myProfile.showPetAddonButtons' class="text-center">
+            <div class="text-center">
               <a class="btn btn-primary btn-half-block" ng-click="myProfile.toggleAddPet()">
                 <i class="fa fa-pet"></i> Add Pet
               </a>
               <a class="btn btn-secondary btn-half-block" ng-click="myProfile.toggleAddVehicle()">
                 <i class="fa fa-vehicle"></i> Add Vehicle
               </a>
-              <hr>
             </div>
             <form ng-show="myProfile.showAddPet">
+              <hr>
               <h3>Add a new pet</h3>
               <p>(All fields required)</p>
               <hr>
               <label for="type">Type</label>
-              <select id="type" class="form-control" ng-model="addPet.tempPet.type">
+              <select id="type" class="form-control" ng-model="addPet.tempPet.type" required>
                 <option value="cat">Cat</option>
                 <option value="dog">Dog</option>
                 <option value="bird">Bird</option>
@@ -211,42 +206,42 @@
               </select>
 
               <label for="breed">breed</label>
-              <input type="text" id="breed" name="breed" class="form-control" ng-model="addPet.tempPet.breed"/>
+              <input required type="text" id="breed" name="breed" class="form-control" ng-model="addPet.tempPet.breed"/>
 
               <label for="weight">Weight in lbs</label>
-              <input type="text" id="weight" name="weight" class="form-control" ng-model="addPet.tempPet.weightLbs"/>
+              <input required type="text" id="weight" name="weight" class="form-control" ng-model="addPet.tempPet.weightLbs"/>
               <br>
               <button class="btn btn-primary" ng-click="myProfile.addNewPet(addPet.tempPet)">Add pet</button>
               <a class="btn btn-default" ng-click="myProfile.cancelPetAddAddon('a')">Cancel</i></a>
-              <hr>
             </form>
 
             <form ng-show="myProfile.showAddVehicle">
+              <hr>
               <h3>Add a new vehicle</h3>
               <p>(All fields required)</p>
               <hr>
               <label for="model">Model</label>
-              <input type="text" id="model" name="model" class="form-control" ng-model="newVehicle.tempVehicle.model"/>
+              <input required placeholder="Altima" type="text" id="model" name="model" class="form-control" ng-model="newVehicle.tempVehicle.model"/>
 
               <label for="make">Make</label>
-              <input type="text" id="make" name="make" class="form-control" ng-model="newVehicle.tempVehicle.make"/>
+              <input required placeholder="Nissan" type="text" id="make" name="make" class="form-control" ng-model="newVehicle.tempVehicle.make"/>
 
               <label for="year">Year</label>
-              <input type="text" id="year" name="year" class="form-control" ng-model="newVehicle.tempVehicle.year"/>
+              <input required placeholder="2001" type="text" id="year" name="year" class="form-control" ng-model="newVehicle.tempVehicle.year"/>
 
               <label for="license">License plate</label>
-              <input type="text" id="license" name="license" class="form-control" ng-model="newVehicle.tempVehicle.licensePlate"/>
+              <input required placeholder="1ABC345" type="text" id="license" name="license" class="form-control" ng-model="newVehicle.tempVehicle.licensePlate"/>
 
               <label for="color">Color</label>
-              <input type="text" id="color" name="color" class="form-control" ng-model="newVehicle.tempVehicle.color"/>
+              <input required type="text" id="color" name="color" class="form-control" ng-model="newVehicle.tempVehicle.color"/>
 
               <br>
               <button class="btn btn-primary" ng-click="myProfile.addNewVehicle(newVehicle.tempVehicle)">Add Vehicle</button>
               <a class="btn btn-default" ng-click="myProfile.cancelVehicleAddAddon('a')">Cancel</i></a>
-              <hr>
             </form>
 
             <div class="pet row" ng-repeat="pet in myProfile.pets track by $index">
+              <hr>
               <div class="picture col-xs-2">
                 <span class="badge pet"></span>
               </div>
