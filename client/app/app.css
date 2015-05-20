@@ -312,6 +312,17 @@ Posting input text type
   border-radius: 25px;
 }
 
+.lookings .sortBox select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 34px;
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: left;
+  border-radius: 25px;
+}
+
 /* ==========================================================================
 Sign-up button class
 ========================================================================== */
