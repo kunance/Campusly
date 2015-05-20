@@ -2437,8 +2437,12 @@ Looking Details
   font-size: 1em;
 }
 
-.my-profile .pets, .my-profile .roommates {
-  min-height: 300px;
+.my-profile .pets {
+  /*min-height: 240px;*/
+}
+
+.my-profile .roommates {
+  min-height: 240px;
 }
 
 .my-profile .info {
@@ -2610,7 +2614,7 @@ h2.no-roommate{
   text-align: center;
   position: absolute;
   width: 100%;
-  top: 43%;
+  top: 60%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
   -ms-transform: translateY(-50%) translateX(-50%);
