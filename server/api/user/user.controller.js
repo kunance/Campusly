@@ -58,8 +58,45 @@ exports.index = function(req, res) {
  * Get my info
  */
 exports.aroundMe = function(req, res, next) {
-  var userAttributes = ['id', 'aboutMe', 'firstname', 'email', 'lastname', 'profileImage', 'role', 'facebook'];
+  var userAttributes = ['id', 'aboutMe', 'firstname', 'email', 'lastname', 'profileImage', 'role', 'facebook', 'createdAt'];
   var educationAttributes = ['educationCenterName', 'graduationDate'];
+  /* "Sort by, then by"
+   // Based on this jsfiddle:
+   // http://jsfiddle.net/dFNva/1/
+   // as a response to this stackoverflow post:
+   // http://stackoverflow.com/a/979325/2502532
+   // Improvements include JSON deep access with path notation, 'then by' sorting.
+   // Description: Sort by object key, with optional reverse ordering, priming, and 'then by' sorting.
+
+   array.sort(
+   by(path[, reverse[, primer[, then]]])
+   );
+   */
+
+  /* THE FUNCTION */
+  var by = function (path, reverse, primer, then) {
+    var get = function (obj, path) {
+        path = path.split('.');
+        for (var i = 0, len = path.length; i < len - 1; i++) {
+          obj = obj[path[i]];
+        };
+        return obj[path[len - 1]];
+      },
+      prime = function (obj) {
+        return primer ? primer(get(obj, path)) : get(obj, path);
+      };
+
+    return function (a, b) {
+      var A = prime(a),
+        B = prime(b);
+
+      return (
+          (A < B) ? -1 :
+            (A > B) ?  1 :
+              (typeof then === 'function') ? then(a, b) : 0
+        ) * [1,-1][+!!reverse];
+    };
+  };
 
   var searchQuery={};
   var searchCriteria={};
@@ -129,7 +166,7 @@ exports.aroundMe = function(req, res, next) {
           if (!user) {
             return res.status(401).end();
           } else {
-            return res.json(user);
+            return res.json(user.sort(by('createdAt',true)));
           }
         })
         .catch(function (err) {
@@ -154,7 +191,8 @@ exports.aroundMe = function(req, res, next) {
           if (!user) {
             return res.status(401).end();
           } else {
-            return res.json(user);
+            return res.json(user.sort(by('userstatusesUsers', true, null,
+              by('createdAt',false))));
           }
         })
         .catch(function (err) {
