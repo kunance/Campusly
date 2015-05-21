@@ -91,7 +91,7 @@
                                         <td style="width: 50%;"> <a href="https://campusly.org/roomDetail/{{=roomListings[i].id}}/of/{{=roomListings[i].id}}">Address: {{=roomListings[i].relatedPropertyId.streetNumeric}} {{=roomListings[i].relatedPropertyId.streetAddress}} {{=roomListings[i].relatedPropertyId.apt?roomListings[i].relatedPropertyId.apt:''}}, {{=roomListings[i].relatedPropertyId.city}} {{=roomListings[i].relatedPropertyId.zip}}<br/>
                                         Move in date: {{= roomListings[i].availableMoveIn.getMonth()+1 }}/{{= roomListings[i].availableMoveIn.getDate() }}/{{= roomListings[i].availableMoveIn.getFullYear() }}<br/>
                                         Rent: ${{= roomListings[i].monthlyPrice }} / mo.<br/>
-                                        Rental Length: ${{= roomListings[i].leaseType }}<br/>
+                                        Rental length: {{= roomListings[i].leaseType }}<br/>
                                         Gender preference: {{= roomListings[i].gender }}<br/>
                                         Rental type: {{= roomListings[i].roomType }}<br/>
                                         Shared bathroom: {{= roomListings[i].sharedBathroom ? 'Yes' : 'No'}}<br/></a></td></tr>
