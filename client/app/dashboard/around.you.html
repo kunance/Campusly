@@ -16,7 +16,7 @@
       <h3 ng-if="!dashboard.me.shareProfile && dashboard.initialized && (dashboard.aroundYou.length || dashboard.address.streetAddress.id)">
         Please <a ui-sref="settings({focus:'allowConnect'})">update your privacy</a> preferences to connect with students around you.
       </h3>
-      <slick dots="true" class="slider row" slides-to-show="4" slides-to-scroll="4" responsive="dashboard.breakpoints.availableRooms" init-onload="true" infinite="false" data="dashboard.aroundYou" ng-if="dashboard.aroundYou.length && dashboard.me.shareProfile">
+      <slick dots="true" class="slider row" slides-to-show="4" slides-to-scroll="3" responsive="dashboard.breakpoints.aroundYou" init-onload="true" infinite="false" data="dashboard.aroundYou" ng-if="dashboard.aroundYou.length && dashboard.me.shareProfile">
 
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 room" ng-repeat="around in dashboard.aroundYou track by $index">
           <img ng-if="around.profileImage" ng-src="api/images{{around.profileImage}}" class="img-circle center-block looking-profile-img" style="max-height: 4em; max-width: 4em;">

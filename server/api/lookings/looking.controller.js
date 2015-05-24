@@ -50,7 +50,7 @@ exports.showAllLookings= function(req, res, next) {
     sortAttrs = [req.param("sortBy")];
   }
   else {
-    sortAttrs = ["moveInDate"];
+    sortAttrs = ["createdAt"];
   }
 
   if(req.param("sortOrder") === "descending") {
@@ -83,7 +83,7 @@ exports.showAllLookings= function(req, res, next) {
     if(searchQuery.openToFullYearLeaseNewRoomates !== null) { searchCriteria.openToFullYearLeaseNewRoomates = (searchQuery.openToFullYearLeaseNewRoomates === "true"); mixpanel.track("looking - search by openToFullYearLeaseNewRoomates");}
   }
 
-  var limit  = ( req.param("limit") ) ? req.param("limit") : 100;
+  var limit  = ( req.param("limit") ) ? req.param("limit") : 64;
   console.log(limit);
   Looking.findAll({
     where: searchCriteria,

@@ -101,7 +101,7 @@ var _getAllRoomListings = function(req, res, searchCriteria, propertyIdsWithinSe
   }
   else {
     // use default
-    sortAttrs = ["availableMoveIn"];
+    sortAttrs = ["createdAt"];
   }
 
   if(req.param("sortOrder") === "descending") {
@@ -109,7 +109,7 @@ var _getAllRoomListings = function(req, res, searchCriteria, propertyIdsWithinSe
   }
 
 
-  var limit  = ( req.param("limit") ) ? req.param("limit") : 100;
+  var limit  = ( req.param("limit") ) ? req.param("limit") : 64;
 
   var propertyIdWhere = null;
   if(propertyIdsWithinSearchRange) {

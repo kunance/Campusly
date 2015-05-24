@@ -131,6 +131,13 @@
               slidesToScroll: 1
             }
           }
+          , {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
         ],
         lookingRoom: [
           {
@@ -145,19 +152,47 @@
               slidesToShow: 1,
               slidesToScroll: 1
             }
+          }
+          , {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+          , {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
           }],
         aroundYou: [
           {
             breakpoint: 1200,
             settings: {
-              slidesToShow: 5,
-              slidesToScroll: 5
+              slidesToShow: 4,
+              slidesToScroll: 4
             }
           }, {
             breakpoint: 992,
             settings: {
               slidesToShow: 2,
               slidesToScroll: 2
+            }
+          }
+          , {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+          , {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
             }
           }
         ]

@@ -12,10 +12,10 @@
       <div id="logged" ng-if="isLoggedIn()">
         <div class="fb-like facebookNavbar" fb-like><i class="fa fa-facebook-square facebookNavbarIcon"></i>Like / Share</div>
         <i ui-sref="settings" id="settings" class="fa fa-cog" ng-class="{'fa-spin':hover}" ng-mouseenter="hover = true" ng-mouseleave="hover = false"></i>
-        <img class="img-circle profile-image" ng-if="getCurrentUser().profileImage" ng-src="/api/images{{getCurrentUser().profileImage}}">
-        <i ng-if="!getCurrentUser().profileImage" class="fa fa-user fa-2x greetings" style="vertical-align: middle; "></i>
+        <a ui-sref="myProfile" ng-if="getCurrentUser().profileImage"><img class="img-circle profile-image" ng-src="/api/images{{getCurrentUser().profileImage}}"></a>
+        <a ui-sref="myProfile" ng-if="!getCurrentUser().profileImage"><i class="fa fa-user fa-2x greetings" style="vertical-align: middle; "></i></a>
         <p id="greetings" class="greetings">&nbsp;{{getCurrentUser().firstname}}</p>
-        <a class="new-bubble" ui-sref-active="active" ui-sref="logout"><i class="fa fa-sign-out" style="cursor: pointer"></i></a>
+        <a class="new-bubble cancel" ui-sref-active="active" ui-sref="logout"><i class="fa fa-sign-out" style="cursor: pointer; color: #333333"></i></a>
       </div>
 
       <div id="notLogged"  ng-if="!isLoggedIn()">
