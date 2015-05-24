@@ -60,6 +60,9 @@ exports.index = function(req, res) {
 exports.aroundMe = function(req, res, next) {
   var userAttributes = ['id', 'aboutMe', 'firstname', 'email', 'lastname', 'profileImage', 'role', 'facebook', 'createdAt'];
   var educationAttributes = ['educationCenterName', 'graduationDate'];
+  var sortAttrs;
+  sortAttrs = ["createdAt"];
+  sortAttrs.push("DESC");
   /* "Sort by, then by"
    // Based on this jsfiddle:
    // http://jsfiddle.net/dFNva/1/
@@ -145,7 +148,6 @@ exports.aroundMe = function(req, res, next) {
       mixpanel.track("aroundYou - search by meetForEvents");
     }
   }
-
   usersWithin.getAroundYou(req.user.id, req.query.distance, function (usersIds) {
     if(Object.keys(searchCriteria).length) {
       User.findAll({
@@ -153,6 +155,7 @@ exports.aroundMe = function(req, res, next) {
           id: usersIds
         },
         limit: req.query.limit,
+        order: [sortAttrs],
         include: [
           {
             model: Education, attributes: educationAttributes, as: 'usereducationUsers',
@@ -178,6 +181,7 @@ exports.aroundMe = function(req, res, next) {
           id: usersIds
         },
         limit: req.query.limit,
+        order: [sortAttrs],
         include: [
           {
             model: Education, attributes: educationAttributes, as: 'usereducationUsers',

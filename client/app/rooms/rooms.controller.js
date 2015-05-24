@@ -64,7 +64,7 @@
         } else {
           vm.searchCriteria["within"]={
             place:{type: 'univ', id: currentUniversityId},
-            distance:100
+            distance:50
           }
         }
 

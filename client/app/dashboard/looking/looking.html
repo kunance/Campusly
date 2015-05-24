@@ -4,7 +4,7 @@
   <div class="container lookings">
     <div class="row">
       <div class="page-header col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h2>Students Looking<a  class="btn btn-primary pull-right" ui-sref="addNewLooking" ui-sref-opts="{reload:true}">Post Looking</a></h2>
+        <h2>Students Looking <small ng-if="looking.lookings.length < 64">({{looking.lookings.length}} posts)</small><a  class="btn btn-primary pull-right" ui-sref="addNewLooking" ui-sref-opts="{reload:true}">Post Looking</a></h2>
       </div>
     </div>
       <div class="row searchAndSortBox" ng-if="looking.education.universityId">
