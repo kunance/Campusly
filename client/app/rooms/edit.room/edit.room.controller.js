@@ -51,8 +51,8 @@
               console.log('error while adding campus ',err);
             })
         }
-        common.logger.success('room updated!');
-        common.$state.go('dashboard');
+        common.logger.success('Room updated!');
+        common.$state.go('roomDetail', { param: roomId, allIds:[roomId] },{reload: true});
       }).catch(function (err) {
         common.logger.error('error while updating room ',err)
       })
@@ -65,7 +65,7 @@
       var input = {activeRoom: false};
       RoomListing.edit( { userId: vm.me.id, id: roomId}, {room: input}).$promise.then(function () {
         common.logger.success('Room deleted.');
-        $state.go('dashboard');
+        $state.go('dashboard', {}, {reload: true});
       }, function (errors) {
         //TODO need a general error handling banner or scheme to broadcast a message on
       });

@@ -69,7 +69,7 @@
               })
           }
           common.logger.success('looking updated!');
-          common.$state.go('dashboard');
+          common.$state.go('lookingDetail', {param: lookingId, allIds:[lookingId]}, {reload: true});
         }, function (err) {
           console.log('error while updating looking', err);
         });
