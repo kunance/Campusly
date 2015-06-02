@@ -12,7 +12,13 @@
 
   <div class="page-header">
     <h2 class="pull-left">Highlights</h2>
-    <p><small class="pull-right">Posted&nbsp;{{room.roomDetail.roomDetails.createdAt | date:'longDate'}}</small></p>
+    <p class="pull-right">
+      <small ng-if="!room.roomDetail.roomDetails.updatedAt">Posted&nbsp;{{room.roomDetail.roomDetails.createdAt | date:'longDate'}}</small>
+      <small ng-if="room.roomDetail.roomDetails.updatedAt">Updated&nbsp;{{room.roomDetail.roomDetails.updatedAt | date:'longDate'}}</small>
+      <a ng-if="room.me.id == room.roomDetail.roomDetails.creatorId" class="new-bubble" ui-sref="editRoom({id:room.roomDetail.roomDetails.id})" ui-sref-opts="{reload:true}">
+        <i class="fa fa-pencil"></i>
+      </a>
+    </p>
   </div>
 
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 highlights white-box">
