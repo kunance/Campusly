@@ -56,7 +56,7 @@
               <img class="img-circle" ng-if="dashboard.me.profileImage" ng-src="/api/images{{dashboard.me.profileImage}}">
               <i ng-if="!dashboard.me.profileImage" class="fa fa-user fa-5x img-circle" style="text-align: center; display: inline-block;width: 100%;"></i>
               <h2> {{dashboard.me.firstname}} {{dashboard.me.lastname}} </h2>
-              <a class="btn btn-secondary btn-block" ui-sref="myProfile"> Complete Profile </a>
+              <a class="btn btn-secondary btn-block" ui-sref="myProfile"> My Profile </a>
               <p><br></p>
               <a ng-if="dashboard.numberOf>0" ui-sref="myProfile" class="inviteRequest">You have {{dashboard.numberOf}} roommate requests</a>
             </div>
@@ -247,7 +247,7 @@
                           <span class='value'>Max Rent: {{look.maxMonthlyRent | currency}}</span>
                           <span class='address'><i class="fa fa-transgender"></i>&nbsp;&nbsp;Gender: {{look.gender}}</span>
                           <span class='address'><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{look.roomType}}</span>
-                          <span class='address'><i class="fa fa-users"></i>&nbsp;&nbsp;Maximum Roommates: {{look.numRoommates}}</span>
+                          <span class='address'><i class="fa fa-users"></i>&nbsp;&nbsp;Group size: {{look.numRoommates}}</span>
                           <span class='address'><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{look.moveInDate | date}}</span>
 
                           <span class="elapsed-time">

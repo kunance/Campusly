@@ -180,7 +180,6 @@ exports.aroundMe = function(req, res, next) {
         where: {
           id: usersIds
         },
-        limit: req.query.limit,
         order: [sortAttrs],
         include: [
           {
@@ -195,8 +194,9 @@ exports.aroundMe = function(req, res, next) {
           if (!user) {
             return res.status(401).end();
           } else {
-            return res.json(user.sort(by('userstatusesUsers', true, null,
-              by('createdAt',false))));
+            var tempOutput = user.sort(by('userstatusesUsers', true, null,
+              by('createdAt',false)));
+            return res.json(tempOutput.slice(1,req.query.limit));
           }
         })
         .catch(function (err) {

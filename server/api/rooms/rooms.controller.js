@@ -146,7 +146,7 @@ var _getAllRoomListings = function(req, res, searchCriteria, propertyIdsWithinSe
       });
 
       // console.log('Room Listings: ', roomListingResponse);
-      cb(excludeService.excludeOwn(roomListingsResponse, req.user.id));
+      cb(roomListingsResponse);
     });
 };
 
