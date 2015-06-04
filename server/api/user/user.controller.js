@@ -196,7 +196,7 @@ exports.aroundMe = function(req, res, next) {
           } else {
             var tempOutput = user.sort(by('userstatusesUsers', true, null,
               by('createdAt',false)));
-            return res.json(tempOutput.slice(1,req.query.limit));
+            return res.json(tempOutput.slice(0,req.query.limit));
           }
         })
         .catch(function (err) {
