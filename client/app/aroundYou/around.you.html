@@ -116,6 +116,7 @@
                       <li ng-class="{'interested':(arYou.userstatusesUsers[0].meetForHangout || arYou.userstatusesUsers[0].meetForStudy
                     || arYou.userstatusesUsers[0].meetForEvents), 'not-interested':!(arYou.userstatusesUsers[0].meetForHangout || arYou.userstatusesUsers[0].meetForStudy
                     || arYou.userstatusesUsers[0].meetForEvents)}"><i class="fa fa-users"></i>&nbsp;&nbsp;Meeting Up</li>
+                      <li ng-if="around.education.relatedUniversityId.id == 3" ng-class="{'interested':arYou.userstatusesUsers[0].meetForEvents, 'not-interested':!(arYou.userstatusesUsers[0].meetForEvents)}"><i class="fa fa-users"></i>&nbsp;&nbsp;Going to Porter's Pub</li>
                     </ul>
                   </div>
 
