@@ -1,38 +1,3 @@
-<!-- One time code for campus event -->
-<div class="row" ng-if="dashboard.education.relatedUniversityId.id == 3">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <h2>Get ready for finals! Free food!</h2>
-    <!-- Events Section -->
-    <div>
-      <a href="https://www.facebook.com/events/790906717689662/" target="_blank"><img border="0" class="img-responsive" src="./../assets/images/events/accb_nerds.jpg"></a>
-    </div>
-
-    <div class="white-box" style="margin-top: 10px">
-      <div class="row">
-        <p>Going today? Need a ride?</p>
-        <form name="connectTo" ng-submit="dashboard.updateStatus(connectTo, dashboard.userStatus)" novalidate>
-        <div class="col-xs-12 col-sm-8">
-            <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.meetForEvents" value="Campus Events">Going to Porter's Pub</label>
-            <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.carpoolingToCampus" value="Carpool From Campus">Need a ride to campus</label>
-            <label class="checkbox"><input type="checkbox" ng-model="dashboard.userStatus.carpoolingFromCampus" value="Carpool To Campus">Need a ride back</label>
-          <a style="margin-top: 10px" href="http://accb.ucsd.edu/" target="_blank">Brought to you by UCSD AS & All Campus Commuter Board</a>
-        </div>
-        <div class="col-xs-12 col-sm-4">
-          <button id="UpdateMyStatus" class="btn btn-primary btn-block" type="submit">Update My Status</button>
-          <script type="text/javascript">
-            $("#target").submit(function( event ) {
-              var value = $( "input:checkbox:checked" ).val();
-              mixpanel.track("Update My Status", {"Status Change":value});
-              mixpanel.people.increment('Update My Status');
-            });
-          </script>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div> <!-- End of one time code for campus event -->
-
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <h2 ng-if="dashboard.me.experianIdToken == 1 && dashboard.me.shareProfile"> Students Around You <small>(within {{dashboard.me.experianIdToken}} mile)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
@@ -78,7 +43,6 @@
               <li ng-class="{'interested':(around.userstatusesUsers[0].meetForHangout || around.userstatusesUsers[0].meetForStudy
                     || around.userstatusesUsers[0].meetForEvents), 'not-interested':!(around.userstatusesUsers[0].meetForHangout || around.userstatusesUsers[0].meetForStudy
                     || around.userstatusesUsers[0].meetForEvents)}"><i class="fa fa-users"></i>&nbsp;&nbsp;Meeting Up</li>
-              <li ng-if="dashboard.education.relatedUniversityId.id == 3" ng-class="{'interested':around.userstatusesUsers[0].meetForEvents, 'not-interested':!(around.userstatusesUsers[0].meetForEvents)}"><i class="fa fa-users"></i>&nbsp;&nbsp;Going to Porter's Pub</li>
             </ul>
           </div>
           <div style="text-align: center;width: 100%; padding-top: 10px">
