@@ -6,15 +6,22 @@
   .module('app.dashboard')
   .controller('DashboardCtrl',DashboardCtrl);
 
-  DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'RoomListingView', 'UserResource', 'RoomListing', '$q', 'Lookings'];
+  DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'RoomListingView', 'UserResource', 'RoomListing', '$q', 'Lookings', 'screenSize'];
 
-  function DashboardCtrl(common, $scope, currentUser, RoomListingView, UserResource, RoomListing, $q, Lookings) {
+  function DashboardCtrl(common, $scope, currentUser, RoomListingView, UserResource, RoomListing, $q, Lookings, screenSize) {
     var vm = this;
     vm.me = currentUser;
     vm.userLookings = common.dataservice.getAllLookings(currentUser.id);
     vm.myRoomListings = RoomListing.query({userId: currentUser.id});
     vm.numberOf = common.dataservice.getRequests(currentUser.id);
-    vm.aroundYou = UserResource.aroundMe({distance: (1609 * (currentUser.experianIdToken || 1)), limit: 12});
+    var aroundYouLimit;
+    if (screenSize.is('xs')){
+      aroundYouLimit = 6;
+    }
+    else {
+      aroundYouLimit = 12;
+    }
+    vm.aroundYou = UserResource.aroundMe({distance: (1609 * (currentUser.experianIdToken || 1)), limit: aroundYouLimit});
     vm.address = common.dataservice.getAllAddresses(currentUser.id);
     vm.userStatus = common.dataservice.getStatus(currentUser.id);
     vm.education = common.dataservice.getAllEducations(currentUser.id);
@@ -47,7 +54,16 @@
       });
       vm.sortOrder = 'descending';
       vm.sortBy = 'createdAt';
-      RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: vm.education.universityId, limit: 9})
+      var roomLimit;
+
+      if (screenSize.is('xs')){
+        roomLimit = 6;
+      }
+      else {
+        roomLimit = 9;
+      }
+
+      RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: vm.education.universityId, limit: roomLimit})
         .$promise
         .then(function (availRooms) {
           vm.allIds = [];
