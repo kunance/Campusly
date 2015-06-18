@@ -19,7 +19,7 @@
       <slick dots="true" class="slider row" slides-to-show="4" slides-to-scroll="3" responsive="dashboard.breakpoints.aroundYou" init-onload="true" infinite="false" data="dashboard.aroundYou" ng-if="dashboard.aroundYou.length && dashboard.me.shareProfile">
 
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 room" ng-repeat="around in dashboard.aroundYou track by $index">
-          <img ng-if="around.profileImage" ng-src="api/images{{around.profileImage}}" class="img-circle center-block looking-profile-img" style="max-height: 4em; max-width: 4em;">
+          <img ng-if="around.profileImage" ng-src="api/images{{around.profileImage}}" class="img-circle center-block looking-profile-img" style="width: 35%">
           <i ng-if="!around.profileImage" class="fa fa-user fa-4x" style="text-align: center; display: inline-block;width: 100%;"></i>
           <div class="arYouView">
             <h4 class="media-heading user-name" style="text-align: center">
