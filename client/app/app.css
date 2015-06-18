@@ -1144,10 +1144,6 @@ ul > li {
     padding-top: 15px;
   }
 
-  .page-header a{
-    margin-top: -4%;
-  }
-
   .page-header p{
     padding-top: 6%;
     padding-right: 5%;
@@ -1913,8 +1909,8 @@ Looking Details
 /* Looking post picture border */
 
 .about-me .picture img {
-  width: 11em;
-  height: 11em;
+  width: 70%;
+  height: 70%;
   border: 5px solid #56bfc3;
 }
 
@@ -2079,7 +2075,6 @@ Looking Details
 
 .my-profile .my-listings .list-item .edit {
   width: 100px;
-  position: absolute;
   top: 10px;
   right: 15px;
   display: table;
@@ -2287,8 +2282,8 @@ Looking Details
 
 }
 .my-profile .about-me .picture img{
-  height: 130px;
-  width: 130px;
+  height: 70%;
+  width: 70%;
 }
 
 .my-profile .about-me dl dt {
@@ -2309,9 +2304,7 @@ Looking Details
 }
 
 .looking-grid-profile-img {
-  width: 29%;
-  max-width: 5em;
-  max-height: 4em;
+  width: 30%;
 }
 
 /* Code for back-link */

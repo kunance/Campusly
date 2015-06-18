@@ -8,7 +8,11 @@
 
       <div class="row">
         <div class="page-header col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h2>Available Housing <small ng-if="rooms.availableRooms.length < 64">({{rooms.availableRooms.length}} posts)</small><a class="btn btn-primary pull-right" ui-sref="addRoom">Post Housing</a></h2>
+          <h2>Available Housing
+            <small ng-if="rooms.availableRooms.length < 64">({{rooms.availableRooms.length}} posts)</small>
+            <small ng-if="rooms.availableRooms.length == 64">({{rooms.availableRooms.length}}+ posts)</small>
+            <a class="btn btn-primary pull-right" ui-sref="addRoom">Post Housing</a>
+          </h2>
         </div>
       </div>
 

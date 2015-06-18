@@ -3,7 +3,7 @@
   "use strict";
 
   angular
-    .module('app.dashboard', [])
+    .module('app.dashboard', ['matchMedia'])
     .config(config);
 
      config.$inject = ['$stateProvider'];
