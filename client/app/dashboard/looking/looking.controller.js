@@ -5,9 +5,9 @@
   .module('app.dashboard')
   .controller('LookingCtrl', LookingCtrl);
 
-  LookingCtrl.$inject = ['$scope','common', '$window', 'Lookings', 'currentUser', '$q'];
+  LookingCtrl.$inject = ['$scope','common', '$window', 'Lookings', 'currentUser', '$q', 'screenSize'];
 
-  function LookingCtrl($scope, common, $window, Lookings, currentUser, $q) {
+  function LookingCtrl($scope, common, $window, Lookings, currentUser, $q, screenSize) {
     var vm = this;
     vm.me = currentUser;
     vm.universitiesList = common.dataservice.getAllUniversities();
@@ -59,9 +59,16 @@
         vm.univCriteria.shortName = vm.univCriteria.shortName || vm.universitiesList[vm.education.relatedUniversityId.id-1];
       };
 
+      var lookingLimit;
+      if (screenSize.is('xs')){
+        lookingLimit = 32;
+      }
+      else {
+        lookingLimit = 64;
+      }
       vm.clearSearch(false);
       vm.search = function(showSearch) {
-        Lookings.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: vm.univCriteria.shortName.id}, function (activeLookings) {
+        Lookings.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: vm.univCriteria.shortName.id, limit: lookingLimit}, function (activeLookings) {
           vm.allIds = [];
           angular.forEach(activeLookings, function (looking) {
             vm.allIds.push(looking.id);

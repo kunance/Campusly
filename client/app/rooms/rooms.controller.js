@@ -5,9 +5,9 @@
   .module('app.rooms')
   .controller('RoomsCtrl', RoomsCtrl);
 
-  RoomsCtrl.$inject = ['$scope', '$q', '$window', 'common', 'RoomListingView', 'currentUser'];
+  RoomsCtrl.$inject = ['$scope', '$q', '$window', 'common', 'RoomListingView', 'currentUser', 'screenSize'];
 
-  function RoomsCtrl($scope, $q, $window, common, RoomListingView, currentUser) {
+  function RoomsCtrl($scope, $q, $window, common, RoomListingView, currentUser, screenSize) {
     var vm = this;
     vm.property = {};
     vm.me = currentUser;
@@ -68,7 +68,15 @@
           }
         }
 
-        RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: currentUniversityId}, function(availRooms) {
+        var roomLimit;
+        if (screenSize.is('xs')){
+          roomLimit = 32;
+        }
+        else {
+          roomLimit = 64;
+        }
+
+        RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: currentUniversityId, limit: roomLimit}, function(availRooms) {
           vm.allIds = [];
           vm.availableRooms = availRooms;
           angular.forEach(vm.availableRooms, function (room) {
