@@ -42,7 +42,7 @@
 
                     <h3>Dear *|FNAME|*,</h3>
                     <br>
-                    <h5>Connect with {{=(lookings.length+roomListings.length)}} new students who are looking for a room or roommate!</h5>
+                    <h5>Connect with {{=(lookings.length+roomListings.length)}} new students who are looking for housing or roommates. See who is looking for a ride to campus or just hangout around you.</h5>
                     <br/>
                     <h5>Login and view new posts from {{=d.getMonth()+1}}/{{=d.getDate()}}/{{=d.getFullYear()}}<br><br></h5>
 
@@ -82,7 +82,7 @@
                           <table class="twelve columns">
 
                                 <tr>
-                                  <td><h6>Rooms Available</h6></td>
+                                  <td><h6>Housing Available</h6></td>
                                 </tr>
 
                                 {{ for(var i=0; i<roomListings.length; i++) {}}
@@ -95,7 +95,7 @@
                                         Gender preference: {{= roomListings[i].gender }}<br/>
                                         Rental type: {{= roomListings[i].roomType }}<br/>
                                         Shared bathroom: {{= roomListings[i].sharedBathroom ? 'Yes' : 'No'}}<br/></a></td></tr>
-                                <tr ng-if="roomListings[i].description"><td colspan="2">Room description: {{= roomListings[i].description }}</td></tr>
+                                <tr ng-show="roomListings[i].description != null"><td colspan="2">Room description: {{= roomListings[i].description }}</td></tr>
                                 <hr/>
                                 {{ } }}
 
