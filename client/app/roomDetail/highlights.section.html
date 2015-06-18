@@ -101,7 +101,7 @@
 
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-        <a id="email" style="margin-left:20px; position: relative;" class="pull-right" ng-href="mailto:{{room.creatorEmail}}?Subject=Interested%20in%20your%20room">
+        <a id="email" style="margin-left:20px; position: relative;" class="pull-right" ng-href="mailto:{{room.creatorEmail}}?subject=Interested%20in%20your%20available%20housing&body=Hi%20{{room.creatorFirstName}}%2C%0A%0A%0A%0AThanks%2C%0A{{room.me.firstname}}%0Ahttps://campusly.org/roomDetail/{{room.roomDetail.roomDetails.id}}/of/{{room.roomDetail.roomDetails.id}}">
           <i class="fa fa-send contact-bubble-email"></i><p style="float: right; padding-top: 10px">&nbsp;&nbsp;{{room.creatorEmail}}</p></a>
         <script type="text/javascript">
           mixpanel.track_links("#email", "Email sent - available room");

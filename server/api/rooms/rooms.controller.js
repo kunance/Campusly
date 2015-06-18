@@ -34,7 +34,7 @@ exports.getRoomListing = function(req, res, next) {
     "longitude", "type", "description", "bedrooms","bathrooms", "parkingSpots", "livingAreaSqFt", "hoaFee", "otherFee",
     "status" ];
 
-  var creatorAttributes = ["email", "facebook"];
+  var creatorAttributes = ["email", "facebook", "firstname"];
 
   RoomListing.find({
     where: {

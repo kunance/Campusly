@@ -22,6 +22,7 @@
     function initializeRoomDetailController() {
       vm.creatorEmail = vm.roomDetail.roomDetails.relatedCreatorId.email;
       vm.creatorFacebook = vm.roomDetail.roomDetails.relatedCreatorId.facebook;
+      vm.creatorFirstName = vm.roomDetail.roomDetails.relatedCreatorId.firstname;
 
       vm.allIds = ($stateParams.allIds).split(",").map(Number);
       var id = $stateParams.param;

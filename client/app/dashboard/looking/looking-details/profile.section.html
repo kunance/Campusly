@@ -79,7 +79,7 @@
   <hr/>
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
-      <a id="email" style="margin-left:20px; position: relative;" class="pull-right" ng-href="mailto:{{detail.lookingDetail.relatedUserId.email}}?Subject=Interested%20in%20your%20looking">
+      <a id="email" style="margin-left:20px; position: relative;" class="pull-right" ng-href="mailto:{{detail.lookingDetail.relatedUserId.email}}?subject=Interested%20in%20your%20looking%20post&body=Hi%20{{detail.lookingDetail.relatedUserId.firstname}}%2C%0A%0A%0A%0AThanks%2C%0A{{detail.me.firstname}}%0Ahttps://campusly.org/lookingDetail/{{detail.lookingDetail.id}}/of/{{detail.lookingDetail.id}}">
         <i class="fa fa-send contact-bubble-email"></i><p style="float: right; padding-top: 10px">&nbsp;&nbsp;{{detail.lookingDetail.relatedUserId.email}}</p></a>
       <script type="text/javascript">
         mixpanel.track_links("#email", "Email sent - looking");
