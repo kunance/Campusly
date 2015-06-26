@@ -73,7 +73,7 @@ module.exports = {
             field: "leaseEndDate"
         },
         "leaseType": {
-            type: Seq.ENUM('month-to-month', '1-3 months', '4-6 months', '7-9 months', '10-11 months', '1-year', '2-years'),
+            type: Seq.ENUM('month-to-month', '1-3 months', '4-6 months', '7-9 months', '10-11 months', '1-year', '2-years', 'Summer Session I', 'Summer Session II', 'All Summer', 'Fall', 'Winter', 'Spring'),
             field: "leaseType",
             allowNull: false
         },

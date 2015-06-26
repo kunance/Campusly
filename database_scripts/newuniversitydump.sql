@@ -21,7 +21,7 @@ SET search_path = public, pg_catalog;
 -- Data for Name: university; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY university (id, name, "academicYearType", "streetNumeric", "streetAddress", apt, city, state, zip, latitude, longitude, "startDate", "endDate", "createdAt", "updatedAt", "deletedAt", geoloc, "shortName") FROM stdin;
+COPY university (id, name, "academicYearType", "streetNumeric", "streetAddress", apt, city, state, zip, latitude, longitude, "startDate", "endDate", "createdAt", "updatedAt", "deletedAt", geoloc, "shortname") FROM stdin;
 1	University of California - Berkeley	semester	5	South Hall Road	\N	Berkeley	CA	94720	37.87220000	-122.25869800	2012-12-11 15:00:00-08	\N	2015-03-04 14:20:36.338-08	\N	\N	0101000020E61000001DC9E53FA4EF424099620E828E905EC0	UC Berkeley
 2	University of California - Davis	semester	1	Shields Avenue	\N	Davis	CA	95616	38.53823200	-121.76171300	2012-12-11 15:00:00-08	\N	2015-03-04 14:22:02.394-08	\N	\N	0101000020E610000091D442C9E444434009FCE1E7BF705EC0	UC Davis
 3	University of California - San Diego	semester	9500	Gilman Drive	\N	La Jolla	CA	92093	32.88021900	-117.23585500	2012-12-11 15:00:00-08	\N	2015-03-04 14:23:30.355-08	\N	\N	0101000020E6100000AE282504AB70404047E6913F184F5DC0	UC San Diego
