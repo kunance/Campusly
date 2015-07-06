@@ -34,6 +34,9 @@ Thats all! Now go and open up your browser at [http://localhost:3000](http://loc
 - Bower - Web package manager, installing Bower is simple when you have npm:
 ``` npm install -g bower ```
 
+- Grunt
+install grunt with "bower install"
+
 ### NPM Modules Used
 - [Passport](http://passportjs.org/) - Passport is authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based web application. A comprehensive set of strategies support authentication using a username and password, Facebook, Twitter, and more. 
 - [Express](http://expressjs.com/) - Express is a minimal and flexible node.js web application framework, providing a robust set of features for building single and multi-page, and hybrid web applications.
