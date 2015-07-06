@@ -13,6 +13,7 @@
      * Feature areas
      */
     'app.dashboard',
+    'app.messages',
     'app.layout',
     'app.account',
     'app.landing',
