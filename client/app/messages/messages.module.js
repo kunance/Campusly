@@ -3,7 +3,7 @@
   "use strict";
 
   angular
-    .module('app.messages', [])
+    .module('app.messages', ['pubnub.angular.service'])
     .config(config);
 
      config.$inject = ['$stateProvider'];
