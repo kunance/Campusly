@@ -9,4 +9,5 @@ BEGIN;
 \i InsertAddressHistory.sql
 \i InsertLooking.sql
 \i InsertRoommate.sql
+\i user_status_table.sql
 COMMIT;

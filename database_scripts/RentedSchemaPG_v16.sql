@@ -1576,7 +1576,7 @@ ALTER TABLE student OWNER TO postgres;
 CREATE TABLE university (
     id bigint NOT NULL,
     name text NOT NULL,
-    shortname text, -- Used to store short name of the campus. Ex. UCSD
+    "shortName" text, -- Used to store short name of the campus. Ex. UCSD
     "academicYearType" "university_academicYearType" DEFAULT 'semester'::"university_academicYearType",
     "streetNumeric" integer NOT NULL,
     "streetAddress" text NOT NULL,
