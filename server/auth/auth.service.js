@@ -33,7 +33,7 @@ function isAuthenticated() {
       })
         .then(function(user) {
           if (!user) {
-            return res.send(401);
+            return res.send(401).end();
           }
           req.user = user;
           next();
