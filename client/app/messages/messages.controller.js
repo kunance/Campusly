@@ -15,16 +15,32 @@
     /*
      * PubNub init code
      * Keys used are from Sandbox - TODO - change before launching
+     * Stored in variable pubnub
      */
-    PubNub.init({
+    var pubnub = PubNub.init({
       publish_key:'pub-c-cd12098a-7ff3-4558-921b-c4c7a70ed47a',
       subscribe_key:'sub-c-fb61f4f0-2402-11e5-8463-02ee2ddab7fe',
-      uuid: vm.me //use existing user's ID as the UUID - unique user ID
+      //uuid: vm.me.email, //use existing user's ID as the UUID - unique user ID
+      ssl: true
     });
 
     /*
      * Start first chat code here
      */
+    pubnub.subscribe({
+      channel: 'my_channel',
+      message: function(m){console.log(m)},
+      error: function (error) {
+        // Handle error here
+        console.log(JSON.stringify(error));
+      }
+    });
+
+    pubnub.publish({
+      channel: 'my_channel',
+      message: 'Hello from the PubNub Javascript SDK!',
+      callback : function(m){console.log(m)}
+    });
 
     /*
      *  prerender.io for SEO
