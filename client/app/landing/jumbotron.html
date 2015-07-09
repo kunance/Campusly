@@ -13,20 +13,25 @@
 
       <section class="white-box-signup">
 
+        <!-- Submits form to the register function in the landing controller file -->
         <form class="main-form-signup" name="form" ng-submit="landing.register(form)" novalidate>
 
+          <!-- Submits the first name as string -->
           <label class="lbl">
             <input type="text" name="firstname" ng-model="landing.user.firstname" placeholder="First name" ng-class="{'has-success': form.firstname.$valid && landing.submitted, 'has-error': form.firstname.$invalid && landing.submitted}" required/>
           </label>
 
+          <!-- Submits the last name as string -->
           <label class="lbl">
             <input type="text" name="lastname" ng-model="landing.user.lastname" placeholder="Last name" ng-class="{'has-success': form.lastname.$valid && landing.submitted, 'has-error': form.lastname.$invalid && landing.submitted}" required/>
           </label>
 
+          <!-- Submits the email as string -->
           <label class="lbl">
             <input type="email" name="email" ng-model="landing.user.email" placeholder="Your email address (.edu required)" ng-class="{ 'has-success': form.email.$valid && landing.submitted, 'has-error': form.email.$invalid && landing.submitted }" required>
           </label>
 
+          <!-- Submits the password as string -->
           <label class="lbl">
             <input type="password" name="password" ng-model="landing.user.password" ng-minlength="8" placeholder="Password (minimum 8 characters)" ng-class="{ 'has-success': form.password.$valid && landing.submitted, 'has-error': form.password.$invalid && landing.submitted }" required>
           </label>
