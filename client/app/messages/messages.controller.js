@@ -11,6 +11,10 @@
   function MessageCtrl(common, $scope, currentUser, UserResource, $q, PubNub) {
     var vm = this;
     vm.me = currentUser;
+    vm.education = common.dataservice.getAllEducations(currentUser.id);
+    //var currentChannel = vm.education.relatedUniversityId.shortName; //code that throws an error. we want the shortname to be assigned to a variable
+
+    console.log(vm.education);
 
     /*
      * PubNub init code
