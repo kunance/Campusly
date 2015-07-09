@@ -8,6 +8,9 @@
   LoginCtrl.$inject = ['$scope', 'Auth', '$state', '$window', '$stateParams', 'common', '$rootScope'];
 
   function LoginCtrl( $scope, Auth, $state, $window, $stateParams, common, $rootScope) {
+    /*
+     * Defining initial variables
+     */
     $scope.showForm = true;
     $scope.sendingEmail = false;
     $scope.newPasswordAddon = false;
@@ -27,21 +30,37 @@
     $rootScope.showEmail = $rootScope.showEmail || false;
     $rootScope.showPassword = $rootScope.showPassword || false;
 
+    // Mixpanel
     if(window.Gdistinct_id) {
       mixpanel.track("sign in");
     }
 
+    // SEO
     $scope.$parent.seo = {
       pageTitle: 'Campusly Sign-in',
       pageDescription: 'Sign-in securely to Campusly'
     };
 
+    /*
+     * Name:
+     * High Level Description: allows user to toggle between selecting forgot password or that they remember password
+     * Input:
+     * Return:
+     * Side effects:
+     */
     $scope.toogleNewPasswordAddon= function () {
       $scope.newPasswordAddon = !$scope.newPasswordAddon;
       $scope.reset = $scope.newPasswordAddon ? 'I remember!' : 'Forget password?';
       $scope.errors.password = ' ';
     };
 
+    /*
+     * Name: confirmToken
+     * High Level Description: if email is confirmed then user is logged in
+     * Input: user clicks on the confirm email from their inbox
+     * Return:
+     * Side effects:
+     */
     if ($scope.confirmToken) {
       common.Auth.confirmMail($scope.confirmToken)
         .then( function(data) {
@@ -50,6 +69,13 @@
           $rootScope.showEmail = true;
           $state.go('login');
         })
+        /*
+         * Name: email confirmation failed
+         * High Level Description: email confirmation has a 60min timer
+         * Input: user clicks on the confirm email from their inbox after 60min
+         * Return:
+         * Side effects: user has to re-submit their email confirmation
+         */
         .catch( function(err) {
           mixpanel.track("sign in - mail confirmation failure",{distinct:Gdistinct_id});
           $rootScope.verificationTitle = err.data.title;
@@ -59,6 +85,13 @@
         });
     }
 
+    /*
+     * Name: password reset
+     * High Level Description: enables user to reset their password
+     * Input: user has to input their email and a new password. Then a new email is sent to their address for confirmation.
+     * Return:
+     * Side effects: user has to re-submit their email confirmation
+     */
     if ($scope.passwordResetToken) {
       $state.go('login');
       common.Auth.confirmResetedPassword($scope.passwordResetToken)
@@ -73,6 +106,14 @@
         });
     }
 
+    /*
+     * Name: login function
+     * High Level Description: logs in the user if login is successful
+     * Input:
+     * Return: user is routed to either the dashboard or the state to which they intended to go. If password failed then tells the user
+     * there was a problem logging in
+     * Side effects:
+     */
     $scope.login = function (form) {
       $scope.submitted = true;
       if(form.$valid) {
@@ -118,6 +159,13 @@
       $scope.verificationMailResend = false;
     };
 
+    /*
+     * Name: resend email function
+     * High Level Description: sends email confirmation if user did not confirm within first 60min
+     * Input:
+     * Return: sends user an email
+     * Side effects:
+     */
     $scope.resendEmail = function(){
         $scope.sendingEmail = true;
         common.Auth.sendConfirmationMail({userId: $scope.user.email})
@@ -136,6 +184,13 @@
           });
     };
 
+    /*
+     * Name: password reset function
+     * High Level Description: sends user password reset confirmation if user did not confirm within first 60min
+     * Input: email and new password
+     * Return: sends user an email
+     * Side effects:
+     */
     $scope.sendPwdResetMail = function(form) {
       $scope.submitted = true;
       if(form.$valid) {

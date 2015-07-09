@@ -28,6 +28,14 @@
       pageDescription:'Free Sign-up for Campusly'
     };
 
+    /*
+     * Name: register function - registers a new user, checks email validity, checks input fields for errors
+     * Description: Takes in the input from the html form
+     * Input: first name, last name, email, and password
+     * Return: none
+     * Side effects: Creates a user in node, creates a user in the Postgres DB, sends confirmation email to user upon successful user creation
+     */
+
     vm.register = function (form) {
       vm.submitted = true;
       if(form.email.$valid){
@@ -52,6 +60,9 @@
               });
             Auth.logout();
           })
+          /*
+           * Checks if user is already signed in and if the user has valid .edu address
+           */
           .catch(function (err) {
             err = err.data;
             vm.errors = {};
