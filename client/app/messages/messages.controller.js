@@ -14,9 +14,11 @@
     var shortName;
     vm.me = currentUser;
     vm.education = common.dataservice.getAllEducations(currentUser.id);
+    
     vm.education.$promise.then(function(data){
        console.log(data);
     });
+
 
     var email = JSON.stringify(vm.me.email);
     console.log(email);
