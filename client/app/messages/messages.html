@@ -3,6 +3,36 @@
 
 <div class="main-wrapper">
   <div class="container">
+
+    <div class="messages">
+
+      <h4>Channel Subscriptions</h4>
+
+      <button ng-click="messages.subscribe('channel1')" style="height:20px; width:50px" ng-model="messages.subscriptions.channel1" /> Channel 1
+      </button>
+      <button ng-click="messages.updateSubscription('channel2')" style="height:20px; width:50px" ng-model="messages.subscriptions.channel2" /> Channel 2
+      </button>
+
+      <h4>Message History</h4>
+
+      <form>
+        <input type="text" ng-model='messages.newMessage' />
+        <button ng-click="messages.publish('channel1')">Send to Channel 1</button>
+        <button ng-click="messages.publish('channel2')">Send to Channel 2</button>
+      </form>
+
+      <br />
+
+      <div class="well">
+        <ul>
+          <li ng-repeat="message in messages track by $index">{{message}}</li>
+        </ul>
+      </div>
+
+    </div>
+
+
+    <!--
     <div class="row">
 
       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
@@ -33,5 +63,7 @@
       </div>
 
     </div>
+    -->
+
   </div>
 </div>
