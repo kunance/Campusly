@@ -1378,6 +1378,7 @@ CREATE TABLE rented_user (
     "facebookOAuthId" text,
     "googleOAuthId" text,
     "twitterOAuthId" text,
+    "subscribedChannels" text[],
     salt text NOT NULL
 );
 
