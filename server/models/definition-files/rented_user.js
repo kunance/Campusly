@@ -393,6 +393,10 @@ module.exports = {
       type: Seq.TEXT,
       field: "twitterOAuthId"
     },
+    "subscribedChannels": {
+      type: Seq.ARRAY(Seq.TEXT),
+      field: "subscribedChannels"
+    },
     "salt": {
       type: Seq.TEXT,
       field: "salt",

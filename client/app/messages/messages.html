@@ -21,6 +21,14 @@
         <button ng-click="messages.grabHistory('#UC San Diego Financial Aid', 3)">Send to Channel 2</button>
       </form>
 
+      <br>
+      <p>Change data</p>
+
+      <form class="form" ng-submit="messages.changePersonalData()">
+        <input type="text" ng-model="messages.tempMe.subscribedChannels" /> <!-- cannot save this model as its not an array. Need to update here -->
+        <input type="submit" class="btn-rented-medium primary" value="Save">
+      </form>
+
       <br />
 
       <div class="well">
