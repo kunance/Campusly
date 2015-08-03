@@ -6,21 +6,32 @@
 
     <div class="messages">
 
-      <h4>Channel Subscriptions</h4>
+      <h4>Channel grabHistory</h4>
 
-      <button ng-click="messages.setCurrentChannel('#UC San Diego')" style="height:20px; width:50px" ng-model="messages.subscriptions.channel1" /> #UC San Diego
+      <button ng-click="messages.grabHistory('#UC San Diego', 3)" style="height:20px; width:50px" ng-model="messages.subscriptions.channel1" /> #UC San Diego
       </button>
-      <button ng-click="messages.setCurrentChannel('#UC San Diego Financial Aid')" style="height:20px; width:50px" ng-model="messages.subscriptions.channel2" /> Channel 2
+      <button ng-click="messages.grabHistory('#UC San Diego Financial Aid', 3)" style="height:20px; width:50px" ng-model="messages.subscriptions.channel2" /> UCSD FIn aid
       </button>
+      <button ng-click="messages.grabHistory('aayang@ucsd.edu', 3)" style="height:20px; width:50px" ng-model="messages.subscriptions.channel2" /> aayang@ucsd.edu
+      </button>
+      <button ng-click="messages.grabHistory('aayang@ucsd.edu+vinit@ucsd.edu', 3)" style="height:20px; width:50px" ng-model="messages.subscriptions.channel2" /> aayang@ucsd.edu+vinit@ucsd.edu
+      </button>
+
+      <h4>Channel currentChanel + subscribe</h4>
+      <button ng-click="messages.subscribe('aayang@ucsd.edu+vinit@ucsd.edu')" style="height:20px; width:50px" ng-model="messages.subscriptions.channel2" /> aayang@ucsd.edu+vinit@ucsd.edu
+      </button>
+
+
 
       <h4>Message History</h4>
 
       <form>
         <input type="text" ng-model='messages.newMessage' />
-        <button ng-click="messages.grabHistory('#UC San Diego', 3)">Send to Channel 1</button>
-        <button ng-click="messages.grabHistory('#UC San Diego Financial Aid', 3)">Send to Channel 2</button>
+        <button ng-click="messages.currentSubscribe('Hello', null)">Publish to #UC San Diego</button>
+        <button ng-click="messages.grabOlderCurrentChatHistory()">Publish to aayang+vinit</button>
       </form>
 
+<<<<<<< HEAD
       <br>
       <p>Change data</p>
 
@@ -28,50 +39,42 @@
         <input type="text" ng-model="messages.tempMe.subscribedChannels" /> <!-- cannot save this model as its not an array. Need to update here -->
         <input type="submit" class="btn-rented-medium primary" value="Save">
       </form>
+=======
+      <h4 ng-model="messages.currentChannel.name">{{messages.currentChannel.name}}</h4>
+      <h4 ng-model="messages.currentChannel.secondaryName">{{messages.currentChannel.secondaryChannel}}</h4>
+>>>>>>> 192b44206a0ec9d816f434bfaa37f304735b054c
 
       <br />
 
       <div class="well">
         <ul>
-          <li ng-repeat="message in messages track by $index">{{message}}</li>
+          <li ng-repeat="message in messages.currentMessages track by $index" ng-model="messages.currentMessages">{{message}}</li>
         </ul>
-      </div>
 
-    </div>
+        <form>
+          <input type="text" ng-model='messages.newMessage' />
+          <button ng-click="messages.currentPublish('Hello')">Publish to current Channel</button>
+          <button ng-click="messages.grabOlderCurrentChatHistory()">Older chat messages</button>
+        </form>
 
 
-    <!--
-    <div class="row">
+          <button ng-click="messages.newPrivateConversation('Aaron', 'aayang@ucsd.edu')">New private message with aayang@ucsd.edu</button>
+          <button ng-click="messages.grabInboxHistory()">Older Private Messages</button>
+          <button ng-click="messages.privateCurrentSubscribe(messages.privateMessages[0].email)">Message 1st pm</button>
+          <button ng-click="messages.privateCurrentSubscribe(messages.privateMessages[1].email)">Message 2nd pm</button>
+          <button ng-click="messages.groupChannelCurrentSubscribe(messages.groupChannels[0].name)">Subscribe first group</button>
+          <button ng-click="messages.groupChannelCurrentSubscribe(messages.groupChannels[1].name)">Subscribe 2nd group</button>
 
-      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <h3>Group Channels</h3>
+        <ul>
+          <li ng-repeat="groupChannel in messages.groupChannels track by $index" ng-model="messages.groupChannels">{{groupChannel}}</li>
+        </ul>
 
-        <h2>Channels</h2>
-
-        <div class="white-box">
-          <ul>University Services
-            <li>#career center</li>
-            <li>#resLife</li>
-          </ul>
-          <ul>Students
-            <li>John Smith</li>
-            <li>Jane Doe</li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-
-        <h2>Messages</h2>
-
-        <div class="white-chat-box">
-          <p>{{messages.education.universityId}}</p>
-        </div>
+        <h3>Private Messages (Inbox)</h3>
+        <ul>
+          <li ng-repeat="msg in messages.privateMessages track by $index" ng-model="messages.privateMessages">{{msg}}</li>
+        </ul>
 
       </div>
 
     </div>
-    -->
-
-  </div>
-</div>
