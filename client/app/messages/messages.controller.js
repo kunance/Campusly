@@ -15,30 +15,8 @@
     vm.me = currentUser;
     vm.education = common.dataservice.getAllEducations(currentUser.id);
 
-<<<<<<< HEAD
-    //test
-    vm.tempMe = Object.create(vm.me);
-    vm.changePersonalData = changePersonalData;
-    function changePersonalData() {
-
-    common.Auth.updateUser(vm.tempMe)
-      .then(function (user) {
-        common.Auth.setCurrentUser(user);
-        common.logger.success('Personal data successfully changed.');
-      })
-      .catch(function () {
-        common.logger.error('Something went wrong. Changes are not saved.');
-      });
-
-    }
-    //end test
-
     /*
      * Collect all the promises in an array and load the initialize function only if the promises are met
-=======
-
-     /* Collect all the promises in an array and load the initialize function only if the promises are met
->>>>>>> 192b44206a0ec9d816f434bfaa37f304735b054c
      */
     var promises = [vm.education.$promise];
     $q.all(promises).then(function () {
