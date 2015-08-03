@@ -63,16 +63,62 @@
        */
 
 
-      vm.groupChannels = [
-        { "name": "UCSD",
-          "new": 0,
-          "selected": 0},
+      /*
+       * Group channel initialization for each user
+       */
+      vm.groupChannelInitialization = function () {
+        /*
+         * Identify list of default channels
+         * Format: University + Channel Name
+         */
+        var universityChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName);
+        var careerCenterChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName + " Career Center");
+        var resLifeChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName + " ResLife");
+        var academicAdvisingChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName + " Academic Advising");
+        var finAidChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName + " Financial Aid");
 
-        { "name": "resLife",
-          "new": 0,
-          "selected": 0}
-      ];
+        /*
+         * Remove quotation from the JSON stringify
+         */
+        var universityChannelText = vm.replaceQuotesFunction (universityChannel);
+        var careerCenterChannelText = vm.replaceQuotesFunction (careerCenterChannel);
+        var resLifeChannelText = vm.replaceQuotesFunction (resLifeChannel);
+        var academicAdvisingChannelText = vm.replaceQuotesFunction (academicAdvisingChannel);
+        var finAidChannelText = vm.replaceQuotesFunction (finAidChannel);
 
+        /*
+         * Assign channel names to the groupChannels array
+         */
+        vm.groupChannels = [
+          { "name": universityChannelText,
+            "new": 0,
+            "selected": 0},
+
+          { "name": careerCenterChannelText,
+            "new": 0,
+            "selected": 0},
+
+          { "name": resLifeChannelText,
+            "new": 0,
+            "selected": 0},
+
+          { "name": academicAdvisingChannelText,
+            "new": 0,
+            "selected": 0},
+
+          { "name": finAidChannelText,
+            "new": 0,
+            "selected": 0}
+        ];
+
+      };
+
+      /*
+       * Removes quotation from the JSON stringify
+       */
+      vm.replaceQuotesFunction = function (channel) {
+        return channel.replace(/\"/g, "");
+      };
 
       /* Note: When recieving a payload form a subscribed channel,
                The actual message is the 0th element in the object
@@ -122,6 +168,7 @@
                         "selected": 0};
 
         vm.privateMessages.unshift(element);
+        vm.privateCurrentSubscribe(vm.privateMessages[0].email);
 
       };
 
@@ -426,7 +473,7 @@
           vm.publish(vm.currentChannel.secondaryChannel);
 
         if(vm.currentChannel.name)
-          vm.publish(vm.currentChannel.name)
+          vm.publish(vm.currentChannel.name);
 
       };
 
@@ -506,7 +553,7 @@
          and add to the beginning of the currentMessages array. To stay in chronological order
        */
 
-
+      vm.groupChannelInitialization();
       vm.currentSubscribe('testMe', 'testMe2');
       console.log(vm.groupChannels);
       vm.privateChannelHashCode('aayang@ucsd.edu', 'asdf@ucsd.edu');
