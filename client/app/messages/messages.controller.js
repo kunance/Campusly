@@ -161,14 +161,17 @@
           }
         }
 
-        var element = { "user": user,
+        var newConvo = { "user": user,
                         "email": email,
-                        "text": " ",
-                        "new": 0,
-                        "selected": 0};
+                        "text": "" };
 
-        vm.privateMessages.unshift(element);
-        vm.privateCurrentSubscribe(vm.privateMessages[0].email);
+        console.log(newConvo);
+
+        PubNub.ngPublish({
+                      channel: vm.me.email,
+                      message: newConvo
+        });
+        setTimeout(function(){vm.privateCurrentSubscribe(vm.privateMessages[0].email)}, 100);
 
       };
 
