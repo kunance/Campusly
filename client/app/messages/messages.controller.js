@@ -20,7 +20,14 @@
      */
     var promises = [vm.education.$promise];
     $q.all(promises).then(function () {
-      initializeMessageController()
+
+      /*
+       * Only initialize the PubNub message controller if the university is set.
+       * If user has no university then they are prompted to update university before initializing
+       */
+      if (vm.education.universityId){
+        initializeMessageController();
+      }
     });
 
     function initializeMessageController() {

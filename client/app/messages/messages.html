@@ -1,46 +1,135 @@
+<!--
+* Include the navbar and sub-navbar for navigation
+-->
+
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
 <div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
+
+<!--
+* Main wrapper and container for the entire messages html
+* main-wrapper includes all the default style for the page
+-->
 
 <div class="main-wrapper">
   <div class="container">
 
-    <div class="messages">
+    <!--
+      * Ask user to input university if they did not enter the university in their profile
+      -->
+    <div class="row" ng-if="!messages.education.universityId">
 
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-      <h4 ng-model="messages.currentChannel.name">{{messages.currentChannel.name}}</h4>
-      <h4 ng-model="messages.currentChannel.secondaryName">{{messages.currentChannel.secondaryChannel}}</h4>
-
-      <br />
-
-      <div class="well">
-        <ul>
-          <li ng-repeat="message in messages.currentMessages track by $index" ng-model="messages.currentMessages">{{message}}</li>
-        </ul>
-
-        <form>
-          <input type="text" ng-model='messages.newMessage' />
-          <button ng-click="messages.currentPublish('Hello')">Publish to current Channel</button>
-          <button ng-click="messages.grabOlderCurrentChatHistory()">Older chat messages</button>
-        </form>
-
-
-          <button ng-click="messages.newPrivateConversation('Aaron', '5@ucsd.edu')">New private message with aayang@ucsd.edu</button>
-          <button ng-click="messages.grabInboxHistory()">Older Private Messages</button>
-          <button ng-click="messages.privateCurrentSubscribe(messages.privateMessages[0].email)">Message 1st pm</button>
-          <button ng-click="messages.privateCurrentSubscribe(messages.privateMessages[1].email)">Message 2nd pm</button>
-          <button ng-click="messages.groupChannelCurrentSubscribe(messages.groupChannels[0].name)">Subscribe first group</button>
-          <button ng-click="messages.groupChannelCurrentSubscribe(messages.groupChannels[1].name)">Subscribe 2nd group</button>
-
-        <h3>Group Channels</h3>
-        <ul>
-          <li ng-repeat="groupChannel in messages.groupChannels track by $index" ng-model="messages.groupChannels">{{groupChannel}}</li>
-        </ul>
-
-        <h3>Private Messages (Inbox)</h3>
-        <ul>
-          <li ng-repeat="msg in messages.privateMessages track by $index" ng-model="messages.privateMessages">{{msg}}</li>
-        </ul>
+        <div class="white-box">
+          <h3>Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to view messages</h3>
+        </div>
 
       </div>
 
     </div>
+
+    <!--
+      * Show messages only if the user has provided their university
+      -->
+    <div class="row" ng-if="messages.education.universityId">
+
+      <!--
+      * List of channels - both university and private channels
+      * 1/3 of the column on the left side to be dedicated for channels
+      -->
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+
+        <h2>University</h2>
+        <div class="white-box messages">
+          <ul>
+            <li ng-repeat="groupChannel in messages.groupChannels track by $index" ng-model="messages.groupChannels">
+              <!-- List all the channels and add a button on each channel. For each click subscribe the user to that channel -->
+              <button ng-click="messages.currentSubscribe(groupChannel.name)">{{groupChannel.name}}</button>
+            </li>
+          </ul>
+        </div>
+
+        <h2>Private Messages</h2>
+        <div class="white-box messages">
+          <!--If no messages prompt user to start a chat-->
+          <!--TODO need correct ng-if-->
+          <p>Start a chat to view your history</p>
+
+          <!--If private messages exist then show them-->
+          <ul>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+      <!--
+      * Each individual message occuring with either an individual user or the university staff
+      * 2/3 of the column on the right side to be dedicated for displaying chat messages
+      -->
+
+      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+
+        <h2>Current Channel</h2>
+        <div class="white-box messages">
+
+          <ul>
+            <li ng-repeat="message in messages.currentMessages track by $index" ng-model="messages.currentMessages">{{message.text}}</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div> <!--end container -->
+</div> <!-- end main-wrapper -->
+
+<!--
+*****
+Aaron's code for reference
+*****
+-->
+
+<!--<div class="messages">-->
+
+
+<!--<h4 ng-model="messages.currentChannel.name">{{messages.currentChannel.name}}</h4>-->
+<!--<h4 ng-model="messages.currentChannel.secondaryName">{{messages.currentChannel.secondaryChannel}}</h4>-->
+
+<!--<br />-->
+
+<!--<div class="well">-->
+<!--<ul>-->
+<!--<li ng-repeat="message in messages.currentMessages track by $index" ng-model="messages.currentMessages">{{message}}</li>-->
+<!--</ul>-->
+
+<!--<form>-->
+<!--<input type="text" ng-model='messages.newMessage' />-->
+<!--<button ng-click="messages.currentPublish('Hello')">Publish to current Channel</button>-->
+<!--<button ng-click="messages.grabOlderCurrentChatHistory()">Older chat messages</button>-->
+<!--</form>-->
+
+
+<!--<button ng-click="messages.newPrivateConversation('Aaron', '5@ucsd.edu')">New private message with aayang@ucsd.edu</button>-->
+<!--<button ng-click="messages.grabInboxHistory()">Older Private Messages</button>-->
+<!--<button ng-click="messages.privateCurrentSubscribe(messages.privateMessages[0].email)">Message 1st pm</button>-->
+<!--<button ng-click="messages.privateCurrentSubscribe(messages.privateMessages[1].email)">Message 2nd pm</button>-->
+<!--<button ng-click="messages.groupChannelCurrentSubscribe(messages.groupChannels[0].name)">Subscribe first group</button>-->
+<!--<button ng-click="messages.groupChannelCurrentSubscribe(messages.groupChannels[1].name)">Subscribe 2nd group</button>-->
+
+<!--<h3>Group Channels</h3>-->
+<!--<ul>-->
+<!--<li ng-repeat="groupChannel in messages.groupChannels track by $index" ng-model="messages.groupChannels">{{groupChannel}}</li>-->
+<!--</ul>-->
+
+<!--<h3>Private Messages (Inbox)</h3>-->
+<!--<ul>-->
+<!--<li ng-repeat="msg in messages.privateMessages track by $index" ng-model="messages.privateMessages">{{msg}}</li>-->
+<!--</ul>-->
+
+<!--</div>-->
+
+<!--</div>-->
