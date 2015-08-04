@@ -1291,7 +1291,7 @@ div.main-wrapper {
   background: #f5f5f5;
   display: block;
   width: 100%;
-  min-height: 1000px;
+  min-height: 600px;
 }
 
 /* Dashboard Submenu */
@@ -1862,7 +1862,7 @@ Looking Details
 /* Message box, main chat */
 
 .messages {
-  min-height: 302px;
+  height: 302px;
   overflow-y: auto;
 }
 
@@ -1891,6 +1891,10 @@ Looking Details
 .messages::-webkit-scrollbar-thumb:vertical {
   -webkit-border-radius: 6px;
   background: #f7953d no-repeat center;
+}
+
+.messages .messagedUser {
+  color: #56bfc3;
 }
 
 /* Message box, chat channels */

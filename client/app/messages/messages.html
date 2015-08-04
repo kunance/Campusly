@@ -78,8 +78,9 @@
 
           <!-- Messages to show the user -->
           <div class="row messages col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <ul>
-              <li ng-repeat="message in messages.currentMessages track by $index" ng-model="messages.currentMessages">{{message.text}}</li>
+            <ul ng-repeat="message in messages.currentMessages track by $index" ng-model="messages.currentMessages">
+              <li class="messagedUser">{{message.user}}</li> <!-- TODO 1) ability to pm this user if not self. 2) show my username only if there is another message before me 3) time stamp -->
+              <li>{{message.text}}</li>
             </ul>
           </div>
 
