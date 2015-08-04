@@ -1517,6 +1517,14 @@ Media query
   position: relative;
 }
 
+.white-box-messages {
+  border-radius: 5px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 2px 2px 2px 0px #d3d3d3;
+  position: relative;
+}
+
 .white-box + .white-box{
   margin-top: 10px;
   margin-bottom: 20px;
@@ -1851,13 +1859,16 @@ Looking Details
 }
 
 
-/* Profile column */
+/* Message box, main chat */
 
 .messages {
-  max-height: 350px;
+  min-height: 302px;
   overflow-y: auto;
 }
 
+.messages ul{
+  list-style-type: none;
+}
 
 .buttons-box .btn{
   width: 100%;
@@ -1878,6 +1889,37 @@ Looking Details
 }
 
 .messages::-webkit-scrollbar-thumb:vertical {
+  -webkit-border-radius: 6px;
+  background: #f7953d no-repeat center;
+}
+
+/* Message box, chat channels */
+
+.messages-chatChannel {
+  min-height: 200px;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.messages-chatChannel ul{
+  list-style-type: none;
+}
+
+.messages-chatChannel::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.messages-chatChannel::-webkit-scrollbar-button:start:decrement,
+.messages-chatChannel::-webkit-scrollbar-button:end:increment  {
+  display: none;
+}
+
+.messages-chatChannel::-webkit-scrollbar-track-piece  {
+  background-color: #e8e8e8;
+  -webkit-border-radius: 6px;
+}
+
+.messages-chatChannel::-webkit-scrollbar-thumb:vertical {
   -webkit-border-radius: 6px;
   background: #f7953d no-repeat center;
 }
@@ -1913,6 +1955,49 @@ Looking Details
   width: 11em;
   height: 11em;
   border: 5px solid #56bfc3;
+}
+
+/* Chat channel styling */
+
+.chatChannel {
+  list-style-type: none;
+}
+
+.chatChannel li {
+  margin: 0 0 10px 0;
+  color: #56bfc3;
+}
+
+.selected li {
+  background-color: #f7953d;
+}
+
+.message-reply {
+
+}
+
+.message-reply textarea {
+  height: 100%;
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: left;
+  resize: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  width: 100%;
+}
+
+.message-reply .message-button {
+  text-align: center;
+}
+
+.message-reply hr {
+  height: 2px;
+  border: 0;
+  box-shadow: inset 0 2px 2px -2px rgba(0, 0, 0, 0.5);
+  padding-bottom: 10px;
 }
 
 /* Looking post picture border */

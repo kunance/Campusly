@@ -40,24 +40,26 @@
       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 
         <h2>University</h2>
-        <div class="white-box messages">
-          <ul>
-            <li ng-repeat="groupChannel in messages.groupChannels track by $index" ng-model="messages.groupChannels">
+        <div class="white-box messages-chatChannel">
+          <ul class="chatChannel">
+            <li ng-repeat="groupChannel in messages.groupChannels track by $index" ng-model="messages.groupChannels" ng-click="messages.groupChannelCurrentSubscribe(groupChannel.name)" class={{selected}}>
               <!-- List all the channels and add a button on each channel. For each click subscribe the user to that channel -->
-              <button ng-click="messages.currentSubscribe(groupChannel.name)">{{groupChannel.name}}</button>
+              {{groupChannel.name}}
             </li>
           </ul>
         </div>
 
         <h2>Private Messages</h2>
-        <div class="white-box messages">
+        <div class="white-box messages-chatChannel">
           <!--If no messages prompt user to start a chat-->
-          <!--TODO need correct ng-if-->
-          <p>Start a chat to view your history</p>
+          <p ng-if="!messages.privateMessages[0]">Start a chat to view your history</p>
 
           <!--If private messages exist then show them-->
-          <ul>
-
+          <ul ng-if="messages.privateMessages[0]">
+            <li ng-repeat="privateInbox in messages.privateMessages track by $index" ng-model="messages.privateMessages">
+              <!-- List all the channels and add a button on each channel. For each click subscribe the user to that channel -->
+              <button ng-click="messages.privateCurrentSubscribe(privateInbox.email)">{{privateInbox.user}}</button>
+            </li>
           </ul>
 
         </div>
@@ -71,12 +73,37 @@
 
       <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
 
-        <h2>Current Channel</h2>
-        <div class="white-box messages">
+        <h2>{{messages.currentChannel.name}}</h2>
+        <div class="white-box-messages">
 
-          <ul>
-            <li ng-repeat="message in messages.currentMessages track by $index" ng-model="messages.currentMessages">{{message.text}}</li>
-          </ul>
+          <!-- Messages to show the user -->
+          <div class="row messages col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ul>
+              <li ng-repeat="message in messages.currentMessages track by $index" ng-model="messages.currentMessages">{{message.text}}</li>
+            </ul>
+          </div>
+
+          <div class="row">
+
+          </div>
+
+          <!-- Chat reply section -->
+          <div class="row message-reply">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <hr>
+            </div>
+
+            <form>
+              <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                <textarea placeholder="Your reply here..." type="text" ng-model='messages.newMessage' rows="3"></textarea>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 message-button">
+                <button class="btn-rented-medium primary" ng-click="messages.currentPublish()">Reply</button>
+              </div>
+            </form>
+
+          </div>
 
         </div>
 
