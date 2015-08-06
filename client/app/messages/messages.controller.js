@@ -20,7 +20,14 @@
      */
     var promises = [vm.education.$promise];
     $q.all(promises).then(function () {
-      initializeMessageController()
+
+      /*
+       * Only initialize the PubNub message controller if the university is set.
+       * If user has no university then they are prompted to update university before initializing
+       */
+      if (vm.education.universityId){
+        initializeMessageController();
+      }
     });
 
     function initializeMessageController() {
@@ -333,6 +340,14 @@
          1. calls currentSubscribe passing in only the name as first param and second param as null
        */
       vm.groupChannelCurrentSubscribe = function(channelName){
+        $scope.setSelected = function() {
+          if ($scope.lastSelected) {
+            $scope.lastSelected.selected = '';
+          }
+          this.selected = 'selected';
+          $scope.lastSelected = this;
+        };
+
         vm.currentSubscribe(channelName, null);
       };
 
@@ -409,7 +424,7 @@
 
         PubNub.jsapi.history({
           channel: channelName,
-          count: 2,
+          count: 100,
           reverse: false,
           include_token: true,
           callback: function(m){
@@ -556,12 +571,15 @@
          and add to the beginning of the currentMessages array. To stay in chronological order
        */
 
+      //initialize all the group channels
       vm.groupChannelInitialization();
-      vm.currentSubscribe('testMe', 'testMe2');
-      console.log(vm.groupChannels);
-      vm.privateChannelHashCode('aayang@ucsd.edu', 'asdf@ucsd.edu');
-      vm.privateSubscribe(vm.me.email);
 
+      //subscribe user to default university channel upon clicking messages in the navbar
+      vm.groupChannelCurrentSubscribe(vm.groupChannels[0].name);
+
+      console.log(vm.groupChannels);
+      //subscribe to one's inbox
+      vm.privateSubscribe(vm.me.email);
 
     }
   };

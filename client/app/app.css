@@ -153,11 +153,56 @@ Main image and style for above the fold on the home-page
 /* ==========================================================================
 Style for How It Works section
 ========================================================================== */
-.howitworks {
-  background: url(../assets/images/howitworks/moving.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 800px;
+.homepage-hero-module {
+  border-right: none;
+  border-left: none;
+  position: relative;
+}
+.no-video .video-container video,
+.touch .video-container video {
+  display: none;
+}
+.no-video .video-container .poster,
+.touch .video-container .poster {
+  display: block !important;
+}
+.video-container {
+  position: relative;
+  bottom: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+}
+.video-container .poster img {
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+}
+.video-container .filter {
+  z-index: 100;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+}
+
+.video-container .title-container {
+  z-index: 1000;
+  position: absolute;
+  top: 35%;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.video-container video {
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+}
+.video-container video.fillWidth {
+  width: 100%;
 }
 
 /* ==========================================================================
@@ -1291,7 +1336,7 @@ div.main-wrapper {
   background: #f5f5f5;
   display: block;
   width: 100%;
-  min-height: 1000px;
+  min-height: 600px;
 }
 
 /* Dashboard Submenu */
@@ -1514,6 +1559,14 @@ Media query
   padding: 20px;
   background: #fff;
   box-shadow: none;
+  position: relative;
+}
+
+.white-box-messages {
+  border-radius: 5px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 2px 2px 2px 0px #d3d3d3;
   position: relative;
 }
 
@@ -1851,13 +1904,16 @@ Looking Details
 }
 
 
-/* Profile column */
+/* Message box, main chat */
 
 .messages {
-  max-height: 350px;
+  height: 302px;
   overflow-y: auto;
 }
 
+.messages ul{
+  list-style-type: none;
+}
 
 .buttons-box .btn{
   width: 100%;
@@ -1878,6 +1934,41 @@ Looking Details
 }
 
 .messages::-webkit-scrollbar-thumb:vertical {
+  -webkit-border-radius: 6px;
+  background: #f7953d no-repeat center;
+}
+
+.messages .messagedUser {
+  color: #56bfc3;
+}
+
+/* Message box, chat channels */
+
+.messages-chatChannel {
+  min-height: 200px;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.messages-chatChannel ul{
+  list-style-type: none;
+}
+
+.messages-chatChannel::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.messages-chatChannel::-webkit-scrollbar-button:start:decrement,
+.messages-chatChannel::-webkit-scrollbar-button:end:increment  {
+  display: none;
+}
+
+.messages-chatChannel::-webkit-scrollbar-track-piece  {
+  background-color: #e8e8e8;
+  -webkit-border-radius: 6px;
+}
+
+.messages-chatChannel::-webkit-scrollbar-thumb:vertical {
   -webkit-border-radius: 6px;
   background: #f7953d no-repeat center;
 }
@@ -1913,6 +2004,49 @@ Looking Details
   width: 11em;
   height: 11em;
   border: 5px solid #56bfc3;
+}
+
+/* Chat channel styling */
+
+.chatChannel {
+  list-style-type: none;
+}
+
+.chatChannel li {
+  margin: 0 0 10px 0;
+  color: #56bfc3;
+}
+
+.selected li {
+  background-color: #f7953d;
+}
+
+.message-reply {
+
+}
+
+.message-reply textarea {
+  height: 100%;
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: left;
+  resize: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  width: 100%;
+}
+
+.message-reply .message-button {
+  text-align: center;
+}
+
+.message-reply hr {
+  height: 2px;
+  border: 0;
+  box-shadow: inset 0 2px 2px -2px rgba(0, 0, 0, 0.5);
+  padding-bottom: 10px;
 }
 
 /* Looking post picture border */
