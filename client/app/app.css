@@ -65,13 +65,14 @@ education form's custom styles
 /* ==========================================================================
 Proxima Nova custom font - to be used for the whole website
 ========================================================================== */
-body{
+body {
   font-family: "ProximaNova", sans-serif;
   color: #333333;
   font-size: 1em;
   -webkit-font-smoothing: subpixel-antialiased;
   text-rendering: optimizeLegibility;
   /* background-color: #e8e8e8; */
+  margin: 0;
 }
 
 /* ==========================================================================
@@ -198,7 +199,7 @@ Style for How It Works section
 
 .video-container video {
   position: absolute;
-  z-index: 0;
+  z-index: 1;
   bottom: 0;
 }
 .video-container video.fillWidth {
@@ -738,7 +739,12 @@ Padding for footer message
 Padding for lead button
 ========================================================================== */
 .lead-btn{
-  padding-bottom: 70px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.lead-btn button {
+  width: 20%;
 }
 
 /* ==========================================================================
