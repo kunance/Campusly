@@ -5,9 +5,9 @@
     .module('app.landing')
     .controller('LandingCtrl', LandingCtrl);
 
-  LandingCtrl.$inject=['$scope', 'common', '$window', 'Auth', '$document'];
+  LandingCtrl.$inject=['$scope', 'common', '$window', 'Auth'];
 
-  function LandingCtrl($scope, common, $window, Auth, $document) {
+  function LandingCtrl($scope, common, $window, Auth) {
     $scope.$parent.seo = {
       pageTitle: 'Campusly',
       pageDescription: 'Secure off-campus community. Connect with verified students. Find off-campus housing. Meet new students - walk safely, share a ride, attend events.'
@@ -90,29 +90,28 @@
       $window.location.href = '/auth/' + provider;
     };
 
-    /* Coverr code converted for Angular
-    var WindowEl = angular.element($window);
+    setTimeout(function () {
+      $scope.$apply(function () {
 
-    angular.element(document).ready(function() {
+          scaleVideoContainer();
 
-      scaleVideoContainer();
+          initBannerVideoSize('.video-container .poster img');
+          initBannerVideoSize('.video-container .filter');
+          initBannerVideoSize('.video-container video');
 
-      initBannerVideoSize('.video-container .poster img');
-      initBannerVideoSize('.video-container .filter');
-      initBannerVideoSize('.video-container video');
+          angular.element($window).bind('resize', function() {
+            scaleVideoContainer();
+            scaleBannerVideoSize('.video-container .poster img');
+            scaleBannerVideoSize('.video-container .filter');
+            scaleBannerVideoSize('.video-container video');
+          });
 
-      WindowEl.on('resize', function() {
-        scaleVideoContainer();
-        scaleBannerVideoSize('.video-container .poster img');
-        scaleBannerVideoSize('.video-container .filter');
-        scaleBannerVideoSize('.video-container video');
-      });
-
-    });
+        });
+      }, 100);
 
     function scaleVideoContainer() {
 
-      var height = WindowEl.height() + 5;
+      var height = $window.innerHeight + 5;
       var unitHeight = parseInt(height) + 'px';
       $('.homepage-hero-module').css('height',unitHeight);
 
@@ -120,9 +119,9 @@
 
     function initBannerVideoSize(element){
 
-      angular.forEach(element, function(){
-        this.element('height', this.height());
-        this.element('width', this.width());
+      $(element).each(function(){
+        $(this).data('height', $(this).height());
+        $(this).data('width', $(this).width());
       });
 
       scaleBannerVideoSize(element);
@@ -131,30 +130,100 @@
 
     function scaleBannerVideoSize(element){
 
-      var windowWidth = $window.width(),
-        windowHeight = $window.height() + 5,
+      var windowWidth = $window.innerWidth,
+        windowHeight = $window.innerHeight + 5,
         videoWidth,
         videoHeight;
 
       console.log(windowHeight);
 
       $(element).each(function(){
-        var videoAspectRatio = this.data('height')/this.data('width');
+        var videoAspectRatio = $(this).data('height') / $(this).data('width');
 
-        this.width(windowWidth);
+        $(this).width(windowWidth);
 
         if(windowWidth < 1000){
           videoHeight = windowHeight;
           videoWidth = videoHeight / videoAspectRatio;
-          this.css({'margin-top' : 0, 'margin-left' : -(videoWidth - windowWidth) / 2 + 'px'});
+          $(this).css({'margin-top' : 0, 'margin-left' : -(videoWidth - windowWidth) / 2 + 'px'});
 
-          this.width(videoWidth).height(videoHeight);
+          $(this).width(videoWidth).height(videoHeight);
         }
 
         $('.homepage-hero-module .video-container video').addClass('fadeIn animated');
 
       });
-    }*/
+    }
 
   }
 }());
+
+/* Coverr code converted for Angular
+ var WindowEl = angular.element($window);
+
+ setTimeout(function () {
+ $scope.$apply(function () {
+ angular.element(document).ready(function() {
+
+ scaleVideoContainer();
+
+ initBannerVideoSize('.video-container .poster img');
+ initBannerVideoSize('.video-container .filter');
+ initBannerVideoSize('.video-container video');
+
+ WindowEl.on('resize', function() {
+ scaleVideoContainer();
+ scaleBannerVideoSize('.video-container .poster img');
+ scaleBannerVideoSize('.video-container .filter');
+ scaleBannerVideoSize('.video-container video');
+ });
+
+ });
+ });
+ }, 100);
+
+ function scaleVideoContainer() {
+
+ var height = WindowEl.height() + 5;
+ var unitHeight = parseInt(height) + 'px';
+ $('.homepage-hero-module').css('height',unitHeight);
+
+ }
+
+ function initBannerVideoSize(element){
+
+ angular.forEach(element, function(){
+ this.element('height', this.height());
+ this.element('width', this.width());
+ });
+
+ scaleBannerVideoSize(element);
+
+ }
+
+ function scaleBannerVideoSize(element){
+
+ var windowWidth = $window.width(),
+ windowHeight = $window.height() + 5,
+ videoWidth,
+ videoHeight;
+
+ console.log(windowHeight);
+
+ angular.forEach(element, function(){
+ var videoAspectRatio = this.data('height')/this.data('width');
+
+ this.width(windowWidth);
+
+ if(windowWidth < 1000){
+ videoHeight = windowHeight;
+ videoWidth = videoHeight / videoAspectRatio;
+ this.css({'margin-top' : 0, 'margin-left' : -(videoWidth - windowWidth) / 2 + 'px'});
+
+ this.width(videoWidth).height(videoHeight);
+ }
+
+ $('.homepage-hero-module .video-container video').addClass('fadeIn animated');
+
+ });
+ }*/
