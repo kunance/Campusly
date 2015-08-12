@@ -1,4 +1,3 @@
-
 /**
 * Bootstrap Fonts
 */
@@ -43,6 +42,23 @@
 }
 .has-error input {
   border-left: 3px solid #ff0000;
+}
+
+/*
+* Styles required for side menu bar
+*/
+html {
+  overflow-x: hidden;
+}
+
+.ng-pageslide {
+  background: #ffffff;
+}
+
+.menu-bars {
+  background: none;
+  border: none;
+  color: white;
 }
 
 /**
@@ -1347,61 +1363,48 @@ div.main-wrapper {
 
 /* Dashboard Submenu */
 
-nav.dashboard-submenu {
-  background-color: #ffffff;
+.slider-menu-bars {
+  vertical-align: middle;
+}
+
+.slider-menu {
   padding:0;
   margin:0;
   list-style:none;
 
 }
 
-nav.dashboard-submenu ul {
-  display: table;
+.slider-menu h2 {
+  text-align: center;
+}
+
+.slider-menu ul {
   width: 100%;
-  table-layout: fixed;
   list-style: none;
 }
 
-nav.dashboard-submenu ul a {
+.slider-menu ul a {
   width: 2%;
-  display: table-cell;
   padding: 10px 12px;
   text-align: center;
 }
 
-nav.dashboard-submenu ul a{
+.slider-menu ul a{
   color: #000;
   border: 3px solid transparent;
 }
 
-nav.dashboard-submenu ul a:hover {
+.slider-menu ul li:hover {
   background: #f7953d;
   text-decoration: none;
 }
-nav.dashboard-submenu ul a:hover li{
-  color: #fff;
+
+.slider-menu ul a:hover {
+  text-decoration: none;
 }
 
-nav.dashboard-submenu ul a.active li {
+.slider-menu ul a.active li {
   font-weight: bold;
-}
-
-nav.dashboard-submenu > input,
-nav.dashboard-submenu > label {
-  display: none;
-}
-
-nav.dashboard-submenu > label {
-  width: 100%;
-  float: left;
-  padding: 10px;
-  padding-right: 0;
-  cursor: pointer;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 /* ==========================================================================

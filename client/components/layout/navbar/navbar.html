@@ -4,13 +4,33 @@
       <a href="/" ng-if="!isLoggedIn()">
         <img src="../../../assets/images/webname.png" alt="campusly" height="40px">
       </a>
-      <a ui-sref="dashboard" ng-if="isLoggedIn()">
-        <img src="../../../assets/images/webname.png" alt="campusly" height="40px">
-      </a>
+      <div ng-if="isLoggedIn()">
+
+        <!-- Menu button only visible on login -->
+        <div ng-controller="NavbarCtrl as nav" class="slider-menu-bars">
+          <button class="fa fa-bars fa-2x menu-bars" ng-click="toggle()"></button>
+          <div pageslide ps-open="checked" ps-side="left">
+            <div class="slider-menu">
+              <h2>Menu<a ng-click="toggle()" class="pull-right" ><i class="fa fa-times-circle small"></i></a></h2>
+              <ul>
+                <a ui-sref="{{tab.sref}}" ui-sref-opts="{reload:true}" active="tab.active" disabled="tab.disabled" class="active" select="setIndex($index)" ng-repeat="tab in nav.tabs">
+                  <li>{{tab.title}}</li>
+                </a>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <a ui-sref="dashboard">
+          <img src="../../../assets/images/webname.png" alt="campusly" height="40px">
+        </a>
+      </div>
+
     </div>
     <div class="right-content">
       <div id="logged" ng-if="isLoggedIn()">
-        <div class="fb-like facebookNavbar" fb-like><i class="fa fa-facebook-square facebookNavbarIcon"></i>Like / Share</div>
+        <!--Hide Facebook when logged-in for now -->
+        <!--<div class="fb-like facebookNavbar" fb-like><i class="fa fa-facebook-square facebookNavbarIcon"></i>Like / Share</div>-->
         <i ui-sref="settings" id="settings" class="fa fa-cog" ng-class="{'fa-spin':hover}" ng-mouseenter="hover = true" ng-mouseleave="hover = false"></i>
         <a ui-sref="myProfile" ng-if="getCurrentUser().profileImage"><img class="img-circle profile-image" ng-src="/api/images{{getCurrentUser().profileImage}}"></a>
         <a ui-sref="myProfile" ng-if="!getCurrentUser().profileImage"><i class="fa fa-user fa-2x greetings" style="vertical-align: middle; "></i></a>
@@ -25,6 +45,7 @@
     </div>
   </div>
 </header>
+
 
 
 
