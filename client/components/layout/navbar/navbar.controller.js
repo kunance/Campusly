@@ -33,7 +33,9 @@
       { title:"Students Around You", sref:"aroundYou"},
       { title:"Available Housing", sref:"rooms"},
       { title:"Students Looking", sref:"looking"},
-      { title:"My Profile", sref:"myProfile"}];
+      { title:"My Profile", sref:"myProfile"},
+      { title:"Settings", sref:"settings"},
+      { title:"Logout", sref:"logout"}];
 
   }
 
