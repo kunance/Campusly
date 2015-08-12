@@ -9,28 +9,34 @@
 
   function NavbarCtrl($scope, Auth, common, $window) {
     if($window.FB) $scope.loadFB = $window.FB;
-    //$scope.menu = [{
-    //  'title': 'Home',
-    //  'state': '/'
-    //},{
-    //  'title': 'Dashboard',
-    //  'state': 'dashboard'
-    //}];
-    $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.isMailconfirmed = Auth.isMailconfirmed;
-    $scope.status = {
-      isopen: false
+
+    /*
+     * Slide menu toggle binding
+     */
+    $scope.checked = false; // This will be binded using the ps-open attribute
+
+    $scope.toggle = function(){
+      $scope.checked = !$scope.checked
     };
-    $scope.toggleDropdown = function($event) {
-      $event.preventDefault();
-      $event.stopPropagation();
-      $scope.status.isopen = !$scope.status.isopen;
-    };
+
+    /*
+     * Code for slider menu
+     */
+    var vm = this;
+    vm.tabs = [
+      { title:"Home", sref:"dashboard", active: true },
+      { title:"Messages", sref:"messages"},
+      { title:"Students Around You", sref:"aroundYou"},
+      { title:"Available Housing", sref:"rooms"},
+      { title:"Students Looking", sref:"looking"},
+      { title:"My Profile", sref:"myProfile"},
+      { title:"Settings", sref:"settings"},
+      { title:"Logout", sref:"logout"}];
 
   }
-
 
 }());

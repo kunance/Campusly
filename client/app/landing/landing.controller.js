@@ -99,15 +99,16 @@
           initBannerVideoSize('.video-container .filter');
           initBannerVideoSize('.video-container video');
 
-          angular.element($window).bind('resize', function() {
-            scaleVideoContainer();
-            scaleBannerVideoSize('.video-container .poster img');
-            scaleBannerVideoSize('.video-container .filter');
-            scaleBannerVideoSize('.video-container video');
-          });
-
         });
       }, 100);
+
+      angular.element($window).bind('resize', function() {
+        scaleVideoContainer();
+        scaleBannerVideoSize('.video-container .poster img');
+        scaleBannerVideoSize('.video-container .filter');
+        scaleBannerVideoSize('.video-container video');
+        $scope.$apply();
+      });
 
     function scaleVideoContainer() {
 
@@ -134,8 +135,6 @@
         windowHeight = $window.innerHeight + 5,
         videoWidth,
         videoHeight;
-
-      console.log(windowHeight);
 
       $(element).each(function(){
         var videoAspectRatio = $(this).data('height') / $(this).data('width');
