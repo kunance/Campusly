@@ -29,13 +29,7 @@
     </div>
     <div class="right-content">
       <div id="logged" ng-if="isLoggedIn()">
-        <!--Hide Facebook when logged-in for now -->
-        <!--<div class="fb-like facebookNavbar" fb-like><i class="fa fa-facebook-square facebookNavbarIcon"></i>Like / Share</div>-->
-        <i ui-sref="settings" id="settings" class="fa fa-cog" ng-class="{'fa-spin':hover}" ng-mouseenter="hover = true" ng-mouseleave="hover = false"></i>
-        <a ui-sref="myProfile" ng-if="getCurrentUser().profileImage"><img class="img-circle profile-image" ng-src="/api/images{{getCurrentUser().profileImage}}"></a>
-        <a ui-sref="myProfile" ng-if="!getCurrentUser().profileImage"><i class="fa fa-user fa-2x greetings" style="vertical-align: middle; "></i></a>
-        <p id="greetings" class="greetings">&nbsp;{{getCurrentUser().firstname}}</p>
-        <a class="new-bubble cancel" ui-sref-active="active" ui-sref="logout"><i class="fa fa-sign-out" style="cursor: pointer; color: #333333"></i></a>
+        <a ui-sref="messages"><i class="fa fa-envelope-o fa-2x"></i></a>
       </div>
 
       <div id="notLogged"  ng-if="!isLoggedIn()">
