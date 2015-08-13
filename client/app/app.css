@@ -3458,13 +3458,13 @@ Unsubscribe partial styling
 
 .interested-box h4, .interested-box-search h4 {
   border-bottom: 1px solid #afafaf;
-  font-weight: bold;
   padding: 0 0 10px 0;
   margin: 0 0 0 5px;
 }
 
 .interested-box label {
   padding-left: 50px;
+  font-weight: normal;
 }
 
 .interested-box button[type='submit'] {
