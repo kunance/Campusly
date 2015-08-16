@@ -11,7 +11,8 @@
     'angucomplete-alt',
     'angularMoment',
     'slick',
-    'ng-optimizely'
+    'ng-optimizely',
+    'pubnub.angular.service'
   ]);
 
 })();
