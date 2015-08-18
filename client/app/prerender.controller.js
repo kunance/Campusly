@@ -10,7 +10,7 @@
   function PrerenderController($scope) {
     $scope.seo = {
       pageTitle: 'Campusly',
-      pageDescription: 'Secure off-campus community. Connect with verified students. Find off-campus housing. Meet new students - walk safely, share a ride, attend events.'
+      pageDescription: 'Your campus community. Chat with your university student services.'
     };
   }
 

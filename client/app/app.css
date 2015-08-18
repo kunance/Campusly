@@ -1481,16 +1481,15 @@ Dashboard looking truncate text style
 }
 
 .text-container-looking-view:before  {
-  background: #ffffff;
+  /*background: #ffffff;*/
   bottom: 0;
   position: absolute;
   right: 0;
   content: '\2026';
-
 }
 
 .text-container-looking-view:after{
-  background: #ffffff;
+  /*background: #ffffff;*/
   content: '';
   position: absolute;
   height: 50px;
@@ -2412,6 +2411,14 @@ Looking Details
 .front {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+}
+
+.front a{
+  text-decoration: none;
+}
+
+.hoverBox:hover{
+  background: #f7953d;
 }
 
 .back {

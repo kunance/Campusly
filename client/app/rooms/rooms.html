@@ -63,33 +63,27 @@
               <!--ng-if="room.roomDetails.creatorId!==rooms.me.id" to not show own user room listings-->
               <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 room" ng-repeat="room in group">
                 <div class="flip-container-room">
-                  <div class="flipper">
-                    <div class="front white-box">
-                      <!--walk around - user need to click on front side because with flipper off there is no back side -->
-                      <a ui-sref="roomDetail({param: room.roomDetails.id, allIds:rooms.allIds})" style="text-decoration: none">
-                      <div class="picture safariFix">
-                        <img border="0" ng-src="//maps.googleapis.com/maps/api/staticmap?center={{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&zoom=14&scale=2&size=400x250&markers=color:blue%7C{{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&key=AIzaSyAm7woOFr0TOKG0U7jsBF5K3LSifdDjgfs">
-                      </div>
-                      <div class="info">
-                        <strong class="value">
-                          {{room.roomDetails.monthlyPrice | currency}} / mo.
-                        </strong>
-                      </div>
-                      <ul class="specs">
-                        <li><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{room.roomDetails.roomType}}</li>
-                        <li><i class="fa fa-shower"></i>&nbsp;&nbsp;{{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
-                        <li ng-show="room.roomDetails.numRoomates > 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommates + You</li>
-                        <li ng-show="room.roomDetails.numRoomates == 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommate + You</li>
-                        <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{room.roomDetails.gender}}</li>
-                        <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{room.roomDetails.availableMoveIn | date }}</li>
-                        <li><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{room.roomDetails.leaseType}}</li>
-                        <li><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{room.propertyDetails.city}}</li>
-                      </ul>
-                      </a>
+                  <div class="front white-box hoverBox">
+                    <a ui-sref="roomDetail({param: room.roomDetails.id, allIds:rooms.allIds})">
+                    <div class="picture safariFix">
+                      <img border="0" ng-src="//maps.googleapis.com/maps/api/staticmap?center={{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&zoom=14&scale=2&size=400x250&markers=color:blue%7C{{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&key=AIzaSyAm7woOFr0TOKG0U7jsBF5K3LSifdDjgfs">
                     </div>
-                    <div class="back">
-                      <a ui-sref="roomDetail({param: room.roomDetails.id, allIds:rooms.allIds})"> <h2>View Detail</h2> </a>
+                    <div class="info">
+                      <strong class="value">
+                        {{room.roomDetails.monthlyPrice | currency}} / mo.
+                      </strong>
                     </div>
+                    <ul class="specs">
+                      <li><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{room.roomDetails.roomType}}</li>
+                      <li><i class="fa fa-shower"></i>&nbsp;&nbsp;{{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
+                      <li ng-show="room.roomDetails.numRoomates > 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommates + You</li>
+                      <li ng-show="room.roomDetails.numRoomates == 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommate + You</li>
+                      <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{room.roomDetails.gender}}</li>
+                      <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{room.roomDetails.availableMoveIn | date }}</li>
+                      <li><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{room.roomDetails.leaseType}}</li>
+                      <li><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{room.propertyDetails.city}}</li>
+                    </ul>
+                    </a>
                   </div>
                 </div>
               </div>
