@@ -41,9 +41,9 @@
         <h2>University</h2>
         <div class="white-box messages-chatChannel">
           <ul class="chatChannel">
-            <li ng-repeat="groupChannel in messages.groupChannels track by $index" ng-model="messages.groupChannels" ng-click="messages.groupChannelCurrentSubscribe(groupChannel.name)" class={{selected}}>
+            <li ng-repeat="groupChannel in messages.groupChannels track by $index" ng-model="messages.groupChannels"><a  ng-click="messages.groupChannelCurrentSubscribe(groupChannel.name)" class={{selected}}>
               <!-- List all the channels and add a button on each channel. For each click subscribe the user to that channel -->
-              {{groupChannel.name}}
+              {{groupChannel.name}} </a>
             </li>
           </ul>
         </div>
@@ -54,10 +54,10 @@
           <p ng-if="!messages.privateMessages[0]">Start a chat to view your history</p>
 
           <!--If private messages exist then show them-->
-          <ul ng-if="messages.privateMessages[0]">
+          <ul ng-if="messages.privateMessages[0]" class="chatChannel">
             <li ng-repeat="privateInbox in messages.privateMessages track by $index" ng-model="messages.privateMessages">
               <!-- List all the channels and add a button on each channel. For each click subscribe the user to that channel -->
-              <button ng-click="messages.privateCurrentSubscribe(privateInbox.email)">{{privateInbox.user}}</button>
+              <a ng-click="messages.privateCurrentSubscribe(privateInbox.email)">{{privateInbox.user}}</a>
             </li>
           </ul>
 
@@ -78,7 +78,9 @@
           <!-- Messages to show the user -->
           <div class="row messages col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <ul ng-repeat="message in messages.currentMessages track by $index" ng-model="messages.currentMessages">
-              <li class="messagedUser">{{message.user}}</li> <!-- TODO 1) ability to pm this user if not self. 2) show my username only if there is another message before me 3) time stamp -->
+              <li class="messagedUser">
+                <a ng-click="messages.newPrivateConversation(message.user, message.email)">{{message.user}}</a>
+              </li> <!-- TODO 1) ability to pm this user if not self. 2) show my username only if there is another message before me 3) time stamp -->
               <li>{{message.text}}</li>
             </ul>
           </div>

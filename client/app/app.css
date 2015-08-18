@@ -1968,7 +1968,18 @@ Looking Details
 }
 
 .messages .messagedUser {
-  color: #56bfc3;
+  color: #2d5c8a;
+  font-weight: 600;
+}
+
+.messages .messagedUser a {
+  text-decoration: none;
+}
+
+.messages .messagedUser a:hover {
+  text-decoration: none;
+  color: #f7953d;
+  cursor: pointer;
 }
 
 /* Message box, chat channels */
@@ -2039,11 +2050,22 @@ Looking Details
 
 .chatChannel {
   list-style-type: none;
+  font-weight: 600;
 }
 
 .chatChannel li {
   margin: 0 0 10px 0;
-  color: #56bfc3;
+  color: #2d5c8a;
+}
+
+.chatChannel li a {
+  text-decoration: none;
+}
+
+.chatChannel li a:hover {
+  text-decoration: none;
+  color: #f7953d;
+  cursor: pointer;
 }
 
 .selected li {
