@@ -1031,7 +1031,6 @@ ul > li {
   .input-post-readonly {
     margin-left: 10px;
   }
-
 }
 
 @media (min-width: 992px) {
@@ -1230,6 +1229,10 @@ ul > li {
   .page-header p{
     padding-top: 6%;
     padding-right: 5%;
+  }
+
+  .video-container video {
+    display: none;
   }
 }
 
