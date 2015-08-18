@@ -160,7 +160,7 @@ Main image and style for above the fold on the home-page
   background:linear-gradient(
     rgba(0, 0, 0, 0.35),
     rgba(0, 0, 0, 0.35)
-  ), url(../assets/images/jumbotron/students.jpg);
+  ), url(../assets/videos/students/students.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   height: 800px;
