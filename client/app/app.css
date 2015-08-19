@@ -2420,9 +2420,22 @@ Looking Details
   text-decoration: none;
 }
 
-.hoverBox:hover{
+.front table {
+  width: 100%;
+  margin-top: 5%;
+}
+
+.front table tr {
+  text-align: center;
+}
+
+.front table tr td:hover{
   background: #f7953d;
 }
+
+/*.hoverBox:hover{*/
+  /*background: #f7953d;*/
+/*}*/
 
 .back {
   backface-visibility: hidden;
@@ -3147,6 +3160,10 @@ a.view-all {
 
 .rooms .room ul.specs li {
   margin-top: 5px;
+}
+
+.rooms .room ul.specs li i{
+  color: #929292;
 }
 
 .rooms .slider .slick-prev, .rooms .slider .slick-next, .rooms .slider .slick-dots {
