@@ -78,9 +78,16 @@
 
         RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: currentUniversityId, limit: roomLimit}, function(availRooms) {
           vm.allIds = [];
+          vm.allRoomCreators = [];
+          var i = 0;
           vm.availableRooms = availRooms;
           angular.forEach(vm.availableRooms, function (room) {
-            vm.allIds.push(room.roomDetails.id)
+            vm.allIds.push(room.roomDetails.id);
+            RoomListingView.get({id: room.roomDetails.id},function(room) {
+              //on success callback function
+              vm.availableRooms[i].relatedCreatorId = room.roomDetails.relatedCreatorId;
+              i++;
+            });
           });
           vm.groups = vm.availableRooms.inGroupsOf(8);
           vm.showSearch = showSearch;

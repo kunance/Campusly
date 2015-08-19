@@ -28,7 +28,8 @@
     "jquery.stellar": "~0.6.2",
     "ng-optimizely": "~0.2.1",
     "angular-media-queries": "~0.4.0",
-    "pubnub-angular": "~1.1.0"
+    "pubnub-angular": "~1.1.0",
+    "ngInfiniteScroll": "1.2.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.2",
