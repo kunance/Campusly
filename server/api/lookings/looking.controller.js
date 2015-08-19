@@ -69,10 +69,11 @@ exports.showAllLookings= function(req, res, next) {
     if(searchQuery.utilitiesIncluded !== null) { searchCriteria.utilitiesIncluded = (searchQuery.utilitiesIncluded === "true"); mixpanel.track("looking - search by utilitiesIncluded");}
     if(searchQuery.roomType !== null) { searchCriteria.roomType = searchQuery.roomType.replace(/"/g, "'"); mixpanel.track("looking - search by roomType");}
     if (searchQuery.gender !== null) {
-      searchCriteria.gender = [];
-      searchCriteria.gender.push(searchQuery.gender.replace(/"/g, "'"));
-      searchCriteria.gender.push('no preference');
-      searchCriteria.gender  = _.uniq(searchCriteria.gender);
+      searchCriteria.gender = searchQuery.gender.replace(/"/g, "'");
+      //searchCriteria.gender = [];
+      //searchCriteria.gender.push(searchQuery.gender.replace(/"/g, "'"));
+      //searchCriteria.gender.push('no preference');
+      //searchCriteria.gender  = _.uniq(searchCriteria.gender);
       mixpanel.track("looking - search by gender");
     }
     if(searchQuery.sharedBathroom !== null) { searchCriteria.sharedBathroom = (searchQuery.sharedBathroom === "true"); mixpanel.track("looking - search by sharedBathroom");}
