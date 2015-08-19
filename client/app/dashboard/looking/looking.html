@@ -60,7 +60,7 @@
                   <img ng-if="look.relatedUserId.profileImage" ng-src="api/images{{look.relatedUserId.profileImage}}" class="img-circle center-block looking-grid-profile-img">
                   <i ng-if="!look.relatedUserId.profileImage" class="fa fa-user fa-4x"></i>
                 </div>
-                <h4>{{look.relatedUserId.firstname}} {{look.relatedUserId.lastname}}</h4>
+                <h4 ng-bind="look.relatedUserId.firstname + '&nbsp;' + look.relatedUserId.lastname | limitTo: 20"></h4>
                 <p class="quoteLooking text-container-looking-view" ng-if="look.relatedUserId.aboutMe">{{look.relatedUserId.aboutMe}}</p>
                 <p class="quoteLooking text-container-looking-view" ng-if="!look.relatedUserId.aboutMe">No description available</p>
                 <hr>
