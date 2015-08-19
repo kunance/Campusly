@@ -124,7 +124,7 @@ label + label {
   background:linear-gradient(
     rgba(0, 0, 0, 0.35),
     rgba(0, 0, 0, 0.35)
-  ), url(../../../assets/images/jumbotron/students.jpg);
+  ), url(../../../assets/videos/students/students.jpg);
   background-size: cover;
   padding-bottom: 50px;
   height: 800px;

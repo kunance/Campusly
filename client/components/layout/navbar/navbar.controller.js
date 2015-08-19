@@ -5,14 +5,22 @@
     .module('RentedApp')
     .controller('NavbarCtrl', NavbarCtrl);
 
-  NavbarCtrl.$inject = ['$scope', 'Auth', 'common', '$window'];
+  NavbarCtrl.$inject = ['$scope', 'Auth', 'common', '$window', 'pubNubService', 'currentUserService', '$q'];
 
-  function NavbarCtrl($scope, Auth, common, $window) {
+  function NavbarCtrl($scope, Auth, common, $window, pubNubService, currentUserService, $q) {
     if($window.FB) $scope.loadFB = $window.FB;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.isMailconfirmed = Auth.isMailconfirmed;
+
+   //var temp;
+   // currentUserService.userInfo()
+   //   .then(function (data) {
+   //     temp = data;
+   //     console.log(temp);
+   //   });
+
 
     /*
      * Slide menu toggle binding
