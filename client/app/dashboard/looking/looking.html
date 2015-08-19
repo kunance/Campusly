@@ -54,30 +54,25 @@
         <div ng-repeat="group in looking.groups" class="row">
           <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 looking" ng-repeat="look in group">
             <div class="flip-container">
-              <div class="flipper">
-                <div class="front white-box">
-                  <a ui-sref="lookingDetail({param:look.id, allIds:looking.allIds})" style="text-decoration: none">
-                  <div class="center-image">
-                    <img ng-if="look.relatedUserId.profileImage" ng-src="api/images{{look.relatedUserId.profileImage}}" class="img-circle center-block looking-grid-profile-img">
-                    <i ng-if="!look.relatedUserId.profileImage" class="fa fa-user fa-4x"></i>
-                  </div>
-                  <h4>{{look.relatedUserId.firstname}} {{look.relatedUserId.lastname}}</h4>
-                  <p class="quoteLooking text-container-looking-view" ng-if="look.relatedUserId.aboutMe">{{look.relatedUserId.aboutMe}}</p>
-                  <p class="quoteLooking text-container-looking-view" ng-if="!look.relatedUserId.aboutMe">No description available</p>
-                  <hr>
-                  <ul class="specs">
-                    <li ng-if="look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName"> <i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;{{look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName}}</li>
-                    <li ng-if="!look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName"> <i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;N/A</li>
-                    <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{look.moveInDate | date}}</li>
-                    <li><i class="fa fa-tag"></i>&nbsp;&nbsp;{{look.maxMonthlyRent | currency}} / mo.</li>
-                    <li><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{look.roomType}}</li>
-                    <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{look.gender}}</li>
-                  </ul>
-                  </a>
+              <div class="front white-box hoverBox">
+                <a ui-sref="lookingDetail({param:look.id, allIds:looking.allIds})">
+                <div class="center-image">
+                  <img ng-if="look.relatedUserId.profileImage" ng-src="api/images{{look.relatedUserId.profileImage}}" class="img-circle center-block looking-grid-profile-img">
+                  <i ng-if="!look.relatedUserId.profileImage" class="fa fa-user fa-4x"></i>
                 </div>
-                <div class="back">
-                  <a ui-sref="lookingDetail({param:look.id, allIds:looking.allIds})"> <h2>View</h2> </a>
-                </div>
+                <h4>{{look.relatedUserId.firstname}} {{look.relatedUserId.lastname}}</h4>
+                <p class="quoteLooking text-container-looking-view" ng-if="look.relatedUserId.aboutMe">{{look.relatedUserId.aboutMe}}</p>
+                <p class="quoteLooking text-container-looking-view" ng-if="!look.relatedUserId.aboutMe">No description available</p>
+                <hr>
+                <ul class="specs">
+                  <li ng-if="look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName"> <i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;{{look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName}}</li>
+                  <li ng-if="!look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName"> <i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;N/A</li>
+                  <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{look.moveInDate | date}}</li>
+                  <li><i class="fa fa-tag"></i>&nbsp;&nbsp;{{look.maxMonthlyRent | currency}} / mo.</li>
+                  <li><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{look.roomType}}</li>
+                  <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{look.gender}}</li>
+                </ul>
+                </a>
               </div>
             </div>
           </div>
