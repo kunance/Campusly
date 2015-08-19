@@ -44,7 +44,9 @@
       /* Private messages element:
        { user:
          email:
-         text:  }
+         text:
+         time:
+        }
        */
 
       vm.privateMessages = [];
@@ -416,6 +418,7 @@
             }
           }
             console.log(vm.getTime(Number(messageToEval[1][1])));
+            messageToEval[0].time = vm.getTime(Number(messageToEval[1][1]));
             vm.currentMessages.push(messageToEval[0]);
 
         } else if (newMessage == false){
@@ -611,6 +614,44 @@
         return (hours + ':' + minutes.substr(-2) + period);
 
       };
+
+      /*-----------------------------  NON-CORE CHAT FUNCTION ---------------------------*/
+
+      /* Function: Check if user is an RA, if so, subscribe to the RA channel
+      *   1. Checks the vm.me.role attritbute to see if an RA
+      *   2. If yes, then add to RA channel
+      */
+      vm.subscribeToRAChannel = function(){
+        /* Group Channel elements
+         { name:
+         new:
+         selected:  }
+         */
+
+        if(vm.me.role == "RA"){
+          var RAChannel = {"name": "#RA's",
+                           "new": 0,
+                           "selected": 0};
+
+          vm.groupChannels.append(RAChannel);
+        }
+      };
+
+
+      /* Function: subscribes to the housing groups that the student is in
+
+        1. Takes in an arrray of all the housing groups the student is in
+        2. Iterates through that array and subscribes to those groups
+       */
+      vm.subscribeToHousingGroups = function(groups){
+
+        for(var i = 0; i < groups.length; i++){
+
+        }
+      };
+
+
+
 
 
       /* for punub history, we add the new messages starting from the end of the history messages array,
