@@ -20,7 +20,13 @@
      */
     var promises = [vm.education.$promise];
     $q.all(promises).then(function () {
-      initializeMessageController()
+      /*
+       * Only initialize the PubNub message controller if the university is set.
+       * If user has no university then they are prompted to update university before initializing
+       */
+      if (vm.education.universityId){
+        initializeMessageController();
+      }
     });
 
     function initializeMessageController() {
@@ -92,27 +98,35 @@
         /*
          * Assign channel names to the groupChannels array
          */
-        vm.groupChannels = [
-          { "name": universityChannelText,
-            "new": 0,
-            "selected": 0},
+        //vm.groupChannels = [
+        //  { "name": universityChannelText,
+        //    "new": 0,
+        //    "selected": 0},
+        //
+        //  { "name": careerCenterChannelText,
+        //    "new": 0,
+        //    "selected": 0},
+        //
+        //  { "name": resLifeChannelText,
+        //    "new": 0,
+        //    "selected": 0},
+        //
+        //  { "name": academicAdvisingChannelText,
+        //    "new": 0,
+        //    "selected": 0},
+        //
+        //  { "name": finAidChannelText,
+        //    "new": 0,
+        //    "selected": 0}
+        //];
 
-          { "name": careerCenterChannelText,
-            "new": 0,
-            "selected": 0},
+        vm.subscribeToRAChannel();
 
-          { "name": resLifeChannelText,
-            "new": 0,
-            "selected": 0},
+        vm.housingGroups = ["Tercero", "Building A", "Floor 99"];
+        vm.subscribeToHousingGroups([universityChannelText, careerCenterChannelText, resLifeChannelText, academicAdvisingChannelText,
+          finAidChannelText]);
+        vm.subscribeToHousingGroups(vm.housingGroups);
 
-          { "name": academicAdvisingChannelText,
-            "new": 0,
-            "selected": 0},
-
-          { "name": finAidChannelText,
-            "new": 0,
-            "selected": 0}
-        ];
 
       };
 
@@ -269,6 +283,7 @@
         $scope.$apply();
       };
 
+
       /* Function: For the private message inbox, grab older chat history and evaluate
 
        1. Using the oldest inbox timetoken, we make a call to pubnub history.
@@ -282,7 +297,6 @@
         PubNub.jsapi.history({
           channel: vm.me.email,
           reverse: false,
-          count: 2,
           start: vm.oldestInboxTimeToken,
           include_token: true,
           callback: function(m){
@@ -342,6 +356,30 @@
       };
 
 
+      /* Function: Subscribe and get notifcations from group channels
+
+       1. PubNub subscribes to the group channel name
+       2. When message callback is invokes, then we check the array for a same name as the message's channel
+       3. If one is found, then set the group channel to indicate new message
+       */
+      vm.groupChannelSubscribe = function(channelName){
+        PubNub.ngSubscribe({
+          channel: channelName,
+          message: function(m){
+
+            var groupName = m[2];
+            console.log(m[2]);
+
+            for(var i = 0; i < vm.groupChannels.length; i++){
+              if(vm.groupChannels[i].name == groupName)
+                vm.groupChannels[i].new = 1;
+            }
+
+            $scope.$apply();}
+        });
+      };
+
+
       /* A function to unsubscribe from the current channel and subscribe to
          the selected channel and show in the chat window.
 
@@ -364,6 +402,10 @@
           PubNub.ngUnsubscribe({channel: vm.currentChannel.name,
                                     callback: function(m){console.log(m);}});
 
+          if( vm.currentChannel.secondaryChannel == null && vm.currentChannel.name){
+            vm.groupChannelSubscribe(vm.currentChannel.name);
+          }
+
 
         if(channelSecondaryName){
           PubNub.ngSubscribe({
@@ -372,6 +414,7 @@
                         console.log(m);
                         vm.evaluateNewMessage(null, m, true);
                         //vm.currentMessages.push(m[0]);
+                        console.log(vm.currentMessages);
                         $scope.$apply();}
           });
 
@@ -387,7 +430,9 @@
                         console.log(m);
                         vm.evaluateNewMessage(null, m, true);
                         //vm.currentMessages.push(m[0]);
-                        $scope.$apply();}
+                        $scope.$apply();
+                        console.log(vm.currentMessages);}
+
           });
 
 
@@ -430,10 +475,11 @@
               }
             }
 
-
-            console.log(vm.getTime(Number(messageArray[i].timetoken)));
+            messageArray[i].message.time = vm.getTime(Number(messageArray[i].timetoken));
             vm.currentMessages.unshift(messageArray[i].message);
           }
+
+          console.log(vm.currentMessages);
 
         }
 
@@ -629,11 +675,12 @@
          */
 
         if(vm.me.role == "RA"){
-          var RAChannel = {"name": "#RA's",
+          var RAChannel = {"name": "#RAs",
                            "new": 0,
                            "selected": 0};
 
-          vm.groupChannels.append(RAChannel);
+          vm.groupChannels.push(RAChannel);
+          vm.groupChannelSubscribe(RAChannel.name);
         }
       };
 
@@ -646,10 +693,14 @@
       vm.subscribeToHousingGroups = function(groups){
 
         for(var i = 0; i < groups.length; i++){
+          var newGroup = {"name": groups[i],
+            "new": 0,
+            "selected": 0};
 
+          vm.groupChannels.push(newGroup);
+          vm.groupChannelSubscribe(groups[i]);
         }
       };
-
 
 
 
@@ -663,6 +714,7 @@
       console.log(vm.groupChannels);
       vm.privateChannelHashCode('aayang@ucsd.edu', 'asdf@ucsd.edu');
       vm.privateSubscribe(vm.me.email);
+      vm.groupChannelSubscribe("#UC Davis");
 
 
     }
