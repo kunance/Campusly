@@ -120,11 +120,12 @@
         //    "selected": 0}
         //];
 
-        vm.subscribeToRAChannel();
 
         vm.housingGroups = ["Tercero", "Building A", "Floor 99"];
         vm.subscribeToHousingGroups([universityChannelText, careerCenterChannelText, resLifeChannelText, academicAdvisingChannelText,
           finAidChannelText]);
+
+        vm.subscribeToRAChannel();
         vm.subscribeToHousingGroups(vm.housingGroups);
 
 
@@ -709,13 +710,14 @@
          and add to the beginning of the currentMessages array. To stay in chronological order
        */
 
+      //initialize all the group channels
       vm.groupChannelInitialization();
-      vm.currentSubscribe('testMe', 'testMe2');
-      console.log(vm.groupChannels);
-      vm.privateChannelHashCode('aayang@ucsd.edu', 'asdf@ucsd.edu');
-      vm.privateSubscribe(vm.me.email);
-      vm.groupChannelSubscribe("#UC Davis");
 
+      //subscribe user to default university channel upon clicking messages in the navbar
+      vm.groupChannelCurrentSubscribe(vm.groupChannels[0].name);
+
+      //subscribe to one's inbox
+      vm.privateSubscribe(vm.me.email);
 
     }
   };
