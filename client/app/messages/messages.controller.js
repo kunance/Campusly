@@ -20,7 +20,6 @@
      */
     var promises = [vm.education.$promise];
     $q.all(promises).then(function () {
-
       /*
        * Only initialize the PubNub message controller if the university is set.
        * If user has no university then they are prompted to update university before initializing
@@ -37,6 +36,7 @@
        it should call vm.privateCurrentSubscribe
        */
 
+      const timeConvert = 10000;
 
       var email = JSON.stringify(vm.me.email);
       vm.newMessage = '';
@@ -50,7 +50,9 @@
       /* Private messages element:
        { user:
          email:
-         text:  }
+         text:
+         time:
+        }
        */
 
       vm.privateMessages = [];
@@ -96,27 +98,36 @@
         /*
          * Assign channel names to the groupChannels array
          */
-        vm.groupChannels = [
-          { "name": universityChannelText,
-            "new": 0,
-            "selected": 0},
+        //vm.groupChannels = [
+        //  { "name": universityChannelText,
+        //    "new": 0,
+        //    "selected": 0},
+        //
+        //  { "name": careerCenterChannelText,
+        //    "new": 0,
+        //    "selected": 0},
+        //
+        //  { "name": resLifeChannelText,
+        //    "new": 0,
+        //    "selected": 0},
+        //
+        //  { "name": academicAdvisingChannelText,
+        //    "new": 0,
+        //    "selected": 0},
+        //
+        //  { "name": finAidChannelText,
+        //    "new": 0,
+        //    "selected": 0}
+        //];
 
-          { "name": careerCenterChannelText,
-            "new": 0,
-            "selected": 0},
 
-          { "name": resLifeChannelText,
-            "new": 0,
-            "selected": 0},
+        vm.housingGroups = ["Tercero", "Building A", "Floor 99"];
+        vm.subscribeToHousingGroups([universityChannelText, careerCenterChannelText, resLifeChannelText, academicAdvisingChannelText,
+          finAidChannelText]);
 
-          { "name": academicAdvisingChannelText,
-            "new": 0,
-            "selected": 0},
+        vm.subscribeToRAChannel();
+        vm.subscribeToHousingGroups(vm.housingGroups);
 
-          { "name": finAidChannelText,
-            "new": 0,
-            "selected": 0}
-        ];
 
       };
 
@@ -178,6 +189,8 @@
                       channel: vm.me.email,
                       message: newConvo
         });
+
+        //set timeout is required
         setTimeout(function(){vm.privateCurrentSubscribe(vm.privateMessages[0].email)}, 100);
 
       };
@@ -271,6 +284,7 @@
         $scope.$apply();
       };
 
+
       /* Function: For the private message inbox, grab older chat history and evaluate
 
        1. Using the oldest inbox timetoken, we make a call to pubnub history.
@@ -284,7 +298,6 @@
         PubNub.jsapi.history({
           channel: vm.me.email,
           reverse: false,
-          count: 2,
           start: vm.oldestInboxTimeToken,
           include_token: true,
           callback: function(m){
@@ -340,15 +353,31 @@
          1. calls currentSubscribe passing in only the name as first param and second param as null
        */
       vm.groupChannelCurrentSubscribe = function(channelName){
-        $scope.setSelected = function() {
-          if ($scope.lastSelected) {
-            $scope.lastSelected.selected = '';
-          }
-          this.selected = 'selected';
-          $scope.lastSelected = this;
-        };
-
         vm.currentSubscribe(channelName, null);
+      };
+
+
+      /* Function: Subscribe and get notifcations from group channels
+
+       1. PubNub subscribes to the group channel name
+       2. When message callback is invokes, then we check the array for a same name as the message's channel
+       3. If one is found, then set the group channel to indicate new message
+       */
+      vm.groupChannelSubscribe = function(channelName){
+        PubNub.ngSubscribe({
+          channel: channelName,
+          message: function(m){
+
+            var groupName = m[2];
+            console.log(m[2]);
+
+            for(var i = 0; i < vm.groupChannels.length; i++){
+              if(vm.groupChannels[i].name == groupName)
+                vm.groupChannels[i].new = 1;
+            }
+
+            $scope.$apply();}
+        });
       };
 
 
@@ -374,13 +403,19 @@
           PubNub.ngUnsubscribe({channel: vm.currentChannel.name,
                                     callback: function(m){console.log(m);}});
 
+          if( vm.currentChannel.secondaryChannel == null && vm.currentChannel.name){
+            vm.groupChannelSubscribe(vm.currentChannel.name);
+          }
+
 
         if(channelSecondaryName){
           PubNub.ngSubscribe({
             channel: channelSecondaryName,
             message: function(m){
                         console.log(m);
-                        vm.currentMessages.push(m[0]);
+                        vm.evaluateNewMessage(null, m, true);
+                        //vm.currentMessages.push(m[0]);
+                        console.log(vm.currentMessages);
                         $scope.$apply();}
           });
 
@@ -393,8 +428,12 @@
           PubNub.ngSubscribe({
             channel: channelName,
             message: function(m){
-                        vm.currentMessages.push(m[0]);
-                        $scope.$apply();}
+                        console.log(m);
+                        vm.evaluateNewMessage(null, m, true);
+                        //vm.currentMessages.push(m[0]);
+                        $scope.$apply();
+                        console.log(vm.currentMessages);}
+
           });
 
 
@@ -404,6 +443,47 @@
         }
 
         vm.updateSelectedChannel();
+      };
+
+
+      /* Function: For the current open chat, changes messages's user to null if the previous message is also
+                   sent by the same user.
+
+         1. If the message is a new message, check the last element's user. If the messageToEval's user is the same as
+            the last message's user, then change the messageToEval's user to null and push to the currentMessages array
+         2. If yes, newMessage is not true, that means we are getting history/old messages.
+         3. We iterate through the old messages list in reverse and check if the previous user is the same as the element before hand.
+         4. If yes, set user to null. Then unshift to the currentMessages array
+       */
+      vm.evaluateNewMessage = function(messageArray, messageToEval, newMessage){
+
+        if(newMessage){
+          if(vm.currentMessages.length > 0) {
+            if (vm.currentMessages[vm.currentMessages.length - 1].email == messageToEval[0].email) {
+              messageToEval[0].user = null;
+            }
+          }
+            console.log(vm.getTime(Number(messageToEval[1][1])));
+            messageToEval[0].time = vm.getTime(Number(messageToEval[1][1]));
+            vm.currentMessages.push(messageToEval[0]);
+
+        } else if (newMessage == false){
+
+          for(var i = messageArray.length - 1; i >=0; i--){
+            if( i != 0) {
+              if (messageArray[i].message.email == messageArray[i - 1].message.email) {
+                messageArray[i].message.user = null;
+              }
+            }
+
+            messageArray[i].message.time = vm.getTime(Number(messageArray[i].timetoken));
+            vm.currentMessages.unshift(messageArray[i].message);
+          }
+
+          console.log(vm.currentMessages);
+
+        }
+
       };
 
 
@@ -424,15 +504,13 @@
 
         PubNub.jsapi.history({
           channel: channelName,
-          count: 100,
+          count: 4,
           reverse: false,
           include_token: true,
           callback: function(m){
             retrievedHistory = m[0];
 
-            for (var i = retrievedHistory.length - 1; i >= 0; i--) {
-              vm.currentMessages.unshift(retrievedHistory[i].message);
-            }
+            vm.evaluateNewMessage(retrievedHistory, null, false);
 
             vm.oldestChatTimeToken = m[1];
             $scope.$apply();
@@ -460,15 +538,14 @@
         PubNub.jsapi.history({
           channel: channelName,
           reverse: false,
-          count: 2,
+          count: 4,
           start: vm.oldestChatTimeToken,
           include_token: true,
           callback: function(m){
             retrievedHistory = m[0];
 
-            for (var i = retrievedHistory.length - 1; i >= 0; i--) {
-              vm.currentMessages.unshift(retrievedHistory[i].message);
-            }
+
+            vm.evaluateNewMessage(retrievedHistory, null, false);
 
             vm.oldestChatTimeToken = m[1];
             $scope.$apply();
@@ -565,6 +642,68 @@
 
       };
 
+      /* Function: Given a unix time token, converts it to a date and returns a string */
+      vm.getTime = function (token){
+        token = Math.floor(token/timeConvert);
+
+        var date = new Date(token);
+        var hours = date.getHours();
+
+        if(hours < 12){
+          var period = ' am';
+        } else {
+          hours = hours - 12;
+          var period = ' pm';
+        }
+
+        var minutes = "0" + date.getMinutes();
+
+        return (hours + ':' + minutes.substr(-2) + period);
+
+      };
+
+      /*-----------------------------  NON-CORE CHAT FUNCTION ---------------------------*/
+
+      /* Function: Check if user is an RA, if so, subscribe to the RA channel
+      *   1. Checks the vm.me.role attritbute to see if an RA
+      *   2. If yes, then add to RA channel
+      */
+      vm.subscribeToRAChannel = function(){
+        /* Group Channel elements
+         { name:
+         new:
+         selected:  }
+         */
+
+        if(vm.me.role == "RA"){
+          var RAChannel = {"name": "#RAs",
+                           "new": 0,
+                           "selected": 0};
+
+          vm.groupChannels.push(RAChannel);
+          vm.groupChannelSubscribe(RAChannel.name);
+        }
+      };
+
+
+      /* Function: subscribes to the housing groups that the student is in
+
+        1. Takes in an arrray of all the housing groups the student is in
+        2. Iterates through that array and subscribes to those groups
+       */
+      vm.subscribeToHousingGroups = function(groups){
+
+        for(var i = 0; i < groups.length; i++){
+          var newGroup = {"name": groups[i],
+            "new": 0,
+            "selected": 0};
+
+          vm.groupChannels.push(newGroup);
+          vm.groupChannelSubscribe(groups[i]);
+        }
+      };
+
+
 
 
       /* for punub history, we add the new messages starting from the end of the history messages array,
@@ -577,7 +716,6 @@
       //subscribe user to default university channel upon clicking messages in the navbar
       vm.groupChannelCurrentSubscribe(vm.groupChannels[0].name);
 
-      console.log(vm.groupChannels);
       //subscribe to one's inbox
       vm.privateSubscribe(vm.me.email);
 
