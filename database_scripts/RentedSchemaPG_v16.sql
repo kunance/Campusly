@@ -1777,7 +1777,12 @@ CREATE TABLE user_education (
     "createdAt" timestamp with time zone DEFAULT now() NOT NULL,
     "updatedAt" timestamp with time zone,
     "deletedAt" timestamp with time zone,
-    "universityId" bigint NOT NULL
+    "universityId" bigint NOT NULL,
+    "building" text,
+    "floor" text,
+    "suite" text,
+    "area" text[],
+    "onCampus" boolean
 );
 
 

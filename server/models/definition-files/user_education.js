@@ -99,6 +99,26 @@ module.exports = {
             allowNull: false,
             references: "university",
             referencesKey: "universityId"
+        },
+        "building": {
+          type: Seq.TEXT,
+          field: "building"
+        },
+        "floor": {
+          type: Seq.TEXT,
+          field: "floor"
+        },
+        "suite": {
+          type: Seq.TEXT,
+          field: "suite"
+        },
+        "area": {
+          type: Seq.ARRAY(Seq.TEXT),
+          field: "area"
+        },
+        "onCampus": {
+          type: Seq.BOOLEAN,
+          field: "onCampus"
         }
     },
     relations: [{
