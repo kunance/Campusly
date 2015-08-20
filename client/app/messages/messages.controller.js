@@ -707,7 +707,7 @@
 
 
       /* for punub history, we add the new messages starting from the end of the history messages array,
-         and add to the beginning of the currentMessages array. To stay in chronological order
+         and add to the beginning of the currentMessages array. To stay in chronological order.
        */
 
       //initialize all the group channels
