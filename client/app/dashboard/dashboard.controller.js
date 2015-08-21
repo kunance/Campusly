@@ -92,7 +92,6 @@
           angular.forEach(lookings, function (looking) {
             vm.allLookingIds.push(looking.id);
           });
-          console.log(vm.lookingRoom);
         })
         .catch(function (err) {
           common.logger.error('Error getting student looking', err)

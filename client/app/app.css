@@ -1637,6 +1637,10 @@ Media query
   text-align: center;
 }
 
+.looking-for-room table tr i {
+  color: #929292;
+}
+
 .looking-for-room table tr td:hover{
   background: #f7953d;
 }
@@ -1918,6 +1922,10 @@ Posts dashboard padding
 
 .available-rooms .room table tr {
   text-align: center;
+}
+
+.available-rooms .room table tr i {
+  color: #929292;
 }
 
 .available-rooms .room table tr td:hover{
@@ -2438,7 +2446,7 @@ Looking Details
 }
 
 .flip-container, .front, .back {
-  height: 345px;
+  height: 380px;
 }
 
 .flip-container-room .front {
