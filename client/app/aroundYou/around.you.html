@@ -86,10 +86,10 @@
           <slick dots="true" class="slider" init-onload="true" data="around.groups" slides-to-show="1" slides-to-scroll="1" ng-if="around.me.shareProfile && around.aroundYou.length">
             <div ng-repeat="group in around.groups" class="row">
               <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 room" ng-repeat="arYou in group">
-                <div class="front white-box" style="min-height: 345px">
+                <div class="front white-box" style="height: 200px">
                   <div class="center-image">
                     <img ng-if="arYou.profileImage" ng-src="api/images{{arYou.profileImage}}" class="img-circle center-block looking-grid-profile-img">
-                    <i ng-if="!arYou.profileImage" class="fa fa-user fa-4x" style="text-align: center; display: inline-block;width: 100%;"></i>
+                    <i ng-if="!arYou.profileImage" class="fa fa-smile-o fa-3x" style="text-align: center; display: inline-block;width: 100%;"></i>
                   </div>
                   <div class="arYouView">
                     <h4 class="media-heading user-name" style="text-align: center;">
@@ -104,7 +104,7 @@
                       <br>
                     </div>
 
-                  <div style="margin-left:20%">
+                  <div class="interestBox">
                     <ul class="specs" style="min-height: 100px; text-align: left">
                       <li ng-class="{'interested':(arYou.userstatusesUsers[0].carpoolingForGroceries || arYou.userstatusesUsers[0].carpoolingToCampus
                     || arYou.userstatusesUsers[0].carpoolingFromCampus || arYou.userstatusesUsers[0].carpoolingForRoadtrip
@@ -117,20 +117,28 @@
                     || arYou.userstatusesUsers[0].meetForEvents)}"><i class="fa fa-users"></i>&nbsp;&nbsp;Meeting Up</li>
                     </ul>
                   </div>
-
-                    <div style="text-align: center; display: inline-block;width: 100%; padding-top: 10px">
-                      <a id="facebookPM" ng-href="{{arYou.facebook}}" ng-class="{'interested': arYou.facebook, 'not-interested':!arYou.facebook}" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
-                      <script type="text/javascript" ng-if="arYou.facebook">
-                        mixpanel.track_links("#facebookPM", "Facebook PM sent - around you");
-                        mixpanel.people.increment("#facebookPM", "Facebook PM sent - around you");
-                      </script>
-                      <a id="email" ng-href="mailto:{{arYou.email}}?Subject=Hello"><i class="fa fa-envelope fa-2x"></i></a>
-                      <script type="text/javascript">
-                        mixpanel.track_links("#email", "Email sent - around you");
-                        mixpanel.people.increment("#email", "Email sent - around you");
-                      </script>
-                    </div>
                   </div>
+                  <table>
+                    <tr>
+                      <!--<td><i class="fa fa-comments-o fa-lg"></i></td>-->
+                      <td>
+                        <a id="email" ng-href="mailto:{{arYou.email}}?Subject=Hello">
+                          <i class="fa fa-envelope-o fa-lg"></i></a>
+                        <script type="text/javascript">
+                          mixpanel.track_links("#email", "Email sent - available room");
+                          mixpanel.people.increment("#email", "Email sent - around you");
+                        </script>
+                      </td>
+                      <td>
+                        <a id="facebookPM" ng-if="arYou.facebook" ng-href="{{arYou.facebook}}" target="_blank">
+                          <i class="fa fa-facebook-square fa-lg"></i></a>
+                        <script type="text/javascript" ng-if="arYou.facebook">
+                          mixpanel.track_links("#facebookPM", "Facebook PM sent - available room");
+                          mixpanel.people.increment("#facebookPM", "Facebook PM sent - around you");
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
                 </div>
               </div>
             </div>

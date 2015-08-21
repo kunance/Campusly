@@ -4,7 +4,7 @@
   <div class="container lookings">
     <div class="row">
       <div class="page-header col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h2>Students Looking
+        <h2>Looking for Roommates
           <small ng-if="looking.lookings.length < 64">({{looking.lookings.length}} posts)</small>
           <small ng-if="looking.lookings.length == 64">({{looking.lookings.length}}+ posts)</small>
           <a  class="btn btn-primary pull-right" ui-sref="addNewLooking" ui-sref-opts="{reload:true}">Post Looking</a>
@@ -58,7 +58,7 @@
                 <a ui-sref="lookingDetail({param:look.id, allIds:looking.allIds})">
                 <div class="center-image">
                   <img ng-if="look.relatedUserId.profileImage" ng-src="api/images{{look.relatedUserId.profileImage}}" class="img-circle center-block looking-grid-profile-img">
-                  <i ng-if="!look.relatedUserId.profileImage" class="fa fa-user fa-4x"></i>
+                  <i ng-if="!look.relatedUserId.profileImage" class="fa fa-smile-o fa-3x"></i>
                 </div>
                 <h4 ng-bind="look.relatedUserId.firstname + '&nbsp;' + look.relatedUserId.lastname | limitTo: 20"></h4>
                 <p class="quoteLooking text-container-looking-view" ng-if="look.relatedUserId.aboutMe">{{look.relatedUserId.aboutMe}}</p>

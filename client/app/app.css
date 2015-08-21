@@ -268,6 +268,10 @@ Style for footer
 .page-header p{
   padding-top: 2%;
 }
+
+.page-header h2 {
+  font-weight: 400;
+}
 /* ==========================================================================
 Transparent class for transparent nav-bar
 ========================================================================== */
@@ -717,7 +721,7 @@ Custom style h1
 ========================================================================== */
 h1{
   font-size: 2em;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 /* ==========================================================================
@@ -726,7 +730,7 @@ Custom style h1
 ========================================================================== */
 h2{
   font-size: 1.5em;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 /* ==========================================================================
@@ -1055,7 +1059,7 @@ ul > li {
   ========================================================================== */
   h2{
     font-size: 2em;
-    font-weight: 600;
+    font-weight: 400;
   }
 
   /* ==========================================================================
@@ -1372,6 +1376,10 @@ div.main-wrapper {
   display: block;
   width: 100%;
   min-height: 600px;
+}
+
+.main-wrapper h2 {
+  font-weight: 400;
 }
 
 /* Dashboard Submenu */
@@ -1750,6 +1758,10 @@ Bubble for all posts
   padding-top: 11px;
 }
 
+.post-bubble i{
+  color: #929292;
+}
+
 /* ==========================================================================
 Post padding
 ========================================================================== */
@@ -1936,10 +1948,16 @@ Posts dashboard padding
   display: block;
   list-style:none;
   padding-top: 10px;
+  min-height: 100px;
+  margin-left: 13%;
 }
 
 .room .arYouView ul.specs li {
   margin-top: 5px;
+}
+
+.room .arYouView ul.specs li i{
+  color: #929292;
 }
 
 .room .arYouView .info .value {
@@ -1948,6 +1966,23 @@ Posts dashboard padding
   float: left;
   border-bottom: 2px solid #f7953d;
   padding-top: 5px;
+}
+
+.aroundYouDashboard table {
+  width: 100%;
+  margin-top: 5%;
+}
+
+.aroundYouDashboard table tr {
+  text-align: center;
+}
+
+.aroundYouDashboard table tr i {
+  color: #929292;
+}
+
+.aroundYouDashboard table tr td:hover{
+  background: #f7953d;
 }
 
 h2.section-title:nth-child(n+2) {
@@ -1962,6 +1997,11 @@ h2.section-title{
 
 h2.section-title-2{
   font-weight: 400;
+}
+
+.arYouView .interestBox {
+  text-align: center;
+  margin-left: 6%;
 }
 
 /* ==========================================================================
@@ -2334,11 +2374,21 @@ Looking Details
 
 .my-profile .my-listings .list-item .infoP .address{
   font-size: 1.1em;
+  font-weight: normal;
+}
+
+.my-profile .my-listings .list-item .infoP .address i{
+  color: #929292;
 }
 
 .my-profile .my-listings .list-item .infoP .elapsed-time{
   font-size: .9em;
   color: #ccc;
+  font-weight: normal;
+}
+
+.my-profile .my-listings .list-item .infoP .elapsed-time i {
+  color: #929292;
 }
 
 .my-profile .my-listings .list-item .edit {
@@ -2577,6 +2627,14 @@ Looking Details
 .my-profile .about-me .picture img{
   height: 70%;
   width: 70%;
+}
+
+.my-profile .about-me .picture i {
+  color: #929292;
+}
+
+.edit-profile .about-me .picture i {
+  color: #929292;
 }
 
 .my-profile .about-me dl dt {
@@ -3276,6 +3334,10 @@ a.view-all {
   margin-right: auto;
 }
 
+.center-image i{
+  color: #929292;
+}
+
 .lookings .looking .picture img{
   width: 9em;
   height: 9em;
@@ -3601,6 +3663,10 @@ Unsubscribe partial styling
 
 .interested-box h4:not(:first-child) {
   padding-top: 8px;
+}
+
+.interested-box i {
+  color: #929292;
 }
 
 /*
