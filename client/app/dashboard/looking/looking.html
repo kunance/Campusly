@@ -4,7 +4,7 @@
   <div class="container lookings">
     <div class="row">
       <div class="page-header col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h2>Students Looking
+        <h2>Looking for Roommates
           <small ng-if="looking.lookings.length < 64">({{looking.lookings.length}} posts)</small>
           <small ng-if="looking.lookings.length == 64">({{looking.lookings.length}}+ posts)</small>
           <a  class="btn btn-primary pull-right" ui-sref="addNewLooking" ui-sref-opts="{reload:true}">Post Looking</a>
@@ -58,7 +58,7 @@
                 <a ui-sref="lookingDetail({param:look.id, allIds:looking.allIds})">
                 <div class="center-image">
                   <img ng-if="look.relatedUserId.profileImage" ng-src="api/images{{look.relatedUserId.profileImage}}" class="img-circle center-block looking-grid-profile-img">
-                  <i ng-if="!look.relatedUserId.profileImage" class="fa fa-user fa-4x"></i>
+                  <i ng-if="!look.relatedUserId.profileImage" class="fa fa-smile-o fa-3x"></i>
                 </div>
                 <h4 ng-bind="look.relatedUserId.firstname + '&nbsp;' + look.relatedUserId.lastname | limitTo: 20"></h4>
                 <p class="quoteLooking text-container-looking-view" ng-if="look.relatedUserId.aboutMe">{{look.relatedUserId.aboutMe}}</p>
@@ -73,6 +73,25 @@
                   <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{look.gender}}</li>
                 </ul>
                 </a>
+                <table>
+                  <tr>
+                    <!--<td><i class="fa fa-comments-o fa-lg"></i></td>-->
+                    <td>
+                      <a id="email" ng-href="mailto:{{look.relatedUserId.email}}?subject=Interested%20in%20your%20available%20housing&body=Hi%20{{look.relatedUserId.firstname}}%2C%0A%0A%0A%0AThanks%2C%0A{{looking.me.firstname}}%0Ahttps://campusly.org/lookingDetail/{{look.id}}/of/{{look.id}}">
+                        <i class="fa fa-envelope-o fa-lg"></i></a>
+                      <script type="text/javascript">
+                        mixpanel.track_links("#email", "Email sent - available room");
+                      </script>
+                    </td>
+                    <td>
+                      <a id="facebookPM" ng-if="look.relatedUserId.facebook" ng-href="{{look.relatedUserId.facebook}}" target="_blank">
+                        <i class="fa fa-facebook-square fa-lg"></i></a>
+                      <script type="text/javascript" ng-if="look.relatedUserId.facebook">
+                        mixpanel.track_links("#facebookPM", "Facebook PM sent - available room");
+                      </script>
+                    </td>
+                  </tr>
+                </table>
               </div>
             </div>
           </div>
