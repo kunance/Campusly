@@ -1628,6 +1628,19 @@ Media query
   color: #929292;
 }
 
+.looking-for-room table {
+  width: 100%;
+  margin-top: 5%;
+}
+
+.looking-for-room table tr {
+  text-align: center;
+}
+
+.looking-for-room table tr td:hover{
+  background: #f7953d;
+}
+
 .white-box .property-pictures {
   margin-top: 20px;
 }
