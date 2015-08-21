@@ -1624,6 +1624,10 @@ Media query
   padding-top: 20px;
 }
 
+.looking-for-room .media .media-left i {
+  color: #929292;
+}
+
 .white-box .property-pictures {
   margin-top: 20px;
 }
@@ -1804,6 +1808,10 @@ p.quoteLooking{
   text-align: center;
 }
 
+.looking-for-room .profile-info li i {
+  color: #929292;
+}
+
 .looking-for-room .profile-info li:nth-child(2) {
   border-left: 1px solid #efefef;
   border-right: 1px solid #efefef;
@@ -1886,6 +1894,23 @@ Posts dashboard padding
   margin-top: 5px;
 }
 
+.available-rooms .room ul.specs li i {
+  color: #929292;
+}
+
+.available-rooms .room table {
+  width: 100%;
+  margin-top: 5%;
+}
+
+.available-rooms .room table tr {
+  text-align: center;
+}
+
+.available-rooms .room table tr td:hover{
+  background: #f7953d;
+}
+
 .room .arYouView ul.specs {
   display: block;
   list-style:none;
@@ -1906,10 +1931,16 @@ Posts dashboard padding
 
 h2.section-title:nth-child(n+2) {
   margin-top: 50px;
+  font-weight: 400;
 }
 
 h2.section-title{
   margin-top: 50px;
+  font-weight: 400;
+}
+
+h2.section-title-2{
+  font-weight: 400;
 }
 
 /* ==========================================================================
@@ -2048,6 +2079,10 @@ Looking Details
   border: 5px solid #56bfc3;
 }
 
+.profile-sidebar .profile i {
+  color: #929292;
+}
+
 /* Chat channel styling */
 
 .chatChannel {
@@ -2111,6 +2146,11 @@ Looking Details
 }
 
 /* My Profile */
+
+.my-profile h2 {
+  font-weight: 400;
+}
+
 .my-profile .profile h2{
   color: #000000;
   text-align: center;
@@ -2181,15 +2221,26 @@ Looking Details
   padding-bottom: 3px;
   border-bottom: 2px solid #f7953d;
   margin-bottom: 5px;
+  font-weight: normal;
 }
 
 .my-listings .list-item .info .address{
-  font-size: 1.1em;
+  font-size: 1em;
+  font-weight: normal;
+}
+
+.my-listings .list-item .info .address i{
+  color: #929292;
 }
 
 .my-listings .list-item .info .elapsed-time{
   font-size: .9em;
   color: #ccc;
+  font-weight: normal;
+}
+
+.my-listings .list-item .info .elapsed-time i{
+  color: #929292;
 }
 
 .my-listings .list-item .edit {
@@ -2431,6 +2482,10 @@ Looking Details
 
 .front table tr td:hover{
   background: #f7953d;
+}
+
+.front table tr td i {
+  color: #929292;
 }
 
 /*.hoverBox:hover{*/
@@ -3226,6 +3281,7 @@ a.view-all {
 
 .lookings .looking ul.specs li i{
   width: 20px;
+  color: #929292;
 }
 
 .lookings .looking {

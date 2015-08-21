@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <h2 ng-if="dashboard.me.experianIdToken == 1 && dashboard.me.shareProfile"> Students Around You <small>(within {{dashboard.me.experianIdToken}} mile)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
-    <h2 ng-if="dashboard.me.experianIdToken > 1 && dashboard.me.shareProfile"> Students Around You <small>(within {{dashboard.me.experianIdToken}} miles)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
-    <h2 ng-if="!dashboard.me.shareProfile"> Students Around You</h2>
+    <h2 class="section-title-2" ng-if="dashboard.me.experianIdToken == 1 && dashboard.me.shareProfile"> Students Around You <small>(within {{dashboard.me.experianIdToken}} mile)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
+    <h2 class="section-title-2" ng-if="dashboard.me.experianIdToken > 1 && dashboard.me.shareProfile"> Students Around You <small>(within {{dashboard.me.experianIdToken}} miles)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
+    <h2 class="section-title-2" ng-if="!dashboard.me.shareProfile"> Students Around You</h2>
     <div class="white-box">
       <h3 ng-if="!dashboard.aroundYou.length && dashboard.address.streetAddress.id && dashboard.me.shareProfile && dashboard.initialized">
         There is no students around you right now
