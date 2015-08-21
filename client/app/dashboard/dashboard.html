@@ -152,7 +152,7 @@
             <h3 ng-if="!dashboard.education.universityId && dashboard.initialized">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see students looking</h3>
             <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" infinite="false" data="dashboard.lookingRoom" ng-if="dashboard.lookingRoom.length && dashboard.education.universityId">
               <!-- start room box -->
-              <div ng-if="looking.userId!=dashboard.me.id" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index">
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index">
                 <a style="text-decoration: none" ui-sref="lookingDetail({param:looking.id, allIds:dashboard.allLookingIds})">
                   <div  class="media">
                     <div class="media-left">

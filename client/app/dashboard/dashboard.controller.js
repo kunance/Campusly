@@ -88,16 +88,9 @@
         .$promise
         .then(function (lookings) {
           vm.allLookingIds = [];
-          vm.allLookingCreators = [];
-          var i = 0;
           vm.lookingRoom = lookings;
           angular.forEach(lookings, function (looking) {
             vm.allLookingIds.push(looking.id);
-            common.dataservice.getSingleLooking(looking.id,function(looking) {
-              //on success callback function
-              vm.lookingRoom[i].relatedUserId = looking.relatedUserId;
-              i++;
-            });
           });
           console.log(vm.lookingRoom);
         })
