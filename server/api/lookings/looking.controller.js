@@ -38,7 +38,7 @@ function respondWith(res, statusCode) {
 }
 
 exports.showAllLookings= function(req, res, next) {
-  var userAttributes = ['firstname', 'lastname', 'profileImage', 'aboutMe','id'];
+  var userAttributes = ['firstname', 'lastname', 'profileImage', 'aboutMe','id', 'email', 'facebook'];
   var sortAttrs;
   var univId;
 

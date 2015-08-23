@@ -268,6 +268,10 @@ Style for footer
 .page-header p{
   padding-top: 2%;
 }
+
+.page-header h2 {
+  font-weight: 400;
+}
 /* ==========================================================================
 Transparent class for transparent nav-bar
 ========================================================================== */
@@ -717,7 +721,7 @@ Custom style h1
 ========================================================================== */
 h1{
   font-size: 2em;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 /* ==========================================================================
@@ -726,7 +730,7 @@ Custom style h1
 ========================================================================== */
 h2{
   font-size: 1.5em;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 /* ==========================================================================
@@ -1055,7 +1059,7 @@ ul > li {
   ========================================================================== */
   h2{
     font-size: 2em;
-    font-weight: 600;
+    font-weight: 400;
   }
 
   /* ==========================================================================
@@ -1374,6 +1378,10 @@ div.main-wrapper {
   min-height: 600px;
 }
 
+.main-wrapper h2 {
+  font-weight: 400;
+}
+
 /* Dashboard Submenu */
 
 .slider-menu-bars {
@@ -1624,6 +1632,27 @@ Media query
   padding-top: 20px;
 }
 
+.looking-for-room .media .media-left i {
+  color: #929292;
+}
+
+.looking-for-room table {
+  width: 100%;
+  margin-top: 5%;
+}
+
+.looking-for-room table tr {
+  text-align: center;
+}
+
+.looking-for-room table tr i {
+  color: #929292;
+}
+
+.looking-for-room table tr td:hover{
+  background: #f7953d;
+}
+
 .white-box .property-pictures {
   margin-top: 20px;
 }
@@ -1729,6 +1758,10 @@ Bubble for all posts
   padding-top: 11px;
 }
 
+.post-bubble i{
+  color: #929292;
+}
+
 /* ==========================================================================
 Post padding
 ========================================================================== */
@@ -1802,6 +1835,10 @@ p.quoteLooking{
   white-space:nowrap;
   padding:5px;
   text-align: center;
+}
+
+.looking-for-room .profile-info li i {
+  color: #929292;
 }
 
 .looking-for-room .profile-info li:nth-child(2) {
@@ -1886,14 +1923,41 @@ Posts dashboard padding
   margin-top: 5px;
 }
 
+.available-rooms .room ul.specs li i {
+  color: #929292;
+}
+
+.available-rooms .room table {
+  width: 100%;
+  margin-top: 5%;
+}
+
+.available-rooms .room table tr {
+  text-align: center;
+}
+
+.available-rooms .room table tr i {
+  color: #929292;
+}
+
+.available-rooms .room table tr td:hover{
+  background: #f7953d;
+}
+
 .room .arYouView ul.specs {
   display: block;
   list-style:none;
   padding-top: 10px;
+  min-height: 100px;
+  margin-left: 13%;
 }
 
 .room .arYouView ul.specs li {
   margin-top: 5px;
+}
+
+.room .arYouView ul.specs li i{
+  color: #929292;
 }
 
 .room .arYouView .info .value {
@@ -1904,12 +1968,40 @@ Posts dashboard padding
   padding-top: 5px;
 }
 
+.aroundYouDashboard table {
+  width: 100%;
+  margin-top: 5%;
+}
+
+.aroundYouDashboard table tr {
+  text-align: center;
+}
+
+.aroundYouDashboard table tr i {
+  color: #929292;
+}
+
+.aroundYouDashboard table tr td:hover{
+  background: #f7953d;
+}
+
 h2.section-title:nth-child(n+2) {
   margin-top: 50px;
+  font-weight: 400;
 }
 
 h2.section-title{
   margin-top: 50px;
+  font-weight: 400;
+}
+
+h2.section-title-2{
+  font-weight: 400;
+}
+
+.arYouView .interestBox {
+  text-align: center;
+  margin-left: 6%;
 }
 
 /* ==========================================================================
@@ -2048,6 +2140,10 @@ Looking Details
   border: 5px solid #56bfc3;
 }
 
+.profile-sidebar .profile i {
+  color: #929292;
+}
+
 /* Chat channel styling */
 
 .chatChannel {
@@ -2111,6 +2207,11 @@ Looking Details
 }
 
 /* My Profile */
+
+.my-profile h2 {
+  font-weight: 400;
+}
+
 .my-profile .profile h2{
   color: #000000;
   text-align: center;
@@ -2181,15 +2282,26 @@ Looking Details
   padding-bottom: 3px;
   border-bottom: 2px solid #f7953d;
   margin-bottom: 5px;
+  font-weight: normal;
 }
 
 .my-listings .list-item .info .address{
-  font-size: 1.1em;
+  font-size: 1em;
+  font-weight: normal;
+}
+
+.my-listings .list-item .info .address i{
+  color: #929292;
 }
 
 .my-listings .list-item .info .elapsed-time{
   font-size: .9em;
   color: #ccc;
+  font-weight: normal;
+}
+
+.my-listings .list-item .info .elapsed-time i{
+  color: #929292;
 }
 
 .my-listings .list-item .edit {
@@ -2262,11 +2374,21 @@ Looking Details
 
 .my-profile .my-listings .list-item .infoP .address{
   font-size: 1.1em;
+  font-weight: normal;
+}
+
+.my-profile .my-listings .list-item .infoP .address i{
+  color: #929292;
 }
 
 .my-profile .my-listings .list-item .infoP .elapsed-time{
   font-size: .9em;
   color: #ccc;
+  font-weight: normal;
+}
+
+.my-profile .my-listings .list-item .infoP .elapsed-time i {
+  color: #929292;
 }
 
 .my-profile .my-listings .list-item .edit {
@@ -2374,7 +2496,7 @@ Looking Details
 }
 
 .flip-container, .front, .back {
-  height: 345px;
+  height: 380px;
 }
 
 .flip-container-room .front {
@@ -2431,6 +2553,10 @@ Looking Details
 
 .front table tr td:hover{
   background: #f7953d;
+}
+
+.front table tr td i {
+  color: #929292;
 }
 
 /*.hoverBox:hover{*/
@@ -2501,6 +2627,14 @@ Looking Details
 .my-profile .about-me .picture img{
   height: 70%;
   width: 70%;
+}
+
+.my-profile .about-me .picture i {
+  color: #929292;
+}
+
+.edit-profile .about-me .picture i {
+  color: #929292;
 }
 
 .my-profile .about-me dl dt {
@@ -3200,6 +3334,10 @@ a.view-all {
   margin-right: auto;
 }
 
+.center-image i{
+  color: #929292;
+}
+
 .lookings .looking .picture img{
   width: 9em;
   height: 9em;
@@ -3226,6 +3364,7 @@ a.view-all {
 
 .lookings .looking ul.specs li i{
   width: 20px;
+  color: #929292;
 }
 
 .lookings .looking {
@@ -3524,6 +3663,10 @@ Unsubscribe partial styling
 
 .interested-box h4:not(:first-child) {
   padding-top: 8px;
+}
+
+.interested-box i {
+  color: #929292;
 }
 
 /*
