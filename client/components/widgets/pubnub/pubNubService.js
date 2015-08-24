@@ -330,7 +330,7 @@
 
       PubNub.ngPublish({
         channel: user.email,
-        message: newConvo
+        message: newConvo,
         callback: function(){
           vm.notifs.clearPM;
         }

@@ -5,27 +5,34 @@
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 my-profile">
 
+          <!-- Message notifications -->
+          <!--<h2>Messages</h2>-->
+
+          <!--<div class="white-box buttons-box">-->
+            <!--<p>You have no new messages</p>-->
+            <!--<p>You have 6 new messages</p>-->
+          <!--</div>-->
+
+          <!-- Create a post -->
+          <h2>Post</h2>
+
+          <div class="white-box buttons-box">
+            <a class="btn btn-secondary" ui-sref="addRoom">Post Available Housing</a>
+            <a  class="btn btn-primary" ui-sref="addNewLooking" ui-sref-opts="{reload:true}">Post Looking</a>
+          </div>
+
           <!-- User selects their current interest -->
 
           <h2>I'm Interested In</h2>
 
           <div class="white-box interested-box">
             <form name="connectTo" ng-submit="dashboard.updateStatus(connectTo, dashboard.userStatus)" novalidate>
-              <h4><i class="fa fa-car"></i>Carpooling</h4>
-              <label class="checkbox"><input id="c2c" type="checkbox" ng-model="dashboard.userStatus.carpoolingToCampus" value="Carpool From Campus">To Campus</label>
-              <label class="checkbox"><input id="cfc" type="checkbox" ng-model="dashboard.userStatus.carpoolingFromCampus" value="Carpool To Campus">From Campus</label>
-              <label class="checkbox"><input id="cfg" type="checkbox" ng-model="dashboard.userStatus.carpoolingForGroceries" value="Carpool For Groceries">For Groceries</label>
-              <label class="checkbox"><input id="cfrt" type="checkbox" ng-model="dashboard.userStatus.carpoolingForRoadtrip" value="Roadtrip">Roadtrip</label>
-              <label class="checkbox"><input id="csplit" type="checkbox" ng-model="dashboard.userStatus.carpoolingSplit" value="Split a Ride">Split a Uber/Lyft</label>
-
-              <h4><i class="fa fa-child"></i>Walking</h4>
-              <label class="checkbox"><input id="w2c" type="checkbox" ng-model="dashboard.userStatus.walkingToCampus" value="Walk To Campus">To Campus</label>
-              <label class="checkbox"><input id="wfc" type="checkbox" ng-model="dashboard.userStatus.walkingFromCampus" value="Walk From Campus">From Campus</label>
-
-              <h4><i class="fa fa-users"></i>Meeting Up</h4>
-              <label class="checkbox"><input id="hout" type="checkbox" ng-model="dashboard.userStatus.meetForHangout" value="Hangout">Hangout</label>
-              <label class="checkbox"><input id="sg" type="checkbox" ng-model="dashboard.userStatus.meetForStudy" value="Study Groups">Study Group</label>
-              <label class="checkbox"><input id="ce" type="checkbox" ng-model="dashboard.userStatus.meetForEvents" value="Campus Events">Campus Events</label>
+              <h4><label class="checkbox"><input id="c" type="checkbox" ng-model="dashboard.userStatus.carpooling" value="Carpooling"><i class="fa fa-car"></i>Carpooling</label></h4>
+              <h4><label class="checkbox"><input id="b" type="checkbox" ng-model="dashboard.userStatus.biking" value="Biking"><i class="fa fa-bicycle"></i>&nbsp;Biking</label></h4>
+              <h4><label class="checkbox"><input id="w" type="checkbox" ng-model="dashboard.userStatus.walking" value="Walking"><i class="fa fa-child"></i>&nbsp;Walking</label></h4>
+              <h4><label class="checkbox"><input id="mup" type="checkbox" ng-model="dashboard.userStatus.meetForHangout" value="Hanging Out"><i class="fa fa-coffee"></i>Hanging Out</label></h4>
+              <h4><label class="checkbox"><input id="gr" type="checkbox" ng-model="dashboard.userStatus.carpoolingForGroceries" value="Grocery Run"><i class="fa fa-shopping-cart"></i>Grocery Run</label></h4>
+              <h4><label class="checkbox"><input id="sg" type="checkbox" ng-model="dashboard.userStatus.meetForStudy" value="Study Group"><i class="fa fa-book"></i>Study Group</label></h4>
 
               <button id="UpdateMyStatus" class="btn btn-primary btn-block" type="submit">Update My Status</button>
               <script type="text/javascript">
@@ -37,28 +44,6 @@
               </script>
 
             </form>
-          </div>
-          <!-- Create a post -->
-          <h2>Post</h2>
-
-          <div class="white-box buttons-box">
-            <a class="btn btn-secondary" ui-sref="addRoom">Post Available Housing</a>
-            <a  class="btn btn-primary" ui-sref="addNewLooking" ui-sref-opts="{reload:true}">Post Looking</a>
-          </div>
-
-          <!-- Profile -->
-
-          <h2>You</h2>
-
-          <div class="white-box profile-sidebar">
-            <div class="profile">
-              <img class="img-circle" ng-if="dashboard.me.profileImage" ng-src="/api/images{{dashboard.me.profileImage}}">
-              <i ng-if="!dashboard.me.profileImage" class="fa fa-smile-o fa-3x img-circle" style="text-align: center; display: inline-block;width: 100%;"></i>
-              <h2> {{dashboard.me.firstname}} {{dashboard.me.lastname}} </h2>
-              <a class="btn btn-secondary btn-block" ui-sref="myProfile"> My Profile </a>
-              <p><br></p>
-              <a ng-if="dashboard.numberOf>0" ui-sref="myProfile" class="inviteRequest">You have {{dashboard.numberOf}} roommate requests</a>
-            </div>
           </div>
 
           <div class="feedback">
@@ -113,7 +98,7 @@
                 </a>
                 <table>
                   <tr>
-                    <!--<td><i class="fa fa-comments-o fa-lg"></i></td>-->
+                    <td><i class="fa fa-comments-o fa-lg"></i></td>
                     <td>
                       <a id="email" ng-href="mailto:{{room.relatedCreatorId.email}}?subject=Interested%20in%20your%20available%20housing&body=Hi%20{{room.relatedCreatorId.firstname}}%2C%0A%0A%0A%0AThanks%2C%0A{{dashboard.me.firstname}}%0Ahttps://campusly.org/roomDetail/{{room.roomDetails.id}}/of/{{room.roomDetails.id}}">
                         <i class="fa fa-envelope-o fa-lg"></i></a>

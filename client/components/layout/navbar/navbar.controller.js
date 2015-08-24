@@ -70,17 +70,15 @@
     /*
      * Code for slider menu
      */
-
     vm.tabs = [
-      {title: "Home", sref: "dashboard", active: true},
-      {title: "Messages", sref: "messages"},
-      {title: "Students Around You", sref: "aroundYou"},
-      {title: "Available Housing", sref: "rooms"},
-      {title: "Looking for Roommates", sref: "looking"},
-      {title: "My Profile", sref: "myProfile"},
-      {title: "Settings", sref: "settings"},
-      {title: "Logout", sref: "logout"}];
-
+      { title:"Home", sref:"dashboard", active: true },
+      { title:"Messages", sref:"messages"},
+      { title:"Students Around You", sref:"aroundYou"},
+      { title:"Available Housing", sref:"rooms"},
+      { title:"Looking for Roommates", sref:"looking"},
+      { title:"My Profile", sref:"myProfile"},
+      { title:"Settings", sref:"settings"},
+      { title:"Logout", sref:"logout"}];
 
   }
 

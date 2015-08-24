@@ -36,7 +36,11 @@
           walkingFromCampus: null,
           meetForHangout: null,
           meetForStudy: null,
-          meetForEvents: null
+          meetForEvents: null,
+          carpooling: null,
+          walking: null,
+          meetUp: null,
+          biking: null
         };
       };
 
