@@ -1238,6 +1238,10 @@ ul > li {
   .video-container video {
     display: none;
   }
+
+  .interested-box-search {
+    /*overflow-x: scroll;*/
+  }
 }
 
 /* ==========================================================================
@@ -2651,11 +2655,13 @@ Looking Details
 }
 
 .looking-profile-img {
-  width: 100%;
+  width: 50px;
+  height: 50px;
 }
 
 .looking-grid-profile-img {
-  width: 30%;
+  width: 50px;
+  height: 50px;
 }
 
 /* Code for back-link */
@@ -3645,13 +3651,11 @@ Unsubscribe partial styling
 }
 
 .interested-box h4, .interested-box-search h4 {
-  border-bottom: 1px solid #afafaf;
   padding: 0 0 10px 0;
   margin: 0 0 0 5px;
 }
 
 .interested-box label {
-  padding-left: 50px;
   font-weight: normal;
 }
 
@@ -3667,6 +3671,7 @@ Unsubscribe partial styling
 
 .interested-box i {
   color: #929292;
+  padding-left: 5%;
 }
 
 /*
@@ -3677,26 +3682,20 @@ Unsubscribe partial styling
 
 
 .interested-box-search {
-  overflow: hidden;
-  margin-top: 20px;
+  margin-top: 1%;
+  text-align: center;
 }
 
-.interested-box-search div {
-  padding-top: 10px;
-}
-
-/*.interested-box-search button {*/
-  /*margin: 20px 0;*/
-  /*float: right;*/
-  /*width: 250px;*/
-/*}*/
-
-.interested-box-search h4 {
-  font-weight: bold;
+.interested-box-search i {
+  color: #929292;
 }
 
 .interested-box-search label {
-  padding-left: 30px;
+  font-weight: normal;
+}
+
+.interested-box-search table {
+  width: 100%;
 }
 
 .interested {

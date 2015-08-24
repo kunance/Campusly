@@ -1,4 +1,4 @@
-<header class="login-header" ng-controller="NavbarCtrl" ng-class="{transparent: !isLoggedIn()}">
+<header class="login-header" ng-controller="NavbarCtrl as nav" ng-class="{transparent: !isLoggedIn()}">
   <div class="container">
     <div class="left-content">
       <a href="/" ng-if="!isLoggedIn()">
@@ -9,11 +9,11 @@
         <!-- Menu button only visible on login -->
         <div class="slider-menu-bars">
           <button class="fa fa-bars fa-2x menu-bars" ng-click="toggle()"></button>
-          <div pageslide ps-open="checked" ps-side="left">
+          <div pageslide ps-open="checked" ps-side="left" ps-speed="0.25">
             <div class="slider-menu">
               <h2>Menu<a ng-click="toggle()" class="pull-right" ><i class="fa fa-times-circle small"></i></a></h2>
               <ul>
-                <a ui-sref="{{tab.sref}}" ui-sref-opts="{reload:true}" active="tab.active" disabled="tab.disabled" class="active" select="setIndex($index)" ng-repeat="tab in tabs">
+                <a ui-sref="{{tab.sref}}" ui-sref-opts="{reload:true}" active="tab.active" disabled="tab.disabled" class="active" select="setIndex($index)" ng-repeat="tab in nav.tabs">
                   <li>{{tab.title}}</li>
                 </a>
               </ul>
@@ -30,8 +30,11 @@
 
     </div>
     <div class="right-content">
-      <div id="logged" ng-if="isLoggedIn()">
-        <a ui-sref="messages"><i class="fa fa-envelope-o fa-2x"></i></a>
+      <div id="logged" ng-if="isLoggedIn()" class="loggedIn">
+        <a ui-sref="messages">
+          <i class="fa fa-comments-o fa-2x"></i>
+          <span class="notification-counter">{{nav.notifs.pmNotif}}</span>
+        </a>
       </div>
 
       <div id="notLogged"  ng-if="!isLoggedIn()">

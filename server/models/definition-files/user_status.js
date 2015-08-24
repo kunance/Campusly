@@ -98,6 +98,22 @@ module.exports = {
     "deletedAt": {
       type: Seq.DATE,
       field: "deletedAt"
+    },
+    "carpooling":{
+      type: Seq.BOOLEAN,
+      field: "carpooling"
+    },
+    "walking":{
+      type: Seq.BOOLEAN,
+      field: "walking"
+    },
+    "meetUp":{
+      type: Seq.BOOLEAN,
+      field: "meetUp"
+    },
+    "biking":{
+      type: Seq.BOOLEAN,
+      field: "biking"
     }
   },
   relations: [{

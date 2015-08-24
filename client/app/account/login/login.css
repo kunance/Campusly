@@ -224,6 +224,16 @@ label + label {
   background-color: #f7953d;
 }
 
+.btn.btn-primary:hover{
+  background-color: #e4e4e4;
+  color: #000000;
+}
+
+.btn.btn-primary:active{
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
 .btn:hover, .lrg-btn:hover, .small-btn:hover {
   background-color: #f7953d;
   color: #333333;

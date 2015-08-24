@@ -57,7 +57,7 @@
     /*
      * Code for slider menu
      */
-    $scope.tabs = [
+    vm.tabs = [
       { title:"Home", sref:"dashboard", active: true },
       { title:"Messages", sref:"messages"},
       { title:"Students Around You", sref:"aroundYou"},
