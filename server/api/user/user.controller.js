@@ -168,7 +168,8 @@ exports.aroundMe = function(req, res, next) {
     if(Object.keys(searchCriteria).length) {
       User.findAll({
         where: {
-          id: usersIds
+          id: usersIds,
+          shareProfile: true
         },
         limit: req.query.limit,
         order: [sortAttrs],
@@ -194,7 +195,8 @@ exports.aroundMe = function(req, res, next) {
     } else {
       User.findAll({
         where: {
-          id: usersIds
+          id: usersIds,
+          shareProfile: true
         },
         order: [sortAttrs],
         include: [
