@@ -5,14 +5,14 @@
   angular
     .module('app.widgets', [
     'angularFileUpload',
-    'uiGmapgoogle-maps',
+    'uiGmapgoogle-maps', 
+     'pubnub.angular.service',
     'cgBusy',
     'angular-progress-arc',
     'angucomplete-alt',
     'angularMoment',
     'slick',
     'ng-optimizely',
-    'pubnub.angular.service'
   ]);
 
 })();
