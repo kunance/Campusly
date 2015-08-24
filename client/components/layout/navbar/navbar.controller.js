@@ -8,41 +8,54 @@
   NavbarCtrl.$inject = ['$scope', 'Auth', 'common', '$window', 'pubNubService', 'currentUserService', '$q'];
 
   function NavbarCtrl($scope, Auth, common, $window, pubNubService, currentUserService, $q) {
-    if($window.FB) $scope.loadFB = $window.FB;
+    if ($window.FB) $scope.loadFB = $window.FB;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.isMailconfirmed = Auth.isMailconfirmed;
 
-   //var temp;
-   // currentUserService.userInfo()
-   //   .then(function (data) {
-   //     temp = data;
-   //     console.log(temp);
-   //   });
+    //var temp;
+    // currentUserService.userInfo()
+    //   .then(function (data) {
+    //     temp = data;
+    //     console.log(temp);
+    //   });
 
     var vm = this;
 
-    vm.notifs = {};
-    vm.notifs.pmNotif = 0;
-    vm.notifs.groupNotif = 0;
+    var user = Auth.getCurrentUser();
+    console.log(user);
+
+    if (user.email) {
+      vm.notifs = {};
+      vm.notifs.pmNotif = 0;
+      vm.notifs.groupNotif = 0;
 
 
-    vm.notifs.newPM = function(){
-      vm.notifs.pmNotif = 1;
-      console.log(vm.notifs.pmNotif);
+      vm.notifs.newPM = function () {
+        vm.notifs.pmNotif = 1;
+        console.log(vm.notifs.pmNotif);
+      };
 
-    };
+      vm.notifs.clearPM = function(){
+        vm.notifs.pmNotif = 0;
+      };
 
-    console.log(pubNubService);
-
-
-    pubNubService.notAppPrivateSubscribe(vm.notifs);
-    pubNubService.notAppPrivateMessage('aaang@ucsd.edu', 'Aaron2', 'hiii');
-
+      //console.log(pubNubService);
 
 
+      pubNubService.setNotifsAndScope(vm.notifs, $scope);
+      pubNubService.setInMessages(0);
+      pubNubService.notAppUpdateUser();
+      pubNubService.notAppPrivateSubscribe();
+      pubNubService.notAppCheckUnreadMessage(false);
 
+      vm.newPrivateMessage = function(email, firstName, text){
+        pubNubService.notAppPrivateMessage(email, firstName, text);
+      }
+
+
+    }
 
 
     /*
@@ -50,7 +63,7 @@
      */
     $scope.checked = false; // This will be binded using the ps-open attribute
 
-    $scope.toggle = function(){
+    $scope.toggle = function () {
       $scope.checked = !$scope.checked
     };
 
