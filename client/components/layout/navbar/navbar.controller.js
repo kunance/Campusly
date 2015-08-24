@@ -21,6 +21,29 @@
    //     console.log(temp);
    //   });
 
+    var vm = this;
+
+    vm.notifs = {};
+    vm.notifs.pmNotif = 0;
+    vm.notifs.groupNotif = 0;
+
+
+    vm.notifs.newPM = function(){
+      vm.notifs.pmNotif = 1;
+      console.log(vm.notifs.pmNotif);
+
+    };
+
+    console.log(pubNubService);
+
+
+    pubNubService.notAppPrivateSubscribe(vm.notifs);
+    pubNubService.notAppPrivateMessage('aaang@ucsd.edu', 'Aaron2', 'hiii');
+
+
+
+
+
 
     /*
      * Slide menu toggle binding
@@ -34,8 +57,7 @@
     /*
      * Code for slider menu
      */
-    var vm = this;
-    vm.tabs = [
+    $scope.tabs = [
       { title:"Home", sref:"dashboard", active: true },
       { title:"Messages", sref:"messages"},
       { title:"Students Around You", sref:"aroundYou"},
