@@ -1606,6 +1606,7 @@ Media query
 }
 
 .white-box-messages {
+  height: 545px;
   border-radius: 5px;
   padding: 20px;
   background: #fff;
@@ -2034,12 +2035,24 @@ Looking Details
 /* Message box, main chat */
 
 .messages {
-  height: 302px;
+  height: 360px;
   overflow-y: auto;
 }
 
 .messages ul{
   list-style-type: none;
+}
+
+.messages .load-history:hover {
+  text-decoration: none;
+  color: #f7953d;
+  cursor: pointer;
+}
+
+.messages ul li span {
+  font-weight: 100;
+  color: #929292;
+  font-size: 0.7em;
 }
 
 .buttons-box .btn{
@@ -2083,8 +2096,7 @@ Looking Details
 /* Message box, chat channels */
 
 .messages-chatChannel {
-  min-height: 200px;
-  max-height: 350px;
+  height: 240px;
   overflow-y: auto;
 }
 
@@ -2175,7 +2187,7 @@ Looking Details
 }
 
 .message-reply {
-
+  margin-top: 46%;
 }
 
 .message-reply textarea {

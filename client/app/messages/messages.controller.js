@@ -508,7 +508,7 @@
 
         PubNub.jsapi.history({
           channel: channelName,
-          count: 4,
+          count: 100,
           reverse: false,
           include_token: true,
           callback: function(m){
@@ -542,7 +542,7 @@
         PubNub.jsapi.history({
           channel: channelName,
           reverse: false,
-          count: 4,
+          count: 20,
           start: vm.oldestChatTimeToken,
           include_token: true,
           callback: function(m){

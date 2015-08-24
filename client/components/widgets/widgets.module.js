@@ -13,6 +13,7 @@
     'angularMoment',
     'slick',
     'ng-optimizely',
+    'infinite-scroll'
   ]);
 
 })();
