@@ -147,6 +147,22 @@ exports.aroundMe = function(req, res, next) {
       searchCriteria.meetForEvents = (searchQuery.meetForEvents === true);
       mixpanel.track("aroundYou - search by meetForEvents");
     }
+    if (searchQuery.carpooling) {
+      searchCriteria.carpooling = (searchQuery.carpooling === true);
+      mixpanel.track("aroundYou - search by carpooling");
+    }
+    if (searchQuery.walking) {
+      searchCriteria.walking = (searchQuery.walking === true);
+      mixpanel.track("aroundYou - search by walking");
+    }
+    if (searchQuery.meetUp) {
+      searchCriteria.meetUp = (searchQuery.meetUp === true);
+      mixpanel.track("aroundYou - search by meetUp");
+    }
+    if (searchQuery.biking) {
+      searchCriteria.biking = (searchQuery.biking === true);
+      mixpanel.track("aroundYou - search by meetUp");
+    }
   }
   usersWithin.getAroundYou(req.user.id, req.query.distance, function (usersIds) {
     if(Object.keys(searchCriteria).length) {

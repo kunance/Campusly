@@ -13,7 +13,11 @@ CREATE TABLE user_status (
   	"meetForEvents" boolean DEFAULT false,
     "createdAt" timestamp with time zone DEFAULT now() NOT NULL,
     "updatedAt" timestamp with time zone,
-    "deletedAt" timestamp with time zone
+    "deletedAt" timestamp with time zone,
+    "carpooling" boolean DEFAULT false,
+    "walking" boolean DEFAULT false,
+    "meetUp" boolean DEFAULT false,
+    "biking" boolean DEFAULT false
 );
 
 ALTER TABLE user_status OWNER TO postgres;
