@@ -13,14 +13,28 @@
 
   function pubNubService(common, $q, PubNub, currentUserService) {
 
-
     var user = currentUserService.getCurrentUser();
+
+    if(user.email){
+      PubNub.init({
+        publish_key: 'pub-c-cd12098a-7ff3-4558-921b-c4c7a70ed47a',
+        subscribe_key: 'sub-c-fb61f4f0-2402-11e5-8463-02ee2ddab7fe',
+        uuid: user.email, //use existing user's ID as the UUID - unique user ID
+        ssl: true,
+        callback: console.log('pubnut init')
+      });
+    }
 
     user.education = common.dataservice.getAllEducations(user.id);
 
     var promises = [user.education.$promise];
 
+    var scope = {};
+
     var vm = {};
+    vm.inMessages = 0;
+    vm.notifs = {};
+
 
     var retVal = {};
     $q.all(promises).then(function (retVal) {
@@ -30,7 +44,9 @@
        */
       if (user.education.universityId) {
         retVal.ret = initializeChat();
+
         return retVal;
+
       }
     });
 
@@ -129,34 +145,174 @@
 
     /*-------------------------------------------------------------------------------*/
 
-    PubNub.init({
-      publish_key: 'pub-c-cd12098a-7ff3-4558-921b-c4c7a70ed47a',
-      subscribe_key: 'sub-c-fb61f4f0-2402-11e5-8463-02ee2ddab7fe',
-      uuid: user.email, //use existing user's ID as the UUID - unique user ID
-      ssl: true,
-      callback: console.log('pubnut init')
-    });
+    vm.setNotifsAndScope = function (notifs, scoper){
+      vm.notifs = notifs;
+      scope = scoper;
+    };
+
+    vm.clearNotifs = function(){
+      setTimeout(function(){vm.notifs.pmNotif = 0;scope.$apply();}, 1000);
+    };
 
 
-    /* Function: notApp - subscribes to one's personal channel */
+    /* Function: Initializes pubnub if there is a user
+
+      1. Checks if the user email is null
+      2. If so, then retrieve new user.
+      3. Then initialize PubNub
+     */
+    vm.notAppUpdateUser = function(){
+      console.log(user.email);
+
+      if(user.email == null){
+        user = currentUserService.getCurrentUser();
+
+        PubNub.init({
+          publish_key: 'pub-c-cd12098a-7ff3-4558-921b-c4c7a70ed47a',
+          subscribe_key: 'sub-c-fb61f4f0-2402-11e5-8463-02ee2ddab7fe',
+          uuid: user.email, //use existing user's ID as the UUID - unique user ID
+          ssl: true,
+          callback: console.log('pubnut init')
+        });
+      }
+    };
 
 
-    vm.notAppPrivateSubscribe = function (notifs) {
+    /* Function: notApp - subscribes to one's personal channel
+    *    1. Subscribes to th user's inbox
+    *    2. If not in messages, then execute
+    *    2. Messages execute the new pm method and along with scope apply
+    *
+     */
+    vm.notAppPrivateSubscribe = function () {
+
+      if (PubNub) {
+
+      console.log('private message notifs');
 
       // Subscribe to the channel via PubNub
       PubNub.ngSubscribe({
         channel: user.email,
-        restore: true,
         message: function (message) {
-          notifs.newPM();
-          console.log('new message');
+
+          if(vm.inMessages == 0) {
+            vm.notifs.newPM();
+            console.log('new message');
+            scope.$apply();
+          } else {
+            vm.sendCurrentTimeToken();
+          }
 
         }
       });
+      }
     };
 
 
-    /* currentSubscribe to a private messaging channel
+    /* Function: sends a message to the user's time token channel
+
+        1: appends '_timeToken' to the users email (e.g. aayang@ucsd.edu_timeTokens)
+        2. Publishes to that channel
+     */
+    vm.sendCurrentTimeToken = function(){
+
+      var channel = user.email +  '_timeTokens';
+
+      PubNub.ngPublish({
+        channel: channel,
+        message: 'token'
+      })
+    };
+
+
+    /* checks for unread private messages*/
+    vm.notAppCheckUnreadMessage = function(inCtrl){
+
+      var mostRecentMessageTime;
+      var mostRecentCheck;
+
+      if(!inCtrl) {
+
+        PubNub.jsapi.history({
+          channel: user.email,
+          count: 1,
+          reverse: false,
+          include_token: true,
+          callback: function (m) {
+
+            mostRecentMessageTime = Number(m[1]);
+            console.log('email time token = ' + mostRecentMessageTime);
+
+          }
+        });
+
+        PubNub.jsapi.history({
+          channel: user.email + '_timeTokens',
+          count: 1,
+          reverse: false,
+          include_token: true,
+          callback: function (m) {
+
+            mostRecentCheck = Number(m[1]);
+            console.log('latest read time token = ' + mostRecentCheck);
+
+          }
+        });
+
+        setTimeout(function () {
+
+          if(vm.inMessages == 0) {
+            if ((mostRecentMessageTime) > (mostRecentCheck)) {
+              vm.notifs.newPM();
+              scope.$apply();
+            }
+          }
+        }, 1100);
+
+      } else if(inCtrl){
+
+        PubNub.jsapi.history({
+          channel: user.email + '_timeTokens',
+          count: 1,
+          reverse: false,
+          include_token: true,
+          callback: function (m) {
+
+            mostRecentCheck = Number(m[1]);
+            mostRecentCheck = Math.floor(mostRecentCheck/10000);
+
+            console.log('latest read time token = ' + mostRecentCheck);
+            console.log('current time is          '+ currentTime);
+
+
+                if ((mostRecentMessageTime) > (currentTime)) {
+                  vm.notifs.newPM();
+                  scope.$apply();
+                } else {
+                  vm.notifs.clearPM();
+                  scope.$apply();
+                }
+
+          }
+        });
+
+
+        var d = new Date();
+        var currentTime = d.getTime();
+        console.log('current time');
+        console.log(d.getTime());
+      }
+
+
+
+
+    };
+
+
+
+
+
+    /*  Function: Private messages someone
 
      1. Computes the hash code for the current user's email and private message target's email
      2. Publishes to that person's pm inbox,
@@ -175,12 +331,19 @@
       PubNub.ngPublish({
         channel: user.email,
         message: newConvo
+        callback: function(){
+          vm.notifs.clearPM;
+        }
       });
     };
 
 
+
+
+
     /* Function: Not the app: Publishes to the  specified channel with the specified text*/
     vm.notAppPublish = function (channel, text) {
+
       //Publishes to pubnub the message
       PubNub.ngPublish({
         channel: channel,
@@ -192,6 +355,11 @@
       });
     };
 
+
+    /* Funtion: Set's the inMessages boolean to specified value, 1 for in messages 0 for not */
+    vm.setInMessages = function(val){
+      vm.inMessages = val;
+    };
 
 
 
@@ -246,7 +414,6 @@
 
     };
 
-    console.log(user);
     return vm;
 
   }

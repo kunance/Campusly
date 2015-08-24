@@ -6,9 +6,12 @@
     .module('app.messages')
     .controller('MessageCtrl', MessageCtrl);
 
-  MessageCtrl.$inject = ['common', '$scope', 'currentUser', 'UserResource', '$q', 'PubNub'];
+  MessageCtrl.$inject = ['common', '$scope', 'currentUser', 'UserResource', '$q', 'PubNub', 'pubNubService'];
 
-  function MessageCtrl(common, $scope, currentUser, UserResource, $q, PubNub) {
+  function MessageCtrl(common, $scope, currentUser, UserResource, $q, PubNub, pubNubService) {
+
+
+
 
     //Set the variables to current user, and retrieve information from DB about their education
     var vm = this;
@@ -30,6 +33,7 @@
     });
 
     function initializeMessageController() {
+
 
 
       /* HTML and CSS: For the list of private messages, when someone clicks on one of the boxes,
@@ -705,7 +709,6 @@
 
 
 
-
       /* for punub history, we add the new messages starting from the end of the history messages array,
          and add to the beginning of the currentMessages array. To stay in chronological order.
        */
@@ -718,6 +721,18 @@
 
       //subscribe to one's inbox
       vm.privateSubscribe(vm.me.email);
+
+
+      pubNubService.clearNotifs();
+
+      //sned time token
+      pubNubService.sendCurrentTimeToken();
+
+      pubNubService.notAppCheckUnreadMessage(true);
+
+      //tell the service we are in messages
+      pubNubService.setInMessages(1);
+
 
     }
   };
