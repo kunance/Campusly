@@ -14,17 +14,9 @@
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.isMailconfirmed = Auth.isMailconfirmed;
 
-    //var temp;
-    // currentUserService.userInfo()
-    //   .then(function (data) {
-    //     temp = data;
-    //     console.log(temp);
-    //   });
-
     var vm = this;
 
     var user = Auth.getCurrentUser();
-    console.log(user);
 
     if (user.email) {
       vm.notifs = {};
@@ -34,15 +26,11 @@
 
       vm.notifs.newPM = function () {
         vm.notifs.pmNotif = 1;
-        console.log(vm.notifs.pmNotif);
       };
 
       vm.notifs.clearPM = function(){
         vm.notifs.pmNotif = 0;
       };
-
-      //console.log(pubNubService);
-
 
       pubNubService.setNotifsAndScope(vm.notifs, $scope);
       pubNubService.setInMessages(0);
