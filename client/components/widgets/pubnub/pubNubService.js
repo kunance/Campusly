@@ -15,6 +15,7 @@
 
     var debug = false;
     var production = false;
+    var hashedMessageText = "asldnA@ASDa0klnkjkj!#CFV$Fcvasdas7879";
 
     var user = currentUserService.getCurrentUser();
 
@@ -32,7 +33,7 @@
           }
         });
       }
-      else {
+      else if (!production) {
         PubNub.init({
           publish_key: 'pub-c-cd12098a-7ff3-4558-921b-c4c7a70ed47a',
           subscribe_key: 'sub-c-fb61f4f0-2402-11e5-8463-02ee2ddab7fe',
@@ -162,7 +163,7 @@
       if(debug) console.log('pubnub service called');
       return vm;
 
-    };
+    }
 
     /*-------------------------------------------------------------------------------*/
 
@@ -188,16 +189,31 @@
       if(user.email == null){
         user = currentUserService.getCurrentUser();
 
-        PubNub.init({
-          publish_key: 'pub-c-cd12098a-7ff3-4558-921b-c4c7a70ed47a',
-          subscribe_key: 'sub-c-fb61f4f0-2402-11e5-8463-02ee2ddab7fe',
-          uuid: user.email, //use existing user's ID as the UUID - unique user ID
-          ssl: true,
-          callback: function(){
-            if(debug)
-              console.log('pubnut init');
-          }
-        });
+        if(production){
+          PubNub.init({
+            publish_key: 'pub-c-1d8b120f-467f-4253-b297-e0033e391ea3',
+            subscribe_key: 'sub-c-2340267c-2403-11e5-9fdc-02ee2ddab7fe',
+            uuid: user.email, //use existing user's ID as the UUID - unique user ID
+            ssl: true,
+            callback: function(){
+              if(debug)
+                console.log('pubnut init');
+            }
+          });
+        }
+        else if (!production) {
+          PubNub.init({
+            publish_key: 'pub-c-cd12098a-7ff3-4558-921b-c4c7a70ed47a',
+            subscribe_key: 'sub-c-fb61f4f0-2402-11e5-8463-02ee2ddab7fe',
+            uuid: user.email, //use existing user's ID as the UUID - unique user ID
+            ssl: true,
+            callback: function(){
+              if(debug)
+                console.log('pubnut init');
+            }
+          });
+        }
+
       }
     };
 
@@ -264,7 +280,10 @@
           include_token: true,
           callback: function (m) {
 
+            if (debug) console.log (m[0][0].message.text);
             mostRecentMessageTime = Number(m[1]);
+            var tempMessageText = m[0][0].message.text;
+            if (tempMessageText == hashedMessageText) return;
             if(debug) console.log('email time token = ' + mostRecentMessageTime);
 
           }
@@ -350,13 +369,13 @@
 
       var newConvo = { "user": firstName,
         "email": email,
-        "text": "" };
+        "text": hashedMessageText };
 
       PubNub.ngPublish({
         channel: user.email,
         message: newConvo,
         callback: function(){
-          vm.notifs.clearPM;
+          setTimeout(function(){vm.notifs.clearPM();scope.$apply();}, 25);
         }
       });
     };

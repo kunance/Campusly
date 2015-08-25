@@ -64,6 +64,11 @@
               </td>
             </tr>
           </table>
+          <form>
+            <label for="pm">Send PM</label>
+            <input id="pm" type="text" ng-model="around.message" />
+            <button ng-click="dashboard.privateMessage(around.email, around.firstname, around.message)">Send</button>
+          </form>
         </div>
       </slick>
       <hr ng-if="dashboard.address.streetAddress.id && dashboard.me.shareProfile && dashboard.aroundYou.length">

@@ -6,9 +6,9 @@
   .module('app.dashboard')
   .controller('DashboardCtrl',DashboardCtrl);
 
-  DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'RoomListingView', 'UserResource', 'RoomListing', '$q', 'Lookings', 'screenSize', 'modals'];
+  DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'RoomListingView', 'UserResource', 'RoomListing', '$q', 'Lookings', 'screenSize', 'modals', 'pubNubService'];
 
-  function DashboardCtrl(common, $scope, currentUser, RoomListingView, UserResource, RoomListing, $q, Lookings, screenSize, modals) {
+  function DashboardCtrl(common, $scope, currentUser, RoomListingView, UserResource, RoomListing, $q, Lookings, screenSize, modals, pubNubService) {
     var vm = this;
     vm.me = currentUser;
     vm.userLookings = common.dataservice.getAllLookings(currentUser.id);
@@ -97,6 +97,12 @@
           common.logger.error('Error getting student looking', err)
         });
 
+      var j = 0;
+      angular.forEach(vm.aroundYou, function() {
+          vm.aroundYou[j].message = "";
+          j++;
+        });
+
       vm.updateStatus = function (form, data) {
         if (action == 'save') {
           common.dataservice.addStatus(vm.me.id, data)
@@ -121,6 +127,13 @@
               common.logger.error('error updating status', err);
             })
         }
+      };
+      /*
+       *  PubNubService for sending private messages
+       */
+      vm.privateMessage = function (email, name, messageText) {
+        console.log(messageText);
+        pubNubService.notAppPrivateMessage(email, name, messageText);
       };
       /*
        *  prerender.io
