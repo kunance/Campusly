@@ -281,9 +281,13 @@
           callback: function (m) {
 
             if (debug) console.log (m[0][0].message.text);
-            mostRecentMessageTime = Number(m[1]);
             var tempMessageText = m[0][0].message.text;
-            if (tempMessageText == hashedMessageText) return;
+            if (tempMessageText == hashedMessageText){
+              return;
+            }
+
+            mostRecentMessageTime = Number(m[1]);
+
             if(debug) console.log('email time token = ' + mostRecentMessageTime);
 
           }
@@ -303,6 +307,8 @@
         });
 
         setTimeout(function () {
+          if(mostRecentCheck == null)
+            return;
 
           if(vm.inMessages == 0) {
             if ((mostRecentMessageTime) > (mostRecentCheck)) {
