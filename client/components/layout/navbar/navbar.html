@@ -33,7 +33,7 @@
       <div id="logged" ng-if="isLoggedIn()" class="loggedIn">
         <a ui-sref="messages">
           <i class="fa fa-comments-o fa-2x"></i>
-          <span class="notification-counter">{{nav.notifs.pmNotif}}</span>
+          <span class="notification-counter" ng-if="nav.notifs.pmNotif > 0">!</span>
         </a>
       </div>
 

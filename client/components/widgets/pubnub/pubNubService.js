@@ -13,16 +13,37 @@
 
   function pubNubService(common, $q, PubNub, currentUserService) {
 
+    var debug = false;
+    var production = false;
+
     var user = currentUserService.getCurrentUser();
 
     if(user.email){
-      PubNub.init({
-        publish_key: 'pub-c-cd12098a-7ff3-4558-921b-c4c7a70ed47a',
-        subscribe_key: 'sub-c-fb61f4f0-2402-11e5-8463-02ee2ddab7fe',
-        uuid: user.email, //use existing user's ID as the UUID - unique user ID
-        ssl: true,
-        callback: console.log('pubnut init')
-      });
+
+      if(production){
+        PubNub.init({
+          publish_key: 'pub-c-1d8b120f-467f-4253-b297-e0033e391ea3',
+          subscribe_key: 'sub-c-2340267c-2403-11e5-9fdc-02ee2ddab7fe',
+          uuid: user.email, //use existing user's ID as the UUID - unique user ID
+          ssl: true,
+          callback: function(){
+            if(debug)
+              console.log('pubnut init');
+          }
+        });
+      }
+      else {
+        PubNub.init({
+          publish_key: 'pub-c-cd12098a-7ff3-4558-921b-c4c7a70ed47a',
+          subscribe_key: 'sub-c-fb61f4f0-2402-11e5-8463-02ee2ddab7fe',
+          uuid: user.email, //use existing user's ID as the UUID - unique user ID
+          ssl: true,
+          callback: function(){
+            if(debug)
+              console.log('pubnut init');
+          }
+        });
+      }
     }
 
     user.education = common.dataservice.getAllEducations(user.id);
@@ -125,20 +146,20 @@
           callback: function (m) {
             retrievedHistory = m[0];
 
-            console.log('retrived history');
+            if(debug) console.log('retrived history');
             //for (var i = 0; i<retrievedHistory.length; i++) {
             //  vm.evaluateOldPrivateMessage(retrievedHistory[i].message);
             //}
 
             //vm.oldestInboxTimeToken = m[1];
-            console.log(retrievedHistory);
+            if(debug) console.log(retrievedHistory);
           }
         });
         // returns: [[message1, message2, ...], oldestTimeToken, newestTimeToken
       };
 
 
-      console.log('pubnub service called');
+      if(debug) console.log('pubnub service called');
       return vm;
 
     };
@@ -162,7 +183,7 @@
       3. Then initialize PubNub
      */
     vm.notAppUpdateUser = function(){
-      console.log(user.email);
+      if(debug) console.log(user.email);
 
       if(user.email == null){
         user = currentUserService.getCurrentUser();
@@ -172,7 +193,10 @@
           subscribe_key: 'sub-c-fb61f4f0-2402-11e5-8463-02ee2ddab7fe',
           uuid: user.email, //use existing user's ID as the UUID - unique user ID
           ssl: true,
-          callback: console.log('pubnut init')
+          callback: function(){
+            if(debug)
+              console.log('pubnut init');
+          }
         });
       }
     };
@@ -188,7 +212,7 @@
 
       if (PubNub) {
 
-      console.log('private message notifs');
+        if(debug) console.log('private message notifs');
 
       // Subscribe to the channel via PubNub
       PubNub.ngSubscribe({
@@ -197,7 +221,7 @@
 
           if(vm.inMessages == 0) {
             vm.notifs.newPM();
-            console.log('new message');
+            if(debug) console.log('new message');
             scope.$apply();
           } else {
             vm.sendCurrentTimeToken();
@@ -241,7 +265,7 @@
           callback: function (m) {
 
             mostRecentMessageTime = Number(m[1]);
-            console.log('email time token = ' + mostRecentMessageTime);
+            if(debug) console.log('email time token = ' + mostRecentMessageTime);
 
           }
         });
@@ -254,7 +278,7 @@
           callback: function (m) {
 
             mostRecentCheck = Number(m[1]);
-            console.log('latest read time token = ' + mostRecentCheck);
+            if(debug) console.log('latest read time token = ' + mostRecentCheck);
 
           }
         });
@@ -281,8 +305,8 @@
             mostRecentCheck = Number(m[1]);
             mostRecentCheck = Math.floor(mostRecentCheck/10000);
 
-            console.log('latest read time token = ' + mostRecentCheck);
-            console.log('current time is          '+ currentTime);
+            if(debug) console.log('latest read time token = ' + mostRecentCheck);
+            if(debug) console.log('current time is          '+ currentTime);
 
 
                 if ((mostRecentMessageTime) > (currentTime)) {
@@ -299,8 +323,8 @@
 
         var d = new Date();
         var currentTime = d.getTime();
-        console.log('current time');
-        console.log(d.getTime());
+        if(debug) console.log('current time');
+        if(debug) console.log(d.getTime());
       }
 
 
@@ -396,7 +420,7 @@
 
 
         if (shorterEmail.charCodeAt(i) < longerEmail.charCodeAt(i)) {
-          console.log(shorterEmail.charCodeAt(i) + " vs " + longerEmail.charCodeAt(i));
+          if(debug) console.log(shorterEmail.charCodeAt(i) + " vs " + longerEmail.charCodeAt(i));
           lessThanEmail = shorterEmail;
           greaterThanEmail = longerEmail;
           break;
@@ -408,7 +432,7 @@
         }
       }
 
-      console.log(lessThanEmail + '+&+' + greaterThanEmail);
+      if(debug) console.log(lessThanEmail + '+&+' + greaterThanEmail);
 
       return lessThanEmail + '+&+' + greaterThanEmail;
 

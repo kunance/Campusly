@@ -606,6 +606,14 @@ Medium Rented button - primary color
 }
 
 /* ==========================================================================
+Medium Rented button - disabled color
+========================================================================== */
+.btn-rented-medium.disabled{
+  background-color: #929292;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
 Medium Rented button - secondary color
 ========================================================================== */
 .btn-rented-medium.secondary{
@@ -2045,9 +2053,14 @@ Looking Details
 
 .messages .load-history:hover {
   text-decoration: none;
-  color: #f7953d;
+  color: #428bca;
   cursor: pointer;
 }
+
+.messages .load-history {
+  color: #f7953d;
+}
+
 
 .messages ul li span {
   font-weight: 100;
@@ -2123,6 +2136,16 @@ Looking Details
   background: #f7953d no-repeat center;
 }
 
+.messages-chatChannel .load-history:hover {
+  text-decoration: none;
+  color: #428bca;
+  cursor: pointer;
+}
+
+.messages-chatChannel .load-history {
+  color: #f7953d;
+}
+
 .message-box {
   border-bottom: 1px solid #e8e8e8;
   padding-bottom: 20px;
@@ -2174,12 +2197,23 @@ Looking Details
 
 .chatChannel li a {
   text-decoration: none;
+  padding-left: 3%;
 }
 
 .chatChannel li a:hover {
   text-decoration: none;
   color: #f7953d;
   cursor: pointer;
+}
+
+.chatChannel span {
+  font-weight: 600;
+  color: #f7953d;
+}
+
+.selectedChatChannel {
+  background-color: rgba(247, 149, 61, 0.3);
+  overflow: inherit;
 }
 
 .selected li {
@@ -3809,4 +3843,46 @@ Unsubscribe partial styling
   100% {
     transform: rotate(360deg);
   }
+}
+/* -------------------------------------------------- */
+/* Styling for modals                                 */
+/* -------------------------------------------------- */
+div.m-modals {
+  background-color: rgba( 0, 0, 0, 0.8 ) ;
+  bottom: 0;
+  left: 0;
+  position: fixed ;
+  right: 0;
+  top: 0;
+}
+
+div.m-modals.ng-hide {
+  background-color: rgba( 0, 0, 0, 0 );
+}
+
+div.m-modals.ng-hide-add.ng-hide-add-active,
+div.m-modals.ng-hide-remove.ng-hide-remove-active {
+  transition: 250ms ease all ;
+}
+
+div.m-modals > .modal {
+  background-color: #FAFAFA ;
+  border-radius: 3px 3px 3px 3px ;
+  box-sizing: border-box ;
+  -moz-box-sizing: border-box ;
+  padding: 20px 20px 20px 20px ;
+  position: fixed ;
+  left: 50% ;
+  margin-left: -200px ;
+  top: 200px ;
+  width: 400px ;
+}
+
+div.m-modals.ng-hide > .modal.ng-enter {
+  top: -200px ;
+  transition: 250ms ease top ;
+}
+
+div.m-modals.ng-hide > .modal.ng-enter.ng-enter-active {
+  top: 200px ;
 }

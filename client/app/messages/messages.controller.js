@@ -10,11 +10,9 @@
 
   function MessageCtrl(common, $scope, currentUser, UserResource, $q, PubNub, pubNubService) {
 
-
-
-
     //Set the variables to current user, and retrieve information from DB about their education
     var vm = this;
+    var debug = false;
     vm.me = currentUser;
     vm.education = common.dataservice.getAllEducations(currentUser.id);
 
@@ -85,19 +83,23 @@
          * Format: University + Channel Name
          */
         var universityChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName);
-        var careerCenterChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName + " Career Center");
-        var resLifeChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName + " ResLife");
-        var academicAdvisingChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName + " Academic Advising");
-        var finAidChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName + " Financial Aid");
+
+        //Hiding for first live push
+        //var careerCenterChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName + " Career Center");
+        //var resLifeChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName + " ResLife");
+        //var academicAdvisingChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName + " Academic Advising");
+        //var finAidChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName + " Financial Aid");
 
         /*
          * Remove quotation from the JSON stringify
          */
         var universityChannelText = vm.replaceQuotesFunction (universityChannel);
-        var careerCenterChannelText = vm.replaceQuotesFunction (careerCenterChannel);
-        var resLifeChannelText = vm.replaceQuotesFunction (resLifeChannel);
-        var academicAdvisingChannelText = vm.replaceQuotesFunction (academicAdvisingChannel);
-        var finAidChannelText = vm.replaceQuotesFunction (finAidChannel);
+
+        //Hiding for first live push
+        //var careerCenterChannelText = vm.replaceQuotesFunction (careerCenterChannel);
+        //var resLifeChannelText = vm.replaceQuotesFunction (resLifeChannel);
+        //var academicAdvisingChannelText = vm.replaceQuotesFunction (academicAdvisingChannel);
+        //var finAidChannelText = vm.replaceQuotesFunction (finAidChannel);
 
         /*
          * Assign channel names to the groupChannels array
@@ -126,11 +128,14 @@
 
 
         vm.housingGroups = ["Tercero", "Building A", "Floor 99"];
-        vm.subscribeToHousingGroups([universityChannelText, careerCenterChannelText, resLifeChannelText, academicAdvisingChannelText,
-          finAidChannelText]);
+        vm.subscribeToHousingGroups([universityChannelText]);
 
-        vm.subscribeToRAChannel();
-        vm.subscribeToHousingGroups(vm.housingGroups);
+        //Hiding for first launch
+        //vm.subscribeToHousingGroups([universityChannelText, careerCenterChannelText, resLifeChannelText, academicAdvisingChannelText,
+        //  finAidChannelText]);
+
+        //vm.subscribeToRAChannel();
+        //vm.subscribeToHousingGroups(vm.housingGroups);
 
 
       };
@@ -178,7 +183,7 @@
       vm.newPrivateConversation = function(user, email){
         for(var i = 0; i < vm.privateMessages.length; i++){
           if(vm.privateMessages[i].email == email){
-            vm.privateCurrentSubscribe(email);
+            vm.privateCurrentSubscribe(email, user);
             return;
           }
         }
@@ -187,7 +192,7 @@
                         "email": email,
                         "text": "" };
 
-        console.log(newConvo);
+        if(debug) console.log(newConvo);
 
         PubNub.ngPublish({
                       channel: vm.me.email,
@@ -218,7 +223,7 @@
 
         vm.grabInboxHistory();
 
-        console.log("subscribed to: " + theChannel);
+        if(debug) console.log("subscribed to: " + theChannel);
       };
 
 
@@ -228,9 +233,9 @@
          1. Computes the hash code for the current user's email and private message target's email
          2. Calls on currentSubscribe passing in the email and private message target's email
        */
-      vm.privateCurrentSubscribe = function(email){
+      vm.privateCurrentSubscribe = function(email, firstName){
         var hashedChannelName = vm.privateChannelHashCode(vm.me.email, email);
-        vm.currentSubscribe(email, hashedChannelName);
+        vm.currentSubscribe(firstName, hashedChannelName);
       };
 
 
@@ -307,8 +312,8 @@
           callback: function(m){
             retrievedHistory = m[0];
 
-            console.log('retrived history');
-            for (var i = 0; i<retrievedHistory.length; i++) {
+            if(debug) console.log('retrived history');
+            for (var i = retrievedHistory.length-1; i>-1; i--) {
               vm.evaluateOldPrivateMessage(retrievedHistory[i].message);
             }
 
@@ -330,7 +335,7 @@
       vm.updateSelectedChannel = function(){
 
         for(var i = 0; i < vm.privateMessages.length; i++){
-          if(vm.currentChannel.name == vm.privateMessages[i].email) {
+          if(vm.currentChannel.name == vm.privateMessages[i].user) {
             vm.privateMessages[i].selected = 1;
             vm.privateMessages[i].new = 0;
           } else
@@ -340,7 +345,7 @@
 
         for(var i = 0; i < vm.groupChannels.length; i++){
           if(vm.currentChannel.name == vm.groupChannels[i].name) {
-            console.log(vm.groupChannels[i]);
+            if(debug) console.log(vm.groupChannels[i]);
             vm.groupChannels[i].selected = 1;
             vm.groupChannels[i].new = 0;
           } else
@@ -373,7 +378,7 @@
           message: function(m){
 
             var groupName = m[2];
-            console.log(m[2]);
+            if(debug) console.log(m[2]);
 
             for(var i = 0; i < vm.groupChannels.length; i++){
               if(vm.groupChannels[i].name == groupName)
@@ -401,11 +406,11 @@
         vm.currentMessages = [];
 
           PubNub.ngUnsubscribe({channel: vm.currentChannel.secondaryChannel,
-                                callback: function(m){console.log(m);}});
+                                callback: function(m){if(debug) console.log(m);}});
 
 
           PubNub.ngUnsubscribe({channel: vm.currentChannel.name,
-                                    callback: function(m){console.log(m);}});
+                                    callback: function(m){if(debug) console.log(m);}});
 
           if( vm.currentChannel.secondaryChannel == null && vm.currentChannel.name){
             vm.groupChannelSubscribe(vm.currentChannel.name);
@@ -416,10 +421,9 @@
           PubNub.ngSubscribe({
             channel: channelSecondaryName,
             message: function(m){
-                        console.log(m);
+                        if(debug) console.log(m);
                         vm.evaluateNewMessage(null, m, true);
-                        //vm.currentMessages.push(m[0]);
-                        console.log(vm.currentMessages);
+                        if(debug) console.log(vm.currentMessages);
                         $scope.$apply();}
           });
 
@@ -432,11 +436,12 @@
           PubNub.ngSubscribe({
             channel: channelName,
             message: function(m){
-                        console.log(m);
+                        if(debug) console.log(m);
                         vm.evaluateNewMessage(null, m, true);
                         //vm.currentMessages.push(m[0]);
                         $scope.$apply();
-                        console.log(vm.currentMessages);}
+                        if(debug) console.log(vm.currentMessages);
+            }
 
           });
 
@@ -467,7 +472,7 @@
               messageToEval[0].user = null;
             }
           }
-            console.log(vm.getTime(Number(messageToEval[1][1])));
+            if(debug) console.log(vm.getTime(Number(messageToEval[1][1])));
             messageToEval[0].time = vm.getTime(Number(messageToEval[1][1]));
             vm.currentMessages.push(messageToEval[0]);
 
@@ -484,7 +489,7 @@
             vm.currentMessages.unshift(messageArray[i].message);
           }
 
-          console.log(vm.currentMessages);
+          if(debug) console.log(vm.currentMessages);
 
         }
 
@@ -628,7 +633,7 @@
 
 
           if (shorterEmail.charCodeAt(i) < longerEmail.charCodeAt(i)) {
-            console.log(shorterEmail.charCodeAt(i) + " vs " + longerEmail.charCodeAt(i));
+            if(debug) console.log(shorterEmail.charCodeAt(i) + " vs " + longerEmail.charCodeAt(i));
             lessThanEmail = shorterEmail;
             greaterThanEmail = longerEmail;
             break;
@@ -640,7 +645,7 @@
           }
         }
 
-        console.log(lessThanEmail + '+&+' + greaterThanEmail);
+        if(debug) console.log(lessThanEmail + '+&+' + greaterThanEmail);
 
         return lessThanEmail + '+&+' + greaterThanEmail;
 
@@ -652,17 +657,58 @@
 
         var date = new Date(token);
         var hours = date.getHours();
+        var day = date.getDate();
+        var month = date.getMonth();
+
+        switch (month+1) {
+          case 1:
+            month = 'Jan';
+            break;
+          case 2:
+            month = 'Feb';
+            break;
+          case 3:
+            month = 'Mar';
+            break;
+          case 4:
+            month = 'Apr';
+            break;
+          case 5:
+            month = 'May';
+            break;
+          case 6:
+            month = 'Jun';
+            break;
+          case 7:
+            month = 'Jul';
+            break;
+          case 8:
+            month = 'Aug';
+            break;
+          case 9:
+            month = 'Sep';
+            break;
+          case 10:
+            month = 'Oct';
+            break;
+          case 11:
+            month = 'Nov';
+            break;
+          case 12:
+            month = 'Dec';
+            break;
+        }
 
         if(hours < 12){
           var period = ' am';
         } else {
-          hours = hours - 12;
+          if (hours != 12) hours = hours - 12;
           var period = ' pm';
         }
 
         var minutes = "0" + date.getMinutes();
 
-        return (hours + ':' + minutes.substr(-2) + period);
+        return (month + ' ' + day + ' ' + hours + ':' + minutes.substr(-2) + period);
 
       };
 
@@ -735,6 +781,6 @@
 
 
     }
-  };
+  }
 
 }());
