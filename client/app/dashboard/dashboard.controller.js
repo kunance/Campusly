@@ -6,9 +6,9 @@
   .module('app.dashboard')
   .controller('DashboardCtrl',DashboardCtrl);
 
-  DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'RoomListingView', 'UserResource', 'RoomListing', '$q', 'Lookings', 'screenSize', 'pubNubService'];
+  DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'RoomListingView', 'UserResource', 'RoomListing', '$q', 'Lookings', 'screenSize', 'pubNubService', 'ngDialog'];
 
-  function DashboardCtrl(common, $scope, currentUser, RoomListingView, UserResource, RoomListing, $q, Lookings, screenSize, pubNubService) {
+  function DashboardCtrl(common, $scope, currentUser, RoomListingView, UserResource, RoomListing, $q, Lookings, screenSize, pubNubService, ngDialog) {
     var vm = this;
     vm.me = currentUser;
     vm.userLookings = common.dataservice.getAllLookings(currentUser.id);
@@ -133,6 +133,14 @@
        */
       vm.privateMessage = function (email, name, messageText) {
         pubNubService.notAppPrivateMessage(email, name, messageText);
+      };
+      /*
+       *  testing ngDialog
+       */
+      $scope.open = function () {
+        ngDialog.open({
+          template: 'aroundYouMessage'
+        });
       };
       /*
        *  prerender.io

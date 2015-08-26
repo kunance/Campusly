@@ -2248,6 +2248,26 @@ Looking Details
   padding-bottom: 10px;
 }
 
+/* Message Form style */
+.messageTemplateForm {
+  text-align: center;
+}
+
+.messageTemplateForm textarea {
+  height: 100%;
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: left;
+  resize: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  width: 100%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
 /* Looking post picture border */
 
 .about-me .picture img {

@@ -6,14 +6,15 @@
     .module('app.widgets', [
     'angularFileUpload',
     'uiGmapgoogle-maps',
-     'pubnub.angular.service',
+    'pubnub.angular.service',
     'cgBusy',
     'angular-progress-arc',
     'angucomplete-alt',
     'angularMoment',
     'slick',
     'ng-optimizely',
-    'infinite-scroll'
+    'infinite-scroll',
+    'ngDialog'
   ]);
 
 })();
