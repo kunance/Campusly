@@ -98,7 +98,7 @@
                   </div>
                   <div class="arYouView">
                     <h4 class="media-heading user-name" style="text-align: center;">
-                      {{arYou.firstname}} {{arYou.lastname[0] | uppercase}}.
+                      {{arYou.firstname | limitTo: 16}} {{arYou.lastname[0] | uppercase}}.
                     </h4>
                     <p ng-show="arYou.usereducationUsers[0].relatedUniversityId.shortName" style="text-align: center">{{arYou.usereducationUsers[0].relatedUniversityId.shortName}}</p>
                     <p ng-hide="arYou.usereducationUsers[0].relatedUniversityId.shortName" style="text-align: center">No university entered</p>
@@ -122,7 +122,16 @@
                   </div>
                   <table>
                     <tr>
-                      <!--<td><i class="fa fa-comments-o fa-lg"></i></td>-->
+                      <td ng-click="open(arYou.email, arYou.firstname, arYou.lastname)"><i class="fa fa-comments-o fa-lg"></i></td>
+                      <script type="text/ng-template" id="aroundYouMessage">
+                        <form class="messageTemplateForm" name="messageForm" ng-hide="messageSent">
+                          <h3>Message to {{ngDialogData.firstName | limitTo: 16}} {{ngDialogData.lastName | limitTo: 16}}</h3>
+                          <textarea placeholder="Your message here..." type="text" ng-model="around.message" rows="3" required ng-minlength="1"></textarea>
+                          <button class="btn-rented-medium primary" ng-click="sendMessage(around.message, ngDialogData.email, ngDialogData.firstName, ngDialogData.lastName)" ng-hide="!messageForm.$valid">Send</button>
+                          <button class="btn-rented-medium disabled" ng-show="!messageForm.$valid" disabled>Send</button>
+                        </form>
+                        <p class="messageTemplateSentMessage">{{messageSent}}</p>
+                      </script>
                       <td>
                         <a id="email" ng-href="mailto:{{arYou.email}}?Subject=Hello">
                           <i class="fa fa-envelope-o fa-lg"></i></a>
