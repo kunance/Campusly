@@ -132,17 +132,30 @@
        *  PubNubService for sending private messages
        */
       vm.privateMessage = function (email, name, messageText) {
+        console.log('message: ' + messageText);
         pubNubService.notAppPrivateMessage(email, name, messageText);
       };
+
+
       /*
        *  testing ngDialog
        */
-      $scope.open = function () {
+      $scope.open = function (emailAddress, firstname, lastname) {
         ngDialog.open({
-          template: 'aroundYouMessage'
+          template: 'aroundYouMessage',
+          controller: 'ngDialogCtrl',
+          data: {
+                 email: emailAddress,
+                 firstName: firstname,
+                 lastName: lastname}
         });
       };
-      /*
+
+
+      $scope.privateMessage = function (email, name, messageText) {
+        console.log('message: ' + messageText);
+        pubNubService.notAppPrivateMessage(email, name, messageText);
+      };      /*
        *  prerender.io
        */
       $scope.$parent.seo = {
