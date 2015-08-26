@@ -173,7 +173,7 @@
     };
 
     vm.clearNotifs = function(){
-      setTimeout(function(){vm.notifs.pmNotif = 0;scope.$apply();}, 1000);
+      setTimeout(function(){vm.notifs.pmNotif = 0;scope.$apply();}, 75);
     };
 
 
@@ -381,7 +381,7 @@
         channel: user.email,
         message: newConvo,
         callback: function(){
-          setTimeout(function(){vm.notifs.clearPM();scope.$apply();}, 25);
+          setTimeout(function(){vm.notifs.clearPM();scope.$apply();}, 35);
         }
       });
     };
