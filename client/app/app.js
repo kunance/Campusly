@@ -30,8 +30,8 @@
     .factory('busyInterceptor', busyInterceptor)
     .factory('requestInterceptor', requestInterceptor);
 
-  configuration.$inject = ['$urlRouterProvider', '$locationProvider', '$httpProvider', '$uiViewScrollProvider'];
-  function configuration($urlRouterProvider, $locationProvider, $httpProvider, $uiViewScrollProvider) {
+  configuration.$inject = ['$urlRouterProvider', '$locationProvider', '$httpProvider', '$uiViewScrollProvider', 'ngDialogProvider'];
+  function configuration($urlRouterProvider, $locationProvider, $httpProvider, $uiViewScrollProvider, ngDialogProvider) {
     $urlRouterProvider
       .otherwise('/dashboard');
     $locationProvider.html5Mode(true);
@@ -40,6 +40,16 @@
     $httpProvider.interceptors.push('requestInterceptor');
     $httpProvider.interceptors.push('busyInterceptor');
     $locationProvider.hashPrefix('!');
+
+    //Set defaults for ngDialogProvider across the app
+    ngDialogProvider.setDefaults({
+      className: 'ngdialog-theme-default',
+      plain: false,
+      showClose: true,
+      closeByDocument: true,
+      closeByEscape: true,
+      appendTo: false
+    });
   }
 
   authInterceptor.$inject = ['$q', '$cookieStore', '$injector'];

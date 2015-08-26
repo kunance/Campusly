@@ -6,9 +6,9 @@
   .module('app.dashboard')
   .controller('DashboardCtrl',DashboardCtrl);
 
-  DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'RoomListingView', 'UserResource', 'RoomListing', '$q', 'Lookings', 'screenSize', 'modals', 'pubNubService'];
+  DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'RoomListingView', 'UserResource', 'RoomListing', '$q', 'Lookings', 'screenSize', 'pubNubService', 'ngDialog'];
 
-  function DashboardCtrl(common, $scope, currentUser, RoomListingView, UserResource, RoomListing, $q, Lookings, screenSize, modals, pubNubService) {
+  function DashboardCtrl(common, $scope, currentUser, RoomListingView, UserResource, RoomListing, $q, Lookings, screenSize, pubNubService, ngDialog) {
     var vm = this;
     vm.me = currentUser;
     vm.userLookings = common.dataservice.getAllLookings(currentUser.id);
@@ -132,8 +132,15 @@
        *  PubNubService for sending private messages
        */
       vm.privateMessage = function (email, name, messageText) {
-        console.log(messageText);
         pubNubService.notAppPrivateMessage(email, name, messageText);
+      };
+      /*
+       *  testing ngDialog
+       */
+      $scope.open = function () {
+        ngDialog.open({
+          template: 'aroundYouMessage'
+        });
       };
       /*
        *  prerender.io
@@ -268,53 +275,6 @@
       mixpanel.people.set({
         "$last_login": new Date()
       });
-
-      // -------------------------------------------------- //
-      // -------------------------------------------------- //
-      // Prompt modal window
-      // I open a Prompt-type modal.
-      $scope.promptSomething = function() {
-        // The .open() method returns a promise that will be either
-        // resolved or rejected when the modal window is closed.
-        var promise = modals.open(
-          "prompt",
-          {
-            message: "Who rocks the party the rocks the body?",
-            placeholder: "MC Lyte."
-          }
-        );
-        promise.then(
-          function handleResolve(response) {
-            console.log("Prompt resolved with [ %s ].", response);
-          },
-          function handleReject(error) {
-            console.warn("Prompt rejected!");
-          }
-        );
-      };
-      // --
-      // NOTE: This controller gets "modals" injected.
-      // It takes services, manages the view-model, and knows NOTHING about the DOM.
-      // Setup defaults using the modal params.
-      $scope.message = ( modals.params().message || "Give me." );
-      // Setup the form inputs (using modal params).
-      $scope.form = {
-        input: ( modals.params().placeholder || "" )
-      };
-      $scope.errorMessage = null;
-      // ---
-      // PUBLIC METHODS.
-      // ---
-      // Wire the modal buttons into modal resolution actions.
-      $scope.cancel = modals.reject;
-      // I process the form submission.
-      $scope.submit = function() {
-        // If no input was provided, show the user an error message.
-        if ( ! $scope.form.input ) {
-          return( $scope.errorMessage = "Please provide something!" );
-        }
-        modals.resolve( $scope.form.input );
-      };
 
     }
   }
