@@ -23,7 +23,7 @@
           <i ng-if="!around.profileImage" class="fa fa-smile-o fa-3x" style="text-align: center; display: inline-block;width: 100%; color: #929292;"></i>
           <div class="arYouView">
             <h4 class="media-heading user-name" style="text-align: center">
-              {{around.firstname}} {{around.lastname[0] | uppercase}}.
+              {{around.firstname | limitTo: 16}} {{around.lastname[0] | uppercase}}.
             </h4>
             <p ng-show="around.usereducationUsers[0].relatedUniversityId.shortName" style="text-align: center">{{around.usereducationUsers[0].relatedUniversityId.shortName}}</p>
             <p ng-hide="around.usereducationUsers[0].relatedUniversityId.shortName" style="text-align: center">No university entered</p>
@@ -48,7 +48,7 @@
               <td ng-click="open(around.email, around.firstname, around.lastname)"><i class="fa fa-comments-o fa-lg"></i></td>
               <script type="text/ng-template" id="aroundYouMessage">
                 <form class="messageTemplateForm" name="messageForm" ng-hide="messageSent">
-                  <h3>Message to {{ngDialogData.firstName}}</h3>
+                  <h3>Message to {{ngDialogData.firstName | limitTo: 16}} {{ngDialogData.lastName | limitTo: 16}}</h3>
                   <textarea placeholder="Your message here..." type="text" ng-model="around.message" rows="3" required ng-minlength="1"></textarea>
                   <button class="btn-rented-medium primary" ng-click="sendMessage(around.message, ngDialogData.email, ngDialogData.firstName, ngDialogData.lastName)" ng-hide="!messageForm.$valid">Send</button>
                   <button class="btn-rented-medium disabled" ng-show="!messageForm.$valid" disabled>Send</button>
