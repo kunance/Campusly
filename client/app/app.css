@@ -2268,6 +2268,10 @@ Looking Details
   margin-bottom: 2%;
 }
 
+.messageTemplateSentMessage {
+  font-weight: 600;
+}
+
 /* Looking post picture border */
 
 .about-me .picture img {

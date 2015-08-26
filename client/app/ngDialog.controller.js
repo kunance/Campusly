@@ -34,10 +34,9 @@
           console.log(fullName);
         }
 
-
         pubNubService.notAppPrivateMessage(email, fullName, text);
-
         pubNubService.clearNotifs();
+        $scope.messageSent = "Your message has been sent! :)"
       };
 
     }
