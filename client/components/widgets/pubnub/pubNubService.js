@@ -68,7 +68,7 @@
 
             }
           });
-          console.log(PubNub);
+          if (debug) console.log(PubNub);
 
         }
       }
