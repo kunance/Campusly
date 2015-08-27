@@ -18,7 +18,7 @@
     var vm = {};
     var pubNubInitialized = 0;
 
-    var debug = true;
+    var debug = false;
     var production = 0;
     var hashedMessageText = "asldnA@ASDa0klnkjkj!#CFV$Fcvasdas7879";
 
@@ -326,8 +326,7 @@
           include_token: true,
           callback: function (m) {
 
-            if (debug) console.log (m[0][0].message.text);
-            if (m[0][0].message.text == null) return;
+            if (m[0].length == 0) return;
             var tempMessageText = m[0][0].message.text;
             if (tempMessageText == hashedMessageText){
               return;
