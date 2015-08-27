@@ -82,18 +82,20 @@
          * Identify list of default channels
          * Format: University + Channel Name
          */
-        var universityChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName);
+        var universityChannel = JSON.stringify(vm.education.relatedUniversityId.shortName + " General");
+        var universityOffCampusHousingChannel = JSON.stringify(vm.education.relatedUniversityId.shortName + " Off-campus Housing");
 
         //Hiding for first live push
-        //var careerCenterChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName + " Career Center");
-        //var resLifeChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName + " ResLife");
-        //var academicAdvisingChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName + " Academic Advising");
-        //var finAidChannel = JSON.stringify("#" + vm.education.relatedUniversityId.shortName + " Financial Aid");
+        //var careerCenterChannel = JSON.stringify(vm.education.relatedUniversityId.shortName + " Career Center");
+        //var resLifeChannel = JSON.stringify(vm.education.relatedUniversityId.shortName + " ResLife");
+        //var academicAdvisingChannel = JSON.stringify(vm.education.relatedUniversityId.shortName + " Academic Advising");
+        //var finAidChannel = JSON.stringify(vm.education.relatedUniversityId.shortName + " Financial Aid");
 
         /*
          * Remove quotation from the JSON stringify
          */
         var universityChannelText = vm.replaceQuotesFunction (universityChannel);
+        var universityOffCampusHousingChannelText = vm.replaceQuotesFunction (universityOffCampusHousingChannel);
 
         //Hiding for first live push
         //var careerCenterChannelText = vm.replaceQuotesFunction (careerCenterChannel);
@@ -127,11 +129,11 @@
         //];
 
 
-        vm.housingGroups = ["Tercero", "Building A", "Floor 99"];
-        vm.subscribeToHousingGroups([universityChannelText]);
+        vm.subscribeToHousingGroups([universityChannelText, universityOffCampusHousingChannelText]);
 
         //Hiding for first launch
-        //vm.subscribeToHousingGroups([universityChannelText, careerCenterChannelText, resLifeChannelText, academicAdvisingChannelText,
+        //vm.housingGroups = ["Tercero", "Building A", "Floor 99"];
+        //vm.subscribeToHousingGroups([universityChannelText, universityOffCampusHousingChannelText, careerCenterChannelText, resLifeChannelText, academicAdvisingChannelText,
         //  finAidChannelText]);
 
         //vm.subscribeToRAChannel();
