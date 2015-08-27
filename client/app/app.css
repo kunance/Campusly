@@ -2229,6 +2229,10 @@ Looking Details
   width: 100%;
 }
 
+.message-reply textarea:invalid {
+  box-shadow:none;
+}
+
 .message-reply .message-button {
   text-align: center;
 }
