@@ -83,7 +83,7 @@
          * Format: University + Channel Name
          */
         var universityChannel = JSON.stringify(vm.education.relatedUniversityId.shortName + " General");
-        var universityHousingChannel = JSON.stringify(vm.education.relatedUniversityId.shortName + " Off-campus Housing");
+        var universityOffCampusHousingChannel = JSON.stringify(vm.education.relatedUniversityId.shortName + " Off-campus Housing");
 
         //Hiding for first live push
         //var careerCenterChannel = JSON.stringify(vm.education.relatedUniversityId.shortName + " Career Center");
@@ -95,7 +95,7 @@
          * Remove quotation from the JSON stringify
          */
         var universityChannelText = vm.replaceQuotesFunction (universityChannel);
-        var universityHousingChannelText = vm.replaceQuotesFunction (universityHousingChannel);
+        var universityOffCampusHousingChannelText = vm.replaceQuotesFunction (universityOffCampusHousingChannel);
 
         //Hiding for first live push
         //var careerCenterChannelText = vm.replaceQuotesFunction (careerCenterChannel);
@@ -129,11 +129,11 @@
         //];
 
 
-        vm.subscribeToHousingGroups([universityChannelText, universityHousingChannelText]);
+        vm.subscribeToHousingGroups([universityChannelText, universityOffCampusHousingChannelText]);
 
         //Hiding for first launch
         //vm.housingGroups = ["Tercero", "Building A", "Floor 99"];
-        //vm.subscribeToHousingGroups([universityChannelText, universityHousingChannelText, careerCenterChannelText, resLifeChannelText, academicAdvisingChannelText,
+        //vm.subscribeToHousingGroups([universityChannelText, universityOffCampusHousingChannelText, careerCenterChannelText, resLifeChannelText, academicAdvisingChannelText,
         //  finAidChannelText]);
 
         //vm.subscribeToRAChannel();
