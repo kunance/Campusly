@@ -783,6 +783,18 @@
 
 
     }
+
+    mixpanel.track("messages view");
+    mixpanel.people.increment('messages view');
+
+    /*
+     *  prerender.io
+     */
+    $scope.$parent.seo = {
+      pageTitle: 'Campusly Messages',
+      pageDescription: 'Your personal dashboard'
+    };
+
   }
 
 }());

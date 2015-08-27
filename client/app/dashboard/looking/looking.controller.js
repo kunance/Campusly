@@ -124,9 +124,19 @@
       angular.element(document).ready(function () {
         orderSliderButtons();
       });
-      mixpanel.track("looking grid view");
-      mixpanel.people.increment('looking grid view');
+
     }
+
+    mixpanel.track("looking grid view");
+    mixpanel.people.increment('looking grid view');
+
+    /*
+     *  prerender.io
+     */
+    $scope.$parent.seo = {
+      pageTitle: 'Campusly Roommates',
+      pageDescription: 'Find a roommate when living off-campus'
+    };
   }
 
 }());

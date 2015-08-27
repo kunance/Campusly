@@ -24,8 +24,8 @@
     vm.loading = false;
     vm.showValidationMessage = false;
     $scope.$parent.seo = {
-      pageTitle:'Campusly Sign-up',
-      pageDescription:'Free Sign-up for Campusly'
+      pageTitle:'Campusly',
+      pageDescription:'Sign-up for Campusly for free.'
     };
 
     /*

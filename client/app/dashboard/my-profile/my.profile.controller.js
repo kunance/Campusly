@@ -309,8 +309,16 @@
         orderSliderButtons();
       });
 
-      mixpanel.track("view profile");
-      mixpanel.people.increment('view profile');
     }
+    mixpanel.track("view profile");
+    mixpanel.people.increment('view profile');
+
+    /*
+     *  prerender.io
+     */
+    $scope.$parent.seo = {
+      pageTitle: 'Campusly My Profile',
+      pageDescription: 'Manage your personal Campusly profile'
+    };
   }
 }());
