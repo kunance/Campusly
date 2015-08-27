@@ -5,9 +5,9 @@
   .module('app.dashboard')
   .controller('LookingCtrl', LookingCtrl);
 
-  LookingCtrl.$inject = ['$scope','common', '$window', 'Lookings', 'currentUser', '$q', 'screenSize'];
+  LookingCtrl.$inject = ['$scope','common', '$window', 'Lookings', 'currentUser', '$q', 'screenSize', 'ngDialog'];
 
-  function LookingCtrl($scope, common, $window, Lookings, currentUser, $q, screenSize) {
+  function LookingCtrl($scope, common, $window, Lookings, currentUser, $q, screenSize, ngDialog) {
     var vm = this;
     vm.me = currentUser;
     vm.universitiesList = common.dataservice.getAllUniversities();
@@ -86,32 +86,46 @@
       vm.search(showSearch);
       };
 
-    angular.element($window).bind('resize', function () {
-      orderSliderButtons();
-    });
-
-    function orderSliderButtons() {
-      setTimeout(function() {
-        $(".slider").each(function(index) {
-          var slider = $(".slider").eq(index);
-          var dotsX = parseInt(slider.find(".slick-dots").css("left"));
-          var dotsSize = parseInt(slider.find(".slick-dots").css("width"));
-          var nextBtnX = dotsX + dotsSize + 10;
-
-          slider.find(".slick-next").css("left", nextBtnX);
+      /*
+       *  ngDialog
+       */
+      $scope.open = function (emailAddress, firstname, lastname) {
+        ngDialog.open({
+          template: 'aroundYouMessage',
+          controller: 'ngDialogCtrl',
+          data: {
+            email: emailAddress,
+            firstName: firstname,
+            lastName: lastname}
         });
-      }, 1000);
-    }
+      };
 
-    $(window).resize(function(){
-      orderSliderButtons();
-    });
+      angular.element($window).bind('resize', function () {
+        orderSliderButtons();
+      });
 
-    angular.element(document).ready(function () {
-      orderSliderButtons();
-    });
-    mixpanel.track("looking grid view");
-    mixpanel.people.increment('looking grid view');
+      function orderSliderButtons() {
+        setTimeout(function() {
+          $(".slider").each(function(index) {
+            var slider = $(".slider").eq(index);
+            var dotsX = parseInt(slider.find(".slick-dots").css("left"));
+            var dotsSize = parseInt(slider.find(".slick-dots").css("width"));
+            var nextBtnX = dotsX + dotsSize + 10;
+
+            slider.find(".slick-next").css("left", nextBtnX);
+          });
+        }, 1000);
+      }
+
+      $(window).resize(function(){
+        orderSliderButtons();
+      });
+
+      angular.element(document).ready(function () {
+        orderSliderButtons();
+      });
+      mixpanel.track("looking grid view");
+      mixpanel.people.increment('looking grid view');
     }
   }
 

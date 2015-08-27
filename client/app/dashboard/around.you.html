@@ -60,7 +60,7 @@
                 <a id="email" ng-href="mailto:{{around.email}}?Subject=Hello">
                   <i class="fa fa-envelope-o fa-lg"></i></a>
                 <script type="text/javascript">
-                  mixpanel.track_links("#email", "Email sent - available room");
+                  mixpanel.track_links("#email", "Email sent - around you");
                   mixpanel.people.increment("#email", "Email sent - around you");
                 </script>
               </td>
@@ -68,7 +68,7 @@
                 <a id="facebookPM" ng-if="around.facebook" ng-href="{{around.facebook}}" target="_blank">
                   <i class="fa fa-facebook-square fa-lg"></i></a>
                 <script type="text/javascript" ng-if="around.facebook">
-                  mixpanel.track_links("#facebookPM", "Facebook PM sent - available room");
+                  mixpanel.track_links("#facebookPM", "Facebook PM sent - around you");
                   mixpanel.people.increment("#facebookPM", "Facebook PM sent - around you");
                 </script>
               </td>

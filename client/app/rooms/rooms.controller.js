@@ -5,9 +5,9 @@
   .module('app.rooms')
   .controller('RoomsCtrl', RoomsCtrl);
 
-  RoomsCtrl.$inject = ['$scope', '$q', '$window', 'common', 'RoomListingView', 'currentUser', 'screenSize'];
+  RoomsCtrl.$inject = ['$scope', '$q', '$window', 'common', 'RoomListingView', 'currentUser', 'screenSize', 'ngDialog'];
 
-  function RoomsCtrl($scope, $q, $window, common, RoomListingView, currentUser, screenSize) {
+  function RoomsCtrl($scope, $q, $window, common, RoomListingView, currentUser, screenSize, ngDialog) {
     var vm = this;
     vm.property = {};
     vm.me = currentUser;
@@ -100,6 +100,21 @@
         vm.clearSearch(false);
         vm.search(showSearch);
       };
+
+      /*
+       *  ngDialog
+       */
+      $scope.open = function (emailAddress, firstname, lastname) {
+        ngDialog.open({
+          template: 'aroundYouMessage',
+          controller: 'ngDialogCtrl',
+          data: {
+            email: emailAddress,
+            firstName: firstname,
+            lastName: lastname}
+        });
+      };
+
     }
 
     function orderSliderButtons() {

@@ -75,19 +75,28 @@
                 </a>
                 <table>
                   <tr>
-                    <!--<td><i class="fa fa-comments-o fa-lg"></i></td>-->
+                    <td ng-click="open(look.relatedUserId.email, look.relatedUserId.firstname, look.relatedUserId.lastname)"><i class="fa fa-comments-o fa-lg"></i></td>
+                    <script type="text/ng-template" id="aroundYouMessage">
+                      <form class="messageTemplateForm" name="messageForm" ng-hide="messageSent">
+                        <h3>Message to {{ngDialogData.firstName | limitTo: 16}} {{ngDialogData.lastName | limitTo: 16}}</h3>
+                        <textarea placeholder="Your message here..." type="text" ng-model="around.message" rows="3" required ng-minlength="1"></textarea>
+                        <button class="btn-rented-medium primary" ng-click="sendMessage(around.message, ngDialogData.email, ngDialogData.firstName, ngDialogData.lastName)" ng-hide="!messageForm.$valid">Send</button>
+                        <button class="btn-rented-medium disabled" ng-show="!messageForm.$valid" disabled>Send</button>
+                      </form>
+                      <p class="messageTemplateSentMessage">{{messageSent}}</p>
+                    </script>
                     <td>
                       <a id="email" ng-href="mailto:{{look.relatedUserId.email}}?subject=Interested%20in%20your%20available%20housing&body=Hi%20{{look.relatedUserId.firstname}}%2C%0A%0A%0A%0AThanks%2C%0A{{looking.me.firstname}}%0Ahttps://campusly.org/lookingDetail/{{look.id}}/of/{{look.id}}">
                         <i class="fa fa-envelope-o fa-lg"></i></a>
                       <script type="text/javascript">
-                        mixpanel.track_links("#email", "Email sent - available room");
+                        mixpanel.track_links("#email", "Email sent - looking");
                       </script>
                     </td>
                     <td>
                       <a id="facebookPM" ng-if="look.relatedUserId.facebook" ng-href="{{look.relatedUserId.facebook}}" target="_blank">
                         <i class="fa fa-facebook-square fa-lg"></i></a>
                       <script type="text/javascript" ng-if="look.relatedUserId.facebook">
-                        mixpanel.track_links("#facebookPM", "Facebook PM sent - available room");
+                        mixpanel.track_links("#facebookPM", "Facebook PM sent - looking");
                       </script>
                     </td>
                   </tr>
