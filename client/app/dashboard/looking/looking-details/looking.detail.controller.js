@@ -18,6 +18,14 @@
     mixpanel.track("looking detail");
     mixpanel.people.increment('looking detail');
 
+    /*
+     *  prerender.io
+     */
+    $scope.$parent.seo = {
+      pageTitle: 'Campusly Roommates',
+      pageDescription: 'Find a roommate when living off-campus'
+    };
+
     vm.allIds = ($stateParams.allIds).split(",").map(Number);
     var id = $stateParams.param;
     $rootScope.currentRoom =  vm.allIds.indexOf(+id);

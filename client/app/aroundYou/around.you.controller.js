@@ -91,8 +91,16 @@
       orderSliderButtons();
     });
 
+    }
     mixpanel.track("aroundYou grid view");
     mixpanel.people.increment('aroundYou grid view');
-    }
+
+    /*
+     *  prerender.io
+     */
+    $scope.$parent.seo = {
+      pageTitle: 'Campusly Around You',
+      pageDescription: 'Connect with students around you'
+    };
   }
 }());

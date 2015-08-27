@@ -142,6 +142,14 @@
     mixpanel.track("room grid view");
     mixpanel.people.increment('room grid view');
 
+    /*
+     *  prerender.io
+     */
+    $scope.$parent.seo = {
+      pageTitle: 'Campusly Housing',
+      pageDescription: 'Search for off-campus housing - available rooms, apartments, or houses'
+    };
+
   }
 
 

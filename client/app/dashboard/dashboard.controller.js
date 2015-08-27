@@ -147,8 +147,8 @@
        *  prerender.io
        */
       $scope.$parent.seo = {
-        pageTitle: 'Campusly Dashboard',
-        pageDescription: 'Your personal dashboard'
+        pageTitle: 'Campusly Home',
+        pageDescription: 'Your campus community'
       };
       /*
        *  breakpoints and slider options
