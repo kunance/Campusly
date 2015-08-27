@@ -5,9 +5,9 @@
     .module('app.dashboard')
     .controller('aroundYouCtrl', aroundYouCtrl);
 
-  aroundYouCtrl.$inject = ['common', 'currentUser', 'UserResource', '$window', '$q'];
+  aroundYouCtrl.$inject = ['common', 'currentUser', 'UserResource', '$window', '$q', 'ngDialog', '$scope'];
 
-  function aroundYouCtrl(common, currentUser, UserResource, $window, $q) {
+  function aroundYouCtrl(common, currentUser, UserResource, $window, $q, ngDialog, $scope) {
     var vm = this;
     vm.me = currentUser;
     vm.education = common.dataservice.getAllEducations(currentUser.id);
@@ -56,6 +56,20 @@
    };
 
     vm.setQueryAndSearch();
+
+    /*
+     *  ngDialog
+     */
+    $scope.open = function (emailAddress, firstname, lastname) {
+      ngDialog.open({
+        template: 'aroundYouMessage',
+        controller: 'ngDialogCtrl',
+        data: {
+          email: emailAddress,
+          firstName: firstname,
+          lastName: lastname}
+      });
+    };
 
     function orderSliderButtons() {
       setTimeout(function() {

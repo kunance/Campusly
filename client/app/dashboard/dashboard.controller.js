@@ -6,9 +6,9 @@
   .module('app.dashboard')
   .controller('DashboardCtrl',DashboardCtrl);
 
-  DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'RoomListingView', 'UserResource', 'RoomListing', '$q', 'Lookings', 'screenSize', 'pubNubService', 'ngDialog'];
+  DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'RoomListingView', 'UserResource', 'RoomListing', '$q', 'Lookings', 'screenSize', 'ngDialog'];
 
-  function DashboardCtrl(common, $scope, currentUser, RoomListingView, UserResource, RoomListing, $q, Lookings, screenSize, pubNubService, ngDialog) {
+  function DashboardCtrl(common, $scope, currentUser, RoomListingView, UserResource, RoomListing, $q, Lookings, screenSize, ngDialog) {
     var vm = this;
     vm.me = currentUser;
     vm.userLookings = common.dataservice.getAllLookings(currentUser.id);
@@ -128,17 +128,9 @@
             })
         }
       };
-      /*
-       *  PubNubService for sending private messages
-       */
-      vm.privateMessage = function (email, name, messageText) {
-        console.log('message: ' + messageText);
-        pubNubService.notAppPrivateMessage(email, name, messageText);
-      };
-
 
       /*
-       *  testing ngDialog
+       *  ngDialog
        */
       $scope.open = function (emailAddress, firstname, lastname) {
         ngDialog.open({
@@ -151,11 +143,7 @@
         });
       };
 
-
-      $scope.privateMessage = function (email, name, messageText) {
-        console.log('message: ' + messageText);
-        pubNubService.notAppPrivateMessage(email, name, messageText);
-      };      /*
+       /*
        *  prerender.io
        */
       $scope.$parent.seo = {

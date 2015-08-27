@@ -9,7 +9,7 @@
 </div>
 
 
-<h2 style="clear:both;">{{detail.lookingDetail.relatedUserId.firstname}}'s profile
+<h2 style="clear:both;">{{detail.lookingDetail.relatedUserId.firstname | limitTo: 30}}'s Profile
   <small class="pull-right" ng-if="detail.me.id == detail.lookingDetail.userId">
     <a class="new-bubble pull-right" style="height: 1.8em; width: 1.8em; padding-top: 6px" ui-sref="editLooking({id:detail.lookingDetail.id})" ui-sref-opts="{reload:true}">
       <i class="fa fa-pencil"></i></a>
@@ -29,7 +29,7 @@
         <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
           <div class="picture text-center">
             <img ng-if="detail.lookingDetail.relatedUserId.profileImage" ng-src="api/images{{detail.lookingDetail.relatedUserId.profileImage}}" class="img-circle center-block looking-profile-img">
-            <i ng-if="!detail.lookingDetail.relatedUserId.profileImage" class="fa fa-user fa-5x"></i>
+            <i ng-if="!detail.lookingDetail.relatedUserId.profileImage" class="fa fa-smile-o fa-3x" style="color: #929292"></i>
           </div>
         </div>
 
@@ -67,8 +67,8 @@
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
           <dl class="specs">
             <dt>About Me</dt><br>
-            <dd ng-show="detail.lookingDetail.relatedUserId.aboutMe"> <h3> "{{detail.lookingDetail.relatedUserId.aboutMe}}" </h3> </dd>
-            <dd ng-hide="detail.lookingDetail.relatedUserId.aboutMe"> <h3> No description available </h3> </dd>
+            <dd ng-show="detail.lookingDetail.relatedUserId.aboutMe"> <h4> "{{detail.lookingDetail.relatedUserId.aboutMe}}" </h4> </dd>
+            <dd ng-hide="detail.lookingDetail.relatedUserId.aboutMe"> <h4> No description available </h4> </dd>
           </dl>
         </div>
 
@@ -77,19 +77,30 @@
     </div>
   </div>
   <hr/>
-  <div class="row">
+  <div class="row highlightMessage">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
-      <a id="email" style="margin-left:20px; position: relative;" class="pull-right" ng-href="mailto:{{detail.lookingDetail.relatedUserId.email}}?subject=Interested%20in%20your%20looking%20post&body=Hi%20{{detail.lookingDetail.relatedUserId.firstname}}%2C%0A%0A%0A%0AThanks%2C%0A{{detail.me.firstname}}%0Ahttps://campusly.org/lookingDetail/{{detail.lookingDetail.id}}/of/{{detail.lookingDetail.id}}">
-        <i class="fa fa-send contact-bubble-email"></i><p style="float: right; padding-top: 10px">&nbsp;&nbsp;{{detail.lookingDetail.relatedUserId.email}}</p></a>
+      <a id="facebookPM" ng-if="detail.lookingDetail.relatedUserId.facebook" class="pull-right" ng-href="{{detail.lookingDetail.relatedUserId.facebook}}" target="_blank">
+        <i class="fa fa-facebook-square fa-2x contact-bubble-email"></i></a>
+      <script type="text/javascript" ng-if="detail.lookingDetail.relatedUserId.facebook">
+        mixpanel.track_links("#facebookPM", "Facebook PM sent - looking");
+        mixpanel.people.increment('Facebook PM sent - available room');
+      </script>
+      <a id="email" class="pull-right" ng-href="mailto:{{detail.lookingDetail.relatedUserId.email}}?subject=Interested%20in%20your%20looking%20post&body=Hi%20{{detail.lookingDetail.relatedUserId.firstname}}%2C%0A%0A%0A%0AThanks%2C%0A{{detail.me.firstname}}%0Ahttps://campusly.org/lookingDetail/{{detail.lookingDetail.id}}/of/{{detail.lookingDetail.id}}">
+        <i class="fa fa-envelope-o fa-2x contact-bubble-email"></i></a>
       <script type="text/javascript">
         mixpanel.track_links("#email", "Email sent - looking");
         mixpanel.people.increment('Email sent - looking');
       </script>
-      <a id="facebookPM" style="margin-left:20px; position: relative;" ng-if="detail.lookingDetail.relatedUserId.facebook" class="pull-right" ng-href="{{detail.lookingDetail.relatedUserId.facebook}}" target="_blank">
-        <i style="color: #ffffff" class="fa fa-facebook contact-bubble-facebook"></i><p style="float: right; padding-top: 10px">&nbsp;&nbsp;PM</p></a>
-      <script type="text/javascript" ng-if="detail.lookingDetail.relatedUserId.facebook">
-        mixpanel.track_links("#facebookPM", "Facebook PM sent - looking");
-        mixpanel.people.increment('Facebook PM sent - available room');
+      <a class="pull-right" ng-click="open(detail.lookingDetail.relatedUserId.email, detail.lookingDetail.relatedUserId.firstname, detail.lookingDetail.relatedUserId.lastname)">
+        <i class="fa fa-comments-o fa-2x contact-bubble-email"></i></a>
+      <script type="text/ng-template" id="aroundYouMessage">
+        <form class="messageTemplateForm" name="messageForm" ng-hide="messageSent">
+          <h3>Message to {{ngDialogData.firstName | limitTo: 16}} {{ngDialogData.lastName | limitTo: 16}}</h3>
+          <textarea placeholder="Your message here..." type="text" ng-model="around.message" rows="3" required ng-minlength="1"></textarea>
+          <button class="btn-rented-medium primary" ng-click="sendMessage(around.message, ngDialogData.email, ngDialogData.firstName, ngDialogData.lastName)" ng-hide="!messageForm.$valid">Send</button>
+          <button class="btn-rented-medium disabled" ng-show="!messageForm.$valid" disabled>Send</button>
+        </form>
+        <p class="messageTemplateSentMessage">{{messageSent}}</p>
       </script>
     </div>
   </div>
