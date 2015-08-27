@@ -119,8 +119,8 @@ module.exports = function (grunt) {
           '{.tmp,<%= yeoman.client %>}/{app,components}/**/*.js',
           '!{.tmp,<%= yeoman.client %>}{app,components}/**/*.spec.js',
           '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js',
-          '<%= yeoman.client %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
-          //'<%= yeoman.client %>/assets/fake/{,*//*}*.{png,jpg,jpeg,gif,webp,svg,json}'
+          '<%= yeoman.client %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= yeoman.client %>/assets/videos/{,*//*}*.{mp4,jpg,webm}'
         ],
         options: {
           livereload: true
@@ -273,8 +273,8 @@ module.exports = function (grunt) {
           src: [
             '<%= yeoman.dist %>/client/{,*/}*.js',
             '<%= yeoman.dist %>/client/{,*/}*.css',
-            //'<%= yeoman.dist %>/client/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-            //'<%= yeoman.dist %>/client/assets/fake/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            '<%= yeoman.dist %>/client/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            '<%= yeoman.dist %>/client/assets/videos/{,*/}*.{mp4,jpg,webm}',
             '<%= yeoman.dist %>/client/assets/fonts/*'
           ]
         }
@@ -299,13 +299,16 @@ module.exports = function (grunt) {
       options: {
         assetsDirs: [
           '<%= yeoman.dist %>/client',
-          '<%= yeoman.dist %>/client/assets/images'
-         // '<%= yeoman.dist %>/client/assets/fake'
+          '<%= yeoman.dist %>/client/assets/images',
+          '<%= yeoman.dist %>/client/assets/videos'
         ],
         // This is so we update image references in our ng-templates
         patterns: {
           js: [
-            [/(assets\/images\/.*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Update the JS to reference our revved images']
+            [
+              /(assets\/images\/.*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Update the JS to reference our revved images'
+              ///(assets\/videos\/.*?\.(?:webm|mp4|jpg))/gm, 'Update the JS to reference our revved videos'
+            ]
           ]
         }
       }
@@ -319,13 +322,13 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.client %>/assets/images',
           src: '{,*/}*.{png,jpg,jpeg,gif,svg}',
           dest: '<%= yeoman.dist %>/client/assets/images'
+        },
+          {
+          expand: true,
+          cwd: '<%= yeoman.client %>/assets/videos',
+          src: '{,*/}*.{mp4,jpg,webm}',
+          dest: '<%= yeoman.dist %>/client/assets/videos'
         }
-        //  {
-        //  expand: true,
-        //  cwd: '<%= yeoman.client %>/assets/fake',
-        //  src: '{,*/}*.{png,jpg,jpeg,gif}',
-        //  dest: '<%= yeoman.dist %>/client/assets/fake'
-        //}
         ]
       }
     },
@@ -410,7 +413,7 @@ module.exports = function (grunt) {
             '.htaccess',
             'bower_components/**/*',
             'assets/images/{,*/}*.{webp,png,jpg,jpeg,gif,svg}',
-          //  'assets/fake/{,*/}*.{webp,json}',
+            'assets/videos/{,*/}*.{mp4,jpg,webm}',
             'assets/fonts/**/*',
             'index.html'
           ]
@@ -420,12 +423,12 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>/client/assets/images',
           src: ['generated/*']
         }
-        //  ,{
-        //  expand: true,
-        //  cwd: '.tmp/fake',
-        //  dest: '<%= yeoman.dist %>/client/assets/fake',
-        //  src: ['generated/*']
-        //}
+          ,{
+          expand: true,
+          cwd: '.tmp/videos',
+          dest: '<%= yeoman.dist %>/client/assets/videos',
+          src: ['generated/*']
+        }
           , {
           expand: true,
           dest: '<%= yeoman.dist %>',
