@@ -15,6 +15,7 @@
     $scope.isMailconfirmed = Auth.isMailconfirmed;
 
     var vm = this;
+    var debug = false;
 
     var user = Auth.getCurrentUser();
 
@@ -32,6 +33,7 @@
         vm.notifs.pmNotif = 0;
       };
 
+      if(debug)console.log('initialized navbar controller');
       pubNubService.setNotifsAndScope(vm.notifs, $scope);
       pubNubService.setInMessages(0);
       pubNubService.notAppUpdateUser();

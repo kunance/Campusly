@@ -13,41 +13,68 @@
 
   function pubNubService(common, $q, PubNub, currentUserService) {
 
-    var debug = false;
+
+
+    var vm = {};
+    var pubNubInitialized = 0;
+
+    var debug = true;
     var production = 0;
     var hashedMessageText = "asldnA@ASDa0klnkjkj!#CFV$Fcvasdas7879";
 
+    if(debug) console.log('initialized pubnubServe (not pubnub itself');
     var user = currentUserService.getCurrentUser();
+    if(debug)console.log('PubNub service initialization with usermail = ' + user.email);
 
-    if(user.email){
 
-      if(production === 1){
-        //production keys
-        PubNub.init({
-          publish_key: 'pub-c-1d8b120f-467f-4253-b297-e0033e391ea3',
-          subscribe_key: 'sub-c-2340267c-2403-11e5-9fdc-02ee2ddab7fe',
-          uuid: user.email, //use existing user's ID as the UUID - unique user ID
-          ssl: true,
-          callback: function(){
-            if(debug)
-              console.log('pubnut init');
-          }
-        });
+    vm.initPubNub = function() {
+      if (user.email) {
+
+        if (debug)
+          console.log('init if');
+
+        if (production == 1) {
+          console.log('production is 1');
+          //production keys
+          PubNub.init({
+            publish_key: 'pub-c-1d8b120f-467f-4253-b297-e0033e391ea3',
+            subscribe_key: 'sub-c-2340267c-2403-11e5-9fdc-02ee2ddab7fe',
+            uuid: user.email, //use existing user's ID as the UUID - unique user ID
+            ssl: true,
+            callback: function () {
+              if (debug) {
+                console.log('pubnut init');
+                console.log(PubNub);
+              }
+              pubNubInitialized = 1;
+
+            }
+          });
+        }
+        else if (production == 0) {
+          //development
+          PubNub.init({
+            publish_key: 'pub-c-cd12098a-7ff3-4558-921b-c4c7a70ed47a',
+            subscribe_key: 'sub-c-fb61f4f0-2402-11e5-8463-02ee2ddab7fe',
+            uuid: user.email, //use existing user's ID as the UUID - unique user ID
+            ssl: true,
+            callback: function () {
+              if (debug) {
+                console.log('pubnut init');
+                console.log(PubNub);
+              }
+
+              pubNubInitialized = 1;
+
+            }
+          });
+          console.log(PubNub);
+
+        }
       }
-      else if (production === 0) {
-        //development
-        PubNub.init({
-          publish_key: 'pub-c-cd12098a-7ff3-4558-921b-c4c7a70ed47a',
-          subscribe_key: 'sub-c-fb61f4f0-2402-11e5-8463-02ee2ddab7fe',
-          uuid: user.email, //use existing user's ID as the UUID - unique user ID
-          ssl: true,
-          callback: function(){
-            if(debug)
-              console.log('pubnut init');
-          }
-        });
-      }
-    }
+    };
+
+    vm.initPubNub();
 
     user.education = common.dataservice.getAllEducations(user.id);
 
@@ -55,7 +82,6 @@
 
     var scope = {};
 
-    var vm = {};
     vm.inMessages = 0;
     vm.notifs = {};
 
@@ -186,12 +212,12 @@
       3. Then initialize PubNub
      */
     vm.notAppUpdateUser = function(){
-      if(debug) console.log(user.email);
+      if(debug) console.log('notAppUpdateUser: user.email = ' + user.email);
 
-      if(user.email == null){
+      if(user.email == null || pubNubInitialized == 0){
         user = currentUserService.getCurrentUser();
 
-        if(production === 1){
+        if(production == 1){
           //production keys
           PubNub.init({
             publish_key: 'pub-c-1d8b120f-467f-4253-b297-e0033e391ea3',
@@ -201,10 +227,13 @@
             callback: function(){
               if(debug)
                 console.log('pubnut init');
+
+              pubNubInitialized = 1;
+
             }
           });
         }
-        else if (production === 0) {
+        else if (production == 0) {
           //development keys
           PubNub.init({
             publish_key: 'pub-c-cd12098a-7ff3-4558-921b-c4c7a70ed47a',
@@ -214,6 +243,9 @@
             callback: function(){
               if(debug)
                 console.log('pubnut init');
+
+              pubNubInitialized = 1;
+
             }
           });
         }
@@ -222,8 +254,13 @@
     };
 
     vm.getPubNubObject = function() {
-      console.log("function called");
-      console.log(PubNub);
+      if(debug) {
+        var pb = PubNub;
+        console.log("function called");
+        console.log(PubNub);
+        console.log(PubNub._instance);
+        setTimeout(function(){console.log(PubNub._instance)}, 5000);
+      }
       return PubNub;
     };
 
@@ -317,7 +354,7 @@
         });
 
         setTimeout(function () {
-          if(mostRecentCheck == null)
+          if(mostRecentCheck == null || mostRecentMessageTime == null)
             return;
 
           if(vm.inMessages == 0) {
@@ -338,6 +375,7 @@
           callback: function (m) {
 
             mostRecentCheck = Number(m[1]);
+            if(m[1] == null) return;
             mostRecentCheck = Math.floor(mostRecentCheck/10000);
 
             if(debug) console.log('latest read time token = ' + mostRecentCheck);
@@ -361,9 +399,6 @@
         if(debug) console.log('current time');
         if(debug) console.log(d.getTime());
       }
-
-
-
 
     };
 
