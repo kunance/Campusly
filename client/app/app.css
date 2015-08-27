@@ -171,9 +171,13 @@ Main image and style for above the fold on the home-page
 Style for How It Works section
 ========================================================================== */
 .homepage-hero-module {
-  border-right: none;
-  border-left: none;
-  position: relative;
+  background:linear-gradient(
+    rgba(0, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.35)
+  ), url(../assets/videos/keyboard/keyboard.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 800px;
 }
 .no-video .video-container video,
 .touch .video-container video {
@@ -208,6 +212,13 @@ Style for How It Works section
   z-index: 1000;
   position: absolute;
   top: 35%;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.homepage-hero-module .title-container {
+  padding-top: 5%;
   width: 100%;
   text-align: center;
   color: #fff;
