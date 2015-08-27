@@ -6,9 +6,9 @@
     .module('app.messages')
     .controller('MessageCtrl', MessageCtrl);
 
-  MessageCtrl.$inject = ['common', '$scope', 'currentUser', 'UserResource', '$q', 'PubNub', 'pubNubService'];
+  MessageCtrl.$inject = ['common', '$scope', 'currentUser', 'UserResource', '$q', 'pubNubService'];
 
-  function MessageCtrl(common, $scope, currentUser, UserResource, $q, PubNub, pubNubService) {
+  function MessageCtrl(common, $scope, currentUser, UserResource, $q, pubNubService) {
 
     //Set the variables to current user, and retrieve information from DB about their education
     var vm = this;
@@ -163,16 +163,9 @@
 
        */
 
-      /* PubNub init code
-       * Keys used are from Sandbox - TODO - change before launching
-       */
-      PubNub.init({
-        publish_key: 'pub-c-cd12098a-7ff3-4558-921b-c4c7a70ed47a',
-        subscribe_key: 'sub-c-fb61f4f0-2402-11e5-8463-02ee2ddab7fe',
-        uuid: email, //use existing user's ID as the UUID - unique user ID
-        ssl: true
-      });
-
+      var PubNub = pubNubService.getPubNubObject();
+      console.log("controller");
+      console.log(PubNub);
 
       /* Function: Create a new privateMessage element to add to sidebar, this is meant to be
        *            called and it will append a new private message element to the
