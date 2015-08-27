@@ -14,14 +14,15 @@
   function pubNubService(common, $q, PubNub, currentUserService) {
 
     var debug = false;
-    var production = false;
+    var production = 0;
     var hashedMessageText = "asldnA@ASDa0klnkjkj!#CFV$Fcvasdas7879";
 
     var user = currentUserService.getCurrentUser();
 
     if(user.email){
 
-      if(production){
+      if(production === 1){
+        //production keys
         PubNub.init({
           publish_key: 'pub-c-1d8b120f-467f-4253-b297-e0033e391ea3',
           subscribe_key: 'sub-c-2340267c-2403-11e5-9fdc-02ee2ddab7fe',
@@ -33,7 +34,8 @@
           }
         });
       }
-      else if (!production) {
+      else if (production === 0) {
+        //development
         PubNub.init({
           publish_key: 'pub-c-cd12098a-7ff3-4558-921b-c4c7a70ed47a',
           subscribe_key: 'sub-c-fb61f4f0-2402-11e5-8463-02ee2ddab7fe',
@@ -189,7 +191,8 @@
       if(user.email == null){
         user = currentUserService.getCurrentUser();
 
-        if(production){
+        if(production === 1){
+          //production keys
           PubNub.init({
             publish_key: 'pub-c-1d8b120f-467f-4253-b297-e0033e391ea3',
             subscribe_key: 'sub-c-2340267c-2403-11e5-9fdc-02ee2ddab7fe',
@@ -201,7 +204,8 @@
             }
           });
         }
-        else if (!production) {
+        else if (production === 0) {
+          //development keys
           PubNub.init({
             publish_key: 'pub-c-cd12098a-7ff3-4558-921b-c4c7a70ed47a',
             subscribe_key: 'sub-c-fb61f4f0-2402-11e5-8463-02ee2ddab7fe',
@@ -217,6 +221,11 @@
       }
     };
 
+    vm.getPubNubObject = function() {
+      console.log("function called");
+      console.log(PubNub);
+      return PubNub;
+    };
 
     /* Function: notApp - subscribes to one's personal channel
     *    1. Subscribes to th user's inbox
@@ -281,6 +290,7 @@
           callback: function (m) {
 
             if (debug) console.log (m[0][0].message.text);
+            if (m[0][0].message.text == null) return;
             var tempMessageText = m[0][0].message.text;
             if (tempMessageText == hashedMessageText){
               return;

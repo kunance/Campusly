@@ -104,7 +104,7 @@
 
             <form name="chatBox">
               <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                <textarea placeholder="Your reply here..." type="text" ng-model="messages.newMessage" rows="3" required ng-minlength="1"></textarea>
+                <textarea placeholder="Your reply here..." type="text" ng-model="messages.newMessage" rows="3" ng-minlength="1"></textarea>
               </div>
               <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 message-button">
                 <button class="btn-rented-medium primary" ng-click="messages.currentPublish()" ng-hide="!chatBox.$valid">Reply</button>
