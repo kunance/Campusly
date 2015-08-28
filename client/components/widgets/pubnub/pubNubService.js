@@ -22,13 +22,19 @@
     var production = 0;
     var hashedMessageText = "asldnA@ASDa0klnkjkj!#CFV$Fcvasdas7879";
 
+    var promises = [];
+
     if(debug) console.log('initialized pubnubServe (not pubnub itself');
     var user = currentUserService.getCurrentUser();
+    user.education = {};
     if(debug)console.log('PubNub service initialization with usermail = ' + user.email);
 
 
     vm.initPubNub = function() {
       if (user.email) {
+
+        user.education = common.dataservice.getAllEducations(user.id);
+        promises = [user.education.$promise];
 
         if (debug)
           console.log('init if');
@@ -74,19 +80,14 @@
       }
     };
 
+    //calling pubnub init function
     vm.initPubNub();
 
-    user.education = common.dataservice.getAllEducations(user.id);
-
-    var promises = [user.education.$promise];
-
     var scope = {};
-
     vm.inMessages = 0;
     vm.notifs = {};
-
-
     var retVal = {};
+
     $q.all(promises).then(function (retVal) {
       /*
        * Only initialize the PubNub message controller if the university is set.
