@@ -40,7 +40,7 @@
           console.log('init if');
 
         if (production == 1) {
-          console.log('production is 1');
+          if(debug) console.log('production is 1');
           //production keys
           PubNub.init({
             publish_key: 'pub-c-1d8b120f-467f-4253-b297-e0033e391ea3',
