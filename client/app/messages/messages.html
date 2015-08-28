@@ -52,7 +52,7 @@
               </a>
             </li>
           </ul>
-          <a ng-click="messages.grabInboxHistory()" class="load-history">Load Chat History</a>
+          <a ng-click="messages.grabInboxHistory()" class="load-history" ng-if="messages.privateMessages[0]">Load Chat History</a>
         </div>
 
         <h2>Communities</h2>
@@ -104,11 +104,11 @@
 
             <form name="chatBox">
               <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                <textarea placeholder="Your reply here..." type="text" ng-model="messages.newMessage" rows="3" ng-minlength="1"></textarea>
+                <textarea placeholder="Your reply here..." type="text" ng-model="messages.newMessage" rows="3" ng-minlength="1" required></textarea>
               </div>
               <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 message-button">
-                <button class="btn-rented-medium primary" ng-click="messages.currentPublish()" ng-hide="!chatBox.$valid">Reply</button>
-                <button class="btn-rented-medium disabled" ng-show="!chatBox.$valid" disabled>Reply</button>
+                <button class="btn-rented-medium primary" ng-click="messages.currentPublish()" ng-show="chatBox.$valid">Reply</button>
+                <button class="btn-rented-medium disabled" ng-show="!chatBox.$valid">Reply</button>
               </div>
             </form>
 
