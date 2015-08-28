@@ -237,9 +237,8 @@ Style for How It Works section
 Style for core features
 ========================================================================== */
 .core-features {
-  overflow: hidden;
   position: relative;
-  min-height: 680px;
+  height: 800px;
 }
 
 /* ==========================================================================
