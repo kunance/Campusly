@@ -1,5 +1,4 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
-<div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
 <div class="main-wrapper">
 
   <div class="container">
@@ -8,9 +7,62 @@
 
       <div class="row">
         <div class="page-header col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h2 ng-if="around.me.experianIdToken == 1 && around.me.shareProfile" style="display: inline">Students Around You <small>(within {{around.me.experianIdToken}} mile)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
-          <h2 ng-if="around.me.experianIdToken > 1 && around.me.shareProfile" style="display: inline">Students Around You <small>(within {{around.me.experianIdToken}} miles)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
-          <h2 ng-if="!around.me.shareProfile" style="display: inline">Students Around You</h2>
+          <h2 ng-if="around.me.experianIdToken == 1 && around.me.shareProfile" style="display: inline">Search Students Around You <small>(within {{around.me.experianIdToken}} mile)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
+          <h2 ng-if="around.me.experianIdToken > 1 && around.me.shareProfile" style="display: inline">Search Students Around You <small>(within {{around.me.experianIdToken}} miles)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
+          <h2 ng-if="!around.me.shareProfile" style="display: inline">Search Students Around You</h2>
+        </div>
+      </div>
+
+      <!-- Status update -->
+
+      <div class="row" ng-if="around.me.shareProfile">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+          <!-- search partial -->
+          <div class="interested-box-search">
+            <form name="connectToSearch" ng-submit="around.setQueryAndSearch(around.query)" novalidate>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                  <table>
+                    <tr>
+                      <td>
+                        <h4><label class="checkbox"><input type="checkbox" ng-model="around.query.carpooling"><i class="fa fa-car fa-lg"></i></label></h4>
+                      </td>
+                      <td>
+                        <h4><label class="checkbox"><input type="checkbox" ng-model="around.query.biking"><i class="fa fa-bicycle fa-lg"></i></label></h4>
+                      </td>
+                      <td>
+                        <h4><label class="checkbox"><input type="checkbox" ng-model="around.query.walking"><i class="fa fa-child fa-lg"></i></label></h4>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+
+                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                  <table>
+                    <tr>
+                      <td>
+                        <h4><label class="checkbox"><input type="checkbox" ng-model="around.query.meetUp"><i class="fa fa-coffee fa-lg"></i></label></h4>
+                      </td>
+                      <td>
+                        <h4><label class="checkbox"><input type="checkbox" ng-model="around.query.carpoolingForGroceries"><i class="fa fa-shopping-cart fa-lg"></i></label></h4>
+                      </td>
+                      <td>
+                        <h4><label class="checkbox"><input type="checkbox" ng-model="around.query.meetForStudy"><i class="fa fa-book fa-lg"></i></label></h4>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                  <button class="btn-rented-medium primary" type="submit" ng-disabled="!connectToSearch.$dirty">Search</button>
+                  <button class="btn-rented-small reset" ng-click="around.clearSearch()">Clear</button>
+                </div>
+
+              </div>
+            </form>
+          </div>
+          <!-- end of search partial -->
         </div>
       </div>
 
@@ -18,55 +70,7 @@
 
       <div class="row">
 
-        <!-- search buttons -->
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-show="!around.showSearch">
-          <button class="btn-rented-medium secondary" ng-click="around.showSearch=!around.showSearch" ng-show="!around.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Search</button>
-          <button class="btn-rented-medium secondary" ng-click="around.showSearch=!around.showSearch" ng-show="around.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Close</button>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-show="around.showSearch">
-          <button class="btn-rented-medium secondary" ng-click="around.showSearch=!around.showSearch" ng-show="!around.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Search</button>
-          <button class="btn-rented-medium secondary" ng-click="around.showSearch=!around.showSearch" ng-show="around.showSearch"><i style="color: #ffffff" class="fa fa-search-plus fa-lg"></i>&nbsp;&nbsp;Close</button>
-        </div>
-        <!-- end of search buttons -->
-
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-          <!-- search partial -->
-          <div class="white-box interested-box-search" ng-if="around.showSearch">
-            <p style="margin-bottom: 2%">You can select multiple fields based on what you want.</p>
-            <form name="connectToSearch" ng-submit="around.setQueryAndSearch(around.query)" novalidate>
-              <div class="row">
-                <div class="col-xs-12 col-sm-4 col-md-4">
-                  <h4><i class="fa fa-car"></i>Carpooling</h4>
-                  <label class="checkbox"><input type="checkbox" ng-model="around.query.carpoolingToCampus">To Campus</label>
-                  <label class="checkbox"><input type="checkbox" ng-model="around.query.carpoolingFromCampus">From Campus</label>
-                  <label class="checkbox"><input type="checkbox" ng-model="around.query.carpoolingForGroceries">For Groceries</label>
-                  <label class="checkbox"><input type="checkbox" ng-model="around.query.carpoolingForRoadtrip">Roadtrip</label>
-                  <label class="checkbox"><input type="checkbox" ng-model="around.query.carpoolingSplit">Split a Uber/Lyft</label>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-4">
-                  <h4><i class="fa fa-child"></i>Walking</h4>
-                  <label class="checkbox"><input type="checkbox" ng-model="around.query.walkingToCampus">To Campus</label>
-                  <label class="checkbox"><input type="checkbox" ng-model="around.query.walkingFromCampus">From Campus</label>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-4">
-                  <h4><i class="fa fa-users"></i>Meeting Up</h4>
-                  <label class="checkbox"><input type="checkbox" ng-model="around.query.meetForHangout">Hangout</label>
-                  <label class="checkbox"><input type="checkbox" ng-model="around.query.meetForStudy">Study Group</label>
-                  <label class="checkbox"><input type="checkbox" ng-model="around.query.meetForEvents">Campus Events</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12 col-sm-4 col-md-4 col-sm-offset-8 col-md-offset-8">
-                  <button class="btn-rented-medium primary" type="submit" ng-disabled="!connectToSearch.$dirty">Search</button>
-                  <button class="btn-rented-small reset" ng-click="around.clearSearch()">Clear</button>
-                </div>
-              </div>
-            </form>
-          </div>
-          <!-- end of search partial -->
-
-
 
           <div ng-if="around.initialized && !around.me.shareProfile && (around.address.streetAddress.id || around.aroundYou.length)">
             <h3>Please <a ui-sref="settings({focus:'allowConnect'})">update your privacy preferences</a> to connect with students around you.</h3>
@@ -87,14 +91,14 @@
           <slick dots="true" class="slider" init-onload="true" data="around.groups" slides-to-show="1" slides-to-scroll="1" ng-if="around.me.shareProfile && around.aroundYou.length">
             <div ng-repeat="group in around.groups" class="row">
               <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 room" ng-repeat="arYou in group">
-                <div class="front white-box" style="min-height: 345px">
+                <div class="front white-box" style="height: 200px">
                   <div class="center-image">
                     <img ng-if="arYou.profileImage" ng-src="api/images{{arYou.profileImage}}" class="img-circle center-block looking-grid-profile-img">
-                    <i ng-if="!arYou.profileImage" class="fa fa-user fa-4x" style="text-align: center; display: inline-block;width: 100%;"></i>
+                    <i ng-if="!arYou.profileImage" class="fa fa-smile-o fa-3x" style="text-align: center; display: inline-block;width: 100%;"></i>
                   </div>
                   <div class="arYouView">
                     <h4 class="media-heading user-name" style="text-align: center;">
-                      {{arYou.firstname}} {{arYou.lastname[0] | uppercase}}.
+                      {{arYou.firstname | limitTo: 16}} {{arYou.lastname[0] | uppercase}}.
                     </h4>
                     <p ng-show="arYou.usereducationUsers[0].relatedUniversityId.shortName" style="text-align: center">{{arYou.usereducationUsers[0].relatedUniversityId.shortName}}</p>
                     <p ng-hide="arYou.usereducationUsers[0].relatedUniversityId.shortName" style="text-align: center">No university entered</p>
@@ -105,33 +109,47 @@
                       <br>
                     </div>
 
-                  <div style="margin-left:20%">
+                  <div class="interestBox">
                     <ul class="specs" style="min-height: 100px; text-align: left">
-                      <li ng-class="{'interested':(arYou.userstatusesUsers[0].carpoolingForGroceries || arYou.userstatusesUsers[0].carpoolingToCampus
-                    || arYou.userstatusesUsers[0].carpoolingFromCampus || arYou.userstatusesUsers[0].carpoolingForRoadtrip
-                    || arYou.userstatusesUsers[0].carpoolingSplit), 'not-interested':!(arYou.userstatusesUsers[0].carpoolingForGroceries || arYou.userstatusesUsers[0].carpoolingToCampus
-                    || arYou.userstatusesUsers[0].carpoolingFromCampus || arYou.userstatusesUsers[0].carpoolingForRoadtrip
-                    || arYou.userstatusesUsers[0].carpoolingSplit)}"><i class="fa fa-car"></i>&nbsp;&nbsp;Carpooling</li>
-                      <li ng-class="{'interested':(arYou.userstatusesUsers[0].walkingToCampus || arYou.userstatusesUsers[0].walkingFromCampus), 'not-interested':!(arYou.userstatusesUsers[0].walkingToCampus || arYou.userstatusesUsers[0].walkingFromCampus)}"><i class="fa fa-child"></i>&nbsp;&nbsp;&nbsp;&nbsp;Walking</li>
-                      <li ng-class="{'interested':(arYou.userstatusesUsers[0].meetForHangout || arYou.userstatusesUsers[0].meetForStudy
-                    || arYou.userstatusesUsers[0].meetForEvents), 'not-interested':!(arYou.userstatusesUsers[0].meetForHangout || arYou.userstatusesUsers[0].meetForStudy
-                    || arYou.userstatusesUsers[0].meetForEvents)}"><i class="fa fa-users"></i>&nbsp;&nbsp;Meeting Up</li>
+                      <li ng-class="{'interested':(arYou.userstatusesUsers[0].carpooling), 'not-interested':!(arYou.userstatusesUsers[0].carpooling)}"><i class="fa fa-car"></i>&nbsp;&nbsp;Carpooling</li>
+                      <li ng-class="{'interested':(arYou.userstatusesUsers[0].biking), 'not-interested':!(arYou.userstatusesUsers[0].biking)}"><i class="fa fa-bicycle"></i>&nbsp;&nbsp;Biking</li>
+                      <li ng-class="{'interested':(arYou.userstatusesUsers[0].walking), 'not-interested':!(arYou.userstatusesUsers[0].walking)}"><i class="fa fa-child"></i>&nbsp;&nbsp;&nbsp;&nbsp;Walking</li>
+                      <li ng-class="{'interested':(arYou.userstatusesUsers[0].meetUp), 'not-interested':!(arYou.userstatusesUsers[0].meetUp)}"><i class="fa fa-coffee"></i>&nbsp;&nbsp;Hanging Out</li>
+                      <li ng-class="{'interested':(arYou.userstatusesUsers[0].carpoolingForGroceries), 'not-interested':!(arYou.userstatusesUsers[0].carpoolingForGroceries)}"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Grocery Run</li>
+                      <li ng-class="{'interested':(arYou.userstatusesUsers[0].meetForStudy), 'not-interested':!(arYou.userstatusesUsers[0].meetForStudy)}"><i class="fa fa-book"></i>&nbsp;&nbsp;Study Group</li>
                     </ul>
                   </div>
-
-                    <div style="text-align: center; display: inline-block;width: 100%; padding-top: 10px">
-                      <a id="facebookPM" ng-href="{{arYou.facebook}}" ng-class="{'interested': arYou.facebook, 'not-interested':!arYou.facebook}" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
-                      <script type="text/javascript" ng-if="arYou.facebook">
-                        mixpanel.track_links("#facebookPM", "Facebook PM sent - around you");
-                        mixpanel.people.increment("#facebookPM", "Facebook PM sent - around you");
-                      </script>
-                      <a id="email" ng-href="mailto:{{arYou.email}}?Subject=Hello"><i class="fa fa-envelope fa-2x"></i></a>
-                      <script type="text/javascript">
-                        mixpanel.track_links("#email", "Email sent - around you");
-                        mixpanel.people.increment("#email", "Email sent - around you");
-                      </script>
-                    </div>
                   </div>
+                  <table>
+                    <tr>
+                      <td ng-click="open(arYou.email, arYou.firstname, arYou.lastname)"><i class="fa fa-comments-o fa-lg"></i></td>
+                      <script type="text/ng-template" id="aroundYouMessage">
+                        <form class="messageTemplateForm" name="messageForm" ng-hide="messageSent">
+                          <h3>Message to {{ngDialogData.firstName | limitTo: 16}} {{ngDialogData.lastName | limitTo: 16}}</h3>
+                          <textarea placeholder="Your message here..." type="text" ng-model="around.message" rows="3" required ng-minlength="1"></textarea>
+                          <button class="btn-rented-medium primary" ng-click="sendMessage(around.message, ngDialogData.email, ngDialogData.firstName, ngDialogData.lastName)" ng-hide="!messageForm.$valid">Send</button>
+                          <button class="btn-rented-medium disabled" ng-show="!messageForm.$valid" disabled>Send</button>
+                        </form>
+                        <p class="messageTemplateSentMessage">{{messageSent}}</p>
+                      </script>
+                      <td>
+                        <a id="email" ng-href="mailto:{{arYou.email}}?Subject=Hello">
+                          <i class="fa fa-envelope-o fa-lg"></i></a>
+                        <script type="text/javascript">
+                          mixpanel.track_links("#email", "Email sent - available room");
+                          mixpanel.people.increment("#email", "Email sent - around you");
+                        </script>
+                      </td>
+                      <td>
+                        <a id="facebookPM" ng-if="arYou.facebook" ng-href="{{arYou.facebook}}" target="_blank">
+                          <i class="fa fa-facebook-square fa-lg"></i></a>
+                        <script type="text/javascript" ng-if="arYou.facebook">
+                          mixpanel.track_links("#facebookPM", "Facebook PM sent - available room");
+                          mixpanel.people.increment("#facebookPM", "Facebook PM sent - around you");
+                        </script>
+                      </td>
+                    </tr>
+                  </table>
                 </div>
               </div>
             </div>

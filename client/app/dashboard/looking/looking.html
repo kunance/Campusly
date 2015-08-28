@@ -1,10 +1,10 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
-<div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
+
 <div class="main-wrapper">
   <div class="container lookings">
     <div class="row">
       <div class="page-header col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h2>Students Looking
+        <h2>Looking for Roommates
           <small ng-if="looking.lookings.length < 64">({{looking.lookings.length}} posts)</small>
           <small ng-if="looking.lookings.length == 64">({{looking.lookings.length}}+ posts)</small>
           <a  class="btn btn-primary pull-right" ui-sref="addNewLooking" ui-sref-opts="{reload:true}">Post Looking</a>
@@ -54,30 +54,53 @@
         <div ng-repeat="group in looking.groups" class="row">
           <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 looking" ng-repeat="look in group">
             <div class="flip-container">
-              <div class="flipper">
-                <div class="front white-box">
-                  <a ui-sref="lookingDetail({param:look.id, allIds:looking.allIds})" style="text-decoration: none">
-                  <div class="center-image">
-                    <img ng-if="look.relatedUserId.profileImage" ng-src="api/images{{look.relatedUserId.profileImage}}" class="img-circle center-block looking-grid-profile-img">
-                    <i ng-if="!look.relatedUserId.profileImage" class="fa fa-user fa-4x"></i>
-                  </div>
-                  <h4>{{look.relatedUserId.firstname}} {{look.relatedUserId.lastname}}</h4>
-                  <p class="quoteLooking text-container-looking-view" ng-if="look.relatedUserId.aboutMe">{{look.relatedUserId.aboutMe}}</p>
-                  <p class="quoteLooking text-container-looking-view" ng-if="!look.relatedUserId.aboutMe">No description available</p>
-                  <hr>
-                  <ul class="specs">
-                    <li ng-if="look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName"> <i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;{{look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName}}</li>
-                    <li ng-if="!look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName"> <i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;N/A</li>
-                    <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{look.moveInDate | date}}</li>
-                    <li><i class="fa fa-tag"></i>&nbsp;&nbsp;{{look.maxMonthlyRent | currency}} / mo.</li>
-                    <li><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{look.roomType}}</li>
-                    <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{look.gender}}</li>
-                  </ul>
-                  </a>
+              <div class="front white-box hoverBox">
+                <a ui-sref="lookingDetail({param:look.id, allIds:looking.allIds})">
+                <div class="center-image">
+                  <img ng-if="look.relatedUserId.profileImage" ng-src="api/images{{look.relatedUserId.profileImage}}" class="img-circle center-block looking-grid-profile-img">
+                  <i ng-if="!look.relatedUserId.profileImage" class="fa fa-smile-o fa-3x"></i>
                 </div>
-                <div class="back">
-                  <a ui-sref="lookingDetail({param:look.id, allIds:looking.allIds})"> <h2>View</h2> </a>
-                </div>
+                <h4 ng-bind="look.relatedUserId.firstname + '&nbsp;' + look.relatedUserId.lastname | limitTo: 20"></h4>
+                <p class="quoteLooking text-container-looking-view" ng-if="look.relatedUserId.aboutMe">{{look.relatedUserId.aboutMe}}</p>
+                <p class="quoteLooking text-container-looking-view" ng-if="!look.relatedUserId.aboutMe">No description available</p>
+                <hr>
+                <ul class="specs">
+                  <li ng-if="look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName"> <i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;{{look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName}}</li>
+                  <li ng-if="!look.relatedUserId.usereducationUsers[0].relatedUniversityId.shortName"> <i class="fa fa-building fa-lg"></i>&nbsp;&nbsp;N/A</li>
+                  <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{look.moveInDate | date}}</li>
+                  <li><i class="fa fa-tag"></i>&nbsp;&nbsp;{{look.maxMonthlyRent | currency}} / mo.</li>
+                  <li><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{look.roomType}}</li>
+                  <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{look.gender}}</li>
+                </ul>
+                </a>
+                <table>
+                  <tr>
+                    <td ng-click="open(look.relatedUserId.email, look.relatedUserId.firstname, look.relatedUserId.lastname)"><i class="fa fa-comments-o fa-lg"></i></td>
+                    <script type="text/ng-template" id="aroundYouMessage">
+                      <form class="messageTemplateForm" name="messageForm" ng-hide="messageSent">
+                        <h3>Message to {{ngDialogData.firstName | limitTo: 16}} {{ngDialogData.lastName | limitTo: 16}}</h3>
+                        <textarea placeholder="Your message here..." type="text" ng-model="around.message" rows="3" required ng-minlength="1"></textarea>
+                        <button class="btn-rented-medium primary" ng-click="sendMessage(around.message, ngDialogData.email, ngDialogData.firstName, ngDialogData.lastName)" ng-hide="!messageForm.$valid">Send</button>
+                        <button class="btn-rented-medium disabled" ng-show="!messageForm.$valid" disabled>Send</button>
+                      </form>
+                      <p class="messageTemplateSentMessage">{{messageSent}}</p>
+                    </script>
+                    <td>
+                      <a id="email" ng-href="mailto:{{look.relatedUserId.email}}?subject=Interested%20in%20your%20available%20housing&body=Hi%20{{look.relatedUserId.firstname}}%2C%0A%0A%0A%0AThanks%2C%0A{{looking.me.firstname}}%0Ahttps://campusly.org/lookingDetail/{{look.id}}/of/{{look.id}}">
+                        <i class="fa fa-envelope-o fa-lg"></i></a>
+                      <script type="text/javascript">
+                        mixpanel.track_links("#email", "Email sent - looking");
+                      </script>
+                    </td>
+                    <td>
+                      <a id="facebookPM" ng-if="look.relatedUserId.facebook" ng-href="{{look.relatedUserId.facebook}}" target="_blank">
+                        <i class="fa fa-facebook-square fa-lg"></i></a>
+                      <script type="text/javascript" ng-if="look.relatedUserId.facebook">
+                        mixpanel.track_links("#facebookPM", "Facebook PM sent - looking");
+                      </script>
+                    </td>
+                  </tr>
+                </table>
               </div>
             </div>
           </div>

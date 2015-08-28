@@ -6,9 +6,9 @@
   .module('app.dashboard')
   .controller('DashboardCtrl',DashboardCtrl);
 
-  DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'RoomListingView', 'UserResource', 'RoomListing', '$q', 'Lookings', 'screenSize'];
+  DashboardCtrl.$inject= ['common', '$scope', 'currentUser', 'RoomListingView', 'UserResource', 'RoomListing', '$q', 'Lookings', 'screenSize', 'ngDialog'];
 
-  function DashboardCtrl(common, $scope, currentUser, RoomListingView, UserResource, RoomListing, $q, Lookings, screenSize) {
+  function DashboardCtrl(common, $scope, currentUser, RoomListingView, UserResource, RoomListing, $q, Lookings, screenSize, ngDialog) {
     var vm = this;
     vm.me = currentUser;
     vm.userLookings = common.dataservice.getAllLookings(currentUser.id);
@@ -67,9 +67,16 @@
         .$promise
         .then(function (availRooms) {
           vm.allIds = [];
+          vm.allRoomCreators = [];
+          var i = 0;
           vm.availableRooms = availRooms;
           angular.forEach(vm.availableRooms, function (room) {
-            vm.allIds.push(room.roomDetails.id)
+            vm.allIds.push(room.roomDetails.id);
+            RoomListingView.get({id: room.roomDetails.id},function(room) {
+              //on success callback function
+              vm.availableRooms[i].relatedCreatorId = room.roomDetails.relatedCreatorId;
+              i++;
+            });
           });
           orderSliderButtons();
         })
@@ -88,6 +95,12 @@
         })
         .catch(function (err) {
           common.logger.error('Error getting student looking', err)
+        });
+
+      var j = 0;
+      angular.forEach(vm.aroundYou, function() {
+          vm.aroundYou[j].message = "";
+          j++;
         });
 
       vm.updateStatus = function (form, data) {
@@ -115,12 +128,27 @@
             })
         }
       };
+
       /*
+       *  ngDialog
+       */
+      $scope.open = function (emailAddress, firstname, lastname) {
+        ngDialog.open({
+          template: 'aroundYouMessage',
+          controller: 'ngDialogCtrl',
+          data: {
+                 email: emailAddress,
+                 firstName: firstname,
+                 lastName: lastname}
+        });
+      };
+
+       /*
        *  prerender.io
        */
       $scope.$parent.seo = {
-        pageTitle: 'Campusly Dashboard',
-        pageDescription: 'Your personal dashboard'
+        pageTitle: 'Campusly Home',
+        pageDescription: 'Your campus community'
       };
       /*
        *  breakpoints and slider options
@@ -248,6 +276,7 @@
       mixpanel.people.set({
         "$last_login": new Date()
       });
+
     }
   }
 

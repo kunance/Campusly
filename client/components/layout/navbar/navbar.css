@@ -53,3 +53,19 @@ header.picture{
   padding-right: 5px;
   vertical-align: middle;
 }
+
+.login-header .right-content .loggedIn {
+  position: relative;
+}
+
+.login-header .right-content .notification-counter {
+  position: absolute;
+  height: 80%;
+  top: -20%;
+  left: 60%;
+  background-color: #f7953d;
+  color: #fff;
+
+  padding: 1px 4px;
+  font: 8px;
+}

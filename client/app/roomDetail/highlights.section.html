@@ -97,19 +97,30 @@
 
     <hr>
 
-    <div class="row">
+    <div class="row highlightMessage">
 
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-        <a id="email" style="margin-left:20px; position: relative;" class="pull-right" ng-href="mailto:{{room.creatorEmail}}?subject=Interested%20in%20your%20available%20housing&body=Hi%20{{room.creatorFirstName}}%2C%0A%0A%0A%0AThanks%2C%0A{{room.me.firstname}}%0Ahttps://campusly.org/roomDetail/{{room.roomDetail.roomDetails.id}}/of/{{room.roomDetail.roomDetails.id}}">
-          <i class="fa fa-send contact-bubble-email"></i><p style="float: right; padding-top: 10px">&nbsp;&nbsp;{{room.creatorEmail}}</p></a>
+        <a id="facebookPM" class="pull-right" ng-if="room.creatorFacebook" ng-href="{{room.creatorFacebook}}" target="_blank">
+          <i class="fa fa-facebook-square fa-2x contact-bubble-email"></i></a>
+        <script type="text/javascript" ng-if="room.creatorFacebook">
+          mixpanel.track_links("#facebookPM", "Facebook PM sent - available room");
+        </script>
+        <a id="email" class="pull-right" ng-href="mailto:{{room.creatorEmail}}?subject=Interested%20in%20your%20available%20housing&body=Hi%20{{room.creatorFirstName}}%2C%0A%0A%0A%0AThanks%2C%0A{{room.me.firstname}}%0Ahttps://campusly.org/roomDetail/{{room.roomDetail.roomDetails.id}}/of/{{room.roomDetail.roomDetails.id}}">
+          <i class="fa fa-envelope-o fa-2x contact-bubble-email"></i></a>
         <script type="text/javascript">
           mixpanel.track_links("#email", "Email sent - available room");
         </script>
-        <a id="facebookPM" style="margin-left:20px; position: relative;" class="pull-right" ng-if="room.creatorFacebook" ng-href="{{room.creatorFacebook}}" target="_blank">
-          <i style="color: #ffffff" class="fa fa-facebook contact-bubble-facebook"></i><p style="float: right; padding-top: 10px">&nbsp;&nbsp;PM</p></a>
-        <script type="text/javascript" ng-if="room.creatorFacebook">
-          mixpanel.track_links("#facebookPM", "Facebook PM sent - available room");
+        <a class="pull-right" ng-click="open(room.creatorEmail, room.creatorFirstName, room.creatorLastName)">
+          <i class="fa fa-comments-o fa-2x contact-bubble-email"></i></a>
+        <script type="text/ng-template" id="aroundYouMessage">
+          <form class="messageTemplateForm" name="messageForm" ng-hide="messageSent">
+            <h3>Message to {{ngDialogData.firstName | limitTo: 16}} {{ngDialogData.lastName | limitTo: 16}}</h3>
+            <textarea placeholder="Your message here..." type="text" ng-model="around.message" rows="3" required ng-minlength="1"></textarea>
+            <button class="btn-rented-medium primary" ng-click="sendMessage(around.message, ngDialogData.email, ngDialogData.firstName, ngDialogData.lastName)" ng-hide="!messageForm.$valid">Send</button>
+            <button class="btn-rented-medium disabled" ng-show="!messageForm.$valid" disabled>Send</button>
+          </form>
+          <p class="messageTemplateSentMessage">{{messageSent}}</p>
         </script>
 
       </div>

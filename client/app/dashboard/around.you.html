@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <h2 ng-if="dashboard.me.experianIdToken == 1 && dashboard.me.shareProfile"> Students Around You <small>(within {{dashboard.me.experianIdToken}} mile)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
-    <h2 ng-if="dashboard.me.experianIdToken > 1 && dashboard.me.shareProfile"> Students Around You <small>(within {{dashboard.me.experianIdToken}} miles)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
-    <h2 ng-if="!dashboard.me.shareProfile"> Students Around You</h2>
+    <h2 class="section-title-2" ng-if="dashboard.me.experianIdToken == 1 && dashboard.me.shareProfile"> Students Around You <small>(within {{dashboard.me.experianIdToken}} mile)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
+    <h2 class="section-title-2" ng-if="dashboard.me.experianIdToken > 1 && dashboard.me.shareProfile"> Students Around You <small>(within {{dashboard.me.experianIdToken}} miles)&nbsp;<a ui-sref="settings({focus:'radius'})" class="btn-rented-event" >change search distance</a></small></h2>
+    <h2 class="section-title-2" ng-if="!dashboard.me.shareProfile"> Students Around You</h2>
     <div class="white-box">
       <h3 ng-if="!dashboard.aroundYou.length && dashboard.address.streetAddress.id && dashboard.me.shareProfile && dashboard.initialized">
         There is no students around you right now
@@ -18,12 +18,12 @@
       </h3>
       <slick dots="true" class="slider row" slides-to-show="4" slides-to-scroll="3" responsive="dashboard.breakpoints.aroundYou" init-onload="true" infinite="false" data="dashboard.aroundYou" ng-if="dashboard.aroundYou.length && dashboard.me.shareProfile">
 
-        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 room" ng-repeat="around in dashboard.aroundYou track by $index">
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 room aroundYouDashboard" ng-repeat="around in dashboard.aroundYou track by $index">
           <img ng-if="around.profileImage" ng-src="api/images{{around.profileImage}}" class="img-circle center-block looking-profile-img" style="width: 35%">
-          <i ng-if="!around.profileImage" class="fa fa-user fa-4x" style="text-align: center; display: inline-block;width: 100%;"></i>
+          <i ng-if="!around.profileImage" class="fa fa-smile-o fa-3x" style="text-align: center; display: inline-block;width: 100%; color: #929292;"></i>
           <div class="arYouView">
             <h4 class="media-heading user-name" style="text-align: center">
-              {{around.firstname}} {{around.lastname[0] | uppercase}}.
+              {{around.firstname | limitTo: 16}} {{around.lastname[0] | uppercase}}.
             </h4>
             <p ng-show="around.usereducationUsers[0].relatedUniversityId.shortName" style="text-align: center">{{around.usereducationUsers[0].relatedUniversityId.shortName}}</p>
             <p ng-hide="around.usereducationUsers[0].relatedUniversityId.shortName" style="text-align: center">No university entered</p>
@@ -33,30 +33,47 @@
               </strong>
               <br>
             </div>
-            <ul class="specs" style="min-height: 100px; margin-left: 13%">
-              <li ng-class="{'interested':(around.userstatusesUsers[0].carpoolingForGroceries || around.userstatusesUsers[0].carpoolingToCampus
-                    || around.userstatusesUsers[0].carpoolingFromCampus || around.userstatusesUsers[0].carpoolingForRoadtrip
-                    || around.userstatusesUsers[0].carpoolingSplit), 'not-interested':!(around.userstatusesUsers[0].carpoolingForGroceries || around.userstatusesUsers[0].carpoolingToCampus
-                    || around.userstatusesUsers[0].carpoolingFromCampus || around.userstatusesUsers[0].carpoolingForRoadtrip
-                    || around.userstatusesUsers[0].carpoolingSplit)}"><i class="fa fa-car"></i>&nbsp;&nbsp;Carpooling</li>
-              <li ng-class="{'interested':(around.userstatusesUsers[0].walkingToCampus || around.userstatusesUsers[0].walkingFromCampus), 'not-interested':!(around.userstatusesUsers[0].walkingToCampus || around.userstatusesUsers[0].walkingFromCampus)}"><i class="fa fa-child"></i>&nbsp;&nbsp;&nbsp;&nbsp;Walking</li>
-              <li ng-class="{'interested':(around.userstatusesUsers[0].meetForHangout || around.userstatusesUsers[0].meetForStudy
-                    || around.userstatusesUsers[0].meetForEvents), 'not-interested':!(around.userstatusesUsers[0].meetForHangout || around.userstatusesUsers[0].meetForStudy
-                    || around.userstatusesUsers[0].meetForEvents)}"><i class="fa fa-users"></i>&nbsp;&nbsp;Meeting Up</li>
+            <ul class="specs">
+              <li ng-class="{'interested':(around.userstatusesUsers[0].carpooling), 'not-interested':!(around.userstatusesUsers[0].carpooling)}"><i class="fa fa-car"></i>&nbsp;&nbsp;Carpooling</li>
+              <li ng-class="{'interested':(around.userstatusesUsers[0].biking), 'not-interested':!(around.userstatusesUsers[0].biking)}"><i class="fa fa-bicycle"></i>&nbsp;&nbsp;Biking</li>
+              <li ng-class="{'interested':(around.userstatusesUsers[0].walking), 'not-interested':!(around.userstatusesUsers[0].walking)}"><i class="fa fa-child"></i>&nbsp;&nbsp;&nbsp;&nbsp;Walking</li>
+              <li ng-class="{'interested':(around.userstatusesUsers[0].meetUp), 'not-interested':!(around.userstatusesUsers[0].meetUp)}"><i class="fa fa-coffee"></i>&nbsp;&nbsp;Hanging Out</li>
+              <li ng-class="{'interested':(around.userstatusesUsers[0].carpoolingForGroceries), 'not-interested':!(around.userstatusesUsers[0].carpoolingForGroceries)}"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Grocery Run</li>
+              <li ng-class="{'interested':(around.userstatusesUsers[0].meetForStudy), 'not-interested':!(around.userstatusesUsers[0].meetForStudy)}"><i class="fa fa-book"></i>&nbsp;&nbsp;Study Group</li>
             </ul>
           </div>
-          <div style="text-align: center;width: 100%; padding-top: 10px">
-            <a id="facebookPM" ng-href="{{around.facebook}}" ng-class="{'interested': around.facebook, 'not-interested':!around.facebook}" target="_blank"><i class="fa fa-facebook-square fa-2x facebookAroundYou"></i></a>
-            <script type="text/javascript">
-              mixpanel.track_links("#facebookPM", "Facebook PM sent - around you");
-              mixpanel.people.increment("#facebookPM", "Facebook PM sent - around you");
-            </script>
-            <a id="email" ng-href="mailto:{{around.email}}?Subject=Hello"><i class="fa fa-envelope fa-2x"></i></a>
-            <script type="text/javascript">
-              mixpanel.track_links("#email", "Email sent - around you");
-              mixpanel.people.increment("#email", "Email sent - around you");
-            </script>
-          </div>
+          <table>
+            <tr>
+
+              <td ng-click="open(around.email, around.firstname, around.lastname)"><i class="fa fa-comments-o fa-lg"></i></td>
+              <script type="text/ng-template" id="aroundYouMessage">
+                <form class="messageTemplateForm" name="messageForm" ng-hide="messageSent">
+                  <h3>Message to {{ngDialogData.firstName | limitTo: 16}} {{ngDialogData.lastName | limitTo: 16}}</h3>
+                  <textarea placeholder="Your message here..." type="text" ng-model="around.message" rows="3" required ng-minlength="1"></textarea>
+                  <button class="btn-rented-medium primary" ng-click="sendMessage(around.message, ngDialogData.email, ngDialogData.firstName, ngDialogData.lastName)" ng-hide="!messageForm.$valid">Send</button>
+                  <button class="btn-rented-medium disabled" ng-show="!messageForm.$valid" disabled>Send</button>
+                </form>
+                <p class="messageTemplateSentMessage">{{messageSent}}</p>
+              </script>
+
+              <td>
+                <a id="email" ng-href="mailto:{{around.email}}?Subject=Hello">
+                  <i class="fa fa-envelope-o fa-lg"></i></a>
+                <script type="text/javascript">
+                  mixpanel.track_links("#email", "Email sent - around you");
+                  mixpanel.people.increment("#email", "Email sent - around you");
+                </script>
+              </td>
+              <td>
+                <a id="facebookPM" ng-if="around.facebook" ng-href="{{around.facebook}}" target="_blank">
+                  <i class="fa fa-facebook-square fa-lg"></i></a>
+                <script type="text/javascript" ng-if="around.facebook">
+                  mixpanel.track_links("#facebookPM", "Facebook PM sent - around you");
+                  mixpanel.people.increment("#facebookPM", "Facebook PM sent - around you");
+                </script>
+              </td>
+            </tr>
+          </table>
         </div>
       </slick>
       <hr ng-if="dashboard.address.streetAddress.id && dashboard.me.shareProfile && dashboard.aroundYou.length">

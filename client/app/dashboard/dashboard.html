@@ -1,10 +1,25 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
-<div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
 <div ui-view="" autoscroll="true">
   <div class="main-wrapper">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 my-profile">
+
+          <!-- Message notifications -->
+          <!--<h2>Messages</h2>-->
+
+          <!--<div class="white-box buttons-box">-->
+            <!--<p>You have no new messages</p>-->
+            <!--<p>You have 6 new messages</p>-->
+          <!--</div>-->
+
+          <!-- Create a post -->
+          <h2>Post</h2>
+
+          <div class="white-box buttons-box">
+            <a class="btn btn-secondary" ui-sref="addRoom">Post Available Housing</a>
+            <a  class="btn btn-primary" ui-sref="addNewLooking" ui-sref-opts="{reload:true}">Post Looking</a>
+          </div>
 
           <!-- User selects their current interest -->
 
@@ -12,21 +27,12 @@
 
           <div class="white-box interested-box">
             <form name="connectTo" ng-submit="dashboard.updateStatus(connectTo, dashboard.userStatus)" novalidate>
-              <h4><i class="fa fa-car"></i>Carpooling</h4>
-              <label class="checkbox"><input id="c2c" type="checkbox" ng-model="dashboard.userStatus.carpoolingToCampus" value="Carpool From Campus">To Campus</label>
-              <label class="checkbox"><input id="cfc" type="checkbox" ng-model="dashboard.userStatus.carpoolingFromCampus" value="Carpool To Campus">From Campus</label>
-              <label class="checkbox"><input id="cfg" type="checkbox" ng-model="dashboard.userStatus.carpoolingForGroceries" value="Carpool For Groceries">For Groceries</label>
-              <label class="checkbox"><input id="cfrt" type="checkbox" ng-model="dashboard.userStatus.carpoolingForRoadtrip" value="Roadtrip">Roadtrip</label>
-              <label class="checkbox"><input id="csplit" type="checkbox" ng-model="dashboard.userStatus.carpoolingSplit" value="Split a Ride">Split a Uber/Lyft</label>
-
-              <h4><i class="fa fa-child"></i>Walking</h4>
-              <label class="checkbox"><input id="w2c" type="checkbox" ng-model="dashboard.userStatus.walkingToCampus" value="Walk To Campus">To Campus</label>
-              <label class="checkbox"><input id="wfc" type="checkbox" ng-model="dashboard.userStatus.walkingFromCampus" value="Walk From Campus">From Campus</label>
-
-              <h4><i class="fa fa-users"></i>Meeting Up</h4>
-              <label class="checkbox"><input id="hout" type="checkbox" ng-model="dashboard.userStatus.meetForHangout" value="Hangout">Hangout</label>
-              <label class="checkbox"><input id="sg" type="checkbox" ng-model="dashboard.userStatus.meetForStudy" value="Study Groups">Study Group</label>
-              <label class="checkbox"><input id="ce" type="checkbox" ng-model="dashboard.userStatus.meetForEvents" value="Campus Events">Campus Events</label>
+              <h4><label class="checkbox"><input id="c" type="checkbox" ng-model="dashboard.userStatus.carpooling" value="Carpooling"><i class="fa fa-car"></i>Carpooling</label></h4>
+              <h4><label class="checkbox"><input id="b" type="checkbox" ng-model="dashboard.userStatus.biking" value="Biking"><i class="fa fa-bicycle"></i>&nbsp;Biking</label></h4>
+              <h4><label class="checkbox"><input id="w" type="checkbox" ng-model="dashboard.userStatus.walking" value="Walking"><i class="fa fa-child"></i>&nbsp;Walking</label></h4>
+              <h4><label class="checkbox"><input id="mup" type="checkbox" ng-model="dashboard.userStatus.meetForHangout" value="Hanging Out"><i class="fa fa-coffee"></i>Hanging Out</label></h4>
+              <h4><label class="checkbox"><input id="gr" type="checkbox" ng-model="dashboard.userStatus.carpoolingForGroceries" value="Grocery Run"><i class="fa fa-shopping-cart"></i>Grocery Run</label></h4>
+              <h4><label class="checkbox"><input id="sg" type="checkbox" ng-model="dashboard.userStatus.meetForStudy" value="Study Group"><i class="fa fa-book"></i>Study Group</label></h4>
 
               <button id="UpdateMyStatus" class="btn btn-primary btn-block" type="submit">Update My Status</button>
               <script type="text/javascript">
@@ -38,28 +44,6 @@
               </script>
 
             </form>
-          </div>
-          <!-- Create a post -->
-          <h2>Post</h2>
-
-          <div class="white-box buttons-box">
-            <a class="btn btn-secondary" ui-sref="addRoom">Post Available Housing</a>
-            <a  class="btn btn-primary" ui-sref="addNewLooking" ui-sref-opts="{reload:true}">Post Looking</a>
-          </div>
-
-          <!-- Profile -->
-
-          <h2>You</h2>
-
-          <div class="white-box profile-sidebar">
-            <div class="profile">
-              <img class="img-circle" ng-if="dashboard.me.profileImage" ng-src="/api/images{{dashboard.me.profileImage}}">
-              <i ng-if="!dashboard.me.profileImage" class="fa fa-user fa-5x img-circle" style="text-align: center; display: inline-block;width: 100%;"></i>
-              <h2> {{dashboard.me.firstname}} {{dashboard.me.lastname}} </h2>
-              <a class="btn btn-secondary btn-block" ui-sref="myProfile"> My Profile </a>
-              <p><br></p>
-              <a ng-if="dashboard.numberOf>0" ui-sref="myProfile" class="inviteRequest">You have {{dashboard.numberOf}} roommate requests</a>
-            </div>
           </div>
 
           <div class="feedback">
@@ -105,12 +89,32 @@
                     <li><i class="fa fa-shower"></i>&nbsp;&nbsp;{{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
                     <li ng-show="room.roomDetails.numRoomates > 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommates + You</li>
                     <li ng-show="room.roomDetails.numRoomates == 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommate + You</li>
+                    <li ng-show="room.roomDetails.numRoomates == 0"><i class="fa fa-users"></i>&nbsp;&nbsp;No roommates</li>
                     <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{room.roomDetails.gender}}</li>
                     <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{room.roomDetails.availableMoveIn | date }}</li>
                     <li><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{room.roomDetails.leaseType}}</li>
                     <li><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{room.propertyDetails.city }}</li>
                   </ul>
                 </a>
+                <table>
+                  <tr>
+                    <td ng-click="open(room.relatedCreatorId.email, room.relatedCreatorId.firstname, room.relatedCreatorId.lastname)"><i class="fa fa-comments-o fa-lg"></i></td>
+                    <td>
+                      <a id="email" ng-href="mailto:{{room.relatedCreatorId.email}}?subject=Interested%20in%20your%20available%20housing&body=Hi%20{{room.relatedCreatorId.firstname}}%2C%0A%0A%0A%0AThanks%2C%0A{{dashboard.me.firstname}}%0Ahttps://campusly.org/roomDetail/{{room.roomDetails.id}}/of/{{room.roomDetails.id}}">
+                        <i class="fa fa-envelope-o fa-lg"></i></a>
+                      <script type="text/javascript">
+                        mixpanel.track_links("#email", "Email sent - available room");
+                      </script>
+                    </td>
+                    <td>
+                      <a id="facebookPM" ng-if="room.relatedCreatorId.facebook" ng-href="{{room.relatedCreatorId.facebook}}" target="_blank">
+                        <i class="fa fa-facebook-square fa-lg"></i></a>
+                      <script type="text/javascript" ng-if="room.relatedCreatorId.facebook">
+                        mixpanel.track_links("#facebookPM", "Facebook PM sent - available room");
+                      </script>
+                    </td>
+                  </tr>
+                </table>
               </div>
               <!-- end room box -->
             </slick>
@@ -133,17 +137,15 @@
             <h3 ng-if="!dashboard.education.universityId && dashboard.initialized">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see students looking</h3>
             <slick dots="true" class="slider row" slides-to-show="2" slides-to-scroll="2" responsive="dashboard.breakpoints.lookingRoom" init-onload="true" infinite="false" data="dashboard.lookingRoom" ng-if="dashboard.lookingRoom.length && dashboard.education.universityId">
               <!-- start room box -->
-              <div ng-if="looking.userId!=dashboard.me.id" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index">
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 room" ng-repeat="looking in dashboard.lookingRoom track by $index">
                 <a style="text-decoration: none" ui-sref="lookingDetail({param:looking.id, allIds:dashboard.allLookingIds})">
                   <div  class="media">
                     <div class="media-left">
                       <img ng-if="looking.relatedUserId.profileImage" ng-src="api/images{{looking.relatedUserId.profileImage}}" class="img-circle" height="100px" width="100px">
-                      <i ng-if="!looking.relatedUserId.profileImage" class="fa fa-user fa-5x"></i>
+                      <i ng-if="!looking.relatedUserId.profileImage" class="fa fa-smile-o fa-3x"></i>
                     </div>
                     <div class="media-body">
-                      <h4 class="media-heading user-name">
-                        {{looking.relatedUserId.firstname}} {{looking.relatedUserId.lastname}}
-                      </h4>
+                      <h4 class="media-heading user-name" ng-bind="looking.relatedUserId.firstname + '&nbsp;' + looking.relatedUserId.lastname | limitTo: 24"></h4>
                       <p ng-show="looking.relatedUserId.aboutMe" class="quote text-container-looking">{{looking.relatedUserId.aboutMe}}</p>
                       <p ng-hide="looking.relatedUserId.aboutMe" class="quote text-container-looking">No description available</p>
                     </div>
@@ -154,6 +156,25 @@
                     </ul>
                   </div>
                 </a>
+                <table>
+                  <tr>
+                    <td ng-click="open(looking.relatedUserId.email, looking.relatedUserId.firstname, looking.relatedUserId.lastname)"><i class="fa fa-comments-o fa-lg"></i></td>
+                    <td>
+                      <a id="email" ng-href="mailto:{{looking.relatedUserId.email}}?subject=Interested%20in%20your%20available%20housing&body=Hi%20{{looking.relatedUserId.firstname}}%2C%0A%0A%0A%0AThanks%2C%0A{{dashboard.me.firstname}}%0Ahttps://campusly.org/lookingDetail/{{looking.id}}/of/{{looking.id}}">
+                        <i class="fa fa-envelope-o fa-lg"></i></a>
+                      <script type="text/javascript">
+                        mixpanel.track_links("#email", "Email sent - looking");
+                      </script>
+                    </td>
+                    <td>
+                      <a id="facebookPM" ng-if="looking.relatedUserId.facebook" ng-href="{{looking.relatedUserId.facebook}}" target="_blank">
+                        <i class="fa fa-facebook-square fa-lg"></i></a>
+                      <script type="text/javascript" ng-if="looking.relatedUserId.facebook">
+                        mixpanel.track_links("#facebookPM", "Facebook PM sent - looking");
+                      </script>
+                    </td>
+                  </tr>
+                </table>
               </div>
               <!-- end room box -->
             </slick>
@@ -190,12 +211,11 @@
                           <span class='address'><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{room.availableMoveIn | date }}</span>
 
                       <span class="elapsed-time">
-                        <small><i class="fa fa-clock-o"></i>&nbsp{{room.createdAt | date:'longDate'}}</small>
+                        <small><i class="fa fa-clock-o"></i>&nbsp;&nbsp;Created on {{room.createdAt | date:'longDate'}}</small>
                       </span>
 
                       <span class="elapsed-time" ng-if="room.updatedAt">
-                           <small><i class="fa fa-pencil"></i></small>
-                           <small am-time-ago="room.updatedAt"></small>
+                        <small><i class="fa fa-pencil"></i>&nbsp;&nbsp;Last updated at {{room.updatedAt  | date:'longDate'}}</small>
                       </span>
 
                         </div>
@@ -251,12 +271,11 @@
                           <span class='address'><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{look.moveInDate | date}}</span>
 
                           <span class="elapsed-time">
-                            <small><i class="fa fa-clock-o"></i>&nbsp{{look.createdAt | date:'longDate'}}</small>
+                            <small><i class="fa fa-clock-o"></i>&nbsp;&nbsp;Created on {{look.createdAt | date:'longDate'}}</small>
                           </span>
 
                           <span class="elapsed-time" ng-if="look.updatedAt">
-                             <small><i class="fa fa-pencil"></i></small>
-                             <small am-time-ago="look.updatedAt"></small>
+                             <small><i class="fa fa-pencil"></i>&nbsp;&nbsp;Last updated at {{look.updatedAt  | date:'longDate'}}</small>
                           </span>
 
                         </div>

@@ -1,6 +1,6 @@
 body{
   font-family: "ProximaNova", sans-serif;
-  color: #333333;
+  color: #3b3223;
   font-size: 14px;
   /* background-color: #e8e8e8; */
 }
@@ -44,7 +44,7 @@ Proxima Nova Semi-Bold
   outline: 0;
   margin: 0;
   padding: 0;
-  color: #666;
+  color: #3b3223;
   font-family: "Proxima Nova","Helvetica", sans-serif;
 }
 
@@ -124,7 +124,7 @@ label + label {
   background:linear-gradient(
     rgba(0, 0, 0, 0.35),
     rgba(0, 0, 0, 0.35)
-  ), url(../../../assets/images/jumbotron/students.jpg);
+  ), url(../../../assets/videos/students/students.jpg);
   background-size: cover;
   padding-bottom: 50px;
   height: 800px;
@@ -224,6 +224,16 @@ label + label {
   background-color: #f7953d;
 }
 
+.btn.btn-primary:hover{
+  background-color: #e4e4e4;
+  color: #000000;
+}
+
+.btn.btn-primary:active{
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
 .btn:hover, .lrg-btn:hover, .small-btn:hover {
   background-color: #f7953d;
   color: #333333;
@@ -246,7 +256,7 @@ label + label {
 }
 
 .login-header {
-  /*background: #55a5b2;*/
+  background: #2d5c8a;
   /*background: -moz-linear-gradient(top,  #55a5b2 0%, #119bad 100%);*/
   /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#55a5b2), color-stop(100%,#119bad));*/
   /*background: -webkit-linear-gradient(top,  #55a5b2 0%,#119bad 100%);*/
@@ -255,10 +265,10 @@ label + label {
   /*background: linear-gradient(to bottom,  #55a5b2 0%,#119bad 100%);*/
   /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#55a5b2', endColorstr='#119bad',GradientType=0 );*/
 
-  background-image:linear-gradient(
-    rgba(0, 0, 0, 0.35),
-    rgba(0, 0, 0, 0.35)
-  ), url(./../../../assets/images/jumbotron/nav.jpg);
+  /*background-image:linear-gradient(*/
+    /*rgba(0, 0, 0, 0.35),*/
+    /*rgba(0, 0, 0, 0.35)*/
+  /*), url(./../../../assets/images/jumbotron/nav.jpg);*/
 
   background-position: center;
   background-size: cover;
@@ -266,9 +276,6 @@ label + label {
   padding: 15px 0;
 }
 
-.login-header .greetings {
-  color: #fff;
-}
 .login-header .profile-image {
   height: 2.5em;
   border: 2px solid #fff;
@@ -291,6 +298,10 @@ label + label {
 }
 .login-header .right-content {
   text-align: right;
+}
+.login-header .right-content a i {
+  vertical-align: middle;
+  color: white;
 }
 .login-header .txt {
   color: #fff;
@@ -321,6 +332,10 @@ label + label {
   background: #fff;
   box-shadow: none;
   position: relative;
+}
+
+.white-box-login .heading h2 {
+  font-weight: 400;
 }
 
 .white-box-signup {
@@ -367,6 +382,7 @@ label + label {
   float: right;
   width: 50%;
   height: 800px;
+  z-index: -100;
 }
 
 .value-landing-desktop img {

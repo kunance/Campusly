@@ -3,7 +3,7 @@
     <h2 class="section-title">More Info</h2>
   </div>
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 details white-box">
-    <h3>Room description</h3>
+    <h3 ng-if="room.roomDetail.roomDetails.description">Room description</h3>
     <p>
       {{room.roomDetail.roomDetails.description}}
     </p>

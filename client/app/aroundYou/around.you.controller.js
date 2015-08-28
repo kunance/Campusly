@@ -5,9 +5,9 @@
     .module('app.dashboard')
     .controller('aroundYouCtrl', aroundYouCtrl);
 
-  aroundYouCtrl.$inject = ['common', 'currentUser', 'UserResource', '$window', '$q'];
+  aroundYouCtrl.$inject = ['common', 'currentUser', 'UserResource', '$window', '$q', 'ngDialog', '$scope'];
 
-  function aroundYouCtrl(common, currentUser, UserResource, $window, $q) {
+  function aroundYouCtrl(common, currentUser, UserResource, $window, $q, ngDialog, $scope) {
     var vm = this;
     vm.me = currentUser;
     vm.education = common.dataservice.getAllEducations(currentUser.id);
@@ -36,7 +36,11 @@
           walkingFromCampus: null,
           meetForHangout: null,
           meetForStudy: null,
-          meetForEvents: null
+          meetForEvents: null,
+          carpooling: null,
+          walking: null,
+          meetUp: null,
+          biking: null
         };
       };
 
@@ -52,6 +56,20 @@
    };
 
     vm.setQueryAndSearch();
+
+    /*
+     *  ngDialog
+     */
+    $scope.open = function (emailAddress, firstname, lastname) {
+      ngDialog.open({
+        template: 'aroundYouMessage',
+        controller: 'ngDialogCtrl',
+        data: {
+          email: emailAddress,
+          firstName: firstname,
+          lastName: lastname}
+      });
+    };
 
     function orderSliderButtons() {
       setTimeout(function() {
@@ -73,8 +91,16 @@
       orderSliderButtons();
     });
 
+    }
     mixpanel.track("aroundYou grid view");
     mixpanel.people.increment('aroundYou grid view');
-    }
+
+    /*
+     *  prerender.io
+     */
+    $scope.$parent.seo = {
+      pageTitle: 'Campusly Around You',
+      pageDescription: 'Connect with students around you'
+    };
   }
 }());

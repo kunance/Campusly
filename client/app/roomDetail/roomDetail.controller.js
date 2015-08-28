@@ -5,9 +5,9 @@
     .module('app.roomDetail')
     .controller('RoomDetailCtrl', RoomDetailCtrl);
 
-  RoomDetailCtrl.$inject = ['$q', 'common', '$scope', 'currentUser', 'distanceCalculator', '$stateParams', '$state', '$rootScope', '$timeout', 'RoomListingView'];
+  RoomDetailCtrl.$inject = ['$q', 'common', '$scope', 'currentUser', 'distanceCalculator', '$stateParams', '$state', '$rootScope', '$timeout', 'RoomListingView', 'ngDialog'];
 
-  function RoomDetailCtrl($q, common, $scope, currentUser, distanceCalculator, $stateParams, $state, $rootScope, $timeout, RoomListingView) {
+  function RoomDetailCtrl($q, common, $scope, currentUser, distanceCalculator, $stateParams, $state, $rootScope, $timeout, RoomListingView, ngDialog) {
     var vm = this;
     vm.property = {};
     vm.me = currentUser;
@@ -23,6 +23,7 @@
       vm.creatorEmail = vm.roomDetail.roomDetails.relatedCreatorId.email;
       vm.creatorFacebook = vm.roomDetail.roomDetails.relatedCreatorId.facebook;
       vm.creatorFirstName = vm.roomDetail.roomDetails.relatedCreatorId.firstname;
+      vm.creatorLastName = vm.roomDetail.roomDetails.relatedCreatorId.lastname;
 
       vm.allIds = ($stateParams.allIds).split(",").map(Number);
       var id = $stateParams.param;
@@ -63,6 +64,20 @@
         });
     },2000)
     }
+
+    /*
+     *  ngDialog
+     */
+    $scope.open = function (emailAddress, firstname, lastname) {
+      ngDialog.open({
+        template: 'aroundYouMessage',
+        controller: 'ngDialogCtrl',
+        data: {
+          email: emailAddress,
+          firstName: firstname,
+          lastName: lastname}
+      });
+    };
 
     mixpanel.track("roomDetail view");
     mixpanel.people.increment('roomDetail view');

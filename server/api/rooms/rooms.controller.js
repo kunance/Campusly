@@ -34,7 +34,7 @@ exports.getRoomListing = function(req, res, next) {
     "longitude", "type", "description", "bedrooms","bathrooms", "parkingSpots", "livingAreaSqFt", "hoaFee", "otherFee",
     "status" ];
 
-  var creatorAttributes = ["email", "facebook", "firstname"];
+  var creatorAttributes = ["email", "facebook", "firstname", "lastname"];
 
   RoomListing.find({
     where: {
@@ -277,10 +277,11 @@ var _parseSearchCriteria = function(req, res, cb) {
       mixpanel.track("rooms - search by roomType");
     }
     if (searchQuery.gender !== null) {
-      searchCriteria.gender = [];
-      searchCriteria.gender.push(searchQuery.gender.replace(/"/g, "'"));
-      searchCriteria.gender.push('no preference');
-      searchCriteria.gender  = _.uniq(searchCriteria.gender);
+      searchCriteria.gender = searchQuery.gender.replace(/"/g, "'");
+      //searchCriteria.gender = [];
+      //searchCriteria.gender.push(searchQuery.gender.replace(/"/g, "'"));
+      //searchCriteria.gender.push('no preference');
+      //searchCriteria.gender  = _.uniq(searchCriteria.gender);
       mixpanel.track("rooms - search by gender");
     }
     if (searchQuery.sharedBathroom !== null) {

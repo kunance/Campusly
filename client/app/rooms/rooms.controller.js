@@ -5,9 +5,9 @@
   .module('app.rooms')
   .controller('RoomsCtrl', RoomsCtrl);
 
-  RoomsCtrl.$inject = ['$scope', '$q', '$window', 'common', 'RoomListingView', 'currentUser', 'screenSize'];
+  RoomsCtrl.$inject = ['$scope', '$q', '$window', 'common', 'RoomListingView', 'currentUser', 'screenSize', 'ngDialog'];
 
-  function RoomsCtrl($scope, $q, $window, common, RoomListingView, currentUser, screenSize) {
+  function RoomsCtrl($scope, $q, $window, common, RoomListingView, currentUser, screenSize, ngDialog) {
     var vm = this;
     vm.property = {};
     vm.me = currentUser;
@@ -78,9 +78,16 @@
 
         RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: currentUniversityId, limit: roomLimit}, function(availRooms) {
           vm.allIds = [];
+          vm.allRoomCreators = [];
+          var i = 0;
           vm.availableRooms = availRooms;
           angular.forEach(vm.availableRooms, function (room) {
-            vm.allIds.push(room.roomDetails.id)
+            vm.allIds.push(room.roomDetails.id);
+            RoomListingView.get({id: room.roomDetails.id},function(room) {
+              //on success callback function
+              vm.availableRooms[i].relatedCreatorId = room.roomDetails.relatedCreatorId;
+              i++;
+            });
           });
           vm.groups = vm.availableRooms.inGroupsOf(8);
           vm.showSearch = showSearch;
@@ -93,6 +100,21 @@
         vm.clearSearch(false);
         vm.search(showSearch);
       };
+
+      /*
+       *  ngDialog
+       */
+      $scope.open = function (emailAddress, firstname, lastname) {
+        ngDialog.open({
+          template: 'aroundYouMessage',
+          controller: 'ngDialogCtrl',
+          data: {
+            email: emailAddress,
+            firstName: firstname,
+            lastName: lastname}
+        });
+      };
+
     }
 
     function orderSliderButtons() {
@@ -119,6 +141,14 @@
 
     mixpanel.track("room grid view");
     mixpanel.people.increment('room grid view');
+
+    /*
+     *  prerender.io
+     */
+    $scope.$parent.seo = {
+      pageTitle: 'Campusly Housing',
+      pageDescription: 'Search for off-campus housing - available rooms, apartments, or houses'
+    };
 
   }
 

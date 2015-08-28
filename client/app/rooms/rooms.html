@@ -1,5 +1,5 @@
 <div ng-include="'components/layout/navbar/navbar.html'"></div>
-<div ng-include="'components/layout/navbar/sub-navbar.html'"></div>
+
 <div class="main-wrapper">
 
   <div class="container">
@@ -63,33 +63,56 @@
               <!--ng-if="room.roomDetails.creatorId!==rooms.me.id" to not show own user room listings-->
               <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 room" ng-repeat="room in group">
                 <div class="flip-container-room">
-                  <div class="flipper">
-                    <div class="front white-box">
-                      <!--walk around - user need to click on front side because with flipper off there is no back side -->
-                      <a ui-sref="roomDetail({param: room.roomDetails.id, allIds:rooms.allIds})" style="text-decoration: none">
-                      <div class="picture safariFix">
-                        <img border="0" ng-src="//maps.googleapis.com/maps/api/staticmap?center={{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&zoom=14&scale=2&size=400x250&markers=color:blue%7C{{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&key=AIzaSyAm7woOFr0TOKG0U7jsBF5K3LSifdDjgfs">
-                      </div>
-                      <div class="info">
-                        <strong class="value">
-                          {{room.roomDetails.monthlyPrice | currency}} / mo.
-                        </strong>
-                      </div>
-                      <ul class="specs">
-                        <li><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{room.roomDetails.roomType}}</li>
-                        <li><i class="fa fa-shower"></i>&nbsp;&nbsp;{{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
-                        <li ng-show="room.roomDetails.numRoomates > 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommates + You</li>
-                        <li ng-show="room.roomDetails.numRoomates == 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommate + You</li>
-                        <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{room.roomDetails.gender}}</li>
-                        <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{room.roomDetails.availableMoveIn | date }}</li>
-                        <li><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{room.roomDetails.leaseType}}</li>
-                        <li><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{room.propertyDetails.city}}</li>
-                      </ul>
-                      </a>
+                  <div class="front white-box hoverBox">
+                    <a ui-sref="roomDetail({param: room.roomDetails.id, allIds:rooms.allIds})">
+                    <div class="picture safariFix">
+                      <img border="0" ng-src="//maps.googleapis.com/maps/api/staticmap?center={{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&zoom=14&scale=2&size=400x250&markers=color:blue%7C{{room.propertyDetails.coords.latitude}},{{room.propertyDetails.coords.longitude}}&key=AIzaSyAm7woOFr0TOKG0U7jsBF5K3LSifdDjgfs">
                     </div>
-                    <div class="back">
-                      <a ui-sref="roomDetail({param: room.roomDetails.id, allIds:rooms.allIds})"> <h2>View Detail</h2> </a>
+                    <div class="info">
+                      <strong class="value">
+                        {{room.roomDetails.monthlyPrice | currency}} / mo.
+                      </strong>
                     </div>
+                    <ul class="specs">
+                      <li><i class="fa fa-bigBed"></i>&nbsp;&nbsp;{{room.roomDetails.roomType}}</li>
+                      <li><i class="fa fa-shower"></i>&nbsp;&nbsp;{{room.roomDetails.sharedBathroom ? "Shared" : "Private"}} bathroom</li>
+                      <li ng-show="room.roomDetails.numRoomates > 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommates + You</li>
+                      <li ng-show="room.roomDetails.numRoomates == 1"><i class="fa fa-users"></i>&nbsp;&nbsp;{{room.roomDetails.numRoomates}} roommate + You</li>
+                      <li ng-show="room.roomDetails.numRoomates == 0"><i class="fa fa-users"></i>&nbsp;&nbsp;No roommates</li>
+                      <li><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;{{room.roomDetails.gender}}</li>
+                      <li><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{room.roomDetails.availableMoveIn | date }}</li>
+                      <li><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{room.roomDetails.leaseType}}</li>
+                      <li><i class="fa fa-map-marker"></i>&nbsp;&nbsp;{{room.propertyDetails.city}}</li>
+                    </ul>
+                    </a>
+                    <table>
+                      <tr>
+                        <td ng-click="open(room.relatedCreatorId.email, room.relatedCreatorId.firstname, room.relatedCreatorId.lastname)"><i class="fa fa-comments-o fa-lg"></i></td>
+                        <script type="text/ng-template" id="aroundYouMessage">
+                          <form class="messageTemplateForm" name="messageForm" ng-hide="messageSent">
+                            <h3>Message to {{ngDialogData.firstName | limitTo: 16}} {{ngDialogData.lastName | limitTo: 16}}</h3>
+                            <textarea placeholder="Your message here..." type="text" ng-model="around.message" rows="3" required ng-minlength="1"></textarea>
+                            <button class="btn-rented-medium primary" ng-click="sendMessage(around.message, ngDialogData.email, ngDialogData.firstName, ngDialogData.lastName)" ng-hide="!messageForm.$valid">Send</button>
+                            <button class="btn-rented-medium disabled" ng-show="!messageForm.$valid" disabled>Send</button>
+                          </form>
+                          <p class="messageTemplateSentMessage">{{messageSent}}</p>
+                        </script>
+                        <td>
+                          <a id="email" ng-href="mailto:{{room.relatedCreatorId.email}}?subject=Interested%20in%20your%20available%20housing&body=Hi%20{{room.relatedCreatorId.firstname}}%2C%0A%0A%0A%0AThanks%2C%0A{{rooms.me.firstname}}%0Ahttps://campusly.org/roomDetail/{{room.roomDetails.id}}/of/{{room.roomDetails.id}}">
+                            <i class="fa fa-envelope-o fa-lg"></i></a>
+                          <script type="text/javascript">
+                            mixpanel.track_links("#email", "Email sent - available room");
+                          </script>
+                        </td>
+                        <td>
+                          <a id="facebookPM" ng-if="room.relatedCreatorId.facebook" ng-href="{{room.relatedCreatorId.facebook}}" target="_blank">
+                            <i class="fa fa-facebook-square fa-lg"></i></a>
+                          <script type="text/javascript" ng-if="room.relatedCreatorId.facebook">
+                            mixpanel.track_links("#facebookPM", "Facebook PM sent - available room");
+                          </script>
+                        </td>
+                      </tr>
+                    </table>
                   </div>
                 </div>
               </div>
