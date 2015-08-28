@@ -38,7 +38,7 @@
        it should call vm.privateCurrentSubscribe
        */
 
-      const timeConvert = 10000;
+      var timeConvert = 10000;
 
       var email = JSON.stringify(vm.me.email);
       vm.newMessage = '';
@@ -164,8 +164,8 @@
        */
 
       var PubNub = pubNubService.getPubNubObject();
-      console.log("controller");
-      console.log(PubNub);
+      if(debug) console.log("controller");
+      if(debug) console.log(PubNub);
 
       /* Function: Create a new privateMessage element to add to sidebar, this is meant to be
        *            called and it will append a new private message element to the

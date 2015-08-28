@@ -382,6 +382,7 @@ label + label {
   float: right;
   width: 50%;
   height: 800px;
+  z-index: -100;
 }
 
 .value-landing-desktop img {
