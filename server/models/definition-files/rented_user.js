@@ -397,6 +397,10 @@ module.exports = {
       type: Seq.ARRAY(Seq.TEXT),
       field: "subscribedChannels"
     },
+    "newMessageNotification": {
+      type: Seq.BOOLEAN,
+      field: "newMessageNotification"
+    },
     "salt": {
       type: Seq.TEXT,
       field: "salt",
