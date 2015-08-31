@@ -36,7 +36,10 @@
 
         pubNubService.notAppPrivateMessage(email, fullName, text);
         pubNubService.clearNotifs();
-        $scope.messageSent = "Your message has been sent! :)"
+        $scope.messageSent = "Your message has been sent! :)";
+        if ($scope.messageSent) {
+          mixpanel.track("Message sent");
+        }
       };
 
     }
