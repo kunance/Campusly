@@ -780,6 +780,10 @@
     mixpanel.track("messages view");
     mixpanel.people.increment('messages view');
 
+    vm.trackMixpanelMessageSent = function () {
+      mixpanel.track("Message sent");
+    };
+
     /*
      *  prerender.io
      */
