@@ -782,6 +782,7 @@
 
     vm.trackMixpanelMessageSent = function () {
       mixpanel.track("Message sent");
+      mixpanel.track("Message sent from main message view");
     };
 
     /*
