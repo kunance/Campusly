@@ -37,9 +37,21 @@
         pubNubService.notAppPrivateMessage(email, fullName, text);
         pubNubService.clearNotifs();
         $scope.messageSent = "Your message has been sent! :)";
-        if ($scope.messageSent) {
-          mixpanel.track("Message sent");
-        }
+      };
+
+      $scope.trackAroundMessage = function () {
+        mixpanel.track("Message sent");
+        mixpanel.track("Around you message sent");
+      };
+
+      $scope.trackAvailableHousingMessage = function () {
+        mixpanel.track("Message sent");
+        mixpanel.track("Available housing message sent");
+      };
+
+      $scope.trackLookingForRoommatesMessage = function () {
+        mixpanel.track("Message sent");
+        mixpanel.track("Looking for roommates message sent");
       };
 
     }

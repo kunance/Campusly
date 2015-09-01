@@ -117,7 +117,7 @@
           <form class="messageTemplateForm" name="messageForm" ng-hide="messageSent">
             <h3>Message to {{ngDialogData.firstName | limitTo: 16}} {{ngDialogData.lastName | limitTo: 16}}</h3>
             <textarea placeholder="Your message here..." type="text" ng-model="around.message" rows="3" required ng-minlength="1"></textarea>
-            <button class="btn-rented-medium primary" ng-click="sendMessage(around.message, ngDialogData.email, ngDialogData.firstName, ngDialogData.lastName)" ng-hide="!messageForm.$valid">Send</button>
+            <button class="btn-rented-medium primary" ng-click="sendMessage(around.message, ngDialogData.email, ngDialogData.firstName, ngDialogData.lastName); trackAvailableHousingMessage()" ng-hide="!messageForm.$valid">Send</button>
             <button class="btn-rented-medium disabled" ng-show="!messageForm.$valid" disabled>Send</button>
           </form>
           <p class="messageTemplateSentMessage">{{messageSent}}</p>
