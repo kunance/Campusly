@@ -132,7 +132,7 @@
       /*
        *  ngDialog
        */
-      $scope.open = function (emailAddress, firstname, lastname) {
+      $scope.openAroundYou = function (emailAddress, firstname, lastname) {
         ngDialog.open({
           template: 'aroundYouMessage',
           controller: 'ngDialogCtrl',
@@ -140,6 +140,28 @@
                  email: emailAddress,
                  firstName: firstname,
                  lastName: lastname}
+        });
+      };
+
+      $scope.openAvailableHousing = function (emailAddress, firstname, lastname) {
+        ngDialog.open({
+          template: 'availableHousingMessage',
+          controller: 'ngDialogCtrl',
+          data: {
+            email: emailAddress,
+            firstName: firstname,
+            lastName: lastname}
+        });
+      };
+
+      $scope.openLookingForRoommates = function (emailAddress, firstname, lastname) {
+        ngDialog.open({
+          template: 'lookingForRoommatesMessage',
+          controller: 'ngDialogCtrl',
+          data: {
+            email: emailAddress,
+            firstName: firstname,
+            lastName: lastname}
         });
       };
 
