@@ -1379,6 +1379,7 @@ CREATE TABLE rented_user (
     "googleOAuthId" text,
     "twitterOAuthId" text,
     "subscribedChannels" text[],
+    "newMessageNotification" boolean DEFAULT false,
     salt text NOT NULL
 );
 
