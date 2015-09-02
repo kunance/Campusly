@@ -195,7 +195,7 @@
         });
 
         //set timeout is required
-        setTimeout(function(){vm.privateCurrentSubscribe(vm.privateMessages[0].email)}, 100);
+        setTimeout(function(){vm.privateCurrentSubscribe(vm.privateMessages[0].email, vm.privateMessages[0].user)}, 100);
 
       };
 
@@ -512,6 +512,9 @@
           reverse: false,
           include_token: true,
           callback: function(m){
+
+            vm.currentMessages = [];
+
             retrievedHistory = m[0];
 
             vm.evaluateNewMessage(retrievedHistory, null, false);
