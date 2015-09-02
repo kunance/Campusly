@@ -41,25 +41,25 @@
         <h2>Your Messages</h2>
         <div class="white-box messages-chatChannel">
           <!--If no messages prompt user to start a chat-->
-          <p ng-if="!messages.privateMessages[0]">Start a chat to view your history</p>
+          <p ng-if="!messages.pubNubService.privateMessages[0]">Start a chat to view your history</p>
 
           <!--If private messages exist then show them-->
-          <ul ng-if="messages.privateMessages[0]" class="chatChannel">
-            <li ng-repeat="privateInbox in messages.privateMessages track by $index" ng-model="messages.privateMessages" ng-class='{selectedChatChannel: privateInbox.selected == 1}'>
+          <ul ng-if="messages.pubNubService.privateMessages[0]" class="chatChannel">
+            <li ng-repeat="privateInbox in messages.pubNubService.privateMessages track by $index" ng-model="messages.pubNubService.privateMessages" ng-class='{selectedChatChannel: privateInbox.selected == 1}'>
               <!-- List all the channels and add a button on each channel. For each click subscribe the user to that channel -->
-              <a ng-click="messages.privateCurrentSubscribe(privateInbox.email, privateInbox.user)">{{privateInbox.user}}
+              <a ng-click="messages.pubNubService.privateCurrentSubscribe(privateInbox.email, privateInbox.user)">{{privateInbox.user}}
               <span ng-if="privateInbox.new" class="pull-right">new</span>
               </a>
             </li>
           </ul>
-          <a ng-click="messages.grabInboxHistory()" class="load-history" ng-if="messages.privateMessages[0]">Load Chat History</a>
+          <a ng-click="messages.pubNubService.grabInboxHistory()" class="load-history" ng-if="messages.pubNubService.privateMessages[0]">Load Chat History</a>
         </div>
 
         <h2>Communities</h2>
         <div class="white-box messages-chatChannel">
           <ul class="chatChannel">
-            <li ng-repeat="groupChannel in messages.groupChannels track by $index" ng-model="messages.groupChannels" ng-class='{selectedChatChannel: groupChannel.selected == 1}'>
-              <a  ng-click="messages.groupChannelCurrentSubscribe(groupChannel.name)" class={{selected}}>
+            <li ng-repeat="groupChannel in messages.pubNubService.groupChannels track by $index" ng-model="messages.pubNubService.groupChannels" ng-class='{selectedChatChannel: groupChannel.selected == 1}'>
+              <a  ng-click="messages.pubNubService.groupChannelCurrentSubscribe(groupChannel.name)" class={{selected}}>
 
               {{groupChannel.name}}
               <span ng-if="groupChannel.new" class="pull-right">new</span>
@@ -77,17 +77,17 @@
 
       <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
 
-        <h2>{{messages.currentChannel.name}}</h2>
+        <h2>{{messages.pubNubService.currentChannel.name}}</h2>
 
         <div class="white-box-messages">
 
           <!-- Messages to show the user -->
           <div class="row messages col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <a ng-click="messages.grabOlderCurrentChatHistory()" class="load-history pull-right">Load Chat History</a>
+            <a ng-click="messages.pubNubService.grabOlderCurrentChatHistory()" class="load-history pull-right">Load Chat History</a>
 
-            <ul ng-repeat="message in messages.currentMessages track by $index" ng-model="messages.currentMessages">
+            <ul ng-repeat="message in messages.pubNubService.currentMessages track by $index" ng-model="messages.currentMessages">
               <li class="messagedUser">
-                <a ng-click="messages.newPrivateConversation(message.user, message.email)">{{message.user}}</a>
+                <a ng-click="messages.pubNubService.newPrivateConversation(message.user, message.email)">{{message.user}}</a>
               <li>{{message.text}}
                 <span class="pull-right">{{message.time}}</span>
               </li>
@@ -104,10 +104,10 @@
 
             <form name="chatBox">
               <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-                <textarea placeholder="Your reply here..." type="text" ng-model="messages.newMessage" rows="3" ng-minlength="1" required></textarea>
+                <textarea placeholder="Your reply here..." type="text" ng-model="messages.pubNubService.newMessage" rows="3" ng-minlength="1" required></textarea>
               </div>
               <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 message-button">
-                <button class="btn-rented-medium primary" ng-click="messages.currentPublish(); messages.trackMixpanelMessageSent()" ng-show="chatBox.$valid">Reply</button>
+                <button class="btn-rented-medium primary" ng-click="messages.pubNubService.currentPublish(); messages.trackMixpanelMessageSent()" ng-show="chatBox.$valid">Reply</button>
                 <button class="btn-rented-medium disabled" ng-show="!chatBox.$valid">Reply</button>
               </div>
             </form>
