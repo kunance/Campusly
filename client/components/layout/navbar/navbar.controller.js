@@ -42,7 +42,8 @@
 
       vm.newPrivateMessage = function(email, firstName, text){
         pubNubService.notAppPrivateMessage(email, firstName, text);
-      }
+      };
+
 
 
     }
