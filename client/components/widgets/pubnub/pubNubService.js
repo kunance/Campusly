@@ -733,10 +733,12 @@
       3. Then initialize PubNub
      */
     vm.notAppUpdateUser = function(){
-      if(debug) console.log('notAppUpdateUser: user.email = ' + user.email);
+       if(debug)console.log('notAppUpdateUser: user.email = ' + user.email);
+
 
       if(user.email == null || pubNubInitialized == 0){
         user = currentUserService.getCurrentUser();
+        user.education = common.dataservice.getAllEducations(user.id);
 
         if(production == 1){
           //production keys
@@ -770,6 +772,17 @@
             }
           });
         }
+
+        promises = [user.education.$promise];
+        $q.all(promises).then(function (retVal) {
+          /*
+           * Only initialize the PubNub message controller if the university is set.
+           * If user has no university then they are prompted to update university before initializing
+           */
+          if (user.education.universityId) {
+            retVal.ret = vm.initializeChat();
+          }
+        });
 
       }
     };
@@ -1084,7 +1097,12 @@
 
         return (month + ' ' + day + ' ' + hours + ':' + minutes.substr(-2) + period);
 
-      };
+    };
+
+    /* Function: checks if the pubNubService is initialized */
+    vm.checkInitialized = function(){
+      return pubNubInitialized;
+    };
 
     return vm;
 
