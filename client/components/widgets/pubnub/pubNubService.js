@@ -951,8 +951,6 @@
 
 
 
-
-
     /* Function: Not the app: Publishes to the  specified channel with the specified text*/
     vm.notAppPublish = function (channel, text) {
 
