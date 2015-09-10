@@ -24,6 +24,7 @@
       vm.sortBy = 'createdAt';
       vm.showSearch = false;
       vm.showSort = false;
+      var localLookingData; //default. define local storage variable
 
       $scope.datePickers = {
         startDate: false,
@@ -77,6 +78,10 @@
        * Removes cookie and calls setSearchField function to set the default values of search criteria.
        */
       vm.clearSearch = function(showSearch) {
+        /*
+         * Remove local storage data and cookie data
+         */
+        sessionStorage.removeItem('availableLookings');
         $cookieStore.remove('roommateSearchFields');
         vm.setSearchFields();
       };
@@ -89,18 +94,42 @@
         lookingLimit = 64;
       }
 
+      /*
+       * Function for searching if the search button is pressed on the front end.
+       * Clear local storage before executing search function
+       */
+      vm.searchFromButton = function () {
+        sessionStorage.removeItem('availableLookings');
+        vm.search(false);
+      };
+
       vm.search = function(showSearch) {
-        Lookings.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: vm.univCriteria.shortName.id, limit: lookingLimit}, function (activeLookings) {
-          vm.allIds = [];
-          angular.forEach(activeLookings, function (looking) {
-            vm.allIds.push(looking.id);
-          });
-          vm.lookings = activeLookings;
+
+        /*
+         * Check if there is local data already present. If no local data is present only then run a search query to the server
+         */
+
+        localLookingData = sessionStorage.getItem('availableLookings');
+
+        if(localLookingData != null) {
+          vm.lookings = JSON.parse(localLookingData);
+          arrangeLookingInfo (vm.lookings);
           vm.groups = vm.lookings.inGroupsOf(8);
           vm.showSearch = showSearch;
           vm.showSort = showSearch;
-          $cookieStore.put('roommateSearchFields', vm.searchCriteria); // store search fields to the cookie
-        });
+        }
+        else {
+          Lookings.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: vm.univCriteria.shortName.id, limit: lookingLimit}, function (activeLookings) {
+            vm.lookings = activeLookings;
+            arrangeLookingInfo (vm.lookings);
+            vm.groups = vm.lookings.inGroupsOf(8);
+            vm.showSearch = showSearch;
+            vm.showSort = showSearch;
+            $cookieStore.put('roommateSearchFields', vm.searchCriteria); // store search fields to the cookie
+            sessionStorage.setItem('availableLookings', JSON.stringify(vm.lookings)); // store housing data locally
+          });
+        }
+
         orderSliderButtons();
       };
       vm.search(false);
@@ -126,6 +155,16 @@
       angular.element($window).bind('resize', function () {
         orderSliderButtons();
       });
+
+      /*
+       * Parse the local data or data from server. Push to the buffer to display the ID of the rooms as well as the people to message
+       */
+      function arrangeLookingInfo(availLooking) {
+        vm.allIds = [];
+        angular.forEach(availLooking, function (looking) {
+          vm.allIds.push(looking.id);
+        });
+      }
 
       function orderSliderButtons() {
         setTimeout(function() {

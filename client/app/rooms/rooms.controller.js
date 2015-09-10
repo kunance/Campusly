@@ -24,6 +24,7 @@
       vm.sortBy = 'createdAt';  // default
       vm.showSearch = false; // default
       vm.showSort = false; // default
+      var localHousingData; //default. define local storage variable
 
       /*
        * Set initial fields for the search criteria. If there is data in the local cookie use that instead.
@@ -31,7 +32,6 @@
        */
       vm.setSearchFields = function () {
         var cookieVariable = $cookieStore.get('availableHousingSearchFields');
-        console.log(cookieVariable);
         if(cookieVariable) {
           vm.searchCriteria = cookieVariable;
         }
@@ -60,7 +60,11 @@
        * Removes cookie and calls setSearchField function to set the default values of search criteria.
        */
       vm.clearSearch = function(showSearch) {
+        /*
+         * Remove local storage data and cookie data
+         */
         $cookieStore.remove('availableHousingSearchFields');
+        sessionStorage.removeItem('availableHousing');
         vm.setSearchFields();
       };
 
@@ -79,42 +83,58 @@
         $scope.datePickers[number]= true;
       };
 
+      /*
+       * Function for searching if the search button is pressed on the front end.
+       * Clear local storage before executing search function
+       */
+      vm.searchFromButton = function () {
+        sessionStorage.removeItem('availableHousing');
+        vm.search(false);
+      };
+
       vm.search = function(showSearch) {
-        if(vm.searchCriteria.within) {
-          vm.searchCriteria.within.place = { type: 'univ', id: currentUniversityId };
-        } else {
-          vm.searchCriteria["within"]={
-            place:{type: 'univ', id: currentUniversityId},
-            distance:10
-          }
-        }
 
-        var roomLimit;
-        if (screenSize.is('xs')){
-          roomLimit = 32;
-        }
-        else {
-          roomLimit = 64;
-        }
+        /*
+         * Check if there is local data already present. If no local data is present only then run a search query to the server
+         */
+        localHousingData = sessionStorage.getItem('availableHousing');
 
-        RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: currentUniversityId, limit: roomLimit}, function(availRooms) {
-          vm.allIds = [];
-          vm.allRoomCreators = [];
-          var i = 0;
-          vm.availableRooms = availRooms;
-          angular.forEach(vm.availableRooms, function (room) {
-            vm.allIds.push(room.roomDetails.id);
-            RoomListingView.get({id: room.roomDetails.id},function(room) {
-              //on success callback function
-              vm.availableRooms[i].relatedCreatorId = room.roomDetails.relatedCreatorId;
-              i++;
-            });
-          });
+        if(localHousingData != null) {
+          vm.availableRooms = JSON.parse(localHousingData);
+          arrangeHousingInfo(vm.availableRooms);
           vm.groups = vm.availableRooms.inGroupsOf(8);
           vm.showSearch = showSearch;
           vm.showSort = showSearch;
-          $cookieStore.put('availableHousingSearchFields', vm.searchCriteria); // store search fields to the cookie
-        });
+        }
+        else {
+          if(vm.searchCriteria.within) {
+            vm.searchCriteria.within.place = { type: 'univ', id: currentUniversityId };
+          } else {
+            vm.searchCriteria["within"]={
+              place:{type: 'univ', id: currentUniversityId},
+              distance:10
+            }
+          }
+
+          var roomLimit;
+          if (screenSize.is('xs')){
+            roomLimit = 32;
+          }
+          else {
+            roomLimit = 64;
+          }
+
+          RoomListingView.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: currentUniversityId, limit: roomLimit}, function(availRooms) {
+            vm.availableRooms = availRooms;
+            arrangeHousingInfo(vm.availableRooms);
+            vm.groups = vm.availableRooms.inGroupsOf(8);
+            vm.showSearch = showSearch;
+            vm.showSort = showSearch;
+            $cookieStore.put('availableHousingSearchFields', vm.searchCriteria); // store search fields to the cookie
+            sessionStorage.setItem('availableHousing', JSON.stringify(vm.availableRooms)); // store housing data locally
+          });
+        }
+
         orderSliderButtons();
       };
       vm.search(false);
@@ -137,6 +157,23 @@
         });
       };
 
+    }
+
+    /*
+     * Parse the local data or data from server. Push to the buffer to display the ID of the rooms as well as the people to message
+     */
+    function arrangeHousingInfo(availableHousing) {
+      vm.allIds = [];
+      vm.allRoomCreators = [];
+      var i = 0;
+      angular.forEach(availableHousing, function (room) {
+        vm.allIds.push(room.roomDetails.id);
+        RoomListingView.get({id: room.roomDetails.id},function(room) {
+          //on success callback function
+          vm.availableRooms[i].relatedCreatorId = room.roomDetails.relatedCreatorId;
+          i++;
+        });
+      });
     }
 
     function orderSliderButtons() {
