@@ -5,9 +5,9 @@
   .module('app.rooms')
   .controller('RoomsCtrl', RoomsCtrl);
 
-  RoomsCtrl.$inject = ['$scope', '$q', '$window', 'common', 'RoomListingView', 'currentUser', 'screenSize', 'ngDialog'];
+  RoomsCtrl.$inject = ['$scope', '$q', '$window', 'common', 'RoomListingView', 'currentUser', 'screenSize', 'ngDialog', '$cookieStore'];
 
-  function RoomsCtrl($scope, $q, $window, common, RoomListingView, currentUser, screenSize, ngDialog) {
+  function RoomsCtrl($scope, $q, $window, common, RoomListingView, currentUser, screenSize, ngDialog, $cookieStore) {
     var vm = this;
     vm.property = {};
     vm.me = currentUser;
@@ -24,21 +24,34 @@
       vm.sortBy = 'createdAt';  // default
       vm.showSearch = false; // default
       vm.showSort = false; // default
+
+      vm.setSearchFields = function () {
+        if($cookieStore.get('searchFields')) {
+          vm.searchCriteria = $cookieStore.get('searchFields');
+        }
+        else {
+          vm.searchCriteria = {
+            maxMonthlyPrice: null,
+            leaseType: null,
+            maxCurrentRoomates: null,
+            propertyType: null,
+            sharedBathroom: null,
+            roomType : null,
+            furnished: null,
+            smokingAllowed: null,
+            gender: null,
+            petsAllowed: null,
+            parkingAvailable: null,
+            within: null
+          };
+        }
+      };
+
+      vm.setSearchFields();
+
       vm.clearSearch = function(showSearch) {
-        vm.searchCriteria = {
-          maxMonthlyPrice: null,
-          leaseType: null,
-          maxCurrentRoomates: null,
-          propertyType: null,
-          sharedBathroom: null,
-          roomType : null,
-          furnished: null,
-          smokingAllowed: null,
-          gender: null,
-          petsAllowed: null,
-          parkingAvailable: null,
-          within: null
-        };
+        $cookieStore.remove('searchFields');
+        vm.setSearchFields();
       };
 
       $scope.datePickers = {
@@ -56,15 +69,13 @@
         $scope.datePickers[number]= true;
       };
 
-      vm.clearSearch(false);
-
       vm.search = function(showSearch) {
         if(vm.searchCriteria.within) {
           vm.searchCriteria.within.place = { type: 'univ', id: currentUniversityId };
         } else {
           vm.searchCriteria["within"]={
             place:{type: 'univ', id: currentUniversityId},
-            distance:50
+            distance:10
           }
         }
 
@@ -92,6 +103,7 @@
           vm.groups = vm.availableRooms.inGroupsOf(8);
           vm.showSearch = showSearch;
           vm.showSort = showSearch;
+          $cookieStore.put('searchFields', vm.searchCriteria);
         });
         orderSliderButtons();
       };
