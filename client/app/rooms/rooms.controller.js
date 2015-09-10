@@ -25,9 +25,13 @@
       vm.showSearch = false; // default
       vm.showSort = false; // default
 
+      /*
+       * Set initial fields for the search criteria. If there is data in the local cookie use that instead.
+       * This means that a user has to press Reset on the front-end to default to the standard search
+       */
       vm.setSearchFields = function () {
-        if($cookieStore.get('searchFields')) {
-          vm.searchCriteria = $cookieStore.get('searchFields');
+        if($cookieStore.get('availableHousingSearchFields')) {
+          vm.searchCriteria = $cookieStore.get('availableHousingSearchFields');
         }
         else {
           vm.searchCriteria = {
@@ -47,10 +51,14 @@
         }
       };
 
+      //Initializes search fields
       vm.setSearchFields();
 
+      /*
+       * Removes cookie and calls setSearchField function to set the default values of search criteria.
+       */
       vm.clearSearch = function(showSearch) {
-        $cookieStore.remove('searchFields');
+        $cookieStore.remove('availableHousingSearchFields');
         vm.setSearchFields();
       };
 
@@ -103,7 +111,7 @@
           vm.groups = vm.availableRooms.inGroupsOf(8);
           vm.showSearch = showSearch;
           vm.showSort = showSearch;
-          $cookieStore.put('searchFields', vm.searchCriteria);
+          $cookieStore.put('availableHousingSearchFields', vm.searchCriteria); // store search fields to the cookie
         });
         orderSliderButtons();
       };
