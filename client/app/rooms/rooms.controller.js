@@ -30,8 +30,10 @@
        * This means that a user has to press Reset on the front-end to default to the standard search
        */
       vm.setSearchFields = function () {
-        if($cookieStore.get('availableHousingSearchFields')) {
-          vm.searchCriteria = $cookieStore.get('availableHousingSearchFields');
+        var cookieVariable = $cookieStore.get('availableHousingSearchFields');
+        console.log(cookieVariable);
+        if(cookieVariable) {
+          vm.searchCriteria = cookieVariable;
         }
         else {
           vm.searchCriteria = {

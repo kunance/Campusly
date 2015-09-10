@@ -45,10 +45,12 @@
        * This means that a user has to press Reset on the front-end to default to the standard search
        */
       vm.setSearchFields = function () {
-        if(vm.education.relatedUniversityId)
+        if(vm.education.relatedUniversityId) {
           vm.univCriteria.shortName = vm.univCriteria.shortName || vm.universitiesList[vm.education.relatedUniversityId.id-1];
-        if($cookieStore.get('roommateSearchFields')) {
-          vm.searchCriteria = $cookieStore.get('roommateSearchFields');
+        }
+        var roommateCookieVariable = $cookieStore.get('roommateSearchFields');
+        if(roommateCookieVariable) {
+          vm.searchCriteria = roommateCookieVariable;
         }
         else {
           vm.searchCriteria = {
