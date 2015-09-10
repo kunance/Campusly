@@ -5,9 +5,9 @@
   .module('app.rooms')
   .controller('RoomsCtrl', RoomsCtrl);
 
-  RoomsCtrl.$inject = ['$scope', '$q', '$window', 'common', 'RoomListingView', 'currentUser', 'screenSize', 'ngDialog'];
+  RoomsCtrl.$inject = ['$scope', '$q', '$window', 'common', 'RoomListingView', 'currentUser', 'screenSize', 'ngDialog', '$cookieStore'];
 
-  function RoomsCtrl($scope, $q, $window, common, RoomListingView, currentUser, screenSize, ngDialog) {
+  function RoomsCtrl($scope, $q, $window, common, RoomListingView, currentUser, screenSize, ngDialog, $cookieStore) {
     var vm = this;
     vm.property = {};
     vm.me = currentUser;
@@ -24,21 +24,44 @@
       vm.sortBy = 'createdAt';  // default
       vm.showSearch = false; // default
       vm.showSort = false; // default
+
+      /*
+       * Set initial fields for the search criteria. If there is data in the local cookie use that instead.
+       * This means that a user has to press Reset on the front-end to default to the standard search
+       */
+      vm.setSearchFields = function () {
+        var cookieVariable = $cookieStore.get('availableHousingSearchFields');
+        console.log(cookieVariable);
+        if(cookieVariable) {
+          vm.searchCriteria = cookieVariable;
+        }
+        else {
+          vm.searchCriteria = {
+            maxMonthlyPrice: null,
+            leaseType: null,
+            maxCurrentRoomates: null,
+            propertyType: null,
+            sharedBathroom: null,
+            roomType : null,
+            furnished: null,
+            smokingAllowed: null,
+            gender: null,
+            petsAllowed: null,
+            parkingAvailable: null,
+            within: null
+          };
+        }
+      };
+
+      //Initializes search fields
+      vm.setSearchFields();
+
+      /*
+       * Removes cookie and calls setSearchField function to set the default values of search criteria.
+       */
       vm.clearSearch = function(showSearch) {
-        vm.searchCriteria = {
-          maxMonthlyPrice: null,
-          leaseType: null,
-          maxCurrentRoomates: null,
-          propertyType: null,
-          sharedBathroom: null,
-          roomType : null,
-          furnished: null,
-          smokingAllowed: null,
-          gender: null,
-          petsAllowed: null,
-          parkingAvailable: null,
-          within: null
-        };
+        $cookieStore.remove('availableHousingSearchFields');
+        vm.setSearchFields();
       };
 
       $scope.datePickers = {
@@ -56,15 +79,13 @@
         $scope.datePickers[number]= true;
       };
 
-      vm.clearSearch(false);
-
       vm.search = function(showSearch) {
         if(vm.searchCriteria.within) {
           vm.searchCriteria.within.place = { type: 'univ', id: currentUniversityId };
         } else {
           vm.searchCriteria["within"]={
             place:{type: 'univ', id: currentUniversityId},
-            distance:50
+            distance:10
           }
         }
 
@@ -92,6 +113,7 @@
           vm.groups = vm.availableRooms.inGroupsOf(8);
           vm.showSearch = showSearch;
           vm.showSort = showSearch;
+          $cookieStore.put('availableHousingSearchFields', vm.searchCriteria); // store search fields to the cookie
         });
         orderSliderButtons();
       };

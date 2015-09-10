@@ -5,9 +5,9 @@
   .module('app.dashboard')
   .controller('LookingCtrl', LookingCtrl);
 
-  LookingCtrl.$inject = ['$scope','common', '$window', 'Lookings', 'currentUser', '$q', 'screenSize', 'ngDialog'];
+  LookingCtrl.$inject = ['$scope','common', '$window', 'Lookings', 'currentUser', '$q', 'screenSize', 'ngDialog', '$cookieStore'];
 
-  function LookingCtrl($scope, common, $window, Lookings, currentUser, $q, screenSize, ngDialog) {
+  function LookingCtrl($scope, common, $window, Lookings, currentUser, $q, screenSize, ngDialog, $cookieStore) {
     var vm = this;
     vm.me = currentUser;
     vm.universitiesList = common.dataservice.getAllUniversities();
@@ -40,23 +40,45 @@
         $scope.datePickers[number]= true;
       };
 
+      /*
+       * Set initial fields for the search criteria. If there is data in the local cookie use that instead.
+       * This means that a user has to press Reset on the front-end to default to the standard search
+       */
+      vm.setSearchFields = function () {
+        if(vm.education.relatedUniversityId) {
+          vm.univCriteria.shortName = vm.univCriteria.shortName || vm.universitiesList[vm.education.relatedUniversityId.id-1];
+        }
+        var roommateCookieVariable = $cookieStore.get('roommateSearchFields');
+        if(roommateCookieVariable) {
+          vm.searchCriteria = roommateCookieVariable;
+        }
+        else {
+          vm.searchCriteria = {
+            moveInDate: null,
+            maxMonthlyRent: null,
+            utilitiesIncluded: null,
+            numRoommates: null,
+            sharedBathroom: null,
+            roomType : null,
+            furnished: null,
+            smokingAllowed: null,
+            gender: null,
+            petsAllowed: null,
+            parkingNeeded: null,
+            openToFullYearLeaseNewRoomates: null
+          };
+        }
+      };
+
+      //Initializes search fields
+      vm.setSearchFields();
+
+      /*
+       * Removes cookie and calls setSearchField function to set the default values of search criteria.
+       */
       vm.clearSearch = function(showSearch) {
-        vm.searchCriteria = {
-          moveInDate: null,
-          maxMonthlyRent: null,
-          utilitiesIncluded: null,
-          numRoommates: null,
-          sharedBathroom: null,
-          roomType : null,
-          furnished: null,
-          smokingAllowed: null,
-          gender: null,
-          petsAllowed: null,
-          parkingNeeded: null,
-          openToFullYearLeaseNewRoomates: null
-        };
-        if(vm.education.relatedUniversityId)
-        vm.univCriteria.shortName = vm.univCriteria.shortName || vm.universitiesList[vm.education.relatedUniversityId.id-1];
+        $cookieStore.remove('roommateSearchFields');
+        vm.setSearchFields();
       };
 
       var lookingLimit;
@@ -66,7 +88,7 @@
       else {
         lookingLimit = 64;
       }
-      vm.clearSearch(false);
+
       vm.search = function(showSearch) {
         Lookings.query({sortBy: vm.sortBy, sortOrder: vm.sortOrder, search: vm.searchCriteria, univId: vm.univCriteria.shortName.id, limit: lookingLimit}, function (activeLookings) {
           vm.allIds = [];
@@ -77,13 +99,14 @@
           vm.groups = vm.lookings.inGroupsOf(8);
           vm.showSearch = showSearch;
           vm.showSort = showSearch;
+          $cookieStore.put('roommateSearchFields', vm.searchCriteria); // store search fields to the cookie
         });
         orderSliderButtons();
       };
       vm.search(false);
       vm.clearSearchAndSearch = function(showSearch) {
-      vm.clearSearch(false);
-      vm.search(showSearch);
+        vm.clearSearch(false);
+        vm.search(showSearch);
       };
 
       /*
