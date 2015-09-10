@@ -64,7 +64,7 @@
          * Remove local storage data and cookie data
          */
         $cookieStore.remove('availableHousingSearchFields');
-        localStorage.removeItem('availableHousing');
+        sessionStorage.removeItem('availableHousing');
         vm.setSearchFields();
       };
 
@@ -88,7 +88,7 @@
        * Clear local storage before executing search function
        */
       vm.searchFromButton = function () {
-        localStorage.removeItem('availableHousing');
+        sessionStorage.removeItem('availableHousing');
         vm.search(false);
       };
 
@@ -97,6 +97,7 @@
         /*
          * Check if there is local data already present. If no local data is present only then run a search query to the server
          */
+        localHousingData = sessionStorage.getItem('availableHousing');
 
         if(localHousingData != null) {
           vm.availableRooms = JSON.parse(localHousingData);
@@ -130,7 +131,7 @@
             vm.showSearch = showSearch;
             vm.showSort = showSearch;
             $cookieStore.put('availableHousingSearchFields', vm.searchCriteria); // store search fields to the cookie
-            localStorage.setItem('availableHousing', JSON.stringify(vm.availableRooms)); // store housing data locally
+            sessionStorage.setItem('availableHousing', JSON.stringify(vm.availableRooms)); // store housing data locally
           });
         }
 

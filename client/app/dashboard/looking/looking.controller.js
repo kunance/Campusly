@@ -81,7 +81,7 @@
         /*
          * Remove local storage data and cookie data
          */
-        localStorage.removeItem('availableLookings');
+        sessionStorage.removeItem('availableLookings');
         $cookieStore.remove('roommateSearchFields');
         vm.setSearchFields();
       };
@@ -99,7 +99,7 @@
        * Clear local storage before executing search function
        */
       vm.searchFromButton = function () {
-        localStorage.removeItem('availableLookings');
+        sessionStorage.removeItem('availableLookings');
         vm.search(false);
       };
 
@@ -108,6 +108,8 @@
         /*
          * Check if there is local data already present. If no local data is present only then run a search query to the server
          */
+
+        localLookingData = sessionStorage.getItem('availableLookings');
 
         if(localLookingData != null) {
           vm.lookings = JSON.parse(localLookingData);
@@ -124,7 +126,7 @@
             vm.showSearch = showSearch;
             vm.showSort = showSearch;
             $cookieStore.put('roommateSearchFields', vm.searchCriteria); // store search fields to the cookie
-            localStorage.setItem('availableLookings', JSON.stringify(vm.lookings)); // store housing data locally
+            sessionStorage.setItem('availableLookings', JSON.stringify(vm.lookings)); // store housing data locally
           });
         }
 
