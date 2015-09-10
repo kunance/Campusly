@@ -104,7 +104,6 @@
           vm.groups = vm.availableRooms.inGroupsOf(8);
           vm.showSearch = showSearch;
           vm.showSort = showSearch;
-          console.log("localdata present");
         }
         else {
           if(vm.searchCriteria.within) {
