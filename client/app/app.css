@@ -2280,7 +2280,15 @@ Looking Details
   border: none;
   width: 100%;
   margin-top: 2%;
+  margin-bottom: 1%;
+}
+
+.messageTemplateForm p {
   margin-bottom: 2%;
+}
+
+.messageTemplateForm p small {
+  font-size: x-small;
 }
 
 .messageTemplateSentMessage {
