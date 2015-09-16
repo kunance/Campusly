@@ -6,14 +6,16 @@
     .module('app.messages')
     .controller('MessageCtrl', MessageCtrl);
 
-  MessageCtrl.$inject = ['common', '$scope', 'currentUser', 'UserResource', '$q', 'pubNubService'];
+  MessageCtrl.$inject = ['common', '$scope', 'currentUser', 'UserResource', '$q', 'pubNubService', 'Auth'];
 
-  function MessageCtrl(common, $scope, currentUser, UserResource, $q, pubNubService) {
+  function MessageCtrl(common, $scope, currentUser, UserResource, $q, pubNubService, Auth) {
 
     //Set the variables to current user, and retrieve information from DB about their education
     var vm = this;
     var debug = false;
     vm.me = currentUser;
+    var user = Auth.getCurrentUser();
+
     vm.education = common.dataservice.getAllEducations(currentUser.id);
 
     /*
@@ -35,6 +37,7 @@
     function initializeMessageController() {
 
       vm.pubNubService = pubNubService;
+      pubNubService.privateSubscribe(user.email);
 
 
 
@@ -46,7 +49,6 @@
       vm.oldestChatTimeToken = null;
 
       //setTimeout(function(){pubNubService.initializeChat()}, 500);
-
       pubNubService.clearNotifs();
 
       setTimeout(function(){pubNubService.setNewMessages()}, 500);
