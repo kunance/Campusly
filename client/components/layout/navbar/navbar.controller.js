@@ -5,9 +5,9 @@
     .module('RentedApp')
     .controller('NavbarCtrl', NavbarCtrl);
 
-  NavbarCtrl.$inject = ['$scope', 'Auth', 'common', '$window', 'pubNubService', 'currentUserService', '$q'];
+  NavbarCtrl.$inject = ['$scope', 'Auth', 'common', '$window', 'pubNubService', '$q'];
 
-  function NavbarCtrl($scope, Auth, common, $window, pubNubService, currentUserService, $q) {
+  function NavbarCtrl($scope, Auth, common, $window, pubNubService, $q) {
     if ($window.FB) $scope.loadFB = $window.FB;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
@@ -15,9 +15,11 @@
     $scope.isMailconfirmed = Auth.isMailconfirmed;
 
     var vm = this;
-    var debug = false;
+    var debug = true;
 
     var user = Auth.getCurrentUser();
+
+    if (user.email) pubNubService.setCurrentUser(user);
 
     if (user.email) {
       vm.notifs = {};

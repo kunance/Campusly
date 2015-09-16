@@ -11,7 +11,7 @@
 
   pubNubService.$inject = ['common', '$q', 'PubNub', 'Auth'];
 
-  function pubNubService(common, $q, PubNub, currentUserService) {
+  function pubNubService(common, $q, PubNub, Auth) {
 
     var timeConvert = 10000;
 
@@ -27,8 +27,14 @@
     var promises = [];
 
     if(debug) console.log('initialized pubnubServe (not pubnub itself');
-    var user = currentUserService.getCurrentUser();
+
+    var user = {};
     user.education = {};
+
+    vm.setCurrentUser = function (userInput) {
+      user = userInput;
+    };
+
     if(debug)console.log('PubNub service initialization with usermail = ' + user.email);
 
 
@@ -787,7 +793,7 @@
 
 
       if(user.email == null || pubNubInitialized == 0){
-        user = currentUserService.getCurrentUser();
+        user = Auth.getCurrentUser();
         user.education = common.dataservice.getAllEducations(user.id);
 
         if(production == 1){
