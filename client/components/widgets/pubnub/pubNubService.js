@@ -214,13 +214,21 @@
 
         PubNub.ngPublish({
           channel: user.email,
-          message: newConvo
+          message: newConvo,
+          callback: function(m){
+            for (var i = 0; i < vm.privateMessages.length; i++) {
+              if (vm.privateMessages[i].email == email) {
+                vm.privateCurrentSubscribe(email, userToMessage);
+                return;
+              }
+            }
+          }
         });
 
         if(debug) console.log(user.email);
 
         //set timeout is required
-        setTimeout(function(){vm.privateCurrentSubscribe(vm.privateMessages[0].email, vm.privateMessages[0].user)}, 100);
+        //setTimeout(function(){vm.privateCurrentSubscribe(vm.privateMessages[0].email, vm.privateMessages[0].user)}, 100);
 
       };
 
