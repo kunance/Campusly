@@ -62,6 +62,7 @@
           $cookieStore.remove('availableHousingSearchFields');
           $cookieStore.remove('roommateSearchFields');
           sessionStorage.clear();
+          localStorage.clear();
           currentUser = {};
         },
 
