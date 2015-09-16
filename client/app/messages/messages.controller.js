@@ -37,8 +37,8 @@
     function initializeMessageController() {
 
       vm.pubNubService = pubNubService;
+      if(pubNubService.oldestInboxTimeToken) pubNubService.oldestInboxTimeToken = null;
       if(pubNubService.privateSubscribe) pubNubService.privateSubscribe(user.email);
-
 
 
       /* HTML and CSS: For the list of private messages, when someone clicks on one of the boxes,
