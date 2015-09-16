@@ -18,7 +18,7 @@
     var vm = {};
     var pubNubInitialized = 0;
 
-    var debug = true;
+    var debug = false;
     var production = 0;
 
     // For starting new conversations
