@@ -18,7 +18,7 @@
     var vm = {};
     var pubNubInitialized = 0;
 
-    var debug = false;
+    var debug = true;
     var production = 0;
 
     // For starting new conversations
@@ -212,12 +212,16 @@
 
         if(debug) console.log(newConvo);
 
+        vm.privateMessages.unshift(newConvo);
+
         PubNub.ngPublish({
           channel: user.email,
           message: newConvo,
           callback: function(m){
-            scope.$apply();
             setTimeout(function(){
+
+              scope.$apply();
+
               for (var i = 0; i < vm.privateMessages.length; i++) {
                 if (vm.privateMessages[i].email == email) {
                   vm.privateCurrentSubscribe(email, userToMessage);
