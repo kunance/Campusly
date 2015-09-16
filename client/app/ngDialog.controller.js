@@ -35,7 +35,7 @@
         }
 
         pubNubService.notAppPrivateMessage(email, fullName, text);
-        pubNubService.clearNotifs();
+        setTimeout(function(){pubNubService.clearNotifs();}, 1000);
         $scope.messageSent = "Your message has been sent! :)";
       };
 

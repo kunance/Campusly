@@ -1069,10 +1069,11 @@
       PubNub.ngPublish({
         channel: user.email,
         message: newConvo,
-        callback: function(){
-          setTimeout(function(){vm.notifs.clearPM();scope.$apply();}, 35);
-        }
+        callback: function(){}
       });
+
+      setTimeout(function(){vm.notifs.clearPM();scope.$apply();}, 700);
+
     };
 
 
