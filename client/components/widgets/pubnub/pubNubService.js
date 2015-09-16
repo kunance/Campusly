@@ -1025,8 +1025,8 @@
                 for (var a = 0; a < vm.privateMessages.length; a++) {
 
                   if (vm.privateMessages[a].email == retrievedHistory[i].message.email) {
-                    if(debug)console.log('same email');
-                    if(debug)console.log('mostrecentcheck - timetoken = ' + (mostRecentCheck - retrievedHistory[i].timetoken));
+                    //if(debug)console.log('same email');
+                    //if(debug)console.log('mostrecentcheck - timetoken = ' + (mostRecentCheck - retrievedHistory[i].timetoken));
                     if(mostRecentCheck - retrievedHistory[i].timetoken < 0){
 
                       if(debug)console.log('unread');
