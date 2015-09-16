@@ -15,7 +15,7 @@
     $scope.isMailconfirmed = Auth.isMailconfirmed;
 
     var vm = this;
-    var debug = true;
+    var debug = false;
 
     var user = Auth.getCurrentUser();
 
