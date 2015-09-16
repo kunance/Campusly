@@ -45,12 +45,14 @@
       vm.oldestInboxTimeToken = null;
       vm.oldestChatTimeToken = null;
 
-
+      //setTimeout(function(){pubNubService.initializeChat()}, 500);
 
       pubNubService.clearNotifs();
 
+      setTimeout(function(){pubNubService.setNewMessages()}, 500);
+
       //sned time token
-      pubNubService.sendCurrentTimeToken();
+      setTimeout(function(){pubNubService.sendCurrentTimeToken()}, 1000);
 
       pubNubService.notAppCheckUnreadMessage(true);
 

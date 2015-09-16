@@ -20,6 +20,8 @@
 
     var debug = false;
     var production = 0;
+
+    // For starting new conversations
     var hashedMessageText = "asldnA@ASDa0klnkjkj!#CFV$Fcvasdas7879";
 
     var promises = [];
@@ -101,6 +103,7 @@
     });
 
     vm.initializeChat = function() {
+      if(debug)console.log('execute vm.initializeChat()');
 
       /* HTML and CSS: For the list of private messages, when someone clicks on one of the boxes,
        it should call vm.privateCurrentSubscribe
@@ -109,7 +112,7 @@
 
       var email = JSON.stringify(user.email);
       vm.newMessage = '';
-      vm.currentChannel = {'name': '', 'secondaryChannel': null};
+      vm.currentChannel = {'name': '', 'secondaryChannel': null, 'email': null};
 
       vm.oldestInboxTimeToken = null;
       vm.oldestChatTimeToken = null;
@@ -121,6 +124,7 @@
        email:
        text:
        time:
+       delivered:
        }
        */
 
@@ -161,31 +165,6 @@
          */
         var universityChannelText = vm.replaceQuotesFunction (universityChannel);
         var universityOffCampusHousingChannelText = vm.replaceQuotesFunction (universityOffCampusHousingChannel);
-
-        /*
-         * Assign channel names to the groupChannels array
-         */
-        //vm.groupChannels = [
-        //  { "name": universityChannelText,
-        //    "new": 0,
-        //    "selected": 0},
-        //
-        //  { "name": careerCenterChannelText,
-        //    "new": 0,
-        //    "selected": 0},
-        //
-        //  { "name": resLifeChannelText,
-        //    "new": 0,
-        //    "selected": 0},
-        //
-        //  { "name": academicAdvisingChannelText,
-        //    "new": 0,
-        //    "selected": 0},
-        //
-        //  { "name": finAidChannelText,
-        //    "new": 0,
-        //    "selected": 0}
-        //];
 
 
         vm.subscribeToHousingGroups([universityChannelText, universityOffCampusHousingChannelText]);
@@ -251,21 +230,25 @@
 
        1. Subscribes to the user's personal inbox
        2. When we get a new message, we call the function to re-evaluate the private messages array
+       3. Send Current Time token
        */
       vm.privateSubscribe = function (theChannel) {
+        if (debug) console.log("vm.privateSubscribe: subscribed to: " + theChannel);
 
         // Subscribe to the channel via PubNub
         PubNub.ngSubscribe({
           channel: theChannel,
           message: function (message) {
 
+            if(debug)console.log('new inbox message!');
             vm.evaluateNewPrivateMessage(message[0]);
+            if(vm.inMessages == 1)
+              vm.sendCurrentTimeToken();
           }
         });
 
         vm.grabInboxHistory();
 
-        if (debug) console.log("subscribed to: " + theChannel);
       };
 
 
@@ -275,6 +258,8 @@
        2. Calls on currentSubscribe passing in the email and private message target's email
        */
       vm.privateCurrentSubscribe = function (email, firstName) {
+        vm.currentChannel.email = email;
+        if(debug) console.log(vm.currentChannel.email);
         var hashedChannelName = vm.privateChannelHashCode(user.email, email);
         vm.currentSubscribe(firstName, hashedChannelName);
       };
@@ -318,8 +303,10 @@
        1. Check if there is another element with the same email
        2. If yes, do nothing
        3. Else add to the END of the array with new = 0 and selected = 0;
+       4. Check if message's timeToken is greater than userTimeToken, if so then set messages to new
        */
-      vm.evaluateOldPrivateMessage = function (message) {
+      vm.evaluateOldPrivateMessage = function (message, messageTimeToken, userTimeToken) {
+
 
         for (var i = 0; i < vm.privateMessages.length; i++) {
 
@@ -327,7 +314,12 @@
             return;
           }
         }
-        message.new = 0;
+
+        if(message.new == 0 && messageTimeToken - userTimeToken > 0)
+          message.new = 1;
+        else
+          message.new = 0;
+
         message.selected = 0;
 
         vm.privateMessages.push(message);
@@ -338,10 +330,12 @@
       /* Function: For the private message inbox, grab older chat history and evaluate
 
        1. Using the oldest inbox timetoken, we make a call to pubnub history.
+       1.1 Then we get the most recent time token from user's timetoken channel
        2. With the returned messages array, we call evaluateOldPrivateMessage on each message
        3. Set the new oldest inbox time token to the time token of the oldest message
        */
       vm.grabInboxHistory = function () {
+        if(debug)console.log('execute vm.grabInboxHistory');
 
         var retrievedHistory = [];
 
@@ -354,12 +348,32 @@
             retrievedHistory = m[0];
 
             if (debug) console.log('retrived history');
-            for (var i = retrievedHistory.length - 1; i > -1; i--) {
-              vm.evaluateOldPrivateMessage(retrievedHistory[i].message);
-            }
 
-            vm.oldestInboxTimeToken = m[1];
-            scope.$apply();
+            PubNub.jsapi.history({
+              channel: user.email + '_timeTokens',
+              count: 1,
+              reverse: false,
+              include_token: true,
+              callback: function (m) {
+
+                var mostRecentCheck = Number(m[1]);
+                if(debug) console.log('latest read time token = ' + mostRecentCheck);
+                if(debug) console.log('vm.grabInboxHistory: array length of retrived history = ' + retrievedHistory.length);
+
+                for (var i = retrievedHistory.length - 1; i > -1; i--) {
+                  if(i == retrievedHistory.length-1){
+                    if(debug)console.log(retrievedHistory[i].message);
+                    if(debug)console.log(retrievedHistory[i].timetoken);
+                  }
+                  vm.evaluateOldPrivateMessage(retrievedHistory[i].message, retrievedHistory[i].timetoken, mostRecentCheck);
+                }
+
+                vm.oldestInboxTimeToken = m[1];
+                scope.$apply();
+
+              }
+            });
+
           }
         });
         // returns: [[message1, message2, ...], oldestTimeToken, newestTimeToken
@@ -416,6 +430,8 @@
        3. If one is found, then set the group channel to indicate new message
        */
       vm.groupChannelSubscribe = function (channelName) {
+        vm.currentChannel.email = null;
+
         PubNub.ngSubscribe({
           channel: channelName,
           message: function (m) {
@@ -463,10 +479,6 @@
             if (debug) console.log(m);
           }
         });
-
-        if (vm.currentChannel.secondaryChannel == null && vm.currentChannel.name) {
-          vm.groupChannelSubscribe(vm.currentChannel.name);
-        }
 
 
         if (channelSecondaryName) {
@@ -527,6 +539,7 @@
           }
           if (debug) console.log(vm.getTime(Number(messageToEval[1][1])));
           messageToEval[0].time = vm.getTime(Number(messageToEval[1][1]));
+          messageToEval[0].delivered = 1;
           vm.currentMessages.push(messageToEval[0]);
 
         } else if (newMessage == false) {
@@ -539,6 +552,7 @@
             }
 
             messageArray[i].message.time = vm.getTime(Number(messageArray[i].timetoken));
+
             vm.currentMessages.unshift(messageArray[i].message);
           }
 
@@ -546,6 +560,23 @@
 
         }
 
+      };
+
+
+      /* Function: Checks to see if a message has been delivered
+
+          1. Checks if we are in private Channel, if we are, then continue
+          2. Check: only if the message is sent by us, then we continue
+          3. Grab the timetoken from the most recent message from the timeToken channel of the other user
+          4. Compare the time token from the message vs the timeToken channel
+          5. If message is more recent, delivered is 0, If the timeToken channel is more recent, then delivered = 1
+       */
+      vm.checkMessageDeliveredStatus = function(message){
+
+        //if subscribed to a private channel
+        if(vm.currentChannel.secondaryChannel != null){
+
+        }
       };
 
 
@@ -630,8 +661,17 @@
         if (vm.currentChannel.secondaryChannel)
           vm.publish(vm.currentChannel.secondaryChannel);
 
-        if (vm.currentChannel.name)
+        else if (vm.currentChannel.name)
           vm.publish(vm.currentChannel.name);
+
+        if(debug) console.log('email inbox sent to is: ' + vm.currentChannel.email);
+
+
+        if(vm.currentChannel.email) {
+          vm.publish(vm.currentChannel.email);
+        }
+
+        vm.newMessage = '';
       };
 
 
@@ -650,7 +690,6 @@
           }
         });
 
-        vm.newMessage = '';
       };
 
 
@@ -704,7 +743,7 @@
       vm.groupChannelCurrentSubscribe(vm.groupChannels[0].name);
 
       //subscribe to one's inbox
-      if(debug) console.log(user.email);
+      if(debug) console.log('vm.initializeChat(): user email is ' + user.email);
       vm.privateSubscribe(user.email);
       if(debug) console.log(vm.privateMessages);
 
@@ -748,10 +787,11 @@
               if(debug)
                 console.log('pubnut init');
 
-              pubNubInitialized = 1;
-
             }
           });
+
+          pubNubInitialized = 1;
+
         }
         else if (production == 0) {
           //development keys
@@ -763,11 +803,11 @@
             callback: function(){
               if(debug)
                 console.log('pubnut init');
-
-              pubNubInitialized = 1;
-
             }
           });
+
+          pubNubInitialized = 1;
+
         }
 
         promises = [user.education.$promise];
@@ -832,6 +872,7 @@
         2. Publishes to that channel
      */
     vm.sendCurrentTimeToken = function(){
+      if(debug)console.log('execute: sendCurrentTimeToken');
 
       var channel = user.email +  '_timeTokens';
 
@@ -932,6 +973,67 @@
 
     };
 
+
+    /* Function: checks for new messages and change the new attribute to reflect it in the
+       priate messages array
+      */
+    vm.setNewMessages = function(){
+      if(debug)console.log('execute vm.setUnreadMessages');
+
+      var retrievedHistory = [];
+
+      PubNub.jsapi.history({
+        channel: user.email,
+        reverse: false,
+        include_token: true,
+        callback: function (m) {
+          retrievedHistory = m[0];
+
+          PubNub.jsapi.history({
+            channel: user.email + '_timeTokens',
+            count: 1,
+            reverse: false,
+            include_token: true,
+            callback: function (history) {
+
+              var mostRecentCheck = Number(history[1]);
+              if(debug) console.log('latest read time token = ' + mostRecentCheck);
+              if(debug) console.log('vm.grabInboxHistory: array length of retrived history = ' + retrievedHistory.length);
+
+              for (var i = retrievedHistory.length -1; i > -1; i--) {
+                if(debug)console.log('new message!  ' + i);
+
+                if(i == retrievedHistory.length-1){
+                  if(debug)console.log(retrievedHistory[i].message);
+                  if(debug)console.log(retrievedHistory[i].timetoken);
+                }
+
+                for (var a = 0; a < vm.privateMessages.length; a++) {
+
+                  if (vm.privateMessages[a].email == retrievedHistory[i].message.email) {
+                    if(debug)console.log('same email');
+                    if(debug)console.log('mostrecentcheck - timetoken = ' + (mostRecentCheck - retrievedHistory[i].timetoken));
+                    if(mostRecentCheck - retrievedHistory[i].timetoken < 0){
+
+                      if(debug)console.log('unread');
+                      vm.privateMessages[a].new = 1;
+                      if(debug)console.log(vm.privateMessages[a].email);
+                    }
+
+                  }
+
+                }
+
+              }
+
+              scope.$apply();
+
+            }
+          });
+
+        }
+      });
+    };
 
 
     /*  Function: Private messages someone
