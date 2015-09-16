@@ -6,15 +6,14 @@
     .module('app.messages')
     .controller('MessageCtrl', MessageCtrl);
 
-  MessageCtrl.$inject = ['common', '$scope', 'currentUser', 'UserResource', '$q', 'pubNubService', 'Auth'];
+  MessageCtrl.$inject = ['common', '$scope', 'currentUser', 'UserResource', '$q', 'pubNubService'];
 
-  function MessageCtrl(common, $scope, currentUser, UserResource, $q, pubNubService, Auth) {
+  function MessageCtrl(common, $scope, currentUser, UserResource, $q, pubNubService) {
 
     //Set the variables to current user, and retrieve information from DB about their education
     var vm = this;
     var debug = false;
     vm.me = currentUser;
-    var user = Auth.getCurrentUser();
 
     vm.education = common.dataservice.getAllEducations(currentUser.id);
 
@@ -29,6 +28,8 @@
        * If user has no university then they are prompted to update university before initializing
        */
       if (vm.education.universityId){
+        pubNubService.setCurrentUser(vm.me);
+        if(pubNubService.groupChannelInitialization) pubNubService.groupChannelInitialization(vm.education);
         initializeMessageController();
       }
 
@@ -39,7 +40,11 @@
       vm.pubNubService = pubNubService;
       if(pubNubService.privateMessages) pubNubService.privateMessages = [];
       if(pubNubService.oldestInboxTimeToken) pubNubService.oldestInboxTimeToken = null;
-      if(pubNubService.privateSubscribe) pubNubService.privateSubscribe(user.email);
+      if(pubNubService.privateSubscribe) pubNubService.privateSubscribe(vm.me.email);
+
+      setTimeout(function(){
+        pubNubService.groupChannelCurrentSubscribe(pubNubService.groupChannels[0].name);
+      }, 100);
 
 
       /* HTML and CSS: For the list of private messages, when someone clicks on one of the boxes,

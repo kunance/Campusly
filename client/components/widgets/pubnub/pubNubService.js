@@ -11,14 +11,14 @@
 
   pubNubService.$inject = ['common', '$q', 'PubNub', 'Auth'];
 
-  function pubNubService(common, $q, PubNub, currentUserService) {
+  function pubNubService(common, $q, PubNub, Auth) {
 
     var timeConvert = 10000;
 
     var vm = {};
     var pubNubInitialized = 0;
 
-    var debug = true;
+    var debug = false;
     var production = 0;
 
     // For starting new conversations
@@ -27,8 +27,14 @@
     var promises = [];
 
     if(debug) console.log('initialized pubnubServe (not pubnub itself');
-    var user = currentUserService.getCurrentUser();
+
+    var user = {};
     user.education = {};
+
+    vm.setCurrentUser = function (userInput) {
+      user = userInput;
+    };
+
     if(debug)console.log('PubNub service initialization with usermail = ' + user.email);
 
 
@@ -152,13 +158,25 @@
        }
        */
 
-      vm.groupChannelInitialization = function () {
+      vm.groupChannelInitialization = function (userEducation) {
+
+        for (var i = 0; i < vm.groupChannels.length; i++) {
+          PubNub.ngUnsubscribe({
+            channel: vm.groupChannels[i].name,
+            callback: function (m) {
+              if (debug) console.log(m);
+            }
+          });
+        }
+
+        vm.groupChannels = [];
+
         /*
          * Identify list of default channels
          * Format: University + Channel Name
          */
-        var universityChannel = JSON.stringify(user.education.relatedUniversityId.shortName + " General");
-        var universityOffCampusHousingChannel = JSON.stringify(user.education.relatedUniversityId.shortName + " Off-campus Housing");
+        var universityChannel = JSON.stringify(userEducation.relatedUniversityId.shortName + " General");
+        var universityOffCampusHousingChannel = JSON.stringify(userEducation.relatedUniversityId.shortName + " Off-campus Housing");
 
         /*
          * Remove quotation from the JSON stringify
@@ -298,7 +316,7 @@
           }
         }
 
-        if (vm.currentChannel.name == message.email) {
+        if (vm.currentChannel.email == message.email) {
           message.selected = 1;
           message.new = 0;
         } else {
@@ -752,7 +770,7 @@
        */
 
       //initialize all the group channels
-      vm.groupChannelInitialization();
+      vm.groupChannelInitialization(user.education);
 
       //subscribe user to default university channel upon clicking messages in the navbar
       vm.groupChannelCurrentSubscribe(vm.groupChannels[0].name);
@@ -787,7 +805,7 @@
 
 
       if(user.email == null || pubNubInitialized == 0){
-        user = currentUserService.getCurrentUser();
+        user = Auth.getCurrentUser();
         user.education = common.dataservice.getAllEducations(user.id);
 
         if(production == 1){
