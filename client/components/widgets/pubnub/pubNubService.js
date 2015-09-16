@@ -759,13 +759,12 @@
 
       //subscribe to one's inbox
       if(debug) console.log('vm.initializeChat(): user email is ' + user.email);
-      vm.privateSubscribe(user.email);
+      setTimeout(function(){vm.privateSubscribe(user.email);}, 100);
       if(debug) console.log(vm.privateMessages);
 
 
     }; //END OF INITIALIZATION
       /*-------------------------------------------------------------------------------*/
-
 
     vm.setNotifsAndScope = function (notifs, scoper){
       vm.notifs = notifs;
