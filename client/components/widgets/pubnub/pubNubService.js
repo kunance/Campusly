@@ -216,12 +216,15 @@
           channel: user.email,
           message: newConvo,
           callback: function(m){
-            for (var i = 0; i < vm.privateMessages.length; i++) {
-              if (vm.privateMessages[i].email == email) {
-                vm.privateCurrentSubscribe(email, userToMessage);
-                return;
+            scope.$apply();
+            setTimeout(function(){
+              for (var i = 0; i < vm.privateMessages.length; i++) {
+                if (vm.privateMessages[i].email == email) {
+                  vm.privateCurrentSubscribe(email, userToMessage);
+                  return;
+                }
               }
-            }
+            }, 100);
           }
         });
 
