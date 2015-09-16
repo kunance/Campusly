@@ -37,7 +37,7 @@
     function initializeMessageController() {
 
       vm.pubNubService = pubNubService;
-      pubNubService.privateSubscribe(user.email);
+      if(pubNubService.privateSubscribe) pubNubService.privateSubscribe(user.email);
 
 
 
