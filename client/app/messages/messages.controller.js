@@ -29,6 +29,7 @@
        */
       if (vm.education.universityId){
         pubNubService.setCurrentUser(vm.me);
+        if(pubNubService.groupChannelInitialization) pubNubService.groupChannelInitialization(vm.education);
         initializeMessageController();
       }
 
@@ -40,6 +41,10 @@
       if(pubNubService.privateMessages) pubNubService.privateMessages = [];
       if(pubNubService.oldestInboxTimeToken) pubNubService.oldestInboxTimeToken = null;
       if(pubNubService.privateSubscribe) pubNubService.privateSubscribe(vm.me.email);
+
+      setTimeout(function(){
+        pubNubService.groupChannelCurrentSubscribe(pubNubService.groupChannels[0].name);
+      }, 100);
 
 
       /* HTML and CSS: For the list of private messages, when someone clicks on one of the boxes,

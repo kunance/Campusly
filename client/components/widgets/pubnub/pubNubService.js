@@ -158,13 +158,25 @@
        }
        */
 
-      vm.groupChannelInitialization = function () {
+      vm.groupChannelInitialization = function (userEducation) {
+
+        for (var i = 0; i < vm.groupChannels.length; i++) {
+          PubNub.ngUnsubscribe({
+            channel: vm.groupChannels[i].name,
+            callback: function (m) {
+              if (debug) console.log(m);
+            }
+          });
+        }
+
+        vm.groupChannels = [];
+
         /*
          * Identify list of default channels
          * Format: University + Channel Name
          */
-        var universityChannel = JSON.stringify(user.education.relatedUniversityId.shortName + " General");
-        var universityOffCampusHousingChannel = JSON.stringify(user.education.relatedUniversityId.shortName + " Off-campus Housing");
+        var universityChannel = JSON.stringify(userEducation.relatedUniversityId.shortName + " General");
+        var universityOffCampusHousingChannel = JSON.stringify(userEducation.relatedUniversityId.shortName + " Off-campus Housing");
 
         /*
          * Remove quotation from the JSON stringify
@@ -304,7 +316,7 @@
           }
         }
 
-        if (vm.currentChannel.name == message.email) {
+        if (vm.currentChannel.email == message.email) {
           message.selected = 1;
           message.new = 0;
         } else {
@@ -758,7 +770,7 @@
        */
 
       //initialize all the group channels
-      vm.groupChannelInitialization();
+      vm.groupChannelInitialization(user.education);
 
       //subscribe user to default university channel upon clicking messages in the navbar
       vm.groupChannelCurrentSubscribe(vm.groupChannels[0].name);
