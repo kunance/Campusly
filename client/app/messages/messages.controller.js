@@ -37,6 +37,7 @@
     function initializeMessageController() {
 
       vm.pubNubService = pubNubService;
+      if(pubNubService.privateMessages) pubNubService.privateMessages = [];
       if(pubNubService.oldestInboxTimeToken) pubNubService.oldestInboxTimeToken = null;
       if(pubNubService.privateSubscribe) pubNubService.privateSubscribe(user.email);
 
