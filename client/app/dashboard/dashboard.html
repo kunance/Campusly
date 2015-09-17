@@ -66,7 +66,7 @@
           <div class="white-box available-rooms">
 
             <h3 ng-if="!dashboard.education.universityId && dashboard.initialized">Please set your <a ui-sref="editProfile({focus:'updateEducation'})">university</a> to see available housing</h3>
-            <h4 ng-if="!dashboard.availableRooms.length && dashboard.education.universityId && dashboard.initialized">There is no available housing in 100 miles radius around your campus
+            <h4 ng-if="!dashboard.availableRooms.length && dashboard.education.universityId && dashboard.initialized">There is no available housing in 10 miles radius around your campus
               <small>
                 <a ui-sref="addRoom"><br/>Click here</a> to add room.
               </small>
@@ -103,6 +103,7 @@
                       <form class="messageTemplateForm" name="messageForm" ng-hide="messageSent">
                         <h3>Message to {{ngDialogData.firstName | limitTo: 16}} {{ngDialogData.lastName | limitTo: 16}}</h3>
                         <textarea placeholder="Your message here..." type="text" ng-model="around.message" rows="3" required ng-minlength="1"></textarea>
+                        <p><small>University tip: Get to know another student before meeting them. Meet in a public location.</small></p>
                         <button class="btn-rented-medium primary" ng-click="sendMessage(around.message, ngDialogData.email, ngDialogData.firstName, ngDialogData.lastName); trackAvailableHousingMessage()" ng-hide="!messageForm.$valid">Send</button>
                         <button class="btn-rented-medium disabled" ng-show="!messageForm.$valid" disabled>Send</button>
                       </form>
@@ -172,6 +173,7 @@
                       <form class="messageTemplateForm" name="messageForm" ng-hide="messageSent">
                         <h3>Message to {{ngDialogData.firstName | limitTo: 16}} {{ngDialogData.lastName | limitTo: 16}}</h3>
                         <textarea placeholder="Your message here..." type="text" ng-model="around.message" rows="3" required ng-minlength="1"></textarea>
+                        <p><small>University tip: Get to know another student before meeting them. Meet in a public location.</small></p>
                         <button class="btn-rented-medium primary" ng-click="sendMessage(around.message, ngDialogData.email, ngDialogData.firstName, ngDialogData.lastName); trackLookingForRoommatesMessage()" ng-hide="!messageForm.$valid">Send</button>
                         <button class="btn-rented-medium disabled" ng-show="!messageForm.$valid" disabled>Send</button>
                       </form>

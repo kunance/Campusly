@@ -41,7 +41,7 @@
         furnished: null, smokingAllowed: null, gender: null,
         petsAllowed: null, parkingAvailable: null,
         within: {
-          distance: 100, place: {type: 'univ', id: vm.education.universityId}
+          distance: 10, place: {type: 'univ', id: vm.education.universityId}
         }
       };
       vm.myRoomListingsIds = [];

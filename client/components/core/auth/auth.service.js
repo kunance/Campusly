@@ -59,6 +59,10 @@
          */
         logout: function() {
           $cookieStore.remove('token');
+          $cookieStore.remove('availableHousingSearchFields');
+          $cookieStore.remove('roommateSearchFields');
+          sessionStorage.clear();
+          localStorage.clear();
           currentUser = {};
         },
 
