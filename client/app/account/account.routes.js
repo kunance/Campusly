@@ -14,13 +14,13 @@
         url: '/logout',
         controller: logout
       })
-      .state('signup', {
-        url: '/signup',
-        templateUrl: 'app/account/signup/signup.html',
-        controller: 'SignupCtrl',
-        controllerAs: 'signup',
-        authenticate:false
-      })
+      //.state('signup', {
+      //  url: '/signup',
+      //  templateUrl: 'app/account/signup/signup.html',
+      //  controller: 'SignupCtrl',
+      //  controllerAs: 'signup',
+      //  authenticate:false
+      //})
       .state('settings', {
         url: '/settings/:focus',
         templateUrl: 'app/account/settings/settings.html',
